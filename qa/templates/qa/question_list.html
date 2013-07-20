@@ -41,6 +41,11 @@
       <li {% if by_date %}class="active"{% endif %}>
         <a href=".?order=date">{% trans "Most Recent" %}</a>
       </li>
+      {% if showSortByFlagCount %}
+      <li {% if by_flagcount %}class="active"{% endif %}>
+        <a href=".?order=flagcount">{% trans "Most Flagged" %}</a>
+      </li>
+      {% endif %}
     </ul>
     {% endif %}
 

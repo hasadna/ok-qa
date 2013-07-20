@@ -20,7 +20,7 @@ from qa.mixins import JSONResponseMixin
 
 
 # the order options for the list views
-ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating'}
+ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flags_count'}
 
 
 class JsonpResponse(HttpResponse):
@@ -32,7 +32,7 @@ class JsonpResponse(HttpResponse):
             *args, **kwargs)
 
 
-def questions(request, entity_slug=None, entity_id=None, tags=None):
+def questions(request, entity_slug=None, entity_id=None, tags=None, filterFlagged=False):
     """
     list questions ordered by number of upvotes
     """
@@ -43,7 +43,10 @@ def questions(request, entity_slug=None, entity_id=None, tags=None):
     else:
         entity = Entity.objects.get(slug=entity_slug)
 
-    questions = Question.on_site.filter(entity=entity)
+    if filterFlagged:
+        questions = Question.on_site.filter(entity=entity, flags_count__gte = 1)
+    else:
+        questions = Question.on_site.filter(entity=entity)
 
     context = {'entity': entity}
     order_opt = request.GET.get('order', 'rating')
@@ -57,9 +60,12 @@ def questions(request, entity_slug=None, entity_id=None, tags=None):
     # TODO: revive the tags!
     # context['tags'] = TaggedQuestion.on_site.values('tag__name').annotate(count=Count("tag"))
 
+    context['showSortByFlagCount'] = filterFlagged
+
     context['questions'] = questions
     context['by_date'] = order_opt == 'date'
     context['by_rating'] = order_opt == 'rating'
+    context['by_flagcount'] = order_opt == 'flagcount'
     return render(request, "qa/question_list.html", RequestContext(request, context))
 
 

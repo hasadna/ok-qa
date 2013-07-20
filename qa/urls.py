@@ -11,6 +11,10 @@ urlpatterns = patterns('qa.views',
     ),
     url(r'^(?P<entity_id>[-\d]+)/qna/$', 'questions', name='qna'),
     url(r'^(?P<entity_slug>[-\w]+)/qna/$', 'questions', name='qna'),
+
+    url(r'^(?P<entity_id>[-\d]+)/flagged/$', 'questions', {'filterFlagged':True}, name='flagged'),
+    url(r'^(?P<entity_slug>[-\w]+)/flagged/$', 'questions', {'filterFlagged':True}, name='flagged'),
+
     url(r'^(?P<entity_slug>[-\w]+)/qna/tags/(?P<tags>.+)/$', 'questions', name='show_tags'),
 
     url(r'^qna/post_a/(?P<q_id>\d+)/$', 'post_answer', name='post_answer'),
