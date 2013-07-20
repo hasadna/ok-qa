@@ -43,9 +43,9 @@ def invite_user(site, username, email, first_name="", last_name=""):
 
     return user
 class ProfileManager(models.Manager):
-    def candidates_for_entity(self, entity_slug):
+    def candidates_for_entity(self, entity):
         ''' get all the candidates in an entity '''
-        return User.objects.filter(profile__locality__slug = entity_slug,
+        return User.objects.filter(profile__locality = entity,
                                    profile__is_candidate=True)
 
 class Profile(models.Model):

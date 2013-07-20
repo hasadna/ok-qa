@@ -2,7 +2,6 @@
 {% load i18n %}
 {% load pagination_tags %}
 {% block extrahead %}
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css"/>
 {% endblock %}
 {% block homeNav %}class="active"{% endblock %}
 {% block mainContainer %}
@@ -74,14 +73,6 @@
 </div>
 {% endblock %}
   {% block extrascript %}
-<script src="{{ STATIC_URL }}js/chosen.jquery.min.js"></script>
-<script src="{{ STATIC_URL }}js/chosen.jquery_ready.js"></script>
-<script>
-  $('[name=entity]').change(function() {
-    window.location.href = ('/' + $('select option:selected').val() + '/qna/');
-  });
-</script>
- 
 {% if not user.is_authenticated %}
     <script>
         // warn non registered users

@@ -15,16 +15,22 @@ from django.views.decorators.http import require_POST
 from .forms import *
 from .models import *
 
+from oshot.forms import EntityChoiceForm
 
-def candidate_list(request, entity_slug):
+
+def candidate_list(request, entity_slug=None, entity_id=None):
     """
     list candidates ordered by number of answers
     """
-    entity = Entity.objects.get(slug=entity_slug)
-    candidates = Profile.objects.candidates_for_entity(entity_slug)
+    if entity_id:
+        entity = Entity.objects.get(pk=entity_id)
+    else:
+        entity = Entity.objects.get(slug=entity_slug)
+    candidates = Profile.objects.candidates_for_entity(entity)
     context = RequestContext(request,
                              dict(entity=entity,
-                                  candidates=candidates))
+                                  candidates=candidates,
+                                  placeForm = EntityChoiceForm(initial = {'entity' : entity.id})))
     return render(request, "candidate/candidate_list.html", context)
 
 

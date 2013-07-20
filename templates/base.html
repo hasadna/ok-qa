@@ -1,4 +1,6 @@
 {% load i18n %}
+{% load crispy_forms_tags %}
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -9,6 +11,7 @@
     <title>
       {% block pageTitle %} {% endblock %} {{ party.site.name }}
     </title>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css"/>
     {% block extrahead %}{% endblock %}
 </head>
 <body>
@@ -21,7 +24,13 @@
         </a>
       </div>
       <ul class="nav nav-self">
-        {% block topnav %} {% endblock %}
+        {% block topnav %} 
+        {% if placeForm %}
+        <li>
+          {{ placeForm|crispy }}
+        </li>
+        {% endif %}
+        {% endblock %}
         {% if user.is_authenticated %}
         <li class="divider-vertical"></li>
         <li class="dropdown">
@@ -135,6 +144,14 @@
       {% endif %}
 
     </script>
+<script src="{{ STATIC_URL }}js/chosen.jquery.min.js"></script>
+<script src="{{ STATIC_URL }}js/chosen.jquery_ready.js"></script>
+<script>
+  $('[name=entity]').change(function() {
+    window.location.href = ('/' + $('select option:selected').val() + '/qna/');
+  });
+</script> 
+
     {% block extrascript %} {% endblock %}
 </body>
 </html>

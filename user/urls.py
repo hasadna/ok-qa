@@ -4,6 +4,7 @@ from .feeds import *
 
 urlpatterns = patterns('',
     url(r'^profile/$', edit_profile, name='edit_profile'),
+    url(r'^(?P<entity_id>[-\d]+)/candidates/$', candidate_list, name="candidate_list"),
     url(r'^(?P<entity_slug>.*)/candidates/$', candidate_list, name="candidate_list"),
     url(r'^users/(?P<slug>.+)/$', user_detail, name="candidate_detail"),
     url(r'^candidate/(?P<candidate_id>\d+)/atom/$',

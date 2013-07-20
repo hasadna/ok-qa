@@ -13,15 +13,7 @@ from chosen import forms as chosenforms
 from qa.models import Question
 from qa.views import ORDER_OPTIONS
 
-
-class EntityForm(forms.Form):
-    """ this form is used only to display the field, input
-        is handled by the client
-    """
-    entity = chosenforms.ChosenModelChoiceField(
-        queryset=Entity.objects.filter(division__index=3),
-        label=_('Move to'), required=False)
-
+from oshot.forms import EntityChoiceForm
 
 def place_search(request):
     """ A view to search in a specific place """
@@ -43,9 +35,9 @@ def home(request):
     order_query = ORDER_OPTIONS[order]
 
     context = RequestContext(request, {
-        "form": EntityForm(),
         "questions": Question.objects.all().order_by(order_query),
-        "order": order
+        "order": order,
+        "placeForm": EntityChoiceForm()
     })
     return render(request, "home.html", context)
 
