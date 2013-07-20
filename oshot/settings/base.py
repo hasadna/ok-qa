@@ -70,6 +70,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'bootstrap_pagination.middleware.PaginationMiddleware',
+    'oshot.middleware.LocalityMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 

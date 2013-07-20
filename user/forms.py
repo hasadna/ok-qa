@@ -16,6 +16,9 @@ class ProfileForm(forms.Form):
     first_name = forms.CharField(label=_('first name'), max_length = 15)
     last_name = forms.CharField(label=_('last name'), required=False, max_length = 20)
     email = forms.EmailField(required=False ,label=_(u'email address'))
+    locality = chosenforms.ChosenModelChoiceField(
+                queryset=Entity.objects.filter(division__index=3),
+                label=_('Locality'), required=False)
     url = forms.URLField(required=False ,label=_(u'home page'))
     avatar_uri = forms.URLField(required=False ,label=_(u'avatar'))
     bio = forms.CharField(label=_('bio'), required=False,
@@ -25,15 +28,12 @@ class ProfileForm(forms.Form):
                                            help_text = _('Should we send you e-mail notification about updates to things you follow on the site?'))
     is_candidate = forms.BooleanField(label=_('candidate?'), required=False,
                 help_text=_('Please check this only if you are running for office'))
-    locality = chosenforms.ChosenModelChoiceField(
-                queryset=Entity.objects.filter(division__index=3),
-                label=_('Locality'))
 
     def __init__(self, user, *args, **kw):
         super(ProfileForm, self).__init__(*args, **kw)
         self.user = user
-        self.profile = user.profile
         if self.user:
+            self.profile = user.profile
             self.initial = {'username': self.user.username,
                             'email': self.user.email,
                             'first_name': self.user.first_name,
@@ -41,9 +41,11 @@ class ProfileForm(forms.Form):
                             'bio': self.profile.bio,
                             'email_notification': self.profile.email_notification,
                             'url': self.profile.url,
-                            'locality': self.profile.locality,
                             'avatar_uri': self.profile.avatar_url(),
                            }
+            if self.profile.locality:
+                self.fields['locality'].widget = forms.TextInput(attrs={'disabled':'disabled',
+                    'value': self.profile.locality.name})
 
     def clean_username(self):
         data = self.cleaned_data['username']
@@ -70,7 +72,8 @@ class ProfileForm(forms.Form):
         self.profile.email_notification = self.cleaned_data['email_notification']
         self.profile.url = self.cleaned_data['url']
         self.profile.avatar_uri = self.cleaned_data['avatar_uri']
-        self.profile.locality = self.cleaned_data['locality']
+        if self.cleaned_data['locality']:
+            self.profile.locality = self.cleaned_data['locality']
         self.profile.is_candidate = self.cleaned_data['is_candidate']
 
         if commit:

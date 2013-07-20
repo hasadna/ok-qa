@@ -44,6 +44,12 @@ class QuestionTest(TestCase):
         entity = Entity.objects.create(name="the moon", division=division)
         self.common_user = User.objects.create_user("commoner", 
                                 "commmon@example.com", "pass")
+        self.common_user.profile.locality = entity
+        self.common_user.profile.save()
+        self.common2_user = User.objects.create_user("common2", 
+                                "commmon2@example.com", "pass")
+        self.common2_user.profile.locality = entity
+        self.common2_user.profile.save()
         self.candidate_user = User.objects.create_user("candidate", 
                                 "candidate@example.com", "pass")
         self.candidate_user.profile.locality = entity
@@ -97,7 +103,7 @@ class QuestionTest(TestCase):
         data = json.loads(response.content)
         self.assertIn('redirect', data)
         respone = c.post(data['redirect'],
-                {'username':"commoner", 'password':"pass"})
+                {'username':"common2", 'password':"pass"})
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
         data = json.loads(response.content)
         self.assertIn('message', data)
@@ -120,6 +126,13 @@ class QuestionTest(TestCase):
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 302)
         c.login(self.user, backend='facebook')
+        response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
+        self.assertRedirects(response, '%s?next=%s' % (reverse("edit_profile"), 
+            reverse('upvote_question', kwargs={'q_id':self.q.id})))
+
+        u=User.objects.get(email='user@domain.com')
+        u.profile.locality = self.common_user.profile.locality
+        u.profile.save()
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.content, "2")
