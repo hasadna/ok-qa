@@ -1,14 +1,21 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load crispy_forms_tags %}
 
 {% block topnav %}
   {% if entity %}
-  <li>
-    {% trans 'Place' %}: {{ entity }}
-  </li>
-  <li>
-    <a href="{% url 'home' %}">({% trans 'All Places' %})</a></li>
-  </li>
+    {% if placeForm %}
+    <li>
+    {{ placeForm|crispy }}
+    </li>
+    {% else %}
+    <li>
+      {% trans 'Place' %}: {{ entity }}
+    </li>
+    <li>
+      <a href="{% url 'home' %}">({% trans 'All Places' %})</a>
+    </li>
+    {% endif %}
   {% endif %}
 {% endblock %}
 {% block mainnav %} 

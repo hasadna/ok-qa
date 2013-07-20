@@ -1,5 +1,6 @@
 import json
 
+from django import forms
 from django.http import HttpResponse, HttpResponseForbidden
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
@@ -17,11 +18,21 @@ from qa.forms import AnswerForm, QuestionForm
 from .models import *
 from qa.mixins import JSONResponseMixin
 
+from entities.models import Entity
+from chosen import forms as chosenforms
 
 
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flags_count'}
 
+class EntitySmallForm(forms.Form):
+    """ this form is used only to display the field, input
+        is handled by the client
+    """
+    entity = chosenforms.ChosenModelChoiceField(
+            queryset=Entity.objects.filter(division__index=3),
+            label= _("Place"),
+            required=False)
 
 class JsonpResponse(HttpResponse):
     def __init__(self, data, callback, *args, **kwargs):
@@ -66,6 +77,9 @@ def questions(request, entity_slug=None, entity_id=None, tags=None, filterFlagge
     context['by_date'] = order_opt == 'date'
     context['by_rating'] = order_opt == 'rating'
     context['by_flagcount'] = order_opt == 'flagcount'
+
+    context['placeForm'] = EntitySmallForm()
+    
     return render(request, "qa/question_list.html", RequestContext(request, context))
 
 
