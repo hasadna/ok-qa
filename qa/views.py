@@ -1,5 +1,6 @@
 import json
 
+from django import forms
 from django.http import HttpResponse, HttpResponseForbidden
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
@@ -17,11 +18,16 @@ from qa.forms import AnswerForm, QuestionForm
 from .models import *
 from qa.mixins import JSONResponseMixin
 
+from entities.models import Entity
+from chosen import forms as chosenforms
+
+from user.views import edit_profile
+
+from oshot.forms import EntityChoiceForm
 
 
 # the order options for the list views
-ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating'}
-
+ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flags_count'}
 
 class JsonpResponse(HttpResponse):
     def __init__(self, data, callback, *args, **kwargs):
@@ -32,7 +38,7 @@ class JsonpResponse(HttpResponse):
             *args, **kwargs)
 
 
-def questions(request, entity_slug=None, entity_id=None, tags=None):
+def questions(request, entity_slug=None, entity_id=None, tags=None, filterFlagged=False):
     """
     list questions ordered by number of upvotes
     """
@@ -43,7 +49,10 @@ def questions(request, entity_slug=None, entity_id=None, tags=None):
     else:
         entity = Entity.objects.get(slug=entity_slug)
 
-    questions = Question.on_site.filter(entity=entity)
+    if filterFlagged:
+        questions = Question.on_site.filter(entity=entity, flags_count__gte = 1)
+    else:
+        questions = Question.on_site.filter(entity=entity)
 
     context = {'entity': entity}
     order_opt = request.GET.get('order', 'rating')
@@ -57,9 +66,15 @@ def questions(request, entity_slug=None, entity_id=None, tags=None):
     # TODO: revive the tags!
     # context['tags'] = TaggedQuestion.on_site.values('tag__name').annotate(count=Count("tag"))
 
+    context['showSortByFlagCount'] = filterFlagged
+
     context['questions'] = questions
     context['by_date'] = order_opt == 'date'
     context['by_rating'] = order_opt == 'rating'
+    context['by_flagcount'] = order_opt == 'flagcount'
+
+    context['placeForm'] = EntityChoiceForm(initial = {'entity' : entity.id})
+    
     return render(request, "qa/question_list.html", RequestContext(request, context))
 
 
@@ -129,23 +144,55 @@ def post_answer(request, q_id):
 
 
 @login_required
-def post_question(request, entity_slug):
+def post_q_router(request):
+    user = request.user
+    if user.is_anonymous():
+        return HttpResponseRedirect(settings.LOGIN_URL)
+    else:
+        profile = user.profile
+        entity_slug = profile.locality and profile.locality.slug
+        if entity_slug:
+            return HttpResponseRedirect(reverse(post_question, args=(entity_slug, )))
+        else:
+            # user must set locality
+            return HttpResponseRedirect(reverse(edit_profile))
+
+
+@login_required
+def post_question(request, entity_slug, slug=None):
     entity = Entity.objects.get(slug=entity_slug)
+    if slug:
+        q = get_object_or_404(Question, unislug=slug, entity=entity)
+
     if request.method == "POST":
         form = QuestionForm(request.POST)
         if form.is_valid():
-            question = form.save(commit=False)
-            question.author = request.user
-            question.entity = entity
-            question.save()
-            form.save_m2m()
+            if slug:
+                if q.author != request.user:
+                    return HttpResponseForibdden(_("You can only edit your own questions."))
+                if q.answers.count():
+                    return HttpResponseForbidden(_("Question has been answered, editing disabled."))
+                question = q
+                question.subject = form.cleaned_data.get('subject', "")
+                question.save()
+            else:
+                question = form.save(commit=False)
+                question.author = request.user
+                question.entity = entity
+                question.save()
+                form.save_m2m()
             return HttpResponseRedirect(question.get_absolute_url())
     else:
-        form = QuestionForm(initial={'entity': entity})
+        if slug:
+            subject = q.subject
+        else:
+            subject = ""
+        form = QuestionForm(initial={'entity': entity, 'subject': subject})
 
     context = RequestContext(request, {"form": form,
                                        "entity": entity,
                                        "max_length_q_subject": MAX_LENGTH_Q_SUBJECT,
+                                       "slug": slug,
     })
     return render(request, "qa/post_question.html", context)
 
@@ -228,7 +275,7 @@ def flag_question(request, q_id):
     if user.is_anonymous():
         messages.error(request, _('Sorry, you have to login to flag questions'))
         ret["redirect"] = '%s?next=%s' % (settings.LOGIN_URL, q.get_absolute_url())
-    elif user.profile.is_editor and user.profile.locality == q.entity:
+    elif (user.profile.is_editor and user.profile.locality == q.entity) or (user == q.author and not q.answers.all()):
         q.delete()
         messages.info(request, _('Question has been removed'))
         ret["redirect"] = reverse('qna', args=(q.entity.slug,))
