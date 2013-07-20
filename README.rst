@@ -17,7 +17,7 @@ it on your local machine::
 
     $ sudo pip install virtualenvwrapper
     $ mkvirtualenv oshot
-    $ git clone https://github.com/hasadna/open-shot.git
+    $ git clone https://github.com/hasadna/open-shot.git oshot
     $ cd oshot
     $ pip install -r requirements.txt
     $ python manage.py syncdb --migrate --noinput

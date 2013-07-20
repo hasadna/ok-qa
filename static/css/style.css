@@ -82,13 +82,8 @@ line-height: 24px;
 font-size: 18px;
 font-family: Arial,Helvetica,sans-serif;
 }
-.narrow .summary {
-width: 500px;
-}
-.summary {
-float: right;
-width: 630px;
-}
+.narrow .summary { width: 550px; }
+.summary { float: right; width: 630px; }
 .summary h3 {
 margin-bottom: 7px;
 font-size: 15px;
@@ -213,8 +208,7 @@ line-height: 18px!important;
 /* Login */
 form { margin :0; }
 .navbar .nav > li {padding-top: 14px;}
-.navbar .nav > li > a {padding-top: 0px;}
-.navbar-search {padding-top:4px; }
+.navbar-search {padding-top:14px; }
 .nav-self {float:left!important; margin-top:10x;}
 
 .form-actions {
@@ -295,6 +289,7 @@ h1, h2, h3, h4, h5, h6 {
 .post-question { position:relative; }
 .post-question input[name="subject"] { width: 500px;}
 .post-question #charsCounter { position:absolute; left: 10px; bottom: 0; }
+.post-question .asteriskField { display: none; }
 .social-auth > li { display:inline;}
 .page-header { border:none; }
 .editor-options { float:left;}
