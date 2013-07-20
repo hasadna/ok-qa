@@ -295,6 +295,7 @@ h1, h2, h3, h4, h5, h6 {
 .post-question { position:relative; }
 .post-question input[name="subject"] { width: 500px;}
 .post-question #charsCounter { position:absolute; left: 10px; bottom: 0; }
+.post-question .asteriskField { display: none; }
 .social-auth > li { display:inline;}
 .page-header { border:none; }
 .editor-options { float:left;}
