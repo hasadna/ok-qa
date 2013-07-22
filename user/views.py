@@ -90,7 +90,8 @@ def edit_profile(request):
 
     context = RequestContext(request, {"form": form,
                                        "entity": profile.locality,
-                                       "base_template": get_base_template(profile)})
+                                       "base_template": get_base_template(profile),
+                                       "placeForm" : EntityChoiceForm(initial = {'entity': profile.locality})})
     return render(request, "user/edit_profile.html", context)
 
 
