@@ -50,13 +50,13 @@
                     </div>
                 {% else %}
                     {% if user != question.author or not question.answers.all %}
-                    <a class="flag-question btn btn-danger {% if not can_upvote %}disabled{% endif %}"
-                       question-id="{{ question.id }}" href="#">
+                    <a class="flag-question btn btn-danger {% if not can_upvote %}disabled{% endif %}
                       {% if user == question.author %}
-                      {% trans "Delete" %}
+                      icon-remove" title="{% trans "Delete" %}" 
                       {% else %}
-                      &#9872;
+                      icon-flag" title="{% trans "Flag question" %}"
                       {% endif %}
+		      question-id="{{ question.id }}" href="#">
                     </a>
                     {% endif %}
                 {% endif %}
