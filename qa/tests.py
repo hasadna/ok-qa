@@ -107,7 +107,7 @@ class QuestionTest(TestCase):
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
         data = json.loads(response.content)
         self.assertIn('message', data)
-        self.assertEquals(data['message'], 'Thank you for falgging the question. One of our editors will look at it shortly.')
+        self.assertEquals(data['message'], 'Thank you for flagging the question. One of our editors will look at it shortly.')
         self.q = Question.objects.get(pk=self.q.id)
         self.assertEquals(self.q.flags_count, 2)
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))

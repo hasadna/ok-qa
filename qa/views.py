@@ -285,5 +285,5 @@ def flag_question(request, q_id):
         flag = QuestionFlag.objects.create(question=q, reporter=user)
         #TODO: use signals so the next line won't be necesary
         q.flagged()
-        ret["message"] = _('Thank you for falgging the question. One of our editors will look at it shortly.')
+        ret["message"] = _('Thank you for flagging the question. One of our editors will look at it shortly.')
     return HttpResponse(json.dumps(ret), content_type="application/json")
