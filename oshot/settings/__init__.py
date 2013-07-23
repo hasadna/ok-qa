@@ -5,8 +5,8 @@ if 'HEROKU' in os.environ:
     from .heroku import *
 elif 'OPENSHIFT_HOMEDIR' in os.environ:
     from .openshift import *
+elif 'NSA' in os.environ:
+    from .nsa import *
 else:
-    try:
-        from .local import *
-    except ImportError:
-        from .base import *
+    from .dev import *
+
