@@ -1,7 +1,6 @@
 # Django settings for open-shot project.
 import os
 from unipath import FSPath as Path
-import dj_database_url
 
 PROJECT_DIR = Path(__file__).absolute().ancestor(3)
 
