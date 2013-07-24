@@ -23,8 +23,6 @@ from chosen import forms as chosenforms
 
 from user.views import edit_profile
 
-from oshot.forms import EntityChoiceForm
-
 
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flags_count'}
@@ -73,8 +71,6 @@ def questions(request, entity_slug=None, entity_id=None, tags=None, filterFlagge
     context['by_rating'] = order_opt == 'rating'
     context['by_flagcount'] = order_opt == 'flagcount'
 
-    context['placeForm'] = EntityChoiceForm(initial = {'entity' : entity.id})
-    
     return render(request, "qa/question_list.html", RequestContext(request, context))
 
 

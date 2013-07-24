@@ -10,7 +10,7 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/auth-buttons.css"/>
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <title>
-      {% block pageTitle %} {% endblock %} {{ party.site.name }}
+      {% block pageTitle %} {% endblock %} {{ site.name }}
     </title>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css"/>
     {% block extrahead %}{% endblock %}
@@ -21,16 +21,14 @@
     <div class="container">
       <div id="party-logo" class="brand">
         <a href="/">
-            <img src="http://wiki.hasadna.org.il/images/SadnaLogo150x.png" title="{{party.site.name}}">
+            <img src="http://wiki.hasadna.org.il/images/SadnaLogo150x.png" title="{{site.name}}">
         </a>
       </div>
       <ul class="nav nav-self">
         {% block topnav %} 
-        {% if placeForm %}
         <li>
-          {{ placeForm|crispy }}
+          {{ entity_form }}
         </li>
-        {% endif %}
         {% endblock %}
         {% if user.is_authenticated %}
         <li class="divider-vertical"></li>
@@ -150,6 +148,7 @@
 <script src="{{ STATIC_URL }}js/chosen.jquery_ready.js"></script>
 <script>
   $('[name=entity]').change(function() {
+    /* if the user changes the place, redirect */
     window.location.href = ('/' + $('select option:selected').val() + '/qna/');
   });
 </script> 
