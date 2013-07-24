@@ -4,6 +4,7 @@ from os import environ
 from .base import *
 from .s3 import *
 
+ALLOWED_HOSTS = ("oshot.hasadna.org.il", ".oshot.org.il", )
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', False)
 TEMPLATE_DEBUG = DEBUG
