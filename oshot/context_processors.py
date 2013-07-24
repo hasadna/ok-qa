@@ -9,16 +9,19 @@ from oshot.forms import EntityChoiceForm
 
 def forms(request):
     context = {"search_form": SearchForm()}
-    kwargs = request.resolver_match.kwargs
-    if 'entity_slug' in kwargs:
-        entity = Entity.objects.get(slug=kwargs['entity_slug'])
-        initial = {'entity': entity.id}
-    elif 'entity_id' in kwargs:
-        entity = Entity.objects.get(id=kwargs['entity_id'])
-        initial = {'entity': entity.id}
-    else:
-        initial = {}
-    context['entity_form'] = EntityChoiceForm(initial=initial, auto_id=False)
+    try:
+        kwargs = request.resolver_match.kwargs
+        if 'entity_slug' in kwargs:
+            entity = Entity.objects.get(slug=kwargs['entity_slug'])
+            initial = {'entity': entity.id}
+        elif 'entity_id' in kwargs:
+            entity = Entity.objects.get(id=kwargs['entity_id'])
+            initial = {'entity': entity.id}
+        else:
+            initial = {}
+        context['entity_form'] = EntityChoiceForm(initial=initial, auto_id=False)
+    except AttributeError:
+        pass
 
     if not request.user.is_authenticated():
         context["login_form"] = AuthenticationForm()
