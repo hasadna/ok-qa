@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-07-22 10:57+0300\n"
-"PO-Revision-Date: 2013-07-20 12:58+0200\n"
+"PO-Revision-Date: 2013-07-25 15:46+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -16,11 +16,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: oshot/forms.py:14 templates/place_base.html:13
+#: oshot/forms.py:14
+#: templates/place_base.html:13
 msgid "Place"
 msgstr "מקום"
 
-#: oshot/middleware.py:12 oshot/local/middleware.py:12
+#: oshot/middleware.py:12
+#: oshot/local/middleware.py:12
 msgid "Please first set your place"
 msgstr "ראשית, אנא הכניסי את מקום מגוריכם"
 
@@ -80,11 +82,13 @@ msgstr "שאלה לא תקינה"
 msgid "unicode slug"
 msgstr "שם ביוניקוד"
 
-#: qa/models.py:47 qa/models.py:96
+#: qa/models.py:47
+#: qa/models.py:96
 msgid "author"
 msgstr "מחבר"
 
-#: qa/models.py:48 qa/models.py:100
+#: qa/models.py:48
+#: qa/models.py:100
 msgid "question"
 msgstr "שאלה"
 
@@ -97,7 +101,8 @@ msgstr "פירוט"
 msgid "Please enter your content in no more than %s letters"
 msgstr "נא להכניס תוכן בלא יותר מ %s אותיות"
 
-#: qa/models.py:52 qa/models.py:99
+#: qa/models.py:52
+#: qa/models.py:99
 msgid "rating"
 msgstr "ניקוד"
 
@@ -163,12 +168,11 @@ msgid "Thanks.  You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
 #: qa/views.py:288
-msgid ""
-"Thank you for flagging the question. One of our editors will look at it "
-"shortly."
+msgid "Thank you for flagging the question. One of our editors will look at it shortly."
 msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את השאלה בקרוב."
 
-#: qa/templates/qa/_answer.html:23 qa/templates/qa/_question.html:29
+#: qa/templates/qa/_answer.html:23
+#: qa/templates/qa/_question.html:29
 #: user/templates/user/user_detail.html:41
 msgid "before"
 msgstr "לפני"
@@ -254,7 +258,8 @@ msgid "No Answers Yet"
 msgstr "עדיין לא ניתנו תשובות"
 
 #: qa/templates/qa/question_detail.html:84
-#: qa/templates/qa/question_list.html:16 templates/home.html:16
+#: qa/templates/qa/question_list.html:16
+#: templates/home.html:16
 #: user/templates/user/user_detail.html:10
 msgid "Subscribe"
 msgstr "הרשם"
@@ -272,15 +277,18 @@ msgstr "שאלות למועמדים ב%(place)s"
 msgid "Yes/No questions that will help you decide who to vote for:"
 msgstr "שאלות הצפים"
 
-#: qa/templates/qa/question_list.html:31 templates/home.html:55
+#: qa/templates/qa/question_list.html:31
+#: templates/home.html:55
 msgid "Ask Question"
 msgstr "העלו שאלה"
 
-#: qa/templates/qa/question_list.html:41 templates/home.html:35
+#: qa/templates/qa/question_list.html:41
+#: templates/home.html:35
 msgid "Top Questions"
 msgstr "שאלות מובילות"
 
-#: qa/templates/qa/question_list.html:44 templates/home.html:38
+#: qa/templates/qa/question_list.html:44
+#: templates/home.html:38
 msgid "Most Recent"
 msgstr "שאלות אחרונות"
 
@@ -288,11 +296,13 @@ msgstr "שאלות אחרונות"
 msgid "Most Flagged"
 msgstr ""
 
-#: qa/templates/qa/question_list.html:65 templates/home.html:54
+#: qa/templates/qa/question_list.html:65
+#: templates/home.html:54
 msgid "Questions asked"
 msgstr "שאלות נשאלו"
 
-#: qa/templates/qa/question_list.html:69 templates/home.html:59
+#: qa/templates/qa/question_list.html:69
+#: templates/home.html:59
 msgid "questions"
 msgstr "שאלות"
 
@@ -340,17 +350,20 @@ msgstr "ממשק ניהול"
 msgid "logout"
 msgstr "התנתקות"
 
-#: templates/base.html:53 templates/registration/activation_complete.html:7
+#: templates/base.html:53
+#: templates/registration/activation_complete.html:7
 #: templates/registration/login.html:6
 #: templates/registration/password_reset_complete.html:7
 msgid "Login"
 msgstr "היכנסו"
 
-#: templates/base.html:59 user/templates/user/user_detail.html:75
+#: templates/base.html:59
+#: user/templates/user/user_detail.html:75
 msgid "About"
 msgstr "אודות"
 
-#: templates/base.html:65 templates/search/search.html:11
+#: templates/base.html:65
+#: templates/search/search.html:11
 #: templates/search/search.html.py:18
 msgid "Search"
 msgstr "חפש"
@@ -363,7 +376,8 @@ msgstr "בחזרה לראש העמוד"
 msgid "Content is licensed CC-BY. Source code is freely available "
 msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.  קוד המקור חופשי לשימוש"
 
-#: templates/base.html:91 user/templates/candidate/candidate_list.html:66
+#: templates/base.html:91
+#: user/templates/candidate/candidate_list.html:66
 msgid "here"
 msgstr "כאן"
 
@@ -391,16 +405,19 @@ msgstr "קרא פחות"
 msgid "Questions for elections candidates "
 msgstr "שאלות למועמדים בבחירות המקומיות"
 
-#: templates/place_base.html:16 templates/entities/entity_list.html:6
+#: templates/place_base.html:16
+#: templates/entities/entity_list.html:6
 #: templates/entities/entity_list.html:11
 msgid "All Places"
 msgstr "כל המקומות"
 
-#: templates/place_base.html:22 user/templates/user/user_detail.html:55
+#: templates/place_base.html:22
+#: user/templates/user/user_detail.html:55
 msgid "Questions"
 msgstr "שאלות"
 
-#: templates/place_base.html:23 user/templates/candidate/candidate_list.html:6
+#: templates/place_base.html:23
+#: user/templates/candidate/candidate_list.html:6
 msgid "Candidates"
 msgstr "מועמדים"
 
@@ -425,22 +442,16 @@ msgstr "ההרשמה הסתיימה בהצלחה, תודה."
 #, python-format
 msgid ""
 "\n"
-"Someone, hopefully you, signed up for a new account at %(name)s using this "
-"email address. If it was you, and you'd like to activate and use your "
-"account, click the link below or copy and paste it into your web browser's "
-"address bar:\n"
+"Someone, hopefully you, signed up for a new account at %(name)s using this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar:\n"
 msgstr ""
 "\n"
-"תודה שנרשמת לאתר %(name)s. על מנת להשלים את ההרשמה, אנא לחץ/י על הקישור "
-"הבא:\n"
+"תודה שנרשמת לאתר %(name)s. על מנת להשלים את ההרשמה, אנא לחץ/י על הקישור הבא:\n"
 
 #: templates/registration/activation_email.txt:8
 #, python-format
 msgid ""
 "\n"
-"If you didn't request this, you don't need to do anything; you won't receive "
-"any more email from us, and the account will expire automatically in "
-"%(expiration_days)s days.\n"
+"If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in %(expiration_days)s days.\n"
 "\n"
 "If you are a candidate, you are welcome to post your answers. Just\n"
 "send us an email at qa@hasadna.org.il and we will verify your account.\n"
@@ -449,11 +460,9 @@ msgid ""
 "the team at %(name)s\n"
 msgstr ""
 "\n"
-"במידה וההרשמה בוצעה בטעות, או לא על ידיך, אינך צריך/ה לעשות כלום -הרשמתך "
-"תתבטל אוטומטית תוך %(expiration_days)s שבעה ימים מקבלת המייל.\n"
+"במידה וההרשמה בוצעה בטעות, או לא על ידיך, אינך צריך/ה לעשות כלום -הרשמתך תתבטל אוטומטית תוך %(expiration_days)s שבעה ימים מקבלת המייל.\n"
 "\n"
-"אם את/ה מועמד לבחירות המוקדמות אתה מוזמן לפרסם תשובות.  רק שלח לנו דואל ל "
-"qa@hasadna.org.il ונאשר את חשבונך.יום טוב,\n"
+"אם את/ה מועמד לבחירות המוקדמות אתה מוזמן לפרסם תשובות.  רק שלח לנו דואל ל qa@hasadna.org.il ונאשר את חשבונך.יום טוב,\n"
 "צוות %(name)s\n"
 
 #: templates/registration/activation_email_subject.txt:2
@@ -462,11 +471,11 @@ msgstr "אנא הפעילו את חשבונכם"
 
 #: templates/registration/login.html:18
 msgid "Forgot password"
-msgstr "שכחת ססמה"
+msgstr "שכחתם ססמה"
 
 #: templates/registration/login.html:18
 msgid "Reset it"
-msgstr "אפס"
+msgstr "אפסו"
 
 #: templates/registration/login.html:25
 msgid "Connect to Facebook"
@@ -499,7 +508,7 @@ msgstr "שינוי ססמה"
 
 #: templates/registration/password_reset_confirm.html:14
 msgid "Reset"
-msgstr "אפס"
+msgstr "אפסו"
 
 #: templates/registration/password_reset_confirm.html:20
 msgid "Password reset failed"
@@ -548,11 +557,8 @@ msgid "Username"
 msgstr "שם משתמש"
 
 #: user/admin.py:12
-msgid ""
-"Required. 30 characters or fewer. Alphanumeric characters only (letters, "
-"digits and underscores)."
-msgstr ""
-"30 תווים או פחות. ניתן להשתמש באותיות עבריות ולועזיות, ספרות וקו תחתון בלבד."
+msgid "Required. 30 characters or fewer. Alphanumeric characters only (letters, digits and underscores)."
+msgstr "30 תווים או פחות. ניתן להשתמש באותיות עבריות ולועזיות, ספרות וקו תחתון בלבד."
 
 #: user/admin.py:14
 msgid "This value must contain only letters, numbers and underscores."
@@ -566,31 +572,38 @@ msgstr "תשובות של"
 msgid "Get all answers by"
 msgstr "קבלו את כל התשובות של"
 
-#: user/forms.py:14 user/forms.py:135
+#: user/forms.py:14
+#: user/forms.py:135
 msgid "username"
 msgstr "שם משתמש"
 
-#: user/forms.py:15 user/forms.py:136
+#: user/forms.py:15
+#: user/forms.py:136
 msgid "Please use 4 letters or more"
 msgstr "נא להשתמש בארבע אותיות או יותר (גם מספרים ו @/./+/-/_ הם תווים חוקיים)"
 
-#: user/forms.py:16 user/forms.py:137
+#: user/forms.py:16
+#: user/forms.py:137
 msgid "first name"
 msgstr "שם פרטי"
 
-#: user/forms.py:17 user/forms.py:138
+#: user/forms.py:17
+#: user/forms.py:138
 msgid "last name"
 msgstr "שם משפחה"
 
-#: user/forms.py:18 user/forms.py:143
+#: user/forms.py:18
+#: user/forms.py:143
 msgid "email address"
 msgstr "כתובת דואל"
 
-#: user/forms.py:21 user/models.py:61
+#: user/forms.py:21
+#: user/models.py:61
 msgid "Locality"
 msgstr "מקום מגורים"
 
-#: user/forms.py:22 user/forms.py:154
+#: user/forms.py:22
+#: user/forms.py:154
 msgid "home page"
 msgstr "עמוד הבית"
 
@@ -598,7 +611,8 @@ msgstr "עמוד הבית"
 msgid "avatar"
 msgstr "אווטר"
 
-#: user/forms.py:24 user/forms.py:155
+#: user/forms.py:24
+#: user/forms.py:155
 msgid "bio"
 msgstr "עלי"
 
@@ -607,9 +621,7 @@ msgid "E-Mail Notifications"
 msgstr "התראות דואל"
 
 #: user/forms.py:28
-msgid ""
-"Should we send you e-mail notification about updates to things you follow on "
-"the site?"
+msgid "Should we send you e-mail notification about updates to things you follow on the site?"
 msgstr "האם לשלוח התראות דואל לגבי שאלות ותגיות שאתה עוקב אחריהם?"
 
 #: user/forms.py:29
@@ -629,9 +641,7 @@ msgid "the voters are waiting for your answers"
 msgstr "המצביעים ממתינים לתשובתך"
 
 #: user/forms.py:86
-msgid ""
-"The Q&A site is happy to invite you to answer voters' questions. please "
-"click {{activation_url}} to activate your account"
+msgid "The Q&A site is happy to invite you to answer voters' questions. please click {{activation_url}} to activate your account"
 msgstr ""
 
 #: user/forms.py:94
@@ -699,8 +709,7 @@ msgstr "אשרו הסרת מועמד"
 #, python-format
 msgid ""
 "\n"
-"      Are you sure you want to remove %(candidate)s from the candidate "
-"list?\n"
+"      Are you sure you want to remove %(candidate)s from the candidate list?\n"
 "    "
 msgstr ""
 "\n"
@@ -750,8 +759,7 @@ msgid "Email"
 msgstr "דואל"
 
 #: user/templates/user/edit_profile.html:13
-msgid ""
-"if you have the passion and time to join our community of local editors."
+msgid "if you have the passion and time to join our community of local editors."
 msgstr "אם יש לכם את הזמן והאנרגיה להצטרף לקהילת העורכים המקומיים שלנו"
 
 #~ msgid "Move to"
