@@ -54,9 +54,13 @@
         <p>{% trans "Questions asked" %}</p>
         <a id="post-question" class="btn btn-success btn-large" href="{% url "post_q_router"%}">{% trans "Ask Question" %}</a>
     </div>
+    <h2>{% trans "Tags" %}</h2>
     <ul class="unstyled">
       {% for tag in tags %}
-        <li><a class="btn" href="{% url "show_tags" entity=entity.slug tag.tag__name|urlencode %}">{{tag.tag__name}}</a> - {{tag.count}} {% trans "questions" %}</li>
+      <li>
+        <a class="btn btn-small" href="{% url "show_tags" tag.slug %}">{{tag.name}}</a>
+        × {{tag.num_times}}
+      </li>
       {% endfor %}
     </ul>
   </div>

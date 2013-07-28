@@ -1,6 +1,7 @@
 import json
 
 from django import forms
+from django.db.models import Count
 from django.http import HttpResponse, HttpResponseForbidden
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
@@ -23,7 +24,6 @@ from chosen import forms as chosenforms
 
 from user.views import edit_profile
 
-
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flags_count'}
 
@@ -42,36 +42,42 @@ def questions(request, entity_slug=None, entity_id=None, tags=None, filterFlagge
     """
 
     # TODO: cache the next lines
+    questions = Question.on_site
     if entity_id:
         entity = Entity.objects.get(pk=entity_id)
-    else:
+        questions = questions.filter(entity=entity)
+    elif entity_slug:
         entity = Entity.objects.get(slug=entity_slug)
+        questions = questions.filter(entity=entity)
+    else:
+        entity = None
 
     if filterFlagged:
-        questions = Question.on_site.filter(entity=entity, flags_count__gte = 1)
-    else:
-        questions = Question.on_site.filter(entity=entity)
+        questions = questions.filter(flags_count__gte = 1)
 
-    context = {'entity': entity}
     order_opt = request.GET.get('order', 'rating')
     order = ORDER_OPTIONS[order_opt]
-    if tags:
-        tags_list = tags.split(',')
-        questions = questions.filter(tags__name__in=tags_list)
-        context['current_tags'] = tags_list
-
     questions = questions.order_by(order)
-    # TODO: revive the tags!
-    # context['tags'] = TaggedQuestion.on_site.values('tag__name').annotate(count=Count("tag"))
 
-    context['showSortByFlagCount'] = filterFlagged
+    if tags:
+        current_tags = tags.split(',')
+        questions = questions.filter(tags__slug__in=current_tags)
+    else:
+        current_tags = None
 
-    context['questions'] = questions
-    context['by_date'] = order_opt == 'date'
-    context['by_rating'] = order_opt == 'rating'
-    context['by_flagcount'] = order_opt == 'flagcount'
+    context = RequestContext(request, {'entity': entity,
+        'tags': Question.tags.most_common(),
+        'showSortByFlagCount': filterFlagged,
+        'questions': questions,
+        'by_date': order_opt == 'date',
+        'by_rating': order_opt == 'rating',
+        'by_flagcount': order_opt == 'flagcount',
+        'current_tags': current_tags,
+        })
 
-    return render(request, "qa/question_list.html", RequestContext(request, context))
+
+
+    return render(request, "qa/question_list.html", context)
 
 
 class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseDetailView):
@@ -170,13 +176,12 @@ def post_question(request, entity_slug, slug=None):
                     return HttpResponseForbidden(_("Question has been answered, editing disabled."))
                 question = q
                 question.subject = form.cleaned_data.get('subject', "")
-                question.save()
             else:
                 question = form.save(commit=False)
                 question.author = request.user
                 question.entity = entity
-                question.save()
-                form.save_m2m()
+            question.save()
+            form.save_m2m()
             return HttpResponseRedirect(question.get_absolute_url())
     else:
         if slug:

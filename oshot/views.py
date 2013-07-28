@@ -37,6 +37,7 @@ def home(request):
     context = RequestContext(request, {
         "questions": Question.objects.all().order_by(order_query),
         "order": order,
+        "tags": Question.tags.most_common(),
     })
     return render(request, "home.html", context)
 

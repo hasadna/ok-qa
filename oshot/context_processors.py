@@ -1,3 +1,4 @@
+from django.core.urlresolvers import reverse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.sites.models import get_current_site
 from django.conf import settings
@@ -18,7 +19,15 @@ def forms(request):
             entity = Entity.objects.get(id=kwargs['entity_id'])
             initial = {'entity': entity.id}
         else:
+            entity = {}
             initial = {}
+        if entity:
+            context['questions_url'] = reverse("qna", args=(entity.slug,))
+            context['candidates_url'] = reverse("candidate_list", args=(entity.slug,))
+        else:
+            context['questions_url'] = reverse("home")
+            context['candidates_url'] = reverse("candidate_list")
+
         context['entity_form'] = EntityChoiceForm(initial=initial, auto_id=False)
     except AttributeError:
         pass
