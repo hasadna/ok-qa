@@ -11,7 +11,6 @@ from entities.models import Entity
 from chosen import forms as chosenforms
 # our apps
 from qa.models import Question
-from qa.views import ORDER_OPTIONS
 
 from oshot.forms import EntityChoiceForm
 
@@ -28,16 +27,4 @@ def place_search(request):
     return basic_search(request, extra_context={'base_template': 'base.html'})
 
 
-def home(request):
-    """ home sweet home! """
-    #TODO: add answers and candidates object lists
-    order = request.GET.get('order', 'rating')
-    order_query = ORDER_OPTIONS[order]
-
-    context = RequestContext(request, {
-        "questions": Question.objects.all().order_by(order_query),
-        "order": order,
-        "tags": Question.tags.most_common(),
-    })
-    return render(request, "home.html", context)
 

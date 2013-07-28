@@ -24,13 +24,16 @@ def candidate_list(request, entity_slug=None, entity_id=None):
     """
     if entity_id:
         entity = Entity.objects.get(pk=entity_id)
-    else:
+    elif entity_slug:
         entity = Entity.objects.get(slug=entity_slug)
-    candidates = Profile.objects.candidates_for_entity(entity)
-    context = RequestContext(request,
-                             dict(entity=entity,
-                                  candidates=candidates,
-                                  placeForm = EntityChoiceForm(initial = {'entity' : entity.id})))
+    else:
+        entity = None
+
+    candidates = Profile.objects.get_candidates(entity)
+    context = RequestContext(request, {'entity': entity,
+                              'candidates': candidates,
+                              })
+
     return render(request, "candidate/candidate_list.html", context)
 
 

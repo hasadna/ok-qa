@@ -36,7 +36,10 @@
           {% endif %}
         </div>
           <div class="span2 offset1 new-question">
-            <a id="post-question" class="btn btn-success btn-large" href="{% url "post_question" entity.slug %}">{% trans "Ask Question" %}</a>
+            <a id="post-question" class="btn btn-success btn-large" 
+              href="{% url "post_question" user.profile.locality.slug %}">
+              {% trans "Ask Question" %}
+            </a>
         </div>
     </div>
   </div>

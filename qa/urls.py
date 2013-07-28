@@ -49,7 +49,7 @@ urlpatterns += patterns('',
 
     url(r'^atom/$',
         AtomQuestionFeed(),
-        name='atom_all_questions'
+        name='atom_questions'
     ),
 
     url(r'^q/(?P<q_id>\d+)/rss/answers/$',

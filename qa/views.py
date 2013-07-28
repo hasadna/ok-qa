@@ -36,7 +36,8 @@ class JsonpResponse(HttpResponse):
             *args, **kwargs)
 
 
-def questions(request, entity_slug=None, entity_id=None, tags=None, filterFlagged=False):
+def questions(request, entity_slug=None, entity_id=None, tags=None,
+        filterFlagged=False, template="qa/question_list.html"):
     """
     list questions ordered by number of upvotes
     """
@@ -65,8 +66,13 @@ def questions(request, entity_slug=None, entity_id=None, tags=None, filterFlagge
     else:
         current_tags = None
 
+    if entity:
+        # TODO:get per entity tags
+        tags = Question.tags.most_common()
+    else:
+        tags = Question.tags.most_common()
     context = RequestContext(request, {'entity': entity,
-        'tags': Question.tags.most_common(),
+        'tags': tags,
         'showSortByFlagCount': filterFlagged,
         'questions': questions,
         'by_date': order_opt == 'date',
@@ -77,8 +83,7 @@ def questions(request, entity_slug=None, entity_id=None, tags=None, filterFlagge
 
 
 
-    return render(request, "qa/question_list.html", context)
-
+    return render(request, template, context)
 
 class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseDetailView):
     model = Question
@@ -163,32 +168,26 @@ def post_q_router(request):
 @login_required
 def post_question(request, entity_slug, slug=None):
     entity = Entity.objects.get(slug=entity_slug)
-    if slug:
-        q = get_object_or_404(Question, unislug=slug, entity=entity)
+    q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
 
     if request.method == "POST":
         form = QuestionForm(request.POST)
         if form.is_valid():
+            question = form.save(commit=False)
             if slug:
                 if q.author != request.user:
                     return HttpResponseForibdden(_("You can only edit your own questions."))
                 if q.answers.count():
                     return HttpResponseForbidden(_("Question has been answered, editing disabled."))
-                question = q
-                question.subject = form.cleaned_data.get('subject', "")
-            else:
-                question = form.save(commit=False)
-                question.author = request.user
-                question.entity = entity
+            question.author = request.user
             question.save()
             form.save_m2m()
             return HttpResponseRedirect(question.get_absolute_url())
     else:
-        if slug:
-            subject = q.subject
+        if q:
+            form = QuestionForm(instance=q)
         else:
-            subject = ""
-        form = QuestionForm(initial={'entity': entity, 'subject': subject})
+            form = QuestionForm(initial={'entity': entity})
 
     context = RequestContext(request, {"form": form,
                                        "entity": entity,
@@ -242,7 +241,6 @@ class RssQuestionFeed(Feed):
 class AtomQuestionFeed(RssQuestionFeed):
     feed_type = Atom1Feed
     subtitle = RssQuestionFeed.description
-
 
 class RssQuestionAnswerFeed(Feed):
     """"Give question, get all answers for that question"""

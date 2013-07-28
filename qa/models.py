@@ -30,7 +30,6 @@ class BaseModel(models.Model):
 class TaggedQuestion(TaggedItemBase):
     content_object = models.ForeignKey("Question")
     sites = models.ManyToManyField(Site)
-    entities = models.ManyToManyField(Entity)
     # objects = models.Manager()
     # objects = CurrentSiteManager()
 
