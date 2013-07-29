@@ -28,7 +28,13 @@
               {% endif %}
                 {% if can_answer %}
                     <a class="btn btn-success btn-large" style="margin-top: 10px;" href="#add_answer_modal"
-                       data-toggle="modal">{% trans "Answer the Question" %}</a>
+                       data-toggle="modal">
+                      {% if my_answer_form.content.value %}
+                        {% trans "Change Your Answer" %}
+                      {% else %}
+                        {% trans "Answer the Question" %}
+                      {% endif %}
+                    </a>
                 {% endif %}
                 {% if user.profile.is_editor %}
                     <a class="btn btn-danger" href="#remove-question" data-toggle="modal">&#9872; </a>
