@@ -1,14 +1,16 @@
-from fabric.api import local
+from __future__ import with_statement
+from fabric.api import run, sudo, cd, env, prefix
+from fabric.contrib.console import confirm
 
-def deploy_party(party, collectstatic):
-    run('cd src/oshot')
-    run('git pull origin master')
-    run('workon oshot')
-    run('pip install -r requirments.txt')
-    run('python manage.py syncdb --migrate')
-    run('python manage.py --noinput collectstatic')
-    sudo('reload oshot')
+env.hosts = ['oshot.hasadna.org.il']
 
-def runserver():
-    local('python manage.py collectstatic --noinput')
-    local('python manage.py runserver')
+def deploy():
+    with cd('~oshot/src/open-shot'):
+        run('git pull origin master')
+        with prefix('. ~oshot/.virtualenvs/oshot/bin/activate'):
+            run('pip install -r requirements.txt')
+            result = sudo('stop oshot')
+            run('honcho run python manage.py test')
+            run('honcho run python manage.py syncdb --migrate')
+            run('honcho run python manage.py --noinput collectstatic')
+    sudo('start oshot')
