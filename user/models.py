@@ -43,10 +43,12 @@ def invite_user(site, username, email, first_name="", last_name=""):
 
     return user
 class ProfileManager(models.Manager):
-    def candidates_for_entity(self, entity):
+    def get_candidates(self, entity=None):
         ''' get all the candidates in an entity '''
-        return User.objects.filter(profile__locality = entity,
-                                   profile__is_candidate=True)
+        qs =  User.objects.filter(profile__is_candidate=True)
+        if entity:
+            qs = qs.filter(profile__locality = entity)
+        return qs
 
 class Profile(models.Model):
     # TODO: chnage OneToOne

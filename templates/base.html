@@ -6,11 +6,11 @@
 <head>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/rtl.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css?v=3"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css?v=4"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/auth-buttons.css"/>
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <title>
-      {% block pageTitle %} {% endblock %} {{ party.site.name }}
+      {% block pageTitle %} {% endblock %} {{ site.name }}
     </title>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css"/>
     {% block extrahead %}{% endblock %}
@@ -21,16 +21,14 @@
     <div class="container">
       <div id="party-logo" class="brand">
         <a href="/">
-            <img src="http://wiki.hasadna.org.il/images/SadnaLogo150x.png" title="{{party.site.name}}">
+            <img src="http://wiki.hasadna.org.il/images/SadnaLogo150x.png" title="{{site.name}}">
         </a>
       </div>
       <ul class="nav nav-self">
-        {% block topnav %} 
-        {% if placeForm %}
+        {% block topnav %}
         <li>
-          {{ placeForm|crispy }}
+          {{ entity_form }}
         </li>
-        {% endif %}
         {% endblock %}
         {% if user.is_authenticated %}
         <li class="divider-vertical"></li>
@@ -56,6 +54,8 @@
       <div class="nav-other">
         <ul class="nav">
           {% block mainnav %} 
+            <li {% block nav-questions %} {% endblock %}><a href="{{questions_url}}">{% trans "Questions" %}</a></li>
+            <li {% block nav-candidates %} {% endblock %}><a href="{{candidates_url}}">{% trans "Candidates" %}</a></li>
             <li {% block nav-about %} {% endblock %}><a href="/p/about/">{% trans "About" %}</a></li>
           {% endblock %}
         </ul>
@@ -63,6 +63,9 @@
           {% block searchform %} {% endblock %}
           <input type="text" name="q" id="id_q"
                class="search-query" placeholder="{% trans 'Search' %}" />
+          {% if entity %}
+           <input type="hidden" name="place" value="{{entity.slug}}" />
+          {% endif %}
         </form>
       </div>
 
@@ -150,6 +153,7 @@
 <script src="{{ STATIC_URL }}js/chosen.jquery_ready.js"></script>
 <script>
   $('[name=entity]').change(function() {
+    /* if the user changes the place, redirect */
     window.location.href = ('/' + $('select option:selected').val() + '/qna/');
   });
 </script> 

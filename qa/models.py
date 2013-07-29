@@ -27,7 +27,6 @@ class BaseModel(models.Model):
         abstract = True
 
 
-# TODO: next class looks silly, do we really need it?
 class TaggedQuestion(TaggedItemBase):
     content_object = models.ForeignKey("Question")
     sites = models.ManyToManyField(Site)

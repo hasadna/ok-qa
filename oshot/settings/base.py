@@ -1,7 +1,6 @@
 # Django settings for open-shot project.
 import os
 from unipath import FSPath as Path
-import dj_database_url
 
 PROJECT_DIR = Path(__file__).absolute().ancestor(3)
 
@@ -89,7 +88,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.tz",
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
-    'party.context_processors.forms',
+    'oshot.context_processors.forms',
     'social_auth.context_processors.social_auth_by_name_backends',
     )
 INSTALLED_APPS = (

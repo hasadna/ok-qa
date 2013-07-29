@@ -294,3 +294,4 @@ h1, h2, h3, h4, h5, h6 {
 .page-header { border:none; }
 .editor-options { float:left;}
 .sidebar .btn {margin-top:1em;}
+.nav-self a { padding-top: 0 !important; }

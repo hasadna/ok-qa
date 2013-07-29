@@ -1,0 +1,13 @@
+{% for tag in tags %}
+  <li>
+  {% if entity %}
+    <a class="btn" href="{% url "show_tags" entity.slug tag %}">{{tag}}</a>
+  {% else %}
+    <a class="btn" href="{% url "show_tags" tag %}">{{tag}}</a>
+  {% endif %}
+  {% if tag.num_times %}
+      × {{tag.num_times}}
+  {% endif %}
+  </li>
+{% endfor %}
+

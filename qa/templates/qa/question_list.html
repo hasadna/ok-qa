@@ -9,26 +9,37 @@
   <div class="container">
     <div class="row">
         <div class="span9">
-          {% if party %}
           <h1>
-            {% blocktrans with entity.name as place %}Questions for candidate of {{place}} {% endblocktrans %}
+            {% if entity %}
+              {% blocktrans with entity.name as place %}Questions for candidate of {{place}} {% endblocktrans %}
                {% if not current_tags %}
                <a href="{% url "atom_entity_questions" entity.slug %}" title="{% trans 'Subscribe' %}" rel="tooltip">
                  <img src="{{STATIC_URL}}img/rss.png" width="25" />
                </a>
                {% endif %}
+            {% else %}
+              {% trans "Questions for elections candidates" %}
+               {% if not current_tags %}
+               <a href="{% url "atom_questions"  %}" title="{% trans 'Subscribe' %}" rel="tooltip">
+                 <img src="{{STATIC_URL}}img/rss.png" width="25" />
+               </a>
+               {% endif %}
+            {% endif %}
           </h1>
-          {% else %}
-          <h2>{% trans "Yes/No questions that will help you decide who to vote for:" %}</h2>
-          {% endif %}
+          {% if current_tags %}
           <ul class="nav nav-pills">
-            {% for tag in current_tags %}
-            <li><a class="btn" href="{% url "show_tags" entity=entity.slug tags=tag|urlencode %}">{{tag}}</a></li>
-            {% endfor %}
+            <li><h4>{% trans "In the tags:"%}</h4></li>
+            {% with tags=current_tags %}
+             {% include "_tags.html" %}
+            {% endwith %}
           </ul>
+          {% endif %}
         </div>
           <div class="span2 offset1 new-question">
-            <a id="post-question" class="btn btn-success btn-large" href="{% url "post_question" entity.slug %}">{% trans "Ask Question" %}</a>
+            <a id="post-question" class="btn btn-success btn-large" 
+              href="{% url "post_question" user.profile.locality.slug %}">
+              {% trans "Ask Question" %}
+            </a>
         </div>
     </div>
   </div>
@@ -64,10 +75,9 @@
         <div class="summarycount al">{{questions.count}}</div>
         <p>{% trans "Questions asked" %}</p>
     </div>
+    <h2>{% trans "Tags" %}</h2>
     <ul class="unstyled">
-      {% for tag in tags %}
-        <li><a class="btn" href="{% url "show_tags" entity=entity.slug tag.tag__name|urlencode %}">{{tag.tag__name}}</a> - {{tag.count}} {% trans "questions" %}</li>
-      {% endfor %}
+      {% include "_tags.html" %}
     </ul>
   </div>
 </div>

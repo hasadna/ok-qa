@@ -1,14 +1,13 @@
 from fabric.api import local
 
 def deploy_party(party, collectstatic):
-    local('git push %s master' % party)
-    local('heroku run --app %s python manage.py syncdb --migrate' % party)
-    if collectstatic:
-        local('heroku run --app %s python manage.py collectstatic --noinput' % party)
-
-def deploy(collectstatic=False):
-    for party in ('likud', 'havoda'):
-        deploy_party(party, collectstatic)
+    run('cd src/oshot')
+    run('git pull origin master')
+    run('workon oshot')
+    run('pip install -r requirments.txt')
+    run('python manage.py syncdb --migrate')
+    run('python manage.py --noinput collectstatic')
+    sudo('reload oshot')
 
 def runserver():
     local('python manage.py collectstatic --noinput')
