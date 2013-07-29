@@ -152,6 +152,11 @@
                 })
                 $(".flag-question").click(function (e) {
                     var url = "{% url "flag_question" question.id %}";
+                    {% if user == question.author %}
+                    if (!confirm("{% trans 'Are you sure you want to delete the question?' %}")) {
+                      return;
+                    }
+                    {% endif %}
                     $.ajax({url: url,
                         type: "POST",
                         dataType: "json",
