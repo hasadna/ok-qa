@@ -61,8 +61,8 @@
         </ul>
         <form class="navbar-search pull-left" action="/search/">
           {% block searchform %} {% endblock %}
-          <input type="text" name="q" id="id_q"
-               class="search-query" placeholder="{% trans 'Search' %}" />
+          <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search' %}" 
+          {% if search_query %} value="{{search_query}}" {% endif %}/>
           {% if entity %}
            <input type="hidden" name="place" value="{{entity.slug}}" />
           {% endif %}

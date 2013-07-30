@@ -3,13 +3,13 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.sites.models import get_current_site
 from django.conf import settings
 
-from haystack.forms import SearchForm
 from entities.models import Entity
 
 from oshot.forms import EntityChoiceForm
 
 def forms(request):
-    context = {"search_form": SearchForm()}
+    q = request.GET.get("q", False)
+    context = {"search_query": q} if q else {}
     try:
         kwargs = request.resolver_match.kwargs
         if 'entity_slug' in kwargs:
