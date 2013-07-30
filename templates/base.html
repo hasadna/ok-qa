@@ -154,7 +154,10 @@
 <script>
   $('[name=entity]').change(function() {
     /* if the user changes the place, redirect */
-    window.location.href = ('/' + $('select option:selected').val() + '/qna/');
+    if ($('select option:selected').val()=="")
+      window.location.href = "{% url 'home' %}"
+    else
+      window.location.href = ('/' + $('select option:selected').val() + '/qna/');
   });
 </script> 
 
