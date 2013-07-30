@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-07-28 17:26+0300\n"
-"PO-Revision-Date: 2013-07-28 17:27+0200\n"
+"POT-Creation-Date: 2013-07-30 10:51+0300\n"
+"PO-Revision-Date: 2013-07-30 10:51+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -117,55 +117,55 @@ msgstr "תוכן"
 msgid "Please enter an answer in no more than %s letters"
 msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
 
-#: qa/views.py:139
+#: qa/views.py:142
 msgid "You must be logged in as a candidate to post answers"
 msgstr "עליך להתחבר כמועמד כדי לפרסם תשובות"
 
-#: qa/views.py:179
+#: qa/views.py:182
 msgid "You can only edit your own questions."
 msgstr "מצטערת, אתה יכול לערוך רק שאלות שלך"
 
-#: qa/views.py:181
+#: qa/views.py:184
 msgid "Question has been answered, editing disabled."
 msgstr "ישנן תשובות לשאלה, אי אפשר לערוך"
 
-#: qa/views.py:207
+#: qa/views.py:210
 msgid "You already upvoted this question"
 msgstr "תודה, אתה כבר מופיע ברשימת התומכים"
 
-#: qa/views.py:214
+#: qa/views.py:217
 msgid "Use POST to upvote a question"
 msgstr "השתמש ב POST כדי להצביע לשאלה"
 
-#: qa/views.py:227
+#: qa/views.py:230
 msgid "OK QA Question Feed"
 msgstr "שאלות נשאלו"
 
-#: qa/views.py:229
+#: qa/views.py:232
 msgid "Questions from OKQA"
 msgstr "שאלות"
 
-#: qa/views.py:252
+#: qa/views.py:255
 msgid "Answers for the question"
 msgstr "תשובות לשאלה"
 
-#: qa/views.py:258
+#: qa/views.py:261
 msgid "A feed of all answers for the question"
 msgstr "פיד של תשובות לשאלה"
 
-#: qa/views.py:275
+#: qa/views.py:278
 msgid "Sorry, you have to login to flag questions"
 msgstr "אנא התחברו כדי לסמן שאלה לא ראויה"
 
-#: qa/views.py:279
+#: qa/views.py:282
 msgid "Question has been removed"
 msgstr "השאלה נמחקה"
 
-#: qa/views.py:282
+#: qa/views.py:285
 msgid "Thanks.  You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
-#: qa/views.py:287
+#: qa/views.py:290
 msgid "Thank you for flagging the question. One of our editors will look at it shortly."
 msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את השאלה בקרוב."
 
@@ -184,7 +184,7 @@ msgid "votes"
 msgstr "שואלים"
 
 #: qa/templates/qa/_question.html:25
-#: qa/templates/qa/question_list.html:75
+#: qa/templates/qa/question_list.html:78
 #: templates/home.html:57
 msgid "Tags"
 msgstr "תגיות"
@@ -286,31 +286,31 @@ msgstr "שאלות למועמדים בבחירות המקומיות"
 msgid "In the tags:"
 msgstr "תחת התגיות:"
 
-#: qa/templates/qa/question_list.html:39
+#: qa/templates/qa/question_list.html:41
 #: templates/home.html:55
 msgid "Ask Question"
 msgstr "העלו שאלה"
 
-#: qa/templates/qa/question_list.html:49
+#: qa/templates/qa/question_list.html:52
 #: templates/home.html:35
 msgid "Top Questions"
 msgstr "שאלות מובילות"
 
-#: qa/templates/qa/question_list.html:52
+#: qa/templates/qa/question_list.html:55
 #: templates/home.html:38
 msgid "Most Recent"
 msgstr "שאלות אחרונות"
 
-#: qa/templates/qa/question_list.html:56
-msgid "Most Flagged"
-msgstr "לפי דגלים"
+#: qa/templates/qa/question_list.html:59
+msgid "Flagged Questions"
+msgstr "שאלות מוסמנות"
 
-#: qa/templates/qa/question_list.html:73
+#: qa/templates/qa/question_list.html:76
 #: templates/home.html:54
 msgid "Questions asked"
 msgstr "שאלות נשאלו"
 
-#: qa/templates/qa/question_list.html:89
+#: qa/templates/qa/question_list.html:92
 msgid "Sorry but only connected users can post questions"
 msgstr "מצטערת, יש להתחבר כדי לשאול שאלות"
 
@@ -669,12 +669,12 @@ msgstr "זכר"
 msgid "Female"
 msgstr "נקבה"
 
-#: user/views.py:74
+#: user/views.py:75
 #, python-format
 msgid "Sorry, you are not authorized to remove %s from the candidate list"
 msgstr "מצטערת, אינך מורשה להסיר את %s מרשימת המועמדים"
 
-#: user/views.py:129
+#: user/views.py:130
 msgid "Your profile has been updated, please login."
 msgstr "הפרופיל שלכם עודכן, אתם מוזמנים להכנס"
 
@@ -746,6 +746,10 @@ msgstr "דואל"
 #: user/templates/user/edit_profile.html:13
 msgid "if you have the passion and time to join our community of local editors."
 msgstr "אם יש לכם את הזמן והאנרגיה להצטרף לקהילת העורכים המקומיים שלנו"
+
+#, fuzzy
+#~ msgid "Flagged"
+#~ msgstr "לפי דגלים"
 
 #~ msgid "Yes/No questions that will help you decide who to vote for:"
 #~ msgstr "שאלות הצפים"

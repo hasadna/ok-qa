@@ -37,7 +37,7 @@ class JsonpResponse(HttpResponse):
 
 
 def questions(request, entity_slug=None, entity_id=None, tags=None,
-        filterFlagged=False, template="qa/question_list.html"):
+        template="qa/question_list.html"):
     """
     list questions ordered by number of upvotes
     """
@@ -53,11 +53,14 @@ def questions(request, entity_slug=None, entity_id=None, tags=None,
     else:
         entity = None
 
-    if filterFlagged:
+    only_flagged = request.GET.get('filter', False) == 'flagged'
+    if only_flagged:
         questions = questions.filter(flags_count__gte = 1)
-
-    order_opt = request.GET.get('order', 'rating')
-    order = ORDER_OPTIONS[order_opt]
+        order_opt = False
+        order = 'flags_count'
+    else:
+        order_opt = request.GET.get('order', 'rating')
+        order = ORDER_OPTIONS[order_opt]
     questions = questions.order_by(order)
 
     if tags:
@@ -71,13 +74,13 @@ def questions(request, entity_slug=None, entity_id=None, tags=None,
         tags = Question.tags.most_common()
     else:
         tags = Question.tags.most_common()
+
     context = RequestContext(request, {'entity': entity,
         'tags': tags,
-        'showSortByFlagCount': filterFlagged,
         'questions': questions,
         'by_date': order_opt == 'date',
         'by_rating': order_opt == 'rating',
-        'by_flagcount': order_opt == 'flagcount',
+        'only_flagged': only_flagged,
         'current_tags': current_tags,
         })
 

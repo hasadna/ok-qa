@@ -110,6 +110,9 @@ class QuestionTest(TestCase):
         self.assertEquals(data['message'], 'Thank you for flagging the question. One of our editors will look at it shortly.')
         self.q = Question.objects.get(pk=self.q.id)
         self.assertEquals(self.q.flags_count, 2)
+        response = c.get(reverse('home')+"?filter=flagged")
+        self.assertEquals(response.context['questions'].count(), 1)
+
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
         data = json.loads(response.content)
         self.assertIn('message', data)
@@ -138,6 +141,9 @@ class QuestionTest(TestCase):
         self.assertEquals(response.content, "2")
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 403)
+
+    def test_repr(self):
+        self.assertEqual("why?", unicode(self.q))
 
     def test_repr(self):
         self.assertEqual("why?", unicode(self.q))
