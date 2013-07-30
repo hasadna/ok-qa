@@ -49,7 +49,8 @@ def user_detail(request, slug):
                                        "answers": answers,
                                        "questions": questions,
                                        "entity": profile.locality,
-                                       "base_template": get_base_template(profile)})
+                                       "base_template": get_base_template(profile),
+                                       })
 
     # todo: support members as well as candidates
     return render(request, "user/user_detail.html", context)
@@ -92,7 +93,8 @@ def edit_profile(request):
 
     context = RequestContext(request, {"form": form,
                                        "entity": profile.locality,
-                                       "base_template": get_base_template(profile)})
+                                       "base_template": get_base_template(profile),
+                                       })
     return render(request, "user/edit_profile.html", context)
 
 
