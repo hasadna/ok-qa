@@ -1,7 +1,6 @@
 import urllib, hashlib, datetime
 
 from django.db import models
-from django.db.models.signals import post_save
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.sites.models import Site
 from django.contrib.sites.managers import CurrentSiteManager
@@ -22,7 +21,7 @@ GENDER_CHOICES = (
 )
 
 NEVER_SENT = datetime.datetime(1970,8,6)
-
+MIN_EDITORS_PER_LOCALITY = 3
 def invite_user(site, username, email, first_name="", last_name=""):
     ''' invite a new user to the system '''
     user, created = User.objects.get_or_create(username=username,
@@ -49,6 +48,9 @@ class ProfileManager(models.Manager):
         if entity:
             qs = qs.filter(profile__locality = entity)
         return qs
+    def need_editors(self, entity):
+       return Profile.objects.filter(locality=entity).count() < MIN_EDITORS_PER_LOCALITY
+
 
 class Profile(models.Model):
     # TODO: chnage OneToOne
@@ -83,7 +85,3 @@ class Profile(models.Model):
         else:
             return default
 
-def handle_user_save(sender, created, instance, **kwargs):
-    if created: # and instance._state.db=='default':
-        Profile.objects.create(user=instance)
-post_save.connect(handle_user_save, sender=User)

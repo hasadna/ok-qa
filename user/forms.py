@@ -18,7 +18,7 @@ class ProfileForm(forms.Form):
     email = forms.EmailField(required=False ,label=_(u'email address'))
     locality = chosenforms.ChosenModelChoiceField(
                 queryset=Entity.objects.filter(division__index=3),
-                label=_('Locality'), required=False)
+                label=_('Locality'), required=True)
     url = forms.URLField(required=False ,label=_(u'home page'))
     avatar_uri = forms.URLField(required=False ,label=_(u'avatar'))
     bio = forms.CharField(label=_('bio'), required=False,

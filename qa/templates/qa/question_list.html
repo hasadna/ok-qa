@@ -1,8 +1,11 @@
 {% extends "qa/qa_base.html" %}
 {% load i18n %}
 {% load pagination_tags %}
+{% load flatblock_tags %}
+
 {% block extrahead %}
 {% endblock %}
+
 {% block homeNav %}class="active"{% endblock %}
 {% block mainContainer %}
 <div class="page-header">
@@ -35,15 +38,24 @@
           </ul>
           {% endif %}
         </div>
+          {% if can_ask %}
           <div class="span2 offset1 new-question">
             <a id="post-question" class="btn btn-success btn-large" 
               href="{% url "post_question" user.profile.locality.slug %}">
               {% trans "Ask Question" %}
             </a>
-        </div>
+          </div>
+          {% endif %}
     </div>
   </div>
 </div>
+{% if need_editors %}
+<div>
+<blockquote>
+  {% flatblock "editors_needed" 9000 %}
+</blockquote>
+</div>
+{% endif %}
 <div class="row questions-wrapper">
   <div class="span9 questions">
     {% if questions.count > 3 or only_flagged %}
