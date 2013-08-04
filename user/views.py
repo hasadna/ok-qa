@@ -29,7 +29,7 @@ def candidate_list(request, entity_slug=None, entity_id=None):
     else:
         entity = None
 
-    candidates = Profile.objects.get_candidates(entity)
+    candidates = Profile.objects.get_candidates(entity).order_by('?')
     context = RequestContext(request, {'entity': entity,
                               'candidates': candidates,
                               })
