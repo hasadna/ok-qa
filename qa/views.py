@@ -21,6 +21,7 @@ from qa.mixins import JSONResponseMixin
 
 from entities.models import Entity
 from chosen import forms as chosenforms
+from taggit.models import Tag
 
 from user.views import edit_profile
 
@@ -71,7 +72,8 @@ def questions(request, entity_slug=None, entity_id=None, tags=None,
 
     if entity:
         # TODO:get per entity tags
-        tags = Question.tags.most_common()
+        tags = Tag.objects.filter(qa_taggedquestion_items__content_object__entity=entity).\
+                annotate(num_times=Count('qa_taggedquestion_items'))
     else:
         tags = Question.tags.most_common()
 
