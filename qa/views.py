@@ -71,7 +71,6 @@ def questions(request, entity_slug=None, entity_id=None, tags=None,
         current_tags = None
 
     if entity:
-        # TODO:get per entity tags
         tags = Tag.objects.filter(qa_taggedquestion_items__content_object__entity=entity).\
                 annotate(num_times=Count('qa_taggedquestion_items'))
     else:
