@@ -33,3 +33,6 @@ django-autoslug
 -e git+https://github.com/daonb/django-chosen.git#egg=django-chosen
 django-modeltranslation
 whoosh==2.4
+django-celery==3.0.21
+celery-haystack==0.7.2
+

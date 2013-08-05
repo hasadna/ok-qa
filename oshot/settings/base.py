@@ -1,6 +1,7 @@
 # Django settings for open-shot project.
 import os
 from unipath import FSPath as Path
+import djcelery
 
 PROJECT_DIR = Path(__file__).absolute().ancestor(3)
 
@@ -108,7 +109,6 @@ INSTALLED_APPS = (
     'social_auth',
     'haystack',
     'south',
-    'debug_toolbar',
     'crispy_forms',
     'storages',
     'gunicorn',
@@ -121,6 +121,9 @@ INSTALLED_APPS = (
     'entities',
     'chosen',
     'modeltranslation',
+    'djcelery',
+    'celery_haystack',
+    'debug_toolbar',
     # local apps
     'qa',
     'user',
@@ -210,3 +213,6 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(PROJECT_DIR, 'whoosh_index'),
     },
 }
+djcelery.setup_loader()
+HAYSTACK_SIGNAL_PROCESSOR = 'celery_haystack.signals.CelerySignalProcessor'
+
