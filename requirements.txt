@@ -35,4 +35,4 @@ django-modeltranslation
 whoosh==2.4
 django-celery==3.0.21
 celery-haystack==0.7.2
-
+django-celery-email==1.0.3
