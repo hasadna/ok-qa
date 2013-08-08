@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2013-08-08 16:21+0300\n"
-"PO-Revision-Date: 2013-08-08 16:24+0200\n"
+"PO-Revision-Date: 2013-08-08 17:32+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -1196,7 +1196,7 @@ msgstr "נקבה"
 
 #: user/signals.py:36
 msgid "A new candidate registered"
-msgstr ""
+msgstr "מועמד חדש נרשם"
 
 #: user/signals.py:50
 msgid "A question has been flagged"
@@ -1218,7 +1218,7 @@ msgstr "מועמדים לבחירות המקומיות ב%(place)s"
 
 #: user/templates/candidate/candidate_list.html:9
 msgid "Candidates for local elections"
-msgstr ""
+msgstr "מועמדים לבחירות המקומיות"
 
 #: user/templates/candidate/candidate_list.html:24
 msgid "answers"
