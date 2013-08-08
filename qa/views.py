@@ -27,7 +27,7 @@ from user.views import edit_profile
 from user.models import Profile
 
 # the order options for the list views
-ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flags_count'}
+ORDER_OPTIONS = {'date': '-updated_at', 'rating': '-rating', 'flagcount': '-flags_count'}
 
 class JsonpResponse(HttpResponse):
     def __init__(self, data, callback, *args, **kwargs):
@@ -177,11 +177,13 @@ def post_question(request, entity_slug=None, slug=None):
         form = QuestionForm(request.POST)
         if form.is_valid():
             question = form.save(commit=False)
-            if slug:
+            if q:
                 if q.author != request.user:
                     return HttpResponseForibdden(_("You can only edit your own questions."))
                 if q.answers.count():
                     return HttpResponseForbidden(_("Question has been answered, editing disabled."))
+                question.id = q.id
+                question.created_at = q.created_at
             question.author = request.user
             question.save()
             form.save_m2m()
