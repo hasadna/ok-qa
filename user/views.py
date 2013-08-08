@@ -37,24 +37,26 @@ def candidate_list(request, entity_slug=None, entity_id=None):
     return render(request, "candidate/candidate_list.html", context)
 
 
-def user_detail(request, slug):
-    user = get_object_or_404(User, username=slug)
+def user_detail(request, username):
+    user = get_object_or_404(User, username=username)
     questions = user.questions.all()
     answers = user.answers.all()
     profile = user.profile
     user.avatar_url = profile.avatar_url()
     user.bio = profile.bio
     user.url = profile.url
+    entity_form = EntityChoiceForm(initial={'entity': profile.locality.id},
+                                   auto_id=False)
     context = RequestContext(request, {"candidate": user,
                                        "answers": answers,
                                        "questions": questions,
                                        "entity": profile.locality,
                                        "base_template": get_base_template(profile),
+                                       "entity_form": entity_form,
                                        })
 
     # todo: support members as well as candidates
     return render(request, "user/user_detail.html", context)
-
 
 def get_base_template(profile):
     if profile.locality:
