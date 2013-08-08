@@ -88,7 +88,9 @@ def edit_profile(request):
         form = ProfileForm(request.user, data=request.POST)
         if form.is_valid():
             user = form.save()
-            return HttpResponseRedirect(user.get_absolute_url())
+            next = request.POST.get('next', reverse('qna',
+                              kwargs={'entity_id': user.profile.locality.id}))
+            return HttpResponseRedirect(next)
     elif request.method == "GET":
         user = request.user
         form = ProfileForm(request.user)
