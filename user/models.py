@@ -19,6 +19,12 @@ GENDER_CHOICES = (
     (u'M', _('Male')),
     (u'F', _('Female')),
 )
+VERIFICATION_STAGES = (
+    (u'0', 'No verification needed'),
+    (u'S', 'Verification process started'),
+    (u'V', 'Verified'),
+)
+
 
 NEVER_SENT = datetime.datetime(1970,8,6)
 MIN_EDITORS_PER_LOCALITY = 3
@@ -41,6 +47,7 @@ def invite_user(site, username, email, first_name="", last_name=""):
     registration_profile = RegistrationProfile.objects.create_profile(user)
 
     return user
+
 class ProfileManager(models.Manager):
     def get_candidates(self, entity=None):
         ''' get all the candidates in an entity '''
@@ -66,6 +73,7 @@ class Profile(models.Model):
     sites = models.ManyToManyField(Site)
     is_candidate = models.BooleanField(default=False)
     is_editor = models.BooleanField(default=False)
+    verification = models.CharField(max_length=1, choices=VERIFICATION_STAGES, default='0')
     on_site = CurrentSiteManager()
 
     objects = ProfileManager()
