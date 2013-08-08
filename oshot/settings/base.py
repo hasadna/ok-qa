@@ -176,7 +176,7 @@ ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, us
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 
-DEFAULT_FROM_EMAIL = 'okqa@hasadna.org.il'
+DEFAULT_FROM_EMAIL = 'localshot@hasadna.org.il'
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
