@@ -6,7 +6,7 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
 
-from qa.models import Question
+from qa.models import Question, QuestionFlag, QuestionFlag
 from user.models import Profile
 
 @receiver(post_save, sender=User)
@@ -39,3 +39,15 @@ def new_candidate(sender, instance, **kwargs):
         msg.send()
         instance.verification='S'
 
+@receiver(post_save, sender=QuestionFlag)
+def new_flag(sender, created, instance, **kwargs):
+    if created:
+        editors = User.objects.filter(profile__locality=instance.question.entity,
+                    profile__is_editor=True).values_list('email', flat=True)
+        html_content = render_to_string("user/emails/editors_question_flagged.html",
+                {'question': instance.question, 'reoprter': instance.reporter})
+        text_content = 'Sorry, we only support html based email'
+        msg = EmailMultiAlternatives(_("A question has been flagged"), text_content,
+                settings.DEFAULT_FROM_EMAIL, editors)
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()

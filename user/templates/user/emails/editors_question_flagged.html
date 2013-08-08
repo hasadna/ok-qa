@@ -1,0 +1,18 @@
+{% extends "email_base.html" %}
+{% load i18n %}
+{% load flatblock_tags %}
+
+{% block content %}
+  <p>
+  אני מצטערת לבשר שאחד המשתמשיםi: {{reporter}}, הניף גדל אדום על השאלה: {{question}}
+  </p>
+    אם לדעתכם הדגל מוצדק, אנא כנסו ל<a href="{{question.get_absolute_url}}">עמוד השאלה</a> ומחקו את השאלה.
+  </p>
+  <p>
+   רב תודות, השו"ת המקומי
+  </p>
+  <p style="font-size:70%;">
+    קיבלתם עודעה זו כי אתם עורכים של {{instance.locality.name}} באתר השו"ת המקומי, אם ברצונכם להפסיק להיות עורכים, 
+    אתם מוזמנים לשלוח תשובה לדואל זה ולבקש להסירכם.
+  <p>
+{% endblock %}
