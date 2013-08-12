@@ -11,6 +11,6 @@ def deploy(branch='master'):
             run('pip install -r requirements.txt')
             result = sudo('stop oshot')
             run('honcho run python manage.py test')
-            run('honcho run python manage.py syncdb --migrate')
+            run('honcho run python manage.py syncdb --migrate --no-initial-data')
             run('honcho run python manage.py collectstatic --noinput')
     sudo('start oshot')
