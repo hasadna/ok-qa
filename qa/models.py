@@ -50,8 +50,7 @@ class Question(BaseModel):
        blank = True, default = '')
     rating = models.IntegerField(_("rating"), default=1)
     flags_count = models.IntegerField(_("flags counter"), default=0)
-    tags = TaggableManager(through=TaggedQuestion)
-    # tags = TaggableManager(through=TaggedQuestion, blank=True)
+    tags = TaggableManager(through=TaggedQuestion, blank=True)
     sites = models.ManyToManyField(Site)
     # for easy access to current site questions
     objects = models.Manager()
