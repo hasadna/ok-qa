@@ -124,6 +124,7 @@ INSTALLED_APPS = (
     'djcelery',
     'celery_haystack',
     'djcelery_email',
+    'devserver',
     'debug_toolbar',
     # local apps
     'qa',
