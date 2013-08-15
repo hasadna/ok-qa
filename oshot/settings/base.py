@@ -202,7 +202,7 @@ SOCIAL_AUTH_PIPELINE = (
     'user.utils.get_user_avatar',
 )
 
-FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'publish_actions']
 
 ACCOUNT_ACTIVATION_DAYS = 4
 

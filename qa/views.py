@@ -15,16 +15,17 @@ from django.contrib import messages
 from django.conf import settings
 from django.views.generic.detail import SingleObjectTemplateResponseMixin, BaseDetailView
 
-from qa.forms import AnswerForm, QuestionForm
-from .models import *
-from qa.mixins import JSONResponseMixin
-
 from entities.models import Entity
 from chosen import forms as chosenforms
 from taggit.models import Tag
+from social_auth.models import UserSocialAuth
 
-from user.views import edit_profile
 from user.models import Profile
+
+from qa.forms import AnswerForm, QuestionForm
+from qa.models import *
+from qa.tasks import publish_question_to_facebook
+from qa.mixins import JSONResponseMixin
 
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-updated_at', 'rating': '-rating', 'flagcount': '-flags_count'}
@@ -175,7 +176,7 @@ def post_question(request, entity_slug=None, slug=None):
     q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
 
     if request.method == "POST":
-        form = QuestionForm(request.POST)
+        form = QuestionForm(request.user, request.POST)
         if form.is_valid():
             question = form.save(commit=False)
             if q:
@@ -188,12 +189,15 @@ def post_question(request, entity_slug=None, slug=None):
             question.author = request.user
             question.save()
             form.save_m2m()
+            if form.cleaned_data.get('facebook_publish', False) and\
+                    cleaned_data['facebook_publish']:
+                publish_question_to_facebook(question)
             return HttpResponseRedirect(question.get_absolute_url())
     else:
         if q:
-            form = QuestionForm(instance=q)
+            form = QuestionForm(request.user, instance=q)
         else:
-            form = QuestionForm(initial={'entity': entity})
+            form = QuestionForm(request.user, initial={'entity': entity})
 
     becoming_editor = not profile.is_editor and\
                       Profile.objects.need_editors(entity)

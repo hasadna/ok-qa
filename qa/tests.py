@@ -1,5 +1,6 @@
 import json
 
+from django.conf import settings
 from django.contrib.auth.models import User, AnonymousUser, Permission
 from django.contrib.sites.models import Site
 from social_auth.tests.client import SocialClient
@@ -7,12 +8,14 @@ from django.test.client import Client
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext as _
 from django.utils import translation
-
 from django.test import TestCase
+from django.test.utils import override_settings
 
 from entities.models import Domain, Division, Entity
 from .models import *
 
+# @override_settings(TEST_RUNNER='djcelery.contrib.test_runner.CeleryTestSuiteRunner')
+@override_settings(CELERY_ALWAYS_EAGER = True)
 class QuestionTest(TestCase):
     client = SocialClient
     user = {
@@ -41,27 +44,27 @@ class QuestionTest(TestCase):
     def setUp(self):
         domain = Domain.objects.create(name="test")
         division = Division.objects.create(name="localities", domain=domain)
-        entity = Entity.objects.create(name="the moon", division=division)
+        self.entity = Entity.objects.create(name="the moon", division=division)
         self.common_user = User.objects.create_user("commoner", 
                                 "commmon@example.com", "pass")
-        self.common_user.profile.locality = entity
+        self.common_user.profile.locality = self.entity
         self.common_user.profile.save()
-        self.common2_user = User.objects.create_user("common2", 
+        self.common2_user = User.objects.create_user("commoner2", 
                                 "commmon2@example.com", "pass")
-        self.common2_user.profile.locality = entity
+        self.common2_user.profile.locality = self.entity
         self.common2_user.profile.save()
         self.candidate_user = User.objects.create_user("candidate", 
                                 "candidate@example.com", "pass")
-        self.candidate_user.profile.locality = entity
+        self.candidate_user.profile.locality = self.entity
         self.candidate_user.profile.is_candidate = True
         self.candidate_user.profile.save()
         self.editor_user = User.objects.create_user("editor", 
                                 "editor@example.com", "pass")
-        self.editor_user.profile.locality = entity
+        self.editor_user.profile.locality = self.entity
         self.editor_user.profile.is_editor = True
         self.editor_user.profile.save()
         self.q = Question.objects.create(author = self.common_user,
-                        subject="why?", entity=entity)
+                        subject="why?", entity=self.entity)
         self.a = self.q.answers.create(author = self.candidate_user,
                         content="because the world is round")
         self.site1 = Site.objects.create(domain='abc.com')
@@ -75,6 +78,26 @@ class QuestionTest(TestCase):
         self.assertEqual(Question.on_site.count(), 1)
         self.assertEqual(Answer.on_site.count(), 1)
         #TODO: self.assertEqual(TaggedQuestion.on_site.count(), 1)
+
+    def test_post_question(self):
+        c = Client()
+        post_url = reverse('post_question', args=(self.entity.slug, ))
+        response = c.get(post_url)
+        self.assertRedirects(response, "%s?next=%s" % (settings.LOGIN_URL, post_url))
+        self.assertTrue(c.login(username="commoner", password="pass"))
+        response = c.get(post_url)
+        self.assertEquals(response.status_code, 200)
+        response = c.post(post_url, {'id_subject':"Why?",
+                        'id_facebook_publish': False,
+                        'entity': self.entity.id,
+                        })
+        self.assertEquals(response.status_code, 200)
+        response = c.post(post_url, {'id_subject':"When?",
+                        'id_facebook_publish': True,
+                        'entity': self.entity.id,
+                        })
+        #TODO: find a way to test the task ran
+        self.assertEquals(response.status_code, 200)
 
     def test_permissions(self):
         self.assertFalse(self.q.can_answer(self.common_user))
@@ -103,7 +126,7 @@ class QuestionTest(TestCase):
         data = json.loads(response.content)
         self.assertIn('redirect', data)
         respone = c.post(data['redirect'],
-                {'username':"common2", 'password':"pass"})
+                {'username':"commoner2", 'password':"pass"})
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
         data = json.loads(response.content)
         self.assertIn('message', data)

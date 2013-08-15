@@ -3,6 +3,7 @@
 {% load crispy_forms_tags %}
 {% load flatblock_tags %}
 
+{% block pageTitle %}{% trans "Post question" %}{% endblock %}
 {% block extrahead %}
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/autoSuggest.css"/>
 {% endblock %}
