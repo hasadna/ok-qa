@@ -7,7 +7,7 @@ urlpatterns = patterns('',
     url(r'^candidates/$', candidate_list, name="candidate_list"),
     url(r'^(?P<entity_id>[-\d]+)/candidates/$', candidate_list, name="candidate_list"),
     url(r'^(?P<entity_slug>.*)/candidates/$', candidate_list, name="candidate_list"),
-    url(r'^users/(?P<slug>.+)/$', user_detail, name="candidate_detail"),
+    url(r'^users/(?P<username>.+)/$', user_detail, name="user_detail"),
     url(r'^candidate/(?P<candidate_id>\d+)/atom/$',
         AtomUserAnswerFeed(),
         name='user_feed'

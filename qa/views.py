@@ -24,9 +24,10 @@ from chosen import forms as chosenforms
 from taggit.models import Tag
 
 from user.views import edit_profile
+from user.models import Profile
 
 # the order options for the list views
-ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flags_count'}
+ORDER_OPTIONS = {'date': '-updated_at', 'rating': '-rating', 'flagcount': '-flags_count'}
 
 class JsonpResponse(HttpResponse):
     def __init__(self, data, callback, *args, **kwargs):
@@ -73,8 +74,15 @@ def questions(request, entity_slug=None, entity_id=None, tags=None,
     if entity:
         tags = Tag.objects.filter(qa_taggedquestion_items__content_object__entity=entity).\
                 annotate(num_times=Count('qa_taggedquestion_items'))
+        need_editors = Profile.objects.need_editors(entity)
+        if request.user.is_authenticated():
+            can_ask = request.user.profile.locality == entity
+        else:
+            can_ask = True
     else:
         tags = Question.tags.most_common()
+        need_editors= False
+        can_ask = True
 
     context = RequestContext(request, {'entity': entity,
         'tags': tags,
@@ -83,9 +91,10 @@ def questions(request, entity_slug=None, entity_id=None, tags=None,
         'by_rating': order_opt == 'rating',
         'only_flagged': only_flagged,
         'current_tags': current_tags,
+        'need_editors': need_editors,
+        'can_ask': can_ask,
+        'question_count': questions.count(),
         })
-
-
 
     return render(request, template, context)
 
@@ -153,36 +162,29 @@ def post_answer(request, q_id):
     answer.save()
     return HttpResponseRedirect(question.get_absolute_url())
 
-
 @login_required
-def post_q_router(request):
-    user = request.user
-    if user.is_anonymous():
-        return HttpResponseRedirect(settings.LOGIN_URL)
+def post_question(request, entity_slug=None, slug=None):
+    profile = request.user.profile
+    if not entity_slug:
+        entity = profile.locality
     else:
-        profile = user.profile
-        entity_slug = profile.locality and profile.locality.slug
-        if entity_slug:
-            return HttpResponseRedirect(reverse(post_question, args=(entity_slug, )))
-        else:
-            # user must set locality
-            return HttpResponseRedirect(reverse(edit_profile))
+        entity = Entity.objects.get(slug=entity_slug)
+        if entity != profile.locality:
+            return HttpResponseForbidden(_("You can only post questions in your own locality"))
 
-
-@login_required
-def post_question(request, entity_slug, slug=None):
-    entity = Entity.objects.get(slug=entity_slug)
     q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
 
     if request.method == "POST":
         form = QuestionForm(request.POST)
         if form.is_valid():
             question = form.save(commit=False)
-            if slug:
+            if q:
                 if q.author != request.user:
                     return HttpResponseForibdden(_("You can only edit your own questions."))
                 if q.answers.count():
                     return HttpResponseForbidden(_("Question has been answered, editing disabled."))
+                question.id = q.id
+                question.created_at = q.created_at
             question.author = request.user
             question.save()
             form.save_m2m()
@@ -193,11 +195,14 @@ def post_question(request, entity_slug, slug=None):
         else:
             form = QuestionForm(initial={'entity': entity})
 
+    becoming_editor = not profile.is_editor and\
+                      Profile.objects.need_editors(entity)
     context = RequestContext(request, {"form": form,
                                        "entity": entity,
                                        "max_length_q_subject": MAX_LENGTH_Q_SUBJECT,
                                        "slug": slug,
-    })
+                                       "becoming_editor": becoming_editor,
+                                      })
     return render(request, "qa/post_question.html", context)
 
 

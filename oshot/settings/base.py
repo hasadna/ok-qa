@@ -1,6 +1,7 @@
 # Django settings for open-shot project.
 import os
 from unipath import FSPath as Path
+import djcelery
 
 PROJECT_DIR = Path(__file__).absolute().ancestor(3)
 
@@ -108,7 +109,6 @@ INSTALLED_APPS = (
     'social_auth',
     'haystack',
     'south',
-    'debug_toolbar',
     'crispy_forms',
     'storages',
     'gunicorn',
@@ -121,6 +121,11 @@ INSTALLED_APPS = (
     'entities',
     'chosen',
     'modeltranslation',
+    'djcelery',
+    'celery_haystack',
+    'djcelery_email',
+    'devserver',
+    'debug_toolbar',
     # local apps
     'qa',
     'user',
@@ -172,7 +177,7 @@ ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, us
 LOGIN_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 
-DEFAULT_FROM_EMAIL = 'okqa@hasadna.org.il'
+DEFAULT_FROM_EMAIL = 'localshot@hasadna.org.il'
 
 TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
 
@@ -194,7 +199,6 @@ SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.user.get_username',
     'social_auth.backends.pipeline.user.create_user',
     'social_auth.backends.pipeline.social.associate_user',
-    'social_auth.backends.pipeline.user.update_user_details',
     'user.utils.get_user_avatar',
 )
 
@@ -211,3 +215,7 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(PROJECT_DIR, 'whoosh_index'),
     },
 }
+djcelery.setup_loader()
+HAYSTACK_SIGNAL_PROCESSOR = 'celery_haystack.signals.CelerySignalProcessor'
+EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
+

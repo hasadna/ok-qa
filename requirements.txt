@@ -18,12 +18,12 @@ PIL==1.1.7
 pyelasticsearch==0.2
 PyYAML==3.10
 requests==0.14.1
-South==0.7.6
+South==0.8.1
 unicode-slugify==0.1
 Unipath==0.2.1
 wsgiref==0.1.2
 yolk==0.4.3
-django-flatblocks==0.7.0
+django-flatblocks==0.7.1
 selenium
 mock
 -e hg+https://bitbucket.org/alper/django-registration@1cddccb187ed865fd28599f0de2cc063cfa8c55a#egg=django-registration
@@ -33,3 +33,7 @@ django-autoslug
 -e git+https://github.com/daonb/django-chosen.git#egg=django-chosen
 django-modeltranslation
 whoosh==2.4
+django-celery==3.0.21
+celery-haystack==0.7.2
+django-celery-email==1.0.3
+django-devserver==0.6.2

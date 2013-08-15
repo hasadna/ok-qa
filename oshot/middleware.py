@@ -9,7 +9,8 @@ from user.models import Profile
 class LocalityMiddleware(object):
     def process_request(self, request):
         profile_path = reverse('edit_profile')
-        if request.path != profile_path and request.user.is_authenticated():
+        if request.user.is_authenticated() and \
+           not request.path in (reverse('logout'), profile_path):
             profile, created = Profile.objects.get_or_create(user=request.user)
             if not profile.locality:
                 messages.warning(request,

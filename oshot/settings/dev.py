@@ -25,9 +25,12 @@ EMAIL_USE_TLS = False
 LOGGING['handlers']['console']['level'] = 'DEBUG'
 
 
-STATIC_PATH = os.path.join(PROJECT_DIR,'static')
-STATIC_URL = '/static/'
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+if os.environ.get('AWS_ACCESS_KEY_ID', False):
+    from .s3 import *
+else:
+    STATIC_PATH = os.path.join(PROJECT_DIR,'static')
+    STATIC_URL = '/static/'
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 DEBUG_TOOLBAR_CONFIG = {
         'INTERCEPT_REDIRECTS': False,
