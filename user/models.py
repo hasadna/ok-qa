@@ -60,7 +60,6 @@ class ProfileManager(models.Manager):
 
 
 class Profile(models.Model):
-    # TODO: chnage OneToOne
     user = models.OneToOneField(User, related_name='profile')
     public_profile = models.BooleanField(default=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)

@@ -1,5 +1,6 @@
 {% extends base_template %}
 {% load i18n %}
+{% block pageTitle %}{{ candidate.get_full_name|default:candidate.username }}{% endblock %}
 {% block mainContainer %}
 <div class="page-header row">
     <h1 class="clearfix">

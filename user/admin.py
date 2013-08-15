@@ -16,6 +16,8 @@ numbers and underscores."))
 
 class ProfileAdmin(admin.StackedInline):
     model = Profile
+    extra = 0
+    max_num = 1
 
 # Overrides django.contrib.auth.forms.UserCreationForm and changes 
 # username to accept a wider range of character in the username. 
@@ -30,7 +32,7 @@ class UserChangeForm(UserChangeForm):
 class UnicodeUserAdmin(UserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
-    inlines = (ProfileAdmin, )
+    inlines = [ProfileAdmin, ]
 
 admin.site.unregister(User)
 admin.site.register(User, UnicodeUserAdmin)

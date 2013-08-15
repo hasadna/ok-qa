@@ -2,17 +2,20 @@ from django.conf import settings
 from django.dispatch import receiver
 from django.db.models.signals import post_save, pre_save
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
 
 from qa.models import Question, QuestionFlag, QuestionFlag
 from user.models import Profile
+from oshot.utils import get_root_url
 
 @receiver(post_save, sender=User)
 def create_profile(sender, created, instance, **kwargs):
     if created: # and instance._state.db=='default':
-        Profile.objects.create(user=instance)
+        profile = Profile.objects.create(user=instance)
+        profile.sites.add(Site.objects.get_current())
 
 @receiver(post_save, sender=Question)
 def appoint_editors(sender, created, instance, **kwargs):
@@ -31,7 +34,9 @@ def new_candidate(sender, instance, **kwargs):
         editors = User.objects.filter(profile__locality=instance.locality,
                     profile__is_editor=True).values_list('email', flat=True)
         html_content = render_to_string("user/emails/editors_new_candidate.html",
-                {'candidate': instance })
+                {'candidate': instance,
+                 'ROOT_URL': get_root_url(),
+                })
         text_content = 'Sorry, we only support html based email'
         msg = EmailMultiAlternatives(_("A new candidate registered"), text_content,
                 settings.DEFAULT_FROM_EMAIL, editors)
@@ -45,7 +50,10 @@ def new_flag(sender, created, instance, **kwargs):
         editors = User.objects.filter(profile__locality=instance.question.entity,
                     profile__is_editor=True).values_list('email', flat=True)
         html_content = render_to_string("user/emails/editors_question_flagged.html",
-                {'question': instance.question, 'reoprter': instance.reporter})
+                {'question': instance.question,
+                 'reoprter': instance.reporter,
+                 'ROOT_URL': get_root_url(),
+                 })
         text_content = 'Sorry, we only support html based email'
         msg = EmailMultiAlternatives(_("A question has been flagged"), text_content,
                 settings.DEFAULT_FROM_EMAIL, editors)

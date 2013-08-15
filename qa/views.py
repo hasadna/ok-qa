@@ -93,6 +93,7 @@ def questions(request, entity_slug=None, entity_id=None, tags=None,
         'current_tags': current_tags,
         'need_editors': need_editors,
         'can_ask': can_ask,
+        'question_count': questions.count(),
         })
 
     return render(request, template, context)

@@ -4,13 +4,14 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css?v=4"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/auth-buttons.css"/>
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <title>
-      {% block pageTitle %} {% endblock %} {{ site.name }}
+      {% block pageTitle %} {% endblock %} 
+      {% if entity %}({{entity}}){% endif %} | {{ site.name }}
     </title>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css"/>
     {% block extrahead %}{% endblock %}
