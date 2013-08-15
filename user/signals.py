@@ -2,6 +2,7 @@ from django.conf import settings
 from django.dispatch import receiver
 from django.db.models.signals import post_save, pre_save
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
@@ -13,7 +14,8 @@ from oshot.utils import get_root_url
 @receiver(post_save, sender=User)
 def create_profile(sender, created, instance, **kwargs):
     if created: # and instance._state.db=='default':
-        Profile.objects.create(user=instance)
+        profile = Profile.objects.create(user=instance)
+        profile.sites.add(Site.objects.get_current())
 
 @receiver(post_save, sender=Question)
 def appoint_editors(sender, created, instance, **kwargs):
