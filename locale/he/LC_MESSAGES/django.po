@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-14 16:15+0300\n"
-"PO-Revision-Date: 2013-08-14 16:16+0200\n"
+"POT-Creation-Date: 2013-08-15 10:50+0300\n"
+"PO-Revision-Date: 2013-08-15 11:49+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -991,13 +991,17 @@ msgstr "שכחתם ססמה"
 msgid "Reset it"
 msgstr "אפסו"
 
-#: templates/registration/login.html:25
+#: templates/registration/login.html:23
 msgid "Connect to Facebook"
 msgstr "התחבר לפייסבוק"
 
-#: templates/registration/login.html:27
+#: templates/registration/login.html:25
 msgid "Connect to Twitter"
 msgstr "התחבר לטוויטר"
+
+#: templates/registration/login.html:27
+msgid "Or register yourself"
+msgstr "או הרשמו עצמונית"
 
 #: templates/registration/logout.html:5
 msgid "Thanks for using the System. You are now logged out."
@@ -1198,11 +1202,11 @@ msgstr "זכר"
 msgid "Female"
 msgstr "נקבה"
 
-#: user/signals.py:36
+#: user/signals.py:41
 msgid "A new candidate registered"
 msgstr "מועמד חדש נרשם"
 
-#: user/signals.py:50
+#: user/signals.py:58
 msgid "A question has been flagged"
 msgstr "הונף דגל אדום על שאלה בשו\"ת המקומי"
 
