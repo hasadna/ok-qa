@@ -1,10 +1,11 @@
 from __future__ import with_statement
-from fabric.api import run, sudo, cd, env, prefix
+from fabric.api import run, sudo, cd, env, prefix, local
 from fabric.contrib.console import confirm
 
 env.hosts = ['oshot.hasadna.org.il']
 
 def deploy(branch='master'):
+    local('git push origin ' + branch)
     with cd('~oshot/src/oshot'):
         run('git pull origin ' + branch)
         with prefix('. ENV/bin/activate'):
