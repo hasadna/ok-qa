@@ -57,7 +57,9 @@
           {% block mainnav %} 
             <li {% block nav-questions %} {% endblock %}><a href="{{questions_url}}">{% trans "Questions" %}</a></li>
             <li {% block nav-candidates %} {% endblock %}><a href="{{candidates_url}}">{% trans "Candidates" %}</a></li>
-            <li {% block nav-about %} {% endblock %}><a href="/p/about/">{% trans "About" %}</a></li>
+            <li {% block nav-about %} {% endblock %}>
+              <a href="/p/about/{% if entity %}?entity={{entity.id}}{% endif %}">{% trans "About" %}</a>
+            </li>
           {% endblock %}
         </ul>
         <form class="navbar-search pull-left" action="/search/">

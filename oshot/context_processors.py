@@ -15,19 +15,20 @@ def forms(request):
     try:
         kwargs = request.resolver_match.kwargs
         url_name = request.resolver_match.url_name
+        entity = None
+        if 'entity' in request.GET:
+            entity = Entity.objects.get(id=request.GET['entity'])
         if 'entity_slug' in kwargs:
             entity = Entity.objects.get(slug=kwargs['entity_slug'])
-            initial = {'entity': entity.id}
-        elif 'entity_id' in kwargs:
+        if 'entity_id' in kwargs:
             entity = Entity.objects.get(id=kwargs['entity_id'])
-            initial = {'entity': entity.id}
-        else:
-            entity = {}
-            initial = {}
+
         if entity:
+            initial = {'entity': entity.id}
             context['questions_url'] = reverse("qna", args=(entity.slug,))
             context['candidates_url'] = reverse("candidate_list", args=(entity.slug,))
         else:
+            initial = {}
             context['questions_url'] = reverse("home")
             context['candidates_url'] = reverse("candidate_list")
 
