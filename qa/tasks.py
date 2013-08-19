@@ -1,6 +1,7 @@
 from celery import task
 import httplib
 
+from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.sites.models import Site
 
 from celery.utils.log import get_task_logger
@@ -17,4 +18,17 @@ def publish_question_to_facebook(obj):
         access_token=%s&method=POST&question=%s" % (access_token, obj_url))
     logger.info("Asking a '%s' on facebook for %s" % (obj.title, obj.author.username))
     return conn.request("POST")
+
+@task()
+def publish_upvote_to_facebook(upvote):
+    try:
+        access_token = UserSocialAuth.objects.get(provider='facebook', user=upvote.user).tokens['access_token']
+        obj_url = 'http://%s/%s' % (Site.objects.get_current().domain, upvote.question.get_absolute_url())
+        conn = httplib.HTTPConnection("https://graph.facebook.com/me/localshot:join?\
+            access_token=%s&method=POST&question=%s" % (access_token, obj_url))
+        logger.info("published to faceboo that '%s' joined '%s'" % \
+                (upvote.user.username, upvote.question.subject))
+        return conn.request("POST")
+    except ObjectDoesNotExist:
+        return False
 
