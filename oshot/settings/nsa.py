@@ -4,7 +4,7 @@ from os import environ
 from .base import *
 from .s3 import *
 
-ALLOWED_HOSTS = ("oshot.hasadna.org.il", ".oshot.org.il", )
+ALLOWED_HOSTS = ("oshot.hasadna.org.il", ".localshot.org.il", )
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = os.environ.get('DEBUG', False)
 TEMPLATE_DEBUG = DEBUG
@@ -27,3 +27,5 @@ EMAIL_HOST_PASSWORD = ''
 EMAIL_USE_TLS = False
 
 ANALYTICS_ID = os.environ.get('ANALYTICS_ID')
+
+ADMINS += [('Count Z','countz@gmail.com'), ]
