@@ -12,7 +12,7 @@ logger = get_task_logger(__name__)
 @task()
 def publish_question_to_facebook(obj):
     obj_url = 'http://%s/%s' % (Site.objects.get_current().domain, obj.get_absolute_url())
-    access_token = UserSocialAuth.objects.get(user=obj.author).tokens['access_token']
+    access_token = UserSocialAuth.objects.get(user=obj.author).extra_data['access_token']
 
     conn = httplib.HTTPConnection("https://graph.facebook.com/me/localshot:ask?\
         access_token=%s&method=POST&question=%s" % (access_token, obj_url))
@@ -22,7 +22,7 @@ def publish_question_to_facebook(obj):
 @task()
 def publish_upvote_to_facebook(upvote):
     try:
-        access_token = UserSocialAuth.objects.get(provider='facebook', user=upvote.user).tokens['access_token']
+        access_token = UserSocialAuth.objects.get(provider='facebook', user=upvote.user).extra_data['access_token']
         obj_url = 'http://%s/%s' % (Site.objects.get_current().domain, upvote.question.get_absolute_url())
         conn = httplib.HTTPConnection("https://graph.facebook.com/me/localshot:join?\
             access_token=%s&method=POST&question=%s" % (access_token, obj_url))

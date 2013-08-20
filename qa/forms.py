@@ -24,7 +24,7 @@ class QuestionForm(forms.ModelForm):
             super(QuestionForm, self).__init__(*args, **kwargs)
             if user.social_auth.filter(provider='facebook').count():
                 self.fields['facebook_publish'] = \
-                        forms.BooleanField(label=_("Publish to facebook?"), initial=True,
+                        forms.BooleanField(label=_("Publish to facebook?"), initial=True, required=False,
                             help_text=_("let your friends know you've asked a question"))
 
     def clean(self):
