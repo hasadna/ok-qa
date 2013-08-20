@@ -24,7 +24,7 @@ from user.models import Profile
 
 from qa.forms import AnswerForm, QuestionForm
 from qa.models import *
-from qa.tasks import publish_question_to_facebook
+from qa.tasks import publish_question_to_facebook, publish_upvote_to_facebook
 from qa.mixins import JSONResponseMixin
 
 # the order options for the list views
@@ -215,13 +215,13 @@ def upvote_question(request, q_id):
     if request.method == "POST":
         q = get_object_or_404(Question, id=q_id)
         user = request.user
-
         if q.author == user or user.upvotes.filter(question=q):
             return HttpResponseForbidden(_("You already upvoted this question"))
         else:
             upvote = QuestionUpvote.objects.create(question=q, user=user)
             #TODO: use signals so the next line won't be necesary
             new_count = increase_rating(q)
+            publish_upvote_to_facebook(upvote)
             return HttpResponse(new_count)
     else:
         return HttpResponseForbidden(_("Use POST to upvote a question"))
