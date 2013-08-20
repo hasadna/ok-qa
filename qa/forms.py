@@ -40,3 +40,10 @@ class QuestionForm(forms.ModelForm):
         if subject == 'post_q':
             raise ValidationError(_("Invalid question"))
         return subject
+
+    def clean_tags(self):
+        tags = self.cleaned_data['tags']
+        for tag in tags:
+            if len(tag)>20:
+                raise ValidationError(_('Tags are limited to 20 characters'))
+        return tags
