@@ -24,7 +24,8 @@ from user.models import Profile
 
 from qa.forms import AnswerForm, QuestionForm
 from qa.models import *
-from qa.tasks import publish_question_to_facebook, publish_upvote_to_facebook
+from qa.tasks import publish_question_to_facebook, publish_upvote_to_facebook,\
+    publish_answer_to_facebook
 from qa.mixins import JSONResponseMixin
 
 # the order options for the list views
@@ -126,6 +127,12 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
         else:
             context['can_upvote'] = False
 
+        if 'answer' in self.request.GET:
+            try:
+                answer = Answer.objects.get(pk=self.request.GET['answer'])
+                context['fb_message'] = answer.content
+            except:
+                pass
         return context
 
     def render_to_response(self, context):
@@ -153,7 +160,7 @@ def post_answer(request, q_id):
         return HttpResponseForbidden(_("You must be logged in as a candidate to post answers"))
 
     try:
-        # make sure the user haven't answered already
+        # If the user already answered, update his answer
         answer = question.answers.get(author=request.user)
     except question.answers.model.DoesNotExist:
         answer = Answer(author=request.user, question=question)
@@ -161,6 +168,8 @@ def post_answer(request, q_id):
     answer.content = request.POST.get("content")
 
     answer.save()
+    publish_answer_to_facebook(answer)
+
     return HttpResponseRedirect(question.get_absolute_url())
 
 @login_required
@@ -189,8 +198,7 @@ def post_question(request, entity_slug=None, slug=None):
             question.author = request.user
             question.save()
             form.save_m2m()
-            if form.cleaned_data.get('facebook_publish', False) and\
-                    cleaned_data['facebook_publish']:
+            if form.cleaned_data.get('facebook_publish', False):
                 publish_question_to_facebook(question)
             return HttpResponseRedirect(question.get_absolute_url())
     else:

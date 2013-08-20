@@ -30,7 +30,7 @@ class QuestionForm(forms.ModelForm):
     def clean(self):
         cleaned_data = super(QuestionForm, self).clean()
         unislug = unislugify(cleaned_data.get('subject'))
-        if Question.objects.filter(entity=cleaned_data['entity']).filter(unislug=unislug):
+        if Question.objects.filter(entity=cleaned_data['entity'], unislug=unislug).count():
             raise ValidationError(_("Question already exists."))
 
         return cleaned_data

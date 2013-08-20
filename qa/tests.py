@@ -11,8 +11,10 @@ from django.utils import translation
 from django.test import TestCase
 from django.test.utils import override_settings
 
+from mock import patch
 from entities.models import Domain, Division, Entity
 from .models import *
+
 
 # @override_settings(TEST_RUNNER='djcelery.contrib.test_runner.CeleryTestSuiteRunner')
 @override_settings(CELERY_ALWAYS_EAGER = True)
@@ -72,6 +74,8 @@ class QuestionTest(TestCase):
         self.q.tags.create(name="abc")
         self.q.tags.create(name="def")
         translation.deactivate_all()
+        self.patch = patch('requests.session')
+        self.mock_request = self.patch.start()().request
 
     def test_sites(self):
         I = Site.objects.get_current()
@@ -82,22 +86,20 @@ class QuestionTest(TestCase):
     def test_post_question(self):
         c = Client()
         post_url = reverse('post_question', args=(self.entity.slug, ))
-        response = c.get(post_url)
-        self.assertRedirects(response, "%s?next=%s" % (settings.LOGIN_URL, post_url))
         self.assertTrue(c.login(username="commoner", password="pass"))
         response = c.get(post_url)
         self.assertEquals(response.status_code, 200)
-        response = c.post(post_url, {'id_subject':"Why?",
-                        'id_facebook_publish': False,
+        # self.assertFalse(Question.objects.get(subject="Why?"))
+        self.assertFalse(Question.objects.filter(entity_id=self.entity.id, unislug='Why?').count())
+        response = c.post(post_url, {'subject':"Which?",
                         'entity': self.entity.id,
                         })
-        self.assertEquals(response.status_code, 200)
-        response = c.post(post_url, {'id_subject':"When?",
-                        'id_facebook_publish': True,
+        self.assertEquals(response.status_code, 302)
+        self.assertTrue(Question.objects.get(subject="Which?"))
+        response = c.post(post_url, {'subject':"Which?",
                         'entity': self.entity.id,
                         })
-        #TODO: find a way to test the task ran
-        self.assertEquals(response.status_code, 200)
+        self.assertFormError(response, 'form', None, 'Question already exists.')
 
     def test_permissions(self):
         self.assertFalse(self.q.can_answer(self.common_user))
@@ -159,12 +161,77 @@ class QuestionTest(TestCase):
         u=User.objects.get(email='user@domain.com')
         u.profile.locality = self.common_user.profile.locality
         u.profile.save()
+        self.mock_request.return_value.content = json.dumps({
+            'id': 1
+        })
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.content, "2")
+        self.mock_request.assert_called_with(
+            'POST',
+            'https://graph.facebook.com/me/localshot:join',
+            files={},
+            data={
+                'question': 'http://example.com%s' % self.q.get_absolute_url(),
+                'access_token': 'dummyToken'
+            }
+        )
+
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 403)
 
+    def test_post_question_facebook(self):
+        c = SocialClient()
+        c.login(self.user, backend='facebook')
+        u=User.objects.get(email='user@domain.com')
+        u.profile.locality = self.entity
+        u.profile.save()
+        post_url = reverse('post_question', args=(self.entity.slug, ))
+        self.mock_request.return_value.content = json.dumps({
+            'id': 1
+        })
+        response = c.post(post_url, {'subject':"Where?",
+                        'facebook_publish': 'on',
+                        'entity': self.entity.id,
+                        })
+        self.assertEquals(response.status_code, 302)
+        new_q=Question.objects.get(subject="Where?")
+
+        self.mock_request.assert_called_with(
+            'POST',
+            'https://graph.facebook.com/me/localshot:ask',
+            files={},
+            data={
+                'question': 'http://example.com%s' % new_q.get_absolute_url(),
+                'access_token': 'dummyToken'
+            }
+        )
+
+    def test_post_question_facebook(self):
+        c = SocialClient()
+        c.login(self.user, backend='facebook')
+        u=User.objects.get(email='user@domain.com')
+        u.profile.locality = self.entity
+        u.profile.is_candidate = True
+        u.profile.save()
+        post_url = reverse('post_answer', args=(self.q.id, ))
+        self.mock_request.return_value.content = json.dumps({
+            'id': 1
+        })
+        response = c.post(post_url, {'content':"42",
+                        })
+        self.assertEquals(response.status_code, 302)
+        new_a=Answer.objects.get(content="42")
+
+        self.mock_request.assert_called_with(
+            'POST',
+            'https://graph.facebook.com/me/localshot:answer',
+            files={},
+            data={
+                'question': 'http://example.com%s' % new_a.get_absolute_url(),
+                'access_token': 'dummyToken'
+            }
+        )
     def test_repr(self):
         self.assertEqual("why?", unicode(self.q))
 
@@ -174,3 +241,4 @@ class QuestionTest(TestCase):
     def tearDown(self):
         self.q.delete()
         User.objects.all().delete()
+        self.patch.stop()

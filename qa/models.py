@@ -105,7 +105,7 @@ class Answer(BaseModel):
         return "%s: %s" % (self.author, self.content[:30])
 
     def get_absolute_url(self):
-        return '%s#answer-%s' % (self.question.get_absolute_url(), self.id)
+        return '%(url)s?answer=%(id)s#answer-%(id)s' % {'url': self.question.get_absolute_url(), 'id': self.id}
 
 class QuestionUpvote(BaseModel):
     question = models.ForeignKey(Question, related_name="upvotes")

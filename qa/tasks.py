@@ -1,34 +1,43 @@
-from celery import task
 import httplib
 
 from django.core.exceptions import ObjectDoesNotExist
 from django.contrib.sites.models import Site
 
+from facepy import GraphAPI
+from celery import task
 from celery.utils.log import get_task_logger
 from social_auth.models import UserSocialAuth
 
 logger = get_task_logger(__name__)
 
-@task()
-def publish_question_to_facebook(obj):
-    obj_url = 'http://%s/%s' % (Site.objects.get_current().domain, obj.get_absolute_url())
-    access_token = UserSocialAuth.objects.get(user=obj.author).extra_data['access_token']
+def get_graph_api(user):
+    try:
+        access_token = UserSocialAuth.objects.get(user=user).extra_data['access_token']
+        return GraphAPI(access_token)
+    except ObjectDoesNotExist:
+        return None
 
-    conn = httplib.HTTPConnection("https://graph.facebook.com/me/localshot:ask?\
-        access_token=%s&method=POST&question=%s" % (access_token, obj_url))
-    logger.info("Asking a '%s' on facebook for %s" % (obj.title, obj.author.username))
-    return conn.request("POST")
+def get_full_url(path):
+    return 'http://%s%s' % (Site.objects.get_current().domain,path)
+
+@task()
+def publish_question_to_facebook(question):
+    graph = get_graph_api(question.author)
+    if graph:
+        question_url = get_full_url(question.get_absolute_url())
+        graph.post(path="me/localshot:ask", question=question_url)
 
 @task()
 def publish_upvote_to_facebook(upvote):
-    try:
-        access_token = UserSocialAuth.objects.get(provider='facebook', user=upvote.user).extra_data['access_token']
-        obj_url = 'http://%s/%s' % (Site.objects.get_current().domain, upvote.question.get_absolute_url())
-        conn = httplib.HTTPConnection("https://graph.facebook.com/me/localshot:join?\
-            access_token=%s&method=POST&question=%s" % (access_token, obj_url))
-        logger.info("published to faceboo that '%s' joined '%s'" % \
-                (upvote.user.username, upvote.question.subject))
-        return conn.request("POST")
-    except ObjectDoesNotExist:
-        return False
+    graph = get_graph_api(upvote.user)
+    if graph:
+        question_url = get_full_url(upvote.question.get_absolute_url())
+        graph.post(path="me/localshot:join", question=question_url)
+
+@task()
+def publish_answer_to_facebook(answer):
+    graph = get_graph_api(answer.author)
+    if graph:
+        answer_url = get_full_url(answer.get_absolute_url())
+        graph.post(path="me/localshot:answer", question=answer_url)
 
