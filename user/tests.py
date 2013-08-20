@@ -108,12 +108,12 @@ class UserTest(TestCase):
         response = c.get(clist_url)
         self.assertEquals(len(response.context['candidates']), 1)
 
-    def user_detail(self):
+    def test_user_detail(self):
         c = Client()
-        response = c.get(reverse('user_detail', kwargs={'slug': "user"}))
-        self.assertEquals(response.status_code, 302)
-        self.assertTemplateUsed(response, "user/edit_profile.html")
-        self.assertTrue(c.login(username="candidate", password="pass"))
+        response = c.get(reverse('user_detail', kwargs={'username': "user"}))
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.context['entity'], self.entity)
+        self.assertTemplateUsed(response, "user/user_detail.html")
 
     # TODO: remove the invitation
     '''

@@ -6,18 +6,19 @@ import re
 from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User
-from django.contrib.sites.models import Site
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 from django.template.loader import render_to_string
 from django.utils import translation
 from django.utils.translation import ugettext as _
-
 from django.core.urlresolvers import reverse
+
+from flatblocks.models import FlatBlock
+
 from user.models import invite_user
 from qa.models import Question
 from user.models import Profile, NEVER_SENT
-from flatblocks.models import FlatBlock
+from oshot.utils import get_root_url
 
 class Command(BaseCommand):
     args = '[username1 username2 ...]'
@@ -36,12 +37,10 @@ class Command(BaseCommand):
             qs = Profile.on_site.filter(user__email=args)
         else:
             qs = Profile.on_site.all()
-        site = Site.objects.get(pk=settings.SITE_ID)
-        root_url = 'http://' + site.domain
         # TODO: get only new questions and questions with new answers
         context = {'questions': Question.on_site.all().order_by('-updated_at'),
                    'header': "Hello there!",
-                   'ROOT_URL': root_url
+                   'ROOT_URL': get_root_url(),
                    }
         for profile in qs:
             user = profile.user

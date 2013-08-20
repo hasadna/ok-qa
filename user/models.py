@@ -1,7 +1,6 @@
 import urllib, hashlib, datetime
 
 from django.db import models
-from django.db.models.signals import post_save
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.sites.models import Site
 from django.contrib.sites.managers import CurrentSiteManager
@@ -20,9 +19,15 @@ GENDER_CHOICES = (
     (u'M', _('Male')),
     (u'F', _('Female')),
 )
+VERIFICATION_STAGES = (
+    (u'0', 'No verification needed'),
+    (u'S', 'Verification process started'),
+    (u'V', 'Verified'),
+)
+
 
 NEVER_SENT = datetime.datetime(1970,8,6)
-
+MIN_EDITORS_PER_LOCALITY = 3
 def invite_user(site, username, email, first_name="", last_name=""):
     ''' invite a new user to the system '''
     user, created = User.objects.get_or_create(username=username,
@@ -42,6 +47,7 @@ def invite_user(site, username, email, first_name="", last_name=""):
     registration_profile = RegistrationProfile.objects.create_profile(user)
 
     return user
+
 class ProfileManager(models.Manager):
     def get_candidates(self, entity=None):
         ''' get all the candidates in an entity '''
@@ -49,9 +55,11 @@ class ProfileManager(models.Manager):
         if entity:
             qs = qs.filter(profile__locality = entity)
         return qs
+    def need_editors(self, entity):
+       return Profile.objects.filter(locality=entity).count() < MIN_EDITORS_PER_LOCALITY
+
 
 class Profile(models.Model):
-    # TODO: chnage OneToOne
     user = models.OneToOneField(User, related_name='profile')
     public_profile = models.BooleanField(default=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
@@ -64,6 +72,7 @@ class Profile(models.Model):
     sites = models.ManyToManyField(Site)
     is_candidate = models.BooleanField(default=False)
     is_editor = models.BooleanField(default=False)
+    verification = models.CharField(max_length=1, choices=VERIFICATION_STAGES, default='0')
     on_site = CurrentSiteManager()
 
     objects = ProfileManager()
@@ -83,7 +92,3 @@ class Profile(models.Model):
         else:
             return default
 
-def handle_user_save(sender, created, instance, **kwargs):
-    if created: # and instance._state.db=='default':
-        Profile.objects.create(user=instance)
-post_save.connect(handle_user_save, sender=User)

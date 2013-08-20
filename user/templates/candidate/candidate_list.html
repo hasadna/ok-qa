@@ -1,9 +1,14 @@
 {% extends "candidate/candidate_base.html" %}
 {% load i18n %}
+{% block pageTitle %}{% trans "candidates list" %}{% endblock %}
 {% block mainContainer %}
 <div class="page-header" style="margin-bottom:0;">
     <h1>
-        {% trans "Candidates" %}
+      {% if entity %}
+        {% blocktrans with entity.name as place %}Candidates in {{place}} {% endblocktrans %}
+      {% else %}
+        {% trans "Candidates for local elections" %}
+      {% endif %}
     </h1>
 </div>
 <div class="row">

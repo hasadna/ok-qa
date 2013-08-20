@@ -13,7 +13,7 @@ from entities.models import Entity
 
 
 MAX_LENGTH_Q_SUBJECT = 140
-MAX_LENGTH_Q_CONTENT = 255
+MAX_LENGTH_Q_CONTENT = 500
 MAX_LENGTH_A_SUBJECT = 80
 MAX_LENGTH_A_CONTENT = 500
 
@@ -50,8 +50,7 @@ class Question(BaseModel):
        blank = True, default = '')
     rating = models.IntegerField(_("rating"), default=1)
     flags_count = models.IntegerField(_("flags counter"), default=0)
-    tags = TaggableManager(through=TaggedQuestion)
-    # tags = TaggableManager(through=TaggedQuestion, blank=True)
+    tags = TaggableManager(through=TaggedQuestion, blank=True)
     sites = models.ManyToManyField(Site)
     # for easy access to current site questions
     objects = models.Manager()
@@ -106,7 +105,7 @@ class Answer(BaseModel):
         return "%s: %s" % (self.author, self.content[:30])
 
     def get_absolute_url(self):
-        return '%s#answer-%s' % (self.question.get_absolute_url(), self.id)
+        return '%(url)s?answer=%(id)s#answer-%(id)s' % {'url': self.question.get_absolute_url(), 'id': self.id}
 
 class QuestionUpvote(BaseModel):
     question = models.ForeignKey(Question, related_name="upvotes")

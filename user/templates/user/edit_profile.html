@@ -1,6 +1,8 @@
 {% extends base_template %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% load flatblock_tags %}
+
 {% block extrahead %}
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css"/>
 {% endblock %}
@@ -8,9 +10,7 @@
 <div class="page-header">
   <h1>{% trans "Edit your profile" %}</h1>
   <p>
-      {% trans "We need more editors! please contact us by" %}
-      <a href="mailto:oshot@hasadna.org.il">{% trans "Email" %}</a>
-      {% trans "if you have the passion and time to join our community of local editors." %}
+    {% flatblock "edit_profile" 9000 %}
   </p>
 </div>
 <form class="form-horizontal" method="POST">

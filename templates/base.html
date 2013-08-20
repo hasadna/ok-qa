@@ -3,16 +3,19 @@
 
 <!DOCTYPE HTML>
 <html>
-<head>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# localshot: http://ogp.me/ns/fb/localshot#">
+    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css?v=4"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/auth-buttons.css"/>
-    <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <title>
-      {% block pageTitle %} {% endblock %} {{ site.name }}
+      {% block pageTitle %} {% endblock %} 
+      {% if entity %}({{entity}}){% endif %} | {{ site.name }}
     </title>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css"/>
+    <meta property="fb:app_id"    content="{{FACEBOOK_APP_ID}}" /> 
+    <meta property="og:site_name" content="{{site.name}}" /> 
     {% block extrahead %}{% endblock %}
 </head>
 <body>
@@ -56,7 +59,9 @@
           {% block mainnav %} 
             <li {% block nav-questions %} {% endblock %}><a href="{{questions_url}}">{% trans "Questions" %}</a></li>
             <li {% block nav-candidates %} {% endblock %}><a href="{{candidates_url}}">{% trans "Candidates" %}</a></li>
-            <li {% block nav-about %} {% endblock %}><a href="/p/about/">{% trans "About" %}</a></li>
+            <li {% block nav-about %} {% endblock %}>
+              <a href="/p/about/{% if entity %}?entity={{entity.id}}{% endif %}">{% trans "About" %}</a>
+            </li>
           {% endblock %}
         </ul>
         <form class="navbar-search pull-left" action="/search/">

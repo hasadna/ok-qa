@@ -1,6 +1,9 @@
 {% extends "qa/qa_base.html" %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% load flatblock_tags %}
+
+{% block pageTitle %}{% trans "Post question" %}{% endblock %}
 {% block extrahead %}
   <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/autoSuggest.css"/>
 {% endblock %}
@@ -11,6 +14,11 @@
     <h1>{% trans "What is your question, sire?" %}</h1>
   {% else %}
     <h1>{% trans "Edit your question" %}</h1>
+  {% endif %}
+  {% if becoming_editor %}
+    <blockquote>
+      {% flatblock "ask_to_become_editor" 9000 %}
+    </blockquote>
   {% endif %}
 </div>
 
