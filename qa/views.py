@@ -168,7 +168,7 @@ def post_answer(request, q_id):
     answer.content = request.POST.get("content")
 
     answer.save()
-    publish_answer_to_facebook(answer)
+    publish_answer_to_facebook.delay(answer)
 
     return HttpResponseRedirect(question.get_absolute_url())
 
@@ -199,7 +199,7 @@ def post_question(request, entity_slug=None, slug=None):
             question.save()
             form.save_m2m()
             if form.cleaned_data.get('facebook_publish', False):
-                publish_question_to_facebook(question)
+                publish_question_to_facebook.delay(question)
             return HttpResponseRedirect(question.get_absolute_url())
     else:
         if q:
@@ -229,7 +229,7 @@ def upvote_question(request, q_id):
             upvote = QuestionUpvote.objects.create(question=q, user=user)
             #TODO: use signals so the next line won't be necesary
             new_count = increase_rating(q)
-            publish_upvote_to_facebook(upvote)
+            publish_upvote_to_facebook.delay(upvote)
             return HttpResponse(new_count)
     else:
         return HttpResponseForbidden(_("Use POST to upvote a question"))

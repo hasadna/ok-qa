@@ -29,3 +29,4 @@ EMAIL_USE_TLS = False
 ANALYTICS_ID = os.environ.get('ANALYTICS_ID')
 
 ADMINS += [('Count Z','countz@gmail.com'), ]
+BROKER_URL = 'amqp://guest:guest@localhost:5672/'
