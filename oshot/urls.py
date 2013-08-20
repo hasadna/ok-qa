@@ -1,8 +1,10 @@
+import os
 from django.conf import settings
 from django.conf.urls.defaults import patterns, include, url
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from entities.views.ui import EntityDetail, EntityList
 
 admin.autodiscover()
@@ -26,3 +28,6 @@ urlpatterns = patterns('',
     # flat pages to help with static pages
     (r'^p/(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+if 'DEV' in os.environ:
+    urlpatterns += staticfiles_urlpatterns()
