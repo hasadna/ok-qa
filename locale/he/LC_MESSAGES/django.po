@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-20 21:42+0300\n"
-"PO-Revision-Date: 2013-08-20 21:44+0200\n"
+"POT-Creation-Date: 2013-08-20 22:04+0300\n"
+"PO-Revision-Date: 2013-08-20 22:05+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -83,6 +83,10 @@ msgstr "מצטערת, השאלה כבר קיימת"
 #: qa/forms.py:41
 msgid "Invalid question"
 msgstr "שאלה לא תקינה"
+
+#: qa/forms.py:48
+msgid "Tags are limited to 20 characters"
+msgstr "מצטערת, תגיות מוגבלות ל 20 תווים"
 
 #: qa/models.py:40
 msgid "unicode slug"
