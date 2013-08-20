@@ -959,7 +959,7 @@ msgid ""
 "Someone, hopefully you, signed up for a new account at %(name)s using this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar:\n"
 msgstr ""
 "\n"
-"תודה שנרשמת לאתר %(name)s. על מנת להשלים את ההרשמה, אנא לחץ/י על הקישור הבא:\n"
+"תודה שנרשמת לאתר השאלות והתשובות המקומיות! על מנת להשלים את ההרשמה לחץ/י על הקישור הבא:\n"
 
 #: templates/registration/activation_email.txt:8
 #, python-format
@@ -974,10 +974,10 @@ msgid ""
 "the team at %(name)s\n"
 msgstr ""
 "\n"
-"במידה וההרשמה בוצעה בטעות, או לא על ידיך, אינך צריך/ה לעשות כלום -הרשמתך תתבטל אוטומטית תוך %(expiration_days)s שבעה ימים מקבלת המייל.\n"
+"במידה וההרשמה בוצעה בטעות, או לא על ידיך, אינך צריך/ה לעשות כלום -הרשמתך תתבטל אוטומטית תוך %(expiration_days) ימים מיום קבלת המייל.\n"
 "\n"
 "אם את/ה מועמד לבחירות המוקדמות אתה מוזמן לפרסם תשובות.  רק שלח לנו דואל ל qa@hasadna.org.il ונאשר את חשבונך.יום טוב,\n"
-"צוות %(name)s\n"
+"צוות localhost\n"
 
 #: templates/registration/activation_email_subject.txt:2
 msgid "Please activate your account"
