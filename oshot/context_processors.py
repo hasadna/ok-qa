@@ -1,3 +1,4 @@
+import os
 from django.core.urlresolvers import reverse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.sites.models import get_current_site
@@ -42,6 +43,7 @@ def forms(request):
     # TODO: remove
     context["site"] = get_current_site(request)
     context["ANALYTICS_ID"] = getattr(settings, 'ANALYTICS_ID', False)
+    context["FACEBOOK_APP_ID"] = os.environ.get('FACEBOOK_APP_ID', '')
     return context
 
 

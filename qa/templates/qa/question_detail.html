@@ -7,6 +7,19 @@
             border: 0 none;
         }
     </style>
+    {% get_current_language as LANGUAGE_CODE %}
+    <meta property="fb:app_id"        content="{{FACEBOOK_APP_ID}}" /> 
+    <meta property="og:type"            content="localshot:question" />
+    <meta property="og:url"             content="http://{{site.domain}}{{ question.get_absolute_url }}" />
+    <meta property="og:title"           content="{{ question.subject }}" />
+    <!-- meta property="og:image"           content="{{ question.author.profile.avatar_uri }}" / -->
+    <meta property="og:description"     content="{{ question.content }}" />
+    <meta property="og:locale"          content="{{ LANGUAGE_CODE }}" />
+    <meta property="question:author"    content="http://{{site.domain}}{{ question.author.get_absolute_url }}" />
+    <meta property="question:entity"     content="{{ question.entity}}" />
+    {% if fb_message %}
+      <meta property="message"     content="{{ fb_message }}" />
+    {% endif %}
 {% endblock %}
 {% block mainContainer %}
     <div class="container">

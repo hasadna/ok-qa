@@ -3,7 +3,7 @@
 
 <!DOCTYPE HTML>
 <html>
-<head>
+<head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# localshot: http://ogp.me/ns/fb/localshot#">
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/rtl.css"/>
@@ -14,6 +14,8 @@
       {% if entity %}({{entity}}){% endif %} | {{ site.name }}
     </title>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css"/>
+    <meta property="fb:app_id"    content="{{FACEBOOK_APP_ID}}" /> 
+    <meta property="og:site_name" content="{{site.name}}" /> 
     {% block extrahead %}{% endblock %}
 </head>
 <body>
