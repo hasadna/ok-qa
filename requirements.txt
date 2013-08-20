@@ -37,3 +37,4 @@ django-celery==3.0.21
 celery-haystack==0.7.2
 django-celery-email==1.0.3
 django-devserver==0.6.2
+honcho==0.4.2
