@@ -17,7 +17,7 @@ class QuestionForm(forms.ModelForm):
 
     class Meta:
         model = Question
-        fields = ("subject", "entity", "tags", )
+        fields = ("subject", "content", "entity", "tags", )
         widgets = { 'subject': forms.Textarea(attrs={'cols': 70, 'rows': 2}),
                     'entity': forms.HiddenInput}
     def __init__(self, user, *args, **kwargs):
