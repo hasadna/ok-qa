@@ -4,7 +4,7 @@
 <div class="question-summary narrow" id="question-summary-{{ question.id }}">
     <div class="avatar-container" style="padding-top:15px;">
       <a href="{{ question.author.get_absolute_url }}" rel="tooltip" class="" title="{{question.author.get_full_name}}">
-        <img src="{{ question.author.profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle">
+        <img src="{{ question.author.profile.avatar_url|default:'/static/img/defaultavatar.png' }}" class="avatar img-circle">
       </a>
     </div>
     <div onclick="window.location.href='{{ question.get_absolute_url }}'" class="cp">
@@ -43,7 +43,7 @@
           {% for answer in question.answers.all %}
           <div class="avatar-container" style="padding-top:15px;">
             <a href="{{ answer.author.get_absolute_url }}" rel="tooltip" class="" title="{{answer.author.get_full_name}}">
-              <img src="{{ answer.author.profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="25" class="avatar img-circle" /><br/>
+              <img src="{{ answer.author.profile.avatar_url|default:'/static/img/defaultavatar.png' }}" class="avatar img-circle" />
             </a>
           </div>
           {% endfor %}
