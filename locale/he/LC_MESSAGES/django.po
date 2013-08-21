@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-20 22:04+0300\n"
-"PO-Revision-Date: 2013-08-20 22:05+0200\n"
+"POT-Creation-Date: 2013-08-21 20:49+0300\n"
+"PO-Revision-Date: 2013-08-21 20:57+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -229,73 +229,73 @@ msgid "Edit your question"
 msgstr "עריכת שאלה"
 
 #: qa/templates/qa/post_question.html:31
-#: qa/templates/qa/question_detail.html:126
+#: qa/templates/qa/question_detail.html:125
 msgid "characters left"
 msgstr "תווים נותרו"
 
 #: qa/templates/qa/post_question.html:35
-#: qa/templates/qa/question_detail.html:129
+#: qa/templates/qa/question_detail.html:128
 msgid "Publish"
 msgstr "פרסם"
 
-#: qa/templates/qa/question_detail.html:34
+#: qa/templates/qa/question_detail.html:33
 msgid "Edit Question"
 msgstr "ערכו שאלה"
 
-#: qa/templates/qa/question_detail.html:39
+#: qa/templates/qa/question_detail.html:38
 msgid "I Want an Answer"
 msgstr "תמכו בשאלה"
 
-#: qa/templates/qa/question_detail.html:46
+#: qa/templates/qa/question_detail.html:45
 msgid "Change Your Answer"
 msgstr "ערכו תשובה"
 
-#: qa/templates/qa/question_detail.html:48
+#: qa/templates/qa/question_detail.html:47
 msgid "Answer the Question"
 msgstr "תרום תשובה לעניין"
 
-#: qa/templates/qa/question_detail.html:57
+#: qa/templates/qa/question_detail.html:56
 msgid "Confirm Question Removal"
 msgstr "אשרו מחיקת השאלה"
 
-#: qa/templates/qa/question_detail.html:61
+#: qa/templates/qa/question_detail.html:60
 msgid "Are you sure you want to remove the question?"
 msgstr "האם אתם בטוחים שברצונכם למחוק את השאלה?"
 
-#: qa/templates/qa/question_detail.html:66
-#: qa/templates/qa/question_detail.html:74
+#: qa/templates/qa/question_detail.html:65
+#: qa/templates/qa/question_detail.html:73
 msgid "Delete"
 msgstr "מחק"
 
-#: qa/templates/qa/question_detail.html:76
+#: qa/templates/qa/question_detail.html:75
 msgid "Flag question"
 msgstr "שאלה בלתי הולמת"
 
-#: qa/templates/qa/question_detail.html:89
+#: qa/templates/qa/question_detail.html:88
 #: user/templates/user/user_detail.html:21
 msgid "Answers"
 msgstr "תשובות"
 
-#: qa/templates/qa/question_detail.html:91
+#: qa/templates/qa/question_detail.html:90
 msgid "feed"
 msgstr "רסס"
 
-#: qa/templates/qa/question_detail.html:102
+#: qa/templates/qa/question_detail.html:101
 msgid "No Answers Yet"
 msgstr "עדיין לא ניתנו תשובות"
 
-#: qa/templates/qa/question_detail.html:103
+#: qa/templates/qa/question_detail.html:102
 #: qa/templates/qa/question_list.html:18
 #: qa/templates/qa/question_list.html:25
 #: user/templates/user/user_detail.html:11
 msgid "Subscribe"
 msgstr "הרשם"
 
-#: qa/templates/qa/question_detail.html:155
+#: qa/templates/qa/question_detail.html:154
 msgid "Sorry but only connected users can upvote questions"
 msgstr "מצטערת, יש להתחבר כדי לתמוך בשאלה"
 
-#: qa/templates/qa/question_detail.html:169
+#: qa/templates/qa/question_detail.html:168
 msgid "Are you sure you want to delete the question?"
 msgstr "האם אתם בטוחים שברצונכם למחוק את השאלה?"
 
@@ -361,62 +361,73 @@ msgid "logout"
 msgstr "התנתקות"
 
 #: templates/base.html:54
+#: templates/registration/registration_form.html:8
+#: templates/registration/registration_form.html:21
+msgid "Register"
+msgstr "הירשמו"
+
+#: templates/base.html:55
 #: templates/registration/activation_complete.html:7
 #: templates/registration/login.html:6
 #: templates/registration/password_reset_complete.html:7
 msgid "Login"
 msgstr "היכנסו"
 
-#: templates/base.html:60
+#: templates/base.html:61
 #: templates/place_base.html:6
 #: user/templates/user/user_detail.html:56
 msgid "Questions"
 msgstr "שאלות"
 
-#: templates/base.html:61
+#: templates/base.html:62
 #: templates/place_base.html:7
 msgid "Candidates"
 msgstr "מועמדים"
 
-#: templates/base.html:63
+#: templates/base.html:64
 #: user/templates/user/user_detail.html:76
 msgid "About"
 msgstr "אודות"
 
-#: templates/base.html:69
+#: templates/base.html:70
 msgid "Search"
 msgstr "חפש"
 
-#: templates/base.html:97
+#: templates/base.html:98
 msgid "Back to top"
 msgstr "בחזרה לראש העמוד"
 
-#: templates/base.html:98
+#: templates/base.html:99
 msgid "Content is licensed CC-BY. Source code is freely available "
 msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.  קוד המקור חופשי לשימוש"
 
-#: templates/base.html:99
+#: templates/base.html:100
 #: user/templates/candidate/candidate_list.html:71
 msgid "here"
 msgstr "כאן"
 
-#: templates/base.html:101
+#: templates/base.html:102
 msgid "The Public Knowledge Workshop"
 msgstr "הסדנא לידע ציבורי"
 
-#: templates/base.html:102
+#: templates/base.html:103
+#: templates/base.html.py:104
 msgid "together with"
 msgstr "בשיתוף עם"
 
-#: templates/base.html:102
+#: templates/base.html:103
 msgid "The Shaharit Institute"
 msgstr "מכון שחרית"
 
-#: templates/base.html:126
+#: templates/base.html:104
+msgid "NUIS"
+msgstr "התאחדות הסטודנטים"
+
+#: templates/base.html:128
 msgid "read more"
 msgstr "קרא עוד"
 
-#: templates/base.html:130
+#: templates/base.html:132
 msgid "read less"
 msgstr "קרא פחות"
 
@@ -538,11 +549,6 @@ msgstr "איפוס ססמה"
 #: templates/registration/registration_complete.html:6
 msgid "Ye be now registered. Activation email sent, arrrr."
 msgstr "נרשמת בהצלחה ודואל עם הוראות להפעלת החשבון נשלח."
-
-#: templates/registration/registration_form.html:8
-#: templates/registration/registration_form.html:21
-msgid "Register"
-msgstr "הירשמו"
 
 #: templates/search/search.html:6
 msgid "Results"
