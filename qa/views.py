@@ -187,6 +187,12 @@ def post_question(request, entity_slug=None, slug=None):
     if request.method == "POST":
         form = QuestionForm(request.user, request.POST)
         if form.is_valid():
+            ''' carefull when changing a question's history '''
+            if not q:
+                try:
+                    q = Question.objects.get(author=request.user, subject=form.cleaned_data['subject'])
+                except:
+                    pass
             question = form.save(commit=False)
             if q:
                 if q.author != request.user:
@@ -195,6 +201,7 @@ def post_question(request, entity_slug=None, slug=None):
                     return HttpResponseForbidden(_("Question has been answered, editing disabled."))
                 question.id = q.id
                 question.created_at = q.created_at
+
             question.author = request.user
             question.save()
             form.save_m2m()
