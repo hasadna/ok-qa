@@ -51,6 +51,7 @@
         </li>
         {% else %}
           <li class="divider-vertical"></li>
+          <li><a href="{% url 'registration_register' %}">{% trans "Register" %}</a></li>
           <li><a href="{% url 'login' %}">{% trans "Login" %}</a></li>
         {% endif %}
       </ul>
