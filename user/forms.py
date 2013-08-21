@@ -46,6 +46,8 @@ class ProfileForm(forms.Form):
             if self.profile.locality:
                 self.fields['locality'].widget = forms.TextInput(attrs={'disabled':'disabled',
                     'value': self.profile.locality.name})
+                self.fields['is_candidate'].widget = forms.CheckboxInput(attrs={'disabled':'disabled',
+                    'value': self.profile.is_candidate})
 
     def clean_username(self):
         data = self.cleaned_data['username']

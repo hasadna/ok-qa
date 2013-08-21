@@ -88,8 +88,13 @@ def edit_profile(request):
         form = ProfileForm(request.user, data=request.POST)
         if form.is_valid():
             user = form.save()
-            next = request.POST.get('next', reverse('qna',
-                              kwargs={'entity_id': user.profile.locality.id}))
+
+            local_home = reverse('qna',
+                                 kwargs={'entity_id': user.profile.locality.id})
+            next = request.POST.get('next', local_home)
+            if next == '/':
+                next = local_home
+
             return HttpResponseRedirect(next)
     elif request.method == "GET":
         user = request.user

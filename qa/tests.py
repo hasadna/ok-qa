@@ -89,7 +89,6 @@ class QuestionTest(TestCase):
         self.assertTrue(c.login(username="commoner", password="pass"))
         response = c.get(post_url)
         self.assertEquals(response.status_code, 200)
-        # self.assertFalse(Question.objects.get(subject="Why?"))
         self.assertFalse(Question.objects.filter(entity_id=self.entity.id, unislug='Why?').count())
         response = c.post(post_url, {'subject':"Which?",
                         'entity': self.entity.id,
@@ -99,7 +98,8 @@ class QuestionTest(TestCase):
         response = c.post(post_url, {'subject':"Which?",
                         'entity': self.entity.id,
                         })
-        self.assertFormError(response, 'form', None, 'Question already exists.')
+        self.assertEquals(response.status_code, 302)
+        self.assertTrue(Question.objects.get(subject="Which?"))
 
     def test_permissions(self):
         self.assertFalse(self.q.can_answer(self.common_user))
