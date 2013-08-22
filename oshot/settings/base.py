@@ -129,8 +129,8 @@ INSTALLED_APPS = (
     # local apps
     'qa',
     'user',
-    'party',
     'taggit_autosuggest',
+    'polyorg',
 )
 
 AUTHENTICATION_BACKENDS = (
