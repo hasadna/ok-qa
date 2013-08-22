@@ -130,6 +130,7 @@ INSTALLED_APPS = (
     'qa',
     'user',
     'taggit_autosuggest',
+    'links',
     'polyorg',
 )
 
