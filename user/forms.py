@@ -11,18 +11,22 @@ from chosen import forms as chosenforms
 from models import *
 
 class ProfileForm(forms.Form):
-    username = forms.RegexField(label=_("username"), max_length=30, regex=r'^(?u)[\w.@+-]{4,}$',
-                                help_text= _('Please use 4 letters or more'))
     first_name = forms.CharField(label=_('first name'), max_length = 15)
     last_name = forms.CharField(label=_('last name'), required=False, max_length = 20)
-    email = forms.EmailField(required=False ,label=_(u'email address'))
+    username = forms.RegexField(label=_("Username"), max_length=30, regex=r'^(?u)[ \w.@+-]{4,}$',
+        help_text = _("Required. 4-30 characters (only letters, numbers spaces and @/./+/-/_ characters)."),
+        error_message = _("Required. 4-30 characters (only letters, numbers spaces and @/./+/-/_ characters)."))
+    email = forms.EmailField(required=False ,label=_(u'email address'),
+                             help_text = _("We don't spam, and don't show your email to anyone")
+                             )
+
     locality = chosenforms.ChosenModelChoiceField(
                 queryset=Entity.objects.filter(division__index=3),
                 label=_('Locality'), required=False)
     url = forms.URLField(required=False ,label=_(u'home page'))
-    avatar_uri = forms.URLField(required=False ,label=_(u'avatar'))
-    bio = forms.CharField(label=_('bio'), required=False,
-                          widget=forms.Textarea(attrs={'rows':5}))
+    bio = forms.CharField(required=False,
+                                  label=_('Tell us and other users bit about yourself'),
+                                  widget=forms.Textarea(attrs={'rows':4}))
     email_notification = forms.ChoiceField(choices = NOTIFICATION_PERIOD_CHOICES,
                                            label = _('E-Mail Notifications'),
                                            help_text = _('Should we send you e-mail notification about updates to things you follow on the site?'))
@@ -73,7 +77,6 @@ class ProfileForm(forms.Form):
         self.profile.bio = self.cleaned_data['bio']
         self.profile.email_notification = self.cleaned_data['email_notification']
         self.profile.url = self.cleaned_data['url']
-        self.profile.avatar_uri = self.cleaned_data['avatar_uri']
         if self.cleaned_data['locality']:
             self.profile.locality = self.cleaned_data['locality']
         self.profile.is_candidate = self.cleaned_data['is_candidate']

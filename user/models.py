@@ -1,13 +1,19 @@
 import urllib, hashlib, datetime
-
+# Django imports
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User, Group, Permission
 from django.contrib.sites.models import Site
 from django.contrib.sites.managers import CurrentSiteManager
+from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext as _
-
+from django.core.urlresolvers import reverse
+# Friends' apps
 from taggit.managers import TaggableManager
 from registration.models import RegistrationProfile
+from actstream import follow
+from actstream.models import Follow
+# Project's apps
 from entities.models import Entity
 
 NOTIFICATION_PERIOD_CHOICES = (
@@ -64,6 +70,7 @@ class Profile(models.Model):
     public_profile = models.BooleanField(default=True)
     gender = models.CharField(max_length=1, choices=GENDER_CHOICES, blank=True, null=True)
     bio = models.TextField(null=True,blank=True)
+    description = lambda self: self.bio
     email_notification = models.CharField(max_length=1, choices=NOTIFICATION_PERIOD_CHOICES, blank=True, null=True, default='D')
     avatar_uri = models.URLField(null=True, blank=True)
     url = models.URLField(null=True, blank=True)
@@ -91,4 +98,17 @@ class Profile(models.Model):
             return gravatar_url
         else:
             return default
+
+    @property
+    def following(self):
+        return map(lambda x: x.actor,
+            Follow.objects.filter(
+                user=self.user,
+                content_type=ContentType.objects.\
+                              get_for_model(settings.AUTH_MODEL)).\
+                               prefetch_related('actor')
+            )
+
+    def get_absolute_url(self):
+        return reverse('public-profile', args=(self.user.username, ))
 

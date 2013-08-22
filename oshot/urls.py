@@ -25,7 +25,10 @@ urlpatterns = patterns('',
     url(r'', include('social_auth.urls')),
     url(r'^search/$', 'oshot.views.place_search'),
     (r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),
+    (r'^avatar/', include('avatar.urls')),
+    (r'^s/', include('actstream.urls')),
     # flat pages to help with static pages
+    # TODO: remove the p, quickly...
     (r'^p/(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

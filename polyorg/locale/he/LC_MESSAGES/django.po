@@ -1,13 +1,14 @@
 # SOME DESCRIPTIVE TITLE.
-# Copyright (C) 2013 The Public Knowledge Workshop
-# This file is distributed under the same license as the open-shot package.
-# FIRST AUTHOR bennydoan@gmail.com, 2012.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
 msgid ""
 msgstr ""
-"Project-Id-Version: open-shot\n"
+"Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-23 02:46+0300\n"
-"PO-Revision-Date: 2013-08-23 02:46+0200\n"
+"POT-Creation-Date: 2013-08-23 02:05+0300\n"
+"PO-Revision-Date: 2013-08-23 02:06+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -16,915 +17,61 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: links/admin.py:21
-msgid "Content"
-msgstr "תוכן"
-
-#: links/models.py:22
-#: links/models.py:34
-msgid "title"
-msgstr "כותרת"
-
-#: links/models.py:26
-msgid "link type"
-msgstr "סוג קישור"
-
-#: links/models.py:27
-msgid "link types"
-msgstr "סוגי קישורים"
-
-#: links/models.py:36
-msgid "content type"
-msgstr "סוג תוכן"
-
-#: links/models.py:38
-msgid "object ID"
-msgstr "מזהה אובייקט"
-
-#: links/models.py:45
-msgid "link"
-msgstr "קישור"
-
-#: links/models.py:46
-msgid "links"
-msgstr "קישורים"
-
-#: links/templates/links/_object_links.html:19
-#: user/templates/user/edit_profile.html:57
-msgid "none"
-msgstr "כלום"
-
-#: oshot/forms.py:14
-msgid "Place"
-msgstr "מקום"
-
-#: oshot/middleware.py:17
-msgid "Please first set your place"
-msgstr "ראשית, אנא הכניסי את מקום מגוריכם"
-
-#: oshot/settings/base.py:24
-msgid "Hebrew"
-msgstr "עברית"
-
-#: oshot/settings/base.py:25
-msgid "English"
-msgstr "אנגלית"
-
-#: oshot/settings/base.py:26
-msgid "Arabic"
-msgstr "ערבית"
-
-#: oshot/settings/base.py:27
-msgid "Russian"
-msgstr "רוסית"
-
-#: party/models.py:12
-msgid "party name"
-msgstr "שם מפלגה"
-
-#: party/models.py:13
-msgid "In the format: 'The <partyname> Party'"
-msgstr "נא להכניס בצורת: 'מפלגת <שם>'"
-
-#: party/models.py:15
-msgid "Home page"
-msgstr "עמוד הבית"
-
-#: party/models.py:16
-msgid "Primaries Date"
-msgstr "מועד הבחירות המקדימות"
-
-#: party/models.py:17
-msgid "Qualifying date"
-msgstr "תאריך אכשרה"
-
-#: party/models.py:18
-msgid "Number of party members"
-msgstr "מספר חברי המפלגה"
-
-#: party/models.py:22
-msgid "anonymous"
-msgstr "ללא שם"
-
-#: polyorg/models.py:7
+#: models.py:7
 msgid "Name"
 msgstr "שם"
 
-#: polyorg/models.py:8
+#: models.py:8
 msgid "Ballot"
 msgstr "פתק"
 
-#: polyorg/models.py:11
+#: models.py:11
 msgid "The list with which is the surplus votes partner"
 msgstr "הסכם עודפים עם"
 
-#: polyorg/models.py:12
+#: models.py:12
 msgid "MPG report"
 msgstr "דו\"ח התנועה לאיכות השלטון"
 
-#: polyorg/models.py:13
+#: models.py:13
 msgid "The MPG report on the list, can use html"
 msgstr "דו\"ח התנועה לאיכות השלטון"
 
-#: polyorg/models.py:15
+#: models.py:15
 msgid "YouTube user"
 msgstr "משתמש יוטיוב"
 
-#: polyorg/models.py:16
+#: models.py:16
 msgid "Wikipedia page"
 msgstr "שם עמוד הויקיפדיה"
 
-#: polyorg/models.py:17
+#: models.py:17
 msgid "Twitter account"
 msgstr "חשבון טוויטר"
 
-#: polyorg/models.py:19
+#: models.py:19
 msgid "Platform"
 msgstr "מצע"
 
-#: polyorg/models.py:72
+#: models.py:72
 msgid "Ordinal"
 msgstr "מיקום"
 
-#: polyorg/models.py:74
+#: models.py:74
 msgid "Elected by #"
 msgstr "נבחר על ידי (מספר)"
 
-#: polyorg/models.py:74
+#: models.py:74
 msgid "How many people voted for this candidate"
-msgstr ""
+msgstr "כמה מצביעים נתנו את קולם למועמד"
 
-#: polyorg/models.py:83
+#: models.py:83
 #, python-format
 msgid "%(user)s in %(party)s"
-msgstr ""
+msgstr "%(user)s ב %(party)s"
 
-#: qa/forms.py:27
-msgid "Publish to facebook?"
-msgstr "פרסם בפייסבוק"
-
-#: qa/forms.py:28
-msgid "let your friends know you've asked a question"
-msgstr "ספרו לחברים ששאלתם שאלה"
-
-#: qa/forms.py:39
-msgid "Invalid question"
-msgstr "שאלה לא תקינה"
-
-#: qa/forms.py:46
-msgid "Tags are limited to 20 characters"
-msgstr "מצטערת, תגיות מוגבלות ל 20 תווים"
-
-#: qa/models.py:40
-msgid "unicode slug"
-msgstr "שם ביוניקוד"
-
-#: qa/models.py:46
-#: qa/models.py:94
-msgid "author"
-msgstr "מחבר"
-
-#: qa/models.py:47
-#: qa/models.py:98
-msgid "question"
-msgstr "שאלה"
-
-#: qa/models.py:48
-msgid "details"
-msgstr "פירוט"
-
-#: qa/models.py:49
-#, python-format
-msgid "Please enter your content in no more than %s letters"
-msgstr "נא להכניס תוכן בלא יותר מ %s אותיות"
-
-#: qa/models.py:51
-#: qa/models.py:97
-msgid "rating"
-msgstr "ניקוד"
-
-#: qa/models.py:52
-msgid "flags counter"
-msgstr "מונה דיווחים"
-
-#: qa/models.py:95
-msgid "content"
-msgstr "תוכן"
-
-#: qa/models.py:96
-#, python-format
-msgid "Please enter an answer in no more than %s letters"
-msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
-
-#: qa/views.py:160
-msgid "You must be logged in as a candidate to post answers"
-msgstr "עליך להתחבר כמועמד כדי לפרסם תשובות"
-
-#: qa/views.py:183
-msgid "You can only post questions in your own locality"
-msgstr "מצטערת, אתה יכול לערוך רק שאלות ברשות שלך"
-
-#: qa/views.py:199
-msgid "You can only edit your own questions."
-msgstr "מצטערת, אתה יכול לערוך רק שאלות שלך"
-
-#: qa/views.py:201
-msgid "Question has been answered, editing disabled."
-msgstr "ישנן תשובות לשאלה, אי אפשר לערוך"
-
-#: qa/views.py:234
-msgid "You already upvoted this question"
-msgstr "תודה, אתה כבר מופיע ברשימת התומכים"
-
-#: qa/views.py:242
-msgid "Use POST to upvote a question"
-msgstr "השתמש ב POST כדי להצביע לשאלה"
-
-#: qa/views.py:255
-msgid "OK QA Question Feed"
-msgstr "שאלות נשאלו"
-
-#: qa/views.py:257
-msgid "Questions from OKQA"
-msgstr "שאלות"
-
-#: qa/views.py:280
-msgid "Answers for the question"
-msgstr "תשובות לשאלה"
-
-#: qa/views.py:286
-msgid "A feed of all answers for the question"
-msgstr "פיד של תשובות לשאלה"
-
-#: qa/views.py:303
-msgid "Sorry, you have to login to flag questions"
-msgstr "אנא התחברו כדי לסמן שאלה לא ראויה"
-
-#: qa/views.py:307
-msgid "Question has been removed"
-msgstr "השאלה נמחקה"
-
-#: qa/views.py:310
-msgid "Thanks.  You already reported this question"
-msgstr "תודה, כבר דיווחת על השאלה הזאת"
-
-#: qa/views.py:315
-msgid "Thank you for flagging the question. One of our editors will look at it shortly."
-msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את השאלה בקרוב."
-
-#: qa/templates/qa/_answer.html:23
-#: qa/templates/qa/_question.html:34
-#: user/templates/user/public_profile.html:62
-msgid "before"
-msgstr "לפני"
-
-#: qa/templates/qa/_answer.html:28
-msgid "Edit"
-msgstr "עריכה"
-
-#: qa/templates/qa/_question.html:14
-msgid "votes"
-msgstr "שואלים"
-
-#: qa/templates/qa/_question.html:25
-#: qa/templates/qa/question_list.html:89
-msgid "Tags"
-msgstr "תגיות"
-
-#: qa/templates/qa/_question.html:37
-msgid "from"
-msgstr "מ:"
-
-#: qa/templates/qa/email_update.html:33
-msgid "join"
-msgstr "הצטרפו"
-
-#: qa/templates/qa/email_update.html:61
-msgid "click me to update your email settings"
-msgstr "לחצו עלי לעדכון הגדרות הדואל"
-
-#: qa/templates/qa/post_question.html:6
-msgid "Post question"
-msgstr "העלו שאלה"
-
-#: qa/templates/qa/post_question.html:14
-msgid "What is your question, sire?"
-msgstr "הנכם מוזמנים להפנות שאלות למועמדים"
-
-#: qa/templates/qa/post_question.html:16
-msgid "Edit your question"
-msgstr "עריכת שאלה"
-
-#: qa/templates/qa/post_question.html:31
-#: qa/templates/qa/question_detail.html:125
-msgid "characters left"
-msgstr "תווים נותרו"
-
-#: qa/templates/qa/post_question.html:35
-#: qa/templates/qa/question_detail.html:128
-msgid "Publish"
-msgstr "פרסם"
-
-#: qa/templates/qa/question_detail.html:33
-msgid "Edit Question"
-msgstr "ערכו שאלה"
-
-#: qa/templates/qa/question_detail.html:38
-msgid "I Want an Answer"
-msgstr "תמכו בשאלה"
-
-#: qa/templates/qa/question_detail.html:45
-msgid "Change Your Answer"
-msgstr "ערכו תשובה"
-
-#: qa/templates/qa/question_detail.html:47
-msgid "Answer the Question"
-msgstr "תרום תשובה לעניין"
-
-#: qa/templates/qa/question_detail.html:56
-msgid "Confirm Question Removal"
-msgstr "אשרו מחיקת השאלה"
-
-#: qa/templates/qa/question_detail.html:60
-msgid "Are you sure you want to remove the question?"
-msgstr "האם אתם בטוחים שברצונכם למחוק את השאלה?"
-
-#: qa/templates/qa/question_detail.html:65
-#: qa/templates/qa/question_detail.html:73
-msgid "Delete"
-msgstr "מחק"
-
-#: qa/templates/qa/question_detail.html:75
-msgid "Flag question"
-msgstr "שאלה בלתי הולמת"
-
-#: qa/templates/qa/question_detail.html:88
-#: user/templates/user/public_profile.html:41
-msgid "Answers"
-msgstr "תשובות"
-
-#: qa/templates/qa/question_detail.html:90
-msgid "feed"
-msgstr "רסס"
-
-#: qa/templates/qa/question_detail.html:101
-msgid "No Answers Yet"
-msgstr "עדיין לא ניתנו תשובות"
-
-#: qa/templates/qa/question_detail.html:102
-#: qa/templates/qa/question_list.html:18
-#: qa/templates/qa/question_list.html:25
-#: user/templates/user/public_profile.html:15
-msgid "Subscribe"
-msgstr "הרשם"
-
-#: qa/templates/qa/question_detail.html:154
-msgid "Sorry but only connected users can upvote questions"
-msgstr "מצטערת, יש להתחבר כדי לתמוך בשאלה"
-
-#: qa/templates/qa/question_detail.html:168
-msgid "Are you sure you want to delete the question?"
-msgstr "האם אתם בטוחים שברצונכם למחוק את השאלה?"
-
-#: qa/templates/qa/question_list.html:6
-msgid "questions list"
-msgstr "רשימת שאלות"
-
-#: qa/templates/qa/question_list.html:16
-#, python-format
-msgid "Questions for candidate of %(place)s "
-msgstr "שאלות למועמדים ב%(place)s"
-
-#: qa/templates/qa/question_list.html:23
-msgid "Questions for elections candidates"
-msgstr "שאלות למועמדים בבחירות המקומיות"
-
-#: qa/templates/qa/question_list.html:33
-msgid "In the tags:"
-msgstr "תחת התגיות:"
-
-#: qa/templates/qa/question_list.html:44
-msgid "Ask Question"
-msgstr "העלו שאלה"
-
-#: qa/templates/qa/question_list.html:63
-msgid "Top Questions"
-msgstr "שאלות מובילות"
-
-#: qa/templates/qa/question_list.html:66
-msgid "Most Recent"
-msgstr "שאלות אחרונות"
-
-#: qa/templates/qa/question_list.html:70
-msgid "Flagged Questions"
-msgstr "שאלות מוסמנות"
-
-#: qa/templates/qa/question_list.html:87
-msgid "Questions asked"
-msgstr "שאלות נשאלו"
-
-#: qa/templates/qa/question_list.html:103
-msgid "Sorry but only connected users can post questions"
-msgstr "מצטערת, יש להתחבר כדי לשאול שאלות"
-
-#: templates/base.html:39
-msgid "Welcome"
-msgstr "שלום"
-
-#: templates/base.html:41
-msgid "my page"
-msgstr "העמוד שלי"
-
-#: templates/base.html:42
-msgid "edit profile"
-msgstr "ערוך פרופיל"
-
-#: templates/base.html:44
-msgid "admin"
-msgstr "ממשק ניהול"
-
-#: templates/base.html:48
-msgid "logout"
-msgstr "התנתקות"
-
-#: templates/base.html:54
-#: templates/registration/registration_form.html:8
-#: templates/registration/registration_form.html:21
-msgid "Register"
-msgstr "הירשמו"
-
-#: templates/base.html:55
-#: templates/registration/activation_complete.html:7
-#: templates/registration/login.html:6
-#: templates/registration/password_reset_complete.html:7
-msgid "Login"
-msgstr "היכנסו"
-
-#: templates/base.html:61
-#: templates/place_base.html:6
-#: user/templates/user/public_profile.html:79
-msgid "Questions"
-msgstr "שאלות"
-
-#: templates/base.html:62
-#: templates/place_base.html:7
-msgid "Candidates"
-msgstr "מועמדים"
-
-#: templates/base.html:64
-msgid "About"
-msgstr "אודות"
-
-#: templates/base.html:70
-msgid "Search"
-msgstr "חפש"
-
-#: templates/base.html:96
-msgid "Home"
-msgstr "הביתה"
-
-#: templates/base.html:106
-msgid "Back to top"
-msgstr "בחזרה לראש העמוד"
-
-#: templates/base.html:107
-msgid "Content is licensed CC-BY. Source code is freely available "
-msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.  קוד המקור חופשי לשימוש"
-
-#: templates/base.html:108
-#: user/templates/candidate/candidate_list.html:71
-msgid "here"
-msgstr "כאן"
-
-#: templates/base.html:110
-msgid "The Public Knowledge Workshop"
-msgstr "הסדנא לידע ציבורי"
-
-#: templates/base.html:111
-msgid "together with"
-msgstr "בשיתוף עם"
-
-#: templates/base.html:111
-msgid "The Shaharit Institute"
-msgstr "מכון שחרית"
-
-#: templates/base.html:112
-msgid "and"
-msgstr "ו"
-
-#: templates/base.html:112
-msgid "NUIS"
-msgstr "התאחדות הסטודנטים"
-
-#: templates/base.html:136
-msgid "read more"
-msgstr "קרא עוד"
-
-#: templates/base.html:140
-msgid "read less"
-msgstr "קרא פחות"
-
-#: templates/entities/entity_list.html:6
-#: templates/entities/entity_list.html:11
-msgid "All Places"
-msgstr "כל המקומות"
-
-#: templates/registration/activate.html:8
-msgid "Account successfully activated"
-msgstr "החשבון הופעל בהצלחה"
-
-#: templates/registration/activate.html:10
-#: templates/registration/login.html:13
-msgid "Log in"
-msgstr "התחבר"
-
-#: templates/registration/activate.html:14
-msgid "Account activation failed"
-msgstr "לא הצלחנו להפעיל את החשבון"
-
-#: templates/registration/activation_complete.html:6
-msgid "Ye be now registered. Welcome t' okqa, and dinna spare the whip!"
-msgstr "ההרשמה הסתיימה בהצלחה, תודה."
-
-#: templates/registration/activation_email.txt:3
-#, python-format
-msgid ""
-"\n"
-"Someone, hopefully you, signed up for a new account at %(name)s using this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar:\n"
-msgstr ""
-"\n"
-"תודה שנרשמת לאתר %(name)s! על מנת להשלים את ההרשמה לחץ/י על הקישור הבא:\n"
-
-#: templates/registration/activation_email.txt:8
-#, python-format
-msgid ""
-"\n"
-"If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in %(expiration_days)s days.\n"
-"\n"
-"If you are a candidate, you are welcome to post your answers. Just\n"
-"send us an email at qa@hasadna.org.il and we will verify your account.\n"
-"\n"
-"Thanks,\n"
-"the team at %(name)s\n"
-msgstr ""
-"\n"
-"במידה וההרשמה בוצעה בטעות, או לא על ידיך, אינך צריך/ה לעשות כלום -הרשמתך תתבטל אוטומטית תוך %(expiration_days)s ימים מיום קבלת המייל.\n"
-"\n"
-"אם את/ה מועמד לבחירות המוקדמות אתה מוזמן לפרסם תשובות.  רק שלח לנו דואל ל localshot@hasadna.org.il ונאשר את חשבונך.יום טוב,\n"
-"צוות %(name)s\n"
-
-#: templates/registration/activation_email_subject.txt:2
-msgid "Please activate your account"
-msgstr "אנא הפעילו את חשבונכם"
-
-#: templates/registration/login.html:18
-msgid "Forgot password"
-msgstr "שכחתם ססמה"
-
-#: templates/registration/login.html:18
-msgid "Reset it"
-msgstr "אפסו"
-
-#: templates/registration/login.html:23
-msgid "Connect to Facebook"
-msgstr "התחבר לפייסבוק"
-
-#: templates/registration/login.html:25
-msgid "Connect to Twitter"
-msgstr "התחבר לטוויטר"
-
-#: templates/registration/login.html:27
-msgid "Or register yourself"
-msgstr "או הרשמו עצמונית"
-
-#: templates/registration/logout.html:5
-msgid "Thanks for using the System. You are now logged out."
-msgstr "תודה שביליתם זמן איכות עם המערכת.  אתם עכשיו מנותקים."
-
-#: templates/registration/password_change_done.html:5
-msgid "Password changed"
-msgstr "ססימה שונתה"
-
-#: templates/registration/password_change_form.html:9
-#: templates/registration/password_reset_form.html:11
-msgid "Submit"
-msgstr "שלח"
-
-#: templates/registration/password_reset_complete.html:6
-msgid "Password reset successfully"
-msgstr "ססימה אופסה בהצלחה"
-
-#: templates/registration/password_reset_confirm.html:9
-msgid "Change Password"
-msgstr "שינוי ססמה"
-
-#: templates/registration/password_reset_confirm.html:14
-msgid "Reset"
-msgstr "אפסו"
-
-#: templates/registration/password_reset_confirm.html:20
-msgid "Password reset failed"
-msgstr "איפוס הססמה נכשל"
-
-#: templates/registration/password_reset_done.html:6
-msgid "Email with password reset instructions has been sent."
-msgstr "דואל עם ההוראות לאיפוס הססמה נשלח."
-
-#: templates/registration/password_reset_email.html:2
-#, python-format
-msgid "Reset password at %(site_name)s"
-msgstr "איפוס ססמה באתר %(site_name)s"
-
-#: templates/registration/password_reset_form.html:6
-msgid "Password Reset"
-msgstr "איפוס ססמה"
-
-#: templates/registration/registration_complete.html:6
-msgid "Ye be now registered. Activation email sent, arrrr."
-msgstr "נרשמת בהצלחה ודואל עם הוראות להפעלת החשבון נשלח."
-
-#: templates/search/search.html:6
-msgid "Results"
-msgstr "תוצאות החיפוש"
-
-#: templates/search/search.html:22
-msgid "No results found."
-msgstr "לא נמצאו תוצאות."
-
-#: templates/search/search.html:28
-msgid "&laquo; Previous"
-msgstr "&raquo; הקודם"
-
-#: templates/search/search.html:30
-msgid "Next &raquo;"
-msgstr "הבא &lqauo;"
-
-#: user/admin.py:10
-#: user/forms.py:16
-msgid "Username"
-msgstr "שם משתמש"
-
-#: user/admin.py:12
-msgid "Required. 30 characters or fewer. Alphanumeric characters only (letters, digits and underscores)."
-msgstr "30 תווים או פחות. ניתן להשתמש באותיות עבריות ולועזיות, ספרות וקו תחתון בלבד."
-
-#: user/admin.py:14
-msgid "This value must contain only letters, numbers and underscores."
-msgstr "ניתן להשתמש באותיות, ספרות וקו תחתון בלבד."
-
-#: user/feeds.py:15
-msgid "Answers by"
-msgstr "תשובות של"
-
-#: user/feeds.py:21
-msgid "Get all answers by"
-msgstr "קבלו את כל התשובות של"
-
-#: user/forms.py:14
-#: user/forms.py:142
-msgid "first name"
-msgstr "שם פרטי"
-
-#: user/forms.py:15
-#: user/forms.py:143
-msgid "last name"
-msgstr "שם משפחה"
-
-#: user/forms.py:17
-#: user/forms.py:18
-msgid "Required. 4-30 characters (only letters, numbers spaces and @/./+/-/_ characters)."
-msgstr "חובה. 30-4 תווים (אותיות, מספרים, רווחים, @/./+/-/_ בלבד).‏"
-
-#: user/forms.py:19
-#: user/forms.py:148
-msgid "email address"
-msgstr "כתובת דואל"
-
-#: user/forms.py:20
-msgid "We don't spam, and don't show your email to anyone"
-msgstr "לא נשלח דואר זבל, לא נשתף את הכתובת עם אף אחד, ולא נציג אותה באתר"
-
-#: user/forms.py:25
-#: user/models.py:78
-msgid "Locality"
-msgstr "מקום מגורים"
-
-#: user/forms.py:26
-#: user/forms.py:159
-msgid "home page"
-msgstr "עמוד הבית"
-
-#: user/forms.py:28
-msgid "Tell us and other users bit about yourself"
-msgstr "ספר/י לנו ולמשתמשים אחרים באתר על עצמך"
-
-#: user/forms.py:31
-msgid "E-Mail Notifications"
-msgstr "התראות דואל"
-
-#: user/forms.py:32
-msgid "Should we send you e-mail notification about updates to things you follow on the site?"
-msgstr "האם לשלוח התראות דואל לגבי שאלות ותגיות שאתה עוקב אחריהם?"
-
-#: user/forms.py:33
-msgid "candidate?"
-msgstr "מועמד?"
-
-#: user/forms.py:34
-msgid "Please check this only if you are running for office"
-msgstr "אנא, סמני רק אם את מועמדת"
-
-#: user/forms.py:62
-msgid "This username is already taken."
-msgstr "שם המשתמש בשימוש"
-
-#: user/forms.py:90
-msgid "the voters are waiting for your answers"
-msgstr "המצביעים ממתינים לתשובתך"
-
-#: user/forms.py:91
-msgid "The Q&A site is happy to invite you to answer voters' questions. please click {{activation_url}} to activate your account"
-msgstr ""
-
-#: user/forms.py:99
-msgid "Password"
-msgstr "סיסמא"
-
-#: user/forms.py:101
-msgid "Password confirmation"
-msgstr "אשר סיסמה"
-
-#: user/forms.py:103
-msgid "Enter the same password as above, for verification."
-msgstr "כדי לוודא, הכניסו אותה ססמה כמו למעלה"
-
-#: user/forms.py:140
-msgid "username"
-msgstr "שם משתמש"
-
-#: user/forms.py:141
-msgid "Please use 4 letters or more"
-msgstr "נא להשתמש בארבע אותיות או יותר (גם מספרים ו @/./+/-/_ הם תווים חוקיים)"
-
-#: user/forms.py:144
-msgid "email subject"
-msgstr "נושא הדואל"
-
-#: user/forms.py:146
-msgid "email body"
-msgstr "תוכן הדואל"
-
-#: user/forms.py:160
-msgid "bio"
-msgstr "עלי"
-
-#: user/models.py:20
-msgid "No Email"
-msgstr "אין דואל"
-
-#: user/models.py:21
-msgid "Daily"
-msgstr "יומי"
-
-#: user/models.py:22
-msgid "Weekly"
-msgstr "שבועי"
-
-#: user/models.py:25
-msgid "Male"
-msgstr "זכר"
-
-#: user/models.py:26
-msgid "Female"
-msgstr "נקבה"
-
-#: user/signals.py:41
-msgid "A new candidate registered"
-msgstr "מועמד חדש נרשם"
-
-#: user/signals.py:58
-msgid "A question has been flagged"
-msgstr "הונף דגל אדום על שאלה בשו\"ת המקומי"
-
-#: user/views.py:83
-#, python-format
-msgid "Sorry, you are not authorized to remove %s from the candidate list"
-msgstr "מצטערת, אינך מורשה להסיר את %s מרשימת המועמדים"
-
-#: user/views.py:93
-msgid "Only candidate can edit their info"
-msgstr ""
-
-#: user/views.py:173
-msgid "Your profile has been updated, please login."
-msgstr "הפרופיל שלכם עודכן, אתם מוזמנים להכנס"
-
-#: user/templates/candidate/candidate_list.html:3
-msgid "candidates list"
-msgstr "רשימת מועמדים"
-
-#: user/templates/candidate/candidate_list.html:8
-#, python-format
-msgid "Candidates in %(place)s "
-msgstr "מועמדים לבחירות המקומיות ב%(place)s"
-
-#: user/templates/candidate/candidate_list.html:10
-msgid "Candidates for local elections"
-msgstr "מועמדים לבחירות המקומיות"
-
-#: user/templates/candidate/candidate_list.html:25
-msgid "answers"
-msgstr "תשובות"
-
-#: user/templates/candidate/candidate_list.html:43
-msgid "Remove Candidate"
-msgstr "הסר מועמד"
-
-#: user/templates/candidate/candidate_list.html:48
-msgid "Confirm Candidate Removal"
-msgstr "אשרו הסרת מועמד"
-
-#: user/templates/candidate/candidate_list.html:51
-#, python-format
-msgid ""
-"\n"
-"      Are you sure you want to remove %(candidate)s from the candidate list?\n"
-"    "
-msgstr ""
-"\n"
-"האם אתם בטוחים שברצונכם להסיר את %(candidate)s מרשימת המועמדים?"
-
-#: user/templates/candidate/candidate_list.html:58
-msgid "Remove"
-msgstr "הסר"
-
-#: user/templates/candidate/candidate_list.html:67
-msgid ""
-"\n"
-"      The Candidates biographies were given by the candidates themselvs and\n"
-"      we can not guarntee their accuracy. The avatars are pulled from \n"
-"    "
-msgstr ""
-"\n"
-"האתר אינו אחראי לדיוק הביוגרפיות של המועמדים.  תמונות הדיוקן מוצגות מ"
-
-#: user/templates/user/accept_invitation.html:6
-msgid "Welcome to our site"
-msgstr "ברוכים הבאים לאתרנו"
-
-#: user/templates/user/accept_invitation.html:15
-msgid "Update"
-msgstr "עדכן"
-
-#: user/templates/user/add_candidate.html:5
-msgid "Invite a candidate"
-msgstr "הזמן מועמד"
-
-#: user/templates/user/add_candidate.html:10
-msgid "Send"
-msgstr "שלח"
-
-#: user/templates/user/edit_profile.html:3
-#: user/templates/user/edit_profile.html:6
-#: user/templates/user/edit_profile.html:14
-msgid "User Profile"
-msgstr "פרופיל משתמש"
-
-#: user/templates/user/edit_profile.html:18
-msgid "You do not have permissions to edit anything. In order to be able to edit, you must first provide a valid email address."
-msgstr "אין לך הרשאות עריכה. כדי לקבל הרשאת עריכה עליך לספק כתובת דואר אלקטרוני חוקית."
-
-#: user/templates/user/edit_profile.html:22
-msgid "You do not have permissions to edit anything. In order to be able to edit, you must provide a valid email address, and validate it"
-msgstr "אין לך הרשאות עריכה. כדי לקבל הרשאת עריכה עליך לאמת את הדואר האלקטרוני שלך."
-
-#: user/templates/user/edit_profile.html:24
-msgid "send validation email"
-msgstr "שליחת דואר אלקטרוני לאימות"
-
-#: user/templates/user/edit_profile.html:29
-msgid "Your email has been validated, so you can edit stuff!"
-msgstr "הדואר האלקטרוני אומת, לכן יש לך הרשאות עריכה."
-
-#: user/templates/user/edit_profile.html:33
-msgid "save"
-msgstr "שמירה"
-
-#: user/templates/user/edit_profile.html:41
-msgid "Avatar"
-msgstr "תמונת פרופיל"
-
-#: user/templates/user/edit_profile.html:43
-msgid "Change your avatar"
-msgstr "שנה את תמונת הפרופיל"
-
-#: user/templates/user/edit_profile.html:48
-msgid "Following"
-msgstr "עוקב אחרי"
-
-#: user/templates/user/public_profile.html:29
-msgid "elects at"
-msgstr "בוחר חכם ב"
+#~ msgid "activation key"
+#~ msgstr "קוד אימות"
 
 #~ msgid "%(key)s does not look like an activation key."
 #~ msgstr "%(key)s לא נראה כמו קוד אימות חוקי."
@@ -1014,7 +161,7 @@ msgstr "בוחר חכם ב"
 #~ msgstr "בעריכת"
 
 #~ msgid "None"
-#~ msgstr "כלום"
+#~ msgstr "אין"
 
 #~ msgid "Comments on agenda %(agenda)s vote %(vote)s"
 #~ msgstr "תגובות על שיוך הצבעה %(vote)s לאג'נדה %(agenda)s"
@@ -1063,6 +210,9 @@ msgstr "בוחר חכם ב"
 #~ msgid "Icon"
 #~ msgstr "צלמית"
 
+#~ msgid "Content"
+#~ msgstr "תוכן"
+
 #~ msgid "Button text"
 #~ msgstr "טקסט הלחצן"
 
@@ -1083,6 +233,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Hand"
 #~ msgstr "הצבעה"
+
+#~ msgid "title"
+#~ msgstr "כותרת"
 
 #~ msgid "Active"
 #~ msgstr "פעיל"
@@ -1119,6 +272,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Help"
 #~ msgstr "עזרה"
+
+#~ msgid "Home"
+#~ msgstr "דף הבית"
 
 #~ msgid "Sorry, you do not have the permission to annotate."
 #~ msgstr "אין לך הרשאות להוסיף הארות."
@@ -1228,6 +384,12 @@ msgstr "בוחר חכם ב"
 #~ msgid "earth"
 #~ msgstr "כדור הארץ"
 
+#~ msgid "content type"
+#~ msgstr "סוג תוכן"
+
+#~ msgid "object ID"
+#~ msgstr "מזהה אובייקט"
+
 #~ msgid "no end date data - guessed it to be 2 hours after start"
 #~ msgstr "חסרה שעת סיום הדיון"
 
@@ -1254,6 +416,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Annotations"
 #~ msgstr "הארות"
+
+#~ msgid "feed"
+#~ msgstr "פיד"
 
 #~ msgid "Statement"
 #~ msgstr "הצהרה"
@@ -1314,6 +479,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Vote types"
 #~ msgstr "סוגי הצבעות"
+
+#~ msgid "Tags"
+#~ msgstr "תגיות"
 
 #~ msgid "Order by"
 #~ msgstr "מיון לפי"
@@ -1579,6 +747,18 @@ msgstr "בוחר חכם ב"
 #~ msgid "Absent"
 #~ msgstr "לא נוכח"
 
+#~ msgid "link type"
+#~ msgstr "סוג קישור"
+
+#~ msgid "link types"
+#~ msgstr "סוגי קישורים"
+
+#~ msgid "link"
+#~ msgstr "קישור"
+
+#~ msgid "links"
+#~ msgstr "קישורים"
+
 #~ msgid "voted"
 #~ msgstr "הצביע"
 
@@ -1597,6 +777,12 @@ msgstr "בוחר חכם ב"
 #~ msgid ""
 #~ "Actions of %s, including votes, attended committees and posted articles"
 #~ msgstr "פעילות עבור %s כולל הצבעות, פירסומים ונוכחות בוועדות"
+
+#~ msgid "Male"
+#~ msgstr "זכר"
+
+#~ msgid "Female"
+#~ msgstr "נקבה"
 
 #~ msgid "Knesset number"
 #~ msgstr "מספר כנסת"
@@ -1633,6 +819,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Member"
 #~ msgstr "ח\"כ"
+
+#~ msgid "Members"
+#~ msgstr "ח\"כים"
 
 #~ msgid "Coalition Member (female)"
 #~ msgstr "חברת כנסת בקואליציה"
@@ -1805,6 +994,9 @@ msgstr "בוחר חכם ב"
 #~ msgid "tagged item"
 #~ msgstr "פריט מתויג"
 
+#~ msgid "user"
+#~ msgstr "משתמש"
+
 #~ msgid "tag vote"
 #~ msgstr "הצבעה על תיוג"
 
@@ -1848,8 +1040,14 @@ msgstr "בוחר חכם ב"
 #~ msgid "All the source code is available"
 #~ msgstr "קוד המקור נמצא "
 
+#~ msgid "here"
+#~ msgstr "כאן"
+
 #~ msgid "The project's mailing list is"
 #~ msgstr "קבוצת הדיון נמצאת "
+
+#~ msgid "About"
+#~ msgstr "אודות"
 
 #~ msgid "Open Knesset - Opening the Knesset to the public"
 #~ msgstr "כנסת פתוחה - פותחים את הכנסת לציבור"
@@ -1900,6 +1098,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Follow Open Knesset"
 #~ msgstr "עקבו אחר כנסת פתוחה"
+
+#~ msgid "The Public Knowledge Workshop"
+#~ msgstr "הסדנא לידע ציבורי"
 
 #~ msgid "Project of"
 #~ msgstr "פרוייקט של"
@@ -2238,11 +1439,17 @@ msgstr "בוחר חכם ב"
 #~ msgid "Add agenda"
 #~ msgstr "הוספת אג'נדה"
 
+#~ msgid "save"
+#~ msgstr "שמירה"
+
 #~ msgid "No results found"
 #~ msgstr "לא נמצאו תוצאות"
 
 #~ msgid "Edited by"
 #~ msgstr "בעריכת"
+
+#~ msgid "Edit"
+#~ msgstr "עריכה"
 
 #~ msgid ""
 #~ "Note: This agenda is private. It is only viewable by its editors. If you "
@@ -2292,6 +1499,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "All Agendas"
 #~ msgstr "כל האג'נדות"
+
+#~ msgid "votes"
+#~ msgstr "הצבעות"
 
 #~ msgid "followers"
 #~ msgstr "עוקבים"
@@ -2393,11 +1603,17 @@ msgstr "בוחר חכם ב"
 #~ msgid "Please select"
 #~ msgstr "נא לבחור"
 
+#~ msgid "Submit"
+#~ msgstr "אישור"
+
 #~ msgid "Login to suggest an agenda"
 #~ msgstr "רוצה להציע אג'נדה קשורה? לחץ כאן כדי להרשם"
 
 #~ msgid "Ascribe your agendas"
 #~ msgstr "שיוך אג'נדה בעריכתך"
+
+#~ msgid "Update"
+#~ msgstr "עדכון"
 
 #~ msgid "Analysis of votes by %(member)s"
 #~ msgstr "ניתוח ההצבעות של %(member)s"
@@ -2463,6 +1679,9 @@ msgstr "בוחר חכם ב"
 #~ msgid "%(count)s Committee Meetings"
 #~ msgstr "%(count)s ישיבות ועדה"
 
+#~ msgid "Change your avatar"
+#~ msgstr "שנה את תמונת הפרופיל"
+
 #~ msgid "Your current avatar"
 #~ msgstr "תמונת הפרופיל הנוכחית"
 
@@ -2492,6 +1711,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Really remove this comment?"
 #~ msgstr "באמת למחוק הערה זו?"
+
+#~ msgid "Remove"
+#~ msgstr "מחיקה"
 
 #~ msgid "Cancel"
 #~ msgstr "ביטול"
@@ -2681,6 +1903,9 @@ msgstr "בוחר חכם ב"
 #~ msgid "Suggested Topics for a committee meeting"
 #~ msgstr "הצעות לסדר יום"
 
+#~ msgid "Delete"
+#~ msgstr "מחיקה"
+
 #~ msgid "Links"
 #~ msgstr "קישורים"
 
@@ -2732,6 +1957,9 @@ msgstr "בוחר חכם ב"
 #~ msgid "web site"
 #~ msgstr "אתר"
 
+#~ msgid "none"
+#~ msgstr "אין"
+
 #~ msgid "Data base empty, no objects"
 #~ msgstr "המסד ריק, אין נתונים"
 
@@ -2746,6 +1974,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Edit Bill"
 #~ msgstr "עריכת הצעת חוק"
+
+#~ msgid "name"
+#~ msgstr "שם"
 
 #~ msgid "popular name"
 #~ msgstr "שם פופולרי"
@@ -2836,6 +2067,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Add Budget Estimations (all in thousands of NIS)"
 #~ msgstr "הוספת הערכה תקציבית (אלפי ש\"ח)"
+
+#~ msgid "Send"
+#~ msgstr "שליחה"
 
 #~ msgid " to create new tags"
 #~ msgstr "כדי ליצור תגיות חדשות"
@@ -3059,6 +2293,9 @@ msgstr "בוחר חכם ב"
 #~ msgid "Looking for comparisons ? Compare between"
 #~ msgstr "מחפשים השוואות ? השוו בין"
 
+#~ msgid "Or"
+#~ msgstr "או"
+
 #~ msgid "IN_COALITION,IN_OPPOSITION"
 #~ msgstr "בקואליציה,באופוזיציה"
 
@@ -3277,6 +2514,9 @@ msgstr "בוחר חכם ב"
 #~ msgid "Candidate list for the comming elections"
 #~ msgstr "רשימות המועמדים לכנסת ה-19"
 
+#~ msgid "Select all"
+#~ msgstr "בחר הכל"
+
 #~ msgid "Select none"
 #~ msgstr "נקה"
 
@@ -3328,6 +2568,9 @@ msgstr "בוחר חכם ב"
 #~ msgid "Replies"
 #~ msgstr "תגובות"
 
+#~ msgid "Search"
+#~ msgstr "חיפוש"
+
 #~ msgid "Search results for"
 #~ msgstr "תוצאות החיפוש עבור"
 
@@ -3345,6 +2588,35 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Sorry, this user has selected not to share his profile"
 #~ msgstr "מצטערים. משתמש זה בחר שלא לשתף את הפרופיל שלו."
+
+#~ msgid "Create new user"
+#~ msgstr "יצירת משתמש חדש"
+
+#~ msgid "User Profile"
+#~ msgstr "פרופיל משתמש"
+
+#~ msgid ""
+#~ "You do not have permissions to edit anything. In order to be able to "
+#~ "edit, you must first provide a valid email address."
+#~ msgstr ""
+#~ "אין לך הרשאות עריכה. כדי לקבל הרשאת עריכה עליך לספק כתובת דואר אלקטרוני "
+#~ "חוקית."
+
+#~ msgid ""
+#~ "You do not have permissions to edit anything. In order to be able to "
+#~ "edit, you must provide a valid email address, and validate it"
+#~ msgstr ""
+#~ "אין לך הרשאות עריכה. כדי לקבל הרשאת עריכה עליך לאמת את הדואר האלקטרוני "
+#~ "שלך."
+
+#~ msgid "send validation email"
+#~ msgstr "שליחת דואר אלקטרוני לאימות"
+
+#~ msgid "Your email has been validated, so you can edit stuff!"
+#~ msgstr "הדואר האלקטרוני אומת, לכן יש לך הרשאות עריכה."
+
+#~ msgid "Avatar"
+#~ msgstr "תמונת פרופיל"
 
 #~ msgid "Following Members"
 #~ msgstr "חברי כנסת במעקב"
@@ -3375,6 +2647,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Your password has been set.  You may go ahead and log in now."
 #~ msgstr "ססמתך נשמרה. כעת ניתן להתחבר."
+
+#~ msgid "Log in"
+#~ msgstr "כניסה"
 
 #~ msgid "Password reset"
 #~ msgstr "איפוס סיסמה"
@@ -3507,6 +2782,18 @@ msgstr "בוחר חכם ב"
 #~ msgstr "כל סרטי הוידאו"
 #~ msgid "You don't have the appropriate permissions to access this page"
 #~ msgstr "אין לך הרשאות מתאימות לצפייה בדף זה"
+#~ msgid "Username"
+#~ msgstr "שם משתמש"
+#~ msgid ""
+#~ "Required. 4-30 characters (only letters, numbers spaces and @/./+/-/_ "
+#~ "characters)."
+#~ msgstr "חובה. 30-4 תווים (אותיות, מספרים, רווחים, @/./+/-/_ בלבד).‏"
+#~ msgid "E-Mail Notifications"
+#~ msgstr "התראות דוא\"ל"
+#~ msgid ""
+#~ "Should we send you e-mail notification about updates to things you follow "
+#~ "on the site?"
+#~ msgstr "האם לשלוח לך דוא\"ל עם עדכונים על דברים שבמעקב שלך?"
 #~ msgid "(citizen) party member?"
 #~ msgstr "האם התפקדת למפלגה?"
 #~ msgid "Are you a member of any party?"
@@ -3515,184 +2802,38 @@ msgstr "בוחר חכם ב"
 #~ "סטטיסטיקות."
 #~ msgid "This email is already taken"
 #~ msgstr "כתובת דוא\"ל זו כבר תפוסה"
+#~ msgid "email address"
+#~ msgstr "כתובת דוא\"ל"
+#~ msgid "We don't spam, and don't show your email to anyone"
+#~ msgstr "לא נשלח דואר זבל, לא נשתף את הכתובת עם אף אחד, ולא נציג אותה באתר"
 #~ msgid "Public profile"
 #~ msgstr "פרופיל פומבי"
 #~ msgid "Allow other users to view your profile on the site"
 #~ msgstr "לאפשר למשתמשים אחרים לצפות בפרופיל שלך"
 #~ msgid "Gender"
 #~ msgstr "מין"
+#~ msgid "Tell us and other users bit about yourself"
+#~ msgstr "ספר/י לנו ולמשתמשים אחרים באתר מעט על עצמך"
+#~ msgid "No Email"
+#~ msgstr "ללא דוא\"ל"
+#~ msgid "Daily"
+#~ msgstr "יומי"
+#~ msgid "Weekly"
+#~ msgstr "שבועי"
 #~ msgid "Your profile has been updated."
 #~ msgstr "פרופיל המשתמש עודכן"
-#~ msgid "Question already exists."
-#~ msgstr "מצטערת, השאלה כבר קיימת"
-#~ msgid "Edit your profile"
-#~ msgstr "ערוך את הפרופיל שלך"
-#~ msgid "name"
-#~ msgstr "שם"
-#~ msgid "Task detail"
-#~ msgstr "פירוט משימה"
-#~ msgid "Node detail"
-#~ msgstr "פירוט עלה"
-#~ msgid "Task (registered)"
-#~ msgstr "משימה (רשומה)"
-#~ msgid "yesterday at %(time)s"
-#~ msgstr "אתמול ב %(time)s"
-#~ msgid "task name"
-#~ msgstr "שם משימה"
-#~ msgid "description"
-#~ msgstr "תאור"
-#~ msgid "hostname"
-#~ msgstr "שם שרת"
-#~ msgid "last heartbeat"
-#~ msgstr "פעימת לב אחרונה"
-#~ msgid "result"
-#~ msgstr "תוצאה"
-#~ msgid "number of retries"
-#~ msgstr "מספר נסיונות חוזרים"
-#~ msgid "Questions for elections candidates "
-#~ msgstr "שאלות למועמדים בבחירות המקומיות"
-#~ msgid "We need more editors! please contact us by"
-#~ msgstr "אנו זקוקים לעוד עורכים! אנא צרו קשר ב"
-#~ msgid "Email"
-#~ msgstr "דואל"
-#~ msgid ""
-#~ "if you have the passion and time to join our community of local editors."
-#~ msgstr "אם יש לכם את הזמן והאנרגיה להצטרף לקהילת העורכים המקומיים שלנו"
-#, fuzzy
-#~ msgid "Flagged"
-#~ msgstr "לפי דגלים"
-
-#~ msgid "Yes/No questions that will help you decide who to vote for:"
-#~ msgstr "שאלות הצפים"
-
-#~ msgid "A comma-separated list of tags."
-#~ msgstr " "
-
-#~ msgid "Enter Tag Here"
-#~ msgstr "הכנס/י תגית"
-
-#~ msgid "No Results"
-#~ msgstr "אין תוצאות"
-
-#~ msgid "No More Selections Are Allowed"
-#~ msgstr "מספר תגיות מקסימלי"
-
-#~ msgid "Move to"
-#~ msgstr "עבור ל:"
-
-#~ msgid "E-mail"
-#~ msgstr "דוא\"ל"
-
-#~ msgid "Password (again)"
-#~ msgstr "סיסמא (שוב)"
-
-#~ msgid "A user with that username already exists."
-#~ msgstr "משתמש בשם זה כבר קיים"
-
-#~ msgid "user"
-#~ msgstr "שם משתמש"
-
-#~ msgid "activation key"
-#~ msgstr "מפתח הפעלה"
-
-#~ msgid "registration profile"
-#~ msgstr "פרופיל הרשמה"
-
-#~ msgid "registration profiles"
-#~ msgstr "פרופילי הרשמה"
-
-#~ msgid "Please enter a subject in no more than %s letters"
-#~ msgstr "נא להקליד שאלה בלא יותר מ %s אותיות"
-
-#~ msgid "for candidate of hasadna board"
-#~ msgstr "למועמדים לועד של הסדנא לידע ציבורי"
-
-#~ msgid ""
-#~ "Thank you for clicking. Please complete the form below to get started."
-#~ msgstr ""
-#~ "תודה על ההקלקה. אנא השלם/י את הטופס הקשר והתחל/י לענות על שאלות החברים"
-
-#~ msgid "Gravatar"
-#~ msgstr "גרווטאר"
-
-#~ msgid "update from %(name)s"
-#~ msgstr "עדכון מ%(name)s"
-
-#~ msgid "Create new user"
-#~ msgstr "צור משתמש חדש"
-
-#~ msgid "Ask!"
-#~ msgstr "שאל שאלה!"
-
-#~ msgid "View Voter"
-#~ msgstr "הצג מצביע"
-
-#~ msgid "Voters"
-#~ msgstr "מצביעים"
-
-#~ msgid "Add Candidate"
-#~ msgstr "הוספת מועמד"
-
-#~ msgid "You are already logged in"
-#~ msgstr "תודה, אתה כבר מחובר למערכת"
-
-#~ msgid "Sorry, this link has already been used"
-#~ msgstr "מצטערים, הקישור אינו פעיל. אנא נסה להרשם שנית"
-
-#~ msgid "An activation message was sent to the user."
-#~ msgstr "דואל הפעלה נשלח למועמד"
-
-#~ msgid "The Demo Party"
-#~ msgstr "מפלגת הדמו"
-
-#~ msgid "Connect"
-#~ msgstr "התחברו"
-
-#~ msgid "bad username/pasword"
-#~ msgstr "שם משתמש או סיסמא לא נכונים"
-
-#~ msgid "Or"
-#~ msgstr "או"
-
-#~ msgid "Connect to Google"
-#~ msgstr "התחבר לגוגל"
-
-#~ msgid "Reset password"
-#~ msgstr "אפס ססמה"
-
-#~ msgid "First Name"
-#~ msgstr "שם פרטי"
-
-#~ msgid "Candidate bio here..."
-#~ msgstr "כאן תופיע ביוגרפיה קצרה של המועמד..."
-
-#~ msgid " The Demo Party"
-#~ msgstr "מפלגת הדמו"
-
-#~ msgid "Facebook Page"
-#~ msgstr "עמוד הפייסבוק של המועמד"
-
-#~ msgid "Members"
-#~ msgstr "חברים"
-
 #~ msgid "Create new tag"
 #~ msgstr "יצירת תגית חדשה"
-
 #~ msgid "Your suggestion is submitted. Thank you"
 #~ msgstr "הצעתך נשלחה. תודה רבה"
-
 #~ msgid "Database error"
 #~ msgstr "שגיאת בסיס נתונים"
-
 #~ msgid "%(count)s %(name)s was changed successfully."
-
 #~ msgid_plural "%(count)s %(name)s were changed successfully."
 #~ msgstr[0] "שינוי %(count)s %(name)s בהצלחה."
 #~ msgstr[1] "שינוי %(count)s %(name)s בהצלחה."
-
 #~ msgid "View on site"
 #~ msgstr "צפיה באתר"
-
 #, fuzzy
 #~ msgid "Successfully deleted %s items."
 #~ msgstr "%(count)d %(items)s  היו נמחקו בהצלחה."
@@ -4120,6 +3261,9 @@ msgstr "בוחר חכם ב"
 #~ msgid "Back to article"
 #~ msgstr "חזרה לוועדה"
 
+#~ msgid "and"
+#~ msgstr "ו"
+
 #, fuzzy
 #~ msgid "This revision has been deleted."
 #~ msgstr "הערך הוזכר במקום נוסף"
@@ -4235,6 +3379,9 @@ msgstr "בוחר חכם ב"
 #~ msgid "Election"
 #~ msgstr "בחירות 2013"
 
+#~ msgid "Candidates"
+#~ msgstr "מועמדים"
+
 #~ msgid "Compare lists"
 #~ msgstr "השווה רשימות"
 
@@ -4324,6 +3471,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Refresh"
 #~ msgstr "רענון"
+
+#~ msgid "before"
+#~ msgstr "לפני"
 
 #~ msgid ""
 #~ "\n"
@@ -4511,6 +3661,12 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Choose a tab to start browsing"
 #~ msgstr "שלום! אנא בחר באחד מהקישורים למעלה"
+
+#~ msgid "Results"
+#~ msgstr "תוצאות"
+
+#~ msgid "No results found."
+#~ msgstr "לא נמצאו תוצאות"
 
 #~ msgid "previous results"
 #~ msgstr "התוצאות הקודמות"
@@ -4914,11 +4070,24 @@ msgstr "בוחר חכם ב"
 #~ msgid "Re-send activation emails"
 #~ msgstr "שליחת דואר אלקטרוני לאימות"
 
+#~ msgid "This value must contain only letters, numbers and underscores."
+#~ msgstr "ערך זה חייב להכיל אותיות, ספרות וקווים תחתונים בלבד."
+
 #~ msgid "Email address"
 #~ msgstr "כתובת דוא\"ל"
 
+#~ msgid "Password"
+#~ msgstr "סיסמה"
+
+#~ msgid "Password (again)"
+#~ msgstr "סיסמה (שוב)"
+
 #~ msgid "The two password fields didn't match."
 #~ msgstr "שני שדות הסיסמה אינם זהים."
+
+#, fuzzy
+#~ msgid "registration profiles"
+#~ msgstr "הרשמה נדרשת"
 
 #, fuzzy
 #~ msgid "Bogus Flag"
@@ -4998,6 +4167,9 @@ msgstr "בוחר חכם ב"
 #~ msgid "By votes per seats"
 #~ msgstr "הצבעות לח\"כ"
 
+#~ msgid "Arabic"
+#~ msgstr "ערבית"
+
 #~ msgid "Bengali"
 #~ msgstr "בנגאלית"
 
@@ -5018,6 +4190,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Greek"
 #~ msgstr "יוונית"
+
+#~ msgid "English"
+#~ msgstr "אנגלית"
 
 #~ msgid "Spanish"
 #~ msgstr "ספרדית"
@@ -5048,6 +4223,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Hungarian"
 #~ msgstr "הונגרית"
+
+#~ msgid "Hebrew"
+#~ msgstr "עברית"
 
 #~ msgid "Hindi"
 #~ msgstr "הינדי"
@@ -5100,6 +4278,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Romanian"
 #~ msgstr "רומנית"
+
+#~ msgid "Russian"
+#~ msgstr "רוסית"
 
 #~ msgid "Slovak"
 #~ msgstr "סלובקית"
@@ -5380,6 +4561,9 @@ msgstr "בוחר חכם ב"
 #~ "ראשית יש להזין שם משתמש וסיסמה. לאחר מכן יהיה ביכולתך לערוך אפשרויות "
 #~ "נוספות עבור המשתמש."
 
+#~ msgid "Enter the same password as above, for verification."
+#~ msgstr "יש להזין את אותה סיסמה שוב,לאימות."
+
 #~ msgid "Enter a new password for the user <strong>%(username)s</strong>."
 #~ msgstr "יש להזין סיסמה חדשה עבור המשתמש <strong>%(username)s</strong>."
 
@@ -5552,6 +4736,16 @@ msgstr "בוחר חכם ב"
 #~ msgid "Change password: %s"
 #~ msgstr "שינוי סיסמה: %s"
 
+#~ msgid ""
+#~ "Required. 30 characters or fewer. Alphanumeric characters only (letters, "
+#~ "digits and underscores)."
+#~ msgstr ""
+#~ "דורש 30 תווים או פחות. תווים אלפאנומריים בלבד (אותיות, ספרות וקווים "
+#~ "תחתונים)."
+
+#~ msgid "Password confirmation"
+#~ msgstr "אימות סיסמה"
+
 #~ msgid "This account is inactive."
 #~ msgstr "חשבון זה אינו פעיל."
 
@@ -5559,6 +4753,9 @@ msgstr "בוחר חכם ב"
 #~ "Your Web browser doesn't appear to have cookies enabled. Cookies are "
 #~ "required for logging in."
 #~ msgstr "נראה שעוגיות לא מאופשרות בדפדפן שלך. הן נדרשות כדי להתחבר."
+
+#~ msgid "E-mail"
+#~ msgstr "כתובת דוא\"ל"
 
 #~ msgid ""
 #~ "That e-mail address doesn't have an associated user account. Are you sure "
@@ -5591,6 +4788,12 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "groups"
 #~ msgstr "קבוצות"
+
+#~ msgid "first name"
+#~ msgstr "שם פרטי"
+
+#~ msgid "last name"
+#~ msgstr "שם משפחה"
 
 #~ msgid "password"
 #~ msgstr "סיסמה"

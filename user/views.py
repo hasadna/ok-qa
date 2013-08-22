@@ -5,16 +5,18 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext as _
 from django.contrib import messages
 from django.views.generic.edit import FormMixin, TemplateResponseMixin
 from django.views.generic import View
 from django.template.context import RequestContext
 from django.views.decorators.http import require_POST
-
+# Friends' apps
+from actstream.models import Follow
+# Project's apps
 from .forms import *
 from .models import *
-
 from oshot.forms import EntityChoiceForm
 
 
@@ -37,8 +39,11 @@ def candidate_list(request, entity_slug=None, entity_id=None):
     return render(request, "candidate/candidate_list.html", context)
 
 
-def user_detail(request, username):
-    user = get_object_or_404(User, username=username)
+def public_profile(request, username=None, pk=None):
+    if username:
+        user = get_object_or_404(User, username=username)
+    else:
+        user = get_object_or_404(User, username=pk)
     questions = user.questions.all()
     answers = user.answers.all()
     profile = user.profile
@@ -56,7 +61,7 @@ def user_detail(request, username):
                                        })
 
     # todo: support members as well as candidates
-    return render(request, "user/user_detail.html", context)
+    return render(request, "user/public_profile.html", context)
 
 def get_base_template(profile):
     if profile.locality:
@@ -112,8 +117,7 @@ def edit_profile(request):
         if form.is_valid():
             user = form.save()
 
-            local_home = reverse('qna',
-                                 kwargs={'entity_id': user.profile.locality.id})
+            local_home =profile.get_absolute_url()
             next = request.POST.get('next', local_home)
             if next == '/':
                 next = local_home
@@ -174,4 +178,46 @@ class InvitationView(View, FormMixin, TemplateResponseMixin):
     def form_valid(self, form):
         form.save()
         return HttpResponseRedirect(reverse('login'))
+
+@login_required
+@require_POST
+def user_follow_unfollow(request):
+    """Recieves POST parameters:
+
+    verb - 'follow' or 'unfollow'
+    what - string representing target object type ('member', 'agenda', ...)
+    id - id of target object
+
+    """
+    what = request.POST.get('what', None)
+    target_id = request.POST.get('id', None)
+    if not target_id:
+        return HttpResponseBadRequest('need an id of an object to watch')
+
+    verb = request.POST.get('verb', None)
+    if verb not in ['follow', 'unfollow']:
+        return HttpResponseBadRequest(
+            "verb parameter has to be one of: 'follow', 'unfollow'")
+
+    logged_in = request.user.is_authenticated()
+    content_type = ContentType.objects.get_for_model(FOLLOW_TYPES[what])
+    qs = Follow.objects.filter(object_id=target_id, content_type=content_type)
+
+    if verb == 'follow':
+        try:
+            obj = get_object_or_404(FOLLOW_TYPES[what], pk=target_id)
+            follow(request.user, obj)
+        except:
+            return HttpResponseBadRequest('object not found')
+    else:  # unfollow
+        Follow.objects.get(
+            user=request.user,
+            content_type=content_type, object_id=target_id).delete()
+
+    res = {
+        'can_watch': logged_in,
+        'followers': qs.count(),
+        'watched': logged_in and bool(qs.filter(user=request.user))
+    }
+    return HttpResponse(json.dumps(res), content_type='application/json')
 

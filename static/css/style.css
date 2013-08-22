@@ -269,10 +269,7 @@ textarea {
 	width:97.5%;
 	resize: none;
 }
-.helptext {
-display: block;
-margin-bottom: 10px;
-}
+.helptext { margin-bottom: 10px; }
 .helptext {
 color: #595959;
 }
@@ -294,4 +291,6 @@ h1, h2, h3, h4, h5, h6 {
 .page-header { border:none; }
 .editor-options { float:left;}
 .sidebar .btn {margin-top:1em;}
+.sidebar ul {list-style: none; }
 .nav-self a { padding-top: 0 !important; }
+.dead-center { text-align: center; vertical-align: middle; margin: 0 auto; }

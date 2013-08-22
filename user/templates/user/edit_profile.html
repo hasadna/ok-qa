@@ -1,114 +1,87 @@
-{% extends "site_base.html" %}
-{% load i18n mks_tags avatar_tags %}{% load static from staticfiles %}
+{% extends base_template %}
+{% load i18n avatar_tags %}{% load static from staticfiles %}
 {% block extratitle %}{% trans "User Profile" %}{% endblock %}
 
 {% block breadcrumbs %}
-    <li class="active">{% trans "User Profile" %}</li>
+  <li class="active">{% trans "User Profile" %}</li>
 {% endblock %}
 
 {% block content %}
 <div class="row">
-    <div class="span9">
-        <div class="card card-main">
-            <div class="spacer">
-                <h1>{% trans "User Profile" %}</h1>
-                {% if not edit_form.valid_email %}
-                    {% if not edit_form.has_email %}
-                        <div class="alert alert-error">
-                            {% trans "You do not have permissions to edit anything. In order to be able to edit, you must first provide a valid email address." %}
-                        </div>
-                    {% else %}
-                        <div class="alert alert-block">
-                            {% trans "You do not have permissions to edit anything. In order to be able to edit, you must provide a valid email address, and validate it" %}
-                            <form action="{% url 'send-validation-email' %}" method="post">{% csrf_token %}
-                                <input type="submit" name="send validation email" value="{% trans 'send validation email' %}">
-                            </form>
-                        </div>
-                    {% endif %}
-                {% else %}
-                    <div class="alert alert-info">{% trans 'Your email has been validated, so you can edit stuff!' %}</div>
-                {% endif %}
-                <form action="." method="post">{% csrf_token %}
-                    {{ edit_form.as_p }}
-                    <input class="btn btn-primary" type="submit" name="save" value="{% trans 'save' %}" />
-                </form>
+  <div class="span8">
+    <div class="card card-main">
+      <div class="spacer">
+        <h1>{% trans "User Profile" %}</h1>
+        {% if not form.valid_email %}
+          {% if not form.has_email %}
+            <div class="alert alert-error">
+              {% trans "You do not have permissions to edit anything. In order to be able to edit, you must first provide a valid email address." %}
             </div>
-        </div>
+          {% else %}
+            <div class="alert alert-block">
+              {% trans "You do not have permissions to edit anything. In order to be able to edit, you must provide a valid email address, and validate it" %}
+              <form action="{% url 'send-validation-email' %}" method="post">{% csrf_token %}
+                <input type="submit" name="send validation email" value="{% trans 'send validation email' %}">
+              </form>
+            </div>
+          {% endif %}
+        {% else %}
+          <div class="alert alert-info">{% trans 'Your email has been validated, so you can edit stuff!' %}</div>
+        {% endif %}
+        <form action="." method="post">{% csrf_token %}
+          {{ form.as_p }}
+          <input class="btn btn-primary" type="submit" name="save" value="{% trans 'save' %}" />
+        </form>
+      </div>
     </div>
-    <div class="span3">
-        <aside class="sidebar">
-            <h2>{% trans "Avatar" %}</h2>
-            <ul class="text-center">
-                <li>{% avatar request.user 75 %}</li>
-                <li><a class="btn" href="{% url 'avatar_change' %}">{% trans "Change your avatar" %}</a></li>
-            </ul>
-        </aside>
+  </div>
+  <div class="span4">
+    <aside class="dead-center sidebar">
+      <ul>
+      <h2>{% trans "Avatar" %}</h2>
+        <li>{% avatar request.user 75 %}</li>
+        <li><a class="btn" href="{% url 'avatar_change' %}">{% trans "Change your avatar" %}</a></li>
+      </ul>
+    </aside>
 
-        <aside class="sidebar">
-            <h2>{% trans "Following Members" %}</h2>
-            <ul>
-            {% for member in request.user.get_profile.members %}
-                <li>
-                    <a href="#" class="btn btn-danger btn-mini unfollow" id="unfollow-member-{{member.id}}"><i class="icon-remove-sign icon-white"></i></a>
-                    <a id="following-member-{{member.id}}" href="{{member.get_absolute_url}}">{{member}}</a>
-                </li>
-            {% empty %}
-                <li>{% trans "None" %}</li>
-            {% endfor %}
-            </ul>
-        </aside>
-
-        <aside class="sidebar">
-            <h2>{% trans "Following Bills" %}:</h2>
-            <ul>
-            {% for bill in request.user.get_profile.bills %}
-                <li>
-                    <a href="#" class="btn btn-danger btn-mini unfollow" id="unfollow-bill-{{ bill.id }}"><i class="icon-remove-sign icon-white"></i></a>
-                    <a id="following-bill-{{bill.id}}" href="{{ bill.get_absolute_url }}">{{ bill }}</a>
-                </li>
-            {% empty %}
-                <li>{% trans "None" %}</li>
-            {% endfor %}
-            </ul>
-        </aside>
-
-        <aside class="sidebar">
-            <h2>{% trans "Following Meetings" %}</h2>
-            <ul>
-            {% for meeting in request.user.get_profile.meetings %}
-                <li>
-                    <a href="#" class="btn btn-danger btn-mini unfollow" id="unfollow-meeting-{{ meeting.id }}"><i class="icon-remove-sign icon-white"></i></a>
-                    <a class="item" id="following-meeting-{{meeting.id}}" href="{{ meeting.get_absolute_url }}">{{ meeting }}</a>
-                </li>
-            {% empty %}
-                <li>{% trans "None" %}</li>
-            {% endfor %}
-            </ul>
-        </aside>
-    </div>
+    <aside class="sidebar">
+      <h2>{% trans "Following" %}</h2>
+      <ul>
+      {% for user in profile.following %}
+        <li>
+          <a href="#" class="btn btn-danger btn-mini unfollow" id="unfollow-user-{{u.id}}">
+          <i class="icon-remove-sign icon-white"></i></a>
+            <a id="following-user-{{u.id}}" href="{{u.get_absolute_url}}">{{u}}</a>
+          </li>
+      {% empty %}
+        <li>{% trans "none" %}</li>
+      {% endfor %}
+      </ul>
+    </aside>
+  </div>
 </div>
 
 {% endblock %}
 
-{% block extrajs %}
+{% block extrascript %}
 <script>
-    $(document).ready( function() {
-        $('.unfollow').click(function(evt){
-            evt.stopPropagation()
-            var id_parts = /unfollow-(.*)-(\d+)/.exec(this.id);
-            var object_id = id_parts[2]
-            var what = id_parts[1]
-            jQuery.ajax({
-                type: 'POST',
-                url: '{% url 'user-follow-unfollow' %}',
-                data: {what: what, id: object_id, verb:'unfollow'},
-                context: $('#following-' + what + '-' + object_id),
-                success: function () {
-                    $(this).parent().remove();
-                },
-            })
-            return (false);
-        })
+  $(document).ready( function() {
+    $('.unfollow').click(function(evt){
+      evt.stopPropagation()
+      var id_parts = /unfollow-(.*)-(\d+)/.exec(this.id);
+      var object_id = id_parts[2]
+      var what = id_parts[1]
+      jQuery.ajax({
+        type: 'POST',
+        url: '{% url 'user-follow-unfollow' %}',
+        data: {what: what, id: object_id, verb:'unfollow'},
+        context: $('#following-' + what + '-' + object_id),
+        success: function () {
+          $(this).parent().remove();
+        },
+      })
+      return (false);
     })
+  })
 </script>
 {% endblock %}

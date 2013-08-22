@@ -90,7 +90,15 @@
       {% endfor %}
     {% endif %}
   </div>
-  {% block mainContainer %}{% endblock %}
+  {% if not hide_crumbs %}
+  <section class="container">
+    <ul class="breadcrumb">
+      <li><a class="home-icon" href="/">{% trans "Home" %}</a> <span class="divider">/</span></li>
+      {% block breadcrumbs %}{% endblock %}
+    </ul>
+  </section>
+  {% endif %}
+  {% block content %}{% endblock %}
 </div>
 </div>
 <footer class="footer">

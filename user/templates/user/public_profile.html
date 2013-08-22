@@ -1,26 +1,43 @@
 {% extends base_template %}
 {% load i18n %}
 {% block pageTitle %}{{ candidate.get_full_name|default:candidate.username }}{% endblock %}
-{% block mainContainer %}
+{% block content %}
 <div class="page-header row">
-    <h1 class="clearfix">
-      {{ candidate.get_full_name|default:candidate.username}}
-        <div class="avatar" style="float: right; margin: 0 0 10px 10px;">
-          <img src="{{ candidate.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle">
-        </div>
-        <a href="{% url 'user_feed' candidate.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
-          <img src="{{STATIC_URL}}img/rss.png" width="25" />
-        </a>
-    </h1>
+  <div class="offset2 span8">
+    <center>
+    <div class="dead-center">
+      <img src="{{ candidate.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle">
+      <h1 style="display:inline; padding-right:0.5em;">
+        {{ candidate.get_full_name|default:candidate.username}}
+          <a href="{% url 'user_feed' candidate.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
+            <img src="{{STATIC_URL}}img/rss.png" width="25" />
+          </a>
+      </h1>
+  </div></center>
+  </div>
 </div>
 <div class="row">
-    <div class="span9">
+    {% if candidate.bio %}
+    <div class="offset1 span5" style="text-align: left;">
+          <span style="font-size: 12px;">{{ candidate.bio }}</span>
+    </div>
+    {% endif %}
+    <div class="span5">
+      <h3>{{candidate.first_name}} {% trans "elects at" %}{{entity}}</h3>
+    {% if candidate.url %}
+      <h4 class="pull-right" style="direction:ltr;">
+        <a href="{{candidate.url}}">{{candidate.url}}</a>
+      </h4>
+    {% endif %}
+
         <div class="row">
           <div class="span12">
-            <h3 style="margin-top: -10px; margin-bottom: -10px;">
-                {% trans "Answers" %}
-            </h3>
             {% for answer in answers %}
+            {% if forloop.first %}
+              <h3 style="margin-top: -10px; margin-bottom: -10px;">
+                  {% trans "Answers" %}
+              </h3>
+            {% endif %}
             <div class="question-summary narrow" id="question-summary-{{ question.id }}">
               <div class="summary">
                 <h3>
@@ -52,10 +69,13 @@
         <br>
         <div class="row">
           <div class="span12">
-          <h3 style="margin-top: -10px; margin-bottom: -10px;">
-                  {% trans "Questions" %}
+          {% for question in questions %}
+
+          {% if forloop.first %}
+              <h3 style="margin-top: -10px; margin-bottom: -10px;">
+                {% trans "Questions" %}
               </h3>
-              {% for question in questions %}
+          {% endif %}
               <div class="question-summary narrow" id="question-summary-{{ question.id }}">
                   <div class="summary">
                       <h3>
@@ -70,17 +90,6 @@
           {% endfor %}
           </div>
       </div>
-    </div>
-    <div class="span3">
-        <h3 style="margin-top: -10px;">
-            {% trans 'About' %}
-        </h3>
-        {% if candidate.bio %}
-          <span style="font-size: 12px;">{{ candidate.bio }}</span>
-        {% endif %}
-        {% if candidate.url %}
-          <a href="{{candidate.url}}">{{candidate.url}}</a>
-        {% endif %}
     </div>
 </div>
 {% endblock %}

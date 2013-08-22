@@ -38,9 +38,10 @@ def forms(request):
     except AttributeError:
         pass
 
-    if not request.user.is_authenticated():
+    if request.user.is_authenticated():
+        context["profile"] = request.user.profile
+    else:
         context["login_form"] = AuthenticationForm()
-    # TODO: remove
     context["site"] = get_current_site(request)
     context["ANALYTICS_ID"] = getattr(settings, 'ANALYTICS_ID', False)
     context["FACEBOOK_APP_ID"] = os.environ.get('FACEBOOK_APP_ID', '')

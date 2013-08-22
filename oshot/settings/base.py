@@ -125,11 +125,14 @@ INSTALLED_APPS = (
     'celery_haystack',
     'djcelery_email',
     'devserver',
+    'avatar',
+    'actstream',
     'debug_toolbar',
     # local apps
     'qa',
     'user',
     'taggit_autosuggest',
+    # from open-Knesset
     'links',
     'polyorg',
 )
@@ -220,4 +223,5 @@ HAYSTACK_CONNECTIONS = {
 djcelery.setup_loader()
 HAYSTACK_SIGNAL_PROCESSOR = 'celery_haystack.signals.CelerySignalProcessor'
 EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
+AUTO_GENERATE_AVATAR_SIZES = (75, 48)
 
