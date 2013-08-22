@@ -82,6 +82,29 @@ def remove_candidate(request, candidate_id):
 
 
 @login_required
+def edit_candidate(request):
+    profile = request.user.profile
+    if not profile.is_candidate:
+        return HttpResponseForbidden(_('Only candidate can edit their info'))
+
+    if request.method == "POST":
+        form = CandidateForm(request.user, data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            return HttpResponseRedirect(reverse(profile.get_absolute_url()))
+
+    elif request.method == "GET":
+        user = request.user
+        form = CandidateForm(request.user)
+
+    context = RequestContext(request, {"form": form,
+                                       "entity": profile.locality,
+                                       "base_template": get_base_template(profile),
+                                       })
+    return render(request, "user/edit_candidate.html", context)
+
+
+@login_required
 def edit_profile(request):
     profile = request.user.profile
     if request.method == "POST":
@@ -94,6 +117,11 @@ def edit_profile(request):
             next = request.POST.get('next', local_home)
             if next == '/':
                 next = local_home
+
+            ''' send candidates to feel their candidate page '''
+            if form.cleaned_data['is_candidate'] and \
+                    not user.profile.candidate_set():
+                next = '%s&next=%s' % (reverse('edit_candidate'), next)
 
             return HttpResponseRedirect(next)
     elif request.method == "GET":
