@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends base_template %}
 {% load i18n %}
 {% block extrahead %}
   <style>
@@ -6,7 +6,11 @@
   </style>
 {% endblock %}
 
-{% block mainContainer %}
+{% block breadcrumbs %}
+<li class="active">{{ flatpage.title }}</li>
+{% endblock %}
+
+{% block content %}
   <div class="page-header clearfix">
     <h1>{{ flatpage.title }} </h1>
   </div>

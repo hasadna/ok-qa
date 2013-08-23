@@ -14,6 +14,7 @@ from django.utils.feedgenerator import Atom1Feed
 from django.contrib import messages
 from django.conf import settings
 from django.views.generic.detail import SingleObjectTemplateResponseMixin, BaseDetailView
+from django.core.urlresolvers import reverse
 
 from entities.models import Entity
 from chosen import forms as chosenforms

@@ -4,10 +4,11 @@ from .feeds import *
 
 urlpatterns = patterns('',
     url(r'^profile/$', edit_profile, name='edit_profile'),
+    url(r'^candidate/$', edit_candidate, name='edit_candidate'),
     url(r'^candidates/$', candidate_list, name="candidate_list"),
+    url(r'^follow/$', 'user_follow_unfollow', name='user-follow-unfollow'),
     url(r'^(?P<entity_id>[-\d]+)/candidates/$', candidate_list, name="candidate_list"),
     url(r'^(?P<entity_slug>.*)/candidates/$', candidate_list, name="candidate_list"),
-    url(r'^users/(?P<username>.+)/$', user_detail, name="user_detail"),
     url(r'^candidate/(?P<candidate_id>\d+)/atom/$',
         AtomUserAnswerFeed(),
         name='user_feed'
@@ -24,4 +25,5 @@ urlpatterns = patterns('',
         remove_candidate,
         name='remove_candidate'
     ),
+    url(r'^(?P<username>.+)/$', public_profile, name="public-profile"),
 )

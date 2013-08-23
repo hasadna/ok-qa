@@ -2,6 +2,7 @@
 import os
 from unipath import FSPath as Path
 import djcelery
+from django.core.urlresolvers import reverse
 
 PROJECT_DIR = Path(__file__).absolute().ancestor(3)
 
@@ -125,12 +126,16 @@ INSTALLED_APPS = (
     'celery_haystack',
     'djcelery_email',
     'devserver',
+    'avatar',
+    'actstream',
     'debug_toolbar',
     # local apps
     'qa',
     'user',
-    'party',
     'taggit_autosuggest',
+    # from open-Knesset
+    'links',
+    'polyorg',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -219,4 +224,7 @@ HAYSTACK_CONNECTIONS = {
 djcelery.setup_loader()
 HAYSTACK_SIGNAL_PROCESSOR = 'celery_haystack.signals.CelerySignalProcessor'
 EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
-
+AUTO_GENERATE_AVATAR_SIZES = (75, 48)
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse("public-profile", args = (u.username,)),
+}

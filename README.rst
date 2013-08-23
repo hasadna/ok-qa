@@ -12,6 +12,8 @@ You are invited to fork the code, improve the design and send a pull request
 Quick Start - Linux
 --------------------
 
+    $ sudo apt-get install libjpeg-dev
+    $ sudo easy_install pip
     $ sudo pip install virtualenv
     $ virtualenv ENV
     $ source ENV/bin/activate

@@ -22,11 +22,14 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <div id="party-logo" class="brand">
+      <!-- TODO: Get a logo!
+      <div class="brand">
         <a href="/">
             <img src="http://wiki.hasadna.org.il/images/SadnaLogo150x.png" title="{{site.name}}">
         </a>
       </div>
+      -->
+      <span class="strong" style="font-size:120%;">{{ site.name }}</span>
       <ul class="nav nav-self">
         {% block topnav %}
         <li>
@@ -35,7 +38,7 @@
         {% endblock %}
         {% if user.is_authenticated %}
         <li class="divider-vertical"></li>
-        <li class="dropdown">
+        <li class="dropdown"></span>
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Welcome' %}, {{ user.get_full_name|default:user.username }} <b class="caret"></b></a>
           <ul class="dropdown-menu">
             <li><a href="{{ user.get_absolute_url }}">{% trans 'my page' %}</a></li>
@@ -55,31 +58,36 @@
           <li><a href="{% url 'login' %}">{% trans "Login" %}</a></li>
         {% endif %}
       </ul>
-      <div class="nav-other">
+      <div>
         <ul class="nav">
           {% block mainnav %} 
             <li {% block nav-questions %} {% endblock %}><a href="{{questions_url}}">{% trans "Questions" %}</a></li>
             <li {% block nav-candidates %} {% endblock %}><a href="{{candidates_url}}">{% trans "Candidates" %}</a></li>
-            <li {% block nav-about %} {% endblock %}>
-              <a href="/p/about/{% if entity %}?entity={{entity.id}}{% endif %}">{% trans "About" %}</a>
-            </li>
           {% endblock %}
+          <li><form class="navbar-search pull-left" action="/search/">
+            {% block searchform %} {% endblock %}
+            <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search' %}" 
+            {% if search_query %} value="{{search_query}}" {% endif %}/>
+            {% if entity %}
+               <input type="hidden" name="place" value="{{entity.slug}}" />
+            {% endif %}
+          </form></li>
         </ul>
-        <form class="navbar-search pull-left" action="/search/">
-          {% block searchform %} {% endblock %}
-          <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search' %}" 
-          {% if search_query %} value="{{search_query}}" {% endif %}/>
-          {% if entity %}
-           <input type="hidden" name="place" value="{{entity.slug}}" />
-          {% endif %}
-        </form>
-      </div>
 
+      </div>
       </div>
     </div>
   </div>
 <div class="wrapper">
 <div class="container" role="main">
+  {% if not hide_crumbs %}
+  <section class="container">
+    <ul class="breadcrumb">
+      <li><a class="home-icon" href="/">{% trans "Home" %}</a> <span class="divider">/</span></li>
+      {% block breadcrumbs %}{% endblock %}
+    </ul>
+  </section>
+  {% endif %}
   <div id="messages">
     {% if messages %}
       {% for message in messages %}
@@ -90,12 +98,16 @@
       {% endfor %}
     {% endif %}
   </div>
-  {% block mainContainer %}{% endblock %}
+  {% block content %}{% endblock %}
 </div>
 </div>
 <footer class="footer">
   <div class="container">
-    <p class="pull-right"><a href="#">{% trans "Back to top" %}</a></p>
+    <p class="pull-right">
+      <a href="/p/about/{% if entity %}?entity={{entity.id}}{% endif %}">{% trans "About" %}</a>
+      &nbsp;|&nbsp;
+      <a href="#">{% trans "Back to top" %}</a>
+    </p>
     <p>{% trans "Content is licensed CC-BY. Source code is freely available " %} 
     <a href="https://github.com/hasadna/open-shot/tree/local">{% trans "here"%}</a>.</p>
     <ul class="footer-links">
