@@ -75,14 +75,7 @@ class UserTest(TestCase):
         self.assertTrue(c.login(username="user", password="pass"))
         response = c.get(clist_url)
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.context['base_template'], 'place_base.html')
-        self.user.profile.locality = None
-        self.user.profile.save()
-        response = c.get(clist_url)
-        self.assertEquals(response.status_code, 200)
         self.assertEquals(response.context['base_template'], 'base.html')
-        self.user.profile.locality = self.entity
-        self.user.profile.save()
 
     def test_avatar(self):
         avatar_url = self.user.profile.avatar_url()

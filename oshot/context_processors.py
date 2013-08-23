@@ -24,14 +24,17 @@ def forms(request):
         if 'entity_id' in kwargs:
             entity = Entity.objects.get(id=kwargs['entity_id'])
 
+        # where the magic happens: set local or global scope vars
         if entity:
             initial = {'entity': entity.id}
             context['questions_url'] = reverse("qna", args=(entity.slug,))
             context['candidates_url'] = reverse("candidate_list", args=(entity.slug,))
+            context["base_template"] = "place_base.html"
         else:
             initial = {}
             context['questions_url'] = reverse("home")
             context['candidates_url'] = reverse("candidate_list")
+            context["base_template"] = "base.html"
 
         if url_name not in SPECIAL_ENTITY_FORM:
             context['entity_form'] = EntityChoiceForm(initial=initial, auto_id=False)
@@ -45,6 +48,7 @@ def forms(request):
     context["site"] = get_current_site(request)
     context["ANALYTICS_ID"] = getattr(settings, 'ANALYTICS_ID', False)
     context["FACEBOOK_APP_ID"] = os.environ.get('FACEBOOK_APP_ID', '')
+
     return context
 
 

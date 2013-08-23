@@ -56,19 +56,11 @@ def public_profile(request, username=None, pk=None):
                                        "answers": answers,
                                        "questions": questions,
                                        "entity": profile.locality,
-                                       "base_template": get_base_template(profile),
                                        "entity_form": entity_form,
                                        })
 
     # todo: support members as well as candidates
     return render(request, "user/public_profile.html", context)
-
-def get_base_template(profile):
-    if profile.locality:
-        return "place_base.html"
-    else:
-        return "base.html"
-
 
 @login_required
 @require_POST
@@ -104,7 +96,6 @@ def edit_candidate(request):
 
     context = RequestContext(request, {"form": form,
                                        "entity": profile.locality,
-                                       "base_template": get_base_template(profile),
                                        })
     return render(request, "user/edit_candidate.html", context)
 
@@ -134,7 +125,6 @@ def edit_profile(request):
 
     context = RequestContext(request, {"form": form,
                                        "entity": profile.locality,
-                                       "base_template": get_base_template(profile),
                                        })
     return render(request, "user/edit_profile.html", context)
 
