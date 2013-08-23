@@ -17,6 +17,11 @@
             <img src="{{STATIC_URL}}img/rss.png" width="25" />
           </a>
       </h1>
+      {% if candidate.url %}
+        <h4 >
+          <a href="{{candidate.url}}">{{candidate.url}}</a>
+        </h4>
+      {% endif %}
   </div></center>
   </div>
 </div>
@@ -37,10 +42,7 @@
                 <a href="{{ answer.question.get_absolute_url }}" class="question-hyperlink"
                 title="{{ question.subject }}">{{ answer.question.subject }}</a>
             </h3>
-            <div class="preview">
                 <span class="too-long-toggle">{{ answer.question.content }}</span>
-            </div>
-            <br />
             <div class="well">
                 <a name="{{answer.id}}"></a>
                 <strong style="font-size: 13px;">
@@ -60,11 +62,6 @@
     </div>
     <div class="span5">
       <h3>{{candidate.first_name}} {% trans "elects at" %}{{entity}}</h3>
-      {% if candidate.url %}
-        <h4 class="pull-right" style="direction:ltr;">
-          <a href="{{candidate.url}}">{{candidate.url}}</a>
-        </h4>
-      {% endif %}
       {% for question in questions %}
         {% if forloop.first %}
           <h3 style="margin-top: -10px; margin-bottom: -10px;">
@@ -72,14 +69,12 @@
           </h3>
         {% endif %}
         <div class="question-summary narrow" id="question-summary-{{ question.id }}">
-          <div class="summary">
-              <h3>
-                <a href="{{ question.get_absolute_url }}" class="question-hyperlink"
-                  title="{{ question.subject }}">{{ question.subject }}</a>
-              </h3>
-              <div class="preview">
-                  <span class="too-long-toggle">{{ question.content }}</span>
-              </div>
+          <h4>
+            <a href="{{ question.get_absolute_url }}" class="question-hyperlink"
+              title="{{ question.subject }}">{{ question.subject }}</a>
+          </h4>
+          <div class="preview">
+              <span class="too-long-toggle">{{ question.content }}</span>
           </div>
         </div>
       {% endfor %}
