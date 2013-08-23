@@ -80,6 +80,14 @@
   </div>
 <div class="wrapper">
 <div class="container" role="main">
+  {% if not hide_crumbs %}
+  <section class="container">
+    <ul class="breadcrumb">
+      <li><a class="home-icon" href="/">{% trans "Home" %}</a> <span class="divider">/</span></li>
+      {% block breadcrumbs %}{% endblock %}
+    </ul>
+  </section>
+  {% endif %}
   <div id="messages">
     {% if messages %}
       {% for message in messages %}
@@ -90,14 +98,6 @@
       {% endfor %}
     {% endif %}
   </div>
-  {% if not hide_crumbs %}
-  <section class="container">
-    <ul class="breadcrumb">
-      <li><a class="home-icon" href="/">{% trans "Home" %}</a> <span class="divider">/</span></li>
-      {% block breadcrumbs %}{% endblock %}
-    </ul>
-  </section>
-  {% endif %}
   {% block content %}{% endblock %}
 </div>
 </div>
