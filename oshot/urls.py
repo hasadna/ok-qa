@@ -12,6 +12,7 @@ admin.autodiscover()
 urlpatterns = patterns('',
     url(r'^$', 'qa.views.questions', name="home"),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
+    (r'^p/(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage'),
 
     url(r'^admin/', include(admin.site.urls)),
 
@@ -29,7 +30,6 @@ urlpatterns = patterns('',
     (r'^s/', include('actstream.urls')),
     # flat pages to help with static pages
     # TODO: remove the p, quickly...
-    (r'^p/(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage'),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if 'DEV' in os.environ:

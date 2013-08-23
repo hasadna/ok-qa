@@ -1,9 +1,13 @@
-{% extends 'base.html' %}
+{% extends base_template %}
 {% load i18n %}
 {% block extrahead %}
   <style>
     .navbar-search { display: none; }
   </style>
+{% endblock %}
+
+{% block breadcrumbs %}
+<li class="active">{{ flatpage.title }}</li>
 {% endblock %}
 
 {% block content %}

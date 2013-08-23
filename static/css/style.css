@@ -10,7 +10,7 @@ body {
 /* Main Container */
 div[role="main"] {
     padding-bottom: 70px;
-    padding-top: 110px;
+    padding-top: 6em;
 }
 /* Footer */
 .footer {
@@ -175,6 +175,7 @@ padding: 0 0 7px 0;
 text-align: center;
 color: #777;
 }
+
 .narrow .started {
 width: auto;
 line-height: inherit;
@@ -237,12 +238,6 @@ font-size: 12px;
 	padding-bottom:5px;
 	border-bottom: 1px solid #f1f1f1;
 }
-img.avatar {
-	max-width: 100%;
-	max-height: 100%;
-  vertical-align: middle;
-}
-
 a.answer-user.owner {
 padding: 2px 5px 2px 5px;
 }
