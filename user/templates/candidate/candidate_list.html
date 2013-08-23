@@ -1,5 +1,5 @@
 {% extends "candidate/candidate_base.html" %}
-{% load i18n %}
+{% load i18n avatar_tags %}
 {% block pageTitle %}{% trans "candidates list" %}{% endblock %}
 {% block content %}
 <div class="page-header" style="margin-bottom:0;">
@@ -26,9 +26,7 @@
                 </div>
             </div>
         </div>
-        <div class="avatar-container">
-          <a href="{{ candidate.get_absolute_url }}" title="{{ candidate.get_full_name }}"><img src="{{ candidate.profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle"></a>
-        </div>
+        {% avatar candidate %}
         <div class="summary">
             <h3>
                 <a href="{{ candidate.get_absolute_url }}" class="candidate-hyperlink"
