@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-25 00:10+0300\n"
-"PO-Revision-Date: 2013-08-25 00:12+0200\n"
+"POT-Creation-Date: 2013-08-25 00:23+0300\n"
+"PO-Revision-Date: 2013-08-25 00:24+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -18,9 +18,8 @@ msgstr ""
 
 #: change.html:5
 #: templates/avatar/change.html:5
-#, fuzzy
 msgid "Your current avatar: "
-msgstr "תמונת הפרופיל הנוכחית"
+msgstr "נוכחית"
 
 #: change.html:8
 #: templates/avatar/change.html:8
@@ -78,6 +77,10 @@ msgstr "כלום"
 #: oshot/forms.py:14
 msgid "Place"
 msgstr "מקום"
+
+#: oshot/forms.py:15
+msgid "Choose a Place"
+msgstr "בחרו רשות"
 
 #: oshot/middleware.py:17
 msgid "Please first set your place"
@@ -515,7 +518,7 @@ msgstr "בחזרה לראש העמוד"
 
 #: templates/base.html:114
 msgid "Content is licensed CC-BY. Learn more on this open source project "
-msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.   המטבח פתוח ושקוף - "
+msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY והמטבח שלנו פתוח ושקוף - "
 
 #: templates/base.html:115
 #: user/templates/candidate/candidate_list.html:69
@@ -4388,9 +4391,6 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Latest Annotations and comments"
 #~ msgstr "הארות ותגובות אחרונות"
-
-#~ msgid "Choose by tag"
-#~ msgstr "חיפוש לפי נושא"
 
 #~ msgid "Visit the site, and change your settings"
 #~ msgstr "יש לבקר באתר ולעדכן את הגדרות שליחת הדוא\"ל"
