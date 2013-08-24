@@ -30,8 +30,6 @@ class ProfileForm(forms.Form):
     email_notification = forms.ChoiceField(choices = NOTIFICATION_PERIOD_CHOICES,
                                            label = _('E-Mail Notifications'),
                                            help_text = _('Should we send you e-mail notification about updates to things you follow on the site?'))
-    is_candidate = forms.BooleanField(label=_('candidate?'), required=False,
-                help_text=_('Please check this only if you are running for office'))
 
     def __init__(self, user, *args, **kw):
         super(ProfileForm, self).__init__(*args, **kw)
@@ -50,8 +48,6 @@ class ProfileForm(forms.Form):
             if self.profile.locality:
                 self.fields['locality'].widget = forms.TextInput(attrs={'disabled':'disabled',
                     'value': self.profile.locality.name})
-                self.fields['is_candidate'].widget = forms.CheckboxInput(attrs={'disabled':'disabled',
-                    'value': self.profile.is_candidate})
 
     def clean_username(self):
         data = self.cleaned_data['username']
@@ -79,7 +75,6 @@ class ProfileForm(forms.Form):
         self.profile.url = self.cleaned_data['url']
         if self.cleaned_data['locality']:
             self.profile.locality = self.cleaned_data['locality']
-        self.profile.is_candidate = self.cleaned_data['is_candidate']
 
         if commit:
             user.save()

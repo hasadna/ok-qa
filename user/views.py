@@ -115,11 +115,6 @@ def edit_profile(request):
             if next == '/':
                 next = local_home
 
-            ''' send candidates to feel their candidate page '''
-            if form.cleaned_data['is_candidate'] and \
-                    not user.profile.candidate_set():
-                next = '%s&next=%s' % (reverse('edit_candidate'), next)
-
             return HttpResponseRedirect(next)
     elif request.method == "GET":
         user = request.user
