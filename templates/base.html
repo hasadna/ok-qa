@@ -1,3 +1,4 @@
+{% load staticfiles %}
 {% load i18n %}
 {% load crispy_forms_tags %}
 
@@ -22,56 +23,72 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <!-- TODO: Get a logo!
-      <div class="brand">
-        <a href="/">
-            <img src="http://wiki.hasadna.org.il/images/SadnaLogo150x.png" title="{{site.name}}">
-        </a>
-      </div>
-      -->
-      <span class="strong" style="font-size:120%;">{{ site.name }}</span>
-      <ul class="nav nav-self">
-        {% block topnav %}
-        <li>
-          {{ entity_form }}
-        </li>
-        {% endblock %}
-        {% if user.is_authenticated %}
-        <li class="divider-vertical"></li>
-        <li class="dropdown"></span>
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Welcome' %}, {{ user.get_full_name|default:user.username }} <b class="caret"></b></a>
-          <ul class="dropdown-menu">
-            <li><a href="{{ user.get_absolute_url }}">{% trans 'my page' %}</a></li>
-            <li><a href="{% url 'edit_profile' %}">{% trans 'edit profile' %}</a></li>
-            {% if user.is_staff %}
-                <li><a href="/admin/">{% trans 'admin' %}</a></li>
+      <div class="row">
+        <div class="offeset1 span7">
+          <a href="/">
+            <img src="{% static "img/logo.png" %}" title="{{site.name}}">
+          </a>
+        </div>
+        <div class="pull-right">
+          <ul class="nav nav-self">
+            {% block topnav %}
+            {% endblock %}
+            {% if user.is_authenticated %}
+            <li class="divider-vertical"></li>
+            <li class="dropdown"></span>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Welcome' %}, {{ user.get_full_name|default:user.username }} <b class="caret"></b></a>
+              <ul class="dropdown-menu">
+          8     <li><a href="{{ user.get_absolute_url }}">{% trans 'my page' %}</a></li>
+                <li><a href="{% url 'edit_profile' %}">{% trans 'edit profile' %}</a></li>
+                {% if user.is_staff %}
+                    <li><a href="/admin/">{% trans 'admin' %}</a></li>
+                {% endif %}
+                <form class="form-inline" method="post" action="{% url 'logout' %}">
+                  {% csrf_token %}
+                  <li><a href="javascript:;" class="submit-link">{% trans 'logout' %}</a></li>
+                </form>
+              </ul>
+            </li>
+            {% else %}
+              <li class="divider-vertical"></li>
+              <li><a href="{% url 'registration_register' %}">{% trans "Register" %}</a></li>
+              <li><a href="{% url 'login' %}">{% trans "Login" %}</a></li>
             {% endif %}
-            <form class="form-inline" method="post" action="{% url 'logout' %}">
-              {% csrf_token %}
-              <li><a href="javascript:;" class="submit-link">{% trans 'logout' %}</a></li>
-            </form>
           </ul>
-        </li>
-        {% else %}
-          <li class="divider-vertical"></li>
-          <li><a href="{% url 'registration_register' %}">{% trans "Register" %}</a></li>
-          <li><a href="{% url 'login' %}">{% trans "Login" %}</a></li>
-        {% endif %}
-      </ul>
-      <div>
-        <ul class="nav">
-          {% block mainnav %} 
-            <li {% block nav-questions %} {% endblock %}><a href="{{questions_url}}">{% trans "Questions" %}</a></li>
-            <li {% block nav-candidates %} {% endblock %}><a href="{{candidates_url}}">{% trans "Candidates" %}</a></li>
-          {% endblock %}
-          <li><form class="navbar-search pull-left" action="/search/">
+        </div>
+      </div>
+      <div class="row">
+        <div class="pull-right">
+          <form class="navbar-search pull-left" action="/search/">
             {% block searchform %} {% endblock %}
             <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search' %}" 
             {% if search_query %} value="{{search_query}}" {% endif %}/>
             {% if entity %}
                <input type="hidden" name="entity_slug" value="{{entity.slug}}" />
             {% endif %}
-          </form></li>
+          </form>
+        </div>
+        {% if not hide_crumbs %}
+          <ul class="breadcrumb" style="margin:0 28px 0 0; background-color: inherit;">
+            <li>
+              <a class="home-icon" href="/">{% trans "Everywhere" %}</a>
+              <span class="divider">/</span>
+            </li>
+            <li>
+              {{ entity_form }}
+              <span class="divider">/</span>
+            </li>
+              {% block breadcrumbs %}{% endblock %}
+          </ul>
+        {% endif %}
+     </div>
+
+      <div >
+        <ul id="nav-content" class="nav">
+          {% block mainnav %} 
+            <li {% block nav-questions %} {% endblock %}><a href="{{questions_url}}">{% trans "Questions" %}</a></li>
+            <li {% block nav-candidates %} {% endblock %}><a href="{{candidates_url}}">{% trans "Candidates" %}</a></li>
+          {% endblock %}
         </ul>
 
       </div>
@@ -80,17 +97,6 @@
   </div>
 <div class="wrapper">
 <div class="container" role="main">
-  {% if not hide_crumbs %}
-  <section class="container">
-    <ul class="breadcrumb">
-      <li><a class="home-icon" href="/">{% trans "Home" %}</a> <span class="divider">/</span></li>
-      {% if entity %}
-        <li><a href="{{ entity.get_absolute_url }}/">{{ entity }}</a> <span class="divider">/</span></li>
-      {% endif %}
-      {% block breadcrumbs %}{% endblock %}
-    </ul>
-  </section>
-  {% endif %}
   <div id="messages">
     {% if messages %}
       {% for message in messages %}

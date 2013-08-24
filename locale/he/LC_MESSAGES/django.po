@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-25 00:23+0300\n"
-"PO-Revision-Date: 2013-08-25 00:24+0200\n"
+"POT-Creation-Date: 2013-08-25 01:31+0300\n"
+"PO-Revision-Date: 2013-08-25 01:31+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -73,10 +73,6 @@ msgstr "קישורים"
 #: user/templates/user/edit_profile.html:57
 msgid "none"
 msgstr "כלום"
-
-#: oshot/forms.py:14
-msgid "Place"
-msgstr "מקום"
 
 #: oshot/forms.py:15
 msgid "Choose a Place"
@@ -456,33 +452,33 @@ msgstr "שאלות נשאלו"
 msgid "Sorry but only connected users can post questions"
 msgstr "מצטערת, יש להתחבר כדי לשאול שאלות"
 
-#: templates/base.html:42
+#: templates/base.html:39
 msgid "Welcome"
 msgstr "שלום"
 
-#: templates/base.html:44
+#: templates/base.html:41
 msgid "my page"
 msgstr "העמוד שלי"
 
-#: templates/base.html:45
+#: templates/base.html:42
 msgid "edit profile"
 msgstr "ערוך פרופיל"
 
-#: templates/base.html:47
+#: templates/base.html:44
 msgid "admin"
 msgstr "ממשק ניהול"
 
-#: templates/base.html:51
+#: templates/base.html:48
 msgid "logout"
 msgstr "התנתקות"
 
-#: templates/base.html:57
+#: templates/base.html:54
 #: templates/registration/registration_form.html:8
 #: templates/registration/registration_form.html:21
 msgid "Register"
 msgstr "הירשמו"
 
-#: templates/base.html:58
+#: templates/base.html:55
 #: templates/registration/activation_complete.html:7
 #: templates/registration/login.html:6
 #: templates/registration/password_reset_complete.html:7
@@ -490,66 +486,66 @@ msgid "Login"
 msgstr "היכנסו"
 
 #: templates/base.html:64
+msgid "Search"
+msgstr "חפשו"
+
+#: templates/base.html:74
+msgid "Everywhere"
+msgstr "כל הארץ"
+
+#: templates/base.html:89
 #: templates/place_base.html:6
 #: user/templates/user/public_profile.html:68
 msgid "Questions"
 msgstr "שאלות"
 
-#: templates/base.html:65
+#: templates/base.html:90
 #: templates/place_base.html:7
 msgid "Candidates"
 msgstr "מועמדים"
 
-#: templates/base.html:69
-msgid "Search"
-msgstr "חפש"
-
-#: templates/base.html:86
-msgid "Home"
-msgstr "הביתה"
-
-#: templates/base.html:110
+#: templates/base.html:116
 msgid "About"
 msgstr "אודות"
 
-#: templates/base.html:112
+#: templates/base.html:118
 msgid "Back to top"
 msgstr "בחזרה לראש העמוד"
 
-#: templates/base.html:114
+#: templates/base.html:120
 msgid "Content is licensed CC-BY. Learn more on this open source project "
 msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY והמטבח שלנו פתוח ושקוף - "
 
-#: templates/base.html:115
+#: templates/base.html:121
 #: user/templates/candidate/candidate_list.html:69
 msgid "here"
 msgstr "כאן"
 
-#: templates/base.html:117
+#: templates/base.html:123
 msgid "The Public Knowledge Workshop"
 msgstr "הסדנא לידע ציבורי"
 
-#: templates/base.html:118
+#: templates/base.html:124
 msgid "together with"
 msgstr "בשיתוף עם"
 
-#: templates/base.html:118
+#: templates/base.html:124
 msgid "The Shaharit Institute"
 msgstr "מכון שחרית"
 
-#: templates/base.html:119
+#: templates/base.html:125
 msgid "and"
 msgstr "ו"
 
-#: templates/base.html:119
+#: templates/base.html:125
 msgid "NUIS"
 msgstr "התאחדות הסטודנטים"
 
-#: templates/base.html:143
+#: templates/base.html:149
 msgid "read more"
 msgstr "קרא עוד"
 
-#: templates/base.html:147
+#: templates/base.html:153
 msgid "read less"
 msgstr "קרא פחות"
 
@@ -942,6 +938,12 @@ msgstr "עוקב אחרי"
 #: user/templates/user/public_profile.html:64
 msgid "elects at"
 msgstr "בוחר חכם ב"
+
+#~ msgid "Place"
+#~ msgstr "מקום"
+
+#~ msgid "Home"
+#~ msgstr "הביתה"
 
 #~ msgid "candidate?"
 #~ msgstr "מועמד?"

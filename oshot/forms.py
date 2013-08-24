@@ -11,6 +11,6 @@ class EntityChoiceForm(forms.Form):
     """
     entity = chosenforms.ChosenModelChoiceField(
             queryset=Entity.objects.filter(division__index=3),
-            label= _("Place"),
+            label= "",
             empty_label=_("Choose a Place"),
             required=False)

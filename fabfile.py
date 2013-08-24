@@ -10,7 +10,7 @@ def deploy(branch='master'):
         run('git pull origin ' + branch)
         with prefix('. ENV/bin/activate'):
             run('pip install -r requirements.txt')
-            run('honcho run python manage.py test')
+            run('run python manage.py test')
             run('honcho run python manage.py syncdb --no-initial-data')
             run('honcho run python manage.py migrate --no-initial-data')
             run('honcho run python manage.py collectstatic --noinput')
