@@ -75,7 +75,6 @@ class UserTest(TestCase):
         self.assertTrue(c.login(username="user", password="pass"))
         response = c.get(clist_url)
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.context['base_template'], 'base.html')
 
     def test_avatar(self):
         avatar_url = self.user.profile.avatar_url()

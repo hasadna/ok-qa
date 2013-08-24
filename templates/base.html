@@ -69,7 +69,7 @@
             <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search' %}" 
             {% if search_query %} value="{{search_query}}" {% endif %}/>
             {% if entity %}
-               <input type="hidden" name="place" value="{{entity.slug}}" />
+               <input type="hidden" name="entity_slug" value="{{entity.slug}}" />
             {% endif %}
           </form></li>
         </ul>
@@ -84,6 +84,9 @@
   <section class="container">
     <ul class="breadcrumb">
       <li><a class="home-icon" href="/">{% trans "Home" %}</a> <span class="divider">/</span></li>
+      {% if entity %}
+        <li><a href="{{ entity.get_absolute_url }}/">{{ entity }}</a> <span class="divider">/</span></li>
+      {% endif %}
       {% block breadcrumbs %}{% endblock %}
     </ul>
   </section>
