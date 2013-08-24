@@ -16,15 +16,11 @@ from oshot.forms import EntityChoiceForm
 
 def place_search(request):
     """ A view to search in a specific place """
-    place = request.GET.get('place')
-    if place:
-        searchqs = SearchQuerySet().filter(place=Exact(place))
-        context = {'entity': get_object_or_404(Entity, slug=place),
-                   'base_template': 'place_base.html',
-        }
-        return basic_search(request, searchqueryset=searchqs,
-                            extra_context=context)
-    return basic_search(request, extra_context={'base_template': 'base.html'})
+    entity_slug = request.GET.get('entity_slug', None)
+    if entity_slug:
+        searchqs = SearchQuerySet().filter(place=Exact(entity_slug))
+        return basic_search(request, searchqueryset=searchqs)
+    return basic_search(request)
 
 
 

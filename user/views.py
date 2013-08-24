@@ -30,6 +30,9 @@ def candidate_list(request, entity_slug=None, entity_id=None):
         entity = Entity.objects.get(slug=entity_slug)
     else:
         entity = None
+    if entity:
+        ''' optimized way to pass the entity on '''
+        setattr(request, 'entity', entity)
 
     candidates = Profile.objects.get_candidates(entity).order_by('?')
     context = RequestContext(request, {'entity': entity,
@@ -52,11 +55,10 @@ def public_profile(request, username=None, pk=None):
     user.url = profile.url
     entity_form = EntityChoiceForm(initial={'entity': profile.locality.id},
                                    auto_id=False)
+    setattr(request, 'entity', profile.locality)
     context = RequestContext(request, {"candidate": user,
                                        "answers": answers,
                                        "questions": questions,
-                                       "entity": profile.locality,
-                                       "entity_form": entity_form,
                                        })
 
     # todo: support members as well as candidates
@@ -113,19 +115,13 @@ def edit_profile(request):
             if next == '/':
                 next = local_home
 
-            ''' send candidates to feel their candidate page '''
-            if form.cleaned_data['is_candidate'] and \
-                    not user.profile.candidate_set():
-                next = '%s&next=%s' % (reverse('edit_candidate'), next)
-
             return HttpResponseRedirect(next)
     elif request.method == "GET":
         user = request.user
         form = ProfileForm(request.user)
 
-    context = RequestContext(request, {"form": form,
-                                       "entity": profile.locality,
-                                       })
+    setattr(request, 'entity', profile.locality)
+    context = RequestContext(request, {"form": form})
     return render(request, "user/edit_profile.html", context)
 
 

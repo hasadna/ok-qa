@@ -49,14 +49,15 @@ def questions(request, entity_slug=None, entity_id=None, tags=None,
 
     # TODO: cache the next lines
     questions = Question.on_site
+    entity=None
     if entity_id:
         entity = Entity.objects.get(pk=entity_id)
-        questions = questions.filter(entity=entity)
     elif entity_slug:
         entity = Entity.objects.get(slug=entity_slug)
+    if entity:
         questions = questions.filter(entity=entity)
-    else:
-        entity = None
+        # optimization
+        setattr(request, 'entity', entity)
 
     only_flagged = request.GET.get('filter', False) == 'flagged'
     if only_flagged:
@@ -87,8 +88,7 @@ def questions(request, entity_slug=None, entity_id=None, tags=None,
         need_editors= False
         can_ask = True
 
-    context = RequestContext(request, {'entity': entity,
-        'tags': tags,
+    context = RequestContext(request, { 'tags': tags,
         'questions': questions,
         'by_date': order_opt == 'date',
         'by_rating': order_opt == 'rating',

@@ -22,14 +22,14 @@ urlpatterns = patterns('',
 
     url(r'^accounts/', include('registration.backends.default.urls')),
     url(r'', include('qa.urls')),
-    url(r'', include('user.urls')),
     url(r'', include('social_auth.urls')),
     url(r'^search/$', 'oshot.views.place_search'),
     (r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),
     (r'^avatar/', include('avatar.urls')),
     (r'^s/', include('actstream.urls')),
     # flat pages to help with static pages
-    # TODO: remove the p, quickly...
+    # user.url has to be last as it handles /[username]
+    url(r'', include('user.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if 'DEV' in os.environ:

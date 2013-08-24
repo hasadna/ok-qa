@@ -16,25 +16,28 @@ def forms(request):
     try:
         kwargs = request.resolver_match.kwargs
         url_name = request.resolver_match.url_name
-        entity = None
-        if 'entity' in request.GET:
-            entity = Entity.objects.get(id=request.GET['entity'])
-        if 'entity_slug' in kwargs:
+        # many ways to pass an entity
+        entity = getattr(request, 'entity', None)
+        # import pdb; pdb.set_trace()
+        if entity:
+            pass
+        elif 'entity_slug' in kwargs:
             entity = Entity.objects.get(slug=kwargs['entity_slug'])
-        if 'entity_id' in kwargs:
-            entity = Entity.objects.get(id=kwargs['entity_id'])
+        elif 'entity' in request.GET:
+            entity = Entity.objects.get(id=request.GET['entity'])
+        elif 'entity_slug' in request.GET:
+            entity = Entity.objects.get(slug=request.GET['entity_slug'])
 
-        # where the magic happens: set local or global scope vars
+        context['entity'] = entity
+        # where the magic happens: set local or global scope urls
         if entity:
             initial = {'entity': entity.id}
             context['questions_url'] = reverse("qna", args=(entity.slug,))
             context['candidates_url'] = reverse("candidate_list", args=(entity.slug,))
-            context["base_template"] = "place_base.html"
         else:
             initial = {}
             context['questions_url'] = reverse("home")
             context['candidates_url'] = reverse("candidate_list")
-            context["base_template"] = "base.html"
         context['entity_form'] = EntityChoiceForm(initial=initial, auto_id=False)
 
     except AttributeError:

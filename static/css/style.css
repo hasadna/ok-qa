@@ -10,7 +10,7 @@ body {
 /* Main Container */
 div[role="main"] {
     padding-bottom: 70px;
-    padding-top: 6em;
+    padding-top: 8em;
 }
 /* Footer */
 .footer {
@@ -204,12 +204,12 @@ line-height: 18px!important;
 	margin: 0;
 	padding: 0;
 }
+#nav-content > li > a { padding:5px 15px; }
 
 /* Login */
-form { margin :0; }
-.navbar .nav > li {padding-top: 14px;}
-.navbar-search {padding-top:14px; }
+form.navbar-search { margin :0; }
 .nav-self {float:left!important; margin-top:10x;}
+.nav-self li {padding-top: 14px;}
 
 .form-actions {
 	border-radius: 5px;
