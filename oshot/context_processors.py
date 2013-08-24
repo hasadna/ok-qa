@@ -35,6 +35,7 @@ def forms(request):
             context['questions_url'] = reverse("home")
             context['candidates_url'] = reverse("candidate_list")
             context["base_template"] = "base.html"
+        context['entity_form'] = EntityChoiceForm(initial=initial, auto_id=False)
 
     except AttributeError:
         pass
