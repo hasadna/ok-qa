@@ -50,12 +50,12 @@ def public_profile(request, username=None, pk=None):
     questions = user.questions.all()
     answers = user.answers.all()
     profile = user.profile
-    user.avatar_url = profile.avatar_url()
-    user.bio = profile.bio
-    user.url = profile.url
-    entity_form = EntityChoiceForm(initial={'entity': profile.locality.id},
-                                   auto_id=False)
-    setattr(request, 'entity', profile.locality)
+    if profile:
+        user.avatar_url = profile.avatar_url()
+        user.bio = profile.bio
+        user.url = profile.url
+        setattr(request, 'entity', profile.locality)
+
     context = RequestContext(request, {"candidate": user,
                                        "answers": answers,
                                        "questions": questions,
