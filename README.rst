@@ -19,10 +19,10 @@ Quick Start - Linux
     $ source ENV/bin/activate
     $ git clone https://github.com/hasadna/open-shot.git
     $ cd open-shot
-    $ cp .env.dev .env
     $ pip install -r requirements.txt
+    $ python manage.py test
     $ python manage.py syncdb --migrate
-    $ honcho start
+    $ python manage.py runserver
 
 You should now be able to access the site at http://localhost:8000
 
