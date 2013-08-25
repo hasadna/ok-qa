@@ -10,3 +10,13 @@ elif 'NSA' in os.environ:
 else:
     from .dev import *
 
+try:
+    if SINGLE_PROCESS:
+        # TODO: the next line is neccessery because celery-haystck needs to be fixed
+        #       https://github.com/jezdez/celery-haystack/issues/21
+        HAYSTACK_SIGNAL_PROCESSOR = 'haystack.signals.BaseSignalProcessor'
+        CELERY_ALWAYS_EAGER = True
+except:
+    ''' default is a multi process env '''
+    from .multi import *
+

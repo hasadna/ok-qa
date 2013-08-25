@@ -221,9 +221,6 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(PROJECT_DIR, 'whoosh_index'),
     },
 }
-djcelery.setup_loader()
-HAYSTACK_SIGNAL_PROCESSOR = 'celery_haystack.signals.CelerySignalProcessor'
-EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
 AUTO_GENERATE_AVATAR_SIZES = (75, 48)
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse("public-profile", args = (u.username,)),
