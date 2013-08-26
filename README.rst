@@ -56,7 +56,7 @@ Git setup::
 	Scripts\activate
 		
     - Clone the project:	
-	git clone git@github.com:your-name/oshot.git
+	git clone git@github.com:your-name/open-shot.git oshot
  
     - Sync your local env with the project requirents(this will take some times so have a cup of coffee and relax): 
 	pip install -r oshot\requirements.txt 
