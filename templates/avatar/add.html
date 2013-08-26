@@ -1,8 +1,15 @@
 {% extends "avatar/base.html" %}
 {% load i18n avatar_tags %}
+{% load crispy_forms_tags %}
 {% load url from future %}
 
+{% block extrahead %}
+  <style>
+    label {display: none; }
+  </style>
+{% endblock %}
 {% block content %}
+  <div class="row"><div class="offset2">
     <p>{% trans "Your current avatar: " %}</p>
     {% avatar user %}
     {% if not avatars %}
@@ -10,8 +17,9 @@
     {% endif %}
     <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
         <input type="hidden" name="next" value="{% url "edit_profile" %}">
-        {{ upload_avatar_form.as_p }}
+        {{ upload_avatar_form|crispy }}
         <p>{% csrf_token %}<input type="submit" value="{% trans "Upload New Image" %}" /></p>
     </form>
+  </div></div>
 {% endblock %}
 
