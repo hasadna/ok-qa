@@ -58,7 +58,7 @@
             <li {% block nav-questions %} {% endblock %}><a href="{{questions_url}}">{% trans "Questions" %}</a></li>
             <li {% block nav-candidates %} {% endblock %}><a href="{{candidates_url}}">{% trans "Candidates" %}</a></li>
             <li {% block nav-about %} {% endblock %}>
-              <a href="/p/about/{% if entity %}?entity={{entity.id}}{% endif %}">{% trans "About" %}</a>
+              <a href="http://wiki.hasadna.org.il/index.php?title=%D7%A9%D7%90%D7%9C%D7%95%D7%AA_%D7%95%D7%AA%D7%A9%D7%95%D7%91%D7%95%D7%AA"}>{% trans "About" %}</a>
             </li>
           {% endblock %}
         </ul>
