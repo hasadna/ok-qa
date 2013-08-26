@@ -8,12 +8,10 @@
       </a>
     </div>
     <div onclick="window.location.href='{{ question.get_absolute_url }}'" class="cp">
-      {% if question.rating > 1 %}
-        <div class="votes">
-          <div class="mini-counts" id="votes-count-{{question.id}}">{{ question.rating }}</div>
-            <div>{% trans "votes" %}</div>
-        </div>
-      {% endif %}
+      <div class="votes" {% if question.rating <= 1 %} style="display:none" {% endif %}>
+        <div class="mini-counts" id="votes-count-{{question.id}}">{{ question.rating }}</div>
+          <div>{% trans "votes" %}</div>
+      </div>
     </div>
     <div class="summary">
       <h3><a href="{{ question.get_absolute_url }}" class="question-hyperlink" title="{{ question.subject }}">{{ question.subject }}</a></h3>

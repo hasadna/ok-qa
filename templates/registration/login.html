@@ -19,10 +19,12 @@
   </div>
   <div class="span4">
       <ul class="unstyled" style="text-align: center">
-      <li><a class="btn-auth btn-facebook" href="{% url 'socialauth_begin' 'facebook' %}">
+      <li><a class="btn-auth btn-facebook" href="{% url "socialauth_begin" "facebook" %}">
         {% trans "Connect to Facebook" %}</a></li>
       <li><a class="btn-auth btn-twitter" href="{% url "socialauth_begin" "twitter" %}">
         {% trans "Connect to Twitter" %}</a></li>
+      <li><a class="btn-auth btn-google" href="{% url "socialauth_begin" "google-oauth2" %}">
+        {% trans "Connect to Google" %}</a></li>
       <li>
         <a href="{% url 'registration_register' %}">{% trans "Or register yourself" %}</a></li>
       </ul>
