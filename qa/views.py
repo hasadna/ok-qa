@@ -48,7 +48,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     """
 
     # TODO: cache the next lines
-    questions = Question.on_site
+    questions = Question.on_site.filter(is_deleted=False)
     entity=None
     if entity_id:
         entity = Entity.objects.get(pk=entity_id)
@@ -313,7 +313,7 @@ def flag_question(request, q_id):
         messages.error(request, _('Sorry, you have to login to flag questions'))
         ret["redirect"] = '%s?next=%s' % (settings.LOGIN_URL, q.get_absolute_url())
     elif (user.profile.is_editor and user.profile.locality == q.entity) or (user == q.author and not q.answers.all()):
-        q.delete()
+        q.is_deleted = True
         messages.info(request, _('Question has been removed'))
         ret["redirect"] = reverse('local_home', args=(q.entity.slug,))
     elif user.flags.filter(question=q):
