@@ -5,7 +5,7 @@ from django.utils.translation import ugettext as _
 
 from user.models import Profile
 
-# TODO: move this file to the user app
+# TODO: remove this
 class LocalityMiddleware(object):
     def process_request(self, request):
         profile_path = reverse('edit_profile')

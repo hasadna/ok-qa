@@ -155,8 +155,7 @@ class QuestionTest(TestCase):
         self.assertEquals(response.status_code, 302)
         c.login(self.user, backend='facebook')
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
-        self.assertRedirects(response, '%s?next=%s' % (reverse("edit_profile"), 
-            reverse('upvote_question', kwargs={'q_id':self.q.id})))
+        self.assertEquals(response.status_code, 200)
 
         u=User.objects.get(email='user@domain.com')
         u.profile.locality = self.common_user.profile.locality
@@ -165,8 +164,8 @@ class QuestionTest(TestCase):
             'id': 1
         })
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
-        self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.content, "2")
+        self.assertEquals(response.status_code, 403)
+        self.assertEquals(response.content, 'You already upvoted this question')
         self.mock_request.assert_called_with(
             'POST',
             'https://graph.facebook.com/me/localshot:join',
@@ -179,6 +178,7 @@ class QuestionTest(TestCase):
 
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 403)
+        self.assertEquals(response.content, 'You already upvoted this question')
 
     def test_post_question_facebook(self):
         c = SocialClient()
@@ -240,5 +240,4 @@ class QuestionTest(TestCase):
 
     def tearDown(self):
         self.q.delete()
-        User.objects.all().delete()
         self.patch.stop()

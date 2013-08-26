@@ -3,19 +3,15 @@
 {% load url from future %}
 
 {% block content %}
-  <div class="row">
+    <p>{% trans "Your current avatar: " %}</p>
+    {% avatar user %}
     {% if not avatars %}
         <p>{% trans "You haven't uploaded an avatar yet. Please upload one now." %}</p>
-    {% else %}
-        <form method="POST" action="{% url 'avatar_change' %}" class="form-horizontal">
-                {{ primary_avatar_form }}
-            <p>{% csrf_token %}<input type="submit" value="{% trans "Choose new Default" %}" /></p>
-        </form>
     {% endif %}
     <form enctype="multipart/form-data" method="POST" action="{% url 'avatar_add' %}">
+        <input type="hidden" name="next" value="{% url "edit_profile" %}">
         {{ upload_avatar_form.as_p }}
         <p>{% csrf_token %}<input type="submit" value="{% trans "Upload New Image" %}" /></p>
     </form>
-  </div>
 {% endblock %}
 

@@ -39,5 +39,5 @@ django-celery-email==1.0.3
 django-devserver==0.6.2
 honcho==0.4.2
 facepy==0.8.4
-django-avatar
+-e git+https://github.com/jezdez/django-avatar.git#egg=django-avatar
 -e git://github.com/hasadna/django-activity-stream.git@c56a07921b8c796fce35bda6feab4610fdf64e5d#egg=django-activity-stream

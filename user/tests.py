@@ -136,6 +136,3 @@ class UserTest(TestCase):
         self.assertFormError(response, "form", None, None)
         self.assertFormError(response, "form", "password1", None)
     '''
-
-    def tearDown(self):
-        User.objects.all().delete()

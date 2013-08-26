@@ -71,7 +71,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'bootstrap_pagination.middleware.PaginationMiddleware',
-    'oshot.middleware.LocalityMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
@@ -225,3 +224,5 @@ AUTO_GENERATE_AVATAR_SIZES = (75, 48)
 ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse("public-profile", args = (u.username,)),
 }
+AVATAR_MAX_AVATARS_PER_USER = 1
+

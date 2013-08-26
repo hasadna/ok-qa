@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load avatar_tags %}
 {% block pageTitle %}{{ candidate.get_full_name|default:candidate.username }}{% endblock %}
 
 {% block breadcrumbs %}
@@ -10,7 +11,7 @@
 <div class="page-header row">
   <div class="offset2 span8"><center>
     <div class="dead-center">
-      <img src="{{ candidate.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle">
+      <img src="{% avatar_url candidate 75 %}" class="avatar img-circle">
       <h1 style="display:inline; padding-right:0.5em;">
         {{ candidate.get_full_name|default:candidate.username}}
           <a href="{% url 'user_feed' candidate.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">

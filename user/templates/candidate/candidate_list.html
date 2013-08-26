@@ -26,7 +26,11 @@
                 </div>
             </div>
         </div>
-        {% avatar candidate %}
+        <div class="avatar-container" style="padding-top:15px;">
+          <a href="{{ question.author.get_absolute_url }}" rel="tooltip" title="{{question.author.get_full_name}}">
+            {% avatar candidate %}
+          </a>
+        </div>
         <div class="summary">
             <h3>
                 <a href="{{ candidate.get_absolute_url }}" class="candidate-hyperlink"

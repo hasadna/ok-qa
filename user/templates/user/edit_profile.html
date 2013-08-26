@@ -39,8 +39,10 @@
     <aside class="dead-center sidebar">
       <ul>
       <h2>{% trans "Avatar" %}</h2>
-        <li>{% avatar request.user 75 %}</li>
-        <li><a class="btn" href="{% url 'avatar_change' %}">{% trans "Change your avatar" %}</a></li>
+        <li>
+          <img src="{% avatar_url request.user 75 %}" class="avatar img-circle">
+        </li>
+        <li><a class="btn" href="{% url 'avatar_add' %}">{% trans "Change your avatar" %}</a></li>
       </ul>
     </aside>
 
