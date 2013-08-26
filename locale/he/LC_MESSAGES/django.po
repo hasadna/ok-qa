@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-15 10:50+0300\n"
-"PO-Revision-Date: 2013-08-15 11:49+0200\n"
+"POT-Creation-Date: 2013-08-26 23:27+0300\n"
+"PO-Revision-Date: 2013-08-25 01:31+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -24,8 +24,9 @@ msgstr ""
 #: build/django-celery/djcelery/admin.py:54
 #: build/django-celery/djcelery/models.py:27
 #: build/django-celery/djcelery/models.py:314
+#, fuzzy
 msgid "state"
-msgstr ""
+msgstr "מצב משפחתי"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:61
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:328
@@ -68,8 +69,9 @@ msgstr ""
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:148
 #: build/django-celery/djcelery/admin.py:148
+#, fuzzy
 msgid "Revoke selected tasks"
-msgstr ""
+msgstr "לא נבחר/ה"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:154
 #: build/django-celery/djcelery/admin.py:154
@@ -124,8 +126,9 @@ msgstr "משימה (רשומה)"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:254
 #: build/django-celery/djcelery/admin.py:254
+#, fuzzy
 msgid "Task (custom)"
-msgstr ""
+msgstr "משימה (רשומה)"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:266
 #: build/django-celery/djcelery/admin.py:266
@@ -157,9 +160,9 @@ msgstr ""
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:10
 #: build/django-celery/djcelery/humanize.py:10
-#, python-format
+#, fuzzy, python-format
 msgid "%(minutes)d minutes ago"
-msgstr ""
+msgstr "דקות"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:11
 #: build/django-celery/djcelery/humanize.py:11
@@ -181,38 +184,44 @@ msgstr "אתמול ב %(time)s"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:13
 #: build/django-celery/djcelery/humanize.py:13
+#, fuzzy
 msgid "year"
-msgstr ""
+msgstr "שנה"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:13
 #: build/django-celery/djcelery/humanize.py:13
+#, fuzzy
 msgid "years"
-msgstr ""
+msgstr "שנה"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:14
 #: build/django-celery/djcelery/humanize.py:14
+#, fuzzy
 msgid "month"
-msgstr ""
+msgstr "החודש"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:14
 #: build/django-celery/djcelery/humanize.py:14
+#, fuzzy
 msgid "months"
-msgstr ""
+msgstr "החודש"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:15
 #: build/django-celery/djcelery/humanize.py:15
+#, fuzzy
 msgid "week"
-msgstr ""
+msgstr "שבועי"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:15
 #: build/django-celery/djcelery/humanize.py:15
+#, fuzzy
 msgid "weeks"
-msgstr ""
+msgstr "שבועי"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:16
 #: build/django-celery/djcelery/humanize.py:16
 msgid "day"
-msgstr ""
+msgstr "יום"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:16
 #: build/django-celery/djcelery/humanize.py:16
@@ -221,14 +230,15 @@ msgstr ""
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:23
 #: build/django-celery/djcelery/humanize.py:23
-#, python-format
+#, fuzzy, python-format
 msgid "%(number)d %(type)s ago"
-msgstr ""
+msgstr "%(number)d %(type)s"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:25
 #: build/django-celery/djcelery/models.py:25
+#, fuzzy
 msgid "task id"
-msgstr ""
+msgstr "שם משימה"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:31
 #: build/django-celery/djcelery/models.py:31
@@ -249,23 +259,27 @@ msgstr ""
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:41
 #: build/django-celery/djcelery/models.py:41
+#, fuzzy
 msgid "task state"
-msgstr ""
+msgstr "שם משימה"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:42
 #: build/django-celery/djcelery/models.py:42
+#, fuzzy
 msgid "task states"
-msgstr ""
+msgstr "שם משימה"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:59
 #: build/django-celery/djcelery/models.py:59
+#, fuzzy
 msgid "group id"
-msgstr ""
+msgstr "קבוצה"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:61
 #: build/django-celery/djcelery/models.py:61
+#, fuzzy
 msgid "created at"
-msgstr ""
+msgstr "אובייקט מקושר"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:68
 #: build/django-celery/djcelery/models.py:68
@@ -274,8 +288,9 @@ msgstr ""
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:69
 #: build/django-celery/djcelery/models.py:69
+#, fuzzy
 msgid "saved group results"
-msgstr ""
+msgstr "התוצאות הקודמות"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:81
 #: build/django-celery/djcelery/models.py:81
@@ -290,12 +305,13 @@ msgstr ""
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:83
 #: build/django-celery/djcelery/models.py:83
 msgid "Minutes"
-msgstr ""
+msgstr "דקות"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:84
 #: build/django-celery/djcelery/models.py:84
+#, fuzzy
 msgid "Seconds"
-msgstr ""
+msgstr "קריאה שניה"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:85
 #: build/django-celery/djcelery/models.py:85
@@ -338,8 +354,9 @@ msgstr ""
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:122
 #: build/django-celery/djcelery/models.py:122
+#, fuzzy
 msgid "minute"
-msgstr ""
+msgstr "דקה"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:125
 #: build/django-celery/djcelery/models.py:125
@@ -353,8 +370,9 @@ msgstr ""
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:131
 #: build/django-celery/djcelery/models.py:131
+#, fuzzy
 msgid "day of month"
-msgstr ""
+msgstr "תאריך פטירה"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:134
 #: build/django-celery/djcelery/models.py:134
@@ -375,8 +393,9 @@ msgstr ""
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:195
 #: build/django-celery/djcelery/models.py:195
+#, fuzzy
 msgid "Useful description"
-msgstr ""
+msgstr "תאור"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:196
 #: build/django-celery/djcelery/models.py:196
@@ -392,8 +411,9 @@ msgstr ""
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:325
 #: build/django-celery/djcelery/models.py:207
 #: build/django-celery/djcelery/models.py:325
+#, fuzzy
 msgid "Arguments"
-msgstr ""
+msgstr "תגובות"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:208
 #: build/django-celery/djcelery/models.py:208
@@ -425,8 +445,9 @@ msgstr ""
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:219
 #: build/django-celery/djcelery/models.py:219
+#, fuzzy
 msgid "exchange"
-msgstr ""
+msgstr "העמוד הבא"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:222
 #: build/django-celery/djcelery/models.py:222
@@ -494,8 +515,9 @@ msgstr "תוצאה"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:335
 #: build/django-celery/djcelery/models.py:335
+#, fuzzy
 msgid "execution time"
-msgstr ""
+msgstr "קוד אימות"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:336
 #: build/django-celery/djcelery/models.py:336
@@ -509,8 +531,9 @@ msgstr "מספר נסיונות חוזרים"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:348
 #: build/django-celery/djcelery/models.py:348
+#, fuzzy
 msgid "task"
-msgstr ""
+msgstr "שם משימה"
 
 #: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:349
 #: build/django-celery/djcelery/models.py:349
@@ -535,36 +558,75 @@ msgid "payload"
 msgstr ""
 
 #: build/kombu/kombu/transport/django/models.py:31
+#, fuzzy
 msgid "message"
-msgstr ""
+msgstr "הודעה"
 
 #: build/kombu/kombu/transport/django/models.py:32
+#, fuzzy
 msgid "messages"
-msgstr ""
+msgstr "הודעה"
 
-#: oshot/forms.py:14
-msgid "Place"
-msgstr "מקום"
+#: links/admin.py:21
+msgid "Content"
+msgstr "תוכן"
+
+#: links/models.py:22 links/models.py:34
+msgid "title"
+msgstr "כותרת"
+
+#: links/models.py:26
+msgid "link type"
+msgstr "סוג קישור"
+
+#: links/models.py:27
+msgid "link types"
+msgstr "סוגי קישורים"
+
+#: links/models.py:36
+msgid "content type"
+msgstr "סוג תוכן"
+
+#: links/models.py:38
+msgid "object ID"
+msgstr "מזהה אובייקט"
+
+#: links/models.py:45
+msgid "link"
+msgstr "קישור"
+
+#: links/models.py:46
+msgid "links"
+msgstr "קישורים"
+
+#: links/templates/links/_object_links.html:19
+#: user/templates/user/edit_profile.html:59
+msgid "none"
+msgstr "כלום"
+
+#: oshot/forms.py:15
+msgid "Choose a Place"
+msgstr "בחרו רשות"
 
 #: oshot/middleware.py:17
 msgid "Please first set your place"
 msgstr "ראשית, אנא הכניסי את מקום מגוריכם"
 
-#: oshot/settings/base.py:24
+#: oshot/settings/base.py:25
 msgid "Hebrew"
 msgstr "עברית"
 
-#: oshot/settings/base.py:25
-msgid "English"
-msgstr ""
-
 #: oshot/settings/base.py:26
-msgid "Arabic"
-msgstr ""
+msgid "English"
+msgstr "אנגלית"
 
 #: oshot/settings/base.py:27
+msgid "Arabic"
+msgstr "ערבית"
+
+#: oshot/settings/base.py:28
 msgid "Russian"
-msgstr ""
+msgstr "רוסית"
 
 #: party/models.py:12
 msgid "party name"
@@ -594,25 +656,84 @@ msgstr "מספר חברי המפלגה"
 msgid "anonymous"
 msgstr "ללא שם"
 
-#: qa/forms.py:28
-msgid "Question already exists."
-msgstr "מצטערת, השאלה כבר קיימת"
+#: polyorg/models.py:7
+msgid "Name"
+msgstr "שם"
 
-#: qa/forms.py:35
+#: polyorg/models.py:8
+msgid "Ballot"
+msgstr "פתק"
+
+#: polyorg/models.py:11
+msgid "The list with which is the surplus votes partner"
+msgstr "הסכם עודפים עם"
+
+#: polyorg/models.py:12
+msgid "MPG report"
+msgstr "דו\"ח התנועה לאיכות השלטון"
+
+#: polyorg/models.py:13
+msgid "The MPG report on the list, can use html"
+msgstr "דו\"ח התנועה לאיכות השלטון"
+
+#: polyorg/models.py:15
+msgid "YouTube user"
+msgstr "משתמש יוטיוב"
+
+#: polyorg/models.py:16
+msgid "Wikipedia page"
+msgstr "שם עמוד הויקיפדיה"
+
+#: polyorg/models.py:17
+msgid "Twitter account"
+msgstr "חשבון טוויטר"
+
+#: polyorg/models.py:19
+msgid "Platform"
+msgstr "מצע"
+
+#: polyorg/models.py:72
+msgid "Ordinal"
+msgstr "מיקום"
+
+#: polyorg/models.py:74
+msgid "Elected by #"
+msgstr "נבחר על ידי (מספר)"
+
+#: polyorg/models.py:74
+msgid "How many people voted for this candidate"
+msgstr ""
+
+#: polyorg/models.py:83
+#, python-format
+msgid "%(user)s in %(party)s"
+msgstr ""
+
+#: qa/forms.py:27
+msgid "Publish to facebook?"
+msgstr "פרסם בפייסבוק"
+
+#: qa/forms.py:28
+msgid "let your friends know you've asked a question"
+msgstr "ספרו לחברים ששאלתם שאלה"
+
+#: qa/forms.py:39
 msgid "Invalid question"
 msgstr "שאלה לא תקינה"
+
+#: qa/forms.py:46
+msgid "Tags are limited to 20 characters"
+msgstr "מצטערת, תגיות מוגבלות ל 20 תווים"
 
 #: qa/models.py:40
 msgid "unicode slug"
 msgstr "שם ביוניקוד"
 
-#: qa/models.py:46
-#: qa/models.py:94
+#: qa/models.py:46 qa/models.py:94
 msgid "author"
 msgstr "מחבר"
 
-#: qa/models.py:47
-#: qa/models.py:98
+#: qa/models.py:47 qa/models.py:98
 msgid "question"
 msgstr "שאלה"
 
@@ -625,8 +746,7 @@ msgstr "פירוט"
 msgid "Please enter your content in no more than %s letters"
 msgstr "נא להכניס תוכן בלא יותר מ %s אותיות"
 
-#: qa/models.py:51
-#: qa/models.py:97
+#: qa/models.py:51 qa/models.py:97
 msgid "rating"
 msgstr "ניקוד"
 
@@ -643,84 +763,88 @@ msgstr "תוכן"
 msgid "Please enter an answer in no more than %s letters"
 msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
 
-#: qa/views.py:152
+#: qa/views.py:161
 msgid "You must be logged in as a candidate to post answers"
 msgstr "עליך להתחבר כמועמד כדי לפרסם תשובות"
 
-#: qa/views.py:173
+#: qa/views.py:184
 msgid "You can only post questions in your own locality"
 msgstr "מצטערת, אתה יכול לערוך רק שאלות ברשות שלך"
 
-#: qa/views.py:183
+#: qa/views.py:200
 msgid "You can only edit your own questions."
 msgstr "מצטערת, אתה יכול לערוך רק שאלות שלך"
 
-#: qa/views.py:185
+#: qa/views.py:202
 msgid "Question has been answered, editing disabled."
 msgstr "ישנן תשובות לשאלה, אי אפשר לערוך"
 
-#: qa/views.py:216
+#: qa/views.py:235
 msgid "You already upvoted this question"
 msgstr "תודה, אתה כבר מופיע ברשימת התומכים"
 
-#: qa/views.py:223
+#: qa/views.py:243
 msgid "Use POST to upvote a question"
 msgstr "השתמש ב POST כדי להצביע לשאלה"
 
-#: qa/views.py:236
+#: qa/views.py:256
 msgid "OK QA Question Feed"
 msgstr "שאלות נשאלו"
 
-#: qa/views.py:238
+#: qa/views.py:258
 msgid "Questions from OKQA"
 msgstr "שאלות"
 
-#: qa/views.py:261
+#: qa/views.py:281
 msgid "Answers for the question"
 msgstr "תשובות לשאלה"
 
-#: qa/views.py:267
+#: qa/views.py:287
 msgid "A feed of all answers for the question"
 msgstr "פיד של תשובות לשאלה"
 
-#: qa/views.py:284
+#: qa/views.py:304
 msgid "Sorry, you have to login to flag questions"
 msgstr "אנא התחברו כדי לסמן שאלה לא ראויה"
 
-#: qa/views.py:288
+#: qa/views.py:308
 msgid "Question has been removed"
 msgstr "השאלה נמחקה"
 
-#: qa/views.py:291
+#: qa/views.py:311
 msgid "Thanks.  You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
-#: qa/views.py:296
-msgid "Thank you for flagging the question. One of our editors will look at it shortly."
+#: qa/views.py:316
+msgid ""
+"Thank you for flagging the question. One of our editors will look at it "
+"shortly."
 msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את השאלה בקרוב."
 
-#: qa/templates/qa/_answer.html:23
-#: qa/templates/qa/_question.html:34
-#: user/templates/user/user_detail.html:42
+#: qa/templates/qa/_answer.html:23 qa/templates/qa/_question.html:36
+#: user/templates/user/public_profile.html:55
 msgid "before"
 msgstr "לפני"
 
-#: qa/templates/qa/_answer.html:28
+#: qa/templates/qa/_answer.html:29
 msgid "Edit"
 msgstr "עריכה"
 
-#: qa/templates/qa/_question.html:14
+#: qa/templates/qa/_question.html:13
 msgid "votes"
 msgstr "שואלים"
 
-#: qa/templates/qa/_question.html:25
-#: qa/templates/qa/question_list.html:89
+#: qa/templates/qa/_question.html:27 qa/templates/qa/question_list.html:89
 msgid "Tags"
 msgstr "תגיות"
 
-#: qa/templates/qa/_question.html:37
+#: qa/templates/qa/_question.html:38
 msgid "from"
 msgstr "מ:"
+
+#: qa/templates/qa/_question.html:46 user/feeds.py:15
+msgid "Answers by"
+msgstr "תשובות של"
 
 #: qa/templates/qa/email_update.html:33
 msgid "join"
@@ -730,82 +854,85 @@ msgstr "הצטרפו"
 msgid "click me to update your email settings"
 msgstr "לחצו עלי לעדכון הגדרות הדואל"
 
-#: qa/templates/qa/post_question.html:13
+#: qa/templates/qa/post_question.html:6
+msgid "Post question"
+msgstr "העלו שאלה"
+
+#: qa/templates/qa/post_question.html:14
 msgid "What is your question, sire?"
 msgstr "הנכם מוזמנים להפנות שאלות למועמדים"
 
-#: qa/templates/qa/post_question.html:15
+#: qa/templates/qa/post_question.html:16
 msgid "Edit your question"
 msgstr "עריכת שאלה"
 
-#: qa/templates/qa/post_question.html:30
-#: qa/templates/qa/question_detail.html:113
+#: qa/templates/qa/post_question.html:31
+#: qa/templates/qa/question_detail.html:125
 msgid "characters left"
 msgstr "תווים נותרו"
 
-#: qa/templates/qa/post_question.html:34
-#: qa/templates/qa/question_detail.html:116
+#: qa/templates/qa/post_question.html:35
+#: qa/templates/qa/question_detail.html:128
 msgid "Publish"
 msgstr "פרסם"
 
-#: qa/templates/qa/question_detail.html:21
+#: qa/templates/qa/question_detail.html:33
 msgid "Edit Question"
 msgstr "ערכו שאלה"
 
-#: qa/templates/qa/question_detail.html:26
+#: qa/templates/qa/question_detail.html:38
 msgid "I Want an Answer"
 msgstr "תמכו בשאלה"
 
-#: qa/templates/qa/question_detail.html:33
+#: qa/templates/qa/question_detail.html:45
 msgid "Change Your Answer"
 msgstr "ערכו תשובה"
 
-#: qa/templates/qa/question_detail.html:35
+#: qa/templates/qa/question_detail.html:47
 msgid "Answer the Question"
 msgstr "תרום תשובה לעניין"
 
-#: qa/templates/qa/question_detail.html:44
+#: qa/templates/qa/question_detail.html:56
 msgid "Confirm Question Removal"
 msgstr "אשרו מחיקת השאלה"
 
-#: qa/templates/qa/question_detail.html:48
+#: qa/templates/qa/question_detail.html:60
 msgid "Are you sure you want to remove the question?"
 msgstr "האם אתם בטוחים שברצונכם למחוק את השאלה?"
 
-#: qa/templates/qa/question_detail.html:53
-#: qa/templates/qa/question_detail.html:61
+#: qa/templates/qa/question_detail.html:65
+#: qa/templates/qa/question_detail.html:73
 msgid "Delete"
 msgstr "מחק"
 
-#: qa/templates/qa/question_detail.html:63
+#: qa/templates/qa/question_detail.html:75
 msgid "Flag question"
 msgstr "שאלה בלתי הולמת"
 
-#: qa/templates/qa/question_detail.html:76
-#: user/templates/user/user_detail.html:21
+#: qa/templates/qa/question_detail.html:88
+#: user/templates/user/public_profile.html:37
 msgid "Answers"
 msgstr "תשובות"
 
-#: qa/templates/qa/question_detail.html:78
+#: qa/templates/qa/question_detail.html:90
 msgid "feed"
 msgstr "רסס"
 
-#: qa/templates/qa/question_detail.html:89
+#: qa/templates/qa/question_detail.html:101
 msgid "No Answers Yet"
 msgstr "עדיין לא ניתנו תשובות"
 
-#: qa/templates/qa/question_detail.html:90
-#: qa/templates/qa/question_list.html:18
-#: qa/templates/qa/question_list.html:25
-#: user/templates/user/user_detail.html:11
+#: qa/templates/qa/question_detail.html:102
+#: qa/templates/qa/question_list.html:18 qa/templates/qa/question_list.html:25
+#: user/templates/user/public_profile.html:17
 msgid "Subscribe"
 msgstr "הרשם"
 
-#: qa/templates/qa/question_detail.html:142
+#: qa/templates/qa/question_detail.html:154
 msgid "Sorry but only connected users can upvote questions"
 msgstr "מצטערת, יש להתחבר כדי לתמוך בשאלה"
 
-#: qa/templates/qa/question_detail.html:156
+#: qa/templates/qa/question_detail.html:169
 msgid "Are you sure you want to delete the question?"
 msgstr "האם אתם בטוחים שברצונכם למחוק את השאלה?"
 
@@ -850,85 +977,113 @@ msgstr "שאלות נשאלו"
 msgid "Sorry but only connected users can post questions"
 msgstr "מצטערת, יש להתחבר כדי לשאול שאלות"
 
-#: templates/base.html:37
+#: templates/base.html:39
 msgid "Welcome"
 msgstr "שלום"
 
-#: templates/base.html:39
+#: templates/base.html:41
 msgid "my page"
 msgstr "העמוד שלי"
 
-#: templates/base.html:40
+#: templates/base.html:42
 msgid "edit profile"
 msgstr "ערוך פרופיל"
 
-#: templates/base.html:42
+#: templates/base.html:44
 msgid "admin"
 msgstr "ממשק ניהול"
 
-#: templates/base.html:46
+#: templates/base.html:48
 msgid "logout"
 msgstr "התנתקות"
 
-#: templates/base.html:52
-#: templates/registration/activation_complete.html:7
+#: templates/base.html:54 templates/registration/registration_form.html:8
+#: templates/registration/registration_form.html:21
+msgid "Register"
+msgstr "הירשמו"
+
+#: templates/base.html:55 templates/registration/activation_complete.html:7
 #: templates/registration/login.html:6
 #: templates/registration/password_reset_complete.html:7
 msgid "Login"
 msgstr "היכנסו"
 
-#: templates/base.html:58
-#: templates/place_base.html:6
-#: user/templates/user/user_detail.html:56
+#: templates/base.html:64
+msgid "Search"
+msgstr "חפשו"
+
+#: templates/base.html:74
+msgid "Everywhere"
+msgstr "כל הארץ"
+
+#: templates/base.html:89 templates/place_base.html:6
+#: user/templates/user/public_profile.html:69
 msgid "Questions"
 msgstr "שאלות"
 
-#: templates/base.html:59
-#: templates/place_base.html:7
+#: templates/base.html:90 templates/place_base.html:7
 msgid "Candidates"
 msgstr "מועמדים"
 
-#: templates/base.html:60
-#: user/templates/user/user_detail.html:76
+#: templates/base.html:116
 msgid "About"
 msgstr "אודות"
 
-#: templates/base.html:65
-msgid "Search"
-msgstr "חפש"
-
-#: templates/base.html:93
+#: templates/base.html:118
 msgid "Back to top"
 msgstr "בחזרה לראש העמוד"
 
-#: templates/base.html:94
-msgid "Content is licensed CC-BY. Source code is freely available "
-msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY.  קוד המקור חופשי לשימוש"
+#: templates/base.html:120
+msgid "Content is licensed CC-BY. Learn more on this open source project "
+msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY והמטבח שלנו פתוח ושקוף - "
 
-#: templates/base.html:95
-#: user/templates/candidate/candidate_list.html:71
+#: templates/base.html:121 user/templates/candidate/candidate_list.html:73
 msgid "here"
 msgstr "כאן"
 
-#: templates/base.html:97
+#: templates/base.html:123
 msgid "The Public Knowledge Workshop"
 msgstr "הסדנא לידע ציבורי"
 
-#: templates/base.html:98
+#: templates/base.html:124
 msgid "together with"
 msgstr "בשיתוף עם"
 
-#: templates/base.html:98
+#: templates/base.html:124
 msgid "The Shaharit Institute"
 msgstr "מכון שחרית"
 
-#: templates/base.html:122
+#: templates/base.html:125
+msgid "and"
+msgstr "ו"
+
+#: templates/base.html:125
+msgid "NUIS"
+msgstr "התאחדות הסטודנטים"
+
+#: templates/base.html:149
 msgid "read more"
 msgstr "קרא עוד"
 
-#: templates/base.html:126
+#: templates/base.html:153
 msgid "read less"
 msgstr "קרא פחות"
+
+#: templates/avatar/add.html:8
+msgid "Your current avatar: "
+msgstr "נוכחית"
+
+#: templates/avatar/add.html:11 templates/avatar/change.html:8
+msgid "You haven't uploaded an avatar yet. Please upload one now."
+msgstr "טרם  העלתם תמונת פרופיל. אנא העלו תמונה כעת."
+
+#: templates/avatar/add.html:16 templates/avatar/change.html:17
+msgid "Upload New Image"
+msgstr "העלה תמונה חדשה"
+
+#: templates/avatar/change.html:12
+msgid "Choose new Default"
+msgstr "בחר תמונה"
 
 #: templates/entities/entity_list.html:6
 #: templates/entities/entity_list.html:11
@@ -956,16 +1111,21 @@ msgstr "ההרשמה הסתיימה בהצלחה, תודה."
 #, python-format
 msgid ""
 "\n"
-"Someone, hopefully you, signed up for a new account at %(name)s using this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar:\n"
+"Someone, hopefully you, signed up for a new account at %(name)s using this "
+"email address. If it was you, and you'd like to activate and use your "
+"account, click the link below or copy and paste it into your web browser's "
+"address bar:\n"
 msgstr ""
 "\n"
-"תודה שנרשמת לאתר %(name)s. על מנת להשלים את ההרשמה, אנא לחץ/י על הקישור הבא:\n"
+"תודה שנרשמת לאתר %(name)s! על מנת להשלים את ההרשמה לחץ/י על הקישור הבא:\n"
 
 #: templates/registration/activation_email.txt:8
 #, python-format
 msgid ""
 "\n"
-"If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in %(expiration_days)s days.\n"
+"If you didn't request this, you don't need to do anything; you won't receive "
+"any more email from us, and the account will expire automatically in "
+"%(expiration_days)s days.\n"
 "\n"
 "If you are a candidate, you are welcome to post your answers. Just\n"
 "send us an email at qa@hasadna.org.il and we will verify your account.\n"
@@ -974,9 +1134,11 @@ msgid ""
 "the team at %(name)s\n"
 msgstr ""
 "\n"
-"במידה וההרשמה בוצעה בטעות, או לא על ידיך, אינך צריך/ה לעשות כלום -הרשמתך תתבטל אוטומטית תוך %(expiration_days)s שבעה ימים מקבלת המייל.\n"
+"במידה וההרשמה בוצעה בטעות, או לא על ידיך, אינך צריך/ה לעשות כלום -הרשמתך "
+"תתבטל אוטומטית תוך %(expiration_days)s ימים מיום קבלת המייל.\n"
 "\n"
-"אם את/ה מועמד לבחירות המוקדמות אתה מוזמן לפרסם תשובות.  רק שלח לנו דואל ל qa@hasadna.org.il ונאשר את חשבונך.יום טוב,\n"
+"אם את/ה מועמד לבחירות המוקדמות אתה מוזמן לפרסם תשובות.  רק שלח לנו דואל ל "
+"localshot@hasadna.org.il ונאשר את חשבונך.יום טוב,\n"
 "צוות %(name)s\n"
 
 #: templates/registration/activation_email_subject.txt:2
@@ -1000,6 +1162,10 @@ msgid "Connect to Twitter"
 msgstr "התחבר לטוויטר"
 
 #: templates/registration/login.html:27
+msgid "Connect to Google"
+msgstr "התחבר לגוגל"
+
+#: templates/registration/login.html:29
 msgid "Or register yourself"
 msgstr "או הרשמו עצמונית"
 
@@ -1049,11 +1215,6 @@ msgstr "איפוס ססמה"
 msgid "Ye be now registered. Activation email sent, arrrr."
 msgstr "נרשמת בהצלחה ודואל עם הוראות להפעלת החשבון נשלח."
 
-#: templates/registration/registration_form.html:8
-#: templates/registration/registration_form.html:21
-msgid "Register"
-msgstr "הירשמו"
-
 #: templates/search/search.html:6
 msgid "Results"
 msgstr "תוצאות החיפוש"
@@ -1070,87 +1231,70 @@ msgstr "&raquo; הקודם"
 msgid "Next &raquo;"
 msgstr "הבא &lqauo;"
 
-#: user/admin.py:10
+#: user/admin.py:10 user/forms.py:16
 msgid "Username"
 msgstr "שם משתמש"
 
 #: user/admin.py:12
-msgid "Required. 30 characters or fewer. Alphanumeric characters only (letters, digits and underscores)."
-msgstr "30 תווים או פחות. ניתן להשתמש באותיות עבריות ולועזיות, ספרות וקו תחתון בלבד."
+msgid ""
+"Required. 30 characters or fewer. Alphanumeric characters only (letters, "
+"digits and underscores)."
+msgstr ""
+"30 תווים או פחות. ניתן להשתמש באותיות עבריות ולועזיות, ספרות וקו תחתון בלבד."
 
 #: user/admin.py:14
 msgid "This value must contain only letters, numbers and underscores."
 msgstr "ניתן להשתמש באותיות, ספרות וקו תחתון בלבד."
 
-#: user/feeds.py:15
-msgid "Answers by"
-msgstr "תשובות של"
-
 #: user/feeds.py:21
 msgid "Get all answers by"
 msgstr "קבלו את כל התשובות של"
 
-#: user/forms.py:14
-#: user/forms.py:135
-msgid "username"
-msgstr "שם משתמש"
-
-#: user/forms.py:15
-#: user/forms.py:136
-msgid "Please use 4 letters or more"
-msgstr "נא להשתמש בארבע אותיות או יותר (גם מספרים ו @/./+/-/_ הם תווים חוקיים)"
-
-#: user/forms.py:16
-#: user/forms.py:137
+#: user/forms.py:14 user/forms.py:137
 msgid "first name"
 msgstr "שם פרטי"
 
-#: user/forms.py:17
-#: user/forms.py:138
+#: user/forms.py:15 user/forms.py:138
 msgid "last name"
 msgstr "שם משפחה"
 
-#: user/forms.py:18
-#: user/forms.py:143
+#: user/forms.py:17 user/forms.py:18
+msgid ""
+"Required. 4-30 characters (only letters, numbers spaces and @/./+/-/_ "
+"characters)."
+msgstr "חובה. 30-4 תווים (אותיות, מספרים, רווחים, @/./+/-/_ בלבד).‏"
+
+#: user/forms.py:19 user/forms.py:143
 msgid "email address"
 msgstr "כתובת דואל"
 
-#: user/forms.py:21
-#: user/models.py:71
+#: user/forms.py:20
+msgid "We don't spam, and don't show your email to anyone"
+msgstr "לא נשלח דואר זבל, לא נשתף את הכתובת עם אף אחד, ולא נציג אותה באתר"
+
+#: user/forms.py:25 user/models.py:78
 msgid "Locality"
 msgstr "מקום מגורים"
 
-#: user/forms.py:22
-#: user/forms.py:154
+#: user/forms.py:26 user/forms.py:154
 msgid "home page"
 msgstr "עמוד הבית"
 
-#: user/forms.py:23
-msgid "avatar"
-msgstr "אווטר"
+#: user/forms.py:28
+msgid "Tell us and other users bit about yourself"
+msgstr "ספר/י לנו ולמשתמשים אחרים באתר על עצמך"
 
-#: user/forms.py:24
-#: user/forms.py:155
-msgid "bio"
-msgstr "עלי"
-
-#: user/forms.py:27
+#: user/forms.py:31
 msgid "E-Mail Notifications"
 msgstr "התראות דואל"
 
-#: user/forms.py:28
-msgid "Should we send you e-mail notification about updates to things you follow on the site?"
+#: user/forms.py:32
+msgid ""
+"Should we send you e-mail notification about updates to things you follow on "
+"the site?"
 msgstr "האם לשלוח התראות דואל לגבי שאלות ותגיות שאתה עוקב אחריהם?"
 
-#: user/forms.py:29
-msgid "candidate?"
-msgstr "מועמד?"
-
-#: user/forms.py:30
-msgid "Please check this only if you are running for office"
-msgstr "אנא, סמני רק אם את מועמדת"
-
-#: user/forms.py:56
+#: user/forms.py:58
 msgid "This username is already taken."
 msgstr "שם המשתמש בשימוש"
 
@@ -1159,7 +1303,9 @@ msgid "the voters are waiting for your answers"
 msgstr "המצביעים ממתינים לתשובתך"
 
 #: user/forms.py:86
-msgid "The Q&A site is happy to invite you to answer voters' questions. please click {{activation_url}} to activate your account"
+msgid ""
+"The Q&A site is happy to invite you to answer voters' questions. please "
+"click {{activation_url}} to activate your account"
 msgstr ""
 
 #: user/forms.py:94
@@ -1174,6 +1320,14 @@ msgstr "אשר סיסמה"
 msgid "Enter the same password as above, for verification."
 msgstr "כדי לוודא, הכניסו אותה ססמה כמו למעלה"
 
+#: user/forms.py:135
+msgid "username"
+msgstr "שם משתמש"
+
+#: user/forms.py:136
+msgid "Please use 4 letters or more"
+msgstr "נא להשתמש בארבע אותיות או יותר (גם מספרים ו @/./+/-/_ הם תווים חוקיים)"
+
 #: user/forms.py:139
 msgid "email subject"
 msgstr "נושא הדואל"
@@ -1182,23 +1336,27 @@ msgstr "נושא הדואל"
 msgid "email body"
 msgstr "תוכן הדואל"
 
-#: user/models.py:14
+#: user/forms.py:155
+msgid "bio"
+msgstr "עלי"
+
+#: user/models.py:20
 msgid "No Email"
 msgstr "אין דואל"
 
-#: user/models.py:15
+#: user/models.py:21
 msgid "Daily"
 msgstr "יומי"
 
-#: user/models.py:16
+#: user/models.py:22
 msgid "Weekly"
 msgstr "שבועי"
 
-#: user/models.py:19
+#: user/models.py:25
 msgid "Male"
 msgstr "זכר"
 
-#: user/models.py:20
+#: user/models.py:26
 msgid "Female"
 msgstr "נקבה"
 
@@ -1210,12 +1368,16 @@ msgstr "מועמד חדש נרשם"
 msgid "A question has been flagged"
 msgstr "הונף דגל אדום על שאלה בשו\"ת המקומי"
 
-#: user/views.py:78
+#: user/views.py:77
 #, python-format
 msgid "Sorry, you are not authorized to remove %s from the candidate list"
 msgstr "מצטערת, אינך מורשה להסיר את %s מרשימת המועמדים"
 
-#: user/views.py:136
+#: user/views.py:87
+msgid "Only candidate can edit their info"
+msgstr ""
+
+#: user/views.py:159
 msgid "Your profile has been updated, please login."
 msgstr "הפרופיל שלכם עודכן, אתם מוזמנים להכנס"
 
@@ -1236,29 +1398,30 @@ msgstr "מועמדים לבחירות המקומיות"
 msgid "answers"
 msgstr "תשובות"
 
-#: user/templates/candidate/candidate_list.html:43
+#: user/templates/candidate/candidate_list.html:45
 msgid "Remove Candidate"
 msgstr "הסר מועמד"
 
-#: user/templates/candidate/candidate_list.html:48
+#: user/templates/candidate/candidate_list.html:50
 msgid "Confirm Candidate Removal"
 msgstr "אשרו הסרת מועמד"
 
-#: user/templates/candidate/candidate_list.html:51
+#: user/templates/candidate/candidate_list.html:53
 #, python-format
 msgid ""
 "\n"
-"      Are you sure you want to remove %(candidate)s from the candidate list?\n"
+"      Are you sure you want to remove %(candidate)s from the candidate "
+"list?\n"
 "    "
 msgstr ""
 "\n"
 "האם אתם בטוחים שברצונכם להסיר את %(candidate)s מרשימת המועמדים?"
 
-#: user/templates/candidate/candidate_list.html:58
+#: user/templates/candidate/candidate_list.html:60
 msgid "Remove"
 msgstr "הסר"
 
-#: user/templates/candidate/candidate_list.html:67
+#: user/templates/candidate/candidate_list.html:69
 msgid ""
 "\n"
 "      The Candidates biographies were given by the candidates themselvs and\n"
@@ -1273,7 +1436,6 @@ msgid "Welcome to our site"
 msgstr "ברוכים הבאים לאתרנו"
 
 #: user/templates/user/accept_invitation.html:15
-#: user/templates/user/edit_profile.html:23
 msgid "Update"
 msgstr "עדכן"
 
@@ -1285,9 +1447,2653 @@ msgstr "הזמן מועמד"
 msgid "Send"
 msgstr "שלח"
 
-#: user/templates/user/edit_profile.html:11
-msgid "Edit your profile"
-msgstr "ערוך את הפרופיל שלך"
+#: user/templates/user/edit_profile.html:3
+#: user/templates/user/edit_profile.html:6
+#: user/templates/user/edit_profile.html:14
+msgid "User Profile"
+msgstr "פרופיל משתמש"
+
+#: user/templates/user/edit_profile.html:18
+msgid ""
+"You do not have permissions to edit anything. In order to be able to edit, "
+"you must first provide a valid email address."
+msgstr ""
+"אין לך הרשאות עריכה. כדי לקבל הרשאת עריכה עליך לספק כתובת דואר אלקטרוני "
+"חוקית."
+
+#: user/templates/user/edit_profile.html:22
+msgid ""
+"You do not have permissions to edit anything. In order to be able to edit, "
+"you must provide a valid email address, and validate it"
+msgstr ""
+"אין לך הרשאות עריכה. כדי לקבל הרשאת עריכה עליך לאמת את הדואר האלקטרוני שלך."
+
+#: user/templates/user/edit_profile.html:24
+msgid "send validation email"
+msgstr "שליחת דואר אלקטרוני לאימות"
+
+#: user/templates/user/edit_profile.html:29
+msgid "Your email has been validated, so you can edit stuff!"
+msgstr "הדואר האלקטרוני אומת, לכן יש לך הרשאות עריכה."
+
+#: user/templates/user/edit_profile.html:33
+msgid "save"
+msgstr "שמירה"
+
+#: user/templates/user/edit_profile.html:41
+msgid "Avatar"
+msgstr "תמונת פרופיל"
+
+#: user/templates/user/edit_profile.html:45
+msgid "Change your avatar"
+msgstr "שנה את תמונת הפרופיל"
+
+#: user/templates/user/edit_profile.html:50
+msgid "Following"
+msgstr "עוקב אחרי"
+
+#: user/templates/user/public_profile.html:65
+msgid "elects at"
+msgstr "בוחר חכם ב"
+
+#~ msgid "Place"
+#~ msgstr "מקום"
+
+#~ msgid "candidate?"
+#~ msgstr "מועמד?"
+
+#~ msgid "Please check this only if you are running for office"
+#~ msgstr "אנא, סמני רק אם את מועמדת"
+
+#~ msgid "%(key)s does not look like an activation key."
+#~ msgstr "%(key)s לא נראה כמו קוד אימות חוקי."
+
+#~ msgid "The user has updated the email since this activation key was sent."
+#~ msgstr "המשתמש שינה את כתובת הדואר מאז שקוד זה נשלח."
+
+#~ msgid "This activation key has expired."
+#~ msgstr "פג תוקפו של קוד אימות זה."
+
+#~ msgid "Invalid activation key."
+#~ msgstr "קוד האימות לא תקין"
+
+#~ msgid "Agenda name"
+#~ msgstr "שם האג'נדה"
+
+#~ msgid "Please enter an agenda name"
+#~ msgstr "נא להזין שם אג'נדה"
+
+#~ msgid "Agenda name must be shorter than 300 characters"
+#~ msgstr "שם אג'נדה צריך להיות עד 300 תווים"
+
+#~ msgid "Public owner name"
+#~ msgstr "שם משתמש"
+
+#~ msgid "Please enter a public owner name"
+#~ msgstr "נא להזין  את שם הבעלים"
+
+#~ msgid "Public owner name must be shorter than 100 characters"
+#~ msgstr "שם אגנ'דה צריך להיות עד 100 תווים"
+
+#~ msgid "Agenda description"
+#~ msgstr "תאור האג'נדה"
+
+#~ msgid "Please enter a description for this agenda"
+#~ msgstr "נא להזין תאור עבור אג'נדה זו"
+
+#~ msgid "Agenda description must be at least 15 characters long"
+#~ msgstr "תאור אג'נדה צריך להיות באורך 15 תווים לפחות"
+
+#~ msgid "Importance"
+#~ msgstr "חשיבות"
+
+#~ msgid "Reasoning"
+#~ msgstr "הסבר"
+
+#~ msgid "Position"
+#~ msgstr "עמדה"
+
+#~ msgid "Opposes fully"
+#~ msgstr "התנגדות מלאה"
+
+#~ msgid "Opposes partially"
+#~ msgstr "התנגדות חלקית"
+
+#~ msgid "Agnostic"
+#~ msgstr "לא ניתן לקבוע"
+
+#~ msgid "Complies partially"
+#~ msgstr "תמיכה חלקית"
+
+#~ msgid "Complies fully"
+#~ msgstr "תמיכה מלאה"
+
+#~ msgid "Marginal Importance"
+#~ msgstr "חשיבות נמוכה"
+
+#~ msgid "Medium Importance"
+#~ msgstr "חשיבות בינונית"
+
+#~ msgid "High Importance"
+#~ msgstr "חשיבות רבה"
+
+#~ msgid "Very High Importance"
+#~ msgstr "חשיבות רבה מאוד"
+
+#~ msgid "Agenda"
+#~ msgstr "אג'נדה"
+
+#~ msgid "Agendas"
+#~ msgstr "אג'נדות"
+
+#~ msgid "edited by"
+#~ msgstr "בעריכת"
+
+#~ msgid "None"
+#~ msgstr "כלום"
+
+#~ msgid "Comments on agenda %(agenda)s vote %(vote)s"
+#~ msgstr "תגובות על שיוך הצבעה %(vote)s לאג'נדה %(agenda)s"
+
+#~ msgid "Comments on agenda %(agenda)s meeting %(meeting)s"
+#~ msgstr "תגובות על שיוך ישיבה %(meeting)s לאג'נדה %(agenda)s"
+
+#~ msgid "Comments on agenda %(agenda)s bill %(bill)s"
+#~ msgstr "תגובות על שיוך הצעת חוק %(bill)s לאג'נדה %(agenda)s"
+
+#~ msgid "Analysis of %(member)s votes by agenda %(agenda)s"
+#~ msgstr "ניתוח ההצבעות של %(member)s לפי אג'נדה %(agenda)s"
+
+#~ msgid ""
+#~ "User %(user)s suggested vote %(vote)s to agenda %(agenda)s with "
+#~ "reasoning: %(reasoning)s"
+#~ msgstr ""
+#~ "המשתמש %(user)s הציע הצבעה %(vote)s לאג'נדה %(agenda)s עם הסבר: "
+#~ "%(reasoning)s"
+
+#~ msgid ""
+#~ "User <a href=\"%(user_href)s\">%(user)s</a> suggested vote <a href="
+#~ "\"%(vote_href)s\">%(vote)s</a> to agenda <a href=\"%(agenda_href)s\">"
+#~ "%(agenda)s</a> with reasoning %(reasoning)s"
+#~ msgstr ""
+#~ "המשתמש <a href=\"%(user_href)s\">%(user)s</a> הציע הצבעה <a href="
+#~ "\"%(vote_href)s\">%(vote)s</a> לאג'נדה <a href=\"%(agenda_href)s\">"
+#~ "%(agenda)s</a> עם הסבר \" %(reasoning)s \""
+
+#~ msgid "Open Knesset Agenda Editor Update"
+#~ msgstr "עדכוני כנסת פתוחה לעורכי אג'נדה"
+
+#~ msgid "Main activity feed"
+#~ msgstr "פיד פעילויות ראשי"
+
+#~ msgid ""
+#~ "Main activity feed for the whole site, same as presented on the main page"
+#~ msgstr "פיד ראשי עבור כל האתר, בדומה למוצג בדף הראשי"
+
+#~ msgid "Title"
+#~ msgstr "כותרת"
+
+#~ msgid "Did you know ?"
+#~ msgstr "הידעת ?"
+
+#~ msgid "Icon"
+#~ msgstr "צלמית"
+
+#~ msgid "Button text"
+#~ msgstr "טקסט הלחצן"
+
+#~ msgid "Button link"
+#~ msgstr "קישור הלחצן"
+
+#~ msgid "Suggest Tidbit"
+#~ msgstr "הצעת הידעת"
+
+#~ msgid "Send Feedback"
+#~ msgstr "שליחת משוב"
+
+#~ msgid "Quote"
+#~ msgstr "ציטוט"
+
+#~ msgid "Statistic"
+#~ msgstr "סטטיסטיקה"
+
+#~ msgid "Hand"
+#~ msgstr "הצבעה"
+
+#~ msgid "Active"
+#~ msgstr "פעיל"
+
+#~ msgid "Ordering"
+#~ msgstr "מיון"
+
+#~ msgid "Suggested by"
+#~ msgstr "הוצע ע\"י"
+
+#~ msgid "Tidbit"
+#~ msgstr "הידעת"
+
+#~ msgid "Tidbits"
+#~ msgstr "הידעת"
+
+#~ msgid "IP Address"
+#~ msgstr "כתובת IP"
+
+#~ msgid "URL"
+#~ msgstr "URL"
+
+#~ msgid "Feedback message"
+#~ msgstr "הודעת משוב"
+
+#~ msgid "Feedback messages"
+#~ msgstr "הודעות משוב"
+
+#~ msgid "No Tag found matching \"%s\"."
+#~ msgstr "לא נמצאו הצעות חוק בנושא \"%s\""
+
+#~ msgid "No Member found matching \"%s\"."
+#~ msgstr "לא נמצאו חברי כנסת \"%s\""
+
+#~ msgid "Help"
+#~ msgstr "עזרה"
+
+#~ msgid "Sorry, you do not have the permission to annotate."
+#~ msgstr "אין לך הרשאות להוסיף הארות."
+
+#~ msgid "Extremely below average"
+#~ msgstr "נמוך מאוד"
+
+#~ msgid "Below average"
+#~ msgstr "נמוך"
+
+#~ msgid "Average"
+#~ msgstr "ממוצע"
+
+#~ msgid "Above average"
+#~ msgstr "גבוה"
+
+#~ msgid "Extremely above average"
+#~ msgstr "גבוה מאוד"
+
+#~ msgid "got badge"
+#~ msgstr "קיבל/ה אות"
+
+#~ msgid "FirstFollow"
+#~ msgstr "עוקב"
+
+#~ msgid "You are following something"
+#~ msgstr "עוקב/ת אחר משהו באתר"
+
+#~ msgid "FirstMKFollow"
+#~ msgstr "עוקב אחר חבר כנסת"
+
+#~ msgid "You are following an MK"
+#~ msgstr "עוקב/ת אחר ח\"כ"
+
+#~ msgid "Plenum"
+#~ msgstr "מליאה"
+
+#~ msgid "Committee Meeting"
+#~ msgstr "ישיבת ועדה"
+
+#~ msgid "Committee Meetings"
+#~ msgstr "ישיבות הוועדה"
+
+#~ msgid "Description"
+#~ msgstr "תאור"
+
+#~ msgid "published"
+#~ msgstr "פורסמה"
+
+#~ msgid "flagged"
+#~ msgstr "חשודה"
+
+#~ msgid "rejected"
+#~ msgstr "נדחתה"
+
+#~ msgid "accepted"
+#~ msgstr "אושרה"
+
+#~ msgid "appeal"
+#~ msgstr "בערעור"
+
+#~ msgid "deleted"
+#~ msgstr "נמחקה"
+
+#~ msgid "Committees"
+#~ msgstr "ועדות"
+
+#~ msgid "Topic"
+#~ msgstr "הצעה לסדר"
+
+#~ msgid "Topics"
+#~ msgstr "הצעות לסדר"
+
+#~ msgid "%(committee)s meeting on %(date)s"
+#~ msgstr "ישיבה של %(committee)s בתאריך %(date)s  "
+
+#~ msgid "%(committee)s meeting on %(date)s on topic %(topic)s"
+#~ msgstr "ישיבה של %(committee)s בתאריך %(date)s  בנושא %(topic)s"
+
+#~ msgid " page %(page)s"
+#~ msgstr " עמוד %(page)s"
+
+#~ msgid "added-bill-to-cm"
+#~ msgstr "קישר/ה הצעת חוק לישיבת ועדה"
+
+#~ msgid "added-mk-to-cm"
+#~ msgstr "הוסיף/ה חבר כנסת לישיבת ועדה"
+
+#~ msgid "removed-mk-from-cm"
+#~ msgstr "הסיר/ה חבר כנסת מישיבת ועדה"
+
+#~ msgid "Knesset Plenum"
+#~ msgstr "מליאת הכנסת"
+
+#~ msgid "All meetings by %(committee)s"
+#~ msgstr "כל הישיבות של %(committee)s "
+
+#~ msgid "No %(object_type)s found"
+#~ msgstr "לא נמצאו %(object_type)s"
+
+#~ msgid "Meetings by %(committee)s on date %(date)s"
+#~ msgstr "ישיבות של %(committee)s בתאריך %(date)s"
+
+#~ msgid "Committee Meetings tagged %(tag)s"
+#~ msgstr "ישיבות וועדה שתויגו %(tag)s"
+
+#~ msgid "earth"
+#~ msgstr "כדור הארץ"
+
+#~ msgid "no end date data - guessed it to be 2 hours after start"
+#~ msgstr "חסרה שעת סיום הדיון"
+
+#~ msgid "oknesset warnings:"
+#~ msgstr "התראות כנסת פתוחה:"
+
+#~ msgid "share"
+#~ msgstr "הפיצו"
+
+#~ msgid "Open Knesset"
+#~ msgstr "כנסת פתוחה"
+
+#~ msgid "Comments feed"
+#~ msgstr "הזנה של תגובות"
+
+#~ msgid "Votes feed"
+#~ msgstr "הזנה של הצבעות"
+
+#~ msgid "Bills feed"
+#~ msgstr "הזנה של הצעות חוק"
+
+#~ msgid "Annotations"
+#~ msgstr "הארות"
+
+#~ msgid "Statement"
+#~ msgstr "הצהרה"
+
+#~ msgid "Funny :-)"
+#~ msgstr "מצחיק :-)"
+
+#~ msgid "False fact"
+#~ msgstr "עובדה שגויה"
+
+#~ msgid "Source?"
+#~ msgstr "מקור?"
+
+#~ msgid "Found source"
+#~ msgstr "הפניה למקור"
+
+#~ msgid "Cross reference"
+#~ msgstr "ראה גם"
+
+#~ msgid "Important"
+#~ msgstr "חשוב"
+
+#~ msgid "Formatting/Error!"
+#~ msgstr "עיצוב/שגיאה"
+
+#~ msgid "Comment"
+#~ msgstr "תגובה"
+
+#~ msgid "Open Knesset requires attention"
+#~ msgstr "כנסת פתוחה דורשת קצת תשומת לב"
+
+#~ msgid "Knesset Votes feed"
+#~ msgstr "הזנה של הצבעות בכנסת"
+
+#~ msgid "Knesset Bills feed"
+#~ msgstr "הזנה של הצעות חוק בכנסת"
+
+#~ msgid "Bills from the Open Knesset site"
+#~ msgstr "הצעות חוק מאתר כנסת פתוחה"
+
+#~ msgid "All"
+#~ msgstr "הכול"
+
+#~ msgid "One-time costs to government"
+#~ msgstr "עלות חד-פעמית לממשלה"
+
+#~ msgid "Yearly costs to government"
+#~ msgstr "עלות שנתית לממשלה"
+
+#~ msgid "One-time costs to external bodies"
+#~ msgstr "עלות חד-פעמית לגורמים אחרים"
+
+#~ msgid "Yearly costs to external bodies"
+#~ msgstr "עלות שנתית לגורמים אחרים"
+
+#~ msgid "Summary of the estimation"
+#~ msgstr "סיכום ההערכה"
+
+#~ msgid "Vote types"
+#~ msgstr "סוגי הצבעות"
+
+#~ msgid "Order by"
+#~ msgstr "מיון לפי"
+
+#~ msgid "From date"
+#~ msgstr "מתאריך"
+
+#~ msgid "To date"
+#~ msgstr "עד"
+
+#~ msgid "Exclude my agendas"
+#~ msgstr "ללא הצבעות המשויכות לאג'נדה בעריכתך"
+
+#~ msgid "Exclude votes ascribed to bills"
+#~ msgstr "ללא הצבעות המשויכות להצעות חוק"
+
+#~ msgid "Bill Stage"
+#~ msgstr "שלב הצעת החוק"
+
+#~ msgid "Stage Changed After:"
+#~ msgstr "שלב השתנה אחרי:"
+
+#~ msgid "Stage Chaged Before:"
+#~ msgstr "שינוי סטטוס לפני:"
+
+#~ msgid "Invalid booklet number"
+#~ msgstr "מספר חוברת לא חוקי"
+
+#~ msgid "Booklet does not exist"
+#~ msgstr "חוברת לא קיימת"
+
+#~ msgid "For"
+#~ msgstr "בעד"
+
+#~ msgid "Against"
+#~ msgstr "נגד"
+
+#~ msgid "Abstain"
+#~ msgstr "נמנע"
+
+#~ msgid "No Vote"
+#~ msgstr "נוכח ולא הצביע"
+
+#~ msgid "N/A"
+#~ msgstr "לא ישים"
+
+#~ msgid "Vote"
+#~ msgstr "הצבעה"
+
+#~ msgid "Votes"
+#~ msgstr "הצבעות"
+
+#~ msgid "Bill"
+#~ msgstr "הצעת חוק"
+
+#~ msgid "Bills"
+#~ msgstr "הצעות חוק"
+
+#~ msgid "Estimation of"
+#~ msgstr "הערכה של"
+
+#~ msgid "Estimated on:"
+#~ msgstr "הוערך ב:"
+
+#~ msgid "One-time costs to government:"
+#~ msgstr "עלות חד-פעמית לממשלה:"
+
+#~ msgid "Yearly costs to government:"
+#~ msgstr "עלות שנתית לממשלה:"
+
+#~ msgid "One-time costs to external bodies:"
+#~ msgstr "עלות חד-פעמית לגורמים אחרים:"
+
+#~ msgid "Yearly costs to external bodies:"
+#~ msgstr "עלות שנתית לגורמים אחרים:"
+
+#~ msgid "Summary of the estimation:"
+#~ msgstr "סיכום ההערכה:"
+
+#~ msgid "Bills by %(member)s by tag"
+#~ msgstr "הצעות חוק של %(member)s לפי נושא"
+
+#~ msgid "Bills by tag"
+#~ msgstr "הצעות חוק לפי נושא"
+
+#~ msgid "Bills tagged %(tag)s by %(member)s"
+#~ msgstr "הצעות חוק של %(member)s בנושא %(tag)s"
+
+#~ msgid "Bills tagged %(tag)s"
+#~ msgstr "הצעות חוק בנושא %(tag)s"
+
+#~ msgid "Votes by %(member)s by tag"
+#~ msgstr "הצבעות של %(member)s לפי נושא"
+
+#~ msgid "Votes by tag"
+#~ msgstr "הצבעות לפי נושא"
+
+#~ msgid "Votes tagged %(tag)s by %(member)s"
+#~ msgstr "הצבעות של %(member)s בנושא %(tag)s"
+
+#~ msgid "Votes tagged %(tag)s"
+#~ msgstr "הצבעות שתויגו %(tag)s"
+
+#~ msgid "Full Title"
+#~ msgstr "כותרת"
+
+#~ msgid "Popular Name"
+#~ msgstr "שם פופולרי"
+
+#~ msgid "Stage"
+#~ msgstr "שלב"
+
+#~ msgid "Stage Date"
+#~ msgstr "תאריך עדכון אחרון"
+
+#~ msgid "Pre-Votes"
+#~ msgstr "קריאה טרומית"
+
+#~ msgid "First Committee Meetings"
+#~ msgstr "ישיבות ועדה"
+
+#~ msgid "First Vote"
+#~ msgstr "קריאה ראשונה"
+
+#~ msgid "Second Committee Meetings"
+#~ msgstr "ישיבות ועדה"
+
+#~ msgid "Approval Vote"
+#~ msgstr "הצבעת אישור"
+
+#~ msgid "Proposers"
+#~ msgstr "מציעים"
+
+#~ msgid "Joiners"
+#~ msgstr "מצטרפים"
+
+#~ msgid "added-vote-to-bill"
+#~ msgstr "קישר/ה הצבעה להצעת חוק"
+
+#~ msgid "Invalid member id"
+#~ msgstr "מזהה חבר כנסת לא חוקי"
+
+#~ msgid "All stages"
+#~ msgstr "כל השלבים"
+
+#~ msgid "(Bills) proposed"
+#~ msgstr "הוצעו"
+
+#~ msgid "(Bills) passed pre-vote"
+#~ msgstr "עברו טרומית"
+
+#~ msgid "(Bills) passed first vote"
+#~ msgstr "עברו קריאה ראשונה"
+
+#~ msgid "(Bills) approved"
+#~ msgstr "אושרו סופית"
+
+#~ msgid "Bills %(stage)s"
+#~ msgstr "הצעות חוק ש%(stage)s"
+
+#~ msgid "Bills published in knesset booklet number %s"
+#~ msgstr "חוקים שפורסמו בחוברת הכנסת מספר %s"
+
+#~ msgid "Bills %(stage)s by %(member)s"
+#~ msgstr "הצעות חוק ביוזמת %(member)s ש%(stage)s"
+
+#~ msgid "Bills by %(member)s"
+#~ msgstr "הצעות חוק ביוזמת %(member)s"
+
+#~ msgid "Vote Type"
+#~ msgstr "סוג הצבעה"
+
+#~ msgid "Time"
+#~ msgstr "זמן"
+
+#~ msgid "Votes Count"
+#~ msgstr "מספר הצבעות"
+
+#~ msgid "Votes Against Party"
+#~ msgstr "הצבעות נגד המפלגה"
+
+#~ msgid "Votes Against Coalition"
+#~ msgstr "הצבעות נגד הקואליציה"
+
+#~ msgid "Votes Against Opposition"
+#~ msgstr "הצבעות נגד האופוזיציה"
+
+#~ msgid "Votes Against Own Bill"
+#~ msgstr "הצבעות נגד הצעות חוק של עצמו"
+
+#~ msgid "All votes"
+#~ msgstr "כל ההצבעות"
+
+#~ msgid "Law Approvals"
+#~ msgstr "אישור חוקים"
+
+#~ msgid "Demurrer"
+#~ msgstr "הסתייגויות"
+
+#~ msgid "Motion of no confidence"
+#~ msgstr "הצבעות אי-אמון"
+
+#~ msgid "Pass to committee"
+#~ msgstr "העברה לוועדה"
+
+#~ msgid "Continuation"
+#~ msgstr "החלת דין רציפות"
+
+#~ msgid "Untagged Votes"
+#~ msgstr "הצבעות לא מתויגות"
+
+#~ msgid "Controversy"
+#~ msgstr "מידת המחלוקת"
+
+#~ msgid "Against Party"
+#~ msgstr "הצבעות נגד המפלגה"
+
+#~ msgid "Number of votes"
+#~ msgstr "מספר הצבעות"
+
+#~ msgid "Unknown"
+#~ msgstr "לא ידוע"
+
+#~ msgid "Frozen in previous knesset"
+#~ msgstr "הוקפאה בכנסת קודמת"
+
+#~ msgid "Proposed"
+#~ msgstr "הצעה"
+
+#~ msgid "Pre-Approved"
+#~ msgstr "עברה קריאה טרומית"
+
+#~ msgid "Failed Pre-Approval"
+#~ msgstr "נפלה בקריאה טרומית"
+
+#~ msgid "Converted to discussion"
+#~ msgstr "הוסבה לנושא לדיון"
+
+#~ msgid "In Committee"
+#~ msgstr "בוועדה"
+
+#~ msgid "Failed First Vote"
+#~ msgstr "נפלה בקריאה ראשונה"
+
+#~ msgid "Committee Corrections"
+#~ msgstr "בתיקונים בוועדה"
+
+#~ msgid "Approved"
+#~ msgstr "אושרה"
+
+#~ msgid "Failed Approval"
+#~ msgstr "נפלה בקריאה שלישית"
+
+#~ msgid "Untagged Proposals"
+#~ msgstr "הצעות שלא תויגו"
+
+#~ msgid "Not enough data"
+#~ msgstr "אין מספיק נתונים"
+
+#~ msgid "Absent"
+#~ msgstr "לא נוכח"
+
+#~ msgid "voted"
+#~ msgstr "הצביע"
+
+#~ msgid "posted"
+#~ msgstr "פִרסם"
+
+#~ msgid "attended"
+#~ msgstr "נכח"
+
+#~ msgid "committee meeting"
+#~ msgstr "ישיבת וועדה"
+
+#~ msgid "Member activity feed for %s"
+#~ msgstr "פעילות עבור חבר/ת הכנסת %s"
+
+#~ msgid ""
+#~ "Actions of %s, including votes, attended committees and posted articles"
+#~ msgstr "פעילות עבור %s כולל הצבעות, פירסומים ונוכחות בוועדות"
+
+#~ msgid "Knesset number"
+#~ msgstr "מספר כנסת"
+
+#~ msgid "Start date"
+#~ msgstr "תאריך התחלה"
+
+#~ msgid "End date"
+#~ msgstr "תאריך סיום"
+
+#~ msgid "Knesset %(number)d"
+#~ msgstr "כנסת %(number)d"
+
+#~ msgid "Party"
+#~ msgstr "מפלגה"
+
+#~ msgid "Parties"
+#~ msgstr "סיעות"
+
+#~ msgid "%(name)s in Knesset %(number)d"
+#~ msgstr "%(name)s בכנסת ה־%(number)d"
+
+#~ msgid "Coalition"
+#~ msgstr "קואליציה"
+
+#~ msgid "Opposition"
+#~ msgstr "אופוזיציה"
+
+#~ msgid "an accurate place of residence (for example, an address"
+#~ msgstr "מקום מגורים מדויק (למשל, כתובת)"
+
+#~ msgid "a general area of residence (for example, \"the negev\""
+#~ msgstr "אזור מגורים (למשל, \"נגב\")"
+
+#~ msgid "Member"
+#~ msgstr "ח\"כ"
+
+#~ msgid "Coalition Member (female)"
+#~ msgstr "חברת כנסת בקואליציה"
+
+#~ msgid "Opposition Member (female)"
+#~ msgstr "חברת כנסת באופוזיציה"
+
+#~ msgid "Coalition Member (male)"
+#~ msgstr "חבר כנסת בקואליציה"
+
+#~ msgid "Opposition Member (male)"
+#~ msgstr "חבר כנסת באופוזיציה"
+
+#~ msgid "Past Member (female)"
+#~ msgstr "חברת כנסת לשעבר"
+
+#~ msgid "Past Member (male)"
+#~ msgstr "חבר כנסת לשעבר"
+
+#~ msgid "Minister"
+#~ msgstr "שר"
+
+#~ msgid "By ABC"
+#~ msgstr "לפי א\"ב"
+
+#~ msgid "By number of bills proposed"
+#~ msgstr "לפי מספר הצעות חוק שהוצעו"
+
+#~ msgid "By number of bills pre-approved"
+#~ msgstr "לפי מספר הצעות חוק שעברו טרומית"
+
+#~ msgid "By number of bills first-approved"
+#~ msgstr "לפי מספר הצעות חוק שעברו קריאה ראשונה"
+
+#~ msgid "By number of bills approved"
+#~ msgstr "לפי מספר הצעות חוק שאושרו סופית"
+
+#~ msgid "By number of votes per month"
+#~ msgstr "לפי מספר הצבעות ממוצע בחודש"
+
+#~ msgid "By average weekly hours of presence"
+#~ msgstr "ממוצע שעות שבועיות"
+
+#~ msgid "By average monthly committee meetings"
+#~ msgstr "מספר ישיבות וועדות בחודש"
+
+#~ msgid "Graphical view"
+#~ msgstr "תצוגה גרפית"
+
+#~ msgid "Bills Proposed"
+#~ msgstr "הצעות חוק שהוצעו"
+
+#~ msgid "Bills Pre-Approved"
+#~ msgstr "הצעות חוק שאושרו טרומית"
+
+#~ msgid "Bills First-Approved"
+#~ msgstr "הצעות חוק שאושרו בקריאה ראשונה"
+
+#~ msgid "Bills Approved"
+#~ msgstr "הצעות חוק שאושרו סופית"
+
+#~ msgid "Average Votes per Month"
+#~ msgstr "ממוצע הצבעות בחודש"
+
+#~ msgid "Average Weekly Presence"
+#~ msgstr "שעות שבועיות בממוצע"
+
+#~ msgid "Committee Meetings per Month"
+#~ msgstr "ישיבות ועדה בחודש"
+
+#~ msgid "By Number of seats"
+#~ msgstr "מספר ח\"כים"
+
+#~ msgid "By votes per seat"
+#~ msgstr "הצבעות לח\"כ"
+
+#~ msgid "By factional discipline"
+#~ msgstr "משמעת סיעתית"
+
+#~ msgid "By coalition/opposition discipline"
+#~ msgstr "משמעת קואליציה/אופוזיציה"
+
+#~ msgid "By residence centrality"
+#~ msgstr "מדד מרכזיות מקום מגורים"
+
+#~ msgid "By residence economy"
+#~ msgstr "מדד סוציואקונומי של מקום מגורים"
+
+#~ msgid "By bills proposed"
+#~ msgstr "מספר הצעות חוק שהוצעו"
+
+#~ msgid "By bills passed pre vote"
+#~ msgstr "הצעות חוק שעברו טרומית"
+
+#~ msgid "By bills passed first vote"
+#~ msgstr "הצעות חוק שעברו קריאה ראשונה"
+
+#~ msgid "By bills approved"
+#~ msgstr "הצעות חוק שאושרו סופית"
+
+#~ msgid "Parties by %s"
+#~ msgstr "סיעות לפי %s"
+
+#~ msgid "Number of Members"
+#~ msgstr "מספר חברים"
+
+#~ msgid "Number of Seats"
+#~ msgstr "מספר מנדטים"
+
+#~ msgid "Affiliation"
+#~ msgstr "שיוך"
+
+#~ msgid "No %(object_type)s found matching \"%(name)s\"."
+#~ msgstr "לא נמצאו %(object_type)s התואמים ל- \"%(name)s\"."
+
+#~ msgid "Other Updates"
+#~ msgstr "עדכונים שונים"
+
+#~ msgid "Open Knesset Updates"
+#~ msgstr "עדכוני כנסת פתוחה"
+
+#~ msgid "Person"
+#~ msgstr "אדם"
+
+#~ msgid "Persons"
+#~ msgstr "אנשים"
+
+#~ msgid "Persons in committee meetings"
+#~ msgstr "משתתפים בישיבות וועדות הכנסת"
+
+#~ msgid "%(name)s in committee meetings"
+#~ msgstr "%(name)s בישיבות ועדות הכנסת"
+
+#~ msgid "How many people voted for this person"
+#~ msgstr "כמה מצביעים תמכו במועמד"
+
+#~ msgid "New"
+#~ msgstr "חדש"
+
+#~ msgid "Fixed"
+#~ msgstr "התקבל"
+
+#~ msgid "Won't Fix"
+#~ msgstr "נדחה"
+
+#~ msgid "Suggested at"
+#~ msgstr "הוצע ב"
+
+#~ msgid "Resolved at"
+#~ msgstr "נפתר ב"
+
+#~ msgid "Resolved status"
+#~ msgstr "סטטוס פתרון"
+
+#~ msgid "Reject reason"
+#~ msgstr "סיבת דחיה"
+
+#~ msgid "Suggestion"
+#~ msgstr "הצעה"
+
+#~ msgid "Suggestions"
+#~ msgstr "הצעות"
+
+#~ msgid "Create new model instance"
+#~ msgstr "יצירת אובייקט חדש למודל"
+
+#~ msgid "Suggestion type"
+#~ msgstr "סוג הצעה"
+
+#~ msgid "tagged item"
+#~ msgstr "פריט מתויג"
+
+#~ msgid "tag vote"
+#~ msgstr "הצבעה על תיוג"
+
+#~ msgid "tag votes"
+#~ msgstr "הצבעות על תגיות"
+
+#~ msgid "Page not found"
+#~ msgstr "דף לא קיים"
+
+#~ msgid "Something went wrong!"
+#~ msgstr "משהו השתבש!"
+
+#~ msgid ""
+#~ "Whatever you did caused some kind of an error in our server. But hey! its "
+#~ "OK. We don't blame you. On the contrary. You just helped us find a bug, "
+#~ "and our team will investigate it ASAP."
+#~ msgstr ""
+#~ "משהו שעשית גרם לשגיאה בשרת שלנו. אבל הי! אנחנו לא מאשימים אותך. להפך. "
+#~ "עזרת לנו למצוא באג, והצוות שלנו יתפנה מייד לטפל בו. אז תודה רבה לך!"
+
+#~ msgid "Back to the main page"
+#~ msgstr "חזרה לעמוד הראשי"
+
+#~ msgid ""
+#~ "Open Knesset a project aimed at exposing the knesset's work to the public."
+#~ msgstr "פרויקט זה מיועד לחשוף את פעילות הכנסת לציבור."
+
+#~ msgid "After all, they work for us, don't they?"
+#~ msgstr "בסופו של דבר, הם עובדים בשבילנו, לא?"
+
+#~ msgid ""
+#~ "All the work is done by volunteers, with no support from any political or "
+#~ "commercial entity."
+#~ msgstr ""
+#~ "כל העבודה מתבצעת בהתנדבות בלי תמיכה של גוף פוליטי או מסחרי (פרט לאירוח "
+#~ "האתר)."
+
+#~ msgid "Most of the data is taken from the Knesset website."
+#~ msgstr "רוב הנתונים נלקחים מאתר הכנסת."
+
+#~ msgid "All the source code is available"
+#~ msgstr "קוד המקור נמצא "
+
+#~ msgid "The project's mailing list is"
+#~ msgstr "קבוצת הדיון נמצאת "
+
+#~ msgid "Open Knesset - Opening the Knesset to the public"
+#~ msgstr "כנסת פתוחה - פותחים את הכנסת לציבור"
+
+#~ msgid ""
+#~ "This is a development server, all data in it should be considered "
+#~ "fictional.  users are kindly requested to go to "
+#~ msgstr ""
+#~ "זהו שרת פיתוח. יש להתייחס לכל הכתוב כאן כאל מידע דמיוני. משתמשים מתבקשים "
+#~ "לעבור ל"
+
+#~ msgid "Edit Profile"
+#~ msgstr "עריכת פרופיל"
+
+#~ msgid "Logout"
+#~ msgstr "יציאה מהחשבון"
+
+#~ msgid "login"
+#~ msgstr "כניסה לחשבון"
+
+#~ msgid "Members and Parties"
+#~ msgstr "ח&quot;כים וסיעות"
+
+#~ msgid "Legislation"
+#~ msgstr "חקיקה"
+
+#~ msgid "Homepage"
+#~ msgstr "דף הבית"
+
+#~ msgid "Feedback"
+#~ msgstr "משוב"
+
+#~ msgid ""
+#~ "Open Knesset is a project aimed to expose Knesset's actions to the public"
+#~ msgstr "כנסת פתוחה הוא פרוייקט שמטרתו לחשוף את פעילות הכנסת לציבור"
+
+#~ msgid ""
+#~ "All the information comes from the Knesset's site.\n"
+#~ "                    This site is maintained by volunteers and is not "
+#~ "supported by\n"
+#~ "                    any political party ..."
+#~ msgstr ""
+#~ "כל המידע מגיע מאתר הכנסת. האתר מתוחזק על ידי מתנדבים ואינו נתמך ע\"י אף "
+#~ "גוף מפלגתי ..."
+
+#~ msgid "Read more"
+#~ msgstr "קרא עוד"
+
+#~ msgid "Follow Open Knesset"
+#~ msgstr "עקבו אחר כנסת פתוחה"
+
+#~ msgid "Project of"
+#~ msgstr "פרוייקט של"
+
+#~ msgid "Open Budget"
+#~ msgstr "התקציב הפתוח"
+
+#~ msgid "Opening the finance committee"
+#~ msgstr "פותחים את ועדת הכספים"
+
+#~ msgid "Traking Trachtenberg"
+#~ msgstr "מעקב: דו\"ח טרכטנברג"
+
+#~ msgid "Open Local Authorities"
+#~ msgstr "רשויות מקומיות פתוחות - בקרוב"
+
+#~ msgid "Donate to Hasadna"
+#~ msgstr "תרמו לסדנא"
+
+#~ msgid "Some rights reserved. Using data from the site requires credit"
+#~ msgstr "חלק מהזכויות שמורות. שימוש בנתונים מהאתר בכפוף לקרדיט"
+
+#~ msgid "Details in the link"
+#~ msgstr "פרטים בקישור"
+
+#~ msgid "See more  ..."
+#~ msgstr "עוד..."
+
+#~ msgid "See less  ..."
+#~ msgstr "פחות..."
+
+#~ msgid ""
+#~ "Non partisan, non commercial site that brings you relevant, detailed and "
+#~ "accurate information about the knesset"
+#~ msgstr ""
+#~ "אתר לא מפלגתי, לא מסחרי שמביא לכם תוכן רלוונטי, מפורט ועדכני על אודות "
+#~ "הכנסת"
+
+#~ msgid "Upcoming Events"
+#~ msgstr "בקרוב בכנסת"
+
+#~ msgid "Loading"
+#~ msgstr "טוען"
+
+#~ msgid "More"
+#~ msgstr "עוד"
+
+#~ msgid "comments"
+#~ msgstr "תגובות"
+
+#~ msgid "email validation for"
+#~ msgstr "אימות דואר אלקטרוני עבור"
+
+#~ msgid "An email has been sent to"
+#~ msgstr "נשלח דואר ל"
+
+#~ msgid "Please use the link in the email to validate."
+#~ msgstr ""
+#~ "אנא השתמש/י בקישור שנשלח במייל כדי לאשר שכתובת המייל שסופקה אכן שלך."
+
+#~ msgid "Your email has been validated, so you can now edit stuff!"
+#~ msgstr "הדואר האלקטרוני אומת. מעכשיו תוכל/י לערוך."
+
+#~ msgid ""
+#~ "\n"
+#~ "A vote's relation to the agenda has changed: <a href=\"http://%(domain)s"
+#~ "%(url)s\">%(vote)s</a>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "שיוך ההצבעה לאג'נדה עודכן: <a href=\"http://%(domain)s%(url)s\">%(vote)s</"
+#~ "a>\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "The vote <a href=\"http://%(domain)s%(url)s\">%(vote)s</a> has been "
+#~ "ascribed to the adenga.\n"
+#~ msgstr ""
+#~ "\n"
+#~ "ההצבעה <a href=\"http://%(domain)s%(url)s\">%(vote)s</a> שויכה לאג'נדה.\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "A bill has been ascribed to the agenda: <a href=\"http://%(domain)s%(url)s"
+#~ "\">%(bill)s</a>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "הצעת חוק שויכה לאג'נדה: <a href=\"http://%(domain)s%(url)s\">%(bill)s</"
+#~ "a>\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "A bill's relation to the agenda has changed: <a href=\"http://%(domain)s"
+#~ "%(url)s\">%(bill)s</a>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "שיוך הצעת חוק לאג'נדה עודכן: <a href=\"http://%(domain)s%(url)s\">%(bill)"
+#~ "s</a>\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "A bill has been removed from the agenda: <a href=\"http://%(domain)s%(url)"
+#~ "s\">%(bill)s</a>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "הצעת חוק הוסרה מהאג'נדה: <a href=\"http://%(domain)s%(url)s\">%(bill)s</"
+#~ "a>\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "A meeting has been ascribed to the agenda: <a href=\"http://%(domain)s"
+#~ "%(url)s\">%(meeting)s</a>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "ישיבת ועדה שויכה לאג'נדה: <a href=\"http://%(domain)s%(url)s\">%(meeting)"
+#~ "s</a>\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "A meeting's relation to the agenda has changed: <a href=\"http://%(domain)"
+#~ "s%(url)s\">%(meeting)s</a>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "שיוך ישיבת ועדה לאג'נדה עודכן: <a href=\"http://%(domain)s%(url)s\">"
+#~ "%(meeting)s</a>\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "A meeting has been removed from the agenda: <a href=\"http://%(domain)s"
+#~ "%(url)s\">%(meeting)s</a>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "ישיבת ועדה הוסרה מהאג'נדה: <a href=\"http://%(domain)s%(url)s\">%(meeting)"
+#~ "s</a>\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "The vote <a href=\"http://%(domain)s%(url)s\">%(vote)s</a> has been "
+#~ "removed from the adenga.\n"
+#~ msgstr ""
+#~ "\n"
+#~ "ההצבעה <a href=\"http://%(domain)s%(url)s\">%(vote)s</a> הוסרה מהאג'נדה.\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "%(user)s annotated %(comment)s<br>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "%(user)s האיר %(comment)s<br>\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "%(user)s annotated <a href=\"http://%(domain)s%(url)s\">%(comment)s</"
+#~ "a><br>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "%(user)s האיר <a href=\"http://%(domain)s%(url)s\">%(comment)s</a><br>\n"
+
+#~ msgid "Attended (Femail),Attended (Male)"
+#~ msgstr "נכחה,נכח"
+
+#~ msgid "read meeting protocol"
+#~ msgstr "קריאת את פרוטוקול הישיבה"
+
+#~ msgid ""
+#~ "\n"
+#~ "%(user)s commented <a href=\"http://%(domain)s%(url)s\">%(comment)s</a>\n"
+#~ "<br>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "%(user)s העיר <a href=\"http://%(domain)s%(url)s\">%(comment)s</a><br>\n"
+
+#~ msgid "JOINED (FEMALE),JOINED (MALE)"
+#~ msgstr "הצטרפה,הצטרף"
+
+#~ msgid "to bill"
+#~ msgstr "אל הצעת חוק"
+
+#~ msgid "read post"
+#~ msgstr "קריאת  מאמר"
+
+#~ msgid "PROPOSED (FEMALE),PROPOSED (MALE)"
+#~ msgstr "הציעה,הציע"
+
+#~ msgid "voted up on tag"
+#~ msgstr "הצביע בעד תגית"
+
+#~ msgid "voted down on tag"
+#~ msgstr "הצביע נגד תגית"
+
+#~ msgid "of"
+#~ msgstr "של"
+
+#~ msgid "Present and didn't vote (Female),Present and didn't vote (Male)"
+#~ msgstr "נכחה ולא הצביע,נכח ולא הצביע"
+
+#~ msgid "Voted (Female),Voted (Male)"
+#~ msgstr "הצביעה,הצביע"
+
+#~ msgid "present and didn't vote"
+#~ msgstr "נכח ולא הצביע"
+
+#~ msgid ""
+#~ "\n"
+#~ "    <span class=\"action-verb\">passed approval vote</span> on %(date)s. "
+#~ "<a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "    <span class=\"action-verb\">אושרה בקריאה שלישית</span> בתאריך %(date)"
+#~ "s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    "
+
+#~ msgid ""
+#~ "\n"
+#~ "    <span class=\"action-verb\">failed approval vote</span> on %(date)s. "
+#~ "<a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "    <span class=\"action-verb\">נפלה בקריאה שלישית</span> בתאריך %(date)"
+#~ "s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    "
+
+#~ msgid ""
+#~ "\n"
+#~ "<span class=\"action-verb\">was converted to discussion</span> on %(time)"
+#~ "s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "<span class=\"action-verb\">הוסבה לנושא לדיון</span> בתאריך %(time)s. <a "
+#~ "href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "<span class=\"action-verb\">was discussed</span> on %(date)s: <a href="
+#~ "\"http://%(domain)s%(url)s\">%(committee_meeting)s</a><br>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "<span class=\"action-verb\">נידונה בוועדה</span> בתאריך %(date)s: <a href="
+#~ "\"http://%(domain)s%(url)s\">%(committee_meeting)s</a><br>\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "    <span class=\"action-verb\">passed first vote</span> on %(date)s. <a "
+#~ "href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "    <span class=\"action-verb\">עברה קריאה ראשונה</span> בתאריך %(date)s. "
+#~ "<a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    "
+
+#~ msgid ""
+#~ "\n"
+#~ "    <span class=\"action-verb\">failed first vote</span> on %(date)s. <a "
+#~ "href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "    <span class=\"action-verb\">נפלה בקריאה ראשונה</span> בתאריך %(date)"
+#~ "s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    "
+
+#~ msgid ""
+#~ "\n"
+#~ "<span class=\"action-verb\">was knesset-proposed</span> on %(date)s. <a "
+#~ "href=\"http://%(domain)s%(url)s\">see more details</a><br>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "<span class=\"action-verb\">נוסחה על ידי וועדה</span> בתאריך %(date)s. <a "
+#~ "href=\"http://%(domain)s%(url)s\">פרטים נוספים</a><br>\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "    <span class=\"action-verb\">passed pre vote</span> on %(time)s. <a "
+#~ "href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "    <span class=\"action-verb\">עברה קריאה טרומית</span> בתאריך %(time)s. "
+#~ "<a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    "
+
+#~ msgid ""
+#~ "\n"
+#~ "    <span class=\"action-verb\">failed pre vote</span> on %(time)s. <a "
+#~ "href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "    <span class=\"action-verb\">נפלה בקריאה טרומית</span> בתאריך %(time)"
+#~ "s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    "
+
+#~ msgid ""
+#~ "\n"
+#~ "<span class=\"action-verb\">was proposed</span> on %(date)s. <a href="
+#~ "\"http://%(domain)s%(url)s\">see more details</a><br>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "<span class=\"action-verb\">הוצעה</span> בתאריך %(date)s. <a href="
+#~ "\"http://%(domain)s%(url)s\">פרטים נוספים</a><br>\n"
+
+#~ msgid ""
+#~ "\n"
+#~ "    <span class=\"action-verb\">government stand was decided</span> on "
+#~ "%(date)s: %(stand)s<br>\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "    <span class=\"action-verb\">עמדת הממשלה נקבעה בתאריך</span> %(date)s: "
+#~ "%(stand)s<br>\n"
+#~ "    "
+
+#~ msgid ""
+#~ "\n"
+#~ "    the government discussed the bill on %(date)s<br>\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "    הממשלה דנה בחוק בתאריך %(date)s<br>\n"
+#~ "    "
+
+#~ msgid "voted on several tags"
+#~ msgstr "הצביע על תגיות"
+
+#~ msgid "voted on tags"
+#~ msgstr "הצביע על תגיות"
+
+#~ msgid "voted on tag"
+#~ msgstr "הצביע על תגית"
+
+#~ msgid "Add Agenda"
+#~ msgstr "הוספת אג'נדה"
+
+#~ msgid "Add agenda"
+#~ msgstr "הוספת אג'נדה"
+
+#~ msgid "No results found"
+#~ msgstr "לא נמצאו תוצאות"
+
+#~ msgid "Edited by"
+#~ msgstr "בעריכת"
+
+#~ msgid ""
+#~ "Note: This agenda is private. It is only viewable by its editors. If you "
+#~ "feel this agenda should be made public, contact us at"
+#~ msgstr ""
+#~ "שימו לב: אג'נדה זו פרטית. רק עורכי האג'נדה יכולים לראות אותה. אם אתם "
+#~ "מרגישים שהיא מוכנה להפוך לציבורית, שלחו לנו מייל ל"
+
+#~ msgid "Ascribed Votes"
+#~ msgstr "הצבעות משויכות"
+
+#~ msgid "Ascribed Bills"
+#~ msgstr "הצעות חוק משויכות"
+
+#~ msgid "Ascribed Committee Meetings"
+#~ msgstr "ישיבות ועדה משויכות"
+
+#~ msgid "Agenda MKs"
+#~ msgstr "ציוני הח\"כים באג'נדה"
+
+#~ msgid "Agenda Top MKs"
+#~ msgstr "הח\"כים התומכים ביותר באג'נדה"
+
+#~ msgid "Click here to see the full list."
+#~ msgstr "לחץ כאן לרשימה המלאה."
+
+#~ msgid "Agenda Bottom MKs"
+#~ msgstr "הח\"כים המתנגדים ביותר לאג'נדה"
+
+#~ msgid "Edit agenda"
+#~ msgstr "עריכת אג'נדה"
+
+#~ msgid "Close"
+#~ msgstr "סגור"
+
+#~ msgid "Your Agendas"
+#~ msgstr "האג'נדות שלך"
+
+#~ msgid "Please login to see agendas you can edit"
+#~ msgstr "יש להכנס לחשבון כדי לראות אג'נדות שלך"
+
+#~ msgid "You are not editing any agenda"
+#~ msgstr "אין אג'נדות בעריכתך"
+
+#~ msgid "Add"
+#~ msgstr "הוספה"
+
+#~ msgid "All Agendas"
+#~ msgstr "כל האג'נדות"
+
+#~ msgid "followers"
+#~ msgstr "עוקבים"
+
+#~ msgid "Including you"
+#~ msgstr "כולל אותך"
+
+#~ msgid "by"
+#~ msgstr "על ידי"
+
+#~ msgid "Editors:"
+#~ msgstr "עורכים"
+
+#~ msgid ""
+#~ "\n"
+#~ "                %(counter)s MK voted differently than the majority of his "
+#~ "party\n"
+#~ "                "
+#~ msgid_plural ""
+#~ "\n"
+#~ "                %(counter)s MKs voted differently than the majority of "
+#~ "their party\n"
+#~ "                "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "ח\"כ אחד הצביע שונה ממרבית חברי מפלגתו"
+#~ msgstr[1] ""
+#~ "\n"
+#~ "%(counter)s ח\"כים הצביעו שונה ממרבית חברי מפלגותיהם"
+
+#~ msgid ""
+#~ "\n"
+#~ "                %(counter)s member of the coalition voted differently "
+#~ "than the majority of the coalition\n"
+#~ "                "
+#~ msgid_plural ""
+#~ "\n"
+#~ "                %(counter)s member of the coalition voted differently "
+#~ "than the majority of the coalition\n"
+#~ "                "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "חבר קואליציה אחד הצביע שונה מרוב חברי הקואליציה"
+#~ msgstr[1] ""
+#~ "\n"
+#~ "%(counter)s חברי קואליציה הצביעו שונה משאר חברי הקואליציה"
+
+#~ msgid ""
+#~ "\n"
+#~ "                %(counter)s member of the opposition voted differently "
+#~ "than the majority of the opposition\n"
+#~ "                "
+#~ msgid_plural ""
+#~ "\n"
+#~ "                %(counter)s member of the opposition voted differently "
+#~ "than the majority of the opposition\n"
+#~ "                "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "חבר אופוזיציה אחד הצביע שונה משאר חברי האופוזיציה"
+#~ msgstr[1] ""
+#~ "\n"
+#~ "%(counter)s חברי אופוזיציה הצביעו שונה משאר חברי האופוזיציה"
+
+#~ msgid ""
+#~ "\n"
+#~ "                %(counter)s member voted against his/her own bill\n"
+#~ "                "
+#~ msgid_plural ""
+#~ "\n"
+#~ "                %(counter)s members votes against their own bill\n"
+#~ "                "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "ח\"כ הצביע נגד הצעת חוק שהוא יזם"
+#~ msgstr[1] ""
+#~ "\n"
+#~ "%(counter)s ח\"כים הצביעו נגד הצעת חוק שהם יזמו"
+
+#~ msgid "No watched members. click me to select members to watch"
+#~ msgstr "אין ח\"כים במעקב. אפשר להוסיף על ידי לחיצה כאן"
+
+#~ msgid "Ascribed agendas"
+#~ msgstr "אג'נדות משויכות"
+
+#~ msgid "No agendas ascribed yet."
+#~ msgstr " עדיין אין אג'נדות משויכות"
+
+#~ msgid "Suggest an agenda"
+#~ msgstr "הצעת אג'נדה קשורה"
+
+#~ msgid "You suggested"
+#~ msgstr "ההצעות שלך"
+
+#~ msgid "Please select"
+#~ msgstr "נא לבחור"
+
+#~ msgid "Login to suggest an agenda"
+#~ msgstr "רוצה להציע אג'נדה קשורה? לחץ כאן כדי להרשם"
+
+#~ msgid "Ascribe your agendas"
+#~ msgstr "שיוך אג'נדה בעריכתך"
+
+#~ msgid "Analysis of votes by %(member)s"
+#~ msgstr "ניתוח ההצבעות של %(member)s"
+
+#~ msgid ""
+#~ "Analysis of votes by <a href=\"%(member_url)s\">%(member)s</a> by <a href="
+#~ "\"%(agenda_url)s\">%(agenda_name)s</a>"
+#~ msgstr ""
+#~ "ניתוח ההצבעות של <a href=\"%(member_url)s\">%(member)s</a> לפי <a href="
+#~ "\"%(agenda_url)s\">%(agenda_name)s</a>"
+
+#~ msgid "Overall score"
+#~ msgstr "מדד ההתאמה לאג'נדה"
+
+#~ msgid "Score details"
+#~ msgstr "פירוט ההצבעות"
+
+#~ msgid "Voted"
+#~ msgstr "הצביע/ה"
+
+#~ msgid "You have to be logged in to make a suggestion."
+#~ msgstr "כדי להעלות הצעה עליך להכנס לחשבון."
+
+#~ msgid "or"
+#~ msgstr "או"
+
+#~ msgid "register"
+#~ msgstr "הרשמה"
+
+#~ msgid "Suggest"
+#~ msgstr "הציעו"
+
+#~ msgid "Sending"
+#~ msgstr "שולח"
+
+#~ msgid "Pending suggestions"
+#~ msgstr "הצעות ממתינות"
+
+#~ msgid "Watch"
+#~ msgstr "מעקב"
+
+#~ msgid "Unwatch"
+#~ msgstr "הפסק מעקב"
+
+#~ msgid "You have to be logged in to enable the watch feature."
+#~ msgstr "כדי להשתמש ביכולת המעקב צריך להכנס לחשבון."
+
+#~ msgid "Followers"
+#~ msgstr "עוקבים"
+
+#~ msgid "Active members for tag %(tag)s"
+#~ msgstr "חברי כנסת פעילים בנושא %(tag)s"
+
+#~ msgid "%(count)s Bills"
+#~ msgstr "%(count)s הצעות חוק"
+
+#~ msgid "%(count)s Votes"
+#~ msgstr "%(count)s הצבעות"
+
+#~ msgid "no results found"
+#~ msgstr "לא נמצאו תוצאות"
+
+#~ msgid "%(count)s Committee Meetings"
+#~ msgstr "%(count)s ישיבות ועדה"
+
+#~ msgid "Badges"
+#~ msgstr "אותות"
+
+#~ msgid "Recent comments"
+#~ msgstr "תגובות אחרונות"
+
+#~ msgid "%(username)s on %(title)s"
+#~ msgstr "%(username)s על %(title)s"
+
+#~ msgid "%(date)s at %(time)s"
+#~ msgstr "%(date)s ב- %(time)s"
+
+#~ msgid "Remove a comment"
+#~ msgstr "מחיקת הערה"
+
+#~ msgid "Really remove this comment?"
+#~ msgstr "באמת למחוק הערה זו?"
+
+#~ msgid "Cancel"
+#~ msgstr "ביטול"
+
+#~ msgid "Thanks for removing"
+#~ msgstr "תודה על המחיקה"
+
+#~ msgid ""
+#~ "Thanks for taking the time to improve the quality of discussion on our "
+#~ "site"
+#~ msgstr "תודה שהקדשת מזמנך כדי לשפר את האתר שלנו"
+
+#~ msgid "Post comment"
+#~ msgstr "פרסום תגובה"
+
+#~ msgid "User comments"
+#~ msgstr "תגובות"
+
+#~ msgid "delete comment"
+#~ msgstr "מחיקת תגובה"
+
+#~ msgid "No comments yet"
+#~ msgstr "אין עדיין תגובות"
+
+#~ msgid "Please"
+#~ msgstr "אנא"
+
+#~ msgid "validate your email"
+#~ msgstr "אמת/י את הדואר אלקטרוני שסיפקת"
+
+#~ msgid " to comment"
+#~ msgstr " כדי להגיב"
+
+#~ msgid "Please login to comment"
+#~ msgstr "רוצה להגיב? לחץ/י כאן כדי להרשם ולהגיב"
+
+#~ msgid "Presence:"
+#~ msgstr "נוכחות:"
+
+#~ msgid "Chairperson"
+#~ msgstr "יו&quot;ר"
+
+#~ msgid "Replacement"
+#~ msgstr "מ&quot;מ"
+
+#~ msgid "No topics suggested yet"
+#~ msgstr "טרם הוצעו הצעות לסדר"
+
+#~ msgid "Future Meetings"
+#~ msgstr "ישיבות קרובות"
+
+#~ msgid "Meetings for which a protocol was not yet published"
+#~ msgstr "ישיבות מהן טרם פורסם פרוטוקול"
+
+#~ msgid "Last Meetings"
+#~ msgstr "ישיבות אחרונות"
+
+#~ msgid "more..."
+#~ msgstr "עוד..."
+
+#~ msgid "MMM Documents"
+#~ msgstr "מסמך ממ\"מ"
+
+#~ msgid "Suggested Agenda Topics"
+#~ msgstr "הצעות לסדר יום"
+
+#~ msgid "Suggest Topic"
+#~ msgstr "העלו הצעה"
+
+#~ msgid "to suggest a topic"
+#~ msgstr "להעלות הצעה לסדר"
+
+#~ msgid "Please login to suggest a topic"
+#~ msgstr "יש להזדהות כדי לפרסם הצעה לסדר"
+
+#~ msgid "Latest Annotations"
+#~ msgstr "הארות אחרונות"
+
+#~ msgid "No annotations yet..."
+#~ msgstr "אין עדיין הארות"
+
+#~ msgid "what does committees do?"
+#~ msgstr "מה עושות הועדות?"
+
+#~ msgid "This year:"
+#~ msgstr "השנה:"
+
+#~ msgid "Please validate your email to annotate"
+#~ msgstr ""
+#~ "רק משתמשים עם דוא\"ל מאומת יכולים להאיר. אנא אמת/י את הדואר אלקטרוני "
+#~ "שסיפקת."
+
+#~ msgid "Sorry, only editor can delete annotations."
+#~ msgstr "מצטערים, רק עורכים יכולים למחוק הערות"
+
+#~ msgid "Please email editors if an annotation should be deleted"
+#~ msgstr "נא לשלוח דואל לעורכי האתר אם צריך למחוק את ההארה"
+
+#~ msgid "MKs attended"
+#~ msgstr "ח\"כים נוכחים"
+
+#~ msgid "Suggest an MK"
+#~ msgstr "הוספת חבר כנסת"
+
+#~ msgid "Remove an MK"
+#~ msgstr "הסרת חבר כנסת"
+
+#~ msgid "Background Material"
+#~ msgstr "חומר רקע"
+
+#~ msgid "Suggest a matching bill"
+#~ msgstr "הוספת הצעת חוק מתאימה"
+
+#~ msgid "Protocol"
+#~ msgstr "פרוטוקול"
+
+#~ msgid "Please Mark Passage"
+#~ msgstr "אנא סמנו קטע"
+
+#~ msgid "Beginning with"
+#~ msgstr "מתחיל ב"
+
+#~ msgid "Ending with"
+#~ msgstr "מסתיים ב"
+
+#~ msgid "Type your note"
+#~ msgstr "סוג ההארה"
+
+#~ msgid "Color"
+#~ msgstr "צבע"
+
+#~ msgid "Save note"
+#~ msgstr "שמור"
+
+#~ msgid "Your note will be published under"
+#~ msgstr "ההארה שלך תפורסם ברשיון"
+
+#~ msgid "View all"
+#~ msgstr "הצגת כל ההערות"
+
+#~ msgid "Annotate"
+#~ msgstr "האירו"
+
+#~ msgid "No tags yet"
+#~ msgstr "אין עדיין תגיות"
+
+#~ msgid "Edit Tags"
+#~ msgstr "עריכת תגיות"
+
+#~ msgid "Click here for tags related to this committee"
+#~ msgstr "רשימת התגים הקשורים לוועדה זו"
+
+#~ msgid "Click here to see all available tags"
+#~ msgstr "רשימת התגים המלאה"
+
+#~ msgid "Login to edit tags"
+#~ msgstr "רוצה להציע תגית? לחץ/י כאן כדי להרשם"
+
+#~ msgid "All meetings"
+#~ msgstr "רשימת הישיבות המלאה"
+
+#~ msgid "Lookup by date"
+#~ msgstr "חיפוש לפי תאריך"
+
+#~ msgid ""
+#~ "%(count)s Committee meetings tagged <a href=\"%(tag_url)s\">%(tag)s</a>"
+#~ msgstr "%(count)s ישיבות ועדה בנושא <a href=\"%(tag_url)s\">%(tag)s</a>"
+
+#~ msgid "MKs attendance in committee meetings related to %(tag)s"
+#~ msgstr "נוכחות חברי הכנסת בישיבות ועדה בנושא %(tag)s"
+
+#~ msgid "Remove a topic"
+#~ msgstr "הסר נושא"
+
+#~ msgid "Really remove this topic?"
+#~ msgstr "באמת למחוק נושא זה?"
+
+#~ msgid "Edit Topic"
+#~ msgstr "עריכת הצעה לסדר"
+
+#~ msgid "Links to relevant material"
+#~ msgstr "קישורים לחומר רלוונטי"
+
+#~ msgid "suggested topic"
+#~ msgstr "הצעה לסדר"
+
+#~ msgid "Suggested Topics for a committee meeting"
+#~ msgstr "הצעות לסדר יום"
+
+#~ msgid "Links"
+#~ msgstr "קישורים"
+
+#~ msgid "Rating"
+#~ msgstr "דירוג"
+
+#~ msgid "Login to rank this topic"
+#~ msgstr "נדרש להתחבר כדי לדרג הצעה זו"
+
+#~ msgid "your rating"
+#~ msgstr "הדירוג שלך"
+
+#~ msgid "average rating"
+#~ msgstr "דירוג ממוצע"
+
+#~ msgid "for"
+#~ msgstr "בעד"
+
+#~ msgid "committee"
+#~ msgstr "ועדה"
+
+#~ msgid "party"
+#~ msgstr "מפלגה"
+
+#~ msgid "age"
+#~ msgstr "גיל"
+
+#~ msgid "year of aliyah"
+#~ msgstr "שנת עליה"
+
+#~ msgid "family status"
+#~ msgstr "מצב משפחתי"
+
+#~ msgid "place of birth"
+#~ msgstr "מקום לידה"
+
+#~ msgid "phone"
+#~ msgstr "טלפון"
+
+#~ msgid "fax"
+#~ msgstr "פקס"
+
+#~ msgid "e-mail address"
+#~ msgstr "כתובת דוא\"ל"
+
+#~ msgid "web site"
+#~ msgstr "אתר"
+
+#~ msgid "Data base empty, no objects"
+#~ msgstr "המסד ריק, אין נתונים"
+
+#~ msgid "No tags"
+#~ msgstr "אין תגיות"
+
+#~ msgid "Vote on bill"
+#~ msgstr "הצבעה על הצעת חוק"
+
+#~ msgid "Explanation about the legislation process"
+#~ msgstr "הסבר על תהליך החקיקה"
+
+#~ msgid "Edit Bill"
+#~ msgstr "עריכת הצעת חוק"
+
+#~ msgid "popular name"
+#~ msgstr "שם פופולרי"
+
+#~ msgid "stage"
+#~ msgstr "שלב"
+
+#~ msgid "stage date"
+#~ msgstr "תאריך עדכון אחרון"
+
+#~ msgid "embed"
+#~ msgstr "עמבד"
+
+#~ msgid "Bill initiation"
+#~ msgstr "יזום הצעת החוק"
+
+#~ msgid "Government Proposal"
+#~ msgstr "הצעת חוק ממשלתית"
+
+#~ msgid "Bill on knesset website"
+#~ msgstr "ההצעה באתר הכנסת"
+
+#~ msgid "booklet"
+#~ msgstr "חוברת"
+
+#~ msgid "Sorry, Proposal text not available"
+#~ msgstr "לצערנו, טקסט ההצעה אינו זמין."
+
+#~ msgid "No Info"
+#~ msgstr "אין נתונים"
+
+#~ msgid "Pre Vote"
+#~ msgstr "קריאה טרומית"
+
+#~ msgid "Suggest a matching vote"
+#~ msgstr "הצעת הצבעה מתאימה"
+
+#~ msgid "Start typing a bill title and choose one from the list"
+#~ msgstr "יש להקליד כותרת הצבעה, ולבחור את ההצבעה המתאימה מתוך התוצאות"
+
+#~ msgid "Bill formulated by the committee"
+#~ msgstr "נוסח הצעת החוק של הוועדה"
+
+#~ msgid "Collapse"
+#~ msgstr "צמצם"
+
+#~ msgid "Bill Approval"
+#~ msgstr "אישור הצעת החוק"
+
+#~ msgid "Government Stand"
+#~ msgstr "עמדת הממשלה"
+
+#~ msgid "Decision on government website"
+#~ msgstr "ההחלטה באתר משרד ראש הממשלה"
+
+#~ msgid "Public Opinion"
+#~ msgstr "דעת הקהל"
+
+#~ msgid "Public Opinion - party members"
+#~ msgstr "בקרב מתפקדי מפלגות"
+
+#~ msgid "Public Opinion - your party members"
+#~ msgstr "בקרב מתפקדי המפלגה שלך"
+
+#~ msgid "You voted "
+#~ msgstr "ההצבעה שלך"
+
+#~ msgid "I'm for"
+#~ msgstr "אני בעד"
+
+#~ msgid "I'm against"
+#~ msgstr "אני נגד"
+
+#~ msgid "Please login to vote"
+#~ msgstr "יש להכנס לחשבון כדי להצביע"
+
+#~ msgid "Click here"
+#~ msgstr "יש ללחוץ כאן"
+
+#~ msgid "Budget Estimations"
+#~ msgstr "הערכות תקציב"
+
+#~ msgid "No budget estimations yet"
+#~ msgstr "אין הערכות תקציב עדיין"
+
+#~ msgid "Update Budget Estimations (all in thousands of NIS)"
+#~ msgstr "עדכון הערכה תקציבית (אלפי ש\"ח)"
+
+#~ msgid "Add Budget Estimations (all in thousands of NIS)"
+#~ msgstr "הוספת הערכה תקציבית (אלפי ש\"ח)"
+
+#~ msgid " to create new tags"
+#~ msgstr "כדי ליצור תגיות חדשות"
+
+#~ msgid "Please login to edit budget estimates"
+#~ msgstr "יש להכנס לחשבון כדי לערוך הערות תקציב"
+
+#~ msgid "Export data to Excel"
+#~ msgstr "יצא נתונים לגליון"
+
+#~ msgid "Filter"
+#~ msgstr "סינון"
+
+#~ msgid ""
+#~ "%(count)s Bills tagged <a href=\"%(tag_url)s\">%(tag)s</a> by <a href="
+#~ "\"%(member_url)s\">%(member)s</a>"
+#~ msgstr ""
+#~ "%(count)s הצעות חוק בנושא <a href=\"%(tag_url)s\">%(tag)s</a> על ידי <a "
+#~ "href=\"%(member_url)s\">%(member)s</a>"
+
+#~ msgid "%(count)s Bills tagged <a href=\"%(tag_url)s\">%(tag)s</a>"
+#~ msgstr "%(count)s הצעות חוק בנושא <a href=\"%(tag_url)s\">%(tag)s</a>"
+
+#~ msgid "MKs that proposed bill related to %(tag)s"
+#~ msgstr "חברי כנסת שהציעו חוקים בנושא %(tag)s"
+
+#~ msgid "Unbind vote"
+#~ msgstr "ניתוק קשר להצבעה"
+
+#~ msgid "Really unbind this relation?"
+#~ msgstr "באמת לנתק קישור זה?"
+
+#~ msgid "Please explain this unbinding"
+#~ msgstr "נא להסביר ניתוק זה"
+
+#~ msgid "Unbind"
+#~ msgstr "ניתוק"
+
+#~ msgid "Based on"
+#~ msgstr "מבוסס על"
+
+#~ msgid "that was proposed on"
+#~ msgstr "שהוצע ב"
+
+#~ msgid "This bill is mentioned in the following committe meetings"
+#~ msgstr "הצבעה זו מוזכרת בישיבות הוועדות הבאות"
+
+#~ msgid "Private Bills"
+#~ msgstr "הצעות חוק פרטיות"
+
+#~ msgid "Proposed by"
+#~ msgstr "הוצע על ידי"
+
+#~ msgid "Knesset Bills"
+#~ msgstr "חוקי הכנסת"
+
+#~ msgid "No bill is associated with this vote"
+#~ msgstr "אין הצעת חוק המקושרת להצבעה זו"
+
+#~ msgid "This vote is mentioned in the following committe meetings"
+#~ msgstr "הצבעה זו מוזכרת בישיבות הוועדות הבאות"
+
+#~ msgid "summary"
+#~ msgstr "תקציר"
+
+#~ msgid "Bill Text"
+#~ msgstr "החוק המלא"
+
+#~ msgid "Go to next vote by time"
+#~ msgstr "מעבר להצבעה הבאה לפי זמן"
+
+#~ msgid "Go to previous vote by time"
+#~ msgstr "מעבר להצבעה הקודמת לפי זמן"
+
+#~ msgid ""
+#~ "%(count)s Votes tagged <a href=\"%(tag_url)s\">%(tag)s</a> by <a href="
+#~ "\"%(member_url)s\">%(member)s</a>"
+#~ msgstr ""
+#~ "%(count)s הצבעות בנושא <a href=\"%(tag_url)s\">%(tag)s</a> בהשתתפות <a "
+#~ "href=\"%(member_url)s\">%(member)s</a>"
+
+#~ msgid "%(count)s Votes tagged <a href=\"%(tag_url)s\">%(tag)s</a>"
+#~ msgstr "%(count)s הצבעות בנושא <a href=\"%(tag_url)s\">%(tag)s</a>"
+
+#~ msgid "Choose another tag"
+#~ msgstr "בחירת נושא אחר"
+
+#~ msgid "MKs attendance in votes related to %(tag)s"
+#~ msgstr "נוכחות חברי הכנסת בהצבעות המליאה בנושא %(tag)s"
+
+#~ msgid "Full text is available"
+#~ msgstr "יש פירוט זמין עבור הצבעה זו"
+
+#~ msgid "Summary is available"
+#~ msgstr "יש תקציר זמין עבור הצבעה זו"
+
+#~ msgid "Voted differently than majority of own party"
+#~ msgstr "הצביע שונה ממרבית חברי סיעתו"
+
+#~ msgid "Voted differently than majority of the coalition"
+#~ msgstr "הצביע שונה ממרבית חברי הקואליציה"
+
+#~ msgid "Voted differently than majority of the opposition"
+#~ msgstr "הצביע שונה ממרבית חברי האופוזיציה"
+
+#~ msgid "Match"
+#~ msgstr "התאמה"
+
+#~ msgid ""
+#~ " Up to date information about %(name)s in the knesset: votes, bills, "
+#~ "committees, attendance and more.   Information about %(name)s for "
+#~ "journalists, researchers, students and citizens by Open Knesset - Opening "
+#~ "the Knesset to the public. "
+#~ msgstr ""
+#~ "מידע עדכני אודות %(name)s בכנסת: הצבעות, הצעות חוק, השתתפות בוועדות, "
+#~ "נוכחות ועוד. מידע על %(name)s לעיתונאים, חוקרים, סטודנטים ואזרחים באתר "
+#~ "כנסת פתוחה - פותחים את הכנסת לציבור"
+
+#~ msgid "IN_COALITION,IN_OPPOSITION,PAST_MEMBER"
+#~ msgstr "בקואליציה,באופוזיציה,חכ בעבר"
+
+#~ msgid "Previous Parties"
+#~ msgstr "סיעות קודמות"
+
+#~ msgid "Less"
+#~ msgstr "פחות"
+
+#~ msgid "place of residence"
+#~ msgstr "מקום מגורים"
+
+#~ msgid "MK video (knesset channel)"
+#~ msgstr "כרטיס ביקור מערוץ הכנסת"
+
+#~ msgid "%(name)s around the net"
+#~ msgstr "%(name)s ברשת"
+
+#~ msgid "Contact Information"
+#~ msgstr "צרו קשר"
+
+#~ msgid "Personal Information"
+#~ msgstr "פרטים אישיים"
+
+#~ msgid "Recent actions"
+#~ msgstr "פעולות אחרונות"
+
+#~ msgid "M.M.M Documents"
+#~ msgstr "מסמכי ממ\"מ"
+
+#~ msgid "Video"
+#~ msgstr "וידאו"
+
+#~ msgid "Last 30 days"
+#~ msgstr "ב 30 הימים האחרונים"
+
+#~ msgid "In current Knesset"
+#~ msgstr "בכנסת הנוכחית"
+
+#~ msgid "Factional discipline"
+#~ msgstr "משמעת סיעתית"
+
+#~ msgid "factional discipline explained"
+#~ msgstr "הצבעות בניגוד למרבית חברי הסיעה"
+
+#~ msgid "Coalition discipline"
+#~ msgstr "משמעת קואליציה"
+
+#~ msgid "Opposition discipline"
+#~ msgstr "משמעת אופוזיציה"
+
+#~ msgid "general discipline explained coalition"
+#~ msgstr "הצבעות בניגוד למרבית חברי הקואליציה"
+
+#~ msgid "general discipline explained opposition"
+#~ msgstr "הצבעות בניגוד למרבית חברי האופוזיציה"
+
+#~ msgid "Votes against own bills"
+#~ msgstr "הצבעות נגד הצעות חוק של עצמו"
+
+#~ msgid "Attendance"
+#~ msgstr "נוכחות"
+
+#~ msgid "Knesset presence"
+#~ msgstr "נוכחות במשכן"
+
+#~ msgid "Average weekly hours"
+#~ msgstr "שעות שבועיות בממוצע"
+
+#~ msgid "Committee presence"
+#~ msgstr "נוכחות בוועדות"
+
+#~ msgid "Average number of committee meetings per month"
+#~ msgstr "ישיבות וועדות בחודש"
+
+#~ msgid "Notable agendas"
+#~ msgstr "אג'נדות בולטות"
+
+#~ msgid "Display by"
+#~ msgstr "הצג לפי"
+
+#~ msgid "Current MKs"
+#~ msgstr "חברי כנסת נוכחיים"
+
+#~ msgid "Past MKs"
+#~ msgstr "חברי כנסת בעבר"
+
+#~ msgid "Select Members"
+#~ msgstr "בחירת ח\"כים"
+
+#~ msgid "Choose MKs to show their votes in vote list"
+#~ msgstr "חברי כנסת להציג את הצבעותיהם"
+
+#~ msgid "Click here when you are done"
+#~ msgstr "סיום"
+
+#~ msgid "See also"
+#~ msgstr "ראו גם"
+
+#~ msgid "Looking for comparisons ? Compare between"
+#~ msgstr "מחפשים השוואות ? השוו בין"
+
+#~ msgid "IN_COALITION,IN_OPPOSITION"
+#~ msgstr "בקואליציה,באופוזיציה"
+
+#~ msgid "Statistics"
+#~ msgstr "סטטיסטיקה"
+
+#~ msgid "Average votes per MK"
+#~ msgstr "ממוצע הצבעות לח\"כ"
+
+#~ msgid "M.M.M Documents ordered by %(committee.name)s"
+#~ msgstr "מסמכי ממ\"מ שהוזמנו על ידי %(committee.name)s"
+
+#~ msgid "M.M.M Documents ordered by"
+#~ msgstr "מסמכי ממ\"מ שהוזמנו על ידי"
+
+#~ msgid "M.M.M Documents ordered by %(member.name)s"
+#~ msgstr "מסמכי ממ\"מ שהוזמנו על ידי %(member.name)s"
+
+#~ msgid "To stop receiving updates"
+#~ msgstr "על מנת להפסיק את קבלת העדכונים"
+
+#~ msgid "visit the site, and change your settings"
+#~ msgstr "יש לבקר באתר ולעדכן את הגדרות שליחת הדוא\"ל"
+
+#~ msgid "Hi %(username)s,"
+#~ msgstr "שלום %(username)s,"
+
+#~ msgid "followed MKs"
+#~ msgstr "חברי כנסת במעקב"
+
+#~ msgid "Party Membership"
+#~ msgstr "התפקדות למפלגה"
+
+#~ msgid "You are listed as a member of %(party)s."
+#~ msgstr "כל הכבוד על התפקדותך למפלגת %(party)s."
+
+#~ msgid ""
+#~ "Your party has %(num_members)s members in open knesset. If you know other "
+#~ "members of the party, point them to the user registration."
+#~ msgstr ""
+#~ "יש %(num_members)s משתמשים הרשומים כמתפקדים של המפלגה. כל מתפקד נוסף "
+#~ "שנרשם לאתר כנסת פתוחה מחזק אותנו ואת יכולת ההשפעה על חברי הכנסת. נודה לך "
+#~ "מאוד אם תמליץ/י לחברי מפלגה נוספים להרשם לאתר."
+
+#~ msgid ""
+#~ "We have noticed that you are not listed as a party member. You should "
+#~ "really consider it."
+#~ msgstr ""
+#~ "אינך רשום/ה כחבר מפלגה. אם טרם התפקדת למפלגה, מומלץ מאוד לעשות זאת, ואז "
+#~ "להרשם כחבר מפלגה באתר כנסת פתוחה."
+
+#~ msgid "Read more about becoming a member in a party"
+#~ msgstr "לקריאה נוספת אודות התפקדות ולמה זה חשוב"
+
+#~ msgid "Bills that are being discussed"
+#~ msgstr "הצעות חוק חמות באתר"
+
+#~ msgid ""
+#~ "Click the link below and vote to let your MKs what you think of these "
+#~ "bills"
+#~ msgstr ""
+#~ "לחצו על הקישורים הבאים כדי להצביע על הצעות חוק חמות באתר. חברי הכנסת "
+#~ "מקבלים עדכונים שוטפים על עמדת המתפקדים, וכך אתם יכולים להשפיע על "
+#~ "הצבעותיהם."
+
+#~ msgid "For More Info Click Here"
+#~ msgstr "למידע נוסף"
+
+#~ msgid "previous"
+#~ msgstr "העמוד הקודם"
+
+#~ msgid "next"
+#~ msgstr "העמוד הבא"
+
+#~ msgid "To MK page"
+#~ msgstr "לדף חה\"כ"
+
+#~ msgid "Titles"
+#~ msgstr "תארים"
+
+#~ msgid "Roles"
+#~ msgstr "תפקידים"
+
+#~ msgid "Meetings this persons spoken at"
+#~ msgstr "ישיבות בהשתתפותו/ה"
+
+#~ msgid "Things this person said"
+#~ msgstr "דברים שנאמרו על ידיו/ה"
+
+#~ msgid "One meeting"
+#~ msgid_plural "%(meetings)s meetings"
+#~ msgstr[0] "ישיבה אחת"
+#~ msgstr[1] "%(meetings)s ישיבות"
+
+#~ msgid " in one committee"
+#~ msgid_plural " in %(committees)s committees"
+#~ msgstr[0] " בוועדה אחת"
+#~ msgstr[1] " ב- %(committees)s וועדות"
+
+#~ msgid "Sorry, no data is available, try selecting more actions and refresh"
+#~ msgstr "מצטערים, אין נתונים. אפשר לנסות לבחור יותר פעולות ולרענן."
+
+#~ msgid "Posts"
+#~ msgstr "מאמרים"
+
+#~ msgid "Tag Cloud"
+#~ msgstr "ענן תגיות"
+
+#~ msgid "Search in"
+#~ msgstr "חיפוש ב"
+
+#~ msgid "ok"
+#~ msgstr "להמשך"
+
+#~ msgid "Suscribe to RSS feed"
+#~ msgstr "הרשמה לפיד"
+
+#~ msgid "This is a django powered site!"
+#~ msgstr "זהו אתר מבוסס django!"
+
+#~ msgid "Blogs list"
+#~ msgstr "רשימת בלוגים"
+
+#~ msgid "See the full list of posts from this blog"
+#~ msgstr "רשימה מלאה של מאמרים מהבלוג"
+
+#~ msgid "web"
+#~ msgstr "אתר"
+
+#~ msgid "Go to the original blog"
+#~ msgstr "ביקור בבלוג המקורי"
+
+#~ msgid "browse"
+#~ msgstr "עיון"
+
+#~ msgid "latest posts"
+#~ msgstr "מאמרים אחרונים"
+
+#~ msgid "See the full list of post from this feed"
+#~ msgstr "רשימת המאמרים המלאה מהבלוג"
+
+#~ msgid "Subscribe to "
+#~ msgstr "הרשמה ל"
+
+#~ msgid "RSS 2.0 Feed"
+#~ msgstr "פיד רסס"
+
+#~ msgid "Feeds list"
+#~ msgstr "רשימת הפידים"
+
+#~ msgid "Subscribe to feed of"
+#~ msgstr "הרשמה לפיד של "
+
+#~ msgid "Subscribe to this feed"
+#~ msgstr "הרשמה לפיד זה"
+
+#~ msgid "See the full list of posts from this feed"
+#~ msgstr "רשימת מאמרים מלאה מפיד זה"
+
+#~ msgid "tags"
+#~ msgstr "תגיות"
+
+#~ msgid "before:"
+#~ msgstr "לפני"
+
+#~ msgid "Posts published by MKs"
+#~ msgstr "מאמרים שפורסמו על ידי חברי הכנסת"
+
+#~ msgid "Below is a list of MKs blog posts as recieved from the their blogs."
+#~ msgstr "לעיונך, רשימת מאמרים שכתבו חברי הכנסת בבלוגים שלהם."
+
+#~ msgid "Tags cloud"
+#~ msgstr "ענן תגיות"
+
+#~ msgid "Tags cloud for posts published by MKs"
+#~ msgstr "ענן תגיות למאמרים שפורסמו על ידי חברי הכנסת"
+
+#~ msgid "Posts tagged %(tag)s published by MKs"
+#~ msgstr "מאמרים שפורסמו על ידי חברי הכנסת ותויגו %(tag)s "
+
+#~ msgid "tag"
+#~ msgstr "תג:"
+
+#~ msgid "in"
+#~ msgstr "ב"
+
+#~ msgid "Posts in"
+#~ msgstr "מאמרים ב "
+
+#~ msgid "Suscribe to RSS feed for tag"
+#~ msgstr "הרשמה לפיד של התג הזה "
+
+#~ msgid "Tag"
+#~ msgstr "תג"
+
+#~ msgid "See the list of authors talking about this tag"
+#~ msgstr "רשימה של כותבים שכתבו על תג זה"
+
+#~ msgid "People talking about this"
+#~ msgstr "ח\"כים המדברים על זה"
+
+#~ msgid "Tags list"
+#~ msgstr "רשימת תגיות"
+
+#~ msgid "Compare Lists"
+#~ msgstr "השווה רשימות"
+
+#~ msgid "Candidate Lists"
+#~ msgstr "רשימות מועמדים"
+
+#~ msgid "Comapre Lists"
+#~ msgstr "השווה רשימות"
+
+#~ msgid "Candidate list for the comming elections"
+#~ msgstr "רשימות המועמדים לכנסת ה-19"
+
+#~ msgid "Select none"
+#~ msgstr "נקה"
+
+#~ msgid "NEW"
+#~ msgstr "חדש"
+
+#~ msgid "Residence Centrality"
+#~ msgstr "מדד מרכזיות של מקום מגורים"
+
+#~ msgid "Role"
+#~ msgstr "תפקידים"
+
+#~ msgid "Knesset 19 Factions"
+#~ msgstr "סיעות בכנסת ה- 19"
+
+#~ msgid "MKs"
+#~ msgstr "חברי כנסת"
+
+#~ msgid "Official Platform"
+#~ msgstr "מצע רשמי"
+
+#~ msgid "more"
+#~ msgstr "הרחב"
+
+#~ msgid "less"
+#~ msgstr "צמצם"
+
+#~ msgid "Report from MQG"
+#~ msgstr "דו\"ח מהתנועה לאיכות השלטון"
+
+#~ msgid "Wikipedia"
+#~ msgstr "ויקיפדיה"
+
+#~ msgid "loading..."
+#~ msgstr "טוען..."
+
+#~ msgid "Facebook"
+#~ msgstr "פייסבוק"
+
+#~ msgid "Videos"
+#~ msgstr "וידאו"
+
+#~ msgid "Results of the elections for the 19th Knesset"
+#~ msgstr "תוצאות הבחירות לכנסת ה- 19"
+
+#~ msgid "Factions in the 19th Knesset"
+#~ msgstr "סיעות בכנסת ה- 19"
+
+#~ msgid "Replies"
+#~ msgstr "תגובות"
+
+#~ msgid "Search results for"
+#~ msgstr "תוצאות החיפוש עבור"
+
+#~ msgid "Please enter a search term in the search field."
+#~ msgstr "נא להזין מונח בשדה החיפוש"
+
+#~ msgid "Users"
+#~ msgstr "משתמשים"
+
+#~ msgid "Annotations by"
+#~ msgstr "הארות על ידי "
+
+#~ msgid "On the words of"
+#~ msgstr "בנוגע לדברים של"
+
+#~ msgid "Sorry, this user has selected not to share his profile"
+#~ msgstr "מצטערים. משתמש זה בחר שלא לשתף את הפרופיל שלו."
+
+#~ msgid "Following Members"
+#~ msgstr "חברי כנסת במעקב"
+
+#~ msgid "Following Bills"
+#~ msgstr "הצעות חוק במעקב"
+
+#~ msgid "Following Meetings"
+#~ msgstr "ישיבות במעקב"
+
+#~ msgid "Topics by"
+#~ msgstr "הצעות לסדר על ידי"
+
+#~ msgid "You are already logged in."
+#~ msgstr "את/ה כבר מחובר/ת."
+
+#~ msgid "Enter using"
+#~ msgstr "כניסה באמצעות"
+
+#~ msgid "New user? Register"
+#~ msgstr "משתמש חדש? הרשמה"
+
+#~ msgid "Forgot password?"
+#~ msgstr "שכחת סיסמה?"
+
+#~ msgid "Password reset complete"
+#~ msgstr "איפוס הסיסמה הושלם"
+
+#~ msgid "Your password has been set.  You may go ahead and log in now."
+#~ msgstr "ססמתך נשמרה. כעת ניתן להתחבר."
+
+#~ msgid "Password reset"
+#~ msgstr "איפוס סיסמה"
+
+#~ msgid "Enter new password"
+#~ msgstr "הזנת סיסמה חדשה"
+
+#~ msgid ""
+#~ "Please enter your new password twice so we can verify you typed it in "
+#~ "correctly."
+#~ msgstr "נא להזין את סיסמתך החדשה פעמיים כדי שנוכל לוודא שהקלדת אותה כראוי."
+
+#~ msgid "New password:"
+#~ msgstr "סיסמה חדשה:"
+
+#~ msgid "Confirm password:"
+#~ msgstr "אימות סיסמה:"
+
+#~ msgid "Change my password"
+#~ msgstr "שנה את סיסמתי"
+
+#~ msgid "Password reset unsuccessful"
+#~ msgstr "איפוס הסיסמה נכשל"
+
+#~ msgid ""
+#~ "The password reset link was invalid, possibly because it has already been "
+#~ "used.  Please request a new password reset."
+#~ msgstr ""
+#~ "הקישור לאיפוס הסיסמה אינו חוקי. ייתכן והשתמשו בו כבר. אנא בקש/י שוב איפוס "
+#~ "סיסמה. "
+
+#~ msgid "Password reset successful"
+#~ msgstr "הסיסמה אופסה בהצלחה"
+
+#~ msgid ""
+#~ "We've e-mailed you instructions for setting your password to the e-mail "
+#~ "address you submitted. You should be receiving it shortly."
+#~ msgstr ""
+#~ "שלחנו הוראות לקביעת הסיסמה אל כתובת הדוא\"ל שהזנת. ההודעה אמורה להתקבל "
+#~ "בקרוב."
+
+#~ msgid ""
+#~ "Forgotten your password? Enter your e-mail address below, and we'll e-"
+#~ "mail instructions for setting a new one."
+#~ msgstr ""
+#~ "שכחת את סיסמתך? נא להזין את כתובת הדוא\"ל, ואנו נשלח הוראות לקביעת סיסמה "
+#~ "חדשה."
+
+#~ msgid "E-mail address:"
+#~ msgstr "כתובת דוא\"ל:"
+
+#~ msgid "Reset my password"
+#~ msgstr "אפס את סיסמתי"
+
+#~ msgid "Not following any memebers."
+#~ msgstr "אין חברי כנסת במעקב"
+
+#~ msgid "Tagged Items"
+#~ msgstr "ענינים מתויגים"
+
+#~ msgid "No tagged items yet..."
+#~ msgstr " עדיין אין ענינים מתויגים"
+
+#~ msgid "Following Agendas"
+#~ msgstr "אג'נדות במעקב"
+
+#~ msgid "Not following any agendas."
+#~ msgstr "אין אג'נדות במעקב"
+
+#~ msgid "Following Topics"
+#~ msgstr "הצעות לסדר במעקב"
+
+#~ msgid "Items tagged by"
+#~ msgstr "ענינים שתויגו על ידי "
+
+#~ msgid "%(count)s Items tagged by "
+#~ msgstr "%(count)s ענינים שתויגו על ידי "
+
+#~ msgid "Pages"
+#~ msgstr "עמודים"
+
+#~ msgid "type"
+#~ msgstr "סוג"
+
+# msgid "yes"
+# msgstr "כן"
+# msgid "no"
+# msgstr "לא"
+#~ msgid "hidden"
+#~ msgstr "מוסתר"
+
+#~ msgid "video already reviewed"
+#~ msgstr "הוידאו עבר ביקורת"
+
+#~ msgid "this type of video cannot be hidden"
+#~ msgstr "לא ניתן להסתיר סוג וידאו זה"
+
+#~ msgid "hide from the list?"
+#~ msgstr "הסתר מהרשימה?"
+
+#~ msgid "video already reviewed, keep displaying on the website?"
+#~ msgstr "הוידאו עבר ביקורת, להמשיך להציג באתר?"
+
+#~ msgid "approve for display on the website?"
+#~ msgstr "אשר להצגה באתר?"
+
+#~ msgid "yes"
+#~ msgstr "כן"
+
+#~ msgid "approve"
+#~ msgstr "לאשר"
+
+#~ msgid "no"
+#~ msgstr "לא"
+
+#~ msgid "don't approve"
+#~ msgstr "לא לאשר"
+
+#~ msgid "video cannot be embeded"
+#~ msgstr "לא ניתן להטמיע וידאו"
+
+#~ msgid "pending actions"
+#~ msgstr "פעולות שממתינות לביצוע"
+
+#~ msgid "updating, please wait..."
+#~ msgstr "מעדכן, נא להמתין..."
+
+#~ msgid "updated (num) videos"
+#~ msgstr "עודכנו (num) קטעי וידאו"
+
+#~ msgid "error updating the videos"
+#~ msgstr "אירעה שגיאה בעדכון קטעי הוידאו"
+
+#~ msgid "no actions to commit"
+#~ msgstr "אין פעולות לביצוע"
+
+#~ msgid "You have pending actions, continuing will cancel them."
+#~ msgstr "יש פעולות שממתינות לביצוע, יציאה מהדף תבטל אותן."
+
+#~ msgid "All Videos"
+#~ msgstr "כל סרטי הוידאו"
+
+#~ msgid "You don't have the appropriate permissions to access this page"
+#~ msgstr "אין לך הרשאות מתאימות לצפייה בדף זה"
+
+#~ msgid "(citizen) party member?"
+#~ msgstr "האם התפקדת למפלגה?"
+
+#~ msgid "Are you a member of any party?"
+#~ msgstr ""
+#~ "אם התפקדת למפלגה, נשמח לדעת זאת. נתון זה לא מפורסם, אלא רק משמש לצורך "
+#~ "סטטיסטיקות."
+
+#~ msgid "This email is already taken"
+#~ msgstr "כתובת דוא\"ל זו כבר תפוסה"
+
+#~ msgid "Public profile"
+#~ msgstr "פרופיל פומבי"
+
+#~ msgid "Allow other users to view your profile on the site"
+#~ msgstr "לאפשר למשתמשים אחרים לצפות בפרופיל שלך"
+
+#~ msgid "Gender"
+#~ msgstr "מין"
+
+#~ msgid "Your profile has been updated."
+#~ msgstr "פרופיל המשתמש עודכן"
+
+#~ msgid "Question already exists."
+#~ msgstr "מצטערת, השאלה כבר קיימת"
+
+#~ msgid "Edit your profile"
+#~ msgstr "ערוך את הפרופיל שלך"
 
 #~ msgid "Questions for elections candidates "
 #~ msgstr "שאלות למועמדים בבחירות המקומיות"
@@ -1324,13 +4130,6 @@ msgstr "ערוך את הפרופיל שלך"
 #~ msgid "Move to"
 #~ msgstr "עבור ל:"
 
-#~ msgid "Re-send activation emails"
-#~ msgstr "שלח מחדש דואל להפעלת החשבון"
-
-#~ msgid ""
-#~ "This value may contain only letters, numbers and @/./+/-/_ characters."
-#~ msgstr "ניתן להשתמש באותיות, ספרות ו @.+-_"
-
 #~ msgid "E-mail"
 #~ msgstr "דוא\"ל"
 
@@ -1363,9 +4162,6 @@ msgstr "ערוך את הפרופיל שלך"
 #~ msgstr ""
 #~ "תודה על ההקלקה. אנא השלם/י את הטופס הקשר והתחל/י לענות על שאלות החברים"
 
-#~ msgid "We get your avatar from "
-#~ msgstr "תמונות הפרופיל מגיעות אלינו ישירות מ"
-
 #~ msgid "Gravatar"
 #~ msgstr "גרווטאר"
 
@@ -1375,17 +4171,8 @@ msgstr "ערוך את הפרופיל שלך"
 #~ msgid "Create new user"
 #~ msgstr "צור משתמש חדש"
 
-#~ msgid "Subject"
-#~ msgstr "נושא"
-
-#~ msgid "Content"
-#~ msgstr "תוכן"
-
 #~ msgid "Ask!"
 #~ msgstr "שאל שאלה!"
-
-#~ msgid "User Profile"
-#~ msgstr "פרופיל משתמש"
 
 #~ msgid "View Voter"
 #~ msgstr "הצג מצביע"
@@ -1417,17 +4204,11 @@ msgstr "ערוך את הפרופיל שלך"
 #~ msgid "Or"
 #~ msgstr "או"
 
-#~ msgid "Connect to Google"
-#~ msgstr "התחבר לגוגל"
-
 #~ msgid "Reset password"
 #~ msgstr "אפס ססמה"
 
 #~ msgid "First Name"
 #~ msgstr "שם פרטי"
-
-#~ msgid "Last Name"
-#~ msgstr "שם משפחה"
 
 #~ msgid "Candidate bio here..."
 #~ msgstr "כאן תופיע ביוגרפיה קצרה של המועמד..."
@@ -1435,14 +4216,3908 @@ msgstr "ערוך את הפרופיל שלך"
 #~ msgid " The Demo Party"
 #~ msgstr "מפלגת הדמו"
 
-#~ msgid "Follow"
-#~ msgstr "עקוב"
-
-#~ msgid "Links"
-#~ msgstr "קישורים"
-
 #~ msgid "Facebook Page"
 #~ msgstr "עמוד הפייסבוק של המועמד"
 
 #~ msgid "Members"
 #~ msgstr "חברים"
+
+#~ msgid "Create new tag"
+#~ msgstr "יצירת תגית חדשה"
+
+#~ msgid "Your suggestion is submitted. Thank you"
+#~ msgstr "הצעתך נשלחה. תודה רבה"
+
+#~ msgid "Database error"
+#~ msgstr "שגיאת בסיס נתונים"
+
+#~ msgid "%(count)s %(name)s was changed successfully."
+#~ msgid_plural "%(count)s %(name)s were changed successfully."
+#~ msgstr[0] "שינוי %(count)s %(name)s בהצלחה."
+#~ msgstr[1] "שינוי %(count)s %(name)s בהצלחה."
+
+#~ msgid "View on site"
+#~ msgstr "צפיה באתר"
+
+#, fuzzy
+#~ msgid "Successfully deleted %s items."
+#~ msgstr "%(count)d %(items)s  היו נמחקו בהצלחה."
+
+#~ msgid "Delete selected %(verbose_name_plural)s"
+#~ msgstr "מחק את %(verbose_name_plural)s שבחרת בו"
+
+#, fuzzy
+#~ msgid "Last child"
+#~ msgstr "שבוע אחרון"
+
+#, fuzzy
+#~ msgid "Right sibling"
+#~ msgstr "שמונה"
+
+#, fuzzy
+#~ msgid "Invalid parent"
+#~ msgstr "סוג גיאומטרי שגוי."
+
+#~ msgid ""
+#~ "Upload a valid image. The file you uploaded was either not an image or a "
+#~ "corrupted image."
+#~ msgstr ""
+#~ "נא להעלות תמונה חוקית. הקובץ שהעלת אינו תמונה או מכיל תמונה מקולקלת."
+
+#, fuzzy
+#~ msgid "verbose name"
+#~ msgstr "שם משתמש"
+
+#, fuzzy
+#~ msgid "types"
+#~ msgstr "סוג"
+
+#, fuzzy
+#~ msgid "settings"
+#~ msgstr "ישיבות אחרונות"
+
+#, fuzzy
+#~ msgid "Subscription for: %s"
+#~ msgstr "תאור"
+
+#, fuzzy
+#~ msgid "subscription"
+#~ msgstr "תאור"
+
+#, fuzzy
+#~ msgid "subscriptions"
+#~ msgstr "תאור"
+
+#, fuzzy
+#~ msgid "link for notification"
+#~ msgstr "התראות דוא\"ל"
+
+#, fuzzy
+#~ msgid "notification"
+#~ msgstr "פעולה"
+
+#, fuzzy
+#~ msgid "notifications"
+#~ msgstr "הארות"
+
+#, fuzzy
+#~ msgid "instantly"
+#~ msgstr "פיאסטאני"
+
+#, fuzzy
+#~ msgid "daily"
+#~ msgstr "יומי"
+
+#, fuzzy
+#~ msgid "%d times"
+#~ msgstr "כל הזמנים"
+
+#, fuzzy
+#~ msgid "Contents"
+#~ msgstr "תוכן"
+
+#, fuzzy
+#~ msgid "Summary"
+#~ msgstr "תקציר"
+
+#, fuzzy
+#~ msgid "Select an option"
+#~ msgstr "נקה"
+
+#, fuzzy
+#~ msgid "A deleted article with slug \"%s\" already exists."
+#~ msgstr "משתמש עם שם משתמש זה קיים כבר"
+
+#, fuzzy
+#~ msgid "A slug named \"%s\" already exists."
+#~ msgstr "משתמש עם שם משתמש זה קיים כבר"
+
+#, fuzzy
+#~ msgid "Yes, I am sure"
+#~ msgstr "כן, אני בטוח/ה"
+
+#~ msgid "Permissions"
+#~ msgstr "הרשאות"
+
+#, fuzzy
+#~ msgid "(none)"
+#~ msgstr "אין"
+
+#, fuzzy
+#~ msgid "Inherit permissions"
+#~ msgstr "הרשאות משתמש"
+
+#, fuzzy
+#~ msgid "No user with that username"
+#~ msgstr "משתמש עם שם משתמש זה קיים כבר"
+
+#, fuzzy
+#~ msgid "Filter..."
+#~ msgstr "סינון"
+
+#, fuzzy
+#~ msgid "Search..."
+#~ msgstr "חיפוש"
+
+#, fuzzy
+#~ msgid "modified"
+#~ msgstr "תאריך הצטרפות"
+
+#, fuzzy
+#~ msgid "Article for object"
+#~ msgstr "אובייקט מקושר"
+
+#, fuzzy
+#~ msgid "Articles for object"
+#~ msgstr "Fields on %s objects"
+
+#, fuzzy
+#~ msgid "revision number"
+#~ msgstr "מספר כנסת"
+
+#~ msgid "IP address"
+#~ msgstr "כתובת IP"
+
+#, fuzzy
+#~ msgid "article"
+#~ msgstr "סיעות"
+
+#, fuzzy
+#~ msgid "original article"
+#~ msgstr "רישום יומן"
+
+#, fuzzy
+#~ msgid "A plugin was changed"
+#~ msgstr "סיסמתך שונתה."
+
+#, fuzzy
+#~ msgid "slug"
+#~ msgstr "טלגו"
+
+#, fuzzy
+#~ msgid "Lost and found"
+#~ msgstr "לא נמצאו תוצאות"
+
+#, fuzzy
+#~ msgid "Yes I am sure..."
+#~ msgstr "כן, אני בטוח/ה"
+
+#, fuzzy
+#~ msgid "original filename"
+#~ msgstr "רישום יומן"
+
+#, fuzzy
+#~ msgid "attachment"
+#~ msgstr "הצהרה"
+
+#, fuzzy
+#~ msgid "attachments"
+#~ msgstr "תגובות"
+
+#, fuzzy
+#~ msgid "%s was successfully added."
+#~ msgstr "הסיסמה שונתה בהצלחה."
+
+#, fuzzy
+#~ msgid "The file %s was deleted."
+#~ msgstr "ה-%(verbose_name)s נמחק."
+
+#, fuzzy
+#~ msgid "A file was changed: %s"
+#~ msgstr "אף שדה לא השתנה."
+
+#, fuzzy
+#~ msgid "Delete it!"
+#~ msgstr "מחיקה"
+
+#, fuzzy
+#~ msgid "Remove reference"
+#~ msgstr "ראה גם"
+
+#, fuzzy
+#~ msgid "History of"
+#~ msgstr "היסטוריה"
+
+#, fuzzy
+#~ msgid "Date"
+#~ msgstr "תאריך:"
+
+#, fuzzy
+#~ msgid "User"
+#~ msgstr "משתמשים"
+
+#, fuzzy
+#~ msgid "File"
+#~ msgstr "סינון"
+
+#, fuzzy
+#~ msgid "Action"
+#~ msgstr "פעולה"
+
+#, fuzzy
+#~ msgid "<em>No description</em>"
+#~ msgstr "תאור"
+
+#, fuzzy
+#~ msgid "Uploaded by"
+#~ msgstr "הוצע על ידי"
+
+#, fuzzy
+#~ msgid "File history"
+#~ msgstr "היסטוריה"
+
+#, fuzzy
+#~ msgid "revisions"
+#~ msgstr "התחברויות"
+
+#, fuzzy
+#~ msgid "Upload new file"
+#~ msgstr "העלה תמונה חדשה"
+
+#, fuzzy
+#~ msgid "Search and add file"
+#~ msgstr "שמירה והוספת אחר"
+
+#, fuzzy
+#~ msgid "Articles using"
+#~ msgstr "כניסה באמצעות"
+
+#, fuzzy
+#~ msgid "Upload replacement"
+#~ msgstr "מ&quot;מ"
+
+#, fuzzy
+#~ msgid "Search files and articles"
+#~ msgstr "ח&quot;כים וסיעות"
+
+#, fuzzy
+#~ msgid "Main article"
+#~ msgstr "ראשי"
+
+#, fuzzy
+#~ msgid "An external link"
+#~ msgstr "הטמעה באתר חיצוני"
+
+#~ msgid "Are you sure?"
+#~ msgstr "האם את/ה בטוח/ה ?"
+
+#, fuzzy
+#~ msgid "images"
+#~ msgstr "עמודים"
+
+#, fuzzy
+#~ msgid "image revisions"
+#~ msgstr "הרשאות"
+
+#, fuzzy
+#~ msgid "%(file)s has been saved."
+#~ msgstr "פרופיל המשתמש עודכן"
+
+#, fuzzy
+#~ msgid "Images"
+#~ msgstr "עמודים"
+
+#, fuzzy
+#~ msgid "Back to edit page"
+#~ msgstr "חזרה לעמוד הראשי"
+
+#, fuzzy
+#~ msgid "Upload new image"
+#~ msgstr "העלה תמונה חדשה"
+
+#, fuzzy
+#~ msgid "Remove image"
+#~ msgstr "מחיקה"
+
+#~ msgid "History"
+#~ msgstr "היסטוריה"
+
+#, fuzzy
+#~ msgid "Revert to this version"
+#~ msgstr "הוסבה לנושא לדיון"
+
+#, fuzzy
+#~ msgid "Remove it completely!"
+#~ msgstr "מחיקת הערה"
+
+#, fuzzy
+#~ msgid "Image not found"
+#~ msgstr "דף לא קיים"
+
+#, fuzzy
+#~ msgid "Replace image"
+#~ msgstr "מ&quot;מ"
+
+#, fuzzy
+#~ msgid "No images found for this article"
+#~ msgstr "אין תקציר להצבעה זו"
+
+#, fuzzy
+#~ msgid "Add new image"
+#~ msgstr "העלה תמונה חדשה"
+
+#, fuzzy
+#~ msgid "Add image"
+#~ msgstr "הוספת אג'נדה"
+
+#, fuzzy
+#~ msgid "You do not have permissions to add images."
+#~ msgstr "אין לך הרשאות להוסיף הארות."
+
+#, fuzzy
+#~ msgid "Link to another wiki page"
+#~ msgstr "חזרה לעמוד הראשי"
+
+#, fuzzy
+#~ msgid "Notifications"
+#~ msgstr "התראות דוא\"ל"
+
+#, fuzzy
+#~ msgid "Your notification settings were updated."
+#~ msgstr "פרופיל המשתמש עודכן"
+
+#, fuzzy
+#~ msgid "Article modified: %s"
+#~ msgstr "תאריך הצטרפות"
+
+#~ msgid "Log out"
+#~ msgstr "יציאה"
+
+#, fuzzy
+#~ msgid "No notifications"
+#~ msgstr "התראות דוא\"ל"
+
+#, fuzzy
+#~ msgid "Clear notifications list"
+#~ msgstr "התראות דוא\"ל"
+
+#, fuzzy
+#~ msgid "Sign up"
+#~ msgstr "סנינה"
+
+#, fuzzy
+#~ msgid "Delete article"
+#~ msgstr "מחיקת ההצבעה שלך"
+
+#, fuzzy
+#~ msgid "...and more!"
+#~ msgstr "קרא עוד"
+
+#, fuzzy
+#~ msgid "Article deleted"
+#~ msgstr "נמחקה"
+
+#, fuzzy
+#~ msgid "Last modified"
+#~ msgstr "תאריך הצטרפות"
+
+#, fuzzy
+#~ msgid "Click here to log in"
+#~ msgstr "יש ללחוץ כאן"
+
+#~ msgid "Preview"
+#~ msgstr "תצוגה מקדימה"
+
+#, fuzzy
+#~ msgid "Save changes"
+#~ msgstr "או לבצע שינויים"
+
+#, fuzzy
+#~ msgid "Back to editor"
+#~ msgstr "חזרה לוועדה"
+
+#, fuzzy
+#~ msgid "no log message"
+#~ msgstr "הערה לשינוי"
+
+#, fuzzy
+#~ msgid "Change"
+#~ msgstr "שינוי:"
+
+#, fuzzy
+#~ msgid "Create new merged version"
+#~ msgstr "יצירת משתמש חדש"
+
+#, fuzzy
+#~ msgid "Permission Denied"
+#~ msgstr "הרשאות"
+
+#, fuzzy
+#~ msgid "Sorry, you don't have permission to access this page."
+#~ msgstr "אין לך הרשאות להוסיף הארות."
+
+#, fuzzy
+#~ msgid "Back to article"
+#~ msgstr "חזרה לוועדה"
+
+#, fuzzy
+#~ msgid "This revision has been deleted."
+#~ msgstr "הערך הוזכר במקום נוסף"
+
+#, fuzzy
+#~ msgid "Search results for:"
+#~ msgstr "תוצאות החיפוש עבור"
+
+#, fuzzy
+#~ msgid "Settings"
+#~ msgstr "רשימת הישיבות המלאה"
+
+#, fuzzy
+#~ msgid "Source of"
+#~ msgstr "מקור?"
+
+#, fuzzy
+#~ msgid "Please log in"
+#~ msgstr "כניסה אחרונה"
+
+#, fuzzy
+#~ msgid "Log me in..."
+#~ msgstr "כניסה"
+
+#, fuzzy
+#~ msgid "Congratulations!"
+#~ msgstr "החלת דין רציפות"
+
+#, fuzzy
+#~ msgid "Create root"
+#~ msgstr "יצירת תגית חדשה"
+
+#, fuzzy
+#~ msgid "Changes"
+#~ msgstr "שינוי %s"
+
+#, fuzzy
+#~ msgid "View Source"
+#~ msgstr "מקור?"
+
+#, fuzzy
+#~ msgid "View"
+#~ msgstr "הצגת כל ההערות"
+
+#, fuzzy
+#~ msgid "...and more"
+#~ msgstr "קרא עוד"
+
+#, fuzzy
+#~ msgid "You are no longer logged in. Bye bye!"
+#~ msgstr "את/ה כבר מחובר/ת."
+
+#, fuzzy
+#~ msgid "You are now logged in! Have fun!"
+#~ msgstr "את/ה כבר מחובר/ת."
+
+#, fuzzy
+#~ msgid "Your changes were saved."
+#~ msgstr "סיסמתך שונתה."
+
+#, fuzzy
+#~ msgid "New title"
+#~ msgstr "כותרת"
+
+#~ msgid "Knesset 19"
+#~ msgstr "הכנסת ה- 19"
+
+#~ msgid "Presence this year:"
+#~ msgstr "נוכחות השנה:"
+
+#, fuzzy
+#~ msgid "Search results"
+#~ msgstr "תוצאות החיפוש עבור"
+
+#~ msgid ""
+#~ "\n"
+#~ "          This site uses a Google Custom Search, which requires "
+#~ "Javascript.\n"
+#~ "          If your results don't appear here shortly,\n"
+#~ "          please <a href=\"http://www.google.com/cse?%(q)s\">view the "
+#~ "results on Google's site</a>.\n"
+#~ "          "
+#~ msgstr ""
+#~ "\n"
+#~ "          אתר זה משתמש בחיפוש מותאם של גוגל, שדורש Javascript.\n"
+#~ "          אם תוצאות החיפוש לא מופיעות כאן תוך זמן קצר,\n"
+#~ "          ניתן <a href=\"http://www.google.com/cse?%(q)s\">לצפות בתוצאות "
+#~ "בגוגל</a>.\n"
+#~ "          "
+
+#~ msgid ""
+#~ "\n"
+#~ "                %(counter)s MK\n"
+#~ "                "
+#~ msgid_plural ""
+#~ "\n"
+#~ "                %(counter)s MKs\n"
+#~ "                "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "ח\"כ %(counter)s"
+#~ msgstr[1] ""
+#~ "\n"
+#~ "%(counter)s ח\"כים"
+
+#~ msgid "Voted against own bill"
+#~ msgstr "הצביע נגד הצעת חוק שהוא יזם"
+
+#~ msgid "Compare by"
+#~ msgstr "השוואה לפי"
+
+#~ msgid "Election"
+#~ msgstr "בחירות 2013"
+
+#~ msgid "Compare lists"
+#~ msgstr "השווה רשימות"
+
+#~ msgid "Parties by residence centrality"
+#~ msgstr "מפלגות לפי מדד מרכזיות של מקום מגורים"
+
+#~ msgid "Parties by residence economy"
+#~ msgstr "מפלגות לפי מדד סוציואקונומי של מקום מגורים"
+
+#~ msgid "Parties by number of bills proposed per seat"
+#~ msgstr "מפלגות לפי מספר הצעות חוק שהוצעו לכל ח\"כ"
+
+#~ msgid "Parties by number of bills passed pre vote per seat"
+#~ msgstr "מפלגות לפי מספר הצעות חוק שעברו קריאה טרומית לכל ח\"כ"
+
+#~ msgid "Parties by number of bills passed first vote per seat"
+#~ msgstr "מפלגות לפי מספר הצעות חוק שעברו קריאה ראשונה לכל ח\"כ"
+
+#~ msgid "Parties by number of bills passed approved per seat"
+#~ msgstr "מפלגות לפי מספר הצעות חוק שאושרו טרומית לכל ח\"כ"
+
+#~ msgid "Parties by average weekly hours of presence"
+#~ msgstr "מפלגות לפי ממוצע שעות שבועיות"
+
+#~ msgid "Parties by monthly committee meetings"
+#~ msgstr "מפלגות לפי ממוצע ישיבות וועדות בחודש"
+
+#~ msgid "Click the # to highlight MKs from this party"
+#~ msgstr "ניתן ללחוץ על ה- # להדגשת חברי כנסת של מפלגה"
+
+#~ msgid "Committee Members"
+#~ msgstr "חברי הוועדה"
+
+#~ msgid "Number of documents ordered"
+#~ msgstr "מספר מסמכים שהוזמנו"
+
+#~ msgid "Read Proposal"
+#~ msgstr "קריאת הצעה"
+
+#~ msgid "Bills by <a href=\"%(member_url)s\">%(member)s</a>"
+#~ msgstr "הצעות חוק ביוזמת <a href=\"%(member_url)s\">%(member)s</a>"
+
+#~ msgid "Bills %(stage)s by <a href=\"%(member_url)s\">%(member)s</a>"
+#~ msgstr ""
+#~ "הצעות חוק  ביוזמת <a href=\"%(member_url)s\">%(member)s</a> ש%(stage)s"
+
+#~ msgid "Some rights reserved."
+#~ msgstr ""
+#~ "חלק מהזכויות שמורות. פרטים בקישור. שימוש בנתונים מהאתר כפוף למתן קרדיט "
+#~ "וקישור לאתר."
+
+#~ msgid "Past Votes"
+#~ msgstr "הצבעות"
+
+#~ msgid "Joined"
+#~ msgstr "הצטרף/ה"
+
+#~ msgid "Posted"
+#~ msgstr "פִרסם/ה"
+
+#~ msgid "Attended"
+#~ msgstr "נכח/ה"
+
+#~ msgid "Displaying Actions"
+#~ msgstr "מציג  פעולות"
+
+#~ msgid "date of birth"
+#~ msgstr "תאריך לידה"
+
+#~ msgid "residence economy"
+#~ msgstr "מדד סוציואקונומי של מקום מגורים"
+
+#~ msgid "entrance to knesset"
+#~ msgstr "תחילת כהונה"
+
+#~ msgid "time in knesset"
+#~ msgstr "זמן בכנסת"
+
+#~ msgid "Number of MMM documents ordered"
+#~ msgstr "מספר מסמכי ממ\"מ שהוזמנו"
+
+#~ msgid "Latest videos"
+#~ msgstr "קטעי וידאו אחרונים"
+
+#~ msgid "Proposed bills topics"
+#~ msgstr "נושאי הצעות חוק"
+
+#~ msgid "Refresh"
+#~ msgstr "רענון"
+
+#~ msgid ""
+#~ "\n"
+#~ "                    This entry has been pinged.\n"
+#~ "                    "
+#~ msgid_plural ""
+#~ "\n"
+#~ "                    This entry has been pinged %(counter)s times.\n"
+#~ "                "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "                    יש קישור נכנס לעמוד זה.\n"
+#~ "                    "
+#~ msgstr[1] ""
+#~ "\n"
+#~ "                    יש %(counter)s קישורים נכנסים לעמוד זה.\n"
+#~ "                "
+
+#~ msgid ""
+#~ "\n"
+#~ "                                From <a href=\"http://%(url)s\">&ldquo;"
+#~ "%(title)s&ldquo;</a> on the %(received)s: %(excerpt)s\n"
+#~ "                            "
+#~ msgstr ""
+#~ "\n"
+#~ "                                מ- <a href=\"http://%(url)s\">&ldquo;"
+#~ "%(title)s&ldquo;</a>ב %(received)s: %(excerpt)s\n"
+#~ "                            "
+
+#~ msgid "This entry has not been pinged."
+#~ msgstr "הערך לא הוזכר במקומות אחרים."
+
+#~ msgid "TrackBack:"
+#~ msgstr "טראקבק:"
+
+#~ msgid "Number of bills proposed"
+#~ msgstr "מספר הצעות חוק שהוצעו"
+
+#~ msgid "Bills passed pre-vote"
+#~ msgstr "הצעות חוק שעברו קריאה טרומית"
+
+#~ msgid "Bills passed first vote"
+#~ msgstr "הצעות חוק שעברו קריאה ראשונה"
+
+#~ msgid "Bills approved"
+#~ msgstr "הצעות חוק שאושרו סופית"
+
+#~ msgid "Logged in as "
+#~ msgstr "מחובר כ "
+
+#~ msgid "Main"
+#~ msgstr "ראשי"
+
+#~ msgid "Latest Annotations and comments"
+#~ msgstr "הארות ותגובות אחרונות"
+
+#~ msgid "Visit the site, and change your settings"
+#~ msgstr "יש לבקר באתר ולעדכן את הגדרות שליחת הדוא\"ל"
+
+#~ msgid ""
+#~ "Hi %(username)s,<br>\n"
+#~ "Here's what happened lately in the knesset and on our site"
+#~ msgstr ""
+#~ "שלום %(username)s,<br>\n"
+#~ "הנה מה שקרה בכנסת ובאתר שלנו לאחרונה"
+
+#~ msgid ""
+#~ "Hi %(username)s,\n"
+#~ "Here's what happened lately in the knesset and on our site"
+#~ msgstr ""
+#~ "שלום %(username)s,\n"
+#~ "הנה מה שקרה בכנסת ובאתר שלנו לאחרונה"
+
+#~ msgid "M.M.M Documents ordered by "
+#~ msgstr "מסמכי ממ\"מ שהוזמנו על ידי "
+
+#~ msgid "suggested votes"
+#~ msgstr "הצבעות מוצעות"
+
+#~ msgid "%(committee)s meeting: %(topic)s"
+#~ msgstr "ישיבה של %(committee)s: %(topic)s"
+
+#~ msgid "Negligible"
+#~ msgstr "זניח"
+
+#~ msgid "Critical"
+#~ msgstr "קריטי"
+
+#~ msgid ""
+#~ "\n"
+#~ "%(user)s commented <a href=\"http://%(domain)s%(url)s\">%(action.target."
+#~ "comment)s</a>\n"
+#~ "<br>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "%(user)s העיר <a href=\"http://%(domain)s%(url)s\">%(action.target."
+#~ "comment)s</a><br>\n"
+
+#~ msgid "annotated"
+#~ msgstr "האיר/ה על"
+
+#~ msgid "commented"
+#~ msgstr "הגיב/ה על"
+
+#~ msgid "Number of followers"
+#~ msgstr "מספר עוקבים"
+
+#~ msgid "Number of ascribed votes"
+#~ msgstr "מספר הצבעות משויכות"
+
+#~ msgid "You are following"
+#~ msgstr "ברשימת המעקב שלך"
+
+#~ msgid "Tagged Votes"
+#~ msgstr "הצבעות מתויגות"
+
+#~ msgid "Last Week"
+#~ msgstr "שבוע אחרון"
+
+#~ msgid "Last Month"
+#~ msgstr "חודש אחרון"
+
+#~ msgid "Time range"
+#~ msgstr "טווח זמנים"
+
+#~ msgid ""
+#~ "\n"
+#~ "            %(counter)s MK\n"
+#~ "            "
+#~ msgid_plural ""
+#~ "\n"
+#~ "            %(counter)s MKs\n"
+#~ "            "
+#~ msgstr[0] ""
+#~ "\n"
+#~ "ח\"כ %(counter)s"
+#~ msgstr[1] ""
+#~ "\n"
+#~ "%(counter)s ח\"כים"
+
+#~ msgid "Link to compete vote text"
+#~ msgstr "קישור למסמך המלא"
+
+#~ msgid "No link to full vote text"
+#~ msgstr "אין קישור למסמך המלא להצבעה זו"
+
+#~ msgid "tag in"
+#~ msgstr "תג ב "
+
+#~ msgid ""
+#~ " Up to date information about %(name)s in the knesset: votes, bills, "
+#~ "committees, attendance and more.  "
+#~ msgstr ""
+#~ "מידע עדכני אודות %(name)s בכנסת: הצבעות, הצעות חוק, השתתפות בוועדות, "
+#~ "נוכחות במשכן ועוד."
+
+#~ msgid "Previous"
+#~ msgstr "הקודם"
+
+#~ msgid "Page"
+#~ msgstr "עמוד"
+
+#~ msgid "I'm just sitting here watching the wheels go round and round."
+#~ msgstr "אתר הכנסת הפתוחה"
+
+#~ msgid "Percentile"
+#~ msgstr "אחוזון"
+
+#~ msgid "next page"
+#~ msgstr "העמוד הבא"
+
+#~ msgid "Score:"
+#~ msgstr "ציון"
+
+#~ msgid "Reasoning:"
+#~ msgstr "הסבר"
+
+#~ msgid "Ascribe"
+#~ msgstr "ההצבעה משויכת"
+
+#~ msgid "Choose a tab to start browsing"
+#~ msgstr "שלום! אנא בחר באחד מהקישורים למעלה"
+
+#~ msgid "Add the code above to your site, to get a dynamically generated info"
+#~ msgstr "הוסף את הקוד לאתר שלך, לקבלת מידע דינמי באתרך"
+
+#~ msgid "MKs active in %(tag)s"
+#~ msgstr "ח\"כים פעילים ב %(tag)s"
+
+#~ msgid "Permalink"
+#~ msgstr "קישור קבוע"
+
+#~ msgid "All Members"
+#~ msgstr "כל הח\"כים"
+
+#~ msgid "Activities"
+#~ msgstr "פעילויות"
+
+#, fuzzy
+#~ msgid "Cache Usage"
+#~ msgstr "הערה לשינוי"
+
+#, fuzzy
+#~ msgid "Logging"
+#~ msgstr "כניסה"
+
+#, fuzzy
+#~ msgid "Log Messages"
+#~ msgstr "הודעה"
+
+#, fuzzy
+#~ msgid "Signals"
+#~ msgstr "סינאלוה"
+
+#, fuzzy
+#~ msgid "SQL Queries"
+#~ msgstr "ערוך פרופיל"
+
+#, fuzzy
+#~ msgid "Templates"
+#~ msgstr "תבנית"
+
+#, fuzzy
+#~ msgid "Resource Usage"
+#~ msgstr "הערה לשינוי"
+
+#, fuzzy
+#~ msgid "User CPU time"
+#~ msgstr "פרופיל משתמש"
+
+#, fuzzy
+#~ msgid "System CPU time"
+#~ msgstr "פרופיל משתמש"
+
+#, fuzzy
+#~ msgid "Total CPU time"
+#~ msgstr "פרופיל משתמש"
+
+#, fuzzy
+#~ msgid "Context switches"
+#~ msgstr "סוגי תוכן"
+
+#, fuzzy
+#~ msgid "Hide Toolbar"
+#~ msgstr "הצג הכל"
+
+#, fuzzy
+#~ msgid "Hide"
+#~ msgstr "הינדי"
+
+#, fuzzy
+#~ msgid "Show Toolbar"
+#~ msgstr "הצג הכל"
+
+#, fuzzy
+#~ msgid "Hits"
+#~ msgstr "אתרים"
+
+#, fuzzy
+#~ msgid "Misses"
+#~ msgstr "מיי"
+
+#, fuzzy
+#~ msgid "Parameters"
+#~ msgstr "מפלגות"
+
+#, fuzzy
+#~ msgid "Function"
+#~ msgstr "פעולה"
+
+#, fuzzy
+#~ msgid "Value"
+#~ msgstr "זכר"
+
+#, fuzzy
+#~ msgid "Level"
+#~ msgstr "לביצה"
+
+#, fuzzy
+#~ msgid "No messages logged"
+#~ msgstr "הודעה"
+
+#, fuzzy
+#~ msgid "View information"
+#~ msgstr "ניהול אתר"
+
+#, fuzzy
+#~ msgid "View Function"
+#~ msgstr "פעולה"
+
+#, fuzzy
+#~ msgid "args"
+#~ msgstr "ארגאו"
+
+#, fuzzy
+#~ msgid "kwargs"
+#~ msgstr "ארגאו"
+
+#, fuzzy
+#~ msgid "COOKIES Variables"
+#~ msgstr "וו"
+
+#, fuzzy
+#~ msgid "Variable"
+#~ msgstr "וו"
+
+#, fuzzy
+#~ msgid "SESSION Variables"
+#~ msgstr "וו"
+
+#, fuzzy
+#~ msgid "GET Variables"
+#~ msgstr "וו"
+
+#, fuzzy
+#~ msgid "No GET data"
+#~ msgstr "אין מספיק נתונים"
+
+#, fuzzy
+#~ msgid "POST Variables"
+#~ msgstr "וו"
+
+#, fuzzy
+#~ msgid "Signal"
+#~ msgstr "סינאלוה"
+
+#, fuzzy
+#~ msgid "Query"
+#~ msgstr "משתמש"
+
+#, fuzzy
+#~ msgid "Line"
+#~ msgstr "תשעה"
+
+#, fuzzy
+#~ msgid "SQL Profiled"
+#~ msgstr "ערוך פרופיל"
+
+#, fuzzy
+#~ msgid "Template Source"
+#~ msgstr "שם תבנית"
+
+#, fuzzy
+#~ msgid "Template path"
+#~ msgstr "שם תבנית"
+
+#, fuzzy
+#~ msgid "Template"
+#~ msgstr "תבנית"
+
+#, fuzzy
+#~ msgid "Toggle Context"
+#~ msgstr "הצבעות מתויגות"
+
+#, fuzzy
+#~ msgid "Context processor"
+#~ msgstr "סוגי תוכן"
+
+#, fuzzy
+#~ msgid "Resource"
+#~ msgstr "הערה לשינוי"
+
+#, fuzzy
+#~ msgid "Package"
+#~ msgstr "פראג"
+
+#, fuzzy
+#~ msgid "Inactive"
+#~ msgstr "Iwate"
+
+#~ msgid "%s does not appear to be a urlpattern object"
+#~ msgstr "לא נראה ש-%s הוא אובייקט urlpattern"
+
+#, fuzzy
+#~ msgid "Search In"
+#~ msgstr "חיפוש ב"
+
+#, fuzzy
+#~ msgid "Posts in %s"
+#~ msgstr "מאמרים ב "
+
+#, fuzzy
+#~ msgid "All posts"
+#~ msgstr "כל ההצבעות"
+
+#, fuzzy
+#~ msgid "Posts by %(author_name)s - %(site_name)s"
+#~ msgstr "ההערות האחרונות על %(site_name)s"
+
+#, fuzzy
+#~ msgid "Blogs"
+#~ msgstr "רשימת בלוגים"
+
+#, fuzzy
+#~ msgid "Feeds"
+#~ msgstr "פיד"
+
+#, fuzzy
+#~ msgid "Url"
+#~ msgstr "אורי"
+
+#, fuzzy
+#~ msgid "Blog"
+#~ msgstr "כניסה לחשבון"
+
+#, fuzzy
+#~ msgid "Generator"
+#~ msgstr "ג'נבה"
+
+#, fuzzy
+#~ msgid "Generators"
+#~ msgstr "ג'נבה"
+
+#, fuzzy
+#~ msgid "Subtitle"
+#~ msgstr "כותרת"
+
+#, fuzzy
+#~ msgid "Infos"
+#~ msgstr "אין נתונים"
+
+#, fuzzy
+#~ msgid "Etag"
+#~ msgstr "תג:"
+
+#, fuzzy
+#~ msgid "Is active"
+#~ msgstr "שמירה"
+
+#, fuzzy
+#~ msgid "Post"
+#~ msgstr "מאמרים"
+
+#, fuzzy
+#~ msgid "Profile URL"
+#~ msgstr "עריכת פרופיל"
+
+#, fuzzy
+#~ msgid "Author"
+#~ msgstr "שעה"
+
+#, fuzzy
+#~ msgid "Feed Link"
+#~ msgstr "רשימת הפידים"
+
+#, fuzzy
+#~ msgid "Feed Links"
+#~ msgstr "רשימת הפידים"
+
+#, fuzzy
+#~ msgid "Post Link"
+#~ msgstr "מאמרים ב "
+
+#, fuzzy
+#~ msgid "Post Links"
+#~ msgstr "מאמרים ב "
+
+#, fuzzy
+#~ msgid "Length"
+#~ msgstr "דרנתה"
+
+#, fuzzy
+#~ msgid "Post Enclosure"
+#~ msgstr "פרסום תגובה"
+
+#, fuzzy
+#~ msgid "Browse"
+#~ msgstr "עיון"
+
+#, fuzzy
+#~ msgid "blog"
+#~ msgstr "כניסה לחשבון"
+
+#, fuzzy
+#~ msgid "Suscribe to RSS feed for blog"
+#~ msgstr "הרשמה לפיד של התג הזה "
+
+#, fuzzy
+#~ msgid "See the list of blogs talking about this tag"
+#~ msgstr "רשימה של כותבים שכתבו על תג זה"
+
+#, fuzzy
+#~ msgid "Feeds talking about this"
+#~ msgstr "ח\"כים המדברים על זה"
+
+#, fuzzy
+#~ msgid "Posts under tag"
+#~ msgstr "מאמרים ב "
+
+#, fuzzy
+#~ msgid "See the complete list of posts by this author"
+#~ msgstr "רשימה מלאה של מאמרים מהבלוג"
+
+#, fuzzy
+#~ msgid "Authors list"
+#~ msgstr "רשימת בלוגים"
+
+#, fuzzy
+#~ msgid "Authors talking about"
+#~ msgstr "ח\"כים המדברים על זה"
+
+#, fuzzy
+#~ msgid "Authors for this feed"
+#~ msgstr "הרשמה לפיד זה"
+
+#, fuzzy
+#~ msgid "Other blogs talking about "
+#~ msgstr "ח\"כים המדברים על זה"
+
+#, fuzzy
+#~ msgid "Feed icon"
+#~ msgstr "רשימת הפידים"
+
+#, fuzzy
+#~ msgid "Feeds talking about"
+#~ msgstr "ח\"כים המדברים על זה"
+
+#, fuzzy
+#~ msgid "See all posts for this feed"
+#~ msgstr "רשימת מאמרים מלאה מפיד זה"
+
+#, fuzzy
+#~ msgid "Read original post"
+#~ msgstr "קרא בבלוג"
+
+#~ msgid "read original post"
+#~ msgstr "קרא בבלוג"
+
+#, fuzzy
+#~ msgid "See all posts for this author"
+#~ msgstr "רשימה מלאה של מאמרים מהבלוג"
+
+#, fuzzy
+#~ msgid "Posts list"
+#~ msgstr "מאמרים ב "
+
+#, fuzzy
+#~ msgid "See the list of feeds talking about this tag"
+#~ msgstr "רשימה של כותבים שכתבו על תג זה"
+
+#, fuzzy
+#~ msgid "Tags cloud for author"
+#~ msgstr "ענן תגיות"
+
+#, fuzzy
+#~ msgid "Tags cloud for feed"
+#~ msgstr "ענן תגיות"
+
+#, fuzzy
+#~ msgid "Related tags"
+#~ msgstr "הצביע על תגיות"
+
+#, fuzzy
+#~ msgid "A tag may be no more than %s characters long."
+#~ msgstr "נא לוודא שאין יותר מ-%s ספרות אחרי הנקודה"
+
+#, fuzzy
+#~ msgid "Each tag may be no more than %s characters long."
+#~ msgstr "נא לוודא שאין יותר מ-%s ספרות אחרי הנקודה"
+
+#~ msgid "object id"
+#~ msgstr "מזהה אובייקט"
+
+#~ msgid "stopped following"
+#~ msgstr "הפסיק/ה לעקוב אחרי"
+
+#, fuzzy
+#~ msgid "Activate users"
+#~ msgstr "פעילויות"
+
+#, fuzzy
+#~ msgid "Re-send activation emails"
+#~ msgstr "שליחת דואר אלקטרוני לאימות"
+
+#~ msgid "Email address"
+#~ msgstr "כתובת דוא\"ל"
+
+#~ msgid "The two password fields didn't match."
+#~ msgstr "שני שדות הסיסמה אינם זהים."
+
+#, fuzzy
+#~ msgid "Bogus Flag"
+#~ msgstr "רשימת בלוגים"
+
+#, fuzzy
+#~ msgid "Missing Parameter"
+#~ msgstr "מפלגות"
+
+#, fuzzy
+#~ msgid "Bogus content"
+#~ msgstr "תוכן"
+
+#, fuzzy
+#~ msgid "Bogus object"
+#~ msgstr "הצג מזהה אובייקט"
+
+#, fuzzy
+#~ msgid "Missing parameters"
+#~ msgstr "מפלגות"
+
+#~ msgid "Following Members:"
+#~ msgstr "חברי כנסת במעקב"
+
+#~ msgid "Passage mark"
+#~ msgstr "סמנו קטע"
+
+#~ msgid "Laws"
+#~ msgstr "חוקים"
+
+#~ msgid "Relevant votes"
+#~ msgstr "הצבעות קשורות במליאה"
+
+#~ msgid "Bold: passed, red: failed"
+#~ msgstr "מודגש: אושר, אדום: נפל"
+
+#~ msgid "MK Proposed"
+#~ msgstr "הציע/ה"
+
+#~ msgid "Hasn't proposed any laws"
+#~ msgstr "לא הציע/ה חוקים"
+
+#~ msgid "DjangoIL unless otherwise noted."
+#~ msgstr "התכנים באתר הם ברשות הרבים."
+
+#~ msgid "hostingCredit"
+#~ msgstr "תודה לטוזיג על אירוח האתר"
+
+#~ msgid "Member of the python and django communities."
+#~ msgstr "תודה לקהילות דג'נגו ופייתון על הקוד וכל הדגים"
+
+#~ msgid "Sorry, a strange error occured. Please try reloading the page."
+#~ msgstr "מצטער, ארעה שגיאה  מוזרה. אנא כענן את המסך ונסה שנית."
+
+#~ msgid "Favorite MKs"
+#~ msgstr "חברי כנסת מועדפים"
+
+#~ msgid "edit favorite MKs list"
+#~ msgstr "ערוך רשימת ח\"כים מועדפים"
+
+#~ msgid "Login via"
+#~ msgstr "הזדהה באמצעות"
+
+#~ msgid "Yahoo"
+#~ msgstr "יאהו"
+
+#~ msgid "Openid"
+#~ msgstr "&rlm;OpenID"
+
+#~ msgid "Google"
+#~ msgstr "גוגל"
+
+#~ msgid "By votes per seats"
+#~ msgstr "הצבעות לח\"כ"
+
+#~ msgid "Bengali"
+#~ msgstr "בנגאלית"
+
+#~ msgid "Bulgarian"
+#~ msgstr "בולגרית"
+
+#~ msgid "Catalan"
+#~ msgstr "קאטלונית"
+
+#~ msgid "Czech"
+#~ msgstr "צ'כית"
+
+#~ msgid "Welsh"
+#~ msgstr "וולשית"
+
+#~ msgid "Danish"
+#~ msgstr "דנית"
+
+#~ msgid "Greek"
+#~ msgstr "יוונית"
+
+#~ msgid "Spanish"
+#~ msgstr "ספרדית"
+
+#~ msgid "Estonian"
+#~ msgstr "אסטונית"
+
+#~ msgid "Argentinean Spanish"
+#~ msgstr "ספרדית ארגנטינאית"
+
+#~ msgid "Basque"
+#~ msgstr "בסקית"
+
+#~ msgid "Persian"
+#~ msgstr "פרסית"
+
+#~ msgid "Finnish"
+#~ msgstr "פינית"
+
+#~ msgid "French"
+#~ msgstr "צרפתית"
+
+#~ msgid "Irish"
+#~ msgstr "אירית"
+
+#~ msgid "Galician"
+#~ msgstr "גאליצית"
+
+#~ msgid "Hungarian"
+#~ msgstr "הונגרית"
+
+#~ msgid "Hindi"
+#~ msgstr "הינדי"
+
+#~ msgid "Croatian"
+#~ msgstr "קרואטית"
+
+#~ msgid "Icelandic"
+#~ msgstr "איסלנדית"
+
+#~ msgid "Italian"
+#~ msgstr "איטלקית"
+
+#~ msgid "Japanese"
+#~ msgstr "יפנית"
+
+#~ msgid "Georgian"
+#~ msgstr "גיאורגית"
+
+#~ msgid "Korean"
+#~ msgstr "קוריאנית"
+
+#, fuzzy
+#~ msgid "Khmer"
+#~ msgstr "כאן"
+
+#~ msgid "Kannada"
+#~ msgstr "קנדית"
+
+#~ msgid "Latvian"
+#~ msgstr "לטבית"
+
+#~ msgid "Lithuanian"
+#~ msgstr "ליטאית"
+
+#~ msgid "Macedonian"
+#~ msgstr "מקדונית"
+
+#~ msgid "Norwegian"
+#~ msgstr "נורווגית"
+
+#~ msgid "Polish"
+#~ msgstr "פולנית"
+
+#~ msgid "Portuguese"
+#~ msgstr "פורטוגזית"
+
+#~ msgid "Brazilian Portuguese"
+#~ msgstr "פורטוגזית ברזילאית"
+
+#~ msgid "Romanian"
+#~ msgstr "רומנית"
+
+#~ msgid "Slovak"
+#~ msgstr "סלובקית"
+
+#~ msgid "Slovenian"
+#~ msgstr "סלובנית"
+
+#~ msgid "Serbian"
+#~ msgstr "סרבית"
+
+#~ msgid "Swedish"
+#~ msgstr "שוודית"
+
+#~ msgid "Thai"
+#~ msgstr "תאילנדית"
+
+#~ msgid "Turkish"
+#~ msgstr "טורקית"
+
+#~ msgid "Ukrainian"
+#~ msgstr "אוקראינית"
+
+#~ msgid "Simplified Chinese"
+#~ msgstr "סינית פשוטה"
+
+#~ msgid "Traditional Chinese"
+#~ msgstr "סינית מסורתית"
+
+#~ msgid ""
+#~ "<h3>By %s:</h3>\n"
+#~ "<ul>\n"
+#~ msgstr ""
+#~ "<h3>ע\"י %s:</h3>\n"
+#~ "<ul>\n"
+
+#~ msgid "Today"
+#~ msgstr "היום"
+
+#~ msgid "Yes"
+#~ msgstr "כן"
+
+#~ msgid "No"
+#~ msgstr "לא"
+
+#~ msgid "object repr"
+#~ msgstr "ייצוג אובייקט"
+
+#, fuzzy
+#~ msgid "action flag"
+#~ msgstr "סמן הערה"
+
+#~ msgid "log entries"
+#~ msgstr "רישומי יומן"
+
+#~ msgid "Changed %s."
+#~ msgstr "%s שונה."
+
+#~ msgid "Added %(name)s \"%(object)s\"."
+#~ msgstr "התווסף %(name)s \"%(object)s\"."
+
+#~ msgid "Changed %(list)s for %(name)s \"%(object)s\"."
+#~ msgstr "שונה %(list)s עבור %(name)s \"%(object)s\"."
+
+#~ msgid "Deleted %(name)s \"%(object)s\"."
+#~ msgstr "נמחק %(name)s \"%(object)s\"."
+
+#~ msgid "The %(name)s \"%(obj)s\" was added successfully."
+#~ msgstr "הוספת %(name)s \"%(obj)s\" בוצעה בהצלחה."
+
+#~ msgid "You may edit it again below."
+#~ msgstr "ניתן לערוך שוב מתחת"
+
+#~ msgid "You may add another %s below."
+#~ msgstr "ניתן להוסיף %s נוסף מתחת."
+
+#~ msgid "The %(name)s \"%(obj)s\" was changed successfully."
+#~ msgstr "שינוי %(name)s \"%(obj)s\" בוצע בהצלחה."
+
+#~ msgid ""
+#~ "The %(name)s \"%(obj)s\" was added successfully. You may edit it again "
+#~ "below."
+#~ msgstr "הוספת %(name)s \"%(obj)s\" בוצעה בהצלחה. ניתן לערוך אותו שוב מתחת."
+
+#~ msgid "Add %s"
+#~ msgstr "הוספת %s"
+
+#~ msgid "%(name)s object with primary key %(key)r does not exist."
+#~ msgstr "הפריט %(name)s עם המקש %(key)r אינו קיים."
+
+#~ msgid "The %(name)s \"%(obj)s\" was deleted successfully."
+#~ msgstr "מחיקת %(name)s \"%(obj)s\" בוצעה בהצלחה."
+
+#~ msgid "Change history: %s"
+#~ msgstr "היסטוריית שינוי: %s"
+
+#~ msgid ""
+#~ "Please enter a correct username and password. Note that both fields are "
+#~ "case-sensitive."
+#~ msgstr ""
+#~ "שם המשתמש או הסיסמה אינם נכונים (בשני השדות גודל האותיות האנגליות משנה)."
+
+#~ msgid "Please log in again, because your session has expired."
+#~ msgstr "עליך להתחבר שנית כי פג הזמן המוקצב לך."
+
+#~ msgid ""
+#~ "Looks like your browser isn't configured to accept cookies. Please enable "
+#~ "cookies, reload this page, and try again."
+#~ msgstr ""
+#~ "נראה שהדפדפן שלך אינו מוגדר לקבל עוגיות. נא לאפשר עוגיות, לטעון מחדש את "
+#~ "הדף ולנסות שוב."
+
+#~ msgid "Usernames cannot contain the '@' character."
+#~ msgstr "שם משתמש אינו יכול להכיל את התו '@'."
+
+#~ msgid "Your e-mail address is not your username. Try '%s' instead."
+#~ msgstr "כתובת הדוא\"ל שלך אינה שם המשתמש שלך. נסה/י '%s' במקום."
+
+#~ msgid "%s administration"
+#~ msgstr "ניהול %s"
+
+#~ msgid "One or more %(fieldname)s in %(name)s: %(obj)s"
+#~ msgstr "אחד או יותר %(fieldname)s ב%(name)s: %(obj)s"
+
+#~ msgid "One or more %(fieldname)s in %(name)s:"
+#~ msgstr "אחד או יותר %(fieldname)s ב%(name)s:"
+
+#~ msgid "Time:"
+#~ msgstr "שעה:"
+
+#~ msgid "Add Another"
+#~ msgstr "הוסף עוד אחת"
+
+#~ msgid "We're sorry, but the requested page could not be found."
+#~ msgstr "אנו מצטערים, לא ניתן למצוא את הדף המבוקש."
+
+#~ msgid "Server error"
+#~ msgstr "שגיאת שרת"
+
+#~ msgid "Server error (500)"
+#~ msgstr "שגיאת שרת (500)"
+
+#~ msgid "Server Error <em>(500)</em>"
+#~ msgstr "שגיאת שרת <em>(500)</em>"
+
+#~ msgid ""
+#~ "There's been an error. It's been reported to the site administrators via "
+#~ "e-mail and should be fixed shortly. Thanks for your patience."
+#~ msgstr ""
+#~ "התרחשה שגיאה. היא דווחה למנהלי האתר בדוא\"ל ותתוקן בקרוב. תודה על סבלנותך."
+
+#~ msgid "Go"
+#~ msgstr "בצע"
+
+#~ msgid "%(name)s"
+#~ msgstr "%(name)s"
+
+#~ msgid "Welcome,"
+#~ msgstr "שלום,"
+
+#~ msgid "Change password"
+#~ msgstr "שינוי סיסמה"
+
+#~ msgid "Django site admin"
+#~ msgstr "ניהול אתר Django"
+
+#~ msgid "Django administration"
+#~ msgstr "ניהול Django"
+
+#~ msgid "Please correct the error below."
+#~ msgid_plural "Please correct the errors below."
+#~ msgstr[0] "נא לתקן את השגיאה המופיעה מתחת."
+#~ msgstr[1] "נא לתקן את השגיאות המופיעות מתחת."
+
+#~ msgid "Add %(name)s"
+#~ msgstr "הוספת %(name)s"
+
+#~ msgid ""
+#~ "Deleting the %(object_name)s '%(escaped_object)s' would result in "
+#~ "deleting related objects, but your account doesn't have permission to "
+#~ "delete the following types of objects:"
+#~ msgstr ""
+#~ "מחיקת %(object_name)s '%(escaped_object)s' מצריכה מחיקת אובייקטים "
+#~ "מקושרים, אך לחשבון שלך אין הרשאות למחיקת סוגי האובייקטים הבאים:"
+
+#~ msgid ""
+#~ "Are you sure you want to delete the %(object_name)s \"%(escaped_object)s"
+#~ "\"? All of the following related items will be deleted:"
+#~ msgstr ""
+#~ "האם ברצונך למחוק את %(object_name)s \"%(escaped_object)s\"? כל הפריטים "
+#~ "הקשורים הבאים יימחקו:"
+
+#~ msgid "Delete multiple objects"
+#~ msgstr "מחק כמה פריטים"
+
+#~ msgid ""
+#~ "Deleting the %(object_name)s would result in deleting related objects, "
+#~ "but your account doesn't have permission to delete the following types of "
+#~ "objects:"
+#~ msgstr ""
+#~ "מחיקת %(object_name)s מצריכה מחיקת אובייקטים מקושרים, אך לחשבון שלך אין "
+#~ "הרשאות למחיקת סוגי האובייקטים הבאים:"
+
+#, fuzzy
+#~ msgid ""
+#~ "Are you sure you want to delete the selected %(object_name)s objects? All "
+#~ "of the following objects and their related items will be deleted:"
+#~ msgstr ""
+#~ "האם אתה בטוח שאתה רוצה למחוק את פריטי ה %(object_name)s שנבחרו.  כל "
+#~ "הפריטים הבאים והחומר הנלווה אליהם יימחקו."
+
+#~ msgid " By %(filter_title)s "
+#~ msgstr " לפי %(filter_title)s "
+
+#~ msgid "Models available in the %(name)s application."
+#~ msgstr "מודלים זמינים ביישום %(name)s."
+
+#~ msgid "None available"
+#~ msgstr "לא נמצאו"
+
+#~ msgid "Unknown content"
+#~ msgstr "תוכן לא ידוע"
+
+#~ msgid ""
+#~ "Something's wrong with your database installation. Make sure the "
+#~ "appropriate database tables have been created, and make sure the database "
+#~ "is readable by the appropriate user."
+#~ msgstr ""
+#~ "משהו שגוי בהתקנת בסיס הנתונים שלך. נא לוודא שנוצרו טבלאות בסיס הנתונים "
+#~ "המתאימות, ובסיס הנתונים ניתן לקריאה על ידי המשתמש המתאים."
+
+#~ msgid "Username:"
+#~ msgstr "שם משתמש:"
+
+#~ msgid "Password:"
+#~ msgstr "סיסמה:"
+
+#~ msgid "Date/time"
+#~ msgstr "תאריך/שעה"
+
+#~ msgid "DATETIME_FORMAT"
+#~ msgstr "d.m.‏Y H:i:s"
+
+#~ msgid ""
+#~ "This object doesn't have a change history. It probably wasn't added via "
+#~ "this admin site."
+#~ msgstr ""
+#~ "לאובייקט זה אין היסטוריית שינוי. כנראה לא השתמשו בממשק הניהול הזה להוספתו."
+
+#, fuzzy
+#~ msgid "Save"
+#~ msgstr "שמור"
+
+#, fuzzy
+#~ msgid "1 result"
+#~ msgid_plural "%(counter)s results"
+#~ msgstr[0] "תוצאות"
+#~ msgstr[1] "תוצאות"
+
+#~ msgid "%(full_result_count)s total"
+#~ msgstr "%(full_result_count)s סה\"כ"
+
+#~ msgid "Save and continue editing"
+#~ msgstr "שמירה והמשך עריכה"
+
+#~ msgid ""
+#~ "First, enter a username and password. Then, you'll be able to edit more "
+#~ "user options."
+#~ msgstr ""
+#~ "ראשית יש להזין שם משתמש וסיסמה. לאחר מכן יהיה ביכולתך לערוך אפשרויות "
+#~ "נוספות עבור המשתמש."
+
+#~ msgid "Enter a new password for the user <strong>%(username)s</strong>."
+#~ msgstr "יש להזין סיסמה חדשה עבור המשתמש <strong>%(username)s</strong>."
+
+#~ msgid "Delete?"
+#~ msgstr "מחיקה ?"
+
+#~ msgid "Thanks for spending some quality time with the Web site today."
+#~ msgstr "תודה על בילוי זמן איכות עם האתר."
+
+#~ msgid "Log in again"
+#~ msgstr "התחבר/י שוב"
+
+#~ msgid "Password change"
+#~ msgstr "שינוי סיסמה"
+
+#~ msgid "Password change successful"
+#~ msgstr "הסיסמה שונתה בהצלחה"
+
+#~ msgid ""
+#~ "Please enter your old password, for security's sake, and then enter your "
+#~ "new password twice so we can verify you typed it in correctly."
+#~ msgstr ""
+#~ "נא להזין את סיסמתך הישנה, למען האבטחה, ולאחר מכן את סיסמתך החדשה פעמיים "
+#~ "כדי שנוכל לוודא שהקלדת אותה כראוי."
+
+#~ msgid "Old password:"
+#~ msgstr "סיסמה ישנה:"
+
+#~ msgid "Password reset confirmation"
+#~ msgstr "אימות איפוס סיסמה"
+
+#~ msgid "You're receiving this e-mail because you requested a password reset"
+#~ msgstr "הודעה זו התקבלה כי ביקשת איפוס סיסמה"
+
+#~ msgid "for your user account at %(site_name)s"
+#~ msgstr "עבור חשבון המשתמש שלך ב %(site_name)s"
+
+#~ msgid "Please go to the following page and choose a new password:"
+#~ msgstr "נא להגיע לעמוד הבא ולבחור סיסמה חדשה:"
+
+#~ msgid "Your username, in case you've forgotten:"
+#~ msgstr "שם המשתמש שלך, במקרה ששכחת:"
+
+#~ msgid "Thanks for using our site!"
+#~ msgstr "תודה על השימוש באתר שלנו!"
+
+#~ msgid "The %(site_name)s team"
+#~ msgstr "צוות %(site_name)s"
+
+#, fuzzy
+#~ msgid "site"
+#~ msgstr "אתרים"
+
+#~ msgid "template"
+#~ msgstr "תבנית"
+
+#~ msgid "tag:"
+#~ msgstr "תג:"
+
+#~ msgid "view:"
+#~ msgstr "ה-view:"
+
+#~ msgid "App %r not found"
+#~ msgstr "יישום %r לא נמצא"
+
+#~ msgid "Model %(model_name)r not found in app %(app_label)r"
+#~ msgstr "מודל %(model_name)r לא נמצא ביישום %(app_label)r"
+
+#~ msgid "the related `%(app_label)s.%(data_type)s` object"
+#~ msgstr "אוביקטי `%(app_label)s.%(data_type)s` קשורים"
+
+#~ msgid "model:"
+#~ msgstr "מודל:"
+
+#~ msgid "related `%(app_label)s.%(object_name)s` objects"
+#~ msgstr "אובייקטי `%(app_label)s.%(object_name)s` קשורים"
+
+#~ msgid "all %s"
+#~ msgstr "כל %s"
+
+#~ msgid "Integer"
+#~ msgstr "מספר שלם"
+
+#~ msgid "Boolean (Either True or False)"
+#~ msgstr "בוליאני (אמת או שקר)"
+
+#~ msgid "String (up to %(max_length)s)"
+#~ msgstr "מחרוזת (עד %(max_length)s תווים)"
+
+#~ msgid "Comma-separated integers"
+#~ msgstr "מספרים שלמים מופרדים בפסיקים"
+
+#~ msgid "Date (without time)"
+#~ msgstr "תאריך (ללא שעה)"
+
+#~ msgid "Decimal number"
+#~ msgstr "מספר עשרוני"
+
+#~ msgid "E-mail address"
+#~ msgstr "כתובת דוא\"ל"
+
+#~ msgid "Floating point number"
+#~ msgstr "מספר עשרוני"
+
+#~ msgid "Boolean (Either True, False or None)"
+#~ msgstr "בוליאני (אמת, שקר או כלום)"
+
+#~ msgid "Relation to parent model"
+#~ msgstr "יחס למודל אב"
+
+#~ msgid "U.S. state (two uppercase letters)"
+#~ msgstr "מדינה בארה\"ב (שתי אותיות גדולות)"
+
+#~ msgid "XML text"
+#~ msgstr "טקסט XML"
+
+#~ msgid "Documentation bookmarklets"
+#~ msgstr "ייסומוניות תיעוד"
+
+#~ msgid ""
+#~ "\n"
+#~ "<p class=\"help\">To install bookmarklets, drag the link to your "
+#~ "bookmarks\n"
+#~ "toolbar, or right-click the link and add it to your bookmarks. Now you "
+#~ "can\n"
+#~ "select the bookmarklet from any page in the site.  Note that some of "
+#~ "these\n"
+#~ "bookmarklets require you to be viewing the site from a computer "
+#~ "designated\n"
+#~ "as \"internal\" (talk to your system administrator if you aren't sure if\n"
+#~ "your computer is \"internal\").</p>\n"
+#~ msgstr ""
+#~ "\n"
+#~ "<p class=\"help\">כדי להתקין ייסומניות, יש לגרור את הקישור לסרגל "
+#~ "הסימניות\n"
+#~ "שלך, או קליק ימני והוספה לסימניות. כעת ניתן\n"
+#~ "לבחור את הייסומניה מכל עמוד באתר.  יש לשים לב כי חלק מהייסומניות\n"
+#~ "ניתנות לצפיה רק ממחשב שמסווג\n"
+#~ "כ\"פנימי\" (יש לדבר עם מנהל המערכת שלך אם אינך בטוח/ה\n"
+#~ "שהמחשב מסווג ככזה).</p>\n"
+
+#~ msgid ""
+#~ "Jumps you from any page to the documentation for the view that generates "
+#~ "that page."
+#~ msgstr "מקפיץ אותך מכל עמוד לתיעוד התצוגה שייצרה אותו."
+
+#~ msgid ""
+#~ "Shows the content-type and unique ID for pages that represent a single "
+#~ "object."
+#~ msgstr "מציג את סוג התוכן והמזהה הייחודי לעמודים המייצגים אובייקט בודד."
+
+#~ msgid "Edit this object (current window)"
+#~ msgstr "עריכת אובייקט זה (בחלון הנוכחי)"
+
+#~ msgid "Jumps to the admin page for pages that represent a single object."
+#~ msgstr "קופץ לעמוד הניהול לעמודים אשר מייצגים אובייקטים בודד."
+
+#~ msgid "Edit this object (new window)"
+#~ msgstr "עריכת אובייקט זה (בחלון חדש)"
+
+#~ msgid "As above, but opens the admin page in a new window."
+#~ msgstr "כנ\"ל, אך דף הניהול ייפתח בחלון חדש."
+
+#~ msgid "Groups"
+#~ msgstr "קבוצות"
+
+#~ msgid "Add user"
+#~ msgstr "הוספת משתמש"
+
+#~ msgid "Change password: %s"
+#~ msgstr "שינוי סיסמה: %s"
+
+#~ msgid "This account is inactive."
+#~ msgstr "חשבון זה אינו פעיל."
+
+#~ msgid ""
+#~ "Your Web browser doesn't appear to have cookies enabled. Cookies are "
+#~ "required for logging in."
+#~ msgstr "נראה שעוגיות לא מאופשרות בדפדפן שלך. הן נדרשות כדי להתחבר."
+
+#~ msgid ""
+#~ "That e-mail address doesn't have an associated user account. Are you sure "
+#~ "you've registered?"
+#~ msgstr "כתובת דואר אלקטרוני זו אינה משוייכת למשתמש. בטוח שנרשמת ?"
+
+#~ msgid "Password reset on %s"
+#~ msgstr "איפוס סיסמה על %s"
+
+#~ msgid "New password"
+#~ msgstr "סיסמה חדשה"
+
+#~ msgid "New password confirmation"
+#~ msgstr "אימות סיסמה חדשה"
+
+#~ msgid "Old password"
+#~ msgstr "סיסמה ישנה"
+
+#~ msgid "Your old password was entered incorrectly. Please enter it again."
+#~ msgstr "סיסמתך הישנה הוזנה בצורה שגויה. נא להזינה שוב."
+
+#~ msgid "codename"
+#~ msgstr "שם קוד"
+
+#~ msgid "permission"
+#~ msgstr "הרשאה"
+
+#~ msgid "permissions"
+#~ msgstr "הרשאות"
+
+#~ msgid "groups"
+#~ msgstr "קבוצות"
+
+#~ msgid "password"
+#~ msgstr "סיסמה"
+
+#~ msgid ""
+#~ "Use '[algo]$[salt]$[hexdigest]' or use the <a href=\"password/\">change "
+#~ "password form</a>."
+#~ msgstr ""
+#~ "יש להזין '[algo]$[salt]$[hexdigest]' או להשתמש ב<a href=\"password/"
+#~ "\">טופס שינוי הסיסמה</a>."
+
+#~ msgid "Designates whether the user can log into this admin site."
+#~ msgstr "מציין האם המשתמש יכול להתחבר לאתר הניהול."
+
+#~ msgid ""
+#~ "Designates whether this user should be treated as active. Unselect this "
+#~ "instead of deleting accounts."
+#~ msgstr ""
+#~ "מציין האם יש להתייחס למשתמש כפעיל. יש לבטל בחירה זו במקום למחוק חשבונות "
+#~ "משתמשים."
+
+#~ msgid ""
+#~ "Designates that this user has all permissions without explicitly "
+#~ "assigning them."
+#~ msgstr "מציין שלמשתמש זה יש את כל ההרשאות ללא הצורך המפורש בהענקתן."
+
+#~ msgid ""
+#~ "In addition to the permissions manually assigned, this user will also get "
+#~ "all permissions granted to each group he/she is in."
+#~ msgstr ""
+#~ "בנוסף לכל ההרשאות שהוקצו ידנית, יוענקו למשתמש גם כל ההרשאות של כל קבוצה "
+#~ "המשוייכת אליו."
+
+#~ msgid "users"
+#~ msgstr "משתמשים"
+
+#~ msgid "Logged out"
+#~ msgstr "יצאת מהמערכת"
+
+#~ msgid "Enter a valid e-mail address."
+#~ msgstr "יש להזין כתובת דוא\"ל חוקית."
+
+#~ msgid "Metadata"
+#~ msgstr "מטא-נתונים"
+
+#~ msgid "Watch your mouth! The word %s is not allowed here."
+#~ msgid_plural "Watch your mouth! The words %s are not allowed here."
+#~ msgstr[0] "שמור על לשונך! המילה %s אסורה לשימוש כאן."
+#~ msgstr[1] "שמור על לשונך! המילים %s אסורות לשימוש כאן."
+
+#~ msgid ""
+#~ "If you enter anything in this field your comment will be treated as spam"
+#~ msgstr "אם יוזן משהו בשדה היחס לתגובתך יהיה כמו לספאם"
+
+#~ msgid "user's email address"
+#~ msgstr "כתובת דוא\"ל משתמש"
+
+#~ msgid "user's URL"
+#~ msgstr "אתר המשתמש"
+
+#~ msgid "date/time submitted"
+#~ msgstr "תאריך/שעת הגשה"
+
+#~ msgid "is public"
+#~ msgstr "ציבורי"
+
+#~ msgid ""
+#~ "Uncheck this box to make the comment effectively disappear from the site."
+#~ msgstr "ביטול סימון תיבה תעלים בפועל את התגובה מהאתר"
+
+#~ msgid "is removed"
+#~ msgstr "האם הוסר"
+
+#~ msgid ""
+#~ "Check this box if the comment is inappropriate. A \"This comment has been "
+#~ "removed\" message will be displayed instead."
+#~ msgstr ""
+#~ "יש לסמן תיבה זו עבור תגובה לא נאותה. הודעת \"תגובה זו נמחקה\" תוצג במקום."
+
+#~ msgid ""
+#~ "This comment was posted by an authenticated user and thus the name is "
+#~ "read-only."
+#~ msgstr "הודעה זו נשלחה ע\"י משתמש מחובר לכן השם הוא לקריאה בלבד."
+
+#~ msgid ""
+#~ "This comment was posted by an authenticated user and thus the email is "
+#~ "read-only."
+#~ msgstr "הודעה זו נשלחה ע\"י משתמש מחובר לכן כתובת הדוא\"ל לקריאה בלבד."
+
+#~ msgid ""
+#~ "Posted by %(user)s at %(date)s\n"
+#~ "\n"
+#~ "%(comment)s\n"
+#~ "\n"
+#~ "http://%(domain)s%(url)s"
+#~ msgstr ""
+#~ "הוגש ע\"י %(user)s ב %(date)s\n"
+#~ "\n"
+#~ "%(comment)s\n"
+#~ "\n"
+#~ "http://%(domain)s%(url)s"
+
+#~ msgid "comment flag"
+#~ msgstr "סמן הערה"
+
+#~ msgid "comment flags"
+#~ msgstr "סמני הערה"
+
+#~ msgid "Approve a comment"
+#~ msgstr "אשר הערה"
+
+#~ msgid "Really make this comment public?"
+#~ msgstr "באמת הופכים את התגובה הציבורית?"
+
+#~ msgid "Thanks for approving"
+#~ msgstr "תודה על השימוש באתר שלנו!"
+
+#~ msgid "Flag this comment"
+#~ msgstr "סמן את הערה זו"
+
+#~ msgid "Flag"
+#~ msgstr "סימן"
+
+#~ msgid "Thanks for flagging"
+#~ msgstr "תודה לציון"
+
+#~ msgid "Comment moderation queue"
+#~ msgstr "תור תגובה עבור מתון של תגובות"
+
+#, fuzzy
+#~ msgid "No comments to moderate"
+#~ msgstr "אין עדיין תגובות"
+
+#~ msgid "Thanks for commenting"
+#~ msgstr "תודה על התגובה"
+
+#~ msgid "Thank you for your comment"
+#~ msgstr "תודה על התגובה"
+
+#~ msgid "Preview your comment"
+#~ msgstr "תצוגה מקדימה של התגובה"
+
+#~ msgid "Please correct the error below"
+#~ msgid_plural "Please correct the errors below"
+#~ msgstr[0] "בבקשה לתקן את השגיאה למטה"
+#~ msgstr[1] "אנא תקן את שגיאות למטה"
+
+#, fuzzy
+#~ msgid "Post your comment"
+#~ msgstr "פרסם את התגובה"
+
+#~ msgid "python model class name"
+#~ msgstr "שם ה-class של מודל פייתון"
+
+#~ msgid ""
+#~ "Example: '/about/contact/'. Make sure to have leading and trailing "
+#~ "slashes."
+#~ msgstr ""
+#~ "לדוגמא: '/about/contact/'. יש לוודא הימצאות הקווים הנטויים בהתחלה ובסוף."
+
+#~ msgid ""
+#~ "This value must contain only letters, numbers, underscores, dashes or "
+#~ "slashes."
+#~ msgstr "ערך זה חייב להכיל אותיות, ספרות, מקפים, קווים תחתונים ונטויים בלבד."
+
+#~ msgid "Advanced options"
+#~ msgstr "אפשרויות מתקדמות"
+
+#~ msgid "template name"
+#~ msgstr "שם תבנית"
+
+#~ msgid ""
+#~ "Example: 'flatpages/contact_page.html'. If this isn't provided, the "
+#~ "system will use 'flatpages/default.html'."
+#~ msgstr ""
+#~ "דוגמא: 'flatpages/contact_page.html'. אם זה לא צויין, המערכת תשתמש "
+#~ "ב-'flatpages/default.html'."
+
+#~ msgid ""
+#~ "If this is checked, only logged-in users will be able to view the page."
+#~ msgstr "אם מסומן, רק משתמשים מחוברים יוכלו לצפות בדף."
+
+#~ msgid "flat pages"
+#~ msgstr "דפים פשוטים"
+
+#~ msgid ""
+#~ "We apologize, but your form has expired. Please continue filling out the "
+#~ "form from this page."
+#~ msgstr ""
+#~ "לצערנו פג תוקף הטופס שלך.  עליך להמשיך למלא את הטופס מן העמוד הזה ואילך."
+
+#~ msgid "No geometry value provided."
+#~ msgstr "לא סופק ערך גיאומטרי."
+
+#~ msgid "Invalid geometry value."
+#~ msgstr "ערך גאומטרי שגוי."
+
+#~ msgid ""
+#~ "An error occurred when transforming the geometry to the SRID of the "
+#~ "geometry form field."
+#~ msgstr "הייתה בעיה עם השינוי של הצורה לסוג של השדה."
+
+#~ msgid "th"
+#~ msgstr "רביעי"
+
+#~ msgid "st"
+#~ msgstr "ראשון"
+
+#~ msgid "rd"
+#~ msgstr "שלישי"
+
+#~ msgid "%(value).1f million"
+#~ msgid_plural "%(value).1f million"
+#~ msgstr[0] "%(value).1f מיליון"
+#~ msgstr[1] "%(value).1f מיליונים"
+
+#~ msgid "%(value).1f billion"
+#~ msgid_plural "%(value).1f billion"
+#~ msgstr[0] "%(value).1f מיליארד"
+#~ msgstr[1] "%(value).1f מיליארדים"
+
+#~ msgid "%(value).1f trillion"
+#~ msgid_plural "%(value).1f trillion"
+#~ msgstr[0] "%(value).1f טריליון"
+#~ msgstr[1] "%(value).1f טריליונים"
+
+#~ msgid "two"
+#~ msgstr "שניים"
+
+#~ msgid "three"
+#~ msgstr "שלושה"
+
+#~ msgid "four"
+#~ msgstr "ארבעה"
+
+#~ msgid "five"
+#~ msgstr "חמישה"
+
+#~ msgid "six"
+#~ msgstr "שישה"
+
+#~ msgid "seven"
+#~ msgstr "שבעה"
+
+#~ msgid "nine"
+#~ msgstr "תשעה"
+
+#~ msgid "today"
+#~ msgstr "היום"
+
+#~ msgid "tomorrow"
+#~ msgstr "מחר"
+
+#~ msgid "yesterday"
+#~ msgstr "אתמול"
+
+#~ msgid "Enter a postal code in the format NNNN or ANNNNAAA."
+#~ msgstr "יש להזין קוד דואר בתחביר NNNN או ANNNNAAA."
+
+#~ msgid "This field requires only numbers."
+#~ msgstr "יש להזין רק ספרות בשדה זה."
+
+#~ msgid "This field requires 7 or 8 digits."
+#~ msgstr "שדה זה דורש 7 או 8 ספרות."
+
+#~ msgid "Enter a valid CUIT in XX-XXXXXXXX-X or XXXXXXXXXXXX format."
+#~ msgstr "יש להזין מספר CUIT חוקי בתחביר XX-XXXXXXXX-X או XXXXXXXXXXXX."
+
+#~ msgid "Invalid CUIT."
+#~ msgstr "CUIT שגוי"
+
+#~ msgid "Burgenland"
+#~ msgstr "\tבורגנלנד"
+
+#~ msgid "Carinthia"
+#~ msgstr "קרינתיה"
+
+#~ msgid "Lower Austria"
+#~ msgstr "אוסטריה התחתונה"
+
+#~ msgid "Upper Austria"
+#~ msgstr "אוסטריה עילית"
+
+#~ msgid "Salzburg"
+#~ msgstr "זלצבורג"
+
+#~ msgid "Styria"
+#~ msgstr "שטיריה"
+
+#~ msgid "Tyrol"
+#~ msgstr "טירול"
+
+#~ msgid "Vorarlberg"
+#~ msgstr "פורארלברג"
+
+#~ msgid "Vienna"
+#~ msgstr "וינה"
+
+#~ msgid "Enter a zip code in the format XXXX."
+#~ msgstr "יש להזין מיקוד בתחביר XXXX."
+
+#~ msgid "Enter a valid Austrian Social Security Number in XXXX XXXXXX format."
+#~ msgstr "יש להזין מספר ביטוח לאומי אוסטרלי חוקי בתחביר XXXX XXXXXX."
+
+#~ msgid "Enter a 4 digit post code."
+#~ msgstr "יש להזין קוד דואר בן 4 ספרות."
+
+#~ msgid "Enter a zip code in the format XXXXX-XXX."
+#~ msgstr "יש להזין מיקוד בתחביר XXXXX-XXX."
+
+#~ msgid "Phone numbers must be in XX-XXXX-XXXX format."
+#~ msgstr "מספרי טלפון חייבים להיות בתחביר XX-XXXX-XXXX."
+
+#~ msgid ""
+#~ "Select a valid brazilian state. That state is not one of the available "
+#~ "states."
+#~ msgstr "נא לבחור מדינה ברזילאית חוקית. מדינה זו אינה אחת מהמדינות האפשריות."
+
+#~ msgid "This field requires at most 11 digits or 14 characters."
+#~ msgstr "שדה זה דורש 11 או 14 ספרות לכל היותר."
+
+#~ msgid "This field requires at least 14 digits"
+#~ msgstr "שדה זה דורש לפחות 14 ספרות."
+
+#~ msgid "Enter a postal code in the format XXX XXX."
+#~ msgstr "יש להזין מיקוד בתחביר XXX XXX."
+
+#~ msgid ""
+#~ "Enter a valid Canadian Social Insurance number in XXX-XXX-XXX format."
+#~ msgstr "יש להזין מספר ביטוח לאומי קנדי חוקי בתחביר XXX-XXX-XXXX."
+
+#~ msgid "Aargau"
+#~ msgstr "ארגאו"
+
+#~ msgid "Appenzell Innerrhoden"
+#~ msgstr "אפנצל אינר-רודן"
+
+#~ msgid "Appenzell Ausserrhoden"
+#~ msgstr "אפנצל אוסר-רודן"
+
+#~ msgid "Basel-Stadt"
+#~ msgstr "באזל-שטאדט"
+
+#~ msgid "Basel-Land"
+#~ msgstr "באזל-לנדשאפט"
+
+#~ msgid "Berne"
+#~ msgstr "ברן"
+
+#~ msgid "Fribourg"
+#~ msgstr "פריבור"
+
+#~ msgid "Glarus"
+#~ msgstr "גלרוס"
+
+#~ msgid "Graubuenden"
+#~ msgstr "גראובינדן"
+
+#~ msgid "Jura"
+#~ msgstr "ז'ורה"
+
+#~ msgid "Lucerne"
+#~ msgstr "לוצרן"
+
+#~ msgid "Neuchatel"
+#~ msgstr "נשאטל"
+
+#~ msgid "Nidwalden"
+#~ msgstr "נידוולדן"
+
+#~ msgid "Obwalden"
+#~ msgstr "אובוולדן"
+
+#~ msgid "Schaffhausen"
+#~ msgstr "שפהאוזן"
+
+#~ msgid "Schwyz"
+#~ msgstr "שוויץ"
+
+#~ msgid "Solothurn"
+#~ msgstr "זולותורן"
+
+#~ msgid "St. Gallen"
+#~ msgstr "סנט גלן"
+
+#~ msgid "Thurgau"
+#~ msgstr "Thurgau"
+
+#~ msgid "Ticino"
+#~ msgstr "טיצ'ינו"
+
+#~ msgid "Valais"
+#~ msgstr "ואלה"
+
+#~ msgid "Vaud"
+#~ msgstr "וו"
+
+#~ msgid "Zug"
+#~ msgstr "צוג"
+
+#~ msgid "Zurich"
+#~ msgstr "ציריך"
+
+#~ msgid ""
+#~ "Enter a valid Swiss identity or passport card number in X1234567<0 or "
+#~ "1234567890 format."
+#~ msgstr ""
+#~ "יש להזין מספר זיהוי או דרכון שוויצרי בתחביר X1234567<0 או 1234567890."
+
+#~ msgid "Enter a valid Chilean RUT."
+#~ msgstr "יש להזין RUT צ'יליאני חוקי."
+
+#~ msgid "Enter a valid Chilean RUT. The format is XX.XXX.XXX-X."
+#~ msgstr "יש להזין RUT צ'יליאני חוקי. התחביר הוא XX.XXX.XXX-X."
+
+#~ msgid "The Chilean RUT is not valid."
+#~ msgstr "שדה RUT צ'יליאני אינו חוקי."
+
+#~ msgid "Central Bohemian Region"
+#~ msgstr "מרכז בוהמיה"
+
+#~ msgid "South Bohemian Region"
+#~ msgstr "דרום בוהמיה"
+
+#~ msgid "Pilsen Region"
+#~ msgstr "מחוז פילזן"
+
+#~ msgid "Carlsbad Region"
+#~ msgstr "מחוז או איזור קרלסבד"
+
+#~ msgid "Usti Region"
+#~ msgstr "מחוז אוסטי"
+
+#~ msgid "Liberec Region"
+#~ msgstr "מחוז ליברץ"
+
+#~ msgid "Hradec Region"
+#~ msgstr "מחוז חרדץ"
+
+#~ msgid "Pardubice Region"
+#~ msgstr "מחוז פרדוביצה"
+
+#~ msgid "Vysocina Region"
+#~ msgstr "מחוז ויסוצ'ינה"
+
+#~ msgid "South Moravian Region"
+#~ msgstr "דרום מורביה"
+
+#~ msgid "Olomouc Region"
+#~ msgstr "מחוז או איזור אולומוק"
+
+#~ msgid "Zlin Region"
+#~ msgstr "מחוז זלין"
+
+#~ msgid "Moravian-Silesian Region"
+#~ msgstr "איזור מורביה – שלזיה"
+
+#~ msgid "Enter a postal code in the format XXXXX or XXX XX."
+#~ msgstr "יש להזין קוד דואר בתחביר XXXXX או XXX XX."
+
+#~ msgid "Enter a birth number in the format XXXXXX/XXXX or XXXXXXXXXX."
+#~ msgstr "הזן מספר לידה בתבנית XXXXXX/XXXX או XXXXXXXXXX."
+
+#~ msgid "Invalid optional parameter Gender, valid values are 'f' and 'm'"
+#~ msgstr "המשתנה שהזנת בשדה מין שגוי. הערכים החוקיים הם 'f' ו-'m'."
+
+#~ msgid "Enter a valid birth number."
+#~ msgstr "הזן מספר לידה חוקי."
+
+#~ msgid "Enter a valid IC number."
+#~ msgstr "הזן מספר IC חוקי."
+
+#~ msgid "Baden-Wuerttemberg"
+#~ msgstr "באדן-וירטמברג"
+
+#~ msgid "Bavaria"
+#~ msgstr "באווריה"
+
+#~ msgid "Berlin"
+#~ msgstr "ברלין"
+
+#~ msgid "Brandenburg"
+#~ msgstr "ברנדנבורג"
+
+#~ msgid "Bremen"
+#~ msgstr "ברמן"
+
+#~ msgid "Hamburg"
+#~ msgstr "המבורג"
+
+#~ msgid "Hessen"
+#~ msgstr "הסה"
+
+#~ msgid "Mecklenburg-Western Pomerania"
+#~ msgstr "מקלנבורג-מערב פומרניה"
+
+#~ msgid "Lower Saxony"
+#~ msgstr "סקסוניה התחתונה"
+
+#~ msgid "North Rhine-Westphalia"
+#~ msgstr "נורדריין-וסטפאליה"
+
+#~ msgid "Rhineland-Palatinate"
+#~ msgstr "ריינלנד-פאלץ"
+
+#~ msgid "Saarland"
+#~ msgstr "חבל הסאר"
+
+#~ msgid "Saxony"
+#~ msgstr "סקסוניה"
+
+#~ msgid "Saxony-Anhalt"
+#~ msgstr "סקסוניה-אנהלט"
+
+#~ msgid "Schleswig-Holstein"
+#~ msgstr "שלזוויג-הולשטיין"
+
+#~ msgid "Thuringia"
+#~ msgstr "תורינגיה"
+
+#~ msgid "Enter a zip code in the format XXXXX."
+#~ msgstr "יש להזין מיקוד בתחביר XXXXX."
+
+#~ msgid ""
+#~ "Enter a valid German identity card number in XXXXXXXXXXX-XXXXXXX-XXXXXXX-"
+#~ "X format."
+#~ msgstr ""
+#~ "יש להזין מספר זיהוי גרמני חוקי בתחביר XXXXXXXXXXX-XXXXXXX-XXXXXXX-X."
+
+#~ msgid "Arava"
+#~ msgstr "אראבה"
+
+#~ msgid "Albacete"
+#~ msgstr "אלבסטה"
+
+#~ msgid "Alacant"
+#~ msgstr "אלאקאנט"
+
+#~ msgid "Almeria"
+#~ msgstr "אלמריה"
+
+#~ msgid "Avila"
+#~ msgstr "אווילה"
+
+#~ msgid "Badajoz"
+#~ msgstr "באדאג'וז"
+
+#~ msgid "Illes Balears"
+#~ msgstr "האיים הבלאריים"
+
+#~ msgid "Barcelona"
+#~ msgstr "ברצלונה"
+
+#~ msgid "Burgos"
+#~ msgstr "בורגוס"
+
+#~ msgid "Caceres"
+#~ msgstr "קסרס"
+
+#~ msgid "Cadiz"
+#~ msgstr "קדיס"
+
+#~ msgid "Castello"
+#~ msgstr "קסטלו"
+
+#~ msgid "Ciudad Real"
+#~ msgstr "העיר הקולוניאלית"
+
+#~ msgid "Cordoba"
+#~ msgstr "קורדובה"
+
+#~ msgid "A Coruna"
+#~ msgstr "א קורוניה"
+
+#~ msgid "Cuenca"
+#~ msgstr "קואנקה"
+
+#~ msgid "Girona"
+#~ msgstr "ז'ירונה"
+
+#~ msgid "Granada"
+#~ msgstr "גרנדה"
+
+#~ msgid "Guadalajara"
+#~ msgstr "גוודלחרה"
+
+#~ msgid "Guipuzkoa"
+#~ msgstr "גוויפוזקואה"
+
+#~ msgid "Huelva"
+#~ msgstr "אואלבה"
+
+#~ msgid "Huesca"
+#~ msgstr "אואסקה"
+
+#~ msgid "Jaen"
+#~ msgstr "חאאן"
+
+#~ msgid "Leon"
+#~ msgstr "לאון"
+
+#~ msgid "Lleida"
+#~ msgstr "ליידה"
+
+#~ msgid "La Rioja"
+#~ msgstr "לה ריוחה"
+
+#~ msgid "Lugo"
+#~ msgstr "לוגו"
+
+#~ msgid "Madrid"
+#~ msgstr "מדריד"
+
+#~ msgid "Malaga"
+#~ msgstr "מאלאגה"
+
+#~ msgid "Murcia"
+#~ msgstr "מורסיה"
+
+#~ msgid "Navarre"
+#~ msgstr "נווארה"
+
+#~ msgid "Ourense"
+#~ msgstr "אוורנס"
+
+#~ msgid "Asturias"
+#~ msgstr "אסטוריאס"
+
+#~ msgid "Palencia"
+#~ msgstr "פלנסיה"
+
+#~ msgid "Las Palmas"
+#~ msgstr "לאס פאלמס"
+
+#~ msgid "Pontevedra"
+#~ msgstr "פונטוורדה"
+
+#~ msgid "Salamanca"
+#~ msgstr "סלמנקה"
+
+#~ msgid "Santa Cruz de Tenerife"
+#~ msgstr "סנטה קרוז דה טנריף"
+
+#~ msgid "Cantabria"
+#~ msgstr "קנטבריה"
+
+#~ msgid "Segovia"
+#~ msgstr "סגוביה"
+
+#~ msgid "Seville"
+#~ msgstr "סביליה"
+
+#~ msgid "Soria"
+#~ msgstr "סוריה"
+
+#~ msgid "Tarragona"
+#~ msgstr "טרגונה"
+
+#~ msgid "Teruel"
+#~ msgstr "טרואל"
+
+#~ msgid "Toledo"
+#~ msgstr "טולדו"
+
+#~ msgid "Valencia"
+#~ msgstr "ולנסיה"
+
+#~ msgid "Valladolid"
+#~ msgstr "ויאדוליד"
+
+#~ msgid "Bizkaia"
+#~ msgstr "ביסקאיה"
+
+#~ msgid "Zamora"
+#~ msgstr "סמורה"
+
+#~ msgid "Zaragoza"
+#~ msgstr "סראגוסה"
+
+#~ msgid "Ceuta"
+#~ msgstr "סאוטה"
+
+#~ msgid "Melilla"
+#~ msgstr "מלייה"
+
+#~ msgid "Aragon"
+#~ msgstr "אראגון"
+
+#~ msgid "Principality of Asturias"
+#~ msgstr "נסיכות אסטוריאס"
+
+#~ msgid "Balearic Islands"
+#~ msgstr "האיים הבלאריים"
+
+#~ msgid "Canary Islands"
+#~ msgstr "האיים הקנריים"
+
+#~ msgid "Castile-La Mancha"
+#~ msgstr "קסטיליה-לה מנצ'ה"
+
+#~ msgid "Castile and Leon"
+#~ msgstr "קסטיליה ולאון"
+
+#~ msgid "Catalonia"
+#~ msgstr "קאטלוניה"
+
+#~ msgid "Extremadura"
+#~ msgstr "אקסטרמדורה"
+
+#~ msgid "Galicia"
+#~ msgstr "גאליציה"
+
+#~ msgid "Region of Murcia"
+#~ msgstr "אזור מורסיה"
+
+#~ msgid "Foral Community of Navarre"
+#~ msgstr "הקהילה האוטונומית של נווארה"
+
+#~ msgid "Valencian Community"
+#~ msgstr "קהילת ולנסיה"
+
+#~ msgid "Enter a valid postal code in the range and format 01XXX - 52XXX."
+#~ msgstr "נא להזיו מיקוד חוקי בתחום ובתחביר 01XXX - 52XXX."
+
+#~ msgid ""
+#~ "Enter a valid phone number in one of the formats 6XXXXXXXX, 8XXXXXXXX or "
+#~ "9XXXXXXXX."
+#~ msgstr ""
+#~ "נא להזין מספר טלפון חוקי באחד מהתחבירים 6XXXXXXXX, 8XXXXXXXX or 9XXXXXXXX."
+
+#~ msgid "Please enter a valid NIF, NIE, or CIF."
+#~ msgstr "נא להזין NIF, NIE, או CIF חוקי."
+
+#~ msgid "Invalid checksum for NIF."
+#~ msgstr "סיכום ביקורת שגוי עבור NIF."
+
+#~ msgid "Invalid checksum for NIE."
+#~ msgstr "סיכום ביקורת שגוי עבור NIE."
+
+#~ msgid "Invalid checksum for CIF."
+#~ msgstr "סיכום ביקורת שגוי עבור CIF."
+
+#~ msgid ""
+#~ "Please enter a valid bank account number in format XXXX-XXXX-XX-"
+#~ "XXXXXXXXXX."
+#~ msgstr "נא להזין חשבון בנק חוקי בתחביר XXXX-XXXX-XX-XXXXXXXXXX."
+
+#~ msgid "Invalid checksum for bank account number."
+#~ msgstr "סיכום ביקורת שגוי עבור מספר חשבון בנק."
+
+#~ msgid "Enter a valid Finnish social security number."
+#~ msgstr "יש להזין מספר ביטוח לאומי פיני חוקי."
+
+#, fuzzy
+#~ msgid "Phone numbers must be in 0X XX XX XX XX format."
+#~ msgstr "תחביר מספרי טלפון חייב להיות XXXX-XXXXXX."
+
+#~ msgid "Enter a zip code in the format XXXXXXX."
+#~ msgstr "יש להזין מיקוד בתחביר XXXXXXX."
+
+#~ msgid ""
+#~ "Enter a valid Icelandic identification number. The format is XXXXXX-XXXX."
+#~ msgstr "יש להזין מספר זיהוי איסלנדי חוקי. התחביר הוא XXXXXX-XXXX."
+
+#~ msgid "The Icelandic identification number is not valid."
+#~ msgstr "מספר הזיהוי האיסלנדי אינו חוקי"
+
+#~ msgid "Enter a valid zip code."
+#~ msgstr "יש להזין מיקוד חוקי."
+
+#~ msgid "Enter a valid Social Security number."
+#~ msgstr "יש להזין מספר ביטוח לאומי חוקי."
+
+#~ msgid "Enter a valid VAT number."
+#~ msgstr "יש להזין מספר מעמ חוקי"
+
+#~ msgid "Enter a postal code in the format XXXXXXX or XXX-XXXX."
+#~ msgstr "יש להזין קוד דואר בתחביר XXXXXXX או XXX-XXXX."
+
+#~ msgid "Hokkaido"
+#~ msgstr "הוקאידו"
+
+#~ msgid "Aomori"
+#~ msgstr "אאומורי"
+
+#~ msgid "Miyagi"
+#~ msgstr "מיאגי"
+
+#~ msgid "Akita"
+#~ msgstr "אקיטה"
+
+#~ msgid "Yamagata"
+#~ msgstr "יאמאגטה"
+
+#~ msgid "Fukushima"
+#~ msgstr "פוקושימה"
+
+#~ msgid "Ibaraki"
+#~ msgstr "איברקי"
+
+#~ msgid "Tochigi"
+#~ msgstr "טושיגי"
+
+#~ msgid "Gunma"
+#~ msgstr "גונמה"
+
+#~ msgid "Saitama"
+#~ msgstr "סאיטאמה"
+
+#~ msgid "Chiba"
+#~ msgstr "צ'יבה"
+
+#~ msgid "Tokyo"
+#~ msgstr "טוקיו"
+
+#~ msgid "Kanagawa"
+#~ msgstr "קאנגאווה"
+
+#~ msgid "Yamanashi"
+#~ msgstr "יאמאנשי"
+
+#~ msgid "Nagano"
+#~ msgstr "נאגאנו"
+
+#~ msgid "Niigata"
+#~ msgstr "נייגטה"
+
+#~ msgid "Toyama"
+#~ msgstr "טויאמה"
+
+#~ msgid "Ishikawa"
+#~ msgstr "אישיקאוואה"
+
+#~ msgid "Fukui"
+#~ msgstr "פוקוי"
+
+#~ msgid "Gifu"
+#~ msgstr "גיפו"
+
+#~ msgid "Shizuoka"
+#~ msgstr "שיזואוקה"
+
+#~ msgid "Aichi"
+#~ msgstr "אייצ'י"
+
+#~ msgid "Mie"
+#~ msgstr "מיי"
+
+#~ msgid "Shiga"
+#~ msgstr "שיגה"
+
+#~ msgid "Kyoto"
+#~ msgstr "קיוטו"
+
+#~ msgid "Osaka"
+#~ msgstr "אוסקה"
+
+#~ msgid "Hyogo"
+#~ msgstr "הייוגו"
+
+#~ msgid "Nara"
+#~ msgstr "נארה"
+
+#~ msgid "Wakayama"
+#~ msgstr "ווקאייאמה"
+
+#~ msgid "Tottori"
+#~ msgstr "טוטורי"
+
+#~ msgid "Shimane"
+#~ msgstr "Shimane"
+
+#~ msgid "Okayama"
+#~ msgstr "אוקייאמה"
+
+#~ msgid "Hiroshima"
+#~ msgstr "הירושימה"
+
+#~ msgid "Yamaguchi"
+#~ msgstr "יאמאגוצ'י"
+
+#~ msgid "Tokushima"
+#~ msgstr "טוקושימה"
+
+#~ msgid "Kagawa"
+#~ msgstr "קאגאווה"
+
+#~ msgid "Ehime"
+#~ msgstr "Ehime"
+
+#~ msgid "Kochi"
+#~ msgstr "קוצ'י"
+
+#~ msgid "Fukuoka"
+#~ msgstr "פוקוקה"
+
+#~ msgid "Saga"
+#~ msgstr "סגה"
+
+#~ msgid "Nagasaki"
+#~ msgstr "נגסקי"
+
+#~ msgid "Kumamoto"
+#~ msgstr "קומאמוטו"
+
+#~ msgid "Oita"
+#~ msgstr "אויטה"
+
+#~ msgid "Miyazaki"
+#~ msgstr "מיאזאקי"
+
+#~ msgid "Kagoshima"
+#~ msgstr "קגושימה"
+
+#~ msgid "Okinawa"
+#~ msgstr "אוקינאווה"
+
+#~ msgid "Aguascalientes"
+#~ msgstr "אגואסקליינטס"
+
+#~ msgid "Baja California"
+#~ msgstr "באחה קליפורניה"
+
+#~ msgid "Baja California Sur"
+#~ msgstr "באחה קליפורניה הדרומית"
+
+#~ msgid "Campeche"
+#~ msgstr "קמפצ'ה"
+
+#~ msgid "Chihuahua"
+#~ msgstr "צ'יוואוה"
+
+#~ msgid "Chiapas"
+#~ msgstr "צ'יאפס"
+
+#~ msgid "Coahuila"
+#~ msgstr "קואהווילה"
+
+#~ msgid "Colima"
+#~ msgstr "קולימה"
+
+#~ msgid "Distrito Federal"
+#~ msgstr "מחוז פדרלי"
+
+#~ msgid "Durango"
+#~ msgstr "צ'יוואוה"
+
+#~ msgid "Guanajuato"
+#~ msgstr "גואנחואטו"
+
+#~ msgid "Hidalgo"
+#~ msgstr "אידלגו"
+
+#~ msgid "Jalisco"
+#~ msgstr "חליסקו"
+
+#~ msgid "Estado de México"
+#~ msgstr "אסטאדו דה מקסיקו"
+
+#~ msgid "Michoacán"
+#~ msgstr "מיצ'ואקן"
+
+#~ msgid "Nayarit"
+#~ msgstr "נייארית"
+
+#~ msgid "Nuevo León"
+#~ msgstr "נואבו ליאון"
+
+#~ msgid "Oaxaca"
+#~ msgstr "אואסקה"
+
+#~ msgid "Puebla"
+#~ msgstr "פואבלה"
+
+#~ msgid "Querétaro"
+#~ msgstr "קוורטארו"
+
+#~ msgid "Quintana Roo"
+#~ msgstr "קינטאנה רו"
+
+#~ msgid "Sinaloa"
+#~ msgstr "סינאלוה"
+
+#~ msgid "San Luis Potosí"
+#~ msgstr "סאן לואי פוטוסי"
+
+#~ msgid "Sonora"
+#~ msgstr "סונורה"
+
+#~ msgid "Tabasco"
+#~ msgstr "טבסקו"
+
+#~ msgid "Tamaulipas"
+#~ msgstr "טמפוליפס"
+
+#~ msgid "Tlaxcala"
+#~ msgstr "טלקסקאלה"
+
+#~ msgid "Veracruz"
+#~ msgstr "ורקרוז"
+
+#~ msgid "Yucatán"
+#~ msgstr "יוקטן"
+
+#~ msgid "Zacatecas"
+#~ msgstr "זאקאטקס"
+
+#~ msgid "Enter a valid postal code"
+#~ msgstr "יש להזין מיקוד חוקי."
+
+#~ msgid "Enter a valid phone number"
+#~ msgstr "יש להזין מספר טלפון חוקי"
+
+#~ msgid "Enter a valid SoFi number"
+#~ msgstr "יש להזין מספר SoFi חוקי"
+
+#~ msgid "Flevoland"
+#~ msgstr "פלבולנד"
+
+#~ msgid "Friesland"
+#~ msgstr "פריזלנד"
+
+#~ msgid "Gelderland"
+#~ msgstr "חלדרלנד"
+
+#~ msgid "Groningen"
+#~ msgstr "חרונינגן"
+
+#~ msgid "Limburg"
+#~ msgstr "לימבורג"
+
+#~ msgid "Noord-Brabant"
+#~ msgstr "צפון בראבנט"
+
+#~ msgid "Noord-Holland"
+#~ msgstr "צפון הולנד"
+
+#~ msgid "Overijssel"
+#~ msgstr "אובראיסל"
+
+#~ msgid "Utrecht"
+#~ msgstr "אוטרכט"
+
+#~ msgid "Zeeland"
+#~ msgstr "זילנד"
+
+#~ msgid "Zuid-Holland"
+#~ msgstr "דרום הולנד"
+
+#~ msgid "Enter a valid Norwegian social security number."
+#~ msgstr "יש להזין מספר ביטוח לאומי נורבגי חוקי."
+
+#~ msgid "This field requires 8 digits."
+#~ msgstr "שדה זה דורש 8 ספרות."
+
+#~ msgid "This field requires 11 digits."
+#~ msgstr "שדה זה דורש 11 ספרות."
+
+#~ msgid "National Identification Number consists of 11 digits."
+#~ msgstr "מספר זיהוי לאומי מורכב מ-11 ספרות"
+
+#~ msgid "Wrong checksum for the National Identification Number."
+#~ msgstr "סכום ביקורת שגוי עבודי מספר הזיהוי הלאומי"
+
+#~ msgid ""
+#~ "Enter a tax number field (NIP) in the format XXX-XXX-XX-XX or XX-XX-XXX-"
+#~ "XXX."
+#~ msgstr "נא להזין שדה מספר מס (NIP) בתחביר XXX-XXX-XX-XX או XX-XX-XXX-XXX."
+
+#~ msgid "Wrong checksum for the Tax Number (NIP)."
+#~ msgstr "סיכום ביקורת שגוי עבור מספר מס (NIP)."
+
+#~ msgid ""
+#~ "National Business Register Number (REGON) consists of 9 or 14 digits."
+#~ msgstr "סמפר רשומת בית עסק ארצי(REGON) מכיל או תשע או ארבע עשרה ספרות."
+
+#~ msgid "Wrong checksum for the National Business Register Number (REGON)."
+#~ msgstr "סיכום שגוי National Business Register Number (REGON)."
+
+#~ msgid "Enter a postal code in the format XX-XXX."
+#~ msgstr "נא להזין מיקוד בתחביר XX-XXX."
+
+#~ msgid "Lower Silesia"
+#~ msgstr "סילסיה התחתונה"
+
+#~ msgid "Kuyavia-Pomerania"
+#~ msgstr "קויאבויה - פומרניה"
+
+#~ msgid "Lublin"
+#~ msgstr "לובלין"
+
+#~ msgid "Lubusz"
+#~ msgstr "לובוש"
+
+#~ msgid "Lodz"
+#~ msgstr "לודז'"
+
+#~ msgid "Lesser Poland"
+#~ msgstr "פולין זוטא"
+
+#~ msgid "Masovia"
+#~ msgstr "מזוביה"
+
+#~ msgid "Opole"
+#~ msgstr "אופולה"
+
+#~ msgid "Subcarpatia"
+#~ msgstr "תת קרפטיה"
+
+#~ msgid "Podlasie"
+#~ msgstr "פודלסיה"
+
+#~ msgid "Pomerania"
+#~ msgstr "פומרניה"
+
+#~ msgid "Silesia"
+#~ msgstr "סילסיה"
+
+#~ msgid "Swietokrzyskie"
+#~ msgstr "סבייטוקזי'סקי"
+
+#~ msgid "Warmia-Masuria"
+#~ msgstr "וורמיה- מזוריה"
+
+#~ msgid "Greater Poland"
+#~ msgstr "פולין רבתי"
+
+#~ msgid "West Pomerania"
+#~ msgstr "מערב פומרניה"
+
+#~ msgid "Enter a valid CIF."
+#~ msgstr "יש להזין CIF חוקי."
+
+#~ msgid "Enter a valid CNP."
+#~ msgstr "יש להזין CNP חוקי."
+
+#~ msgid "Enter a valid IBAN in ROXX-XXXX-XXXX-XXXX-XXXX-XXXX format"
+#~ msgstr "יש להזין מספר IBAN חוקי בתחביר ROXX-XXXX-XXXX-XXXX-XXXX-XXXX"
+
+#~ msgid "Phone numbers must be in XXXX-XXXXXX format."
+#~ msgstr "תחביר מספרי טלפון חייב להיות XXXX-XXXXXX."
+
+#~ msgid "Enter a valid postal code in the format XXXXXX"
+#~ msgstr "נא להזין מיקוד חוקי בתחביר XXXXXX"
+
+#~ msgid "Banska Bystrica"
+#~ msgstr " בנסקה ביסטריצה"
+
+#~ msgid "Banska Stiavnica"
+#~ msgstr "בנסקה שטיאבניצה"
+
+#~ msgid "Bardejov"
+#~ msgstr "ברדיוב"
+
+#~ msgid "Banovce nad Bebravou"
+#~ msgstr "בנובץ ע\"מ בברבו"
+
+#~ msgid "Brezno"
+#~ msgstr "ברזנו"
+
+#~ msgid "Bratislava I"
+#~ msgstr "ברטיסלאבה 1"
+
+#~ msgid "Bratislava II"
+#~ msgstr "ברטיסלאבה 2"
+
+#~ msgid "Bratislava III"
+#~ msgstr "ברטיסלאבה 3"
+
+#~ msgid "Bratislava IV"
+#~ msgstr "ברטיסלאבה 4"
+
+#~ msgid "Bratislava V"
+#~ msgstr "ברטיסלאבה 5"
+
+#~ msgid "Bytca"
+#~ msgstr "ביטצ'ה"
+
+#~ msgid "Cadca"
+#~ msgstr "צ'דקה"
+
+#~ msgid "Detva"
+#~ msgstr "דטבה"
+
+#~ msgid "Dolny Kubin"
+#~ msgstr "דולני קובין"
+
+#~ msgid "Dunajska Streda"
+#~ msgstr "דונאייסקה סטרדה"
+
+#~ msgid "Galanta"
+#~ msgstr "גלנטה"
+
+#~ msgid "Gelnica"
+#~ msgstr "גלניקה"
+
+#~ msgid "Hlohovec"
+#~ msgstr "הלוהובץ"
+
+#~ msgid "Humenne"
+#~ msgstr "הומנה"
+
+#~ msgid "Ilava"
+#~ msgstr "אילבה"
+
+#~ msgid "Kezmarok"
+#~ msgstr "קזמרוק"
+
+#~ msgid "Komarno"
+#~ msgstr "קומרנו"
+
+#~ msgid "Kosice I"
+#~ msgstr "קושיצה 1"
+
+#~ msgid "Kosice II"
+#~ msgstr "קושיצה 2"
+
+#~ msgid "Kosice III"
+#~ msgstr "קושיצה 3"
+
+#~ msgid "Kosice IV"
+#~ msgstr "קושיצה 4"
+
+#~ msgid "Kosice - okolie"
+#~ msgstr "קושיצ'ה - אוקולי"
+
+#~ msgid "Krupina"
+#~ msgstr "קרופינה"
+
+#~ msgid "Kysucke Nove Mesto"
+#~ msgstr "קיוסקה נובה מסטו"
+
+#~ msgid "Levice"
+#~ msgstr "לביצה"
+
+#~ msgid "Levoca"
+#~ msgstr "לבוצ'ה"
+
+#~ msgid "Liptovsky Mikulas"
+#~ msgstr "ליפטובסקי מיקולס"
+
+#~ msgid "Lucenec"
+#~ msgstr "לוצ'נץ'"
+
+#~ msgid "Malacky"
+#~ msgstr "מאלאקי"
+
+#, fuzzy
+#~ msgid "Martin"
+#~ msgstr "ראשי"
+
+#~ msgid "Medzilaborce"
+#~ msgstr "מדזילבורצה"
+
+#~ msgid "Michalovce"
+#~ msgstr "מיחלובצה"
+
+#~ msgid "Myjava"
+#~ msgstr "מיאווה"
+
+#~ msgid "Namestovo"
+#~ msgstr "נמסטובו"
+
+#~ msgid "Nitra"
+#~ msgstr "ניטרה"
+
+#~ msgid "Nove Mesto nad Vahom"
+#~ msgstr "נובה מסטו ע\"נ וה"
+
+#~ msgid "Nove Zamky"
+#~ msgstr "נווי-זאמקי"
+
+#~ msgid "Partizanske"
+#~ msgstr "פרטיזנסקה"
+
+#~ msgid "Pezinok"
+#~ msgstr "פזינוק"
+
+#~ msgid "Poltar"
+#~ msgstr "פולטר"
+
+#~ msgid "Poprad"
+#~ msgstr "פופרד"
+
+#~ msgid "Povazska Bystrica"
+#~ msgstr "פובסקה ביסטריצ'ה"
+
+#~ msgid "Presov"
+#~ msgstr "פרשוב"
+
+#~ msgid "Prievidza"
+#~ msgstr "פרבידזה"
+
+#~ msgid "Puchov"
+#~ msgstr "פוצ'וב"
+
+#~ msgid "Revuca"
+#~ msgstr "ריץ"
+
+#~ msgid "Rimavska Sobota"
+#~ msgstr "רימובסקה סובוטה"
+
+#~ msgid "Roznava"
+#~ msgstr "רוזנבה"
+
+#~ msgid "Ruzomberok"
+#~ msgstr "רוזומברוק"
+
+#~ msgid "Sabinov"
+#~ msgstr "סבינוב"
+
+#~ msgid "Senec"
+#~ msgstr "סנץ"
+
+#~ msgid "Senica"
+#~ msgstr "סניצ'ה"
+
+#~ msgid "Skalica"
+#~ msgstr "סקליצ'ה"
+
+#~ msgid "Snina"
+#~ msgstr "סנינה"
+
+#~ msgid "Spisska Nova Ves"
+#~ msgstr "ספישסקה נובה וס"
+
+#~ msgid "Stara Lubovna"
+#~ msgstr "סטרה לובובנה"
+
+#~ msgid "Stropkov"
+#~ msgstr "סרטופקוב"
+
+#~ msgid "Svidnik"
+#~ msgstr "סבידניק"
+
+#~ msgid "Sala"
+#~ msgstr "סאלה"
+
+#~ msgid "Topolcany"
+#~ msgstr "טופולצ'ני"
+
+#~ msgid "Trebisov"
+#~ msgstr "טרביסוב"
+
+#~ msgid "Trencin"
+#~ msgstr "טרנצ'ין"
+
+#~ msgid "Trnava"
+#~ msgstr "טרנאוה"
+
+#~ msgid "Turcianske Teplice"
+#~ msgstr "טורצינסק טפליץ"
+
+#~ msgid "Tvrdosin"
+#~ msgstr "טברודוסין"
+
+#~ msgid "Velky Krtis"
+#~ msgstr "ולקי קריץ"
+
+#~ msgid "Vranov nad Toplou"
+#~ msgstr "טרנוב ע\"נ טופולו"
+
+#~ msgid "Zlate Moravce"
+#~ msgstr "זלטה מורבצה"
+
+#~ msgid "Zvolen"
+#~ msgstr "זבולן"
+
+#~ msgid "Zarnovica"
+#~ msgstr "זרנוביקה"
+
+#~ msgid "Ziar nad Hronom"
+#~ msgstr "ז'יר ע\"נ הרון"
+
+#~ msgid "Zilina"
+#~ msgstr "ז'ילינה"
+
+#~ msgid "Banska Bystrica region"
+#~ msgstr "מחוז בטנסקה ביסטריקה"
+
+#~ msgid "Bratislava region"
+#~ msgstr "מחוז ברטיסלבה"
+
+#~ msgid "Kosice region"
+#~ msgstr "מחוז קושיצ'ה"
+
+#~ msgid "Nitra region"
+#~ msgstr "מחוז ניטרה"
+
+#~ msgid "Presov region"
+#~ msgstr "מחוז פראסוב"
+
+#~ msgid "Trencin region"
+#~ msgstr "מחוז טראנצין"
+
+#~ msgid "Trnava region"
+#~ msgstr "מחוז טרנאוה"
+
+#~ msgid "Zilina region"
+#~ msgstr "מחוז ז'ילינה"
+
+#~ msgid "Enter a valid postcode."
+#~ msgstr "יש להזין מיקוד חוקי."
+
+#~ msgid "Bedfordshire"
+#~ msgstr " בדפורשייר"
+
+#~ msgid "Buckinghamshire"
+#~ msgstr "באקינגהמשייר"
+
+#~ msgid "Cheshire"
+#~ msgstr " צ'שייר"
+
+#~ msgid "Cornwall and Isles of Scilly"
+#~ msgstr "קורנוול ואיי סילי"
+
+#~ msgid "Cumbria"
+#~ msgstr " קאמבריה"
+
+#~ msgid "Derbyshire"
+#~ msgstr "דרבישייר"
+
+#~ msgid "Devon"
+#~ msgstr " דבון"
+
+#~ msgid "Dorset"
+#~ msgstr "דורסט"
+
+#~ msgid "Durham"
+#~ msgstr "דרהאם"
+
+#~ msgid "East Sussex"
+#~ msgstr "מזרח אסקס"
+
+#~ msgid "Essex"
+#~ msgstr "אסקס"
+
+#~ msgid "Gloucestershire"
+#~ msgstr "גלוסטרשייר"
+
+#~ msgid "Greater London"
+#~ msgstr "לונדון רבתי"
+
+#~ msgid "Hampshire"
+#~ msgstr "המפשייר"
+
+#~ msgid "Hertfordshire"
+#~ msgstr "הארטפורדשייר"
+
+#~ msgid "Kent"
+#~ msgstr "קנט"
+
+#~ msgid "Lancashire"
+#~ msgstr "לנקשייר"
+
+#~ msgid "Leicestershire"
+#~ msgstr "ליסטרשייר"
+
+#~ msgid "Lincolnshire"
+#~ msgstr " לינקולנשייר"
+
+#~ msgid "Merseyside"
+#~ msgstr "מרסיסייד"
+
+#~ msgid "Norfolk"
+#~ msgstr "נורפולק"
+
+#~ msgid "North Yorkshire"
+#~ msgstr "צפון יורקשייר"
+
+#~ msgid "Northamptonshire"
+#~ msgstr "נורת'המפטונשייר"
+
+#~ msgid "Northumberland"
+#~ msgstr "נורת'אמברלנד"
+
+#~ msgid "Nottinghamshire"
+#~ msgstr "נוטינגהאמשייר"
+
+#~ msgid "Oxfordshire"
+#~ msgstr "אוקספורדשייר"
+
+#~ msgid "Shropshire"
+#~ msgstr "שרופשייר"
+
+#~ msgid "Somerset"
+#~ msgstr "סומרסט"
+
+#~ msgid "South Yorkshire"
+#~ msgstr "דרום יורקשייר"
+
+#~ msgid "Staffordshire"
+#~ msgstr "סטאפורדשייר"
+
+#~ msgid "Suffolk"
+#~ msgstr " סאפוק"
+
+#~ msgid "Surrey"
+#~ msgstr "סוריי"
+
+#~ msgid "Tyne and Wear"
+#~ msgstr "טיין ו-וויר"
+
+#~ msgid "Warwickshire"
+#~ msgstr " וורוויקשייר"
+
+#~ msgid "West Midlands"
+#~ msgstr "מערב המידלנדס"
+
+#~ msgid "West Sussex"
+#~ msgstr "מערב סאסקס"
+
+#~ msgid "West Yorkshire"
+#~ msgstr "מערב יורקשייר"
+
+#~ msgid "Wiltshire"
+#~ msgstr " ווילטשייר"
+
+#~ msgid "Worcestershire"
+#~ msgstr " ווסטרשייר"
+
+#~ msgid "County Antrim"
+#~ msgstr "מחוז אנטרים"
+
+#~ msgid "County Armagh"
+#~ msgstr "ארמה"
+
+#~ msgid "County Down"
+#~ msgstr "מחוז דאון"
+
+#~ msgid "County Fermanagh"
+#~ msgstr "מחוז פרמאנה"
+
+#~ msgid "County Londonderry"
+#~ msgstr "מחוז לונדונברי"
+
+#~ msgid "County Tyrone"
+#~ msgstr "מחוז טיירון"
+
+#~ msgid "Clwyd"
+#~ msgstr "קלוויד"
+
+#~ msgid "Gwent"
+#~ msgstr "גוונט"
+
+#~ msgid "Gwynedd"
+#~ msgstr "גווינד"
+
+#~ msgid "Mid Glamorgan"
+#~ msgstr "מרכז גלמורגן"
+
+#~ msgid "Powys"
+#~ msgstr "ַפואיס"
+
+#~ msgid "South Glamorgan"
+#~ msgstr "דרום גלמורגן"
+
+#~ msgid "West Glamorgan"
+#~ msgstr "מערב גלמורגן"
+
+#~ msgid "Borders"
+#~ msgstr "גבולות"
+
+#~ msgid "Central Scotland"
+#~ msgstr "מרכז סקוטלנד"
+
+#~ msgid "Dumfries and Galloway"
+#~ msgstr "דמפרייס וגאלוויי"
+
+#~ msgid "Fife"
+#~ msgstr "פייף"
+
+#~ msgid "Grampian"
+#~ msgstr " גרמפיאן"
+
+#~ msgid "Highland"
+#~ msgstr "רמה"
+
+#~ msgid "Lothian"
+#~ msgstr "לודיאן"
+
+#~ msgid "Orkney Islands"
+#~ msgstr "איי אורקיי"
+
+#~ msgid "Shetland Islands"
+#~ msgstr "איי שטלנד"
+
+#~ msgid "Strathclyde"
+#~ msgstr "סטראת'קלייד"
+
+#~ msgid "Tayside"
+#~ msgstr "טייסייד"
+
+#~ msgid "Western Isles"
+#~ msgstr "האיים המערביים"
+
+#~ msgid "England"
+#~ msgstr "אנגליה"
+
+#~ msgid "Northern Ireland"
+#~ msgstr "צפון אירלנד"
+
+#~ msgid "Scotland"
+#~ msgstr "סקוטלנד"
+
+#~ msgid "Wales"
+#~ msgstr "וויילס"
+
+#~ msgid "Enter a zip code in the format XXXXX or XXXXX-XXXX."
+#~ msgstr "יש להזין מיקוד חוקי בתחביר XXXXX או XXXXX-XXXX."
+
+#~ msgid "Enter a valid U.S. Social Security number in XXX-XX-XXXX format."
+#~ msgstr "יש להזין מספר ביטוח לאומי אמריקאי בתחביר XXX-XX-XXXX."
+
+#~ msgid "Enter a valid South African ID number"
+#~ msgstr "נא להזין מספר זיהוי דרום אפריקאי חוקי"
+
+#~ msgid "Enter a valid South African postal code"
+#~ msgstr "נא להזין מיקוד דרום אפריקאי חוקי"
+
+#~ msgid "Eastern Cape"
+#~ msgstr "הכף המזרחי"
+
+#~ msgid "Free State"
+#~ msgstr "המדינה החופשית"
+
+#~ msgid "Gauteng"
+#~ msgstr "גאוטנג"
+
+#~ msgid "KwaZulu-Natal"
+#~ msgstr "קווזולו-נטל"
+
+#~ msgid "Limpopo"
+#~ msgstr "לימפופו"
+
+#~ msgid "Mpumalanga"
+#~ msgstr "מפומלנגה"
+
+#~ msgid "Northern Cape"
+#~ msgstr "כף צפוני"
+
+#~ msgid "North West"
+#~ msgstr "דרום מערב"
+
+#~ msgid "Western Cape"
+#~ msgstr "כף מערבי"
+
+#~ msgid ""
+#~ "This should be an absolute path, excluding the domain name. Example: '/"
+#~ "events/search/'."
+#~ msgstr "זה אמור להיות נתיב מלא, ללא שם המתחם. לדוגמא: '/‎/events/search'."
+
+#~ msgid "redirect to"
+#~ msgstr "הפניה אל"
+
+#~ msgid ""
+#~ "This can be either an absolute path (as above) or a full URL starting "
+#~ "with 'http://'."
+#~ msgstr "יכול להיות נתיב מלא (כנ\"ל) או URL מלא המתחיל ב'http://'."
+
+#~ msgid "redirect"
+#~ msgstr "הפניה"
+
+#~ msgid "redirects"
+#~ msgstr "הפניות"
+
+#~ msgid "session key"
+#~ msgstr "מפתח התחברות (session key)"
+
+#~ msgid "session data"
+#~ msgstr "מידע התחברות (session data)"
+
+#~ msgid "session"
+#~ msgstr "התחברות"
+
+#~ msgid "sites"
+#~ msgstr "אתרים"
+
+#~ msgid "This value must be either True or False."
+#~ msgstr "ערך זה חייב להיות אמת או שקר."
+
+#~ msgid "This field cannot be null."
+#~ msgstr "שדה זה אינו יכול להכיל null."
+
+#~ msgid "Enter only digits separated by commas."
+#~ msgstr "יש להזין רק ספרות מופרדות בפסיקים."
+
+#~ msgid "Enter a valid date in YYYY-MM-DD format."
+#~ msgstr "יש להזין תאריך במבנה YYYY-MM-DD."
+
+#~ msgid "Invalid date: %s"
+#~ msgstr "תאריך שגוי: %s"
+
+#~ msgid "Enter a valid date/time in YYYY-MM-DD HH:MM[:ss[.uuuuuu]] format."
+#~ msgstr "נא להזין תאריך/שעה חוקיים בתחביר YYYY-MM-DD HH:MM[:ss[.uuuuuu]]."
+
+#~ msgid "This value must be a decimal number."
+#~ msgstr "ערך זה חייב להיות מספר עשרוני."
+
+#~ msgid "This value must be a float."
+#~ msgstr "על הערך הזה להיות ערך מספר עשרוני."
+
+#~ msgid "This value must be either None, True or False."
+#~ msgstr "ערך זה חייב להיות כלום, אמת או שקר."
+
+#~ msgid "Enter a valid time in HH:MM[:ss[.uuuuuu]] format."
+#~ msgstr "נא להזין זמן חוקי בתחביר HH:MM[:ss[.uuuuuu]]."
+
+#~ msgid ""
+#~ "Hold down \"Control\", or \"Command\" on a Mac, to select more than one."
+#~ msgstr ""
+#~ "יש להחזיק את \"Control\", או \"Command\" על מק, לחוץ כדי לבחור יותר מאחד."
+
+#~ msgid "Please enter valid %(self)s IDs. The value %(value)r is invalid."
+#~ msgid_plural ""
+#~ "Please enter valid %(self)s IDs. The values %(value)r are invalid."
+#~ msgstr[0] "נא להזין מזהה %(self)s חוקי. הערך %(value)r אינו חוקי."
+#~ msgstr[1] "נא להזין מזהי %(self)s חוקיים. הערכים %(value)r אינם חוקיים."
+
+#~ msgid "This field is required."
+#~ msgstr "יש להזין תוכן בשדה זה."
+
+#~ msgid "Enter a valid value."
+#~ msgstr "יש להזין ערך חוקי."
+
+#~ msgid ""
+#~ "Ensure this value has at most %(max)d characters (it has %(length)d)."
+#~ msgstr "נא לוודא שערך זה מכיל  %(max)d תווים לכל היותר (מכיל %(length)d)."
+
+#~ msgid ""
+#~ "Ensure this value has at least %(min)d characters (it has %(length)d)."
+#~ msgstr "נא לוודא שערך זה מכיל לפחות %(min)d תווים (מכיל %(length)d)."
+
+#~ msgid "Enter a whole number."
+#~ msgstr "נא להזין מספר שלם."
+
+#~ msgid "Ensure this value is less than or equal to %s."
+#~ msgstr "יש לוודא שערך זה פחות מ או שווה ל %s."
+
+#~ msgid "Ensure this value is greater than or equal to %s."
+#~ msgstr "יש לוודא שהערך גדול מ או שווה ל %s."
+
+#~ msgid "Enter a number."
+#~ msgstr "נא להזין מספר."
+
+#~ msgid "Ensure that there are no more than %s digits in total."
+#~ msgstr "נא לוודא שאין יותר מ-%s ספרות סה\"כ"
+
+#~ msgid "Ensure that there are no more than %s decimal places."
+#~ msgstr "נא לוודא שאין יותר מ-%s ספרות אחרי הנקודה"
+
+#~ msgid ""
+#~ "Ensure that there are no more than %s digits before the decimal point."
+#~ msgstr "נא לוודא שאין יותר מ-%s ספרות לפני הנקודה העשרונית"
+
+#~ msgid "Enter a valid date."
+#~ msgstr "יש להזין תאריך חוקי."
+
+#~ msgid "Enter a valid time."
+#~ msgstr "יש להזין שעה חוקית."
+
+#~ msgid "Enter a valid date/time."
+#~ msgstr "יש להזין תאריך ושעה חוקיים."
+
+#~ msgid "No file was submitted. Check the encoding type on the form."
+#~ msgstr "לא נשלח שום קובץ. נא לבדוק את סוג הקידוד של הטופס."
+
+#~ msgid "No file was submitted."
+#~ msgstr "לא נשלח שום קובץ"
+
+#~ msgid "The submitted file is empty."
+#~ msgstr "הקובץ שנשלח ריק."
+
+#~ msgid ""
+#~ "Ensure this filename has at most %(max)d characters (it has %(length)d)."
+#~ msgstr "על שם הקובץ להיות לא יותר מ %(max)d תווים (יש לו%(length)d)."
+
+#~ msgid "Enter a valid URL."
+#~ msgstr "יש להזין URL חוקי."
+
+#~ msgid "This URL appears to be a broken link."
+#~ msgstr "ה-URL הזה נראה כקישור שבור."
+
+#~ msgid ""
+#~ "Select a valid choice. %(value)s is not one of the available choices."
+#~ msgstr "יש לבחור אפשרות חוקית. %(value)s אינו בין האפשרויות הזמינות."
+
+#~ msgid "Enter a list of values."
+#~ msgstr "יש להזין רשימת ערכים"
+
+#~ msgid "Enter a valid IPv4 address."
+#~ msgstr "יש להזין כתובת IPv4 חוקית."
+
+#~ msgid ""
+#~ "Enter a valid 'slug' consisting of letters, numbers, underscores or "
+#~ "hyphens."
+#~ msgstr "יש להזין ערך המכיל אותיות, ספרות, קווים תחתונים ומקפים בלבד."
+
+#~ msgid "%(field_name)s must be unique for %(date_field)s %(lookup)s."
+#~ msgstr "%(field_name)s חייב להיות ייחודי ל%(lookup)s של ה%(date_field)s"
+
+#~ msgid "%(model_name)s with this %(field_label)s already exists."
+#~ msgstr "%(model_name)s·עם·%(field_label)s·זה קיימת כבר."
+
+#~ msgid "Please correct the duplicate data for %(field)s."
+#~ msgstr "נא לתקן את הערכים כפולים ל%(field)s."
+
+#~ msgid ""
+#~ "Please correct the duplicate data for %(field)s, which must be unique."
+#~ msgstr "נא לתקן את הערכים כפולים ל%(field)s, זה חייב להיות ייחודי."
+
+#~ msgid ""
+#~ "Please correct the duplicate data for %(field_name)s which must be unique "
+#~ "for the %(lookup)s in %(date_field)s."
+#~ msgstr ""
+#~ "נא לתקן את הערכים כפולים %(field_name)s, זה חייב להיות ייחודי ל%(lookup)s "
+#~ "של %(date_field)s."
+
+#~ msgid "Please correct the duplicate values below."
+#~ msgstr "נא לתקן את הערכים כפולים מתחת."
+
+#~ msgid ""
+#~ "The inline foreign key did not match the parent instance primary key."
+#~ msgstr "הרצופות מפתח זר לא תאם את האב מופע המפתח העיקרי."
+
+#~ msgid ""
+#~ "Select a valid choice. That choice is not one of the available choices."
+#~ msgstr "יש לבחור אפשרות חוקית; '%(data)s' אינו בין %(choices)s."
+
+#~ msgid "Select a valid choice. %s is not one of the available choices."
+#~ msgstr "יש לבחור אפשרות חוקית. %s אינו בין האפשרויות הזמינות."
+
+#~ msgid "\"%s\" is not a valid value for a primary key."
+#~ msgstr "\"%s\" איננו חוקי כמקש עיקרי."
+
+#~ msgid "yes,no,maybe"
+#~ msgstr "כן,לא,אולי"
+
+#~ msgid "%(size)d byte"
+#~ msgid_plural "%(size)d bytes"
+#~ msgstr[0] "%(size)d בית"
+#~ msgstr[1] "%(size)d בתים"
+
+#~ msgid "%.1f KB"
+#~ msgstr "%.1f KB"
+
+#~ msgid "%.1f MB"
+#~ msgstr "%.1f MB"
+
+#~ msgid "%.1f GB"
+#~ msgstr "%.1f GB"
+
+#~ msgid "p.m."
+#~ msgstr "אחר הצהריים"
+
+#~ msgid "a.m."
+#~ msgstr "בבוקר"
+
+#~ msgid "PM"
+#~ msgstr "אחר הצהריים"
+
+#~ msgid "AM"
+#~ msgstr "בבוקר"
+
+#~ msgid "midnight"
+#~ msgstr "חצות"
+
+#~ msgid "noon"
+#~ msgstr "צהריים"
+
+#~ msgid "Monday"
+#~ msgstr "שני"
+
+#~ msgid "Tuesday"
+#~ msgstr "שלישי"
+
+#~ msgid "Wednesday"
+#~ msgstr "רביעי"
+
+#~ msgid "Thursday"
+#~ msgstr "חמישי"
+
+#~ msgid "Friday"
+#~ msgstr "שישי"
+
+#~ msgid "Saturday"
+#~ msgstr "שבת"
+
+#~ msgid "Sunday"
+#~ msgstr "ראשון"
+
+#~ msgid "Mon"
+#~ msgstr "שני"
+
+#~ msgid "Tue"
+#~ msgstr "שלישי"
+
+#~ msgid "Wed"
+#~ msgstr "רביעי"
+
+#~ msgid "Thu"
+#~ msgstr "חמישי"
+
+#~ msgid "Fri"
+#~ msgstr "שישי"
+
+#~ msgid "Sat"
+#~ msgstr "שבת"
+
+#~ msgid "Sun"
+#~ msgstr "ראשון"
+
+#~ msgid "January"
+#~ msgstr "ינואר"
+
+#~ msgid "February"
+#~ msgstr "פברואר"
+
+#~ msgid "March"
+#~ msgstr "מרס"
+
+#~ msgid "April"
+#~ msgstr "אפריל"
+
+#~ msgid "May"
+#~ msgstr "מאי"
+
+#~ msgid "June"
+#~ msgstr "יוני"
+
+#~ msgid "July"
+#~ msgstr "יולי"
+
+#, fuzzy
+#~ msgid "August"
+#~ msgstr "נגד"
+
+#~ msgid "September"
+#~ msgstr "ספטמבר"
+
+#~ msgid "October"
+#~ msgstr "אוקטובר"
+
+#~ msgid "November"
+#~ msgstr "נובמבר"
+
+#~ msgid "December"
+#~ msgstr "דצמבר"
+
+#~ msgid "jan"
+#~ msgstr "ינו"
+
+#~ msgid "mar"
+#~ msgstr "מרס"
+
+#~ msgid "apr"
+#~ msgstr "אפר"
+
+#~ msgid "may"
+#~ msgstr "מאי"
+
+#~ msgid "jun"
+#~ msgstr "יונ"
+
+#~ msgid "jul"
+#~ msgstr "יול"
+
+#~ msgid "aug"
+#~ msgstr "אוג"
+
+#~ msgid "sep"
+#~ msgstr "ספט"
+
+#~ msgid "oct"
+#~ msgstr "אוק"
+
+#~ msgid "nov"
+#~ msgstr "נוב"
+
+#~ msgid "dec"
+#~ msgstr "דצמ"
+
+#~ msgid "Jan."
+#~ msgstr "ינו'"
+
+#~ msgid "Feb."
+#~ msgstr "פבר'"
+
+#~ msgid "Aug."
+#~ msgstr "אוג'"
+
+#~ msgid "Sept."
+#~ msgstr "ספט'"
+
+#~ msgid "Oct."
+#~ msgstr "אוק'"
+
+#~ msgid "Nov."
+#~ msgstr "נוב'"
+
+#~ msgid "Dec."
+#~ msgstr "דצמ'"
+
+#~ msgid ", %(number)d %(type)s"
+#~ msgstr ", %(number)d %(type)s"
+
+#~ msgid "DATE_FORMAT"
+#~ msgstr "d.m.Y"
+
+#~ msgid "TIME_FORMAT"
+#~ msgstr "H:i:s"
+
+#~ msgid "YEAR_MONTH_FORMAT"
+#~ msgstr "d.m.Y"
+
+#~ msgid "MONTH_DAY_FORMAT"
+#~ msgstr "d.m.Y"
+
+#~ msgid "The %(verbose_name)s was created successfully."
+#~ msgstr "ה-%(verbose_name)s  נוצר בהצלחה."
+
+#~ msgid "The %(verbose_name)s was updated successfully."
+#~ msgstr "ה-%(verbose_name)s עודכן בהצלחה."
+
+#, fuzzy
+#~ msgid "OpenID failed"
+#~ msgstr "&rlm;OpenID"
+
+#~ msgid "abstain"
+#~ msgstr "נמנע"

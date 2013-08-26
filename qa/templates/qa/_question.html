@@ -1,22 +1,24 @@
-{% load i18n %}
+{% load i18n avatar_tags %}
 {% load url from future %}
 <!-- Let's add the upvote and follow on hover -->
 <div class="question-summary narrow" id="question-summary-{{ question.id }}">
     <div class="avatar-container" style="padding-top:15px;">
-      <a href="{{ question.author.get_absolute_url }}" rel="tooltip" class="" title="{{question.author.get_full_name}}">
-        <img src="{{ question.author.profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle">
+      <a href="{{ question.author.get_absolute_url }}" rel="tooltip" title="{{question.author.get_full_name}}">
+        {% avatar question.author %}
       </a>
     </div>
     <div onclick="window.location.href='{{ question.get_absolute_url }}'" class="cp">
-      {% if question.rating > 1 %}
-        <div class="votes">
-          <div class="mini-counts" id="votes-count-{{question.id}}">{{ question.rating }}</div>
-            <div>{% trans "votes" %}</div>
-        </div>
-      {% endif %}
+      <div class="votes" {% if question.rating <= 1 %} style="display:none" {% endif %}>
+        <div class="mini-counts" id="votes-count-{{question.id}}">{{ question.rating }}</div>
+          <div>{% trans "votes" %}</div>
+      </div>
     </div>
     <div class="summary">
-      <h3><a href="{{ question.get_absolute_url }}" class="question-hyperlink" title="{{ question.subject }}">{{ question.subject }}</a></h3>
+      <h3>
+        <a href="{{ question.author.get_absolute_url }}" rel="tooltip" class="answer-user owner" title="{{question.author.get_full_name}}">{{question.author.get_full_name|default:question.author.username}}</a>
+        :&nbsp;
+        <a href="{{ question.get_absolute_url }}" class="question-hyperlink" title="{{ question.subject }}">{{ question.subject }}</a>
+      </h3>
         <div class="preview">
             {{ question.content }}
         </div>
@@ -32,18 +34,20 @@
         </div>
         <div class="started">
             <span title="{{ question.created_at }}" class="relativetime">{% trans "before" %} {{ question.created_at|timesince }}</span>
-            <a href="{{ question.author.get_absolute_url }}" rel="tooltip" class="answer-user owner" title="{{question.author.get_full_name}}">{{question.author.get_full_name|default:question.author.username}}</a>
             {% if not entity %}
               {% trans "from"%}
               <a href="{% url "qna" question.entity.slug %}">{{ question.entity }}</a>
             {% endif %}
         </div>
         {% if question.answers.count and show_responders %}       
-        <div>
+        <div class="clearfix"></div>
+
+        <div class="pull-right">
+          <h4 class="pull-left" style="padding:0.5em 0 0px;">{% trans "Answers by" %}</h4>
           {% for answer in question.answers.all %}
-          <div class="avatar-container" style="padding-top:15px;">
+          <div class="avatar-container" style="padding-top:1.9em;">
             <a href="{{ answer.author.get_absolute_url }}" rel="tooltip" class="" title="{{answer.author.get_full_name}}">
-              <img src="{{ answer.author.profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="25" class="avatar img-circle" /><br/>
+              {% avatar answer.author %}{{answer.author.get_full_name}}
             </a>
           </div>
           {% endfor %}

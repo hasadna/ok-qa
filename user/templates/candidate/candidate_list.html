@@ -1,7 +1,7 @@
 {% extends "candidate/candidate_base.html" %}
-{% load i18n %}
+{% load i18n avatar_tags %}
 {% block pageTitle %}{% trans "candidates list" %}{% endblock %}
-{% block mainContainer %}
+{% block content %}
 <div class="page-header" style="margin-bottom:0;">
     <h1>
       {% if entity %}
@@ -26,8 +26,10 @@
                 </div>
             </div>
         </div>
-        <div class="avatar-container">
-          <a href="{{ candidate.get_absolute_url }}" title="{{ candidate.get_full_name }}"><img src="{{ candidate.profile.avatar_url|default:'/static/img/defaultavatar.png' }}" width="42" height="42" class="avatar img-circle"></a>
+        <div class="avatar-container" style="padding-top:15px;">
+          <a href="{{ question.author.get_absolute_url }}" rel="tooltip" title="{{question.author.get_full_name}}">
+            {% avatar candidate %}
+          </a>
         </div>
         <div class="summary">
             <h3>

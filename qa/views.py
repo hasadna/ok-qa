@@ -14,17 +14,20 @@ from django.utils.feedgenerator import Atom1Feed
 from django.contrib import messages
 from django.conf import settings
 from django.views.generic.detail import SingleObjectTemplateResponseMixin, BaseDetailView
-
-from qa.forms import AnswerForm, QuestionForm
-from .models import *
-from qa.mixins import JSONResponseMixin
+from django.core.urlresolvers import reverse
 
 from entities.models import Entity
 from chosen import forms as chosenforms
 from taggit.models import Tag
+from social_auth.models import UserSocialAuth
 
-from user.views import edit_profile
 from user.models import Profile
+
+from qa.forms import AnswerForm, QuestionForm
+from qa.models import *
+from qa.tasks import publish_question_to_facebook, publish_upvote_to_facebook,\
+    publish_answer_to_facebook
+from qa.mixins import JSONResponseMixin
 
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-updated_at', 'rating': '-rating', 'flagcount': '-flags_count'}
@@ -46,14 +49,15 @@ def questions(request, entity_slug=None, entity_id=None, tags=None,
 
     # TODO: cache the next lines
     questions = Question.on_site
+    entity=None
     if entity_id:
         entity = Entity.objects.get(pk=entity_id)
-        questions = questions.filter(entity=entity)
     elif entity_slug:
         entity = Entity.objects.get(slug=entity_slug)
+    if entity:
         questions = questions.filter(entity=entity)
-    else:
-        entity = None
+        # optimization
+        setattr(request, 'entity', entity)
 
     only_flagged = request.GET.get('filter', False) == 'flagged'
     if only_flagged:
@@ -84,8 +88,7 @@ def questions(request, entity_slug=None, entity_id=None, tags=None,
         need_editors= False
         can_ask = True
 
-    context = RequestContext(request, {'entity': entity,
-        'tags': tags,
+    context = RequestContext(request, { 'tags': tags,
         'questions': questions,
         'by_date': order_opt == 'date',
         'by_rating': order_opt == 'rating',
@@ -125,6 +128,12 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
         else:
             context['can_upvote'] = False
 
+        if 'answer' in self.request.GET:
+            try:
+                answer = Answer.objects.get(pk=self.request.GET['answer'])
+                context['fb_message'] = answer.content
+            except:
+                pass
         return context
 
     def render_to_response(self, context):
@@ -152,7 +161,7 @@ def post_answer(request, q_id):
         return HttpResponseForbidden(_("You must be logged in as a candidate to post answers"))
 
     try:
-        # make sure the user haven't answered already
+        # If the user already answered, update his answer
         answer = question.answers.get(author=request.user)
     except question.answers.model.DoesNotExist:
         answer = Answer(author=request.user, question=question)
@@ -160,6 +169,8 @@ def post_answer(request, q_id):
     answer.content = request.POST.get("content")
 
     answer.save()
+    publish_answer_to_facebook.delay(answer)
+
     return HttpResponseRedirect(question.get_absolute_url())
 
 @login_required
@@ -175,8 +186,14 @@ def post_question(request, entity_slug=None, slug=None):
     q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
 
     if request.method == "POST":
-        form = QuestionForm(request.POST)
+        form = QuestionForm(request.user, request.POST)
         if form.is_valid():
+            ''' carefull when changing a question's history '''
+            if not q:
+                try:
+                    q = Question.objects.get(author=request.user, subject=form.cleaned_data['subject'])
+                except:
+                    pass
             question = form.save(commit=False)
             if q:
                 if q.author != request.user:
@@ -185,15 +202,18 @@ def post_question(request, entity_slug=None, slug=None):
                     return HttpResponseForbidden(_("Question has been answered, editing disabled."))
                 question.id = q.id
                 question.created_at = q.created_at
+
             question.author = request.user
             question.save()
             form.save_m2m()
+            if form.cleaned_data.get('facebook_publish', False):
+                publish_question_to_facebook.delay(question)
             return HttpResponseRedirect(question.get_absolute_url())
     else:
         if q:
-            form = QuestionForm(instance=q)
+            form = QuestionForm(request.user, instance=q)
         else:
-            form = QuestionForm(initial={'entity': entity})
+            form = QuestionForm(request.user, initial={'entity': entity})
 
     becoming_editor = not profile.is_editor and\
                       Profile.objects.need_editors(entity)
@@ -211,13 +231,13 @@ def upvote_question(request, q_id):
     if request.method == "POST":
         q = get_object_or_404(Question, id=q_id)
         user = request.user
-
         if q.author == user or user.upvotes.filter(question=q):
             return HttpResponseForbidden(_("You already upvoted this question"))
         else:
             upvote = QuestionUpvote.objects.create(question=q, user=user)
             #TODO: use signals so the next line won't be necesary
             new_count = increase_rating(q)
+            publish_upvote_to_facebook.delay(upvote)
             return HttpResponse(new_count)
     else:
         return HttpResponseForbidden(_("Use POST to upvote a question"))

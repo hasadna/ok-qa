@@ -1,7 +1,7 @@
-{% extends base_template %}
+{% extends "base.html" %}
 {% load i18n %}
 
-{% block mainContainer %}
+{% block content %}
     {% if query %}
         <h3>{% trans "Results" %}</h3>
         <ul class="unstyled" class="search-result-list">

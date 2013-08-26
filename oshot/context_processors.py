@@ -1,3 +1,4 @@
+import os
 from django.core.urlresolvers import reverse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.sites.models import get_current_site
@@ -15,32 +16,41 @@ def forms(request):
     try:
         kwargs = request.resolver_match.kwargs
         url_name = request.resolver_match.url_name
-        if 'entity_slug' in kwargs:
-            entity = Entity.objects.get(slug=kwargs['entity_slug'])
-            initial = {'entity': entity.id}
-        elif 'entity_id' in kwargs:
-            entity = Entity.objects.get(id=kwargs['entity_id'])
-            initial = {'entity': entity.id}
-        else:
-            entity = {}
-            initial = {}
+        # many ways to pass an entity
+        entity = getattr(request, 'entity', None)
+        # import pdb; pdb.set_trace()
         if entity:
+            pass
+        elif 'entity_slug' in kwargs:
+            entity = Entity.objects.get(slug=kwargs['entity_slug'])
+        elif 'entity' in request.GET:
+            entity = Entity.objects.get(id=request.GET['entity'])
+        elif 'entity_slug' in request.GET:
+            entity = Entity.objects.get(slug=request.GET['entity_slug'])
+
+        context['entity'] = entity
+        # where the magic happens: set local or global scope urls
+        if entity:
+            initial = {'entity': entity.id}
             context['questions_url'] = reverse("qna", args=(entity.slug,))
             context['candidates_url'] = reverse("candidate_list", args=(entity.slug,))
         else:
+            initial = {}
             context['questions_url'] = reverse("home")
             context['candidates_url'] = reverse("candidate_list")
+        context['entity_form'] = EntityChoiceForm(initial=initial, auto_id=False)
 
-        if url_name not in SPECIAL_ENTITY_FORM:
-            context['entity_form'] = EntityChoiceForm(initial=initial, auto_id=False)
     except AttributeError:
         pass
 
-    if not request.user.is_authenticated():
+    if request.user.is_authenticated():
+        context["profile"] = request.user.profile
+    else:
         context["login_form"] = AuthenticationForm()
-    # TODO: remove
     context["site"] = get_current_site(request)
     context["ANALYTICS_ID"] = getattr(settings, 'ANALYTICS_ID', False)
+    context["FACEBOOK_APP_ID"] = os.environ.get('FACEBOOK_APP_ID', '')
+
     return context
 
 

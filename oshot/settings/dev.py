@@ -5,6 +5,7 @@ from .base import *
 
 DEBUG = True
 TEMPLATE_DEBUG = DEBUG
+SINGLE_PROCESS = True
 
 DATABASES = {
     'default': {

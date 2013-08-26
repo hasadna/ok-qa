@@ -5,16 +5,18 @@ from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
 from django.contrib.auth.decorators import login_required
+from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext as _
 from django.contrib import messages
 from django.views.generic.edit import FormMixin, TemplateResponseMixin
 from django.views.generic import View
 from django.template.context import RequestContext
 from django.views.decorators.http import require_POST
-
+# Friends' apps
+from actstream.models import Follow
+# Project's apps
 from .forms import *
 from .models import *
-
 from oshot.forms import EntityChoiceForm
 
 
@@ -28,6 +30,9 @@ def candidate_list(request, entity_slug=None, entity_id=None):
         entity = Entity.objects.get(slug=entity_slug)
     else:
         entity = None
+    if entity:
+        ''' optimized way to pass the entity on '''
+        setattr(request, 'entity', entity)
 
     candidates = Profile.objects.get_candidates(entity).order_by('?')
     context = RequestContext(request, {'entity': entity,
@@ -37,33 +42,27 @@ def candidate_list(request, entity_slug=None, entity_id=None):
     return render(request, "candidate/candidate_list.html", context)
 
 
-def user_detail(request, username):
-    user = get_object_or_404(User, username=username)
+def public_profile(request, username=None, pk=None):
+    if username:
+        user = get_object_or_404(User, username=username)
+    else:
+        user = get_object_or_404(User, username=pk)
     questions = user.questions.all()
     answers = user.answers.all()
     profile = user.profile
-    user.avatar_url = profile.avatar_url()
-    user.bio = profile.bio
-    user.url = profile.url
-    entity_form = EntityChoiceForm(initial={'entity': profile.locality.id},
-                                   auto_id=False)
+    if profile:
+        user.avatar_url = profile.avatar_url()
+        user.bio = profile.bio
+        user.url = profile.url
+        setattr(request, 'entity', profile.locality)
+
     context = RequestContext(request, {"candidate": user,
                                        "answers": answers,
                                        "questions": questions,
-                                       "entity": profile.locality,
-                                       "base_template": get_base_template(profile),
-                                       "entity_form": entity_form,
                                        })
 
     # todo: support members as well as candidates
-    return render(request, "user/user_detail.html", context)
-
-def get_base_template(profile):
-    if profile.locality:
-        return "place_base.html"
-    else:
-        return "base.html"
-
+    return render(request, "user/public_profile.html", context)
 
 @login_required
 @require_POST
@@ -82,23 +81,47 @@ def remove_candidate(request, candidate_id):
 
 
 @login_required
+def edit_candidate(request):
+    profile = request.user.profile
+    if not profile.is_candidate:
+        return HttpResponseForbidden(_('Only candidate can edit their info'))
+
+    if request.method == "POST":
+        form = CandidateForm(request.user, data=request.POST)
+        if form.is_valid():
+            user = form.save()
+            return HttpResponseRedirect(reverse(profile.get_absolute_url()))
+
+    elif request.method == "GET":
+        user = request.user
+        form = CandidateForm(request.user)
+
+    context = RequestContext(request, {"form": form,
+                                       "entity": profile.locality,
+                                       })
+    return render(request, "user/edit_candidate.html", context)
+
+
+@login_required
 def edit_profile(request):
     profile = request.user.profile
     if request.method == "POST":
         form = ProfileForm(request.user, data=request.POST)
         if form.is_valid():
             user = form.save()
-            next = request.POST.get('next', reverse('qna',
-                              kwargs={'entity_id': user.profile.locality.id}))
+
+            local_home =profile.get_absolute_url()
+            next = request.POST.get('next', local_home)
+            if next == '/':
+                next = local_home
+
             return HttpResponseRedirect(next)
     elif request.method == "GET":
         user = request.user
         form = ProfileForm(request.user)
 
-    context = RequestContext(request, {"form": form,
-                                       "entity": profile.locality,
-                                       "base_template": get_base_template(profile),
-                                       })
+    setattr(request, 'entity', profile.locality)
+    context = RequestContext(request, {"form": form})
     return render(request, "user/edit_profile.html", context)
 
 
@@ -141,4 +164,46 @@ class InvitationView(View, FormMixin, TemplateResponseMixin):
     def form_valid(self, form):
         form.save()
         return HttpResponseRedirect(reverse('login'))
+
+@login_required
+@require_POST
+def user_follow_unfollow(request):
+    """Recieves POST parameters:
+
+    verb - 'follow' or 'unfollow'
+    what - string representing target object type ('member', 'agenda', ...)
+    id - id of target object
+
+    """
+    what = request.POST.get('what', None)
+    target_id = request.POST.get('id', None)
+    if not target_id:
+        return HttpResponseBadRequest('need an id of an object to watch')
+
+    verb = request.POST.get('verb', None)
+    if verb not in ['follow', 'unfollow']:
+        return HttpResponseBadRequest(
+            "verb parameter has to be one of: 'follow', 'unfollow'")
+
+    logged_in = request.user.is_authenticated()
+    content_type = ContentType.objects.get_for_model(FOLLOW_TYPES[what])
+    qs = Follow.objects.filter(object_id=target_id, content_type=content_type)
+
+    if verb == 'follow':
+        try:
+            obj = get_object_or_404(FOLLOW_TYPES[what], pk=target_id)
+            follow(request.user, obj)
+        except:
+            return HttpResponseBadRequest('object not found')
+    else:  # unfollow
+        Follow.objects.get(
+            user=request.user,
+            content_type=content_type, object_id=target_id).delete()
+
+    res = {
+        'can_watch': logged_in,
+        'followers': qs.count(),
+        'watched': logged_in and bool(qs.filter(user=request.user))
+    }
+    return HttpResponse(json.dumps(res), content_type='application/json')
 

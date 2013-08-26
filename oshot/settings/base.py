@@ -2,6 +2,7 @@
 import os
 from unipath import FSPath as Path
 import djcelery
+from django.core.urlresolvers import reverse
 
 PROJECT_DIR = Path(__file__).absolute().ancestor(3)
 
@@ -70,7 +71,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'bootstrap_pagination.middleware.PaginationMiddleware',
-    'oshot.middleware.LocalityMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
 )
 
@@ -125,12 +125,16 @@ INSTALLED_APPS = (
     'celery_haystack',
     'djcelery_email',
     'devserver',
+    'avatar',
+    'actstream',
     'debug_toolbar',
     # local apps
     'qa',
     'user',
-    'party',
     'taggit_autosuggest',
+    # from open-Knesset
+    'links',
+    'polyorg',
 )
 
 AUTHENTICATION_BACKENDS = (
@@ -199,14 +203,15 @@ SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.user.get_username',
     'social_auth.backends.pipeline.user.create_user',
     'social_auth.backends.pipeline.social.associate_user',
+    'social_auth.backends.pipeline.social.load_extra_data',
     'user.utils.get_user_avatar',
 )
 
-FACEBOOK_EXTENDED_PERMISSIONS = ['email']
+FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'publish_actions']
 
 ACCOUNT_ACTIVATION_DAYS = 4
 
-ADMINS = ((ADMIN_NAME, ADMIN_EMAIL), )
+ADMINS = [(ADMIN_NAME, ADMIN_EMAIL), ]
 MANAGERS = ADMINS
 
 HAYSTACK_CONNECTIONS = {
@@ -215,7 +220,9 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(PROJECT_DIR, 'whoosh_index'),
     },
 }
-djcelery.setup_loader()
-HAYSTACK_SIGNAL_PROCESSOR = 'celery_haystack.signals.CelerySignalProcessor'
-EMAIL_BACKEND = 'djcelery_email.backends.CeleryEmailBackend'
+AUTO_GENERATE_AVATAR_SIZES = (75, 48)
+ABSOLUTE_URL_OVERRIDES = {
+    'auth.user': lambda u: reverse("public-profile", args = (u.username,)),
+}
+AVATAR_MAX_AVATARS_PER_USER = 1
 

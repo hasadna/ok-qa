@@ -2,13 +2,25 @@
 {% load i18n %}
 {% block pageTitle %}{{ question }}{% endblock %}
 {% block extrahead %}
+    {% get_current_language as LANGUAGE_CODE %}
+    <meta property="og:type"            content="localshot:question" />
+    <meta property="og:url"             content="http://{{site.domain}}{{ question.get_absolute_url }}" />
+    <meta property="og:title"           content="{{ question.subject }}" />
+    <!-- meta property="og:image"           content="{{ question.author.profile.avatar_uri }}" / -->
+    <meta property="og:description"     content="{{ question.content }}" />
+    <!-- TODO: Django returns 'he', FB excpects 'he_IL' -->
+    <meta property="og:locale"          content="he_IL" />
+    <meta property="localshot:entity"     content="{{ question.entity}}" />
+    {% if fb_message %}
+      <meta property="message"     content="{{ fb_message }}" />
+    {% endif %}
     <style>
         .question-summary {
             border: 0 none;
         }
     </style>
 {% endblock %}
-{% block mainContainer %}
+{% block content %}
     <div class="container">
         <div class="row">
             <div class="span9">
@@ -146,6 +158,7 @@
                                 {csrfmiddlewaretoken: "{{ csrf_token }}"},
                                 function (data, status, jqXHR) {
                                     $("#votes-count-{{question.id}}").html(jqXHR.responseText);
+                                    $(".votes").show();
                                 });
                     {% endif %}
                     return false;
