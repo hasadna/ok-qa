@@ -158,6 +158,7 @@
                                 {csrfmiddlewaretoken: "{{ csrf_token }}"},
                                 function (data, status, jqXHR) {
                                     $("#votes-count-{{question.id}}").html(jqXHR.responseText);
+                                    $(".votes").show();
                                 });
                     {% endif %}
                     return false;
