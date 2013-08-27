@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load pagination_tags %}
 {% load flatblock_tags %}
+{% load avatar_tags %}
 
 {% block pageTitle %}{% trans "questions list" %}{% endblock %}
 
@@ -10,44 +11,37 @@
 <div class="page-header">
   <div class="container">
     <div class="row">
-        <div class="span9">
+        <div class="span8">
           <h1>
-            {% if entity %}
-              {% blocktrans with entity.name as place %}Questions for candidate of {{place}} {% endblocktrans %}
+            {{ entity }}
                {% if not current_tags %}
                <a href="{% url "atom_entity_questions" entity.slug %}" title="{% trans 'Subscribe' %}" rel="tooltip">
                  <img src="{{STATIC_URL}}img/rss.png" width="25" />
                </a>
                {% endif %}
-            {% else %}
-              {% trans "Questions for elections candidates" %}
-               {% if not current_tags %}
-               <a href="{% url "atom_questions"  %}" title="{% trans 'Subscribe' %}" rel="tooltip">
-                 <img src="{{STATIC_URL}}img/rss.png" width="25" />
-               </a>
-               {% endif %}
-            {% endif %}
           </h1>
-          {% if current_tags %}
-          <ul class="nav nav-pills">
-            <li><h4>{% trans "In the tags:"%}</h4></li>
-            {% with tags=current_tags %}
-             {% include "_tags.html" %}
-            {% endwith %}
-          </ul>
-          {% endif %}
+          <div id="cbs_data">{% trans "Loading CBS Data..." %}</div>
         </div>
-          {% if can_ask %}
-          <div class="span2 offset1 new-question">
-            <a id="post-question" class="btn btn-success btn-large" 
-              href="{% url "post_question" user.profile.locality.slug %}">
-              {% trans "Ask Question" %}
-            </a>
-          </div>
-          {% endif %}
     </div>
   </div>
 </div>
+{% if not request.page or request.page == 1 %}
+<div class="row">
+  {% for candidate in candidates %}
+    {% if forloop.first %}
+      <h2>{% blocktrans with entity.name as place %}Candidates in {{place}} {% endblocktrans %}</h2>
+    {% endif %}
+      <div onclick="window.location.href='{{ candidate.get_absolute_url }}'"
+      class="candidate-avatar">
+        {% avatar candidate 75 %}
+        <p>{{ candidate.get_full_name|default:candidate.username}}</p>
+        {% if candidate.num_answers %}
+        <p>{{ candidate.num_answers }} {% trans "answers" %}</p>
+        {% endif %}
+      </div>
+  {% endfor %}
+</div>
+{% endif %}
 {% if need_editors %}
 <div>
 <blockquote>
@@ -57,6 +51,14 @@
 {% endif %}
 <div class="row questions-wrapper">
   <div class="span9 questions">
+    {% if current_tags %}
+    <ul class="nav nav-pills">
+      <li><h4>{% trans "In the tags:"%}</h4></li>
+      {% with tags=current_tags %}
+       {% include "_tags.html" %}
+      {% endwith %}
+    </ul>
+    {% endif %}
     {% if questions.count > 3 or only_flagged %}
     <ul class="nav nav-tabs">
       <li {% if by_rating %}class="active"{% endif %}>
@@ -82,6 +84,14 @@
     {% paginate %}
   </div>
   <div class="span3 sidebar">
+    {% if can_ask %}
+    <div class="pull-right">
+      <a id="post-question" class="btn btn-success btn-large" style="margin-top:0"
+        href="{% url "post_question" user.profile.locality.slug %}">
+        {% trans "Ask Question" %}
+      </a>
+    </div>
+    {% endif %}
     <div class="module" id="questions-count">
         <div class="summarycount al">{{question_count}}</div>
         <p>{% trans "Questions asked" %}</p>
@@ -104,6 +114,24 @@
              '</div>');
           return false; 
         });
+        function display_cbs(json) {
+          for(i = 0; i < json.feed.entry.length; i++){
+              entry = json.feed.entry[i];
+              if (entry.gsx$code.$t == "{{entity.code}}") {
+                var h = "<p><strong>"+entry.gsx$totalpopulation.$t+"</strong>";
+                    h+= "&nbsp;{% trans 'Total Population' %}</p>";
+                    h+= "<p><strong>"+entry.gsx$socioeco.$t+"</strong>";
+                    h+= "&nbsp;{% trans 'Socio Economic Grade' %}";
+                    h+= "<p><strong>"+entry.gsx$numofcouncilman.$t+"</strong>";
+                    h+= "&nbsp;{% trans 'Number of Councilman' %}";
+                $('#cbs_data').html(h);
+                return;
+              }
+            }
+          }
+
     </script>
+    <script src="http://spreadsheets.google.com/feeds/list/0AlrAe9zy7m-PdEczNE9ockdOaVVpaUZVZENiVjlRSlE/1/public/values?alt=json-in-script&amp;callback=display_cbs"></script>
+
 {% endif %}
   {% endblock %}

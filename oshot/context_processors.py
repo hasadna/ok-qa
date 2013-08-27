@@ -32,11 +32,11 @@ def forms(request):
         # where the magic happens: set local or global scope urls
         if entity:
             initial = {'entity': entity.id}
-            context['questions_url'] = reverse("qna", args=(entity.slug,))
+            context['questions_url'] = reverse("local_home", args=(entity.slug,))
             context['candidates_url'] = reverse("candidate_list", args=(entity.slug,))
         else:
             initial = {}
-            context['questions_url'] = reverse("home")
+            context['questions_url'] = reverse("local_home")
             context['candidates_url'] = reverse("candidate_list")
         context['entity_form'] = EntityChoiceForm(initial=initial, auto_id=False)
 

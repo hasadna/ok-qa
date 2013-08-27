@@ -61,6 +61,7 @@ class ProfileManager(models.Manager):
         if entity:
             qs = qs.filter(profile__locality = entity)
         return qs
+
     def need_editors(self, entity):
        return Profile.objects.filter(locality=entity).count() < MIN_EDITORS_PER_LOCALITY
 

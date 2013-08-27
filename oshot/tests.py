@@ -40,7 +40,7 @@ class QuestionTest(TestCase):
 
     def test_home_view(self):
         c = Client()
-        response = c.get(reverse('home'))
+        response = c.get(reverse('local_home'))
         self.assertEquals(response.status_code, 200)
         self.assertEquals(response.context['questions'].count(), 1)
 

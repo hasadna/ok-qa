@@ -7,4 +7,7 @@ static_root
 build/
 ENV/
 whoosh_index/
+media/
+oshot/settings/local.py
+
 ~

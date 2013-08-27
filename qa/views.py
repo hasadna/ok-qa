@@ -41,7 +41,7 @@ class JsonpResponse(HttpResponse):
             *args, **kwargs)
 
 
-def questions(request, entity_slug=None, entity_id=None, tags=None,
+def local_home(request, entity_slug=None, entity_id=None, tags=None,
         template="qa/question_list.html"):
     """
     list questions ordered by number of upvotes
@@ -54,6 +54,11 @@ def questions(request, entity_slug=None, entity_id=None, tags=None,
         entity = Entity.objects.get(pk=entity_id)
     elif entity_slug:
         entity = Entity.objects.get(slug=entity_slug)
+    else:
+        entity_id = getattr(settings, 'QNA_DEFAULT_ENTITY_ID', None)
+        if entity_id:
+            entity = Entity.objects.get(pk=entity_id)
+
     if entity:
         questions = questions.filter(entity=entity)
         # optimization
@@ -88,6 +93,9 @@ def questions(request, entity_slug=None, entity_id=None, tags=None,
         need_editors= False
         can_ask = True
 
+    candidates = Profile.objects.get_candidates(entity).\
+                    annotate(num_answers=models.Count('answers')).\
+                    order_by('-num_answers')
     context = RequestContext(request, { 'tags': tags,
         'questions': questions,
         'by_date': order_opt == 'date',
@@ -97,6 +105,7 @@ def questions(request, entity_slug=None, entity_id=None, tags=None,
         'need_editors': need_editors,
         'can_ask': can_ask,
         'question_count': questions.count(),
+        'candidates': candidates,
         })
 
     return render(request, template, context)
@@ -306,7 +315,7 @@ def flag_question(request, q_id):
     elif (user.profile.is_editor and user.profile.locality == q.entity) or (user == q.author and not q.answers.all()):
         q.delete()
         messages.info(request, _('Question has been removed'))
-        ret["redirect"] = reverse('qna', args=(q.entity.slug,))
+        ret["redirect"] = reverse('local_home', args=(q.entity.slug,))
     elif user.flags.filter(question=q):
         ret["message"] = _('Thanks.  You already reported this question')
     else:
