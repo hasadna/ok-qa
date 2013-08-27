@@ -36,3 +36,8 @@ else:
 DEBUG_TOOLBAR_CONFIG = {
         'INTERCEPT_REDIRECTS': False,
 }
+
+try:
+    from .local import *
+except:
+    pass
