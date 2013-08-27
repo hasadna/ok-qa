@@ -114,6 +114,9 @@
              '</div>');
           return false; 
         });
+    </script>
+{% endif %}
+    <script>
         function display_cbs(json) {
           for(i = 0; i < json.feed.entry.length; i++){
               entry = json.feed.entry[i];
@@ -133,5 +136,4 @@
     </script>
     <script src="http://spreadsheets.google.com/feeds/list/0AlrAe9zy7m-PdEczNE9ockdOaVVpaUZVZENiVjlRSlE/1/public/values?alt=json-in-script&amp;callback=display_cbs"></script>
 
-{% endif %}
   {% endblock %}
