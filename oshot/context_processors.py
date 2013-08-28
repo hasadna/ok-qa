@@ -29,12 +29,20 @@ def forms(request):
         elif 'entity_slug' in request.GET:
             entity = Entity.objects.get(slug=request.GET['entity_slug'])
 
+        #TODO: move to entities.context_processors
         if not entity:
+            ''' finding a default entity - first the user locality, then the
+                `QNA_DEFAULT_ENTITY_ID` settings and lastly, a random place
+            '''
             if request.user.is_authenticated():
                 entity = request.user.profile.locality
             else:
-                entity_id = getattr(settings, 'QNA_DEFAULT_ENTITY_ID', None)
-                entity = Entity.objects.get(pk=entity_id)
+                try:
+                    entity_id = settings.QNA_DEFAULT_ENTITY_ID
+                    entity = Entity.objects.get(pk=entity_id)
+                except:
+                    entity = Entity.objects.order_by('?')[0]
+
 
         context['entity'] = entity
         # where the magic happens: set local or global scope urls
