@@ -84,15 +84,6 @@
         {% endif %}
      </div>
 
-      <div >
-        <ul id="nav-content" class="nav">
-          {% block mainnav %} 
-            <li {% block nav-questions %} {% endblock %}><a href="{{questions_url}}">{% trans "Questions" %}</a></li>
-            <li {% block nav-candidates %} {% endblock %}><a href="{{candidates_url}}">{% trans "Candidates" %}</a></li>
-          {% endblock %}
-        </ul>
-
-      </div>
       </div>
     </div>
   </div>
