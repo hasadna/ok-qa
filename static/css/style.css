@@ -9,8 +9,8 @@ body {
 }
 /* Main Container */
 div[role="main"] {
-    padding-bottom: 70px;
-    padding-top: 130px;
+    padding-bottom: 74px;
+    padding-top: 74px;
 }
 /* Footer */
 .footer {
@@ -290,3 +290,4 @@ h1, h2, h3, h4, h5, h6 {
 .sidebar ul {list-style: none; }
 .nav-self a { padding-top: 0 !important; }
 .dead-center { text-align: center; vertical-align: middle; margin: 0 auto; }
+.pageHeader { text-align:center; padding-bottom: 1em;}

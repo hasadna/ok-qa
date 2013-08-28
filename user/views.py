@@ -3,7 +3,6 @@ from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.auth import login as auth_login, logout as auth_logout, authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext as _
@@ -18,7 +17,6 @@ from actstream.models import Follow
 from .forms import *
 from .models import *
 from oshot.forms import EntityChoiceForm
-
 
 def candidate_list(request, entity_slug=None, entity_id=None):
     """
