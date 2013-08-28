@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-26 23:27+0300\n"
-"PO-Revision-Date: 2013-08-25 01:31+0200\n"
+"POT-Creation-Date: 2013-08-27 22:21+0300\n"
+"PO-Revision-Date: 2013-08-27 22:21+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -16,562 +16,12 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:47
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:54
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:27
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:314
-#: build/django-celery/djcelery/admin.py:47
-#: build/django-celery/djcelery/admin.py:54
-#: build/django-celery/djcelery/models.py:27
-#: build/django-celery/djcelery/models.py:314
-#, fuzzy
-msgid "state"
-msgstr "מצב משפחתי"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:61
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:328
-#: build/django-celery/djcelery/admin.py:61
-#: build/django-celery/djcelery/models.py:328
-msgid "ETA"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:68
-#: build/django-celery/djcelery/admin.py:68
-msgid "when"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:74
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:194
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:320
-#: build/django-celery/djcelery/admin.py:74
-#: build/django-celery/djcelery/models.py:194
-#: build/django-celery/djcelery/models.py:320
-#: build/kombu/kombu/transport/django/models.py:10
-msgid "name"
-msgstr "שם"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:106
-#: build/django-celery/djcelery/admin.py:106
-msgid "Task detail"
-msgstr "פירוט משימה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:107
-#: build/django-celery/djcelery/admin.py:107
-msgid "Tasks"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:122
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:317
-#: build/django-celery/djcelery/admin.py:122
-#: build/django-celery/djcelery/models.py:317
-msgid "UUID"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:148
-#: build/django-celery/djcelery/admin.py:148
-#, fuzzy
-msgid "Revoke selected tasks"
-msgstr "לא נבחר/ה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:154
-#: build/django-celery/djcelery/admin.py:154
-msgid "Terminate selected tasks"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:160
-#: build/django-celery/djcelery/admin.py:160
-msgid "Kill selected tasks"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:167
-#: build/django-celery/djcelery/admin.py:167
-#: build/django-celery/djcelery/templates/djcelery/confirm_rate_limit.html:9
-msgid "Rate limit selected tasks"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:180
-#: build/django-celery/djcelery/admin.py:180
-msgid "Rate limit selection"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:205
-#: build/django-celery/djcelery/admin.py:205
-msgid "Node detail"
-msgstr "פירוט עלה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:206
-#: build/django-celery/djcelery/admin.py:206
-msgid "Worker Nodes"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:213
-#: build/django-celery/djcelery/admin.py:213
-msgid "Shutdown selected worker nodes"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:217
-#: build/django-celery/djcelery/admin.py:217
-msgid "Enable event mode for selected nodes."
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:222
-#: build/django-celery/djcelery/admin.py:222
-msgid "Disable event mode for selected nodes."
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:252
-#: build/django-celery/djcelery/admin.py:252
-msgid "Task (registered)"
-msgstr "משימה (רשומה)"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:254
-#: build/django-celery/djcelery/admin.py:254
-#, fuzzy
-msgid "Task (custom)"
-msgstr "משימה (רשומה)"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/admin.py:266
-#: build/django-celery/djcelery/admin.py:266
-msgid "Need name of task"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:8
-#: build/django-celery/djcelery/humanize.py:8
-msgid "just now"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:9
-#: build/django-celery/djcelery/humanize.py:9
-#, python-format
-msgid "%(seconds)d second ago"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:9
-#: build/django-celery/djcelery/humanize.py:9
-#, python-format
-msgid "%(seconds)d seconds ago"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:10
-#: build/django-celery/djcelery/humanize.py:10
-#, python-format
-msgid "%(minutes)d minute ago"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:10
-#: build/django-celery/djcelery/humanize.py:10
-#, fuzzy, python-format
-msgid "%(minutes)d minutes ago"
-msgstr "דקות"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:11
-#: build/django-celery/djcelery/humanize.py:11
-#, python-format
-msgid "%(hours)d hour ago"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:11
-#: build/django-celery/djcelery/humanize.py:11
-#, python-format
-msgid "%(hours)d hours ago"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:12
-#: build/django-celery/djcelery/humanize.py:12
-#, python-format
-msgid "yesterday at %(time)s"
-msgstr "אתמול ב %(time)s"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:13
-#: build/django-celery/djcelery/humanize.py:13
-#, fuzzy
-msgid "year"
-msgstr "שנה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:13
-#: build/django-celery/djcelery/humanize.py:13
-#, fuzzy
-msgid "years"
-msgstr "שנה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:14
-#: build/django-celery/djcelery/humanize.py:14
-#, fuzzy
-msgid "month"
-msgstr "החודש"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:14
-#: build/django-celery/djcelery/humanize.py:14
-#, fuzzy
-msgid "months"
-msgstr "החודש"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:15
-#: build/django-celery/djcelery/humanize.py:15
-#, fuzzy
-msgid "week"
-msgstr "שבועי"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:15
-#: build/django-celery/djcelery/humanize.py:15
-#, fuzzy
-msgid "weeks"
-msgstr "שבועי"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:16
-#: build/django-celery/djcelery/humanize.py:16
-msgid "day"
-msgstr "יום"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:16
-#: build/django-celery/djcelery/humanize.py:16
-msgid "days"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/humanize.py:23
-#: build/django-celery/djcelery/humanize.py:23
-#, fuzzy, python-format
-msgid "%(number)d %(type)s ago"
-msgstr "%(number)d %(type)s"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:25
-#: build/django-celery/djcelery/models.py:25
-#, fuzzy
-msgid "task id"
-msgstr "שם משימה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:31
-#: build/django-celery/djcelery/models.py:31
-msgid "done at"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:32
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:333
-#: build/django-celery/djcelery/models.py:32
-#: build/django-celery/djcelery/models.py:333
-msgid "traceback"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:35
-#: build/django-celery/djcelery/models.py:35
-msgid "meta"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:41
-#: build/django-celery/djcelery/models.py:41
-#, fuzzy
-msgid "task state"
-msgstr "שם משימה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:42
-#: build/django-celery/djcelery/models.py:42
-#, fuzzy
-msgid "task states"
-msgstr "שם משימה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:59
-#: build/django-celery/djcelery/models.py:59
-#, fuzzy
-msgid "group id"
-msgstr "קבוצה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:61
-#: build/django-celery/djcelery/models.py:61
-#, fuzzy
-msgid "created at"
-msgstr "אובייקט מקושר"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:68
-#: build/django-celery/djcelery/models.py:68
-msgid "saved group result"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:69
-#: build/django-celery/djcelery/models.py:69
-#, fuzzy
-msgid "saved group results"
-msgstr "התוצאות הקודמות"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:81
-#: build/django-celery/djcelery/models.py:81
-msgid "Days"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:82
-#: build/django-celery/djcelery/models.py:82
-msgid "Hours"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:83
-#: build/django-celery/djcelery/models.py:83
-msgid "Minutes"
-msgstr "דקות"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:84
-#: build/django-celery/djcelery/models.py:84
-#, fuzzy
-msgid "Seconds"
-msgstr "קריאה שניה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:85
-#: build/django-celery/djcelery/models.py:85
-msgid "Microseconds"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:89
-#: build/django-celery/djcelery/models.py:89
-msgid "every"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:91
-#: build/django-celery/djcelery/models.py:91
-msgid "period"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:95
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:199
-#: build/django-celery/djcelery/models.py:95
-#: build/django-celery/djcelery/models.py:199
-msgid "interval"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:96
-#: build/django-celery/djcelery/models.py:96
-msgid "intervals"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:115
-#: build/django-celery/djcelery/models.py:115
-#, python-format
-msgid "every %(period)s"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:116
-#: build/django-celery/djcelery/models.py:116
-#, python-format
-msgid "every %(every)s %(period)s"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:122
-#: build/django-celery/djcelery/models.py:122
-#, fuzzy
-msgid "minute"
-msgstr "דקה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:125
-#: build/django-celery/djcelery/models.py:125
-msgid "hour"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:128
-#: build/django-celery/djcelery/models.py:128
-msgid "day of week"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:131
-#: build/django-celery/djcelery/models.py:131
-#, fuzzy
-msgid "day of month"
-msgstr "תאריך פטירה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:134
-#: build/django-celery/djcelery/models.py:134
-msgid "month of year"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:138
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:203
-#: build/django-celery/djcelery/models.py:138
-#: build/django-celery/djcelery/models.py:203
-msgid "crontab"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:139
-#: build/django-celery/djcelery/models.py:139
-msgid "crontabs"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:195
-#: build/django-celery/djcelery/models.py:195
-#, fuzzy
-msgid "Useful description"
-msgstr "תאור"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:196
-#: build/django-celery/djcelery/models.py:196
-msgid "task name"
-msgstr "שם משימה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:204
-#: build/django-celery/djcelery/models.py:204
-msgid "Use one of interval/crontab"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:207
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:325
-#: build/django-celery/djcelery/models.py:207
-#: build/django-celery/djcelery/models.py:325
-#, fuzzy
-msgid "Arguments"
-msgstr "תגובות"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:208
-#: build/django-celery/djcelery/models.py:208
-msgid "JSON encoded positional arguments"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:211
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:326
-#: build/django-celery/djcelery/models.py:211
-#: build/django-celery/djcelery/models.py:326
-msgid "Keyword arguments"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:212
-#: build/django-celery/djcelery/models.py:212
-msgid "JSON encoded keyword arguments"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:215
-#: build/django-celery/djcelery/models.py:215
-#: build/kombu/kombu/transport/django/models.py:16
-msgid "queue"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:216
-#: build/django-celery/djcelery/models.py:216
-msgid "Queue defined in CELERY_QUEUES"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:219
-#: build/django-celery/djcelery/models.py:219
-#, fuzzy
-msgid "exchange"
-msgstr "העמוד הבא"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:222
-#: build/django-celery/djcelery/models.py:222
-msgid "routing key"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:225
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:331
-#: build/django-celery/djcelery/models.py:225
-#: build/django-celery/djcelery/models.py:331
-msgid "expires"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:228
-#: build/django-celery/djcelery/models.py:228
-msgid "enabled"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:238
-#: build/django-celery/djcelery/models.py:238
-msgid "description"
-msgstr "תאור"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:244
-#: build/django-celery/djcelery/models.py:244
-msgid "periodic task"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:245
-#: build/django-celery/djcelery/models.py:245
-msgid "periodic tasks"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:283
-#: build/django-celery/djcelery/models.py:283
-msgid "hostname"
-msgstr "שם שרת"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:284
-#: build/django-celery/djcelery/models.py:284
-msgid "last heartbeat"
-msgstr "פעימת לב אחרונה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:291
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:340
-#: build/django-celery/djcelery/models.py:291
-#: build/django-celery/djcelery/models.py:340
-msgid "worker"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:292
-#: build/django-celery/djcelery/models.py:292
-msgid "workers"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:323
-#: build/django-celery/djcelery/models.py:323
-msgid "event received at"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:332
-#: build/django-celery/djcelery/models.py:332
-msgid "result"
-msgstr "תוצאה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:335
-#: build/django-celery/djcelery/models.py:335
-#, fuzzy
-msgid "execution time"
-msgstr "קוד אימות"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:336
-#: build/django-celery/djcelery/models.py:336
-msgid "in seconds if task successful"
-msgstr ""
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:338
-#: build/django-celery/djcelery/models.py:338
-msgid "number of retries"
-msgstr "מספר נסיונות חוזרים"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:348
-#: build/django-celery/djcelery/models.py:348
-#, fuzzy
-msgid "task"
-msgstr "שם משימה"
-
-#: build/django-celery/build/lib.linux-x86_64-2.7/djcelery/models.py:349
-#: build/django-celery/djcelery/models.py:349
-msgid "tasks"
-msgstr ""
-
-#: build/django-celery/djcelery/templates/admin/djcelery/change_list.html:7
-#: build/django-celery/djcelery/templates/djcelery/confirm_rate_limit.html:6
-msgid "Home"
-msgstr "הביתה"
-
-#: build/django-celery/djcelery/templates/djcelery/confirm_rate_limit.html:22
-msgid "Rate limit"
-msgstr ""
-
-#: build/kombu/kombu/transport/django/models.py:17
-msgid "queues"
-msgstr ""
-
-#: build/kombu/kombu/transport/django/models.py:24
-msgid "payload"
-msgstr ""
-
-#: build/kombu/kombu/transport/django/models.py:31
-#, fuzzy
-msgid "message"
-msgstr "הודעה"
-
-#: build/kombu/kombu/transport/django/models.py:32
-#, fuzzy
-msgid "messages"
-msgstr "הודעה"
-
 #: links/admin.py:21
 msgid "Content"
 msgstr "תוכן"
 
-#: links/models.py:22 links/models.py:34
+#: links/models.py:22
+#: links/models.py:34
 msgid "title"
 msgstr "כותרת"
 
@@ -729,11 +179,13 @@ msgstr "מצטערת, תגיות מוגבלות ל 20 תווים"
 msgid "unicode slug"
 msgstr "שם ביוניקוד"
 
-#: qa/models.py:46 qa/models.py:94
+#: qa/models.py:46
+#: qa/models.py:94
 msgid "author"
 msgstr "מחבר"
 
-#: qa/models.py:47 qa/models.py:98
+#: qa/models.py:47
+#: qa/models.py:98
 msgid "question"
 msgstr "שאלה"
 
@@ -746,7 +198,8 @@ msgstr "פירוט"
 msgid "Please enter your content in no more than %s letters"
 msgstr "נא להכניס תוכן בלא יותר מ %s אותיות"
 
-#: qa/models.py:51 qa/models.py:97
+#: qa/models.py:51
+#: qa/models.py:97
 msgid "rating"
 msgstr "ניקוד"
 
@@ -763,65 +216,64 @@ msgstr "תוכן"
 msgid "Please enter an answer in no more than %s letters"
 msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
 
-#: qa/views.py:161
+#: qa/views.py:168
 msgid "You must be logged in as a candidate to post answers"
 msgstr "עליך להתחבר כמועמד כדי לפרסם תשובות"
 
-#: qa/views.py:184
+#: qa/views.py:191
 msgid "You can only post questions in your own locality"
 msgstr "מצטערת, אתה יכול לערוך רק שאלות ברשות שלך"
 
-#: qa/views.py:200
+#: qa/views.py:207
 msgid "You can only edit your own questions."
 msgstr "מצטערת, אתה יכול לערוך רק שאלות שלך"
 
-#: qa/views.py:202
+#: qa/views.py:209
 msgid "Question has been answered, editing disabled."
 msgstr "ישנן תשובות לשאלה, אי אפשר לערוך"
 
-#: qa/views.py:235
+#: qa/views.py:242
 msgid "You already upvoted this question"
 msgstr "תודה, אתה כבר מופיע ברשימת התומכים"
 
-#: qa/views.py:243
+#: qa/views.py:250
 msgid "Use POST to upvote a question"
 msgstr "השתמש ב POST כדי להצביע לשאלה"
 
-#: qa/views.py:256
+#: qa/views.py:263
 msgid "OK QA Question Feed"
 msgstr "שאלות נשאלו"
 
-#: qa/views.py:258
+#: qa/views.py:265
 msgid "Questions from OKQA"
 msgstr "שאלות"
 
-#: qa/views.py:281
+#: qa/views.py:288
 msgid "Answers for the question"
 msgstr "תשובות לשאלה"
 
-#: qa/views.py:287
+#: qa/views.py:294
 msgid "A feed of all answers for the question"
 msgstr "פיד של תשובות לשאלה"
 
-#: qa/views.py:304
+#: qa/views.py:311
 msgid "Sorry, you have to login to flag questions"
 msgstr "אנא התחברו כדי לסמן שאלה לא ראויה"
 
-#: qa/views.py:308
+#: qa/views.py:315
 msgid "Question has been removed"
 msgstr "השאלה נמחקה"
 
-#: qa/views.py:311
+#: qa/views.py:318
 msgid "Thanks.  You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
-#: qa/views.py:316
-msgid ""
-"Thank you for flagging the question. One of our editors will look at it "
-"shortly."
+#: qa/views.py:323
+msgid "Thank you for flagging the question. One of our editors will look at it shortly."
 msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את השאלה בקרוב."
 
-#: qa/templates/qa/_answer.html:23 qa/templates/qa/_question.html:36
+#: qa/templates/qa/_answer.html:23
+#: qa/templates/qa/_question.html:36
 #: user/templates/user/public_profile.html:55
 msgid "before"
 msgstr "לפני"
@@ -834,7 +286,8 @@ msgstr "עריכה"
 msgid "votes"
 msgstr "שואלים"
 
-#: qa/templates/qa/_question.html:27 qa/templates/qa/question_list.html:89
+#: qa/templates/qa/_question.html:27
+#: qa/templates/qa/question_list.html:99
 msgid "Tags"
 msgstr "תגיות"
 
@@ -842,7 +295,8 @@ msgstr "תגיות"
 msgid "from"
 msgstr "מ:"
 
-#: qa/templates/qa/_question.html:46 user/feeds.py:15
+#: qa/templates/qa/_question.html:46
+#: user/feeds.py:15
 msgid "Answers by"
 msgstr "תשובות של"
 
@@ -923,7 +377,7 @@ msgid "No Answers Yet"
 msgstr "עדיין לא ניתנו תשובות"
 
 #: qa/templates/qa/question_detail.html:102
-#: qa/templates/qa/question_list.html:18 qa/templates/qa/question_list.html:25
+#: qa/templates/qa/question_list.html:19
 #: user/templates/user/public_profile.html:17
 msgid "Subscribe"
 msgstr "הרשם"
@@ -936,46 +390,64 @@ msgstr "מצטערת, יש להתחבר כדי לתמוך בשאלה"
 msgid "Are you sure you want to delete the question?"
 msgstr "האם אתם בטוחים שברצונכם למחוק את השאלה?"
 
-#: qa/templates/qa/question_list.html:6
+#: qa/templates/qa/question_list.html:7
 msgid "questions list"
 msgstr "רשימת שאלות"
 
-#: qa/templates/qa/question_list.html:16
-#, python-format
-msgid "Questions for candidate of %(place)s "
-msgstr "שאלות למועמדים ב%(place)s"
-
-#: qa/templates/qa/question_list.html:23
-msgid "Questions for elections candidates"
-msgstr "שאלות למועמדים בבחירות המקומיות"
+#: qa/templates/qa/question_list.html:24
+msgid "Loading CBS Data..."
+msgstr "טוען נתוני למ\"ס..."
 
 #: qa/templates/qa/question_list.html:33
+#: user/templates/candidate/candidate_list.html:8
+#, python-format
+msgid "Candidates in %(place)s "
+msgstr "מועמדים לבחירות המקומיות ב%(place)s"
+
+#: qa/templates/qa/question_list.html:40
+#: user/templates/candidate/candidate_list.html:25
+msgid "answers"
+msgstr "תשובות"
+
+#: qa/templates/qa/question_list.html:56
 msgid "In the tags:"
 msgstr "תחת התגיות:"
 
-#: qa/templates/qa/question_list.html:44
-msgid "Ask Question"
-msgstr "העלו שאלה"
-
-#: qa/templates/qa/question_list.html:63
+#: qa/templates/qa/question_list.html:65
 msgid "Top Questions"
 msgstr "שאלות מובילות"
 
-#: qa/templates/qa/question_list.html:66
+#: qa/templates/qa/question_list.html:68
 msgid "Most Recent"
 msgstr "שאלות אחרונות"
 
-#: qa/templates/qa/question_list.html:70
+#: qa/templates/qa/question_list.html:72
 msgid "Flagged Questions"
 msgstr "שאלות מוסמנות"
 
-#: qa/templates/qa/question_list.html:87
+#: qa/templates/qa/question_list.html:91
+msgid "Ask Question"
+msgstr "העלו שאלה"
+
+#: qa/templates/qa/question_list.html:97
 msgid "Questions asked"
 msgstr "שאלות נשאלו"
 
-#: qa/templates/qa/question_list.html:103
+#: qa/templates/qa/question_list.html:113
 msgid "Sorry but only connected users can post questions"
 msgstr "מצטערת, יש להתחבר כדי לשאול שאלות"
+
+#: qa/templates/qa/question_list.html:122
+msgid "Total Population"
+msgstr "אוכלוסיה באלפים"
+
+#: qa/templates/qa/question_list.html:124
+msgid "Socio Economic Grade"
+msgstr "אשכול סוציו אקונומי (10 הכי טוב)"
+
+#: qa/templates/qa/question_list.html:126
+msgid "Number of Councilman"
+msgstr "מספר חברי מועצה"
 
 #: templates/base.html:39
 msgid "Welcome"
@@ -997,12 +469,14 @@ msgstr "ממשק ניהול"
 msgid "logout"
 msgstr "התנתקות"
 
-#: templates/base.html:54 templates/registration/registration_form.html:8
+#: templates/base.html:54
+#: templates/registration/registration_form.html:8
 #: templates/registration/registration_form.html:21
 msgid "Register"
 msgstr "הירשמו"
 
-#: templates/base.html:55 templates/registration/activation_complete.html:7
+#: templates/base.html:55
+#: templates/registration/activation_complete.html:7
 #: templates/registration/login.html:6
 #: templates/registration/password_reset_complete.html:7
 msgid "Login"
@@ -1016,12 +490,14 @@ msgstr "חפשו"
 msgid "Everywhere"
 msgstr "כל הארץ"
 
-#: templates/base.html:89 templates/place_base.html:6
+#: templates/base.html:89
+#: templates/place_base.html:6
 #: user/templates/user/public_profile.html:69
 msgid "Questions"
 msgstr "שאלות"
 
-#: templates/base.html:90 templates/place_base.html:7
+#: templates/base.html:90
+#: templates/place_base.html:7
 msgid "Candidates"
 msgstr "מועמדים"
 
@@ -1037,7 +513,8 @@ msgstr "בחזרה לראש העמוד"
 msgid "Content is licensed CC-BY. Learn more on this open source project "
 msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY והמטבח שלנו פתוח ושקוף - "
 
-#: templates/base.html:121 user/templates/candidate/candidate_list.html:73
+#: templates/base.html:121
+#: user/templates/candidate/candidate_list.html:73
 msgid "here"
 msgstr "כאן"
 
@@ -1069,15 +546,17 @@ msgstr "קרא עוד"
 msgid "read less"
 msgstr "קרא פחות"
 
-#: templates/avatar/add.html:8
+#: templates/avatar/add.html:6
 msgid "Your current avatar: "
 msgstr "נוכחית"
 
-#: templates/avatar/add.html:11 templates/avatar/change.html:8
+#: templates/avatar/add.html:9
+#: templates/avatar/change.html:8
 msgid "You haven't uploaded an avatar yet. Please upload one now."
 msgstr "טרם  העלתם תמונת פרופיל. אנא העלו תמונה כעת."
 
-#: templates/avatar/add.html:16 templates/avatar/change.html:17
+#: templates/avatar/add.html:14
+#: templates/avatar/change.html:17
 msgid "Upload New Image"
 msgstr "העלה תמונה חדשה"
 
@@ -1111,10 +590,7 @@ msgstr "ההרשמה הסתיימה בהצלחה, תודה."
 #, python-format
 msgid ""
 "\n"
-"Someone, hopefully you, signed up for a new account at %(name)s using this "
-"email address. If it was you, and you'd like to activate and use your "
-"account, click the link below or copy and paste it into your web browser's "
-"address bar:\n"
+"Someone, hopefully you, signed up for a new account at %(name)s using this email address. If it was you, and you'd like to activate and use your account, click the link below or copy and paste it into your web browser's address bar:\n"
 msgstr ""
 "\n"
 "תודה שנרשמת לאתר %(name)s! על מנת להשלים את ההרשמה לחץ/י על הקישור הבא:\n"
@@ -1123,9 +599,7 @@ msgstr ""
 #, python-format
 msgid ""
 "\n"
-"If you didn't request this, you don't need to do anything; you won't receive "
-"any more email from us, and the account will expire automatically in "
-"%(expiration_days)s days.\n"
+"If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in %(expiration_days)s days.\n"
 "\n"
 "If you are a candidate, you are welcome to post your answers. Just\n"
 "send us an email at qa@hasadna.org.il and we will verify your account.\n"
@@ -1134,11 +608,9 @@ msgid ""
 "the team at %(name)s\n"
 msgstr ""
 "\n"
-"במידה וההרשמה בוצעה בטעות, או לא על ידיך, אינך צריך/ה לעשות כלום -הרשמתך "
-"תתבטל אוטומטית תוך %(expiration_days)s ימים מיום קבלת המייל.\n"
+"במידה וההרשמה בוצעה בטעות, או לא על ידיך, אינך צריך/ה לעשות כלום -הרשמתך תתבטל אוטומטית תוך %(expiration_days)s ימים מיום קבלת המייל.\n"
 "\n"
-"אם את/ה מועמד לבחירות המוקדמות אתה מוזמן לפרסם תשובות.  רק שלח לנו דואל ל "
-"localshot@hasadna.org.il ונאשר את חשבונך.יום טוב,\n"
+"אם את/ה מועמד לבחירות המוקדמות אתה מוזמן לפרסם תשובות.  רק שלח לנו דואל ל localshot@hasadna.org.il ונאשר את חשבונך.יום טוב,\n"
 "צוות %(name)s\n"
 
 #: templates/registration/activation_email_subject.txt:2
@@ -1231,16 +703,14 @@ msgstr "&raquo; הקודם"
 msgid "Next &raquo;"
 msgstr "הבא &lqauo;"
 
-#: user/admin.py:10 user/forms.py:16
+#: user/admin.py:10
+#: user/forms.py:16
 msgid "Username"
 msgstr "שם משתמש"
 
 #: user/admin.py:12
-msgid ""
-"Required. 30 characters or fewer. Alphanumeric characters only (letters, "
-"digits and underscores)."
-msgstr ""
-"30 תווים או פחות. ניתן להשתמש באותיות עבריות ולועזיות, ספרות וקו תחתון בלבד."
+msgid "Required. 30 characters or fewer. Alphanumeric characters only (letters, digits and underscores)."
+msgstr "30 תווים או פחות. ניתן להשתמש באותיות עבריות ולועזיות, ספרות וקו תחתון בלבד."
 
 #: user/admin.py:14
 msgid "This value must contain only letters, numbers and underscores."
@@ -1250,21 +720,23 @@ msgstr "ניתן להשתמש באותיות, ספרות וקו תחתון בל�
 msgid "Get all answers by"
 msgstr "קבלו את כל התשובות של"
 
-#: user/forms.py:14 user/forms.py:137
+#: user/forms.py:14
+#: user/forms.py:137
 msgid "first name"
 msgstr "שם פרטי"
 
-#: user/forms.py:15 user/forms.py:138
+#: user/forms.py:15
+#: user/forms.py:138
 msgid "last name"
 msgstr "שם משפחה"
 
-#: user/forms.py:17 user/forms.py:18
-msgid ""
-"Required. 4-30 characters (only letters, numbers spaces and @/./+/-/_ "
-"characters)."
+#: user/forms.py:17
+#: user/forms.py:18
+msgid "Required. 4-30 characters (only letters, numbers spaces and @/./+/-/_ characters)."
 msgstr "חובה. 30-4 תווים (אותיות, מספרים, רווחים, @/./+/-/_ בלבד).‏"
 
-#: user/forms.py:19 user/forms.py:143
+#: user/forms.py:19
+#: user/forms.py:143
 msgid "email address"
 msgstr "כתובת דואל"
 
@@ -1272,11 +744,13 @@ msgstr "כתובת דואל"
 msgid "We don't spam, and don't show your email to anyone"
 msgstr "לא נשלח דואר זבל, לא נשתף את הכתובת עם אף אחד, ולא נציג אותה באתר"
 
-#: user/forms.py:25 user/models.py:78
+#: user/forms.py:25
+#: user/models.py:80
 msgid "Locality"
 msgstr "מקום מגורים"
 
-#: user/forms.py:26 user/forms.py:154
+#: user/forms.py:26
+#: user/forms.py:154
 msgid "home page"
 msgstr "עמוד הבית"
 
@@ -1289,9 +763,7 @@ msgid "E-Mail Notifications"
 msgstr "התראות דואל"
 
 #: user/forms.py:32
-msgid ""
-"Should we send you e-mail notification about updates to things you follow on "
-"the site?"
+msgid "Should we send you e-mail notification about updates to things you follow on the site?"
 msgstr "האם לשלוח התראות דואל לגבי שאלות ותגיות שאתה עוקב אחריהם?"
 
 #: user/forms.py:58
@@ -1303,9 +775,7 @@ msgid "the voters are waiting for your answers"
 msgstr "המצביעים ממתינים לתשובתך"
 
 #: user/forms.py:86
-msgid ""
-"The Q&A site is happy to invite you to answer voters' questions. please "
-"click {{activation_url}} to activate your account"
+msgid "The Q&A site is happy to invite you to answer voters' questions. please click {{activation_url}} to activate your account"
 msgstr ""
 
 #: user/forms.py:94
@@ -1385,18 +855,9 @@ msgstr "הפרופיל שלכם עודכן, אתם מוזמנים להכנס"
 msgid "candidates list"
 msgstr "רשימת מועמדים"
 
-#: user/templates/candidate/candidate_list.html:8
-#, python-format
-msgid "Candidates in %(place)s "
-msgstr "מועמדים לבחירות המקומיות ב%(place)s"
-
 #: user/templates/candidate/candidate_list.html:10
 msgid "Candidates for local elections"
 msgstr "מועמדים לבחירות המקומיות"
-
-#: user/templates/candidate/candidate_list.html:25
-msgid "answers"
-msgstr "תשובות"
 
 #: user/templates/candidate/candidate_list.html:45
 msgid "Remove Candidate"
@@ -1410,8 +871,7 @@ msgstr "אשרו הסרת מועמד"
 #, python-format
 msgid ""
 "\n"
-"      Are you sure you want to remove %(candidate)s from the candidate "
-"list?\n"
+"      Are you sure you want to remove %(candidate)s from the candidate list?\n"
 "    "
 msgstr ""
 "\n"
@@ -1454,19 +914,12 @@ msgid "User Profile"
 msgstr "פרופיל משתמש"
 
 #: user/templates/user/edit_profile.html:18
-msgid ""
-"You do not have permissions to edit anything. In order to be able to edit, "
-"you must first provide a valid email address."
-msgstr ""
-"אין לך הרשאות עריכה. כדי לקבל הרשאת עריכה עליך לספק כתובת דואר אלקטרוני "
-"חוקית."
+msgid "You do not have permissions to edit anything. In order to be able to edit, you must first provide a valid email address."
+msgstr "אין לך הרשאות עריכה. כדי לקבל הרשאת עריכה עליך לספק כתובת דואר אלקטרוני חוקית."
 
 #: user/templates/user/edit_profile.html:22
-msgid ""
-"You do not have permissions to edit anything. In order to be able to edit, "
-"you must provide a valid email address, and validate it"
-msgstr ""
-"אין לך הרשאות עריכה. כדי לקבל הרשאת עריכה עליך לאמת את הדואר האלקטרוני שלך."
+msgid "You do not have permissions to edit anything. In order to be able to edit, you must provide a valid email address, and validate it"
+msgstr "אין לך הרשאות עריכה. כדי לקבל הרשאת עריכה עליך לאמת את הדואר האלקטרוני שלך."
 
 #: user/templates/user/edit_profile.html:24
 msgid "send validation email"
@@ -1496,8 +949,17 @@ msgstr "עוקב אחרי"
 msgid "elects at"
 msgstr "בוחר חכם ב"
 
+#~ msgid "Questions for candidate of %(place)s "
+#~ msgstr "שאלות למועמדים ב%(place)s"
+
+#~ msgid "Questions for elections candidates"
+#~ msgstr "שאלות למועמדים בבחירות המקומיות"
+
 #~ msgid "Place"
 #~ msgstr "מקום"
+
+#~ msgid "Home"
+#~ msgstr "הביתה"
 
 #~ msgid "candidate?"
 #~ msgstr "מועמד?"
@@ -1552,6 +1014,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Position"
 #~ msgstr "עמדה"
+
+#~ msgid "Not selected"
+#~ msgstr "לא נבחר/ה"
 
 #~ msgid "Opposes fully"
 #~ msgstr "התנגדות מלאה"
@@ -1809,6 +1274,9 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "oknesset warnings:"
 #~ msgstr "התראות כנסת פתוחה:"
+
+#~ msgid "Minutes"
+#~ msgstr "דקות"
 
 #~ msgid "share"
 #~ msgstr "הפיצו"
@@ -2083,6 +1551,9 @@ msgstr "בוחר חכם ב"
 #~ msgid "Law Approvals"
 #~ msgstr "אישור חוקים"
 
+#~ msgid "Second Call"
+#~ msgstr "קריאה שניה"
+
 #~ msgid "Demurrer"
 #~ msgstr "הסתייגויות"
 
@@ -2103,9 +1574,6 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Against Party"
 #~ msgstr "הצבעות נגד המפלגה"
-
-#~ msgid "Number of votes"
-#~ msgstr "מספר הצבעות"
 
 #~ msgid "Unknown"
 #~ msgstr "לא ידוע"
@@ -2880,6 +2348,7 @@ msgstr "בוחר חכם ב"
 #~ "                %(counter)s MK voted differently than the majority of his "
 #~ "party\n"
 #~ "                "
+
 #~ msgid_plural ""
 #~ "\n"
 #~ "                %(counter)s MKs voted differently than the majority of "
@@ -2897,6 +2366,7 @@ msgstr "בוחר חכם ב"
 #~ "                %(counter)s member of the coalition voted differently "
 #~ "than the majority of the coalition\n"
 #~ "                "
+
 #~ msgid_plural ""
 #~ "\n"
 #~ "                %(counter)s member of the coalition voted differently "
@@ -2914,6 +2384,7 @@ msgstr "בוחר חכם ב"
 #~ "                %(counter)s member of the opposition voted differently "
 #~ "than the majority of the opposition\n"
 #~ "                "
+
 #~ msgid_plural ""
 #~ "\n"
 #~ "                %(counter)s member of the opposition voted differently "
@@ -2930,6 +2401,7 @@ msgstr "בוחר חכם ב"
 #~ "\n"
 #~ "                %(counter)s member voted against his/her own bill\n"
 #~ "                "
+
 #~ msgid_plural ""
 #~ "\n"
 #~ "                %(counter)s members votes against their own bill\n"
@@ -3256,6 +2728,9 @@ msgstr "בוחר חכם ב"
 #~ msgid "committee"
 #~ msgstr "ועדה"
 
+#~ msgid "day"
+#~ msgstr "יום"
+
 #~ msgid "party"
 #~ msgstr "מפלגה"
 
@@ -3514,6 +2989,9 @@ msgstr "בוחר חכם ב"
 #~ msgid "Less"
 #~ msgstr "פחות"
 
+#~ msgid "date of death"
+#~ msgstr "תאריך פטירה"
+
 #~ msgid "place of residence"
 #~ msgstr "מקום מגורים"
 
@@ -3697,11 +3175,13 @@ msgstr "בוחר חכם ב"
 #~ msgstr "דברים שנאמרו על ידיו/ה"
 
 #~ msgid "One meeting"
+
 #~ msgid_plural "%(meetings)s meetings"
 #~ msgstr[0] "ישיבה אחת"
 #~ msgstr[1] "%(meetings)s ישיבות"
 
 #~ msgid " in one committee"
+
 #~ msgid_plural " in %(committees)s committees"
 #~ msgstr[0] " בוועדה אחת"
 #~ msgstr[1] " ב- %(committees)s וועדות"
@@ -3856,9 +3336,6 @@ msgstr "בוחר חכם ב"
 #~ msgid "Wikipedia"
 #~ msgstr "ויקיפדיה"
 
-#~ msgid "loading..."
-#~ msgstr "טוען..."
-
 #~ msgid "Facebook"
 #~ msgstr "פייסבוק"
 
@@ -4005,109 +3482,105 @@ msgstr "בוחר חכם ב"
 #~ msgid "type"
 #~ msgstr "סוג"
 
+#~ msgid "group"
+#~ msgstr "קבוצה"
+
+#~ msgid "related object"
+#~ msgstr "אובייקט מקושר"
+
 # msgid "yes"
 # msgstr "כן"
 # msgid "no"
 # msgstr "לא"
 #~ msgid "hidden"
 #~ msgstr "מוסתר"
-
 #~ msgid "video already reviewed"
 #~ msgstr "הוידאו עבר ביקורת"
-
 #~ msgid "this type of video cannot be hidden"
 #~ msgstr "לא ניתן להסתיר סוג וידאו זה"
-
 #~ msgid "hide from the list?"
 #~ msgstr "הסתר מהרשימה?"
-
 #~ msgid "video already reviewed, keep displaying on the website?"
 #~ msgstr "הוידאו עבר ביקורת, להמשיך להציג באתר?"
-
 #~ msgid "approve for display on the website?"
 #~ msgstr "אשר להצגה באתר?"
-
 #~ msgid "yes"
 #~ msgstr "כן"
-
 #~ msgid "approve"
 #~ msgstr "לאשר"
-
 #~ msgid "no"
 #~ msgstr "לא"
-
 #~ msgid "don't approve"
 #~ msgstr "לא לאשר"
-
 #~ msgid "video cannot be embeded"
 #~ msgstr "לא ניתן להטמיע וידאו"
-
 #~ msgid "pending actions"
 #~ msgstr "פעולות שממתינות לביצוע"
-
 #~ msgid "updating, please wait..."
 #~ msgstr "מעדכן, נא להמתין..."
-
 #~ msgid "updated (num) videos"
 #~ msgstr "עודכנו (num) קטעי וידאו"
-
 #~ msgid "error updating the videos"
 #~ msgstr "אירעה שגיאה בעדכון קטעי הוידאו"
-
 #~ msgid "no actions to commit"
 #~ msgstr "אין פעולות לביצוע"
-
 #~ msgid "You have pending actions, continuing will cancel them."
 #~ msgstr "יש פעולות שממתינות לביצוע, יציאה מהדף תבטל אותן."
-
 #~ msgid "All Videos"
 #~ msgstr "כל סרטי הוידאו"
-
 #~ msgid "You don't have the appropriate permissions to access this page"
 #~ msgstr "אין לך הרשאות מתאימות לצפייה בדף זה"
-
 #~ msgid "(citizen) party member?"
 #~ msgstr "האם התפקדת למפלגה?"
-
 #~ msgid "Are you a member of any party?"
 #~ msgstr ""
 #~ "אם התפקדת למפלגה, נשמח לדעת זאת. נתון זה לא מפורסם, אלא רק משמש לצורך "
 #~ "סטטיסטיקות."
-
 #~ msgid "This email is already taken"
 #~ msgstr "כתובת דוא\"ל זו כבר תפוסה"
-
 #~ msgid "Public profile"
 #~ msgstr "פרופיל פומבי"
-
 #~ msgid "Allow other users to view your profile on the site"
 #~ msgstr "לאפשר למשתמשים אחרים לצפות בפרופיל שלך"
-
 #~ msgid "Gender"
 #~ msgstr "מין"
-
 #~ msgid "Your profile has been updated."
 #~ msgstr "פרופיל המשתמש עודכן"
-
 #~ msgid "Question already exists."
 #~ msgstr "מצטערת, השאלה כבר קיימת"
-
 #~ msgid "Edit your profile"
 #~ msgstr "ערוך את הפרופיל שלך"
-
+#~ msgid "name"
+#~ msgstr "שם"
+#~ msgid "Task detail"
+#~ msgstr "פירוט משימה"
+#~ msgid "Node detail"
+#~ msgstr "פירוט עלה"
+#~ msgid "Task (registered)"
+#~ msgstr "משימה (רשומה)"
+#~ msgid "yesterday at %(time)s"
+#~ msgstr "אתמול ב %(time)s"
+#~ msgid "task name"
+#~ msgstr "שם משימה"
+#~ msgid "description"
+#~ msgstr "תאור"
+#~ msgid "hostname"
+#~ msgstr "שם שרת"
+#~ msgid "last heartbeat"
+#~ msgstr "פעימת לב אחרונה"
+#~ msgid "result"
+#~ msgstr "תוצאה"
+#~ msgid "number of retries"
+#~ msgstr "מספר נסיונות חוזרים"
 #~ msgid "Questions for elections candidates "
 #~ msgstr "שאלות למועמדים בבחירות המקומיות"
-
 #~ msgid "We need more editors! please contact us by"
 #~ msgstr "אנו זקוקים לעוד עורכים! אנא צרו קשר ב"
-
 #~ msgid "Email"
 #~ msgstr "דואל"
-
 #~ msgid ""
 #~ "if you have the passion and time to join our community of local editors."
 #~ msgstr "אם יש לכם את הזמן והאנרגיה להצטרף לקהילת העורכים המקומיים שלנו"
-
 #, fuzzy
 #~ msgid "Flagged"
 #~ msgstr "לפי דגלים"
@@ -4232,6 +3705,7 @@ msgstr "בוחר חכם ב"
 #~ msgstr "שגיאת בסיס נתונים"
 
 #~ msgid "%(count)s %(name)s was changed successfully."
+
 #~ msgid_plural "%(count)s %(name)s were changed successfully."
 #~ msgstr[0] "שינוי %(count)s %(name)s בהצלחה."
 #~ msgstr[1] "שינוי %(count)s %(name)s בהצלחה."
@@ -4309,8 +3783,20 @@ msgstr "בוחר חכם ב"
 #~ msgstr "יומי"
 
 #, fuzzy
+#~ msgid "weekly"
+#~ msgstr "שבועי"
+
+#, fuzzy
 #~ msgid "%d times"
 #~ msgstr "כל הזמנים"
+
+#, fuzzy
+#~ msgid "minute"
+#~ msgstr "דקה"
+
+#, fuzzy
+#~ msgid "%d minutes"
+#~ msgstr "דקות"
 
 #, fuzzy
 #~ msgid "Contents"
@@ -4421,6 +3907,10 @@ msgstr "בוחר חכם ב"
 #, fuzzy
 #~ msgid "The file %s was deleted."
 #~ msgstr "ה-%(verbose_name)s נמחק."
+
+#, fuzzy
+#~ msgid "Attachments"
+#~ msgstr "תגובות"
 
 #, fuzzy
 #~ msgid "A file was changed: %s"
@@ -4744,6 +4234,7 @@ msgstr "בוחר חכם ב"
 #~ "\n"
 #~ "                %(counter)s MK\n"
 #~ "                "
+
 #~ msgid_plural ""
 #~ "\n"
 #~ "                %(counter)s MKs\n"
@@ -4858,6 +4349,7 @@ msgstr "בוחר חכם ב"
 #~ "\n"
 #~ "                    This entry has been pinged.\n"
 #~ "                    "
+
 #~ msgid_plural ""
 #~ "\n"
 #~ "                    This entry has been pinged %(counter)s times.\n"
@@ -4982,6 +4474,7 @@ msgstr "בוחר חכם ב"
 #~ "\n"
 #~ "            %(counter)s MK\n"
 #~ "            "
+
 #~ msgid_plural ""
 #~ "\n"
 #~ "            %(counter)s MKs\n"
@@ -5036,6 +4529,9 @@ msgstr "בוחר חכם ב"
 #~ msgid "Choose a tab to start browsing"
 #~ msgstr "שלום! אנא בחר באחד מהקישורים למעלה"
 
+#~ msgid "previous results"
+#~ msgstr "התוצאות הקודמות"
+
 #~ msgid "Add the code above to your site, to get a dynamically generated info"
 #~ msgstr "הוסף את הקוד לאתר שלך, לקבלת מידע דינמי באתרך"
 
@@ -5088,10 +4584,6 @@ msgstr "בוחר חכם ב"
 #~ msgstr "פרופיל משתמש"
 
 #, fuzzy
-#~ msgid "Total CPU time"
-#~ msgstr "פרופיל משתמש"
-
-#, fuzzy
 #~ msgid "Context switches"
 #~ msgstr "סוגי תוכן"
 
@@ -5130,6 +4622,10 @@ msgstr "בוחר חכם ב"
 #, fuzzy
 #~ msgid "Level"
 #~ msgstr "לביצה"
+
+#, fuzzy
+#~ msgid "Message"
+#~ msgstr "הודעה"
 
 #, fuzzy
 #~ msgid "No messages logged"
@@ -5222,6 +4718,10 @@ msgstr "בוחר חכם ב"
 #, fuzzy
 #~ msgid "Inactive"
 #~ msgstr "Iwate"
+
+#, fuzzy
+#~ msgid "status"
+#~ msgstr "מצב משפחתי"
 
 #~ msgid "%s does not appear to be a urlpattern object"
 #~ msgstr "לא נראה ש-%s הוא אובייקט urlpattern"
@@ -5450,6 +4950,10 @@ msgstr "בוחר חכם ב"
 #~ msgstr "הצג מזהה אובייקט"
 
 #, fuzzy
+#~ msgid "Text changed"
+#~ msgstr "העמוד הבא"
+
+#, fuzzy
 #~ msgid "Missing parameters"
 #~ msgstr "מפלגות"
 
@@ -5647,11 +5151,18 @@ msgstr "בוחר חכם ב"
 #~ msgid "Today"
 #~ msgstr "היום"
 
+#~ msgid "This month"
+#~ msgstr "החודש"
+
 #~ msgid "Yes"
 #~ msgstr "כן"
 
 #~ msgid "No"
 #~ msgstr "לא"
+
+#, fuzzy
+#~ msgid "action time"
+#~ msgstr "קוד אימות"
 
 #~ msgid "object repr"
 #~ msgstr "ייצוג אובייקט"
@@ -5778,6 +5289,7 @@ msgstr "בוחר חכם ב"
 #~ msgstr "ניהול Django"
 
 #~ msgid "Please correct the error below."
+
 #~ msgid_plural "Please correct the errors below."
 #~ msgstr[0] "נא לתקן את השגיאה המופיעה מתחת."
 #~ msgstr[1] "נא לתקן את השגיאות המופיעות מתחת."
@@ -5863,6 +5375,7 @@ msgstr "בוחר חכם ב"
 
 #, fuzzy
 #~ msgid "1 result"
+
 #~ msgid_plural "%(counter)s results"
 #~ msgstr[0] "תוצאות"
 #~ msgstr[1] "תוצאות"
@@ -6137,6 +5650,7 @@ msgstr "בוחר חכם ב"
 #~ msgstr "מטא-נתונים"
 
 #~ msgid "Watch your mouth! The word %s is not allowed here."
+
 #~ msgid_plural "Watch your mouth! The words %s are not allowed here."
 #~ msgstr[0] "שמור על לשונך! המילה %s אסורה לשימוש כאן."
 #~ msgstr[1] "שמור על לשונך! המילים %s אסורות לשימוש כאן."
@@ -6234,6 +5748,7 @@ msgstr "בוחר חכם ב"
 #~ msgstr "תצוגה מקדימה של התגובה"
 
 #~ msgid "Please correct the error below"
+
 #~ msgid_plural "Please correct the errors below"
 #~ msgstr[0] "בבקשה לתקן את השגיאה למטה"
 #~ msgstr[1] "אנא תקן את שגיאות למטה"
@@ -6303,16 +5818,19 @@ msgstr "בוחר חכם ב"
 #~ msgstr "שלישי"
 
 #~ msgid "%(value).1f million"
+
 #~ msgid_plural "%(value).1f million"
 #~ msgstr[0] "%(value).1f מיליון"
 #~ msgstr[1] "%(value).1f מיליונים"
 
 #~ msgid "%(value).1f billion"
+
 #~ msgid_plural "%(value).1f billion"
 #~ msgstr[0] "%(value).1f מיליארד"
 #~ msgstr[1] "%(value).1f מיליארדים"
 
 #~ msgid "%(value).1f trillion"
+
 #~ msgid_plural "%(value).1f trillion"
 #~ msgstr[0] "%(value).1f טריליון"
 #~ msgstr[1] "%(value).1f טריליונים"
@@ -7805,6 +7323,7 @@ msgstr "בוחר חכם ב"
 #~ "יש להחזיק את \"Control\", או \"Command\" על מק, לחוץ כדי לבחור יותר מאחד."
 
 #~ msgid "Please enter valid %(self)s IDs. The value %(value)r is invalid."
+
 #~ msgid_plural ""
 #~ "Please enter valid %(self)s IDs. The values %(value)r are invalid."
 #~ msgstr[0] "נא להזין מזהה %(self)s חוקי. הערך %(value)r אינו חוקי."
@@ -7930,6 +7449,7 @@ msgstr "בוחר חכם ב"
 #~ msgstr "כן,לא,אולי"
 
 #~ msgid "%(size)d byte"
+
 #~ msgid_plural "%(size)d bytes"
 #~ msgstr[0] "%(size)d בית"
 #~ msgstr[1] "%(size)d בתים"
@@ -8093,6 +7613,15 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Dec."
 #~ msgstr "דצמ'"
+
+#~ msgid "year"
+
+#~ msgid_plural "years"
+#~ msgstr[0] "שנה"
+#~ msgstr[1] "שנים"
+
+#~ msgid "%(number)d %(type)s"
+#~ msgstr "%(number)d %(type)s"
 
 #~ msgid ", %(number)d %(type)s"
 #~ msgstr ", %(number)d %(type)s"

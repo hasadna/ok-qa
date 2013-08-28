@@ -3,17 +3,18 @@ from .views import *
 from qa.sitemaps import sitemaps
 
 urlpatterns = patterns('qa.views',
+    url(r'^$', 'local_home', name="local_home"),
+    url(r'^(?P<entity_id>[-\d]+)/qna/$', 'local_home', name='local_home'),
+    url(r'^(?P<entity_slug>[-\w]+)/qna/$', 'local_home', name='local_home'),
+    url(r'^qna/tags/(?P<tags>.+)/$', 'local_home', name='show_tags'),
+    url(r'^(?P<entity_slug>[-\w]+)/qna/tags/(?P<tags>.+)/$', 'local_home', name='show_tags'),
+
     url(r'^(?P<entity_slug>.*)/qna/post_q/$', 'post_question', name='post_question'),
     url(r'^(?P<entity_slug>[-\w]+)/qna/(?P<slug>[-\w]+)/edit$', 'post_question', name='edit_question'),
     url(r'^(?P<entity_slug>[-\w]+)/qna/(?P<slug>[-\w]+)/$',
         QuestionDetail.as_view(),
         name='question_detail'
     ),
-    url(r'^(?P<entity_id>[-\d]+)/qna/$', 'questions', name='qna'),
-    url(r'^(?P<entity_slug>[-\w]+)/qna/$', 'questions', name='qna'),
-
-    url(r'^qna/tags/(?P<tags>.+)/$', 'questions', name='show_tags'),
-    url(r'^(?P<entity_slug>[-\w]+)/qna/tags/(?P<tags>.+)/$', 'questions', name='show_tags'),
 
     url(r'^qna/post_a/(?P<q_id>\d+)/$', 'post_answer', name='post_answer'),
 

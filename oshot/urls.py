@@ -10,7 +10,6 @@ from entities.views.ui import EntityDetail, EntityList
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^$', 'qa.views.questions', name="home"),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^p/(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage'),
 

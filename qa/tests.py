@@ -46,7 +46,8 @@ class QuestionTest(TestCase):
     def setUp(self):
         domain = Domain.objects.create(name="test")
         division = Division.objects.create(name="localities", domain=domain)
-        self.entity = Entity.objects.create(name="the moon", division=division)
+        self.entity = Entity.objects.create(name="the moon", division=division,
+                                            id=settings.QNA_DEFAULT_ENTITY_ID)
         self.common_user = User.objects.create_user("commoner", 
                                 "commmon@example.com", "pass")
         self.common_user.profile.locality = self.entity
@@ -105,6 +106,14 @@ class QuestionTest(TestCase):
         self.assertFalse(self.q.can_answer(self.common_user))
         self.assertTrue(self.q.can_answer(self.candidate_user))
 
+    def test_local_home(self):
+        c = Client()
+        response = c.get(reverse('local_home'))
+        res2 = c.get(reverse('local_home',
+                        kwargs={'entity_id': settings.QNA_DEFAULT_ENTITY_ID}))
+        self.assertEquals(list(response.context['questions']), list(res2.context['questions']))
+        self.assertEquals(response.context['candidates'].count(), 1)
+
     def test_question_detail(self):
         c = Client()
         q_url = reverse('question_detail',
@@ -135,7 +144,7 @@ class QuestionTest(TestCase):
         self.assertEquals(data['message'], 'Thank you for flagging the question. One of our editors will look at it shortly.')
         self.q = Question.objects.get(pk=self.q.id)
         self.assertEquals(self.q.flags_count, 2)
-        response = c.get(reverse('home')+"?filter=flagged")
+        response = c.get(reverse('local_home')+"?filter=flagged")
         self.assertEquals(response.context['questions'].count(), 1)
 
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
@@ -147,7 +156,7 @@ class QuestionTest(TestCase):
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
         data = json.loads(response.content)
         self.assertIn('redirect', data)
-        self.assertEquals(data['redirect'], reverse('qna', args=(self.q.entity.slug, )))
+        self.assertEquals(data['redirect'], reverse('local_home', args=(self.q.entity.slug, )))
 
     def test_upvote(self):
         c = SocialClient()
