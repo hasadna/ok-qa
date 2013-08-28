@@ -113,6 +113,12 @@ class QuestionTest(TestCase):
                         kwargs={'entity_id': settings.QNA_DEFAULT_ENTITY_ID}))
         self.assertEquals(list(response.context['questions']), list(res2.context['questions']))
         self.assertEquals(response.context['candidates'].count(), 1)
+        self.q.is_deleted = True
+        self.q.save()
+        response = c.get(reverse('local_home'))
+        self.assertFalse(response.context['questions'])
+        self.q.is_deleted = False
+        self.q.save()
 
     def test_question_detail(self):
         c = Client()
