@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-08-27 22:21+0300\n"
-"PO-Revision-Date: 2013-08-27 22:21+0200\n"
+"POT-Creation-Date: 2013-08-27 22:54+0300\n"
+"PO-Revision-Date: 2013-08-27 22:57+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -216,59 +216,59 @@ msgstr "תוכן"
 msgid "Please enter an answer in no more than %s letters"
 msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
 
-#: qa/views.py:168
+#: qa/views.py:170
 msgid "You must be logged in as a candidate to post answers"
 msgstr "עליך להתחבר כמועמד כדי לפרסם תשובות"
 
-#: qa/views.py:191
+#: qa/views.py:193
 msgid "You can only post questions in your own locality"
 msgstr "מצטערת, אתה יכול לערוך רק שאלות ברשות שלך"
 
-#: qa/views.py:207
+#: qa/views.py:209
 msgid "You can only edit your own questions."
 msgstr "מצטערת, אתה יכול לערוך רק שאלות שלך"
 
-#: qa/views.py:209
+#: qa/views.py:211
 msgid "Question has been answered, editing disabled."
 msgstr "ישנן תשובות לשאלה, אי אפשר לערוך"
 
-#: qa/views.py:242
+#: qa/views.py:244
 msgid "You already upvoted this question"
 msgstr "תודה, אתה כבר מופיע ברשימת התומכים"
 
-#: qa/views.py:250
+#: qa/views.py:252
 msgid "Use POST to upvote a question"
 msgstr "השתמש ב POST כדי להצביע לשאלה"
 
-#: qa/views.py:263
+#: qa/views.py:265
 msgid "OK QA Question Feed"
 msgstr "שאלות נשאלו"
 
-#: qa/views.py:265
+#: qa/views.py:267
 msgid "Questions from OKQA"
 msgstr "שאלות"
 
-#: qa/views.py:288
+#: qa/views.py:290
 msgid "Answers for the question"
 msgstr "תשובות לשאלה"
 
-#: qa/views.py:294
+#: qa/views.py:296
 msgid "A feed of all answers for the question"
 msgstr "פיד של תשובות לשאלה"
 
-#: qa/views.py:311
+#: qa/views.py:313
 msgid "Sorry, you have to login to flag questions"
 msgstr "אנא התחברו כדי לסמן שאלה לא ראויה"
 
-#: qa/views.py:315
+#: qa/views.py:317
 msgid "Question has been removed"
 msgstr "השאלה נמחקה"
 
-#: qa/views.py:318
+#: qa/views.py:320
 msgid "Thanks.  You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
-#: qa/views.py:323
+#: qa/views.py:325
 msgid "Thank you for flagging the question. One of our editors will look at it shortly."
 msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את השאלה בקרוב."
 
@@ -377,7 +377,7 @@ msgid "No Answers Yet"
 msgstr "עדיין לא ניתנו תשובות"
 
 #: qa/templates/qa/question_detail.html:102
-#: qa/templates/qa/question_list.html:19
+#: qa/templates/qa/question_list.html:18
 #: user/templates/user/public_profile.html:17
 msgid "Subscribe"
 msgstr "הרשם"
@@ -394,17 +394,17 @@ msgstr "האם אתם בטוחים שברצונכם למחוק את השאלה?"
 msgid "questions list"
 msgstr "רשימת שאלות"
 
-#: qa/templates/qa/question_list.html:24
+#: qa/templates/qa/question_list.html:23
 msgid "Loading CBS Data..."
-msgstr "טוען נתוני למ\"ס..."
+msgstr "טוען נתוני הלשכה המרכזית לסטטיסטיקה..."
 
-#: qa/templates/qa/question_list.html:33
+#: qa/templates/qa/question_list.html:32
 #: user/templates/candidate/candidate_list.html:8
 #, python-format
 msgid "Candidates in %(place)s "
 msgstr "מועמדים לבחירות המקומיות ב%(place)s"
 
-#: qa/templates/qa/question_list.html:40
+#: qa/templates/qa/question_list.html:39
 #: user/templates/candidate/candidate_list.html:25
 msgid "answers"
 msgstr "תשובות"
@@ -437,125 +437,125 @@ msgstr "שאלות נשאלו"
 msgid "Sorry but only connected users can post questions"
 msgstr "מצטערת, יש להתחבר כדי לשאול שאלות"
 
-#: qa/templates/qa/question_list.html:122
+#: qa/templates/qa/question_list.html:125
 msgid "Total Population"
-msgstr "אוכלוסיה באלפים"
+msgstr "אוכולוסיה באלפים"
 
-#: qa/templates/qa/question_list.html:124
+#: qa/templates/qa/question_list.html:127
 msgid "Socio Economic Grade"
-msgstr "אשכול סוציו אקונומי (10 הכי טוב)"
+msgstr "אשכול סוציואקונומי (10 הכי טוב)"
 
-#: qa/templates/qa/question_list.html:126
+#: qa/templates/qa/question_list.html:129
 msgid "Number of Councilman"
-msgstr "מספר חברי מועצה"
+msgstr "מספר חברי וחברות מועצה"
 
-#: templates/base.html:39
+#: templates/base.html:40
 msgid "Welcome"
 msgstr "שלום"
 
-#: templates/base.html:41
+#: templates/base.html:42
 msgid "my page"
 msgstr "העמוד שלי"
 
-#: templates/base.html:42
+#: templates/base.html:43
 msgid "edit profile"
 msgstr "ערוך פרופיל"
 
-#: templates/base.html:44
+#: templates/base.html:45
 msgid "admin"
 msgstr "ממשק ניהול"
 
-#: templates/base.html:48
+#: templates/base.html:49
 msgid "logout"
 msgstr "התנתקות"
 
-#: templates/base.html:54
+#: templates/base.html:55
 #: templates/registration/registration_form.html:8
 #: templates/registration/registration_form.html:21
 msgid "Register"
 msgstr "הירשמו"
 
-#: templates/base.html:55
+#: templates/base.html:56
 #: templates/registration/activation_complete.html:7
 #: templates/registration/login.html:6
 #: templates/registration/password_reset_complete.html:7
 msgid "Login"
 msgstr "היכנסו"
 
-#: templates/base.html:64
+#: templates/base.html:65
 msgid "Search"
 msgstr "חפשו"
 
-#: templates/base.html:74
+#: templates/base.html:75
 msgid "Everywhere"
 msgstr "כל הארץ"
 
-#: templates/base.html:89
+#: templates/base.html:90
 #: templates/place_base.html:6
 #: user/templates/user/public_profile.html:69
 msgid "Questions"
 msgstr "שאלות"
 
-#: templates/base.html:90
+#: templates/base.html:91
 #: templates/place_base.html:7
 msgid "Candidates"
 msgstr "מועמדים"
 
-#: templates/base.html:116
+#: templates/base.html:117
 msgid "About"
 msgstr "אודות"
 
-#: templates/base.html:118
+#: templates/base.html:119
 msgid "Back to top"
 msgstr "בחזרה לראש העמוד"
 
-#: templates/base.html:120
+#: templates/base.html:121
 msgid "Content is licensed CC-BY. Learn more on this open source project "
 msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY והמטבח שלנו פתוח ושקוף - "
 
-#: templates/base.html:121
+#: templates/base.html:122
 #: user/templates/candidate/candidate_list.html:73
 msgid "here"
 msgstr "כאן"
 
-#: templates/base.html:123
+#: templates/base.html:124
 msgid "The Public Knowledge Workshop"
 msgstr "הסדנא לידע ציבורי"
 
-#: templates/base.html:124
+#: templates/base.html:125
 msgid "together with"
 msgstr "בשיתוף עם"
 
-#: templates/base.html:124
+#: templates/base.html:125
 msgid "The Shaharit Institute"
 msgstr "מכון שחרית"
 
-#: templates/base.html:125
+#: templates/base.html:126
 msgid "and"
 msgstr "ו"
 
-#: templates/base.html:125
+#: templates/base.html:126
 msgid "NUIS"
 msgstr "התאחדות הסטודנטים"
 
-#: templates/base.html:149
+#: templates/base.html:150
 msgid "read more"
 msgstr "קרא עוד"
 
-#: templates/base.html:153
+#: templates/base.html:154
 msgid "read less"
 msgstr "קרא פחות"
 
-#: templates/avatar/add.html:6
+#: templates/avatar/add.html:13
 msgid "Your current avatar: "
 msgstr "נוכחית"
 
-#: templates/avatar/add.html:9
+#: templates/avatar/add.html:16
 #: templates/avatar/change.html:8
 msgid "You haven't uploaded an avatar yet. Please upload one now."
 msgstr "טרם  העלתם תמונת פרופיל. אנא העלו תמונה כעת."
 
-#: templates/avatar/add.html:14
+#: templates/avatar/add.html:21
 #: templates/avatar/change.html:17
 msgid "Upload New Image"
 msgstr "העלה תמונה חדשה"
@@ -745,7 +745,7 @@ msgid "We don't spam, and don't show your email to anyone"
 msgstr "לא נשלח דואר זבל, לא נשתף את הכתובת עם אף אחד, ולא נציג אותה באתר"
 
 #: user/forms.py:25
-#: user/models.py:80
+#: user/models.py:79
 msgid "Locality"
 msgstr "מקום מגורים"
 
@@ -949,6 +949,156 @@ msgstr "עוקב אחרי"
 msgid "elects at"
 msgstr "בוחר חכם ב"
 
+#, fuzzy
+#~ msgid "state"
+#~ msgstr "מצב משפחתי"
+
+#~ msgid "name"
+#~ msgstr "שם"
+
+#~ msgid "Task detail"
+#~ msgstr "פירוט משימה"
+
+#, fuzzy
+#~ msgid "Revoke selected tasks"
+#~ msgstr "לא נבחר/ה"
+
+#~ msgid "Node detail"
+#~ msgstr "פירוט עלה"
+
+#~ msgid "Task (registered)"
+#~ msgstr "משימה (רשומה)"
+
+#, fuzzy
+#~ msgid "Task (custom)"
+#~ msgstr "משימה (רשומה)"
+
+#, fuzzy
+#~ msgid "%(minutes)d minutes ago"
+#~ msgstr "דקות"
+
+#~ msgid "yesterday at %(time)s"
+#~ msgstr "אתמול ב %(time)s"
+
+#, fuzzy
+#~ msgid "year"
+#~ msgstr "שנה"
+
+#, fuzzy
+#~ msgid "years"
+#~ msgstr "שנה"
+
+#, fuzzy
+#~ msgid "month"
+#~ msgstr "החודש"
+
+#, fuzzy
+#~ msgid "months"
+#~ msgstr "החודש"
+
+#, fuzzy
+#~ msgid "week"
+#~ msgstr "שבועי"
+
+#, fuzzy
+#~ msgid "weeks"
+#~ msgstr "שבועי"
+
+#~ msgid "day"
+#~ msgstr "יום"
+
+#, fuzzy
+#~ msgid "%(number)d %(type)s ago"
+#~ msgstr "%(number)d %(type)s"
+
+#, fuzzy
+#~ msgid "task id"
+#~ msgstr "שם משימה"
+
+#, fuzzy
+#~ msgid "task state"
+#~ msgstr "שם משימה"
+
+#, fuzzy
+#~ msgid "task states"
+#~ msgstr "שם משימה"
+
+#, fuzzy
+#~ msgid "group id"
+#~ msgstr "קבוצה"
+
+#, fuzzy
+#~ msgid "created at"
+#~ msgstr "אובייקט מקושר"
+
+#, fuzzy
+#~ msgid "saved group results"
+#~ msgstr "התוצאות הקודמות"
+
+#~ msgid "Minutes"
+#~ msgstr "דקות"
+
+#, fuzzy
+#~ msgid "Seconds"
+#~ msgstr "קריאה שניה"
+
+#, fuzzy
+#~ msgid "minute"
+#~ msgstr "דקה"
+
+#, fuzzy
+#~ msgid "day of month"
+#~ msgstr "תאריך פטירה"
+
+#, fuzzy
+#~ msgid "Useful description"
+#~ msgstr "תאור"
+
+#~ msgid "task name"
+#~ msgstr "שם משימה"
+
+#, fuzzy
+#~ msgid "Arguments"
+#~ msgstr "תגובות"
+
+#, fuzzy
+#~ msgid "exchange"
+#~ msgstr "העמוד הבא"
+
+#~ msgid "description"
+#~ msgstr "תאור"
+
+#~ msgid "hostname"
+#~ msgstr "שם שרת"
+
+#~ msgid "last heartbeat"
+#~ msgstr "פעימת לב אחרונה"
+
+#~ msgid "result"
+#~ msgstr "תוצאה"
+
+#, fuzzy
+#~ msgid "execution time"
+#~ msgstr "קוד אימות"
+
+#~ msgid "number of retries"
+#~ msgstr "מספר נסיונות חוזרים"
+
+#, fuzzy
+#~ msgid "task"
+#~ msgstr "שם משימה"
+
+#~ msgid "Home"
+#~ msgstr "הביתה"
+
+#, fuzzy
+#~ msgid "message"
+#~ msgstr "הודעה"
+
+#, fuzzy
+#~ msgid "messages"
+#~ msgstr "הודעה"
+
 #~ msgid "Questions for candidate of %(place)s "
 #~ msgstr "שאלות למועמדים ב%(place)s"
 
@@ -957,9 +1107,6 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Place"
 #~ msgstr "מקום"
-
-#~ msgid "Home"
-#~ msgstr "הביתה"
 
 #~ msgid "candidate?"
 #~ msgstr "מועמד?"
@@ -1014,9 +1161,6 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Position"
 #~ msgstr "עמדה"
-
-#~ msgid "Not selected"
-#~ msgstr "לא נבחר/ה"
 
 #~ msgid "Opposes fully"
 #~ msgstr "התנגדות מלאה"
@@ -1274,9 +1418,6 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "oknesset warnings:"
 #~ msgstr "התראות כנסת פתוחה:"
-
-#~ msgid "Minutes"
-#~ msgstr "דקות"
 
 #~ msgid "share"
 #~ msgstr "הפיצו"
@@ -1550,9 +1691,6 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Law Approvals"
 #~ msgstr "אישור חוקים"
-
-#~ msgid "Second Call"
-#~ msgstr "קריאה שניה"
 
 #~ msgid "Demurrer"
 #~ msgstr "הסתייגויות"
@@ -2728,9 +2866,6 @@ msgstr "בוחר חכם ב"
 #~ msgid "committee"
 #~ msgstr "ועדה"
 
-#~ msgid "day"
-#~ msgstr "יום"
-
 #~ msgid "party"
 #~ msgstr "מפלגה"
 
@@ -2988,9 +3123,6 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Less"
 #~ msgstr "פחות"
-
-#~ msgid "date of death"
-#~ msgstr "תאריך פטירה"
 
 #~ msgid "place of residence"
 #~ msgstr "מקום מגורים"
@@ -3482,12 +3614,6 @@ msgstr "בוחר חכם ב"
 #~ msgid "type"
 #~ msgstr "סוג"
 
-#~ msgid "group"
-#~ msgstr "קבוצה"
-
-#~ msgid "related object"
-#~ msgstr "אובייקט מקושר"
-
 # msgid "yes"
 # msgstr "כן"
 # msgid "no"
@@ -3550,28 +3676,6 @@ msgstr "בוחר חכם ב"
 #~ msgstr "מצטערת, השאלה כבר קיימת"
 #~ msgid "Edit your profile"
 #~ msgstr "ערוך את הפרופיל שלך"
-#~ msgid "name"
-#~ msgstr "שם"
-#~ msgid "Task detail"
-#~ msgstr "פירוט משימה"
-#~ msgid "Node detail"
-#~ msgstr "פירוט עלה"
-#~ msgid "Task (registered)"
-#~ msgstr "משימה (רשומה)"
-#~ msgid "yesterday at %(time)s"
-#~ msgstr "אתמול ב %(time)s"
-#~ msgid "task name"
-#~ msgstr "שם משימה"
-#~ msgid "description"
-#~ msgstr "תאור"
-#~ msgid "hostname"
-#~ msgstr "שם שרת"
-#~ msgid "last heartbeat"
-#~ msgstr "פעימת לב אחרונה"
-#~ msgid "result"
-#~ msgstr "תוצאה"
-#~ msgid "number of retries"
-#~ msgstr "מספר נסיונות חוזרים"
 #~ msgid "Questions for elections candidates "
 #~ msgstr "שאלות למועמדים בבחירות המקומיות"
 #~ msgid "We need more editors! please contact us by"
@@ -3783,20 +3887,8 @@ msgstr "בוחר חכם ב"
 #~ msgstr "יומי"
 
 #, fuzzy
-#~ msgid "weekly"
-#~ msgstr "שבועי"
-
-#, fuzzy
 #~ msgid "%d times"
 #~ msgstr "כל הזמנים"
-
-#, fuzzy
-#~ msgid "minute"
-#~ msgstr "דקה"
-
-#, fuzzy
-#~ msgid "%d minutes"
-#~ msgstr "דקות"
 
 #, fuzzy
 #~ msgid "Contents"
@@ -3907,10 +3999,6 @@ msgstr "בוחר חכם ב"
 #, fuzzy
 #~ msgid "The file %s was deleted."
 #~ msgstr "ה-%(verbose_name)s נמחק."
-
-#, fuzzy
-#~ msgid "Attachments"
-#~ msgstr "תגובות"
 
 #, fuzzy
 #~ msgid "A file was changed: %s"
@@ -4529,9 +4617,6 @@ msgstr "בוחר חכם ב"
 #~ msgid "Choose a tab to start browsing"
 #~ msgstr "שלום! אנא בחר באחד מהקישורים למעלה"
 
-#~ msgid "previous results"
-#~ msgstr "התוצאות הקודמות"
-
 #~ msgid "Add the code above to your site, to get a dynamically generated info"
 #~ msgstr "הוסף את הקוד לאתר שלך, לקבלת מידע דינמי באתרך"
 
@@ -4624,10 +4709,6 @@ msgstr "בוחר חכם ב"
 #~ msgstr "לביצה"
 
 #, fuzzy
-#~ msgid "Message"
-#~ msgstr "הודעה"
-
-#, fuzzy
 #~ msgid "No messages logged"
 #~ msgstr "הודעה"
 
@@ -4718,10 +4799,6 @@ msgstr "בוחר חכם ב"
 #, fuzzy
 #~ msgid "Inactive"
 #~ msgstr "Iwate"
-
-#, fuzzy
-#~ msgid "status"
-#~ msgstr "מצב משפחתי"
 
 #~ msgid "%s does not appear to be a urlpattern object"
 #~ msgstr "לא נראה ש-%s הוא אובייקט urlpattern"
@@ -4950,10 +5027,6 @@ msgstr "בוחר חכם ב"
 #~ msgstr "הצג מזהה אובייקט"
 
 #, fuzzy
-#~ msgid "Text changed"
-#~ msgstr "העמוד הבא"
-
-#, fuzzy
 #~ msgid "Missing parameters"
 #~ msgstr "מפלגות"
 
@@ -5151,18 +5224,11 @@ msgstr "בוחר חכם ב"
 #~ msgid "Today"
 #~ msgstr "היום"
 
-#~ msgid "This month"
-#~ msgstr "החודש"
-
 #~ msgid "Yes"
 #~ msgstr "כן"
 
 #~ msgid "No"
 #~ msgstr "לא"
-
-#, fuzzy
-#~ msgid "action time"
-#~ msgstr "קוד אימות"
 
 #~ msgid "object repr"
 #~ msgstr "ייצוג אובייקט"
@@ -7613,15 +7679,6 @@ msgstr "בוחר חכם ב"
 
 #~ msgid "Dec."
 #~ msgstr "דצמ'"
-
-#~ msgid "year"
-
-#~ msgid_plural "years"
-#~ msgstr[0] "שנה"
-#~ msgstr[1] "שנים"
-
-#~ msgid "%(number)d %(type)s"
-#~ msgstr "%(number)d %(type)s"
 
 #~ msgid ", %(number)d %(type)s"
 #~ msgstr ", %(number)d %(type)s"
