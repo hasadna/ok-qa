@@ -18,15 +18,23 @@ def forms(request):
         url_name = request.resolver_match.url_name
         # many ways to pass an entity
         entity = getattr(request, 'entity', None)
-        # import pdb; pdb.set_trace()
         if entity:
             pass
         elif 'entity_slug' in kwargs:
             entity = Entity.objects.get(slug=kwargs['entity_slug'])
+        elif 'entity_id' in kwargs:
+            entity = Entity.objects.get(pk=kwargs['entity_id'])
         elif 'entity' in request.GET:
-            entity = Entity.objects.get(id=request.GET['entity'])
+            entity = Entity.objects.get(pk=request.GET['entity'])
         elif 'entity_slug' in request.GET:
             entity = Entity.objects.get(slug=request.GET['entity_slug'])
+
+        if not entity:
+            if request.user.is_authenticated():
+                entity = request.user.profile.locality
+            else:
+                entity_id = getattr(settings, 'QNA_DEFAULT_ENTITY_ID', None)
+                entity = Entity.objects.get(pk=entity_id)
 
         context['entity'] = entity
         # where the magic happens: set local or global scope urls
