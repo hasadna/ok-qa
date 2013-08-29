@@ -8,9 +8,11 @@
 
 {% block homeNav %}class="active"{% endblock %}
 {% block content %}
-<blockquote>
+{% if not request.user.is_authenticated %}
+<div class="well">
   {% flatblock "welcome" 9000 %}
-</blockquote>
+</div>
+{% endif %}
 <div class="page-header">
   <div class="container">
     <div class="row">
@@ -46,10 +48,8 @@
 </div>
 {% endif %}
 {% if need_editors %}
-<div>
-<blockquote>
+<div class="well">
   {% flatblock "editors_needed" 9000 %}
-</blockquote>
 </div>
 {% endif %}
 <div class="row questions-wrapper">
@@ -113,7 +113,8 @@
         $("#post-question").click( function (){
           $("#messages").html('<div class="alert" class="info">' +
             '<button type="button" class="close" data-dismiss="alert">×</button>' +
-            "{% trans 'Sorry but only connected users can post questions' %}" +
+            '{% trans 'Sorry but only connected users can post questions' %}.' +
+            '&nbsp;<a href="{% url 'login' %}">{% trans 'Login' %}</a>' +
              '</div>');
           return false; 
         });
