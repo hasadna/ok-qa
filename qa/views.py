@@ -44,25 +44,11 @@ class JsonpResponse(HttpResponse):
 def local_home(request, entity_slug=None, entity_id=None, tags=None,
         template="qa/question_list.html"):
     """
-    list questions ordered by number of upvotes
+    A home page for an entity including questions and candidates
     """
-
-    # TODO: cache the next lines
-    questions = Question.on_site
-    entity=None
-    if entity_id:
-        entity = Entity.objects.get(pk=entity_id)
-    elif entity_slug:
-        entity = Entity.objects.get(slug=entity_slug)
-    else:
-        entity_id = getattr(settings, 'QNA_DEFAULT_ENTITY_ID', None)
-        if entity_id:
-            entity = Entity.objects.get(pk=entity_id)
-
-    if entity:
-        questions = questions.filter(entity=entity)
-        # optimization
-        setattr(request, 'entity', entity)
+    context = RequestContext(request)
+    entity = context['entity']
+    questions = Question.on_site.filter(entity=entity, is_deleted=False)
 
     only_flagged = request.GET.get('filter', False) == 'flagged'
     if only_flagged:
@@ -96,7 +82,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     candidates = Profile.objects.get_candidates(entity).\
                     annotate(num_answers=models.Count('answers')).\
                     order_by('-num_answers')
-    context = RequestContext(request, { 'tags': tags,
+    context.update({ 'tags': tags,
         'questions': questions,
         'by_date': order_opt == 'date',
         'by_rating': order_opt == 'rating',
@@ -313,7 +299,7 @@ def flag_question(request, q_id):
         messages.error(request, _('Sorry, you have to login to flag questions'))
         ret["redirect"] = '%s?next=%s' % (settings.LOGIN_URL, q.get_absolute_url())
     elif (user.profile.is_editor and user.profile.locality == q.entity) or (user == q.author and not q.answers.all()):
-        q.delete()
+        q.is_deleted = True
         messages.info(request, _('Question has been removed'))
         ret["redirect"] = reverse('local_home', args=(q.entity.slug,))
     elif user.flags.filter(question=q):

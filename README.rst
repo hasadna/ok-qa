@@ -12,6 +12,7 @@ You are invited to fork the code, improve the design and send a pull request
 Quick Start - Linux
 --------------------
 
+
     $ sudo apt-get install libjpeg-dev
     $ sudo easy_install pip
     $ sudo pip install virtualenv
@@ -25,6 +26,10 @@ Quick Start - Linux
     $ python manage.py runserver
 
 You should now be able to access the site at http://localhost:8000
+
+  If you experience problems with avatars, it could be your libjpeg
+  is missing. Try to use PNG, and checkout this 
+  `answer<http://stackoverflow.com/q/8915296/66595>`_ 
 
 MS Windows
 ----------

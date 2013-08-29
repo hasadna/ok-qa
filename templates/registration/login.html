@@ -1,32 +1,39 @@
 {% extends "base.html" %}
 {% load i18n %}
+{% load crispy_forms_tags %}
 
+{% block search %} {% endblock %}
 {% block content %}
-<div class="row pageHeaer">
-  <h1 class="offset2">{% trans "Login" %}</h1>
+<div class="row pageHeader">
+  <h1 >{% trans "Login" %}</h1>
 </div>
 <div class="row">
-  <div class="offset2 span5">
+  <div class="offset2 span4">
     <form method="post" action=".">
       {% csrf_token %}
-      {{ form.as_p }}
+      {{ form|crispy }}
       <input type="submit" value="{% trans 'Log in' %}" />
       <input type="hidden" name="next" value="{{ next }}" />
     </form>
-
-    {# TODO: add password reset  #}
     <p>{% trans "Forgot password" %}? <a href="{% url 'auth_password_reset' %}">{% trans "Reset it" %}</a>!</p>
   </div>
   <div class="span4">
       <ul class="unstyled" style="text-align: center">
-      <li><a class="btn-auth btn-facebook" href="{% url "socialauth_begin" "facebook" %}">
-        {% trans "Connect to Facebook" %}</a></li>
-      <li><a class="btn-auth btn-twitter" href="{% url "socialauth_begin" "twitter" %}">
-        {% trans "Connect to Twitter" %}</a></li>
-      <li><a class="btn-auth btn-google" href="{% url "socialauth_begin" "google-oauth2" %}">
-        {% trans "Connect to Google" %}</a></li>
-      <li>
-        <a href="{% url 'registration_register' %}">{% trans "Or register yourself" %}</a></li>
+        <li>
+          <a class="btn-auth btn-google" href="{% url "socialauth_begin" "google-oauth2" %}">
+  {% trans "Connect to Google" %}</a>
+        </li>
+        <li>
+          <a class="btn-auth btn-twitter" href="{% url "socialauth_begin" "twitter" %}">
+  {% trans "Connect to Twitter" %}</a>
+        </li>
+        <li>
+          <a class="btn-auth btn-facebook" href="{% url "socialauth_begin" "facebook" %}">
+  {% trans "Connect to Facebook" %}</a>
+        </li>
+        <li style="padding-top:1em;">
+          <a href="{% url 'registration_register' %}">{% trans "Or register yourself" %}</a></li>
+        </li>
       </ul>
   </div>
 </div>
