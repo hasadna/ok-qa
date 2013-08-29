@@ -50,7 +50,6 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     context = RequestContext(request)
     entity = context['entity']
     if entity.division.index != 3:
-        import pdb; pdb.set_trace()
         raise Http404(_("Bad Entity"))
 
     questions = Question.on_site.filter(entity=entity, is_deleted=False)
