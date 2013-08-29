@@ -20,7 +20,7 @@
                </a>
                {% endif %}
           </h1>
-          <div id="cbs_data">{% trans "Loading CBS Data..." %}</div>
+          <div id="cbs_data">{#TODO: % trans "Loading CBS Data..." % #}</div>
         </div>
     </div>
   </div>
@@ -134,6 +134,6 @@
           }
 
     </script>
-    <script src="http://spreadsheets.google.com/feeds/list/0AlrAe9zy7m-PdEczNE9ockdOaVVpaUZVZENiVjlRSlE/1/public/values?alt=json-in-script&amp;callback=display_cbs"></script>
+    <!-- get a btter performing source script src="http://spreadsheets.google.com/feeds/list/0AlrAe9zy7m-PdEczNE9ockdOaVVpaUZVZENiVjlRSlE/1/public/values?alt=json-in-script&amp;callback=display_cbs"></script> -->
 
   {% endblock %}
