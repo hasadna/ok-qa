@@ -64,11 +64,11 @@
     {% endif %}
     {% if questions.count > 3 or only_flagged %}
     <ul class="nav nav-tabs">
-      <li {% if by_rating %}class="active"{% endif %}>
-        <a href=".?order=rating">{% trans "Top Questions" %}</a>
-      </li>
       <li {% if by_date %}class="active"{% endif %}>
         <a href=".?order=date">{% trans "Most Recent" %}</a>
+      </li>
+      <li {% if by_rating %}class="active"{% endif %}>
+        <a href=".?order=rating">{% trans "Top Questions" %}</a>
       </li>
       {% if user.is_staff or user.profile.is_editor %}
         <li {% if only_flagged %}class="active"{% endif %}>
