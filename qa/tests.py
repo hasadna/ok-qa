@@ -45,7 +45,7 @@ class QuestionTest(TestCase):
     }
     def setUp(self):
         domain = Domain.objects.create(name="test")
-        division = Division.objects.create(name="localities", domain=domain)
+        division = Division.objects.create(name="localities", domain=domain, index="3")
         self.entity = Entity.objects.create(name="the moon", division=division,
                                             id=settings.QNA_DEFAULT_ENTITY_ID)
         self.common_user = User.objects.create_user("commoner", 

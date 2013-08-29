@@ -5,6 +5,7 @@ from django.db.models import Count
 from django.http import HttpResponse, HttpResponseForbidden
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 from django.views.decorators.http import require_POST
 from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
@@ -48,6 +49,10 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     """
     context = RequestContext(request)
     entity = context['entity']
+    if entity.division.index != 3:
+        import pdb; pdb.set_trace()
+        raise Http404(_("Bad Entity"))
+
     questions = Question.on_site.filter(entity=entity, is_deleted=False)
 
     only_flagged = request.GET.get('filter', False) == 'flagged'
