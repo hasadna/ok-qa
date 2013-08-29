@@ -1,6 +1,12 @@
+@import url(http://fonts.googleapis.com/earlyaccess/alefhebrew.css);
 body {
 	background: whitesmoke;
   overflow-x: hidden;
+  font-family: "Alef Hebrew",
+               “Helvetica Neue”,
+               Helvetica,
+               Arial,
+               sans-serif;
 }
 .wrapper {
     background: #fff;
