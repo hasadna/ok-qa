@@ -291,4 +291,4 @@ h1, h2, h3, h4, h5, h6 {
 .nav-self a { padding-top: 0 !important; }
 .dead-center { text-align: center; vertical-align: middle; margin: 0 auto; }
 .pageHeader { text-align:center; padding-bottom: 1em;}
-.flatblock { width:66%; font-size:120%; }
+.well { width:66%; font-size:120%; }

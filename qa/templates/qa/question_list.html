@@ -9,7 +9,7 @@
 {% block homeNav %}class="active"{% endblock %}
 {% block content %}
 {% if not request.user.is_authenticated %}
-<div class="well">
+<div class="well flatblock">
   {% flatblock "welcome" 9000 %}
 </div>
 {% endif %}
@@ -48,7 +48,7 @@
 </div>
 {% endif %}
 {% if need_editors %}
-<div class="well">
+<div class="well flatblock">
   {% flatblock "editors_needed" 9000 %}
 </div>
 {% endif %}
