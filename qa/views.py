@@ -294,23 +294,46 @@ class AtomQuestionAnswerFeed(RssQuestionAnswerFeed):
     subtitle = RssQuestionAnswerFeed.description
 
 
+''' an interface that returns a `message` and a `redirect` url. '''
 @require_POST
 def flag_question(request, q_id):
     q = get_object_or_404(Question, id=q_id)
     user = request.user
     ret = {}
+    tbd = False # to-be-deleted
+    ''' permissionssss '''
     if user.is_anonymous():
-        messages.error(request, _('Sorry, you have to login to flag questions'))
+        ''' first kick anonymous users '''
+        ret["message"] = _('Sorry, you have to login to flag questions')
         ret["redirect"] = '%s?next=%s' % (settings.LOGIN_URL, q.get_absolute_url())
-    elif (user.profile.is_editor and user.profile.locality == q.entity) or (user == q.author and not q.answers.all()):
-        q.is_deleted = True
-        messages.info(request, _('Question has been removed'))
+        return HttpResponse(json.dumps(ret), content_type="application/json")
+    elif user == q.author:
+        ''' handle authors '''
+        if q.answers.all():
+            ret["message"] = _('Sorry, can not delete a question with answers')
+        else:
+            tbd = True
+    elif user.profile.is_editor:
+        ''' handle editors '''
+        if user.profile.locality == q.entity:
+            tbd = True
+        else:
+            ret["message"] = _('Dear editor, you can only delete questions at your local home')
+
+    if tbd:
+        ''' seems like we have to delete the question '''
+        q.delete()
+        ret["message"] =  _('Question has been removed')
         ret["redirect"] = reverse('local_home', args=(q.entity.slug,))
-    elif user.flags.filter(question=q):
-        ret["message"] = _('Thanks.  You already reported this question')
     else:
-        flag = QuestionFlag.objects.create(question=q, reporter=user)
-        #TODO: use signals so the next line won't be necesary
-        q.flagged()
-        ret["message"] = _('Thank you for flagging the question. One of our editors will look at it shortly.')
+        if user.flags.filter(question=q):
+            ret["message"] = _('Thanks.  You already reported this question')
+        else:
+            ''' raising the flag '''
+            flag = QuestionFlag.objects.create(question=q, reporter=user)
+            #TODO: use signals so the next line won't be necesary
+            q.flagged()
+            ret["redirect"] = reverse('local_home', args=(q.entity.slug,))
+            ret["message"] = _('Thank you for flagging the question. One of our editors will look at it shortly.')
+
     return HttpResponse(json.dumps(ret), content_type="application/json")

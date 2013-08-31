@@ -27,6 +27,11 @@ class BaseModel(models.Model):
     class Meta:
         abstract = True
 
+    def delete(self, commit=True):
+        self.is_deleted = True
+        if commit:
+            self.save()
+
 
 class TaggedQuestion(TaggedItemBase):
     content_object = models.ForeignKey("Question")
