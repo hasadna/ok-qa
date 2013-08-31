@@ -45,7 +45,7 @@ class QuestionTest(TestCase):
     }
     def setUp(self):
         domain = Domain.objects.create(name="test")
-        division = Division.objects.create(name="localities", domain=domain)
+        division = Division.objects.create(name="localities", domain=domain, index="3")
         self.entity = Entity.objects.create(name="the moon", division=division,
                                             id=settings.QNA_DEFAULT_ENTITY_ID)
         self.common_user = User.objects.create_user("commoner", 
@@ -108,11 +108,21 @@ class QuestionTest(TestCase):
 
     def test_local_home(self):
         c = Client()
-        response = c.get(reverse('local_home'))
-        res2 = c.get(reverse('local_home',
-                        kwargs={'entity_id': settings.QNA_DEFAULT_ENTITY_ID}))
-        self.assertEquals(list(response.context['questions']), list(res2.context['questions']))
+
+        default_home = reverse('local_home',
+                        kwargs={'entity_slug': self.entity.slug})
+        response = c.get(default_home)
+        res2 = c.get(reverse('local_home'))
+
+        self.assertRedirects(res2, default_home)
         self.assertEquals(response.context['candidates'].count(), 1)
+
+        self.q.is_deleted = True
+        self.q.save()
+        response = c.get(default_home)
+        self.assertFalse(response.context['questions'])
+        self.q.is_deleted = False
+        self.q.save()
 
     def test_question_detail(self):
         c = Client()
@@ -144,7 +154,10 @@ class QuestionTest(TestCase):
         self.assertEquals(data['message'], 'Thank you for flagging the question. One of our editors will look at it shortly.')
         self.q = Question.objects.get(pk=self.q.id)
         self.assertEquals(self.q.flags_count, 2)
-        response = c.get(reverse('local_home')+"?filter=flagged")
+        response = c.get("%s?%s" % (reverse('local_home', 
+                                           kwargs={'entity_slug': self.entity.slug}
+                                    ),
+                                   "filter=flagged"))
         self.assertEquals(response.context['questions'].count(), 1)
 
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))

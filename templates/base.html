@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/rtl.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css?v=7"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css?v=9"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/auth-buttons.css"/>
     <title>
       {% block pageTitle %} {% endblock %} 
@@ -24,12 +24,25 @@
 <div class="navbar navbar-fixed-top">
   <div class="navbar-inner">
     <div class="container">
-      <div class="row">
-        <div class="offeset1 span7">
+      <div class="row" style="padding-top:10px;text-align:center;">
+        <div class="pull-left">
           <a href="/">
             <img src="{% static "img/logo.png" %}" title="{{site.name}}">
           </a>
         </div>
+        <div class="pull-left">
+          <ul class="breadcrumb" style="margin:0; background-color: inherit;">
+            <li>
+              <a class="home-icon" href="/">{% trans "Everywhere" %}</a>
+              <span class="divider">/</span>
+            </li>
+            <li>
+              {{ entity_form }}
+              <span class="divider">/</span>
+            </li>
+              {% block breadcrumbs %}{% endblock %}
+          </ul>
+         </div>
         <div class="pull-right">
           <ul class="nav nav-self">
             {% block topnav %}
@@ -52,46 +65,10 @@
             </li>
             {% else %}
               <li class="divider-vertical"></li>
-              <li><a href="{% url 'registration_register' %}">{% trans "Register" %}</a></li>
               <li><a href="{% url 'login' %}">{% trans "Login" %}</a></li>
             {% endif %}
           </ul>
         </div>
-      </div>
-      <div class="row">
-        <div class="pull-right">
-          <form class="navbar-search pull-left" action="/search/">
-            {% block searchform %} {% endblock %}
-            <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search' %}" 
-            {% if search_query %} value="{{search_query}}" {% endif %}/>
-            {% if entity %}
-               <input type="hidden" name="entity_slug" value="{{entity.slug}}" />
-            {% endif %}
-          </form>
-        </div>
-        {% if not hide_crumbs %}
-          <ul class="breadcrumb" style="margin:0 28px 0 0; background-color: inherit;">
-            <li>
-              <a class="home-icon" href="/">{% trans "Everywhere" %}</a>
-              <span class="divider">/</span>
-            </li>
-            <li>
-              {{ entity_form }}
-              <span class="divider">/</span>
-            </li>
-              {% block breadcrumbs %}{% endblock %}
-          </ul>
-        {% endif %}
-     </div>
-
-      <div >
-        <ul id="nav-content" class="nav">
-          {% block mainnav %} 
-            <li {% block nav-questions %} {% endblock %}><a href="{{questions_url}}">{% trans "Questions" %}</a></li>
-            <li {% block nav-candidates %} {% endblock %}><a href="{{candidates_url}}">{% trans "Candidates" %}</a></li>
-          {% endblock %}
-        </ul>
-
       </div>
       </div>
     </div>
@@ -108,18 +85,34 @@
       {% endfor %}
     {% endif %}
   </div>
+  {% block search %}
+  <form class="navbar-search pull-right" action="/search/">
+    {% block searchform %} {% endblock %}
+    <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search' %}" 
+    {% if search_query %} value="{{search_query}}" {% endif %}/>
+    {% if entity %}
+       <input type="hidden" name="entity_slug" value="{{entity.slug}}" />
+    {% endif %}
+  </form>
+  {% endblock %}
+
   {% block content %}{% endblock %}
 </div>
 </div>
 <footer class="footer">
   <div class="container">
     <p class="pull-right">
-      <a href="/p/about/{% if entity %}?entity={{entity.id}}{% endif %}">{% trans "About" %}</a>
+      <a href="/p/about/">{% trans "About" %}</a>
       &nbsp;|&nbsp;
       <a href="#">{% trans "Back to top" %}</a>
     </p>
-    <p>{% trans "Content is licensed CC-BY. Learn more on this open source project " %} 
-    <a href="http://wiki.hasadna.org.il/index.php?title=%D7%A9%D7%90%D7%9C%D7%95%D7%AA_%D7%95%D7%AA%D7%A9%D7%95%D7%91%D7%95%D7%AA">{% trans "here"%}</a>.</p>
+    <p>
+{% trans "Content is licensed CC-BY. Learn more on this open source project " %} 
+      <a href="http://wiki.hasadna.org.il/index.php?title=%D7%A9%D7%90%D7%9C%D7%95%D7%AA_%D7%95%D7%AA%D7%A9%D7%95%D7%91%D7%95%D7%AA">
+{% trans "here"%}
+      </a>
+      &dot;.
+    </p>
     <ul class="footer-links">
       <li>&copy;&nbsp;<a href="http://www.hasadna.org.il">{% trans "The Public Knowledge Workshop" %}</a></li>
       <li>{% trans "together with" %}&nbsp;<a href="http://www.shaharit.org.il">{% trans "The Shaharit Institute" %}</a></li>
