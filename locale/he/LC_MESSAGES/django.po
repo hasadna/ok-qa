@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-01 16:07+0300\n"
+"POT-Creation-Date: 2013-09-01 16:13+0300\n"
 "PO-Revision-Date: 2013-08-27 22:57+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -274,12 +274,16 @@ msgid ""
 "shortly."
 msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את השאלה בקרוב."
 
-#: qa/templates/qa/_answer.html:23 qa/templates/qa/_question.html:41
+#: qa/templates/qa/_answer.html:7
+msgid "This answer is deleted"
+msgstr "תשובה זו נמחקה"
+
+#: qa/templates/qa/_answer.html:28 qa/templates/qa/_question.html:41
 #: user/templates/user/public_profile.html:55
 msgid "before"
 msgstr "לפני"
 
-#: qa/templates/qa/_answer.html:29
+#: qa/templates/qa/_answer.html:34
 msgid "Edit"
 msgstr "עריכה"
 
