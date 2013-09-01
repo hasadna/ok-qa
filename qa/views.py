@@ -31,7 +31,7 @@ from qa.tasks import publish_question_to_facebook, publish_upvote_to_facebook,\
 from qa.mixins import JSONResponseMixin
 
 # the order options for the list views
-ORDER_OPTIONS = {'date': '-updated_at', 'rating': '-rating', 'flagcount': '-flags_count'}
+ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flags_count'}
 
 class JsonpResponse(HttpResponse):
     def __init__(self, data, callback, *args, **kwargs):
