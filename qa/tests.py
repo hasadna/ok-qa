@@ -152,28 +152,41 @@ class QuestionTest(TestCase):
         self.q.flagged()
         self.assertEquals(self.q.flags_count, 1)
         c = Client()
+
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 200)
-        data = json.loads(response.content)
-        self.assertEquals(data['message'], 'Sorry, you have to login to flag questions')
+        login_url = response.content
+        response = c.get(login_url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn('messages', response.context)
+        message = list(response.context['messages'])[0]
+        self.assertEquals(message.message, 'Sorry, you have to login to flag questions')
         self.assertEquals(self.q.flags_count, 1)
-        data = json.loads(response.content)
-        respone = c.post(data['redirect'],
+        respone = c.post(login_url,
                 {'username':"commoner2", 'password':"pass"})
+        self.assertEquals(response.status_code, 200)
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
-        data = json.loads(response.content)
-        self.assertEquals(data['message'], 'Thank you for flagging the question. One of our editors will look at it shortly.')
+        self.assertEquals(response.status_code, 200)
+        response = c.get(response.content)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn('messages', response.context)
+        message = list(response.context['messages'])[0]
+        self.assertEquals(message.message, 'Thank you for flagging the question. One of our editors will look at it shortly.')
         self.q = Question.objects.get(pk=self.q.id)
         self.assertEquals(self.q.flags_count, 2)
-        response = c.get("%s?%s" % (reverse('local_home', 
+        response = c.get("%s?%s" % (reverse('local_home',
                                            kwargs={'entity_slug': self.home.slug}
                                     ),
                                    "filter=flagged"))
         self.assertEquals(response.context['questions'].count(), 1)
 
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
-        data = json.loads(response.content)
-        self.assertEquals(data['message'], 'Thanks.  You already reported this question')
+        self.assertEquals(response.status_code, 200)
+        response = c.get(response.content)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn('messages', response.context)
+        message = list(response.context['messages'])[0]
+        self.assertEquals(message.message, 'Thanks.  You already reported this question')
 
     def test_editors(self):
         c = Client()
@@ -181,15 +194,22 @@ class QuestionTest(TestCase):
         self.editor.profile.save()
         self.assertTrue(c.login(username="editor", password="pass"))
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
-        data = json.loads(response.content)
-        self.assertIn('message', data)
-        self.assertEquals(data['message'], 'Thank you for flagging the question. One of our editors will look at it shortly.')
-        self.assertEquals(data['redirect'], reverse('local_home', args=(self.q.entity.slug, )))
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.content, reverse('local_home', args=(self.q.entity.slug, )))
+        response = c.get(response.content)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn('messages', response.context)
+        message = list(response.context['messages'])[0]
+        self.assertEquals(message.message, 'Thank you for flagging the question. One of our editors will look at it shortly.')
         self.editor.profile.locality = self.home
         self.editor.profile.save()
+
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
-        data = json.loads(response.content)
-        self.assertEquals(data['message'], 'Question has been removed')
+        self.assertEquals(response.status_code, 200)
+        response = c.get(response.content)
+        self.assertEquals(response.status_code, 200)
+        message = list(response.context['messages'])[0]
+        self.assertEquals(message.message, 'Question has been removed')
 
     def test_upvote(self):
         c = SocialClient()
@@ -274,6 +294,12 @@ class QuestionTest(TestCase):
                 'access_token': 'dummyToken'
             }
         )
+
+    def test_can_delete(self):
+        self.assertFalse(self.q.can_user_delete(AnonymousUser()))
+        self.assertFalse(self.q.can_user_delete(self.common2_user))
+        self.assertTrue(self.q.can_user_delete(self.q.author))
+        self.assertTrue(self.q.can_user_delete(self.editor))
 
     def test_repr(self):
         self.assertEqual("why?", unicode(self.q))

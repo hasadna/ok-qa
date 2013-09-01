@@ -95,6 +95,16 @@ class Question(BaseModel):
         self.save()
         return self.flags_count
 
+    def can_user_delete(self, user):
+        ''' returns whether a secific user can delete the question '''
+        if self.author == user:
+            return True
+        if user.is_authenticated() and\
+           user.profile.is_editor and\
+           user.profile.locality == self.entity:
+            return True
+        return False
+
 
 class Answer(BaseModel):
     author = models.ForeignKey(User, related_name="answers", verbose_name=_("author"))

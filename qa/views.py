@@ -107,21 +107,22 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
     slug_field = 'unislug'
 
     def get_context_data(self, **kwargs):
+        user = self.request.user
         context = super(QuestionDetail, self).get_context_data(**kwargs)
         context['max_length_a_content'] = MAX_LENGTH_A_CONTENT
         context['answers'] = self.object.answers.all()
         context['entity'] = self.object.entity
-        can_answer = self.object.can_answer(self.request.user)
+        can_answer = self.object.can_answer(user)
         context['can_answer'] = can_answer
         if can_answer:
             try:
-                user_answer = self.object.answers.get(author=self.request.user)
+                user_answer = self.object.answers.get(author=user)
                 context['my_answer_form'] = AnswerForm(instance=user_answer)
                 context['my_answer_id'] = user_answer.id
             except self.object.answers.model.DoesNotExist:
                 context['my_answer_form'] = AnswerForm()
 
-        if self.request.user.is_authenticated() and \
+        if user.is_authenticated() and \
                 not self.request.user.upvotes.filter(question=self.object).exists():
             context['can_upvote'] = True
         else:
@@ -133,6 +134,7 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
                 context['fb_message'] = answer.content
             except:
                 pass
+        context['can_delete'] = self.object.can_user_delete(user)
         return context
 
     def render_to_response(self, context):
@@ -299,41 +301,39 @@ class AtomQuestionAnswerFeed(RssQuestionAnswerFeed):
 def flag_question(request, q_id):
     q = get_object_or_404(Question, id=q_id)
     user = request.user
-    ret = {}
     tbd = False # to-be-deleted
     ''' permissionssss '''
     if user.is_anonymous():
         ''' first kick anonymous users '''
-        ret["message"] = _('Sorry, you have to login to flag questions')
-        ret["redirect"] = '%s?next=%s' % (settings.LOGIN_URL, q.get_absolute_url())
-        return HttpResponse(json.dumps(ret), content_type="application/json")
+        messages.error(request, _('Sorry, you have to login to flag questions'))
+        redirect = '%s?next=%s' % (settings.LOGIN_URL, q.get_absolute_url())
+        return HttpResponse(redirect, content_type="text/plain")
+
     elif user == q.author:
         ''' handle authors '''
         if q.answers.all():
-            ret["message"] = _('Sorry, can not delete a question with answers')
+            messages.error(request, _('Sorry, can not delete a question with answers'))
         else:
             tbd = True
     elif user.profile.is_editor:
         ''' handle editors '''
         if user.profile.locality == q.entity:
             tbd = True
-        else:
-            ret["message"] = _('Dear editor, you can only delete questions at your local home')
 
     if tbd:
         ''' seems like we have to delete the question '''
         q.delete()
-        ret["message"] =  _('Question has been removed')
-        ret["redirect"] = reverse('local_home', args=(q.entity.slug,))
+        messages.success(request, _('Question has been removed'))
     else:
         if user.flags.filter(question=q):
-            ret["message"] = _('Thanks.  You already reported this question')
+            messages.error(request, _('Thanks.  You already reported this question'))
         else:
             ''' raising the flag '''
             flag = QuestionFlag.objects.create(question=q, reporter=user)
             #TODO: use signals so the next line won't be necesary
             q.flagged()
-            ret["redirect"] = reverse('local_home', args=(q.entity.slug,))
-            ret["message"] = _('Thank you for flagging the question. One of our editors will look at it shortly.')
+            messages.success(request, 
+                _('Thank you for flagging the question. One of our editors will look at it shortly.'))
 
-    return HttpResponse(json.dumps(ret), content_type="application/json")
+    redirect = reverse('local_home', args=(q.entity.slug,))
+    return HttpResponse(redirect, content_type="text/plain")
