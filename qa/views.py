@@ -31,7 +31,7 @@ from qa.tasks import publish_question_to_facebook, publish_upvote_to_facebook,\
 from qa.mixins import JSONResponseMixin
 
 # the order options for the list views
-ORDER_OPTIONS = {'date': '-updated_at', 'rating': '-rating', 'flagcount': '-flags_count'}
+ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flags_count'}
 
 class JsonpResponse(HttpResponse):
     def __init__(self, data, callback, *args, **kwargs):
@@ -72,16 +72,13 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
 
     if entity:
         tags = Tag.objects.filter(qa_taggedquestion_items__content_object__entity=entity).\
-                annotate(num_times=Count('qa_taggedquestion_items'))
+                annotate(num_times=Count('qa_taggedquestion_items')).\
+                order_by("slug")
         need_editors = Profile.objects.need_editors(entity)
         if request.user.is_authenticated():
             can_ask = request.user.profile.locality == entity
         else:
             can_ask = True
-    else:
-        tags = Question.tags.most_common()
-        need_editors= False
-        can_ask = True
 
     candidates = Profile.objects.get_candidates(entity).\
                     annotate(num_answers=models.Count('answers')).\
@@ -174,15 +171,13 @@ def post_answer(request, q_id):
 
     return HttpResponseRedirect(question.get_absolute_url())
 
-@login_required
-def post_question(request, entity_slug=None, slug=None):
+def post_question(request, slug=None):
+    if request.user.is_anonymous():
+        messages.error(request, _('Sorry but only connected users can post questions'))
+        return HttpResponseRedirect(settings.LOGIN_URL)
+
     profile = request.user.profile
-    if not entity_slug:
-        entity = profile.locality
-    else:
-        entity = Entity.objects.get(slug=entity_slug)
-        if entity != profile.locality:
-            return HttpResponseForbidden(_("You can only post questions in your own locality"))
+    entity = profile.locality
 
     q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
 

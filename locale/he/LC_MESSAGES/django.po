@@ -52,7 +52,7 @@ msgstr "קישורים"
 #: links/templates/links/_object_links.html:19
 #: user/templates/user/edit_profile.html:59
 msgid "none"
-msgstr "כלום"
+msgstr "אף אחד"
 
 #: oshot/forms.py:15
 msgid "Choose a Place"
@@ -306,7 +306,7 @@ msgstr "הצטרפו"
 
 #: qa/templates/qa/email_update.html:61
 msgid "click me to update your email settings"
-msgstr "לחצו עלי לעדכון הגדרות הדואל"
+msgstr "לחצו עלי לעדכון הגדרות הדוא\"ל"
 
 #: qa/templates/qa/post_question.html:6
 msgid "Post question"
@@ -610,7 +610,7 @@ msgstr ""
 "\n"
 "במידה וההרשמה בוצעה בטעות, או לא על ידיך, אינך צריך/ה לעשות כלום -הרשמתך תתבטל אוטומטית תוך %(expiration_days)s ימים מיום קבלת המייל.\n"
 "\n"
-"אם את/ה מועמד לבחירות המוקדמות אתה מוזמן לפרסם תשובות.  רק שלח לנו דואל ל localshot@hasadna.org.il ונאשר את חשבונך.יום טוב,\n"
+"אם את/ה מועמד לבחירות המוקדמות אתה מוזמן לפרסם תשובות.  רק שלח לנו דוא\"ל ל localshot@hasadna.org.il ונאשר את חשבונך.יום טוב,\n"
 "צוות %(name)s\n"
 
 #: templates/registration/activation_email_subject.txt:2
@@ -672,7 +672,7 @@ msgstr "איפוס הססמה נכשל"
 
 #: templates/registration/password_reset_done.html:6
 msgid "Email with password reset instructions has been sent."
-msgstr "דואל עם ההוראות לאיפוס הססמה נשלח."
+msgstr "דוא\"ל עם ההוראות לאיפוס הססמה נשלח."
 
 #: templates/registration/password_reset_email.html:2
 #, python-format
@@ -685,7 +685,7 @@ msgstr "איפוס ססמה"
 
 #: templates/registration/registration_complete.html:6
 msgid "Ye be now registered. Activation email sent, arrrr."
-msgstr "נרשמת בהצלחה ודואל עם הוראות להפעלת החשבון נשלח."
+msgstr "נרשמת בהצלחה ודוא\"ל עם הוראות להפעלת החשבון נשלח."
 
 #: templates/search/search.html:6
 msgid "Results"
@@ -738,7 +738,7 @@ msgstr "חובה. 30-4 תווים (אותיות, מספרים, רווחים, @/.
 #: user/forms.py:19
 #: user/forms.py:143
 msgid "email address"
-msgstr "כתובת דואל"
+msgstr "כתובת דוא\"ל"
 
 #: user/forms.py:20
 msgid "We don't spam, and don't show your email to anyone"
@@ -760,11 +760,11 @@ msgstr "ספר/י לנו ולמשתמשים אחרים באתר על עצמך"
 
 #: user/forms.py:31
 msgid "E-Mail Notifications"
-msgstr "התראות דואל"
+msgstr "התראות דוא\"ל"
 
 #: user/forms.py:32
 msgid "Should we send you e-mail notification about updates to things you follow on the site?"
-msgstr "האם לשלוח התראות דואל לגבי שאלות ותגיות שאתה עוקב אחריהם?"
+msgstr "האם לשלוח התראות דוא\"ל לגבי שאלות ותגיות שאתה עוקב אחריהם?"
 
 #: user/forms.py:58
 msgid "This username is already taken."
@@ -800,11 +800,11 @@ msgstr "נא להשתמש בארבע אותיות או יותר (גם מספרי
 
 #: user/forms.py:139
 msgid "email subject"
-msgstr "נושא הדואל"
+msgstr "נושא הדוא\"ל"
 
 #: user/forms.py:141
 msgid "email body"
-msgstr "תוכן הדואל"
+msgstr "תוכן הדוא\"ל"
 
 #: user/forms.py:155
 msgid "bio"
@@ -812,7 +812,7 @@ msgstr "עלי"
 
 #: user/models.py:20
 msgid "No Email"
-msgstr "אין דואל"
+msgstr "ללא דוא\"ל"
 
 #: user/models.py:21
 msgid "Daily"
@@ -943,7 +943,7 @@ msgstr "שנה את תמונת הפרופיל"
 
 #: user/templates/user/edit_profile.html:50
 msgid "Following"
-msgstr "עוקב אחרי"
+msgstr "עוקבים אחרי"
 
 #: user/templates/user/public_profile.html:65
 msgid "elects at"
@@ -2752,7 +2752,7 @@ msgstr "בוחר חכם ב"
 #~ msgstr "מצטערים, רק עורכים יכולים למחוק הערות"
 
 #~ msgid "Please email editors if an annotation should be deleted"
-#~ msgstr "נא לשלוח דואל לעורכי האתר אם צריך למחוק את ההארה"
+#~ msgstr "נא לשלוח דוא\"ל לעורכי האתר אם צריך למחוק את ההארה"
 
 #~ msgid "MKs attended"
 #~ msgstr "ח\"כים נוכחים"
@@ -3681,7 +3681,7 @@ msgstr "בוחר חכם ב"
 #~ msgid "We need more editors! please contact us by"
 #~ msgstr "אנו זקוקים לעוד עורכים! אנא צרו קשר ב"
 #~ msgid "Email"
-#~ msgstr "דואל"
+#~ msgstr "דוא\"ל"
 #~ msgid ""
 #~ "if you have the passion and time to join our community of local editors."
 #~ msgstr "אם יש לכם את הזמן והאנרגיה להצטרף לקהילת העורכים המקומיים שלנו"
@@ -3767,7 +3767,7 @@ msgstr "בוחר חכם ב"
 #~ msgstr "מצטערים, הקישור אינו פעיל. אנא נסה להרשם שנית"
 
 #~ msgid "An activation message was sent to the user."
-#~ msgstr "דואל הפעלה נשלח למועמד"
+#~ msgstr "דוא\"ל הפעלה נשלח למועמד"
 
 #~ msgid "The Demo Party"
 #~ msgstr "מפלגת הדמו"

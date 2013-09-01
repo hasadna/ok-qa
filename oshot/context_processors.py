@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.sites.models import get_current_site
 from django.conf import settings
+from django.shortcuts import get_object_or_404
 
 from entities.models import Entity
 
@@ -21,9 +22,9 @@ def forms(request):
         if entity:
             pass
         elif 'entity_slug' in kwargs:
-            entity = Entity.objects.get(slug=kwargs['entity_slug'])
+            entity = get_object_or_404(Entity, slug=kwargs['entity_slug'])
         elif 'entity_id' in kwargs:
-            entity = Entity.objects.get(pk=kwargs['entity_id'])
+            entity = get_object_or_404(Entity, pk=kwargs['entity_id'])
 
         context['entity'] = entity
         # where the magic happens: set local or global scope urls
