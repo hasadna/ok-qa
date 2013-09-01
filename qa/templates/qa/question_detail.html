@@ -48,8 +48,11 @@
                       {% endif %}
                     </a>
                 {% endif %}
-                {% if user.profile.is_editor %}
-                    <a class="btn btn-danger" href="#remove-question" data-toggle="modal">&#9872; </a>
+                {% if can_delete %}
+                <a class="btn btn-danger" href="#remove-question" data-toggle="modal"
+                  title="{% trans "Delete Question" %}"  >
+                    <i class="icon-trash"></i></a>
+
                     <div id="remove-question" class="modal hide fade">
                         <div class="modal-header">
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
@@ -67,16 +70,10 @@
                         </div>
                     </div>
                 {% else %}
-                    {% if user != question.author or not question.answers.all %}
-                    <a class="flag-question btn btn-danger {% if not can_upvote %}disabled{% endif %}
-                      {% if user == question.author %}
-                      icon-remove" title="{% trans "Delete" %}" 
-                      {% else %}
-                      icon-flag" title="{% trans "Flag question" %}"
-                      {% endif %}
-		      question-id="{{ question.id }}" href="#">
+                    <a class="btn btn-danger flag-question" title="{% trans "Flag question" %}"
+                      question-id="{{ question.id }}" href="#">
+                      <i class="icon-flag"></i>
                     </a>
-                    {% endif %}
                 {% endif %}
             </div>
 
@@ -134,12 +131,6 @@
 {% if my_answer_id %}
     {% block extrascript %}
         <script>
-            function display_message(message, level) {
-                $("#messages").html('<div class="alert ' + level + '">' +
-                        '<button type="button" class="close" data-dismiss="alert">×</button>' +
-                        message +
-                        '</div>');
-            }
             $(document).ready(function () {
                 $("#upvote-question").ajaxError(function (evt, jqXHR, setting, err) {
                     $("#messages").html('<div class="alert" class="error">' +
@@ -170,19 +161,11 @@
                       return;
                     }
                     {% endif %}
-                    $.ajax({url: url,
-                        type: "POST",
-                        dataType: "json",
-                        data: {csrfmiddlewaretoken: "{{ csrf_token }}"}}).always(
-                            function (data, textStatus, jqXHR) {
-                                if ('message' in data)
-                                    display_message(data.message, "info");
-                                else if ('redirect' in data)
-                                    window.location.replace(data.redirect);
-                                else
-                                    alert("strange data receieved from flagging a message: " + data);
-                            })
-                })
+                    $.post(url, {csrfmiddlewaretoken: "{{ csrf_token }}"})
+                        .done(function (data, textStatus, jqXHR) {
+                          window.location.replace(data);
+                        });
+                  })
 
                 $("#answer-{{ my_answer_id}}").hover(function () {
                     $("#edit-answer-{{my_answer_id}}").show();

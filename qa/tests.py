@@ -45,29 +45,31 @@ class QuestionTest(TestCase):
     }
     def setUp(self):
         domain = Domain.objects.create(name="test")
-        division = Division.objects.create(name="localities", domain=domain)
-        self.entity = Entity.objects.create(name="the moon", division=division,
+        division = Division.objects.create(name="localities", domain=domain, index="3")
+        self.home = Entity.objects.create(name="earth", division=division,
                                             id=settings.QNA_DEFAULT_ENTITY_ID)
+        self.away = Entity.objects.create(name="the moon", division=division,
+                                            id=9999)
         self.common_user = User.objects.create_user("commoner", 
                                 "commmon@example.com", "pass")
-        self.common_user.profile.locality = self.entity
+        self.common_user.profile.locality = self.home
         self.common_user.profile.save()
         self.common2_user = User.objects.create_user("commoner2", 
                                 "commmon2@example.com", "pass")
-        self.common2_user.profile.locality = self.entity
+        self.common2_user.profile.locality = self.home
         self.common2_user.profile.save()
         self.candidate_user = User.objects.create_user("candidate", 
                                 "candidate@example.com", "pass")
-        self.candidate_user.profile.locality = self.entity
+        self.candidate_user.profile.locality = self.home
         self.candidate_user.profile.is_candidate = True
         self.candidate_user.profile.save()
-        self.editor_user = User.objects.create_user("editor", 
+        self.editor = User.objects.create_user("editor", 
                                 "editor@example.com", "pass")
-        self.editor_user.profile.locality = self.entity
-        self.editor_user.profile.is_editor = True
-        self.editor_user.profile.save()
+        self.editor.profile.locality = self.home
+        self.editor.profile.is_editor = True
+        self.editor.profile.save()
         self.q = Question.objects.create(author = self.common_user,
-                        subject="why?", entity=self.entity)
+                        subject="why?", entity=self.home)
         self.a = self.q.answers.create(author = self.candidate_user,
                         content="because the world is round")
         self.site1 = Site.objects.create(domain='abc.com')
@@ -86,18 +88,18 @@ class QuestionTest(TestCase):
 
     def test_post_question(self):
         c = Client()
-        post_url = reverse('post_question', args=(self.entity.slug, ))
+        post_url = reverse('post_question', args=(self.home.slug, ))
         self.assertTrue(c.login(username="commoner", password="pass"))
         response = c.get(post_url)
         self.assertEquals(response.status_code, 200)
-        self.assertFalse(Question.objects.filter(entity_id=self.entity.id, unislug='Why?').count())
+        self.assertFalse(Question.objects.filter(entity_id=self.home.id, unislug='Why?').count())
         response = c.post(post_url, {'subject':"Which?",
-                        'entity': self.entity.id,
+                        'entity': self.home.id,
                         })
         self.assertEquals(response.status_code, 302)
         self.assertTrue(Question.objects.get(subject="Which?"))
         response = c.post(post_url, {'subject':"Which?",
-                        'entity': self.entity.id,
+                        'entity': self.home.id,
                         })
         self.assertEquals(response.status_code, 302)
         self.assertTrue(Question.objects.get(subject="Which?"))
@@ -108,11 +110,21 @@ class QuestionTest(TestCase):
 
     def test_local_home(self):
         c = Client()
-        response = c.get(reverse('local_home'))
-        res2 = c.get(reverse('local_home',
-                        kwargs={'entity_id': settings.QNA_DEFAULT_ENTITY_ID}))
-        self.assertEquals(list(response.context['questions']), list(res2.context['questions']))
+
+        default_home = reverse('local_home',
+                        kwargs={'entity_slug': self.home.slug})
+        response = c.get(default_home)
+        res2 = c.get(reverse('local_home'))
+
+        self.assertRedirects(res2, default_home)
         self.assertEquals(response.context['candidates'].count(), 1)
+
+        self.q.is_deleted = True
+        self.q.save()
+        response = c.get(default_home)
+        self.assertFalse(response.context['questions'])
+        self.q.is_deleted = False
+        self.q.save()
 
     def test_question_detail(self):
         c = Client()
@@ -128,35 +140,76 @@ class QuestionTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTrue(response.context['can_answer'])
 
-    def test_flag(self):
+    def test_flags(self):
+        ''' try to flag a question as an anonymous and get an error.
+            login as a commoner.
+            try to flag a question and get a thank you note.
+            try flagging it again and get an error message. logout.
+            login in as an editor from a diffrent locality and try to delete
+            the question. get an error, so move the editor to the right locality
+            and finally soft delete the damn question.
+        '''
         self.q.flagged()
         self.assertEquals(self.q.flags_count, 1)
         c = Client()
+
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 200)
-        data = json.loads(response.content)
-        self.assertIn('redirect', data)
-        respone = c.post(data['redirect'],
+        login_url = response.content
+        response = c.get(login_url)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn('messages', response.context)
+        message = list(response.context['messages'])[0]
+        self.assertEquals(message.message, 'Sorry, you have to login to flag questions')
+        self.assertEquals(self.q.flags_count, 1)
+        respone = c.post(login_url,
                 {'username':"commoner2", 'password':"pass"})
+        self.assertEquals(response.status_code, 200)
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
-        data = json.loads(response.content)
-        self.assertIn('message', data)
-        self.assertEquals(data['message'], 'Thank you for flagging the question. One of our editors will look at it shortly.')
+        self.assertEquals(response.status_code, 200)
+        response = c.get(response.content)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn('messages', response.context)
+        message = list(response.context['messages'])[0]
+        self.assertEquals(message.message, 'Thank you for flagging the question. One of our editors will look at it shortly.')
         self.q = Question.objects.get(pk=self.q.id)
         self.assertEquals(self.q.flags_count, 2)
-        response = c.get(reverse('local_home')+"?filter=flagged")
+        response = c.get("%s?%s" % (reverse('local_home',
+                                           kwargs={'entity_slug': self.home.slug}
+                                    ),
+                                   "filter=flagged"))
         self.assertEquals(response.context['questions'].count(), 1)
 
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
-        data = json.loads(response.content)
-        self.assertIn('message', data)
-        self.assertEquals(data['message'], 'Thanks.  You already reported this question')
-        c.logout()
+        self.assertEquals(response.status_code, 200)
+        response = c.get(response.content)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn('messages', response.context)
+        message = list(response.context['messages'])[0]
+        self.assertEquals(message.message, 'Thanks.  You already reported this question')
+
+    def test_editors(self):
+        c = Client()
+        self.editor.profile.locality = self.away
+        self.editor.profile.save()
         self.assertTrue(c.login(username="editor", password="pass"))
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
-        data = json.loads(response.content)
-        self.assertIn('redirect', data)
-        self.assertEquals(data['redirect'], reverse('local_home', args=(self.q.entity.slug, )))
+        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.content, reverse('local_home', args=(self.q.entity.slug, )))
+        response = c.get(response.content)
+        self.assertEquals(response.status_code, 200)
+        self.assertIn('messages', response.context)
+        message = list(response.context['messages'])[0]
+        self.assertEquals(message.message, 'Thank you for flagging the question. One of our editors will look at it shortly.')
+        self.editor.profile.locality = self.home
+        self.editor.profile.save()
+
+        response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
+        self.assertEquals(response.status_code, 200)
+        response = c.get(response.content)
+        self.assertEquals(response.status_code, 200)
+        message = list(response.context['messages'])[0]
+        self.assertEquals(message.message, 'Question has been removed')
 
     def test_upvote(self):
         c = SocialClient()
@@ -193,15 +246,15 @@ class QuestionTest(TestCase):
         c = SocialClient()
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
-        u.profile.locality = self.entity
+        u.profile.locality = self.home
         u.profile.save()
-        post_url = reverse('post_question', args=(self.entity.slug, ))
+        post_url = reverse('post_question', args=(self.home.slug, ))
         self.mock_request.return_value.content = json.dumps({
             'id': 1
         })
         response = c.post(post_url, {'subject':"Where?",
                         'facebook_publish': 'on',
-                        'entity': self.entity.id,
+                        'home': self.home.id,
                         })
         self.assertEquals(response.status_code, 302)
         new_q=Question.objects.get(subject="Where?")
@@ -220,7 +273,7 @@ class QuestionTest(TestCase):
         c = SocialClient()
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
-        u.profile.locality = self.entity
+        u.profile.locality = self.home
         u.profile.is_candidate = True
         u.profile.save()
         post_url = reverse('post_answer', args=(self.q.id, ))
@@ -241,8 +294,12 @@ class QuestionTest(TestCase):
                 'access_token': 'dummyToken'
             }
         )
-    def test_repr(self):
-        self.assertEqual("why?", unicode(self.q))
+
+    def test_can_delete(self):
+        self.assertFalse(self.q.can_user_delete(AnonymousUser()))
+        self.assertFalse(self.q.can_user_delete(self.common2_user))
+        self.assertTrue(self.q.can_user_delete(self.q.author))
+        self.assertTrue(self.q.can_user_delete(self.editor))
 
     def test_repr(self):
         self.assertEqual("why?", unicode(self.q))

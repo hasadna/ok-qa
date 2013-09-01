@@ -22,9 +22,15 @@ class BaseModel(models.Model):
     '''
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    is_deleted = models.BooleanField(default=False)
 
     class Meta:
         abstract = True
+
+    def delete(self, commit=True):
+        self.is_deleted = True
+        if commit:
+            self.save()
 
 
 class TaggedQuestion(TaggedItemBase):
@@ -88,6 +94,16 @@ class Question(BaseModel):
         self.flags_count += 1
         self.save()
         return self.flags_count
+
+    def can_user_delete(self, user):
+        ''' returns whether a secific user can delete the question '''
+        if self.author == user:
+            return True
+        if user.is_authenticated() and\
+           user.profile.is_editor and\
+           user.profile.locality == self.entity:
+            return True
+        return False
 
 
 class Answer(BaseModel):

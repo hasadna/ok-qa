@@ -5,6 +5,7 @@ from django.db.models import Count
 from django.http import HttpResponse, HttpResponseForbidden
 from django.http import HttpResponseRedirect
 from django.shortcuts import render, get_object_or_404
+from django.http import Http404
 from django.views.decorators.http import require_POST
 from django.template.context import RequestContext
 from django.contrib.auth.decorators import login_required
@@ -44,25 +45,14 @@ class JsonpResponse(HttpResponse):
 def local_home(request, entity_slug=None, entity_id=None, tags=None,
         template="qa/question_list.html"):
     """
-    list questions ordered by number of upvotes
+    A home page for an entity including questions and candidates
     """
+    context = RequestContext(request)
+    entity = context['entity']
+    if entity.division.index != 3:
+        raise Http404(_("Bad Entity"))
 
-    # TODO: cache the next lines
-    questions = Question.on_site
-    entity=None
-    if entity_id:
-        entity = Entity.objects.get(pk=entity_id)
-    elif entity_slug:
-        entity = Entity.objects.get(slug=entity_slug)
-    else:
-        entity_id = getattr(settings, 'QNA_DEFAULT_ENTITY_ID', None)
-        if entity_id:
-            entity = Entity.objects.get(pk=entity_id)
-
-    if entity:
-        questions = questions.filter(entity=entity)
-        # optimization
-        setattr(request, 'entity', entity)
+    questions = Question.on_site.filter(entity=entity, is_deleted=False)
 
     only_flagged = request.GET.get('filter', False) == 'flagged'
     if only_flagged:
@@ -70,7 +60,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         order_opt = False
         order = 'flags_count'
     else:
-        order_opt = request.GET.get('order', 'rating')
+        order_opt = request.GET.get('order', 'date')
         order = ORDER_OPTIONS[order_opt]
     questions = questions.order_by(order)
 
@@ -96,7 +86,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     candidates = Profile.objects.get_candidates(entity).\
                     annotate(num_answers=models.Count('answers')).\
                     order_by('-num_answers')
-    context = RequestContext(request, { 'tags': tags,
+    context.update({ 'tags': tags,
         'questions': questions,
         'by_date': order_opt == 'date',
         'by_rating': order_opt == 'rating',
@@ -117,21 +107,22 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
     slug_field = 'unislug'
 
     def get_context_data(self, **kwargs):
+        user = self.request.user
         context = super(QuestionDetail, self).get_context_data(**kwargs)
         context['max_length_a_content'] = MAX_LENGTH_A_CONTENT
         context['answers'] = self.object.answers.all()
         context['entity'] = self.object.entity
-        can_answer = self.object.can_answer(self.request.user)
+        can_answer = self.object.can_answer(user)
         context['can_answer'] = can_answer
         if can_answer:
             try:
-                user_answer = self.object.answers.get(author=self.request.user)
+                user_answer = self.object.answers.get(author=user)
                 context['my_answer_form'] = AnswerForm(instance=user_answer)
                 context['my_answer_id'] = user_answer.id
             except self.object.answers.model.DoesNotExist:
                 context['my_answer_form'] = AnswerForm()
 
-        if self.request.user.is_authenticated() and \
+        if user.is_authenticated() and \
                 not self.request.user.upvotes.filter(question=self.object).exists():
             context['can_upvote'] = True
         else:
@@ -143,6 +134,7 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
                 context['fb_message'] = answer.content
             except:
                 pass
+        context['can_delete'] = self.object.can_user_delete(user)
         return context
 
     def render_to_response(self, context):
@@ -304,23 +296,44 @@ class AtomQuestionAnswerFeed(RssQuestionAnswerFeed):
     subtitle = RssQuestionAnswerFeed.description
 
 
+''' an interface that returns a `message` and a `redirect` url. '''
 @require_POST
 def flag_question(request, q_id):
     q = get_object_or_404(Question, id=q_id)
     user = request.user
-    ret = {}
+    tbd = False # to-be-deleted
+    ''' permissionssss '''
     if user.is_anonymous():
+        ''' first kick anonymous users '''
         messages.error(request, _('Sorry, you have to login to flag questions'))
-        ret["redirect"] = '%s?next=%s' % (settings.LOGIN_URL, q.get_absolute_url())
-    elif (user.profile.is_editor and user.profile.locality == q.entity) or (user == q.author and not q.answers.all()):
+        redirect = '%s?next=%s' % (settings.LOGIN_URL, q.get_absolute_url())
+        return HttpResponse(redirect, content_type="text/plain")
+
+    elif user == q.author:
+        ''' handle authors '''
+        if q.answers.all():
+            messages.error(request, _('Sorry, can not delete a question with answers'))
+        else:
+            tbd = True
+    elif user.profile.is_editor:
+        ''' handle editors '''
+        if user.profile.locality == q.entity:
+            tbd = True
+
+    if tbd:
+        ''' seems like we have to delete the question '''
         q.delete()
-        messages.info(request, _('Question has been removed'))
-        ret["redirect"] = reverse('local_home', args=(q.entity.slug,))
-    elif user.flags.filter(question=q):
-        ret["message"] = _('Thanks.  You already reported this question')
+        messages.success(request, _('Question has been removed'))
     else:
-        flag = QuestionFlag.objects.create(question=q, reporter=user)
-        #TODO: use signals so the next line won't be necesary
-        q.flagged()
-        ret["message"] = _('Thank you for flagging the question. One of our editors will look at it shortly.')
-    return HttpResponse(json.dumps(ret), content_type="application/json")
+        if user.flags.filter(question=q):
+            messages.error(request, _('Thanks.  You already reported this question'))
+        else:
+            ''' raising the flag '''
+            flag = QuestionFlag.objects.create(question=q, reporter=user)
+            #TODO: use signals so the next line won't be necesary
+            q.flagged()
+            messages.success(request, 
+                _('Thank you for flagging the question. One of our editors will look at it shortly.'))
+
+    redirect = reverse('local_home', args=(q.entity.slug,))
+    return HttpResponse(redirect, content_type="text/plain")

@@ -20,8 +20,7 @@ def create_profile(sender, created, instance, **kwargs):
 @receiver(post_save, sender=Question)
 def appoint_editors(sender, created, instance, **kwargs):
     ''' turn the first 3 askers in a locality into editors '''
-    if created and \
-       Profile.objects.need_editors(instance.entity):
+    if created and Profile.objects.need_editors(instance.entity):
         profile = instance.author.profile
         if not profile.is_editor:
             profile.is_editor = True
@@ -30,7 +29,7 @@ def appoint_editors(sender, created, instance, **kwargs):
 
 @receiver(pre_save, sender=Profile)
 def new_candidate(sender, instance, **kwargs):
-    if instance.is_candidate==True and instance.verification=='0':
+    if instance.is_candidate and instance.verification == '0':
         editors = User.objects.filter(profile__locality=instance.locality,
                     profile__is_editor=True).values_list('email', flat=True)
         html_content = render_to_string("user/emails/editors_new_candidate.html",
