@@ -8,11 +8,6 @@
 
 {% block homeNav %}class="active"{% endblock %}
 {% block content %}
-{% if not request.user.is_authenticated %}
-<div class="well flatblock">
-  {% flatblock "welcome" 9000 %}
-</div>
-{% endif %}
 <div class="page-header">
   <div class="container">
     <div class="row">
@@ -26,6 +21,15 @@
                {% endif %}
           </h1>
           <div id="cbs_data">{#TODO: % trans "Loading CBS Data..." % #}</div>
+          {% if need_editors %}
+            <div class="well flatblock">
+              {% flatblock "editors_needed" 9000 %}
+            </div>
+          {% elif not request.user.is_authenticated %}
+            <div class="well flatblock">
+              {% flatblock "welcome" 9000 %}
+            </div>
+          {% endif %}
         </div>
     </div>
   </div>
@@ -45,11 +49,6 @@
         {% endif %}
       </div>
   {% endfor %}
-</div>
-{% endif %}
-{% if need_editors %}
-<div class="well flatblock">
-  {% flatblock "editors_needed" 9000 %}
 </div>
 {% endif %}
 <div class="row questions-wrapper">
