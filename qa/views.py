@@ -174,15 +174,13 @@ def post_answer(request, q_id):
 
     return HttpResponseRedirect(question.get_absolute_url())
 
-@login_required
-def post_question(request, entity_slug=None, slug=None):
+def post_question(request, slug=None):
+    if request.user.is_anonymous():
+        messages.error(request, _('Sorry but only connected users can post questions'))
+        return HttpResponseRedirect(settings.LOGIN_URL)
+
     profile = request.user.profile
-    if not entity_slug:
-        entity = profile.locality
-    else:
-        entity = Entity.objects.get(slug=entity_slug)
-        if entity != profile.locality:
-            return HttpResponseForbidden(_("You can only post questions in your own locality"))
+    entity = profile.locality
 
     q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
 

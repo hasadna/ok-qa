@@ -88,7 +88,7 @@ class QuestionTest(TestCase):
 
     def test_post_question(self):
         c = Client()
-        post_url = reverse('post_question', args=(self.home.slug, ))
+        post_url = reverse('post_question')
         self.assertTrue(c.login(username="commoner", password="pass"))
         response = c.get(post_url)
         self.assertEquals(response.status_code, 200)
@@ -248,7 +248,7 @@ class QuestionTest(TestCase):
         u=User.objects.get(email='user@domain.com')
         u.profile.locality = self.home
         u.profile.save()
-        post_url = reverse('post_question', args=(self.home.slug, ))
+        post_url = reverse('post_question')
         self.mock_request.return_value.content = json.dumps({
             'id': 1
         })
