@@ -15,6 +15,8 @@ class DefaultEntity(object):
         if request.path == '/':
             if request.user.is_authenticated():
                 entity = request.user.profile.locality
+                if not entity:
+                    return HttpResponseRedirect(reverse('edit_profile'))
             else:
                 try:
                     entity_id = settings.QNA_DEFAULT_ENTITY_ID
@@ -22,6 +24,7 @@ class DefaultEntity(object):
                 except:
                     entity = Entity.objects.order_by('?')[0]
 
-            return HttpResponseRedirect(reverse('local_home', kwargs={
-                            'entity_slug': entity.slug}))
+            if entity:
+                return HttpResponseRedirect(reverse('local_home', kwargs={
+                                'entity_slug': entity.slug}))
 
