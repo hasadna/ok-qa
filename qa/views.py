@@ -72,16 +72,13 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
 
     if entity:
         tags = Tag.objects.filter(qa_taggedquestion_items__content_object__entity=entity).\
-                annotate(num_times=Count('qa_taggedquestion_items'))
+                annotate(num_times=Count('qa_taggedquestion_items')).\
+                order_by("slug")
         need_editors = Profile.objects.need_editors(entity)
         if request.user.is_authenticated():
             can_ask = request.user.profile.locality == entity
         else:
             can_ask = True
-    else:
-        tags = Question.tags.most_common()
-        need_editors= False
-        can_ask = True
 
     candidates = Profile.objects.get_candidates(entity).\
                     annotate(num_answers=models.Count('answers')).\
