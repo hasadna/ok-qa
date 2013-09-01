@@ -9,7 +9,7 @@
 
 {% block content %}
 <div class="page-header row">
-  <div class="offset2 span8"><center>
+  <div class="offset3 span6"><center>
     <div class="dead-center">
       <img src="{% avatar_url candidate 75 %}" class="avatar img-circle">
       <h1 style="display:inline; padding-right:0.5em;">
@@ -23,14 +23,17 @@
           <a href="{{candidate.url}}">{{candidate.url}}</a>
         </h4>
       {% endif %}
+      {% if candidate.bio %}
+      <p style="font-size: 120%;">
+      {{ candidate.bio }}
+      </p>
+      {% endif %}
   </div></center>
   </div>
 </div>
 <div class="row">
-    <div class="offset1 span5" style="text-align: left;">
-      {% if candidate.bio %}
-          <span style="font-size: 120%;">{{ candidate.bio }}</span>
-      {% endif %}
+    <div class="offset1 span5">
+      <div style="text-align:right;">
         {% for answer in answers %}
         {% if forloop.first %}
           <h3>
@@ -60,9 +63,9 @@
           </div>
         </div>
         {% endfor %}
+      </div>
     </div>
     <div class="span5">
-      <h3>{{candidate.first_name}} {% trans "elects at" %}{{entity}}</h3>
       {% for question in questions %}
         {% if forloop.first %}
           <h3 style="margin-top: -10px; margin-bottom: -10px;">
