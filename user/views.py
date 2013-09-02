@@ -45,8 +45,8 @@ def public_profile(request, username=None, pk=None):
         user = get_object_or_404(User, username=username)
     else:
         user = get_object_or_404(User, username=pk)
-    questions = user.questions.all()
-    answers = user.answers.all()
+    questions = user.questions.filter(is_deleted=False)
+    answers = user.answers.filter(is_deleted=False)
     profile = user.profile
     if profile:
         user.avatar_url = profile.avatar_url()
