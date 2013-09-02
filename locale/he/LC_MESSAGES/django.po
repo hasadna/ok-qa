@@ -487,7 +487,7 @@ msgstr "ממשק ניהול"
 
 #: templates/base.html:62
 msgid "logout"
-msgstr "התנתקות"
+msgstr "התנתקו"
 
 #: templates/base.html:68
 #: templates/registration/activation_complete.html:7
