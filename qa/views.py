@@ -108,7 +108,7 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
         user = self.request.user
         context = super(QuestionDetail, self).get_context_data(**kwargs)
         context['max_length_a_content'] = MAX_LENGTH_A_CONTENT
-        context['answers'] = self.object.answers.all()
+        context['answers'] = self.object.answers.filter(is_deleted=False)
         context['entity'] = self.object.entity
         can_answer = self.object.can_answer(user)
         context['can_answer'] = can_answer
@@ -329,7 +329,7 @@ def flag_question(request, q_id):
 
     elif user == q.author:
         ''' handle authors '''
-        if q.answers.all():
+        if q.answers.filter(is_deleted=False):
             messages.error(request, _('Sorry, can not delete a question with answers'))
         else:
             tbd = True

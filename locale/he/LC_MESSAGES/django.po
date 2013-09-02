@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-02 11:44+0300\n"
-"PO-Revision-Date: 2013-09-02 11:45+0200\n"
+"POT-Creation-Date: 2013-09-02 11:50+0300\n"
+"PO-Revision-Date: 2013-09-02 11:55+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -214,7 +214,7 @@ msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותי
 
 #: qa/views.py:54
 msgid "Bad Entity"
-msgstr ""
+msgstr "רשות לא חוקית"
 
 #: qa/views.py:160
 msgid "You must be logged in as a candidate to post answers"
@@ -249,7 +249,6 @@ msgid "Questions from OKQA"
 msgstr "שאלות"
 
 #: qa/views.py:274
-#, python-format
 msgid "Questions feed for %s"
 msgstr "שטף שאלות עבור %s"
 
@@ -272,7 +271,7 @@ msgstr "אנא התחברו כדי לסמן שאלה לא ראויה"
 
 #: qa/views.py:333
 msgid "Sorry, can not delete a question with answers"
-msgstr "מצטערת, אסור למחוק שאלה עם תשובות"
+msgstr "מצטערת, לא יכולה למחוק שאלה עם תשובות"
 
 #: qa/views.py:344
 msgid "Question has been removed"
@@ -286,30 +285,38 @@ msgstr "תודה, כבר דיווחת על השאלה הזאת"
 msgid "Thank you for flagging the question. One of our editors will look at it shortly."
 msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את השאלה בקרוב."
 
-#: qa/templates/qa/_answer.html:23
-#: qa/templates/qa/_question.html:36
+#: qa/templates/qa/_answer.html:7
+msgid "This answer is deleted"
+msgstr "תשובה זו נמחקה"
+
+#: qa/templates/qa/_answer.html:28
+#: qa/templates/qa/_question.html:41
 #: user/templates/user/public_profile.html:58
 msgid "before"
 msgstr "לפני"
 
-#: qa/templates/qa/_answer.html:29
+#: qa/templates/qa/_answer.html:34
 msgid "Edit"
 msgstr "עריכה"
 
-#: qa/templates/qa/_question.html:13
+#: qa/templates/qa/_question.html:7
+msgid "This question is deleted"
+msgstr "שאלה זו נמחקה"
+
+#: qa/templates/qa/_question.html:18
 msgid "votes"
 msgstr "שואלים"
 
-#: qa/templates/qa/_question.html:27
+#: qa/templates/qa/_question.html:32
 #: qa/templates/qa/question_list.html:101
 msgid "Tags"
 msgstr "תגיות"
 
-#: qa/templates/qa/_question.html:38
+#: qa/templates/qa/_question.html:43
 msgid "from"
 msgstr "מ:"
 
-#: qa/templates/qa/_question.html:46
+#: qa/templates/qa/_question.html:51
 #: user/feeds.py:15
 msgid "Answers by"
 msgstr "תשובות של"
@@ -935,15 +942,6 @@ msgstr "שנה את תמונת הפרופיל"
 msgid "Following"
 msgstr "עוקבים אחרי"
 
-#~ msgid "Please first set your place"
-#~ msgstr "ראשית, אנא הכניסי את מקום מגוריכם"
-
-#~ msgid "You can only post questions in your own locality"
-#~ msgstr "מצטערת, אתה יכול לערוך רק שאלות ברשות שלך"
-
-#~ msgid "Loading CBS Data..."
-#~ msgstr "טוען נתוני הלשכה המרכזית לסטטיסטיקה..."
-
 #~ msgid ""
 #~ "You do not have permissions to edit anything. In order to be able to "
 #~ "edit, you must first provide a valid email address."
@@ -966,6 +964,15 @@ msgstr "עוקבים אחרי"
 
 #~ msgid "elects at"
 #~ msgstr "בוחר חכם ב"
+
+#~ msgid "Please first set your place"
+#~ msgstr "ראשית, אנא הכניסו את מקום מגוריכם"
+
+#~ msgid "You can only post questions in your own locality"
+#~ msgstr "מצטערת, אתה יכול לערוך רק שאלות ברשות שלך"
+
+#~ msgid "Loading CBS Data..."
+#~ msgstr "טוען נתוני הלשכה המרכזית לסטטיסטיקה..."
 
 #, fuzzy
 #~ msgid "state"
@@ -4245,10 +4252,6 @@ msgstr "עוקבים אחרי"
 #, fuzzy
 #~ msgid "Back to article"
 #~ msgstr "חזרה לוועדה"
-
-#, fuzzy
-#~ msgid "This revision has been deleted."
-#~ msgstr "הערך הוזכר במקום נוסף"
 
 #, fuzzy
 #~ msgid "Search results for:"
