@@ -39,7 +39,7 @@ urlpatterns += patterns('',
         name='rss_all_questions'
     ),
 
-    url(r'^(?P<entity>.*)/qna/atom/$',
+    url(r'^(?P<entity_id>[-\d]+)/atom/$',
         AtomQuestionFeed(),
         name='atom_entity_questions'
     ),

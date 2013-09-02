@@ -2,6 +2,11 @@
 {% load url from future %}
 <!-- Let's add the upvote and follow on hover -->
 <div class="question-summary narrow" id="question-summary-{{ question.id }}">
+    {% if question.is_deleted %}
+      <div class="alert alert-error">
+        {% trans "This question is deleted" %}
+      </div>
+    {% endif %}
     <div class="avatar-container" style="padding-top:15px;">
       <a href="{{ question.author.get_absolute_url }}" rel="tooltip" title="{{question.author.get_full_name}}">
         {% avatar question.author %}

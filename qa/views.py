@@ -16,6 +16,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.views.generic.detail import SingleObjectTemplateResponseMixin, BaseDetailView
 from django.core.urlresolvers import reverse
+from django.contrib.sites.models import Site
 
 from entities.models import Entity
 from chosen import forms as chosenforms
@@ -107,7 +108,7 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
         user = self.request.user
         context = super(QuestionDetail, self).get_context_data(**kwargs)
         context['max_length_a_content'] = MAX_LENGTH_A_CONTENT
-        context['answers'] = self.object.answers.all()
+        context['answers'] = self.object.answers.filter(is_deleted=False)
         context['entity'] = self.object.entity
         can_answer = self.object.can_answer(user)
         context['can_answer'] = can_answer
@@ -263,9 +264,31 @@ class RssQuestionFeed(Feed):
         return item.content
 
 
-class AtomQuestionFeed(RssQuestionFeed):
+class AtomQuestionFeed(Feed):
     feed_type = Atom1Feed
-    subtitle = RssQuestionFeed.description
+
+    def get_object(self, request, entity_id):
+        return get_object_or_404(Entity, pk=entity_id)
+
+    def title(self, obj):
+        return _("Questions feed for %s") % unicode(obj)
+
+    def subtitle(self, obj):
+        # TODO: add a `Site` key to `Entity` so we can use obj
+        return _('Brought to you by "%s"') % (Site.objects.get_current().name, )
+
+    def link(self, obj):
+        return reverse('local_home', args=(obj.id, ))
+
+    def item_title(self, item):
+        return item.subject
+
+    def item_subtitle(self, item):
+        return item.content
+    item_description = item_subtitle
+
+    def items(self, obj):
+        return Question.objects.filter(is_deleted=False, entity=obj).order_by('-created_at')[:30]
 
 class RssQuestionAnswerFeed(Feed):
     """"Give question, get all answers for that question"""
@@ -306,7 +329,7 @@ def flag_question(request, q_id):
 
     elif user == q.author:
         ''' handle authors '''
-        if q.answers.all():
+        if q.answers.filter(is_deleted=False):
             messages.error(request, _('Sorry, can not delete a question with answers'))
         else:
             tbd = True
