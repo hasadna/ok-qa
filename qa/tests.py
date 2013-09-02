@@ -301,6 +301,12 @@ class QuestionTest(TestCase):
         self.assertTrue(self.q.can_user_delete(self.q.author))
         self.assertTrue(self.q.can_user_delete(self.editor))
 
+    def test_feeds(self):
+        c = Client()
+        response = c.get(reverse('atom_entity_questions', args=(self.home.id, )))
+        self.assertEquals(response.status_code, 200)
+        # TODO: test the result
+
     def test_repr(self):
         self.assertEqual("why?", unicode(self.q))
 
