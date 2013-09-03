@@ -90,9 +90,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
 
     question_count = questions.count()
     candidates_count = candidates.count()
-    answers_count = 0
-    for q in questions:
-        answers_count += q.answers.count()
+    answers_count = Answer.objects.filter(question__entity=entity, is_deleted=False).count()
     if answers_count:
         answers_rate = (question_count * candidates_count) // answers_count
     else:
