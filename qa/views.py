@@ -88,11 +88,11 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
                     annotate(num_answers=models.Count('answers')).\
                     order_by('-num_answers')
 
-    question_count = questions.count()
+    question_count = questions.count()  
     candidates_count = candidates.count()
     answers_count = Answer.objects.filter(question__entity=entity, is_deleted=False).count()
-    if answers_count:
-        answers_rate = (question_count * candidates_count) // answers_count
+    if question_count and candidates_count:
+        answers_rate = int((answers_count / (question_count * candidates_count)) * 100)
     else:
         answers_rate = 0
 
