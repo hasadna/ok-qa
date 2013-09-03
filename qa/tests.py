@@ -118,11 +118,18 @@ class QuestionTest(TestCase):
 
         self.assertRedirects(res2, default_home)
         self.assertEquals(response.context['candidates'].count(), 1)
+        self.assertEquals(response.context['candidates'].count(), response.context['candidates_count'])
+        self.assertEquals(response.context['users_count'], 4)
+        self.assertEquals(response.context['questions'].count(), response.context['question_count'])
+        self.assertEquals(response.context['question_count'], 1)
+        self.assertEquals(response.context['answers_rate'], 100)
 
         self.q.is_deleted = True
         self.q.save()
         response = c.get(default_home)
         self.assertFalse(response.context['questions'])
+        self.assertEquals(response.context['question_count'], 0)
+        self.assertEquals(response.context['answers_rate'], 0)
         self.q.is_deleted = False
         self.q.save()
 
