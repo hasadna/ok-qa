@@ -130,7 +130,7 @@
           //     }
           //   }
             totalpopulation = json["{{entity.code}}"].totalpopulation;
-            usersPercent = Math.round({{users_count}} / totalpopulation);
+            usersPercent = Math.round(({{users_count}}*100)/ totalpopulation);
             
             $('#population').text(totalpopulation);
             $('#usersPercent').text(usersPercent);
