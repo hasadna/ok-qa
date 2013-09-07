@@ -48,8 +48,9 @@ STATICFILES_ROOT = PROJECT_DIR.child('static')
 LOCALE_PATHS = (unicode(PROJECT_DIR.child('locale')), )
 
 STATICFILES_DIRS = [
-    (subdir, str(STATICFILES_ROOT.child(subdir))) for subdir in
-    ['css', 'img', 'js']]
+        (subdir, str(STATICFILES_ROOT.child(subdir))) for subdir in
+    ('css', 'img', 'js', )]
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',

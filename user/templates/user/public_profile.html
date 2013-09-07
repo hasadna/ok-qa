@@ -21,9 +21,11 @@
       <h2>
         <a href="{% url "local_home" entity.slug %}" alt="{{entity}}">{{entity}}</a>
       </h2>
-      {% object_links profile %}
+      <ul class="links unstyled">
+        {% object_links profile %}
+      </ul>
       {% if profile.bio %}
-      <p style="font-size: 120%;">
+      <p class="well" style="text-align:right; font-size: 120%;">
       {{ profile.bio }}
       </p>
       {% endif %}
