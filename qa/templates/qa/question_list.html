@@ -20,7 +20,13 @@
                </a>
                {% endif %}
           </h1>
-          <div id="cbs_data">{#TODO: % trans "Loading CBS Data..." % #}</div>
+          <div id="cbs_data">
+            <p><strong><span id="population"></span></strong> {% trans "Population" %}</p>
+            <p><strong>{{users_count}}</strong> {% trans "Registered users" %} (<span id="usersPercent"></span> % {% trans "of Population" %})</p>
+            <p><strong>{{question_count}}</strong> {% trans "Questions" %}</p>
+            <p><strong>{{candidates_count}}</strong> {% trans "Registered candidates" %} (<span id="candidateRate"></span> {% trans "population per candidate" %})</strong></p>
+            <p><strong>{{answers_rate}}%</strong> {% trans "Answer rate" %}</p>
+          </div>
           {% if need_editors %}
             <div class="well flatblock">
               {% flatblock "editors_needed" 9000 %}
@@ -107,23 +113,36 @@
 {% endblock %}
   {% block extrascript %}
     <script>
+
+        
         function display_cbs(json) {
-          for(i = 0; i < json.feed.entry.length; i++){
-              entry = json.feed.entry[i];
-              if (entry.gsx$code.$t == "{{entity.code}}") {
-                var h = "<p><strong>"+entry.gsx$totalpopulation.$t+"</strong>";
-                    h+= "&nbsp;{% trans 'Total Population' %}</p>";
-                    h+= "<p><strong>"+entry.gsx$socioeco.$t+"</strong>";
-                    h+= "&nbsp;{% trans 'Socio Economic Grade' %}";
-                    h+= "<p><strong>"+entry.gsx$numofcouncilman.$t+"</strong>";
-                    h+= "&nbsp;{% trans 'Number of Councilman' %}";
-                $('#cbs_data').html(h);
-                return;
-              }
+          // for(i = 0; i < json.feed.entry.length; i++){
+          //     entry = json.feed.entry[i];
+          //     if (entry.gsx$code.$t == "{{entity.code}}") {
+          //       var h = "<p><strong>"+entry.gsx$totalpopulation.$t+"</strong>";
+          //           h+= "&nbsp;{% trans 'Total Population' %}</p>";
+          //           h+= "<p><strong>"+entry.gsx$socioeco.$t+"</strong>";
+          //           h+= "&nbsp;{% trans 'Socio Economic Grade' %}";
+          //           h+= "<p><strong>"+entry.gsx$numofcouncilman.$t+"</strong>";
+          //           h+= "&nbsp;{% trans 'Number of Councilman' %}";
+          //       $('#cbs_data').html(h);
+          //       return;
+          //     }
+          //   }
+            totalpopulation = json["{{entity.code}}"].totalpopulation;
+            usersPercent = Math.round(({{users_count}}*100)/ totalpopulation);
+            
+            $('#population').text(totalpopulation);
+            $('#usersPercent').text(usersPercent);
+            if ({{candidates_count}}){
+              candidateRate = Math.round(totalpopulation / {{candidates_count}});
+            } else {
+              candidateRate = '-';
             }
+            $('#candidateRate').text(candidateRate);
           }
+          $.getJSON('/static/js/entity_stats.js', display_cbs)
 
     </script>
-    <!-- get a btter performing source script src="http://spreadsheets.google.com/feeds/list/0AlrAe9zy7m-PdEczNE9ockdOaVVpaUZVZENiVjlRSlE/1/public/values?alt=json-in-script&amp;callback=display_cbs"></script> -->
-
+   
   {% endblock %}

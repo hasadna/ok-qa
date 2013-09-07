@@ -80,10 +80,22 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
             can_ask = request.user.profile.locality == entity
         else:
             can_ask = True
+        users_count = entity.profile_set.count()
+    else:
+        users_count = Profile.objects.count()
 
     candidates = Profile.objects.get_candidates(entity).\
                     annotate(num_answers=models.Count('answers')).\
                     order_by('-num_answers')
+
+    question_count = questions.count()  
+    candidates_count = candidates.count()
+    answers_count = Answer.objects.filter(question__entity=entity, is_deleted=False).count()
+    if question_count and candidates_count:
+        answers_rate = int((answers_count / (question_count * candidates_count)) * 100)
+    else:
+        answers_rate = 0
+
     context.update({ 'tags': tags,
         'questions': questions,
         'by_date': order_opt == 'date',
@@ -92,8 +104,11 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'current_tags': current_tags,
         'need_editors': need_editors,
         'can_ask': can_ask,
-        'question_count': questions.count(),
+        'question_count': question_count,
         'candidates': candidates,
+        'candidates_count': candidates_count,
+        'users_count': users_count,
+        'answers_rate': answers_rate,
         })
 
     return render(request, template, context)
