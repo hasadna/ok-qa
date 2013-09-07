@@ -49,12 +49,9 @@ def public_profile(request, username=None, pk=None):
     answers = user.answers.filter(is_deleted=False)
     profile = user.profile
     if profile:
-        user.avatar_url = profile.avatar_url()
-        user.bio = profile.bio
-        user.url = profile.url
         setattr(request, 'entity', profile.locality)
 
-    context = RequestContext(request, {"candidate": user,
+    context = RequestContext(request, {"profile": profile,
                                        "answers": answers,
                                        "questions": questions,
                                        })

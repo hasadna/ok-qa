@@ -1,7 +1,8 @@
 {% extends "user/user_base.html" %}
 {% load i18n %}
 {% load avatar_tags %}
-{% block pageTitle %}{{ candidate.get_full_name|default:candidate.username }}{% endblock %}
+{% load links_tags %}
+{% block pageTitle %}{{ user.get_full_name|default:user.username }}{% endblock %}
 
 {% block breadcrumbs %}
   <li class="active">{{ flatpage.title }}</li>
@@ -11,21 +12,19 @@
 <div class="page-header row">
   <div class="offset3 span6"><center>
     <div class="dead-center">
-      <img src="{% avatar_url candidate 75 %}" class="avatar img-circle">
       <h1 style="display:inline; padding-right:0.5em;">
-        {{ candidate.get_full_name|default:candidate.username}}
-          <a href="{% url 'user_feed' candidate.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
+        {{ profile.get_full_name}}
+          <a href="{% url 'user_feed' profile.user.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
             <img src="{{STATIC_URL}}img/rss.png" width="25" />
           </a>
       </h1>
-      {% if candidate.url %}
-        <h4 >
-          <a href="{{candidate.url}}">{{candidate.url}}</a>
-        </h4>
-      {% endif %}
-      {% if candidate.bio %}
+      <h2>
+        <a href="{% url "local_home" entity.slug %}" alt="{{entity}}">{{entity}}</a>
+      </h2>
+      {% object_links profile %}
+      {% if profile.bio %}
       <p style="font-size: 120%;">
-      {{ candidate.bio }}
+      {{ profile.bio }}
       </p>
       {% endif %}
   </div></center>

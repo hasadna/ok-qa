@@ -113,3 +113,5 @@ class Profile(models.Model):
     def get_absolute_url(self):
         return reverse('public-profile', args=(self.user.username, ))
 
+    def get_full_name(self):
+        return self.user.get_full_name() or self.user.username
