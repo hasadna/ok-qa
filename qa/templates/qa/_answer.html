@@ -2,6 +2,11 @@
 
 {% with author_url=answer.author.get_absolute_url %}
 <div id="answer-{{answer.id}}" class="answer" style="min-height: 35px; display: table">
+  {% if answer.is_deleted %}
+    <div class="alert alert-error">
+      {% trans "This answer is deleted" %}
+    </div>
+  {% endif %}
   <div class="avatar-container" style="float:right; padding:6px 10px; display: table-cell; vertical-align: middle;">
     <a href="{{ author_url }}">
       {% avatar answer.author %}

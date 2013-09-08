@@ -16,6 +16,7 @@ from django.contrib import messages
 from django.conf import settings
 from django.views.generic.detail import SingleObjectTemplateResponseMixin, BaseDetailView
 from django.core.urlresolvers import reverse
+from django.contrib.sites.models import Site
 
 from entities.models import Entity
 from chosen import forms as chosenforms
@@ -31,7 +32,7 @@ from qa.tasks import publish_question_to_facebook, publish_upvote_to_facebook,\
 from qa.mixins import JSONResponseMixin
 
 # the order options for the list views
-ORDER_OPTIONS = {'date': '-updated_at', 'rating': '-rating', 'flagcount': '-flags_count'}
+ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flags_count'}
 
 class JsonpResponse(HttpResponse):
     def __init__(self, data, callback, *args, **kwargs):
@@ -49,7 +50,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     """
     context = RequestContext(request)
     entity = context['entity']
-    if entity.division.index != 3:
+    if not entity or entity.division.index != 3:
         raise Http404(_("Bad Entity"))
 
     questions = Question.on_site.filter(entity=entity, is_deleted=False)
@@ -72,20 +73,29 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
 
     if entity:
         tags = Tag.objects.filter(qa_taggedquestion_items__content_object__entity=entity).\
-                annotate(num_times=Count('qa_taggedquestion_items'))
+                annotate(num_times=Count('qa_taggedquestion_items')).\
+                order_by("slug")
         need_editors = Profile.objects.need_editors(entity)
         if request.user.is_authenticated():
             can_ask = request.user.profile.locality == entity
         else:
             can_ask = True
+        users_count = entity.profile_set.count()
     else:
-        tags = Question.tags.most_common()
-        need_editors= False
-        can_ask = True
+        users_count = Profile.objects.count()
 
     candidates = Profile.objects.get_candidates(entity).\
                     annotate(num_answers=models.Count('answers')).\
                     order_by('-num_answers')
+
+    question_count = questions.count()  
+    candidates_count = candidates.count()
+    answers_count = Answer.objects.filter(question__entity=entity, is_deleted=False).count()
+    if question_count and candidates_count:
+        answers_rate = int((answers_count / (question_count * candidates_count)) * 100)
+    else:
+        answers_rate = 0
+
     context.update({ 'tags': tags,
         'questions': questions,
         'by_date': order_opt == 'date',
@@ -94,8 +104,11 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'current_tags': current_tags,
         'need_editors': need_editors,
         'can_ask': can_ask,
-        'question_count': questions.count(),
+        'question_count': question_count,
         'candidates': candidates,
+        'candidates_count': candidates_count,
+        'users_count': users_count,
+        'answers_rate': answers_rate,
         })
 
     return render(request, template, context)
@@ -106,11 +119,14 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
     context_object_name = 'question'
     slug_field = 'unislug'
 
+    def get_queryset(self, queryset=None):
+        return Question.objects.filter(entity__slug=self.kwargs['entity_slug'])
+
     def get_context_data(self, **kwargs):
         user = self.request.user
         context = super(QuestionDetail, self).get_context_data(**kwargs)
         context['max_length_a_content'] = MAX_LENGTH_A_CONTENT
-        context['answers'] = self.object.answers.all()
+        context['answers'] = self.object.answers.filter(is_deleted=False)
         context['entity'] = self.object.entity
         can_answer = self.object.can_answer(user)
         context['can_answer'] = can_answer
@@ -174,15 +190,13 @@ def post_answer(request, q_id):
 
     return HttpResponseRedirect(question.get_absolute_url())
 
-@login_required
-def post_question(request, entity_slug=None, slug=None):
+def post_question(request, slug=None):
+    if request.user.is_anonymous():
+        messages.error(request, _('Sorry but only connected users can post questions'))
+        return HttpResponseRedirect(settings.LOGIN_URL)
+
     profile = request.user.profile
-    if not entity_slug:
-        entity = profile.locality
-    else:
-        entity = Entity.objects.get(slug=entity_slug)
-        if entity != profile.locality:
-            return HttpResponseForbidden(_("You can only post questions in your own locality"))
+    entity = profile.locality
 
     q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
 
@@ -268,9 +282,31 @@ class RssQuestionFeed(Feed):
         return item.content
 
 
-class AtomQuestionFeed(RssQuestionFeed):
+class AtomQuestionFeed(Feed):
     feed_type = Atom1Feed
-    subtitle = RssQuestionFeed.description
+
+    def get_object(self, request, entity_id):
+        return get_object_or_404(Entity, pk=entity_id)
+
+    def title(self, obj):
+        return _("Questions feed for %s") % unicode(obj)
+
+    def subtitle(self, obj):
+        # TODO: add a `Site` key to `Entity` so we can use obj
+        return _('Brought to you by "%s"') % (Site.objects.get_current().name, )
+
+    def link(self, obj):
+        return reverse('local_home', args=(obj.id, ))
+
+    def item_title(self, item):
+        return item.subject
+
+    def item_subtitle(self, item):
+        return item.content
+    item_description = item_subtitle
+
+    def items(self, obj):
+        return Question.objects.filter(is_deleted=False, entity=obj).order_by('-created_at')[:30]
 
 class RssQuestionAnswerFeed(Feed):
     """"Give question, get all answers for that question"""
@@ -311,7 +347,7 @@ def flag_question(request, q_id):
 
     elif user == q.author:
         ''' handle authors '''
-        if q.answers.all():
+        if q.answers.filter(is_deleted=False):
             messages.error(request, _('Sorry, can not delete a question with answers'))
         else:
             tbd = True

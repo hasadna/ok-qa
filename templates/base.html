@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/rtl.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css?v=10"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css?v=12"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/auth-buttons.css"/>
     <title>
       {% block pageTitle %} {% endblock %} 
@@ -19,6 +19,21 @@
     <meta property="fb:app_id"    content="{{FACEBOOK_APP_ID}}" /> 
     <meta property="og:site_name" content="{{site.name}}" /> 
     {% block extrahead %}{% endblock %}
+
+    {% if ANALYTICS_ID %}
+    <script type="text/javascript">
+
+      var _gaq = _gaq || [];
+      _gaq.push(['_setAccount', '{{ANALYTICS_ID}}']);
+      _gaq.push(['_trackPageview']);
+
+      (function() {
+        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+      })();
+    </script>
+    {% endif %}
 </head>
 <body>
 <div class="navbar navbar-fixed-top">
@@ -158,19 +173,7 @@
           $('[rel="tooltip"]').tooltip();
         });
 
-      {% if ANALYTICS_ID %}
-      var _gaq = _gaq || [];
-      _gaq.push(['_setAccount', '{{ANALYTICS_ID}}']);
-      _gaq.push(['_trackPageview']);
-
-      (function() {
-        var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-        var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-      })();
-      {% endif %}
-
-    </script>
+	</script>
 <script src="{{ STATIC_URL }}js/chosen.jquery.min.js"></script>
 <script src="{{ STATIC_URL }}js/chosen.jquery_ready.js"></script>
 <script>

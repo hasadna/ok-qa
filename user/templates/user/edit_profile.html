@@ -12,22 +12,6 @@
     <div class="card card-main">
       <div class="spacer">
         <h1>{% trans "User Profile" %}</h1>
-        {% if not form.valid_email %}
-          {% if not form.has_email %}
-            <div class="alert alert-error">
-              {% trans "You do not have permissions to edit anything. In order to be able to edit, you must first provide a valid email address." %}
-            </div>
-          {% else %}
-            <div class="alert alert-block">
-              {% trans "You do not have permissions to edit anything. In order to be able to edit, you must provide a valid email address, and validate it" %}
-              <form action="{% url 'send-validation-email' %}" method="post">{% csrf_token %}
-                <input type="submit" name="send validation email" value="{% trans 'send validation email' %}">
-              </form>
-            </div>
-          {% endif %}
-        {% else %}
-          <div class="alert alert-info">{% trans 'Your email has been validated, so you can edit stuff!' %}</div>
-        {% endif %}
         <form action="." method="post">{% csrf_token %}
           {{ form.as_p }}
           <input class="btn btn-primary" type="submit" name="save" value="{% trans 'save' %}" />

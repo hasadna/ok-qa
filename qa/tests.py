@@ -88,7 +88,7 @@ class QuestionTest(TestCase):
 
     def test_post_question(self):
         c = Client()
-        post_url = reverse('post_question', args=(self.home.slug, ))
+        post_url = reverse('post_question')
         self.assertTrue(c.login(username="commoner", password="pass"))
         response = c.get(post_url)
         self.assertEquals(response.status_code, 200)
@@ -96,13 +96,11 @@ class QuestionTest(TestCase):
         response = c.post(post_url, {'subject':"Which?",
                         'entity': self.home.id,
                         })
-        self.assertEquals(response.status_code, 302)
-        self.assertTrue(Question.objects.get(subject="Which?"))
-        response = c.post(post_url, {'subject':"Which?",
-                        'entity': self.home.id,
-                        })
-        self.assertEquals(response.status_code, 302)
-        self.assertTrue(Question.objects.get(subject="Which?"))
+        new_q = Question.objects.get(subject="Which?")
+        self.assertRedirects(response, new_q.get_absolute_url())
+        away_q = Question.objects.create(subject="Which?", entity=self.away, author=self.common_user)
+        response = c.get(away_q.get_absolute_url())
+        self.assertEquals(response.status_code, 200)
 
     def test_permissions(self):
         self.assertFalse(self.q.can_answer(self.common_user))
@@ -118,11 +116,18 @@ class QuestionTest(TestCase):
 
         self.assertRedirects(res2, default_home)
         self.assertEquals(response.context['candidates'].count(), 1)
+        self.assertEquals(response.context['candidates'].count(), response.context['candidates_count'])
+        self.assertEquals(response.context['users_count'], 4)
+        self.assertEquals(response.context['questions'].count(), response.context['question_count'])
+        self.assertEquals(response.context['question_count'], 1)
+        self.assertEquals(response.context['answers_rate'], 100)
 
         self.q.is_deleted = True
         self.q.save()
         response = c.get(default_home)
         self.assertFalse(response.context['questions'])
+        self.assertEquals(response.context['question_count'], 0)
+        self.assertEquals(response.context['answers_rate'], 0)
         self.q.is_deleted = False
         self.q.save()
 
@@ -248,7 +253,7 @@ class QuestionTest(TestCase):
         u=User.objects.get(email='user@domain.com')
         u.profile.locality = self.home
         u.profile.save()
-        post_url = reverse('post_question', args=(self.home.slug, ))
+        post_url = reverse('post_question')
         self.mock_request.return_value.content = json.dumps({
             'id': 1
         })
@@ -300,6 +305,12 @@ class QuestionTest(TestCase):
         self.assertFalse(self.q.can_user_delete(self.common2_user))
         self.assertTrue(self.q.can_user_delete(self.q.author))
         self.assertTrue(self.q.can_user_delete(self.editor))
+
+    def test_feeds(self):
+        c = Client()
+        response = c.get(reverse('atom_entity_questions', args=(self.home.id, )))
+        self.assertEquals(response.status_code, 200)
+        # TODO: test the result
 
     def test_repr(self):
         self.assertEqual("why?", unicode(self.q))

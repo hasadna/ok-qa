@@ -1,7 +1,8 @@
 {% extends "user/user_base.html" %}
 {% load i18n %}
 {% load avatar_tags %}
-{% block pageTitle %}{{ candidate.get_full_name|default:candidate.username }}{% endblock %}
+{% load links_tags %}
+{% block pageTitle %}{{ user.get_full_name|default:user.username }}{% endblock %}
 
 {% block breadcrumbs %}
   <li class="active">{{ flatpage.title }}</li>
@@ -9,28 +10,31 @@
 
 {% block content %}
 <div class="page-header row">
-  <div class="offset2 span8"><center>
+  <div class="offset3 span6"><center>
     <div class="dead-center">
-      <img src="{% avatar_url candidate 75 %}" class="avatar img-circle">
       <h1 style="display:inline; padding-right:0.5em;">
-        {{ candidate.get_full_name|default:candidate.username}}
-          <a href="{% url 'user_feed' candidate.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
+        {{ profile.get_full_name}}
+          <a href="{% url 'user_feed' profile.user.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
             <img src="{{STATIC_URL}}img/rss.png" width="25" />
           </a>
       </h1>
-      {% if candidate.url %}
-        <h4 >
-          <a href="{{candidate.url}}">{{candidate.url}}</a>
-        </h4>
+      <h2>
+        <a href="{% url "local_home" entity.slug %}" alt="{{entity}}">{{entity}}</a>
+      </h2>
+      <ul class="links unstyled">
+        {% object_links profile %}
+      </ul>
+      {% if profile.bio %}
+      <p class="well" style="text-align:right; font-size: 120%;">
+      {{ profile.bio }}
+      </p>
       {% endif %}
   </div></center>
   </div>
 </div>
 <div class="row">
-    <div class="offset1 span5" style="text-align: left;">
-      {% if candidate.bio %}
-          <span style="font-size: 120%;">{{ candidate.bio }}</span>
-      {% endif %}
+    <div class="offset1 span5">
+      <div style="text-align:right;">
         {% for answer in answers %}
         {% if forloop.first %}
           <h3>
@@ -46,7 +50,7 @@
                 <span class="too-long-toggle">{{ answer.question.content }}</span>
             <div class="well">
                 <a name="{{answer.id}}"></a>
-                <strong style="font-size: 13px;">
+                <strong style="font-size: 16px;">
                     <span class="too-long-toggle">{{ answer.content|linebreaksbr }}</span>
                 </strong>
                 <span title="{{ question.created_at }}" class="relativetime">
@@ -60,13 +64,13 @@
           </div>
         </div>
         {% endfor %}
+      </div>
     </div>
     <div class="span5">
-      <h3>{{candidate.first_name}} {% trans "elects at" %}{{entity}}</h3>
       {% for question in questions %}
         {% if forloop.first %}
           <h3 style="margin-top: -10px; margin-bottom: -10px;">
-            {% trans "Questions" %}
+            {% trans "Questions posted" %}
           </h3>
         {% endif %}
         <div class="question-summary narrow" id="question-summary-{{ question.id }}">
