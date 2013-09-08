@@ -2,7 +2,7 @@
 {% load i18n %}
 {% load avatar_tags %}
 {% load links_tags %}
-{% block pageTitle %}{{ user.get_full_name|default:user.username }}{% endblock %}
+{% block pageTitle %}{{ friend.get_full_name }}{% endblock %}
 
 {% block breadcrumbs %}
   <li class="active">{{ flatpage.title }}</li>
@@ -13,8 +13,8 @@
   <div class="offset3 span6"><center>
     <div class="dead-center">
       <h1 style="display:inline; padding-right:0.5em;">
-        {{ profile.get_full_name}}
-          <a href="{% url 'user_feed' profile.user.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
+        {{ friend.get_full_name}}
+          <a href="{% url 'user_feed' friend.user.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
             <img src="{{STATIC_URL}}img/rss.png" width="25" />
           </a>
       </h1>
@@ -22,11 +22,11 @@
         <a href="{% url "local_home" entity.slug %}" alt="{{entity}}">{{entity}}</a>
       </h2>
       <ul class="links unstyled">
-        {% object_links profile %}
+        {% object_links friend %}
       </ul>
-      {% if profile.bio %}
+      {% if friend.bio %}
       <p class="well" style="text-align:right; font-size: 120%;">
-      {{ profile.bio }}
+      {{ friend.bio }}
       </p>
       {% endif %}
   </div></center>

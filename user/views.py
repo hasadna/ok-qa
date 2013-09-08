@@ -51,7 +51,7 @@ def public_profile(request, username=None, pk=None):
     if profile:
         setattr(request, 'entity', profile.locality)
 
-    context = RequestContext(request, {"profile": profile,
+    context = RequestContext(request, {"friend": profile,
                                        "answers": answers,
                                        "questions": questions,
                                        })
