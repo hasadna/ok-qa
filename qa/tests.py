@@ -96,13 +96,11 @@ class QuestionTest(TestCase):
         response = c.post(post_url, {'subject':"Which?",
                         'entity': self.home.id,
                         })
-        self.assertEquals(response.status_code, 302)
-        self.assertTrue(Question.objects.get(subject="Which?"))
-        response = c.post(post_url, {'subject':"Which?",
-                        'entity': self.home.id,
-                        })
-        self.assertEquals(response.status_code, 302)
-        self.assertTrue(Question.objects.get(subject="Which?"))
+        new_q = Question.objects.get(subject="Which?")
+        self.assertRedirects(response, new_q.get_absolute_url())
+        away_q = Question.objects.create(subject="Which?", entity=self.away, author=self.common_user)
+        response = c.get(away_q.get_absolute_url())
+        self.assertEquals(response.status_code, 200)
 
     def test_permissions(self):
         self.assertFalse(self.q.can_answer(self.common_user))
