@@ -12,8 +12,10 @@ from django.views.generic import View
 from django.template.context import RequestContext
 from django.views.decorators.http import require_POST
 # Friends' apps
+from actstream import follow
 from actstream.models import Follow
 # Project's apps
+from qa.models import Question
 from .forms import *
 from .models import *
 from oshot.forms import EntityChoiceForm
@@ -116,7 +118,8 @@ def edit_profile(request):
         form = ProfileForm(request.user)
 
     setattr(request, 'entity', profile.locality)
-    context = RequestContext(request, {"form": form})
+
+    context = RequestContext(request, {"form": form, "following": profile.following})
     return render(request, "user/edit_profile.html", context)
 
 
@@ -170,6 +173,10 @@ def user_follow_unfollow(request):
     id - id of target object
 
     """
+    FOLLOW_TYPES = {
+        'question': Question,
+        'user': User,
+    }
     what = request.POST.get('what', None)
     target_id = request.POST.get('id', None)
     if not target_id:

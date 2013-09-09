@@ -33,11 +33,13 @@
     <aside class="sidebar">
       <h2>{% trans "Following" %}</h2>
       <ul>
-      {% for user in profile.following %}
+      {% for question in profile.following %}
         <li>
-          <a href="#" class="btn btn-danger btn-mini unfollow" id="unfollow-user-{{u.id}}">
+        <!--TODO: add the ability to unfollow a question
+        <a href="#" class="btn btn-danger btn-mini unfollow" id="unfollow-{{question.id}}">
           <i class="icon-remove-sign icon-white"></i></a>
-            <a id="following-user-{{u.id}}" href="{{u.get_absolute_url}}">{{u}}</a>
+        -->
+        {% include "qa/_question.html" %}
           </li>
       {% empty %}
         <li>{% trans "none" %}</li>
