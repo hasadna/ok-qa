@@ -116,19 +116,6 @@
 
         
         function display_cbs(json) {
-          // for(i = 0; i < json.feed.entry.length; i++){
-          //     entry = json.feed.entry[i];
-          //     if (entry.gsx$code.$t == "{{entity.code}}") {
-          //       var h = "<p><strong>"+entry.gsx$totalpopulation.$t+"</strong>";
-          //           h+= "&nbsp;{% trans 'Total Population' %}</p>";
-          //           h+= "<p><strong>"+entry.gsx$socioeco.$t+"</strong>";
-          //           h+= "&nbsp;{% trans 'Socio Economic Grade' %}";
-          //           h+= "<p><strong>"+entry.gsx$numofcouncilman.$t+"</strong>";
-          //           h+= "&nbsp;{% trans 'Number of Councilman' %}";
-          //       $('#cbs_data').html(h);
-          //       return;
-          //     }
-          //   }
             totalpopulation = json["{{entity.code}}"].totalpopulation;
             usersPercent = Math.round(({{users_count}}*100)/ totalpopulation);
             
