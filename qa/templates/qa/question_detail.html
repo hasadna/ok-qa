@@ -29,7 +29,7 @@
             <div class="span3 sidebar">
               {% if user == question.author %}
                 {% if not answers %}
-                    <a class="edit-question btn btn-action" href="{{ question.get_absolute_url }}edit">
+                    <a class="edit-question btn btn-action" href="{% url 'edit_question' question.unislug %}">
                       {% trans "Edit Question" %}
                     </a>
                 {% endif %}
