@@ -1,6 +1,5 @@
 import json
 
-from django import forms
 from django.db.models import Count
 from django.http import HttpResponse, HttpResponseForbidden
 from django.http import HttpResponseRedirect
@@ -19,9 +18,7 @@ from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 
 from entities.models import Entity
-from chosen import forms as chosenforms
 from taggit.models import Tag
-from social_auth.models import UserSocialAuth
 from actstream import follow
 
 from user.models import Profile
