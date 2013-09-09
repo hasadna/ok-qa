@@ -5,7 +5,7 @@
 
 {% block pageTitle %}{% trans "Post question" %}{% endblock %}
 {% block extrahead %}
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/autoSuggest.css"/>
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jquery-autosuggest/css/autoSuggest.css"/>
 {% endblock %}
 
 {% block content %}
@@ -28,7 +28,13 @@
 <form class="form-horizontal" method="POST">
   <div class="row post-question">
     <script src="{{ STATIC_URL }}js/jquery.js"></script>
-    <script src="{{ STATIC_URL }}js/jquery.autoSuggest.js"></script>
+    <script type="text/javascript">
+      // Puts the included jQuery into our own namespace
+      var django = {
+        "jQuery": jQuery.noConflict(true)
+      };
+    </script>
+    <script src="{{ STATIC_URL }}jquery-autosuggest/js/jquery.autoSuggest.minified.js"></script>
     {% csrf_token %}
     {{ form|crispy }}
     <div id="charsCounter"><span id="charsLeft"></span> {% trans 'characters left' %}</div>
