@@ -20,12 +20,20 @@
                </a>
                {% endif %}
           </h1>
-          <div id="cbs_data" style="display:none;">
+          <div id="cbs_data">
             <p><strong><span id="population"></span></strong> {% trans "Population" %}</p>
-            <p><strong>{{users_count}}</strong> {% trans "Registered users" %} (<span id="usersPercent"></span> % {% trans "of Population" %})</p>
-            <p><strong>{{question_count}}</strong> {% trans "Questions" %}</p>
-            <p><strong>{{candidates_count}}</strong> {% trans "Registered candidates" %} (<span id="candidateRate"></span> {% trans "population per candidate" %})</strong></p>
-            <p><strong>{{answers_rate}}%</strong> {% trans "Answer rate" %}</p>
+            {% if users_count %}
+              <p><strong>{{users_count}}</strong> {% trans "Registered users" %} (<span id="usersPercent"></span> % {% trans "of Population" %})</p>
+            {% endif %}
+            {% if question_count %}
+              <p><strong>{{question_count}}</strong> {% trans "Questions" %}</p>
+            {% endif %}
+            {% if candidates_count %}
+              <p><strong>{{candidates_count}}</strong> {% trans "Registered candidates" %} (<span id="candidateRate"></span> {% trans "population per candidate" %})</strong></p>
+            {% endif %}
+            {% if answers_rate %}
+              <p><strong>{{answers_rate}}%</strong> {% trans "Answer rate" %}</p>
+            {% endif %}
           </div>
           {% if need_editors %}
             <div class="well flatblock">
