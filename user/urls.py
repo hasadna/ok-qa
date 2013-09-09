@@ -25,5 +25,5 @@ urlpatterns = patterns('',
         remove_candidate,
         name='remove_candidate'
     ),
-    url(r'^(?P<username>.+)/$', public_profile, name="public-profile"),
+    url(r'^profile/(?P<username>.+)/$', public_profile, name="public-profile"),
 )
