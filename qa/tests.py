@@ -1,12 +1,11 @@
 import json
 
 from django.conf import settings
-from django.contrib.auth.models import User, AnonymousUser, Permission
+from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.sites.models import Site
 from social_auth.tests.client import SocialClient
 from django.test.client import Client
 from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext as _
 from django.utils import translation
 from django.test import TestCase
 from django.test.utils import override_settings
