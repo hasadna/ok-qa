@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-09 21:17+0300\n"
+"POT-Creation-Date: 2013-09-10 11:58+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -283,7 +283,7 @@ msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את
 msgid "This answer is deleted"
 msgstr "תשובה זו נמחקה"
 
-#: qa/templates/qa/_answer.html:28 qa/templates/qa/_question.html:41
+#: qa/templates/qa/_answer.html:28 qa/templates/qa/_question.html:43
 #: user/templates/user/public_profile.html:59
 msgid "before"
 msgstr "לפני"
@@ -300,15 +300,15 @@ msgstr "שאלה זו נמחקה"
 msgid "votes"
 msgstr "שואלים"
 
-#: qa/templates/qa/_question.html:32 qa/templates/qa/question_list.html:115
+#: qa/templates/qa/_question.html:34 qa/templates/qa/question_list.html:116
 msgid "Tags"
 msgstr "תגיות"
 
-#: qa/templates/qa/_question.html:43
+#: qa/templates/qa/_question.html:45
 msgid "from"
 msgstr "מ:"
 
-#: qa/templates/qa/_question.html:51 user/feeds.py:15
+#: qa/templates/qa/_question.html:53 user/feeds.py:15
 msgid "Answers by"
 msgstr "תשובות של"
 
@@ -425,50 +425,54 @@ msgstr "מתושבי הרשות"
 msgid "Questions"
 msgstr "שאלות"
 
-#: qa/templates/qa/question_list.html:32
+#: qa/templates/qa/question_list.html:31
+msgid "Council seats"
+msgstr "מושבים במועצה"
+
+#: qa/templates/qa/question_list.html:33
 msgid "Registered candidates"
 msgstr "מועמדים רשומים"
 
-#: qa/templates/qa/question_list.html:32
+#: qa/templates/qa/question_list.html:33
 msgid "population per candidate"
 msgstr "תושבים למועמד"
 
-#: qa/templates/qa/question_list.html:35
+#: qa/templates/qa/question_list.html:36
 msgid "Answer rate"
 msgstr "מענה"
 
-#: qa/templates/qa/question_list.html:55
+#: qa/templates/qa/question_list.html:56
 #: user/templates/candidate/candidate_list.html:8
 #, python-format
 msgid "Candidates in %(place)s "
 msgstr "מועמדים לבחירות המקומיות ב%(place)s"
 
-#: qa/templates/qa/question_list.html:62
+#: qa/templates/qa/question_list.html:63
 #: user/templates/candidate/candidate_list.html:25
 msgid "answers"
 msgstr "תשובות"
 
-#: qa/templates/qa/question_list.html:72
+#: qa/templates/qa/question_list.html:73
 msgid "In the tags:"
 msgstr "תחת התגיות:"
 
-#: qa/templates/qa/question_list.html:81
+#: qa/templates/qa/question_list.html:82
 msgid "Most Recent"
 msgstr "שאלות אחרונות"
 
-#: qa/templates/qa/question_list.html:84
+#: qa/templates/qa/question_list.html:85
 msgid "Top Questions"
 msgstr "שאלות מובילות"
 
-#: qa/templates/qa/question_list.html:88
+#: qa/templates/qa/question_list.html:89
 msgid "Flagged Questions"
 msgstr "שאלות מוסמנות"
 
-#: qa/templates/qa/question_list.html:107
+#: qa/templates/qa/question_list.html:108
 msgid "Ask Question"
 msgstr "העלו שאלה"
 
-#: qa/templates/qa/question_list.html:113
+#: qa/templates/qa/question_list.html:114
 msgid "Questions asked"
 msgstr "שאלות נשאלו"
 

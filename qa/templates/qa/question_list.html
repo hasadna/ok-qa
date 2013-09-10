@@ -28,6 +28,7 @@
             {% if question_count %}
               <p><strong>{{question_count}}</strong> {% trans "Questions" %}</p>
             {% endif %}
+            <p><strong><span id="councilSize"></span></strong> {% trans "Council seats" %}</p>
             {% if candidates_count %}
               <p><strong>{{candidates_count}}</strong> {% trans "Registered candidates" %} (<span id="candidateRate"></span> {% trans "population per candidate" %})</strong></p>
             {% endif %}
@@ -126,6 +127,7 @@
         
         function display_cbs(json) {
             totalpopulation = json["{{entity.code}}"].totalpopulation;
+            councilSize = json["{{entity.code}}"].numofcouncilman;
             usersPercent = Math.round(({{users_count}}*100)/ totalpopulation);
             
             $('#population').text(totalpopulation);
@@ -136,6 +138,7 @@
               candidateRate = '-';
             }
             $('#candidateRate').text(candidateRate);
+            $('#councilSize').text(councilSize);
           }
           $.getJSON('{% static "js/entity_stats.js" %}', display_cbs)
 
