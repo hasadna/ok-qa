@@ -69,6 +69,7 @@ def remove_candidate(request, candidate_id):
     if profile.is_editor and profile.locality == candidate_profile.locality:
         candidate_profile.is_candidate = False
         candidate_profile.save()
+        # TODO: notify the candidate by email that he's fired
     else:
         messages.error(request,
                        _('Sorry, you are not authorized to remove %s from the candidate list') \
