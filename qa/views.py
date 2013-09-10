@@ -59,7 +59,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         order_opt = False
         order = 'flags_count'
     else:
-        order_opt = request.GET.get('order', 'date')
+        order_opt = request.GET.get('order', 'rating')
         order = ORDER_OPTIONS[order_opt]
     questions = questions.order_by(order)
 
