@@ -24,9 +24,11 @@
         :&nbsp;
         <a href="{{ question.get_absolute_url }}" class="question-hyperlink" title="{{ question.subject }}">{{ question.subject }}</a>
       </h3>
+        {% if not questions %}
         <div class="preview">
             {{ question.content }}
         </div>
+        {% endif %}
         <div class="tags">
           {% for tag in question.tags.all %}
            {% if forloop.first %} {% trans "Tags"%} :{% endif %}
