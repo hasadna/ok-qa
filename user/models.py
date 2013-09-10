@@ -103,12 +103,8 @@ class Profile(models.Model):
     @property
     def following(self):
         return map(lambda x: x.actor,
-            Follow.objects.filter(
-                user=self.user,
-                content_type=ContentType.objects.\
-                              get_for_model(settings.AUTH_MODEL)).\
-                               prefetch_related('actor')
-            )
+            Follow.objects.filter(user=self.user).prefetch_related('actor')
+                  )
 
     def get_absolute_url(self):
         return reverse('public-profile', args=(self.user.username, ))

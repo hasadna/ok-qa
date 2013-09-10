@@ -7,9 +7,12 @@ from django.contrib.sites.managers import CurrentSiteManager
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 from taggit.models import TaggedItemBase
+from django.contrib.contenttypes.models import ContentType
+
 from slugify import slugify as unislugify
 from taggit_autosuggest.managers import TaggableManager
 from entities.models import Entity
+from actstream.models import Follow
 
 
 MAX_LENGTH_Q_SUBJECT = 140
@@ -31,7 +34,8 @@ class BaseModel(models.Model):
         self.is_deleted = True
         if commit:
             self.save()
-
+        content_type = ContentType.objects.get_for_model(self)
+        Follow.objects.filter(content_type=content_type, object_id=self.id).delete()
 
 class TaggedQuestion(TaggedItemBase):
     content_object = models.ForeignKey("Question")

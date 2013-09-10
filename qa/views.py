@@ -1,6 +1,5 @@
 import json
 
-from django import forms
 from django.db.models import Count
 from django.http import HttpResponse, HttpResponseForbidden
 from django.http import HttpResponseRedirect
@@ -19,12 +18,10 @@ from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
 
 from entities.models import Entity
-from chosen import forms as chosenforms
 from taggit.models import Tag
-from social_auth.models import UserSocialAuth
+from actstream import follow
 
 from user.models import Profile
-
 from qa.forms import AnswerForm, QuestionForm
 from qa.models import *
 from qa.tasks import publish_question_to_facebook, publish_upvote_to_facebook,\
@@ -182,6 +179,7 @@ def post_answer(request, q_id):
         answer = question.answers.get(author=request.user)
     except question.answers.model.DoesNotExist:
         answer = Answer(author=request.user, question=question)
+        follow(request.user, question)
 
     answer.content = request.POST.get("content")
 
@@ -223,6 +221,7 @@ def post_question(request, slug=None):
             form.save_m2m()
             if form.cleaned_data.get('facebook_publish', False):
                 publish_question_to_facebook.delay(question)
+            follow(request.user, question)
             return HttpResponseRedirect(question.get_absolute_url())
     else:
         if q:
@@ -252,6 +251,8 @@ def upvote_question(request, q_id):
             upvote = QuestionUpvote.objects.create(question=q, user=user)
             #TODO: use signals so the next line won't be necesary
             new_count = increase_rating(q)
+            follow(request.user, q)
+
             publish_upvote_to_facebook.delay(upvote)
             return HttpResponse(new_count)
     else:

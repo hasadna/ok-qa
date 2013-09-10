@@ -2,7 +2,8 @@ from __future__ import with_statement
 from fabric.api import run, sudo, cd, env, prefix, local
 from fabric.contrib.console import confirm
 
-env.hosts = ['oshot.hasadna.org.il']
+env.hosts = ['localshot.org.il']
+env.user = 'oshot'
 
 def deploy(branch='master'):
     local('git push origin ' + branch)

@@ -12,8 +12,10 @@ from django.views.generic import View
 from django.template.context import RequestContext
 from django.views.decorators.http import require_POST
 # Friends' apps
+from actstream import follow
 from actstream.models import Follow
 # Project's apps
+from qa.models import Question
 from .forms import *
 from .models import *
 from oshot.forms import EntityChoiceForm
@@ -51,7 +53,7 @@ def public_profile(request, username=None, pk=None):
     if profile:
         setattr(request, 'entity', profile.locality)
 
-    context = RequestContext(request, {"profile": profile,
+    context = RequestContext(request, {"friend": profile,
                                        "answers": answers,
                                        "questions": questions,
                                        })
@@ -67,6 +69,7 @@ def remove_candidate(request, candidate_id):
     if profile.is_editor and profile.locality == candidate_profile.locality:
         candidate_profile.is_candidate = False
         candidate_profile.save()
+        # TODO: notify the candidate by email that he's fired
     else:
         messages.error(request,
                        _('Sorry, you are not authorized to remove %s from the candidate list') \
@@ -116,7 +119,8 @@ def edit_profile(request):
         form = ProfileForm(request.user)
 
     setattr(request, 'entity', profile.locality)
-    context = RequestContext(request, {"form": form})
+
+    context = RequestContext(request, {"form": form, "following": profile.following})
     return render(request, "user/edit_profile.html", context)
 
 
@@ -170,6 +174,10 @@ def user_follow_unfollow(request):
     id - id of target object
 
     """
+    FOLLOW_TYPES = {
+        'question': Question,
+        'user': User,
+    }
     what = request.POST.get('what', None)
     target_id = request.POST.get('id', None)
     if not target_id:

@@ -20,12 +20,21 @@
                </a>
                {% endif %}
           </h1>
-          <div id="cbs_data" style="display:none;">
+          <div id="cbs_data">
             <p><strong><span id="population"></span></strong> {% trans "Population" %}</p>
-            <p><strong>{{users_count}}</strong> {% trans "Registered users" %} (<span id="usersPercent"></span> % {% trans "of Population" %})</p>
-            <p><strong>{{question_count}}</strong> {% trans "Questions" %}</p>
-            <p><strong>{{candidates_count}}</strong> {% trans "Registered candidates" %} (<span id="candidateRate"></span> {% trans "population per candidate" %})</strong></p>
-            <p><strong>{{answers_rate}}%</strong> {% trans "Answer rate" %}</p>
+            {% if users_count %}
+              <p><strong>{{users_count}}</strong> {% trans "Registered users" %} (<span id="usersPercent"></span> % {% trans "of Population" %})</p>
+            {% endif %}
+            {% if question_count %}
+              <p><strong>{{question_count}}</strong> {% trans "Questions" %}</p>
+            {% endif %}
+            <p><strong><span id="councilSize"></span></strong> {% trans "Council seats" %}</p>
+            {% if candidates_count %}
+              <p><strong>{{candidates_count}}</strong> {% trans "Registered candidates" %} (<span id="candidateRate"></span> {% trans "population per candidate" %})</strong></p>
+            {% endif %}
+            {% if answers_rate %}
+              <p><strong>{{answers_rate}}%</strong> {% trans "Answer rate" %}</p>
+            {% endif %}
           </div>
           {% if need_editors %}
             <div class="well flatblock">
@@ -112,24 +121,13 @@
 </div>
 {% endblock %}
   {% block extrascript %}
+  {% load staticfiles %}
     <script>
 
         
         function display_cbs(json) {
-          // for(i = 0; i < json.feed.entry.length; i++){
-          //     entry = json.feed.entry[i];
-          //     if (entry.gsx$code.$t == "{{entity.code}}") {
-          //       var h = "<p><strong>"+entry.gsx$totalpopulation.$t+"</strong>";
-          //           h+= "&nbsp;{% trans 'Total Population' %}</p>";
-          //           h+= "<p><strong>"+entry.gsx$socioeco.$t+"</strong>";
-          //           h+= "&nbsp;{% trans 'Socio Economic Grade' %}";
-          //           h+= "<p><strong>"+entry.gsx$numofcouncilman.$t+"</strong>";
-          //           h+= "&nbsp;{% trans 'Number of Councilman' %}";
-          //       $('#cbs_data').html(h);
-          //       return;
-          //     }
-          //   }
             totalpopulation = json["{{entity.code}}"].totalpopulation;
+            councilSize = json["{{entity.code}}"].numofcouncilman;
             usersPercent = Math.round(({{users_count}}*100)/ totalpopulation);
             
             $('#population').text(totalpopulation);
@@ -140,8 +138,9 @@
               candidateRate = '-';
             }
             $('#candidateRate').text(candidateRate);
+            $('#councilSize').text(councilSize);
           }
-          $.getJSON('/static/js/entity_stats.js', display_cbs)
+          $.getJSON('{% static "js/entity_stats.js" %}', display_cbs)
 
     </script>
    
