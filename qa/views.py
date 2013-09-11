@@ -70,7 +70,8 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         current_tags = None
 
     if entity:
-        tags = Tag.objects.filter(qa_taggedquestion_items__content_object__entity=entity).\
+        tags = Tag.objects.filter(qa_taggedquestion_items__content_object__entity=entity,\
+            qa_taggedquestion_items__content_object__is_deleted=False).\
                 annotate(num_times=Count('qa_taggedquestion_items')).\
                 order_by("slug")
         need_editors = Profile.objects.need_editors(entity)
