@@ -9,7 +9,7 @@
 
 {% block homeNav %}class="active"{% endblock %}
 {% block content %}
-{% cache 300 local_home entity.id request.page %}
+{% cache 300 local_home entity.id request.page request.user.username %}
 <div class="page-header">
   <div class="container">
     <div class="row">
