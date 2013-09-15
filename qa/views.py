@@ -1,3 +1,4 @@
+import os
 import json
 
 from django.db.models import Count
@@ -58,7 +59,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         order_opt = False
         order = 'flags_count'
     else:
-        order_opt = request.GET.get('order', 'date')
+        order_opt = request.GET.get('order', 'rating')
         order = ORDER_OPTIONS[order_opt]
     questions = questions.order_by(order)
 
@@ -69,7 +70,8 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         current_tags = None
 
     if entity:
-        tags = Tag.objects.filter(qa_taggedquestion_items__content_object__entity=entity).\
+        tags = Tag.objects.filter(qa_taggedquestion_items__content_object__entity=entity,\
+            qa_taggedquestion_items__content_object__is_deleted=False).\
                 annotate(num_times=Count('qa_taggedquestion_items')).\
                 order_by("slug")
         need_editors = Profile.objects.need_editors(entity)
@@ -93,6 +95,8 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     else:
         answers_rate = 0
 
+    #TODO: cache this!
+    cbs_stats = json.load(open(os.path.join(settings.STATICFILES_ROOT, 'js/entity_stats.js')))
     context.update({ 'tags': tags,
         'questions': questions,
         'by_date': order_opt == 'date',
@@ -106,6 +110,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'candidates_count': candidates_count,
         'users_count': users_count,
         'answers_rate': answers_rate,
+        'stats': cbs_stats[entity.code],
         })
 
     return render(request, template, context)

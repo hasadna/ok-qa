@@ -1,9 +1,7 @@
 from django.conf.urls import url, patterns
-from views import CandidateListListView, CandidateListDetailView
-from views import CandidateListCompareView
+from views import *
 
-polyorgurlpatterns = patterns('polyorg.views',
-        url(r'list/$', CandidateListListView.as_view(), name='candidate-list-list'),
-        url(r'list/(?P<pk>\d+)/$', CandidateListDetailView.as_view(), name='candidate-list-detail'),
-        url(r'compare/$', CandidateListCompareView.as_view(), name='candidate-list-compare'),
+urlpatterns = patterns('polyorg.views',
+        url(r'list/$', 'candiatelists_list', name='candidate-list-list'),
+        url(r'list/create/$', 'candiatelist_create', name='candidate-list-create')
     )

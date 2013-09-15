@@ -46,10 +46,10 @@ class QuestionTest(TestCase):
         domain = Domain.objects.create(name="test")
         division = Division.objects.create(name="localities", domain=domain, index="3")
         self.home = Entity.objects.create(name="earth", division=division,
-                                            id=settings.QNA_DEFAULT_ENTITY_ID)
+                                            id=settings.QNA_DEFAULT_ENTITY_ID, code="1111")
         self.away = Entity.objects.create(name="the moon", division=division,
-                                            id=9999)
-        self.common_user = User.objects.create_user("commoner", 
+                                            id=9999, code="41")
+        self.common_user = User.objects.create_user("commoner",
                                 "commmon@example.com", "pass")
         self.common_user.profile.locality = self.home
         self.common_user.profile.save()

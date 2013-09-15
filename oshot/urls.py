@@ -26,6 +26,7 @@ urlpatterns = patterns('',
     (r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),
     (r'^avatar/', include('avatar.urls')),
     (r'^s/', include('actstream.urls')),
+    (r'^po/', include('polyorg.urls')),
     # flat pages to help with static pages
     # user.url has to be last as it handles /[username]
     url(r'', include('user.urls')),

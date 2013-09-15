@@ -1,5 +1,6 @@
 {% extends "qa/qa_base.html" %}
 {% load i18n %}
+{% load cache %}
 {% load pagination_tags %}
 {% load flatblock_tags %}
 {% load avatar_tags %}
@@ -8,6 +9,7 @@
 
 {% block homeNav %}class="active"{% endblock %}
 {% block content %}
+{% cache 300 local_home entity.id request.page request.user.username %}
 <div class="page-header">
   <div class="container">
     <div class="row">
@@ -22,13 +24,13 @@
           </h1>
           <div id="cbs_data">
             <p><strong><span id="population"></span></strong> {% trans "Population" %}</p>
+            <p><strong><span id="councilSize"></span></strong> {% trans "Council seats" %}</p>
             {% if users_count %}
-              <p><strong>{{users_count}}</strong> {% trans "Registered users" %} (<span id="usersPercent"></span> % {% trans "of Population" %})</p>
+              <p><strong>{{users_count}}</strong> {% trans "Registered users" %} </p>
             {% endif %}
             {% if question_count %}
               <p><strong>{{question_count}}</strong> {% trans "Questions" %}</p>
             {% endif %}
-            <p><strong><span id="councilSize"></span></strong> {% trans "Council seats" %}</p>
             {% if candidates_count %}
               <p><strong>{{candidates_count}}</strong> {% trans "Registered candidates" %} (<span id="candidateRate"></span> {% trans "population per candidate" %})</strong></p>
             {% endif %}
@@ -66,6 +68,7 @@
   {% endfor %}
 </div>
 {% endif %}
+{% endcache %}
 <div class="row questions-wrapper">
   <div class="span9 questions">
     {% if current_tags %}
@@ -78,11 +81,11 @@
     {% endif %}
     {% if questions.count > 3 or only_flagged %}
     <ul class="nav nav-tabs">
-      <li {% if by_date %}class="active"{% endif %}>
-        <a href=".?order=date">{% trans "Most Recent" %}</a>
-      </li>
       <li {% if by_rating %}class="active"{% endif %}>
         <a href=".?order=rating">{% trans "Top Questions" %}</a>
+      </li>
+      <li {% if by_date %}class="active"{% endif %}>
+        <a href=".?order=date">{% trans "Most Recent" %}</a>
       </li>
       {% if user.is_staff or user.profile.is_editor %}
         <li {% if only_flagged %}class="active"{% endif %}>
@@ -109,10 +112,6 @@
       </a>
     </div>
     {% endif %}
-    <div class="module" id="questions-count">
-        <div class="summarycount al">{{question_count}}</div>
-        <p>{% trans "Questions asked" %}</p>
-    </div>
     <h2>{% trans "Tags" %}</h2>
     <ul class="unstyled">
       {% include "_tags.html" %}
@@ -124,24 +123,18 @@
   {% load staticfiles %}
     <script>
 
-        
-        function display_cbs(json) {
-            totalpopulation = json["{{entity.code}}"].totalpopulation;
-            councilSize = json["{{entity.code}}"].numofcouncilman;
-            usersPercent = Math.round(({{users_count}}*100)/ totalpopulation);
-            
-            $('#population').text(totalpopulation);
-            $('#usersPercent').text(usersPercent);
-            if ({{candidates_count}}){
-              candidateRate = Math.round(totalpopulation / {{candidates_count}});
-            } else {
-              candidateRate = '-';
-            }
-            $('#candidateRate').text(candidateRate);
-            $('#councilSize').text(councilSize);
+        $(document).ready(function () {
+          var totalpopulation = "{{stats.totalpopulation}}";
+          var councilSize = "{{stats.numofcouncilman}}";
+          $('#population').text(totalpopulation);
+          if ({{candidates_count}}){
+            candidateRate = Math.round(totalpopulation / {{candidates_count}});
+          } else {
+            candidateRate = '-';
           }
-          $.getJSON('{% static "js/entity_stats.js" %}', display_cbs)
+          $('#candidateRate').text(candidateRate);
+          $('#councilSize').text(councilSize);
+        });
 
     </script>
-   
   {% endblock %}

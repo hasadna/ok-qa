@@ -132,6 +132,16 @@
     {% block extrascript %}
         <script>
             $(document).ready(function () {
+                {% if question.is_deleted %}
+                    var buttons = $(".btn");
+                    buttons.attr('disabled', true);
+                    buttons.removeAttr('data-toggle');
+                    buttons.click(function (e) {
+                        e.preventDefault();
+                    });
+                    return;
+                {% endif %}
+
                 $("#upvote-question").ajaxError(function (evt, jqXHR, setting, err) {
                     $("#messages").html('<div class="alert" class="error">' +
                             '<button type="button" class="close" data-dismiss="alert">×</button>' +
