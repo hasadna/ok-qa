@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-14 20:57+0300\n"
+"POT-Creation-Date: 2013-09-15 13:07+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -149,7 +149,7 @@ msgstr ""
 msgid "%(user)s in %(party)s"
 msgstr ""
 
-#: polyorg/views.py:138 polyorg/views.py:146
+#: polyorg/views.py:13 polyorg/views.py:21
 msgid "Only editors have access to this page."
 msgstr "עמוד זה נגיש רק לעורכים."
 
@@ -504,65 +504,69 @@ msgstr "ערוך פרופיל"
 msgid "admin"
 msgstr "ממשק ניהול"
 
-#: templates/base.html:73
+#: templates/base.html:72
+msgid "manage candidate lists"
+msgstr "ניהול רשימות מועמדים"
+
+#: templates/base.html:76
 msgid "logout"
 msgstr "התנתקו"
 
-#: templates/base.html:79 templates/registration/activation_complete.html:7
+#: templates/base.html:82 templates/registration/activation_complete.html:7
 #: templates/registration/login.html:7
 #: templates/registration/password_reset_complete.html:7
 msgid "Login"
 msgstr "היכנסו"
 
-#: templates/base.html:102
+#: templates/base.html:105
 msgid "Search in"
 msgstr "חיפוש ב"
 
-#: templates/base.html:116
+#: templates/base.html:119
 msgid "About"
 msgstr "אודות"
 
-#: templates/base.html:118
+#: templates/base.html:121
 msgid "Back to top"
 msgstr "בחזרה לראש העמוד"
 
-#: templates/base.html:121
+#: templates/base.html:124
 msgid "Content is licensed CC-BY. Learn more on this open source project "
 msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY והמטבח שלנו פתוח ושקוף - "
 
-#: templates/base.html:123 user/templates/candidate/candidate_list.html:73
+#: templates/base.html:126 user/templates/candidate/candidate_list.html:73
 msgid "here"
 msgstr "כאן"
 
-#: templates/base.html:128
+#: templates/base.html:131
 msgid "The Public Knowledge Workshop"
 msgstr "הסדנא לידע ציבורי"
 
-#: templates/base.html:129
+#: templates/base.html:132
 msgid "together with"
 msgstr "בשיתוף עם"
 
-#: templates/base.html:129
+#: templates/base.html:132
 msgid "The Shaharit Institute"
 msgstr "מכון שחרית"
 
-#: templates/base.html:130
+#: templates/base.html:133
 msgid "Joint Israel - Institute for Leadership and Government"
 msgstr "המכון למנהיגות וממשל - גו'ינט ישראל"
 
-#: templates/base.html:131
+#: templates/base.html:134
 msgid "and"
 msgstr "ו"
 
-#: templates/base.html:131
+#: templates/base.html:134
 msgid "NUIS"
 msgstr "התאחדות הסטודנטים"
 
-#: templates/base.html:155
+#: templates/base.html:158
 msgid "read more"
 msgstr "קרא עוד"
 
-#: templates/base.html:159
+#: templates/base.html:162
 msgid "read less"
 msgstr "קרא פחות"
 

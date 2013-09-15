@@ -68,6 +68,9 @@
                 {% if user.is_staff %}
                     <li><a href="/admin/">{% trans 'admin' %}</a></li>
                 {% endif %}
+                {% if user.profile.is_editor %}
+                    <li><a href="{% url 'candidate-list-list' %}">{% trans 'manage candidate lists' %}</a></li>
+                {% endif %}
                 <form class="form-inline" method="post" action="{% url 'logout' %}">
                   {% csrf_token %}
                   <li><a href="javascript:;" class="submit-link">{% trans 'logout' %}</a></li>
