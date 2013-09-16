@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block search %}
+{% endblock %}
+{% block content %}
+{% load i18n %}
+<h2>{% trans 'Candidates in list'%} {{candidatelist}} -
+{{candidatelist.ballot}} / {{candidatelist.entity}}</h2>
+<ul>
+    {% for candidate in candidatelist.candidates.all %}
+    <li>{{candidate}}</li>
+    {% endfor %}
+</ul>
+<a href="{% url 'candidate-create' candidatelist.id %}">{% trans "Add candidate" %}</a>
+{% endblock %}
