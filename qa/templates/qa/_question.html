@@ -33,7 +33,7 @@
           {% for tag in question.tags.all %}
            {% if forloop.first %} {% trans "Tags"%} :{% endif %}
             {% if entity %}
-            <a href="{% url 'show_tags' question.entity.slug tag.slug %}">{{tag}}</a>
+            <a href="{% url 'show_tags' question.entity.id tag.slug %}">{{tag}}</a>
             {% else %}
             <a href="{% url 'show_tags' tag.slug %}">{{tag}}</a>
             {% endif %}
@@ -43,7 +43,7 @@
             <span title="{{ question.created_at }}" class="relativetime">{% trans "before" %} {{ question.created_at|timesince }}</span>
             {% if not entity %}
               {% trans "from"%}
-              <a href="{% url "local_home" question.entity.slug %}">{{ question.entity }}</a>
+              <a href="{% url "local_home" question.entity.id %}">{{ question.entity }}</a>
             {% endif %}
         </div>
         {% if question.answers.count and show_responders %}       

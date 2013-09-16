@@ -42,10 +42,13 @@ class QuestionTest(TestCase):
         translation.deactivate_all()
 
     def test_home_redirect(self):
+        """
+        According to issue #263, entity urls should only use id's.
+        """
         c = Client()
         response = c.get(reverse('local_home'))
         self.assertRedirects(response, reverse('local_home',
-                                   kwargs={'entity_slug': self.entity.slug}))
+                                   kwargs={'entity_id': self.entity.id}))
 
     def tearDown(self):
         self.q.delete()
