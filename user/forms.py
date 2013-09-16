@@ -22,7 +22,7 @@ class ProfileForm(forms.Form):
 
     locality = chosenforms.ChosenModelChoiceField(
                 queryset=Entity.objects.filter(division__index=3),
-                label=_('Locality'), required=False)
+                label=_('Locality'), required=True)
     url = forms.URLField(required=False ,label=_(u'home page'))
     bio = forms.CharField(required=False,
                                   label=_('Tell us and other users bit about yourself'),
