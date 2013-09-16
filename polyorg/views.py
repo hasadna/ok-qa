@@ -19,14 +19,14 @@ def candiatelists_list(request):
 def candiatelist_create(request):
     if not request.user.profile.is_editor:
         return HttpResponseForbidden(_("Only editors have access to this page."))
-
+    
+    entity = request.user.profile.locality
     if request.method == "POST":
         form = CandidateListForm(request.POST)
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('candidate-list-list'))
     else:
-        entity = request.user.profile.locality
         form = CandidateListForm(initial={'entity': entity})
 
     return render(request, "polyorg/candidatelist_form.html", {'form': form, 'entity': entity})
