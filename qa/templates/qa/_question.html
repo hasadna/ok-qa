@@ -40,7 +40,6 @@
           {% endfor %}
         </div>
         <div class="started">
-            <span title="{{ question.created_at }}" class="relativetime">{% trans "before" %} {{ question.created_at|timesince }}</span>
             {% if not entity %}
               {% trans "from"%}
               <a href="{% url "local_home" question.entity.slug %}">{{ question.entity }}</a>
