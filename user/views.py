@@ -210,3 +210,14 @@ def user_follow_unfollow(request):
     }
     return HttpResponse(json.dumps(res), content_type='application/json')
 
+@login_required
+def editor_list(request):
+
+	if not request.user.is_superuser:
+		return HttpResponseForbidden(_('Only candidate can edit their info'))
+
+#    logged_in = request.user.is_authenticated()
+
+	editors = Profile.objects.filter(is_editor=True)
+	context = {'editors': editors}
+	return render(request, 'user/editor_list.html', context)
