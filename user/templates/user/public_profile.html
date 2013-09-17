@@ -18,9 +18,11 @@
             <img src="{{STATIC_URL}}img/rss.png" width="25" />
           </a>
       </h1>
+      {% if friend.locality %}
       <h2>
-        <a href="{% url "local_home" entity.id %}" alt="{{entity}}">{{entity}}</a>
+        <a href="{% url 'local_home' friend.locality.id %}" alt="{{friend.locality}}">{{friend.locality}}</a>
       </h2>
+      {% endif %}
       <ul class="links unstyled">
         {% object_links friend %}
       </ul>
