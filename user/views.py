@@ -11,6 +11,7 @@ from django.views.generic.edit import FormMixin, TemplateResponseMixin
 from django.views.generic import View
 from django.template.context import RequestContext
 from django.views.decorators.http import require_POST
+from django.db.models import Count
 # Friends' apps
 from actstream import follow
 from actstream.models import Follow
@@ -225,3 +226,14 @@ def editor_list(request):
     editors = Profile.objects.filter(is_editor=True).order_by('locality__name')
     context = {'editors': editors}
     return render(request, 'user/editor_list.html', context)
+
+@login_required
+def entity_stats(request):
+
+    if not request.user.is_superuser:
+        return HttpResponseForbidden(_('Only superusers have access to this page.'))
+
+    entities = Entity.objects.filter(division__index=3)
+    entities = entities.annotate(Count('profile__is_editor'))
+    return render(request, 'user/entity_stats.html', {'entities': entities})
+
