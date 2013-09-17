@@ -2,6 +2,7 @@ from django.utils.translation import ugettext as _
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render
+from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 from polyorg.models import CandidateList, Candidate
@@ -53,6 +54,9 @@ def candiate_create(request,candidatelist_id):
                 kwargs={'candidatelist_id': candidatelist_id}))
     else:
         form = CandidateForm(initial={'candidate_list': candidatelist})
+        form.fields["user"].queryset = \
+            User.objects.filter(profile__locality=candidatelist.entity).\
+            exclude(candidate__candidate_list__id=candidatelist_id)
 
     return render(request, "polyorg/candidate_form.html", \
         {'form': form, 'candidatelist': candidatelist})
