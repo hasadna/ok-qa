@@ -20,6 +20,7 @@ from .forms import *
 from .models import *
 from oshot.forms import EntityChoiceForm
 
+
 def candidate_list(request, entity_slug=None, entity_id=None):
     """
     list candidates ordered by number of answers
@@ -36,8 +37,8 @@ def candidate_list(request, entity_slug=None, entity_id=None):
 
     candidates = Profile.objects.get_candidates(entity).order_by('?')
     context = RequestContext(request, {'entity': entity,
-                              'candidates': candidates,
-                              })
+                                       'candidates': candidates,
+                                       })
 
     return render(request, "candidate/candidate_list.html", context)
 
@@ -61,6 +62,7 @@ def public_profile(request, username=None, pk=None):
     # todo: support members as well as candidates
     return render(request, "user/public_profile.html", context)
 
+
 @login_required
 @require_POST
 def remove_candidate(request, candidate_id):
@@ -72,7 +74,7 @@ def remove_candidate(request, candidate_id):
         # TODO: notify the candidate by email that he's fired
     else:
         messages.error(request,
-                       _('Sorry, you are not authorized to remove %s from the candidate list') \
+                       _('Sorry, you are not authorized to remove %s from the candidate list')
                        % profile.user.get_full_name())
 
     return HttpResponseRedirect(request.POST.get("next", reverse("candidate_list", args=(profile.locality.slug,))))
@@ -108,7 +110,7 @@ def edit_profile(request):
         if form.is_valid():
             user = form.save()
 
-            local_home =profile.get_absolute_url()
+            local_home = profile.get_absolute_url()
             next = request.POST.get('next', local_home)
             if next == '/':
                 next = local_home
@@ -120,7 +122,8 @@ def edit_profile(request):
 
     setattr(request, 'entity', profile.locality)
 
-    context = RequestContext(request, {"form": form, "following": profile.following})
+    context = RequestContext(request, {"form":
+                             form, "following": profile.following})
     return render(request, "user/edit_profile.html", context)
 
 
@@ -155,7 +158,8 @@ class InvitationView(View, FormMixin, TemplateResponseMixin):
         form = form_class(user, data=request.POST)
         if form.is_valid():
             user = RegistrationProfile.objects.activate_user(invitation_key)
-            messages.success(request, _('Your profile has been updated, please login.'))
+            messages.success(
+                request, _('Your profile has been updated, please login.'))
             return self.form_valid(form)
         else:
             return self.form_invalid(form)
@@ -163,6 +167,7 @@ class InvitationView(View, FormMixin, TemplateResponseMixin):
     def form_valid(self, form):
         form.save()
         return HttpResponseRedirect(reverse('login'))
+
 
 @login_required
 @require_POST
@@ -210,14 +215,13 @@ def user_follow_unfollow(request):
     }
     return HttpResponse(json.dumps(res), content_type='application/json')
 
+
 @login_required
 def editor_list(request):
 
-	if not request.user.is_superuser:
-		return HttpResponseForbidden(_('Only candidate can edit their info'))
+    if not request.user.is_superuser:
+        return HttpResponseForbidden(_('Only superusers have access to this page.'))
 
-#    logged_in = request.user.is_authenticated()
-
-	editors = Profile.objects.filter(is_editor=True)
-	context = {'editors': editors}
-	return render(request, 'user/editor_list.html', context)
+    editors = Profile.objects.filter(is_editor=True).order_by('locality__name')
+    context = {'editors': editors}
+    return render(request, 'user/editor_list.html', context)
