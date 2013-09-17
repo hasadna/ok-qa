@@ -83,7 +83,7 @@ class Question(BaseModel):
 
     def get_absolute_url(self):
         return reverse('question_detail', kwargs=dict(
-                            entity_slug=self.entity.slug,
+                            entity_id=self.entity.id,
                             slug=self.unislug,
                             )
                       )

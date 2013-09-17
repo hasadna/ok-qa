@@ -19,12 +19,13 @@ def forms(request):
         url_name = request.resolver_match.url_name
         # many ways to pass an entity
         entity = getattr(request, 'entity', None)
+        print kwargs
         if entity:
             pass
-        elif 'entity_slug' in kwargs:
-            entity = get_object_or_404(Entity, slug=kwargs['entity_slug'])
         elif 'entity_id' in kwargs:
             entity = get_object_or_404(Entity, pk=kwargs['entity_id'])
+        elif 'entity_slug' in kwargs:
+            entity = get_object_or_404(Entity, slug=kwargs['entity_slug'])
         elif request.user.is_authenticated():
             entity = request.user.profile.locality
 
