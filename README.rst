@@ -22,7 +22,7 @@ Quick Start - Linux
     $ cd open-shot
     $ pip install -r requirements.txt
     $ python manage.py test
-    $ python manage.py syncdb --migrate
+    $ python manage.py syncdb --migrate --noinput
     $ python manage.py runserver
 
 You should now be able to access the site at http://localhost:8000

@@ -26,5 +26,5 @@ class DefaultEntity(object):
 
             if entity:
                 return HttpResponseRedirect(reverse('local_home', kwargs={
-                                'entity_slug': entity.slug}))
+                                'entity_id': entity.id}))
 

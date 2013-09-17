@@ -25,6 +25,8 @@ def forms(request):
             entity = get_object_or_404(Entity, slug=kwargs['entity_slug'])
         elif 'entity_id' in kwargs:
             entity = get_object_or_404(Entity, pk=kwargs['entity_id'])
+        elif request.user.is_authenticated():
+            entity = request.user.profile.locality
 
         context['entity'] = entity
         # where the magic happens: set local or global scope urls

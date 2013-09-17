@@ -107,9 +107,9 @@ class QuestionTest(TestCase):
 
     def test_local_home(self):
         c = Client()
-
+        # According to issue #263, entity urls should only use id's.
         default_home = reverse('local_home',
-                        kwargs={'entity_slug': self.home.slug})
+                        kwargs={'entity_id': self.home.id})
         response = c.get(default_home)
         res2 = c.get(reverse('local_home'))
 

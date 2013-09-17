@@ -1,7 +1,7 @@
 {% for tag in tags %}
   <li>
   {% if entity %}
-    <a class="btn" href="{% url "show_tags" entity.slug tag %}">{{tag}}</a>
+    <a class="btn" href="{% url "show_tags" entity.id tag %}">{{tag}}</a>
   {% else %}
     <a class="btn" href="{% url "show_tags" tag %}">{{tag}}</a>
   {% endif %}
