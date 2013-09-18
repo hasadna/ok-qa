@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block search %}
+{% endblock %}
+{% block content %}
+{% load i18n avatar_tags %}
+<h2>{% trans 'Candidates in list'%} {{candidatelist}} -
+{{candidatelist.ballot}} / {{candidatelist.entity}}</h2>
+<div class="row">
+  {% for candidate in candidatelist.candidates.all %}
+      <div onclick="window.location.href='{{ candidate.get_absolute_url }}'"
+      class="candidate-avatar">
+        {% avatar candidate 75 %}
+        <p>{{ candidate.get_full_name|default:candidate.username}}</p>
+      </div>
+  {% endfor %}
+</div>
+<a href="{% url 'candidate-create' candidatelist.id %}">{% trans "Add candidate" %}</a>
+{% endblock %}

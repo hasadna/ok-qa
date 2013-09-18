@@ -132,6 +132,14 @@ msgstr "חשבון טוויטר"
 msgid "Platform"
 msgstr "מצע"
 
+#: polyorg/models.py:70
+msgid "candidate list"
+msgstr "רשימת מועמדים"
+
+#: polyorg/models.py:71
+msgid "user"
+msgstr "שם משתמש"
+
 #: polyorg/models.py:72
 msgid "Ordinal"
 msgstr "מיקום"
@@ -144,22 +152,31 @@ msgstr "נבחר על ידי (מספר)"
 msgid "How many people voted for this candidate"
 msgstr ""
 
-#: polyorg/models.py:83
-#, python-format
-msgid "%(user)s in %(party)s"
-msgstr ""
-
-#: polyorg/views.py:13 polyorg/views.py:21
+#: polyorg/views.py:13 polyorg/views.py:21 polyorg/views.py:37
+#: polyorg/views.py:45
 msgid "Only editors have access to this page."
 msgstr "עמוד זה נגיש רק לעורכים."
+
+#: polyorg/templates/polyorg/candidate_form.html:6
+msgid "add candidate to list"
+msgstr "הוספת מועמד לרשימה"
+
+#: polyorg/templates/polyorg/candidate_form.html:10
+#: polyorg/templates/polyorg/candidatelist_form.html:9
+msgid "Create"
+msgstr "יצירה"
+
+#: polyorg/templates/polyorg/candidate_list.html:6
+msgid "Candidates in list"
+msgstr "מועמדים ברשימה"
+
+#: polyorg/templates/polyorg/candidate_list.html:13
+msgid "Add candidate"
+msgstr "הוספת מועמד"
 
 #: polyorg/templates/polyorg/candidatelist_form.html:6
 msgid "add list to "
 msgstr "הוספת רשימה ל"
-
-#: polyorg/templates/polyorg/candidatelist_form.html:9
-msgid "Create"
-msgstr "יצירה"
 
 #: polyorg/templates/polyorg/candidatelist_list.html:6
 msgid "Candidate lists in "
@@ -3863,9 +3880,6 @@ msgstr "שאלות שפירסם/ה"
 #~ msgid "A user with that username already exists."
 #~ msgstr "משתמש בשם זה כבר קיים"
 
-#~ msgid "user"
-#~ msgstr "שם משתמש"
-
 #~ msgid "activation key"
 #~ msgstr "מפתח הפעלה"
 
@@ -4162,10 +4176,6 @@ msgstr "שאלות שפירסם/ה"
 #, fuzzy
 #~ msgid "Date"
 #~ msgstr "תאריך:"
-
-#, fuzzy
-#~ msgid "User"
-#~ msgstr "משתמשים"
 
 #, fuzzy
 #~ msgid "File"

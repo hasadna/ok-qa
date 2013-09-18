@@ -1,0 +1,21 @@
+<table dir='rtl'>
+    <thead>
+      <th>שם הרשות</th>
+      <th>מספר משתמשים</th>
+      <th>מספר עורכים</th>
+      <th>מספר שאלות</th>
+    </thead>
+    <tbody>
+      {% for entity in entities %}
+      <tr>
+        {% if entity.profile_set.count > 0 %}
+        <td>{{ entity.name_he }}</td>
+        <td>{{ entity.profile_set.count }}</td>
+        <td>{{ entity.profile__is_editor__count }}</td>
+        <td>{{ entity.questions.count }}</td>
+        {% endif %}
+      </tr>
+      {% endfor %}
+    </tbody>
+    </table>
+    </ul>

@@ -26,5 +26,6 @@ urlpatterns = patterns('',
         name='remove_candidate'
     ),
     url(r'^u/editor_lists/$', editor_list, name='editor_list'),
+    url(r'^u/entity_stats/$', entity_stats, name='entity_stats'),
     url(r'^(?P<username>.+)/$', public_profile, name="public-profile"),
 )

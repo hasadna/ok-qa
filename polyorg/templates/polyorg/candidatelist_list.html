@@ -3,10 +3,10 @@
 {% endblock %}
 {% block content %}
 {% load i18n %}
-<h2>{% trans 'Candidate lists in '%}{{entity.name}}</h2>
+<h2>{% trans 'Candidate lists in '%}{{entity}}</h2>
 <ul>
     {% for list in candidatelists %}
-    <li>{{list.name}} - {{list.ballot}}</li>
+    <li><a href="{% url 'candidate-list' list.id %}">{{list}} - {{list.ballot}}</a></li>
     {% endfor %}
 </ul>
 <a href="{% url 'candidate-list-create' %}">{% trans "Add list" %}</a>

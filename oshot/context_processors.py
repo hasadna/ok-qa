@@ -21,10 +21,10 @@ def forms(request):
         entity = getattr(request, 'entity', None)
         if entity:
             pass
-        elif 'entity_slug' in kwargs:
-            entity = get_object_or_404(Entity, slug=kwargs['entity_slug'])
         elif 'entity_id' in kwargs:
             entity = get_object_or_404(Entity, pk=kwargs['entity_id'])
+        elif 'entity_slug' in kwargs:
+            entity = get_object_or_404(Entity, slug=kwargs['entity_slug'])
         elif request.user.is_authenticated():
             entity = request.user.profile.locality
 
@@ -32,8 +32,8 @@ def forms(request):
         # where the magic happens: set local or global scope urls
         if entity:
             initial = {'entity': entity.id}
-            context['questions_url'] = reverse("local_home", args=(entity.slug,))
-            context['candidates_url'] = reverse("candidate_list", args=(entity.slug,))
+            context['questions_url'] = reverse("local_home", args=(entity.id,))
+            context['candidates_url'] = reverse("candidate_list", args=(entity.id,))
         else:
             initial = {}
             context['questions_url'] = reverse("local_home")
