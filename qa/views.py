@@ -126,7 +126,10 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
     slug_field = 'unislug'
 
     def get_queryset(self, queryset=None):
-        return Question.objects.filter(entity__slug=self.kwargs['entity_slug'])
+        if 'entity_id' in self.kwargs:
+            return Question.objects.filter(entity__id=self.kwargs['entity_id'])
+        elif 'entity_slug' in self.kwargs:
+            return Question.objects.filter(entity__slug=self.kwargs['entity_slug'])
 
     def get_context_data(self, **kwargs):
         user = self.request.user

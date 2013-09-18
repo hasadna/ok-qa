@@ -19,7 +19,6 @@ def forms(request):
         url_name = request.resolver_match.url_name
         # many ways to pass an entity
         entity = getattr(request, 'entity', None)
-        print kwargs
         if entity:
             pass
         elif 'entity_id' in kwargs:
@@ -33,8 +32,8 @@ def forms(request):
         # where the magic happens: set local or global scope urls
         if entity:
             initial = {'entity': entity.id}
-            context['questions_url'] = reverse("local_home", args=(entity.slug,))
-            context['candidates_url'] = reverse("candidate_list", args=(entity.slug,))
+            context['questions_url'] = reverse("local_home", args=(entity.id,))
+            context['candidates_url'] = reverse("candidate_list", args=(entity.id,))
         else:
             initial = {}
             context['questions_url'] = reverse("local_home")
