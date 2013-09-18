@@ -4,7 +4,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class CandidateList(models.Model):
     candidates = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, null=True, through='Candidate')
-    name = models.CharField(_('List Name'), max_length = 80)
+    name = models.CharField(_('List Name'), max_length=80)
     ballot = models.CharField(_('Ballot'), max_length=4)
     number_of_seats = models.IntegerField(blank=True, null=True)
     surplus_partner = models.ForeignKey('self', blank=True, null=True,
@@ -67,11 +67,11 @@ class CandidateManager(models.Manager):
 
 
 class Candidate(models.Model):
-    candidate_list = models.ForeignKey(CandidateList)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    ordinal = models.IntegerField(_('Ordinal'))
+    candidate_list = models.ForeignKey(CandidateList, verbose_name=_("candidate list"))
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_("user"))
+    ordinal = models.IntegerField(_('Ordinal'), blank=True, null=True)
     party = models.ForeignKey(Party, blank=True, null=True)
-    votes = models.IntegerField(_('Elected by #'), null=True, blank=True, help_text=_('How many people voted for this candidate'))
+    votes = models.IntegerField(_('Elected by #'), blank=True, null=True, help_text=_('How many people voted for this candidate'))
     status = models.CharField(max_length=1, choices=CANDIDATE_STATUS, default='S')
 
     objects = CandidateManager()
@@ -80,4 +80,4 @@ class Candidate(models.Model):
         ordering = ('ordinal',)
 
     def __unicode__(self):
-        return _("%(user)s in %(party)s") % self
+        return user

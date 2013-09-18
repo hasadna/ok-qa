@@ -3,7 +3,8 @@
 {% endblock %}
 {% block content %}
 {% load i18n %}
-<h2>{% trans 'add list to ' %}{{entity}}</h2>
+<h2>{% trans 'add candidate to list' %} {{candidatelist}} -
+{{candidatelist.ballot}} / {{candidatelist.entity}}</h2>
 <form action="" method="post" dir='rtl'>{% csrf_token %}
     {{ form.as_p }}
     <input type="submit" value="{% trans 'Create' %}" />
