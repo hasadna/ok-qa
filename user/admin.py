@@ -33,6 +33,7 @@ class UnicodeUserAdmin(UserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
     inlines = [ProfileAdmin, ]
+    list_filter = ('is_superuser', 'is_staff', 'profile__is_editor', 'profile__is_candidate', 'is_active', 'date_joined')
 
 admin.site.unregister(User)
 admin.site.register(User, UnicodeUserAdmin)
