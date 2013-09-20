@@ -33,7 +33,7 @@
                       {% trans "Edit Question" %}
                     </a>
                 {% endif %}
-              {% else %}
+              {% elif user.profile.locality == question.entity %}
                   <a class="btn btn-primary" id="upvote-question" href="#">
                       {% trans "I Want an Answer" %}
                   </a>
