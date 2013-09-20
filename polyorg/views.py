@@ -9,7 +9,7 @@ from polyorg.models import CandidateList, Candidate
 from polyorg.forms import CandidateListForm, CandidateForm
 
 @login_required
-def candiatelists_list(request):
+def candidatelists_list(request):
     if not request.user.profile.is_editor:
         return HttpResponseForbidden(_("Only editors have access to this page."))
     entity = request.user.profile.locality
@@ -17,7 +17,7 @@ def candiatelists_list(request):
     return render(request, 'polyorg/candidatelist_list.html',{'candidatelists': candidatelists, 'entity': entity})
 
 @login_required
-def candiatelist_create(request):
+def candidatelist_create(request):
     if not request.user.profile.is_editor:
         return HttpResponseForbidden(_("Only editors have access to this page."))
 
@@ -33,7 +33,7 @@ def candiatelist_create(request):
     return render(request, "polyorg/candidatelist_form.html", {'form': form, 'entity': entity})
 
 @login_required
-def candiates_list(request,candidatelist_id):
+def candidates_list(request,candidatelist_id):
     if not request.user.profile.is_editor:
         return HttpResponseForbidden(_("Only editors have access to this page."))
     candidatelist = CandidateList.objects.get(id=candidatelist_id)
@@ -41,7 +41,7 @@ def candiates_list(request,candidatelist_id):
         {'candidatelist': candidatelist})
 
 @login_required
-def candiate_create(request,candidatelist_id):
+def candidate_create(request,candidatelist_id):
     if not request.user.profile.is_editor:
         return HttpResponseForbidden(_("Only editors have access to this page."))
 
@@ -49,6 +49,10 @@ def candiate_create(request,candidatelist_id):
     if request.method == "POST":
         form = CandidateForm(request.POST)
         if form.is_valid():
+            profile = form.cleaned_data['user'].profile
+            profile.is_candidate = True
+            profile.verification = u'V'
+            profile.save()
             form.save()
             return HttpResponseRedirect(reverse('candidate-list', \
                 kwargs={'candidatelist_id': candidatelist_id}))
@@ -56,7 +60,7 @@ def candiate_create(request,candidatelist_id):
         form = CandidateForm(initial={'candidate_list': candidatelist})
         form.fields["user"].queryset = \
             User.objects.filter(profile__locality=candidatelist.entity).\
-            exclude(candidate__candidate_list__id=candidatelist_id)
+            exclude(profile__is_candidate=True)
 
     return render(request, "polyorg/candidate_form.html", \
         {'form': form, 'candidatelist': candidatelist})

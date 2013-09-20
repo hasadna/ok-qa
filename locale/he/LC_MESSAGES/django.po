@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-17 18:58+0300\n"
+"POT-Creation-Date: 2013-09-20 10:52+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -152,8 +152,8 @@ msgstr "נבחר על ידי (מספר)"
 msgid "How many people voted for this candidate"
 msgstr ""
 
-#: polyorg/views.py:13 polyorg/views.py:21 polyorg/views.py:37
-#: polyorg/views.py:45
+#: polyorg/views.py:14 polyorg/views.py:22 polyorg/views.py:38
+#: polyorg/views.py:46
 msgid "Only editors have access to this page."
 msgstr "עמוד זה נגיש רק לעורכים."
 
@@ -170,7 +170,7 @@ msgstr "יצירה"
 msgid "Candidates in list"
 msgstr "מועמדים ברשימה"
 
-#: polyorg/templates/polyorg/candidate_list.html:13
+#: polyorg/templates/polyorg/candidate_list.html:17
 msgid "Add candidate"
 msgstr "הוספת מועמד"
 
@@ -248,73 +248,73 @@ msgstr "רשות לא חוקית"
 msgid "Please update your locality in your user profile to use the site"
 msgstr "יש לבחור מקום מגורים כדי להשתמש באתר."
 
-#: qa/views.py:184
+#: qa/views.py:187
 msgid "You must be logged in as a candidate to post answers"
 msgstr "עליך להתחבר כמועמד כדי לפרסם תשובות"
 
-#: qa/views.py:202
+#: qa/views.py:205
 msgid "Sorry but only connected users can post questions"
 msgstr "מצטערים, יש להתחבר כדי לשאול שאלות"
 
-#: qa/views.py:222
+#: qa/views.py:225
 msgid "You can only edit your own questions."
 msgstr "מצטערים, ניתן לערוך רק שאלות שלך"
 
-#: qa/views.py:224
+#: qa/views.py:227
 msgid "Question has been answered, editing disabled."
 msgstr "ישנן תשובות לשאלה, אי אפשר לערוך"
 
-#: qa/views.py:258
+#: qa/views.py:261
 msgid "You already upvoted this question"
 msgstr "תודה, כבר תמכת בשאלה זו"
 
-#: qa/views.py:268
+#: qa/views.py:271
 msgid "Use POST to upvote a question"
 msgstr "השתמש ב POST כדי להצביע לשאלה"
 
-#: qa/views.py:281
+#: qa/views.py:284
 msgid "OK QA Question Feed"
 msgstr "שאלות נשאלו"
 
-#: qa/views.py:283
+#: qa/views.py:286
 msgid "Questions from OKQA"
 msgstr "שאלות"
 
-#: qa/views.py:302
+#: qa/views.py:305
 #, python-format
 msgid "Questions feed for %s"
 msgstr "שטף שאלות עבור %s"
 
-#: qa/views.py:306
+#: qa/views.py:309
 #, python-format
 msgid "Brought to you by \"%s\""
 msgstr "מוגש על ידי \"%s\""
 
-#: qa/views.py:328
+#: qa/views.py:331
 msgid "Answers for the question"
 msgstr "תשובות לשאלה"
 
-#: qa/views.py:334
+#: qa/views.py:337
 msgid "A feed of all answers for the question"
 msgstr "פיד של תשובות לשאלה"
 
-#: qa/views.py:354
+#: qa/views.py:357
 msgid "Sorry, you have to login to flag questions"
 msgstr "אנא התחברו כדי לסמן שאלה לא ראויה"
 
-#: qa/views.py:361
+#: qa/views.py:364
 msgid "Sorry, can not delete a question with answers"
 msgstr "מצטערים, לא ניתן למחוק שאלה עם תשובות"
 
-#: qa/views.py:372
+#: qa/views.py:375
 msgid "Question has been removed"
 msgstr "השאלה נמחקה"
 
-#: qa/views.py:375
+#: qa/views.py:378
 msgid "Thanks.  You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
-#: qa/views.py:382
+#: qa/views.py:385
 msgid ""
 "Thank you for flagging the question. One of our editors will look at it "
 "shortly."
@@ -324,7 +324,7 @@ msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את
 msgid "This answer is deleted"
 msgstr "תשובה זו נמחקה"
 
-#: qa/templates/qa/_answer.html:28 user/templates/user/public_profile.html:61
+#: qa/templates/qa/_answer.html:28 user/templates/user/public_profile.html:66
 msgid "before"
 msgstr "לפני"
 
@@ -419,7 +419,7 @@ msgid "Flag question"
 msgstr "שאלה בלתי הולמת"
 
 #: qa/templates/qa/question_detail.html:85
-#: user/templates/user/public_profile.html:43
+#: user/templates/user/public_profile.html:48
 msgid "Answers"
 msgstr "תשובות"
 
@@ -898,20 +898,20 @@ msgstr "מועמד חדש נרשם"
 msgid "A question has been flagged"
 msgstr "הונף דגל אדום על שאלה בשו\"ת המקומי"
 
-#: user/views.py:77
+#: user/views.py:83
 #, python-format
 msgid "Sorry, you are not authorized to remove %s from the candidate list"
 msgstr "מצטערים, אינך מורשה להסיר את %s מרשימת המועמדים"
 
-#: user/views.py:87
+#: user/views.py:93
 msgid "Only candidate can edit their info"
 msgstr ""
 
-#: user/views.py:162
+#: user/views.py:168
 msgid "Your profile has been updated, please login."
 msgstr "הפרופיל שלכם עודכן, אתם מוזמנים להכנס"
 
-#: user/views.py:223
+#: user/views.py:229 user/views.py:239
 #, fuzzy
 msgid "Only superusers have access to this page."
 msgstr "עמוד זה נגיש רק לעורכים."
@@ -999,7 +999,15 @@ msgstr "עוקבים אחרי"
 msgid "none"
 msgstr "אף אחד"
 
-#: user/templates/user/public_profile.html:75
+#: user/templates/user/public_profile.html:28
+msgid "Candidate in list"
+msgstr "מועמד ברשימת"
+
+#: user/templates/user/public_profile.html:28
+msgid "for the city council"
+msgstr "למועצת הרשות"
+
+#: user/templates/user/public_profile.html:80
 msgid "Questions posted"
 msgstr "שאלות שפירסם/ה"
 

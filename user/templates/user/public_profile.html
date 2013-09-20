@@ -23,6 +23,11 @@
         <a href="{% url 'local_home' friend.locality.id %}" alt="{{friend.locality}}">{{friend.locality}}</a>
       </h2>
       {% endif %}
+      {% if candidate_list %}
+      <h2>
+        {% trans 'Candidate in list' %} {{candidate_list}} {% trans 'for the city council' %}
+      </h2>
+      {% endif %}
       <ul class="links unstyled">
         {% object_links friend %}
       </ul>

@@ -54,10 +54,15 @@ def public_profile(request, username=None, pk=None):
     profile = user.profile
     if profile:
         setattr(request, 'entity', profile.locality)
+    if profile.is_candidate:
+        candidate_list = user.candidatelist_set.only()[0].name
+    else:
+        candidate_list = ''
 
     context = RequestContext(request, {"friend": profile,
                                        "answers": answers,
                                        "questions": questions,
+                                       "candidate_list": candidate_list,
                                        })
 
     # todo: support members as well as candidates
