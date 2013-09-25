@@ -5,7 +5,7 @@ class CandidateListForm(ModelForm):
 
     class Meta:
         model = CandidateList
-        fields = ['name', 'ballot', 'entity']
+        exclude = ['number_of_seats', 'candidates', 'surplus_partner']
         widgets = {'entity': HiddenInput}
 
 class CandidateForm(ModelForm):

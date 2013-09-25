@@ -6,6 +6,29 @@
 <h2>{% trans 'Candidates in list'%} {{candidatelist}} -
 {{candidatelist.ballot}} / {{candidatelist.entity}}</h2>
 <div class="row">
+    {% if candidatelist.img_url %}
+    <p>{% trans 'Image: ' %} <img src="{{candidatelist.img_url}}" alt="{{candidatelist}}"></p>
+    {% endif %}
+    {% if candidatelist.homepage_url %}
+    <p><a href="{{candidatelist.homepage_url}}">{% trans 'Homepage' %}</a></p>
+    {% endif %}
+    {% if candidatelist.youtube_user %}
+    <p><a href="http://youtube.com/user/{{candidatelist.youtube_user}}">Youtube</a></p>
+    {% endif %}
+    {% if candidatelist.wikipedia_page %}
+    <p><a href="{{candidatelist.wikipedia_page}}">Wikipedia</a></p>
+    {% endif %}
+    {% if candidatelist.twitter_account %}
+    <p><a href="http://twitter.com/{{candidatelist.twitter_account}}">Twitter</a></p>
+    {% endif %}
+    {% if candidatelist.facebook_url %}
+    <p><a href="{{candidatelist.facebook_url}}">Facebook</a></p>
+    {% endif %}
+    {% if candidatelist.platform %}
+    <p>{% trans 'Platform' %}: {{candidatelist.platform}} </p>
+    {% endif %}
+</div>
+<div class="row">
   {% for candidate in candidatelist.candidates.all %}
       <div onclick="window.location.href='{{ candidate.get_absolute_url }}'"
       class="candidate-avatar">
@@ -14,5 +37,6 @@
       </div>
   {% endfor %}
 </div>
-<a href="{% url 'candidate-create' candidatelist.id %}">{% trans "Add candidate" %}</a>
+<p><a href="{% url 'candidate-create' candidatelist.id %}">{% trans "Add candidate" %}</a></p>
+<p><a href="">{% trans 'Edit list details' %}</a></p>
 {% endblock %}
