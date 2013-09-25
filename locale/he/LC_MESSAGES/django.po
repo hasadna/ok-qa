@@ -800,7 +800,7 @@ msgstr "כתובת דוא\"ל"
 
 #: user/forms.py:20
 msgid "We don't spam, and don't show your email to anyone"
-msgstr "לא נשלח דואר זבל, לא נשתף את הכתובת עם אף אחד, ולא נציג אותה באתר"
+msgstr "לא נשלח דואר זבל, לא נשתף את הכתובת עם אף אחד, ולא נציג אותה"
 
 #: user/forms.py:25 user/models.py:79
 msgid "Locality"
