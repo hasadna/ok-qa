@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-20 10:52+0300\n"
+"POT-Creation-Date: 2013-09-25 15:49+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -732,6 +732,10 @@ msgstr "דוא\"ל עם ההוראות לאיפוס הסיסמה נשלח."
 msgid "Reset password at %(site_name)s"
 msgstr "איפוס סיסמה באתר %(site_name)s"
 
+#: templates/registration/password_reset_email.html:6
+msgid "Your username, in case you've forgotten:"
+msgstr "שם המשתמש שלך, במקרה ששכחת:"
+
 #: templates/registration/password_reset_form.html:6
 msgid "Password Reset"
 msgstr "איפוס סיסמה"
@@ -898,20 +902,20 @@ msgstr "מועמד חדש נרשם"
 msgid "A question has been flagged"
 msgstr "הונף דגל אדום על שאלה בשו\"ת המקומי"
 
-#: user/views.py:83
+#: user/views.py:87
 #, python-format
 msgid "Sorry, you are not authorized to remove %s from the candidate list"
 msgstr "מצטערים, אינך מורשה להסיר את %s מרשימת המועמדים"
 
-#: user/views.py:93
+#: user/views.py:97
 msgid "Only candidate can edit their info"
 msgstr ""
 
-#: user/views.py:168
+#: user/views.py:172
 msgid "Your profile has been updated, please login."
 msgstr "הפרופיל שלכם עודכן, אתם מוזמנים להכנס"
 
-#: user/views.py:229 user/views.py:239
+#: user/views.py:233 user/views.py:243
 #, fuzzy
 msgid "Only superusers have access to this page."
 msgstr "עמוד זה נגיש רק לעורכים."
@@ -5643,9 +5647,6 @@ msgstr "שאלות שפירסם/ה"
 
 #~ msgid "Please go to the following page and choose a new password:"
 #~ msgstr "נא להגיע לעמוד הבא ולבחור סיסמה חדשה:"
-
-#~ msgid "Your username, in case you've forgotten:"
-#~ msgstr "שם המשתמש שלך, במקרה ששכחת:"
 
 #~ msgid "Thanks for using our site!"
 #~ msgstr "תודה על השימוש באתר שלנו!"
