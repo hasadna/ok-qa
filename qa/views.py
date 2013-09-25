@@ -69,7 +69,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
 
     if tags:
         current_tags = tags.split(',')
-        questions = questions.filter(tags__slug__in=current_tags)
+        questions = questions.filter(tags__name__in=current_tags)
     else:
         current_tags = None
 
