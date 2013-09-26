@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-25 16:49+0300\n"
+"POT-Creation-Date: 2013-09-26 18:44+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -96,11 +96,11 @@ msgstr "מספר חברי המפלגה"
 msgid "anonymous"
 msgstr "ללא שם"
 
-#: polyorg/models.py:7
+#: polyorg/models.py:6
 msgid "List Name"
 msgstr "שם רשימה"
 
-#: polyorg/models.py:8
+#: polyorg/models.py:7
 msgid "Ballot"
 msgstr "פתק"
 
@@ -109,51 +109,54 @@ msgid "The list with which is the surplus votes partner"
 msgstr "הסכם עודפים עם"
 
 #: polyorg/models.py:12
-msgid "MPG report"
-msgstr "דו\"ח התנועה לאיכות השלטון"
+#, fuzzy
+msgid "Image URL"
+msgstr "עמודים"
 
 #: polyorg/models.py:13
-msgid "The MPG report on the list, can use html"
-msgstr "דו\"ח התנועה לאיכות השלטון"
+#, fuzzy
+msgid "Homepage URL"
+msgstr "דף הבית"
 
-#: polyorg/models.py:15
+#: polyorg/models.py:14
 msgid "YouTube user"
 msgstr "משתמש יוטיוב"
 
-#: polyorg/models.py:16
+#: polyorg/models.py:15
 msgid "Wikipedia page"
 msgstr "שם עמוד הויקיפדיה"
 
-#: polyorg/models.py:17
-msgid "Twitter account"
-msgstr "חשבון טוויטר"
+#: polyorg/models.py:16
+#, fuzzy
+msgid "Facebook URL"
+msgstr "פייסבוק"
 
-#: polyorg/models.py:19
+#: polyorg/models.py:17 polyorg/templates/polyorg/candidate_list.html:28
 msgid "Platform"
 msgstr "מצע"
 
-#: polyorg/models.py:70
+#: polyorg/models.py:68
 msgid "candidate list"
 msgstr "רשימת מועמדים"
 
-#: polyorg/models.py:71
+#: polyorg/models.py:69
 msgid "user"
 msgstr "שם משתמש"
 
-#: polyorg/models.py:72
+#: polyorg/models.py:70
 msgid "Ordinal"
 msgstr "מיקום"
 
-#: polyorg/models.py:74
+#: polyorg/models.py:72
 msgid "Elected by #"
 msgstr "נבחר על ידי (מספר)"
 
-#: polyorg/models.py:74
+#: polyorg/models.py:72
 msgid "How many people voted for this candidate"
 msgstr ""
 
-#: polyorg/views.py:14 polyorg/views.py:22 polyorg/views.py:38
-#: polyorg/views.py:46
+#: polyorg/views.py:14 polyorg/views.py:23 polyorg/views.py:47
+#: polyorg/views.py:55
 msgid "Only editors have access to this page."
 msgstr "עמוד זה נגיש רק לעורכים."
 
@@ -162,7 +165,7 @@ msgid "add candidate to list"
 msgstr "הוספת מועמד לרשימה"
 
 #: polyorg/templates/polyorg/candidate_form.html:10
-#: polyorg/templates/polyorg/candidatelist_form.html:9
+#: polyorg/templates/polyorg/candidatelist_form.html:18
 msgid "Create"
 msgstr "יצירה"
 
@@ -170,13 +173,36 @@ msgstr "יצירה"
 msgid "Candidates in list"
 msgstr "מועמדים ברשימה"
 
-#: polyorg/templates/polyorg/candidate_list.html:17
+#: polyorg/templates/polyorg/candidate_list.html:10
+#, fuzzy
+msgid "Image: "
+msgstr "עמודים"
+
+#: polyorg/templates/polyorg/candidate_list.html:13
+msgid "Homepage"
+msgstr "דף הבית"
+
+#: polyorg/templates/polyorg/candidate_list.html:40
 msgid "Add candidate"
 msgstr "הוספת מועמד"
 
-#: polyorg/templates/polyorg/candidatelist_form.html:6
+#: polyorg/templates/polyorg/candidate_list.html:41
+msgid "Edit list details"
+msgstr ""
+
+#: polyorg/templates/polyorg/candidatelist_form.html:8
+#, fuzzy
+msgid "edit list"
+msgstr "רשימת הפידים"
+
+#: polyorg/templates/polyorg/candidatelist_form.html:10
 msgid "add list to "
 msgstr "הוספת רשימה ל"
+
+#: polyorg/templates/polyorg/candidatelist_form.html:16
+#: user/templates/user/accept_invitation.html:15
+msgid "Update"
+msgstr "עדכן"
 
 #: polyorg/templates/polyorg/candidatelist_list.html:6
 msgid "Candidate lists in "
@@ -324,7 +350,7 @@ msgstr "תודה לך על הדיווח. אחד מעורכינו יבדוק את
 msgid "This answer is deleted"
 msgstr "תשובה זו נמחקה"
 
-#: qa/templates/qa/_answer.html:28 user/templates/user/public_profile.html:66
+#: qa/templates/qa/_answer.html:28 user/templates/user/public_profile.html:78
 msgid "before"
 msgstr "לפני"
 
@@ -419,7 +445,7 @@ msgid "Flag question"
 msgstr "שאלה בלתי הולמת"
 
 #: qa/templates/qa/question_detail.html:85
-#: user/templates/user/public_profile.html:48
+#: user/templates/user/public_profile.html:60
 msgid "Answers"
 msgstr "תשובות"
 
@@ -433,7 +459,7 @@ msgstr "עדיין לא ניתנו תשובות"
 
 #: qa/templates/qa/question_detail.html:99
 #: qa/templates/qa/question_list.html:20
-#: user/templates/user/public_profile.html:17
+#: user/templates/user/public_profile.html:19
 msgid "Subscribe"
 msgstr "הרשם"
 
@@ -784,11 +810,11 @@ msgstr "ניתן להשתמש באותיות, ספרות וקו תחתון בל�
 msgid "Get all answers by"
 msgstr "קבלו את כל התשובות של"
 
-#: user/forms.py:14 user/forms.py:147
+#: user/forms.py:14 user/forms.py:149
 msgid "first name"
 msgstr "שם פרטי"
 
-#: user/forms.py:15 user/forms.py:148
+#: user/forms.py:15 user/forms.py:150
 msgid "last name"
 msgstr "שם משפחה"
 
@@ -798,7 +824,7 @@ msgid ""
 "characters)."
 msgstr "חובה. 30-4 תווים (אותיות, מספרים, רווחים, @/./+/-/_ בלבד).‏"
 
-#: user/forms.py:19 user/forms.py:153
+#: user/forms.py:19 user/forms.py:155
 msgid "email address"
 msgstr "כתובת דוא\"ל"
 
@@ -806,75 +832,79 @@ msgstr "כתובת דוא\"ל"
 msgid "We don't spam, and don't show your email to anyone"
 msgstr "לא נשלח דואר זבל, לא נשתף את הכתובת עם אף אחד, ולא נציג אותה"
 
-#: user/forms.py:25 user/models.py:79
+#: user/forms.py:23
+msgid "Gender"
+msgstr "מגדר"
+
+#: user/forms.py:26 user/models.py:79
 msgid "Locality"
 msgstr "מקום מגורים"
 
-#: user/forms.py:26 user/forms.py:164
+#: user/forms.py:27 user/forms.py:166
 msgid "home page"
 msgstr "עמוד הבית"
 
-#: user/forms.py:28
+#: user/forms.py:29
 msgid "Tell us and other users bit about yourself"
 msgstr "ספר/י לנו ולמשתמשים אחרים באתר על עצמך"
 
-#: user/forms.py:31
+#: user/forms.py:32
 msgid "E-Mail Notifications"
 msgstr "התראות דוא\"ל"
 
-#: user/forms.py:32
+#: user/forms.py:33
 msgid ""
 "Should we send you e-mail notification about updates to things you follow on "
 "the site?"
 msgstr "האם לשלוח התראות דוא\"ל לגבי שאלות ותגיות שאתה עוקב אחריהם?"
 
-#: user/forms.py:58
+#: user/forms.py:59
 msgid "This username is already taken."
 msgstr "שם המשתמש בשימוש"
 
-#: user/forms.py:70
+#: user/forms.py:72
 msgid "Please set your locality"
 msgstr "אנא הכניסו את מקום מגוריכם"
 
-#: user/forms.py:95
+#: user/forms.py:97
 msgid "the voters are waiting for your answers"
 msgstr "המצביעים ממתינים לתשובתך"
 
-#: user/forms.py:96
+#: user/forms.py:98
 msgid ""
 "The Q&A site is happy to invite you to answer voters' questions. please "
 "click {{activation_url}} to activate your account"
 msgstr ""
 
-#: user/forms.py:104
+#: user/forms.py:106
 msgid "Password"
 msgstr "סיסמה"
 
-#: user/forms.py:106
+#: user/forms.py:108
 msgid "Password confirmation"
 msgstr "אשר סיסמה"
 
-#: user/forms.py:108
+#: user/forms.py:110
 msgid "Enter the same password as above, for verification."
 msgstr "כדי לוודא, הכניסו אותה סיסמה כמו למעלה"
 
-#: user/forms.py:145
+#: user/forms.py:147
 msgid "username"
 msgstr "שם משתמש"
 
-#: user/forms.py:146
+#: user/forms.py:148
 msgid "Please use 4 letters or more"
 msgstr "נא להשתמש בארבע אותיות או יותר (גם מספרים ו @/./+/-/_ הם תווים חוקיים)"
 
-#: user/forms.py:149
+#: user/forms.py:151
 msgid "email subject"
 msgstr "נושא הדוא\"ל"
 
-#: user/forms.py:151
+#: user/forms.py:153
 msgid "email body"
 msgstr "תוכן הדוא\"ל"
 
-#: user/forms.py:165
+#: user/forms.py:167
 msgid "bio"
 msgstr "עלי"
 
@@ -969,10 +999,6 @@ msgstr ""
 msgid "Welcome to our site"
 msgstr "ברוכים הבאים לאתרנו"
 
-#: user/templates/user/accept_invitation.html:15
-msgid "Update"
-msgstr "עדכן"
-
 #: user/templates/user/add_candidate.html:5
 msgid "Invite a candidate"
 msgstr "הזמן מועמד"
@@ -1007,17 +1033,38 @@ msgstr "עוקבים אחרי"
 msgid "none"
 msgstr "אף אחד"
 
-#: user/templates/user/public_profile.html:28
-msgid "Candidate in list"
-msgstr "מועמד ברשימת"
+#: user/templates/user/public_profile.html:26
+msgid "Male candidate"
+msgstr "מועמד"
 
 #: user/templates/user/public_profile.html:28
-msgid "for the city council"
-msgstr "למועצת הרשות"
+msgid "Female candidate"
+msgstr "מועמדת"
 
-#: user/templates/user/public_profile.html:80
+#: user/templates/user/public_profile.html:30
+msgid "in list"
+msgstr "ברשימת"
+
+#: user/templates/user/public_profile.html:32
+msgid "for mayorship of"
+msgstr "לראשות"
+
+#: user/templates/user/public_profile.html:34
+msgid "for the council of"
+msgstr "למועצת"
+
+#: user/templates/user/public_profile.html:92
 msgid "Questions posted"
 msgstr "שאלות שפירסם/ה"
+
+#~ msgid "MPG report"
+#~ msgstr "דו\"ח התנועה לאיכות השלטון"
+
+#~ msgid "The MPG report on the list, can use html"
+#~ msgstr "דו\"ח התנועה לאיכות השלטון"
+
+#~ msgid "Twitter account"
+#~ msgstr "חשבון טוויטר"
 
 #~ msgid "Name"
 #~ msgstr "שם"
@@ -1270,9 +1317,6 @@ msgstr "שאלות שפירסם/ה"
 
 #~ msgid "Place"
 #~ msgstr "מקום"
-
-#~ msgid "candidate?"
-#~ msgstr "מועמד?"
 
 #~ msgid "Please check this only if you are running for office"
 #~ msgstr "אנא, סמני רק אם את מועמדת"
@@ -2214,9 +2258,6 @@ msgstr "שאלות שפירסם/ה"
 
 #~ msgid "Legislation"
 #~ msgstr "חקיקה"
-
-#~ msgid "Homepage"
-#~ msgstr "דף הבית"
 
 #~ msgid "Feedback"
 #~ msgstr "משוב"
@@ -3517,9 +3558,6 @@ msgstr "שאלות שפירסם/ה"
 #~ msgid "RSS 2.0 Feed"
 #~ msgstr "פיד רסס"
 
-#~ msgid "Feeds list"
-#~ msgstr "רשימת הפידים"
-
 #~ msgid "Subscribe to feed of"
 #~ msgstr "הרשמה לפיד של "
 
@@ -3615,9 +3653,6 @@ msgstr "שאלות שפירסם/ה"
 
 #~ msgid "Wikipedia"
 #~ msgstr "ויקיפדיה"
-
-#~ msgid "Facebook"
-#~ msgstr "פייסבוק"
 
 #~ msgid "Videos"
 #~ msgstr "וידאו"
@@ -3836,9 +3871,6 @@ msgstr "שאלות שפירסם/ה"
 
 #~ msgid "Public profile"
 #~ msgstr "פרופיל פומבי"
-
-#~ msgid "Gender"
-#~ msgstr "מין"
 
 #~ msgid "Your profile has been updated."
 #~ msgstr "פרופיל המשתמש עודכן"
@@ -4256,10 +4288,6 @@ msgstr "שאלות שפירסם/ה"
 #, fuzzy
 #~ msgid "%(file)s has been saved."
 #~ msgstr "פרופיל המשתמש עודכן"
-
-#, fuzzy
-#~ msgid "Images"
-#~ msgstr "עמודים"
 
 #, fuzzy
 #~ msgid "Back to edit page"
