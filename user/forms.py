@@ -60,13 +60,14 @@ class ProfileForm(forms.Form):
             return data
 
     def clean_locality(self):
-        if self.profile:
+         
+        locality = self.cleaned_data['locality']
+        if not locality and self.profile:
             locality = self.profile.locality
-        else:
-            locality = self.cleaned_data['locality']
         if locality:
             return locality
         else:
+
             raise forms.ValidationError(_('Please set your locality'))
 
     def save(self, commit = True):
