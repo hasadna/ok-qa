@@ -54,7 +54,7 @@
         {% for answer in answers %}
         {% if forloop.first %}
           <h3>
-              {% trans "Answers" %}
+              {% trans "Answers by" %} {{friend.get_full_name}}
           </h3>
         {% endif %}
         <div class="question-summary narrow" id="question-summary-{{ question.id }}">
@@ -86,7 +86,7 @@
       {% for question in questions %}
         {% if forloop.first %}
           <h3 style="margin-top: -10px; margin-bottom: -10px;">
-            {% trans "Questions posted" %}
+            {% trans "Questions by" %} {{friend.get_full_name}}
           </h3>
         {% endif %}
         <div class="question-summary narrow" id="question-summary-{{ question.id }}">

@@ -12,7 +12,6 @@ class CandidateList(models.Model):
     img_url = models.URLField(_('Image URL'), blank=True)
     homepage_url = models.URLField(_('Homepage URL'), blank=True, null=True)
     youtube_user = models.CharField(_('YouTube user'), max_length = 80, null=True, blank=True)
-    wikipedia_page = models.CharField(_('Wikipedia page'), max_length = 80, null=True, blank=True)
     facebook_url = models.URLField(_('Facebook URL'), blank=True, null=True)
     platform = models.TextField(_('Platform'), blank=True, null=True)
     entity = models.ForeignKey('entities.Entity', blank=True, null=True)
