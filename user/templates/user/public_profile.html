@@ -1,6 +1,5 @@
 {% extends "user/user_base.html" %}
-{% load i18n %}
-{% load avatar_tags %}
+{% load i18n avatar_tags %}
 {% load links_tags %}
 {% block pageTitle %}{{ friend.get_full_name }}{% endblock %}
 
@@ -12,6 +11,9 @@
 <div class="page-header row">
   <div class="offset3 span6"><center>
     <div class="dead-center">
+      {% if friend.has_avatar %}
+        <img src="{% avatar_url friend.user 75 %}" class="avatar img-circle">
+      {% endif %}
       <h1 style="display:inline; padding-right:0.5em;">
         {{ friend.get_full_name}}
           <a href="{% url 'user_feed' friend.user.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">

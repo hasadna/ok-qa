@@ -127,7 +127,6 @@ def edit_profile(request):
 
             return HttpResponseRedirect(next)
     elif request.method == "GET":
-        user = request.user
         form = ProfileForm(request.user)
 
     setattr(request, 'entity', profile.locality)
