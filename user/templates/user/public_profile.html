@@ -23,9 +23,19 @@
         <a href="{% url 'local_home' friend.locality.id %}" alt="{{friend.locality}}">{{friend.locality}}</a>
       </h2>
       {% endif %}
-      {% if candidate_list %}
+      {% if friend.is_candidate %}
       <h2>
-        {% trans 'Candidate in list' %} {{candidate_list}} {% trans 'for the city council' %}
+        {% if friend.gender == 'M' %}
+        {% trans 'Male candidate' %}
+        {% else %}
+        {% trans 'Female candidate' %}
+        {% endif %}
+        {% trans ' in list' %} {{candidate_list}} 
+        {% if friend.is_mayor_candidate %}
+        {% trans 'for mayorship of ' %}{{friend.locality}}
+        {% else %}
+        {% trans 'for the city council' %}
+        {% endif %}
       </h2>
       {% endif %}
       <ul class="links unstyled">

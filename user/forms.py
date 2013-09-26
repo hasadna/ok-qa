@@ -19,7 +19,8 @@ class ProfileForm(forms.Form):
     email = forms.EmailField(required=False ,label=_(u'email address'),
                              help_text = _("We don't spam, and don't show your email to anyone")
                              )
-
+    gender = forms.ChoiceField(choices = GENDER_CHOICES,
+                               label = _('Gender'))
     locality = chosenforms.ChosenModelChoiceField(
                 queryset=Entity.objects.filter(division__index=3),
                 label=_('Locality'), required=True)
