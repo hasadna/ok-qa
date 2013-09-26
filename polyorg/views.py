@@ -69,7 +69,7 @@ def candidate_create(request,candidatelist_id):
         form = CandidateForm(initial={'candidate_list': candidatelist})
         form.fields["user"].queryset = \
             User.objects.filter(profile__locality=candidatelist.entity).\
-            exclude(profile__is_candidate=True)
+            exclude(profile__is_candidate=True).exclude(profile__is_editor=True)
 
     return render(request, "polyorg/candidate_form.html", \
         {'form': form, 'candidatelist': candidatelist})
