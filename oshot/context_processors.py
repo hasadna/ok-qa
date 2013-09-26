@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.sites.models import get_current_site
 from django.conf import settings
 from django.shortcuts import get_object_or_404
+from django.http import Http404
 
 from entities.models import Entity
 
@@ -16,7 +17,6 @@ def forms(request):
     context = {"search_query": q} if q else {}
     try:
         kwargs = request.resolver_match.kwargs
-        url_name = request.resolver_match.url_name
         # many ways to pass an entity
         entity = getattr(request, 'entity', None)
         if entity:
@@ -40,7 +40,7 @@ def forms(request):
             context['candidates_url'] = reverse("candidate_list")
         context['entity_form'] = EntityChoiceForm(initial=initial, auto_id=False)
 
-    except AttributeError:
+    except (AttributeError, Http404):
         pass
 
     if request.user.is_authenticated():

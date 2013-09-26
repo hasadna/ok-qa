@@ -5,12 +5,12 @@ class CandidateListForm(ModelForm):
 
     class Meta:
         model = CandidateList
-        fields = ['name', 'ballot', 'entity']
-        widgets = {'entity': HiddenInput}
+        exclude = ['entity', 'number_of_seats', 'candidates', 'surplus_partner']
+        # widgets = {'entity': HiddenInput}
 
 class CandidateForm(ModelForm):
 
     class Meta:
         model = Candidate
-        fields = ['user','candidate_list']
+        fields = ['user','candidate_list', 'ordinal', 'for_mayor']
         widgets = {'candidate_list': HiddenInput}

@@ -54,10 +54,19 @@ def public_profile(request, username=None, pk=None):
     profile = user.profile
     if profile:
         setattr(request, 'entity', profile.locality)
+    if profile.is_candidate:
+        user_candidatelist = user.candidatelist_set.only()
+        if user_candidatelist: 
+            candidate_list = user_candidatelist[0].name
+        else:
+            candidate_list = ''
+    else:
+        candidate_list = ''
 
     context = RequestContext(request, {"friend": profile,
                                        "answers": answers,
                                        "questions": questions,
+                                       "candidate_list": candidate_list,
                                        })
 
     # todo: support members as well as candidates
@@ -118,7 +127,6 @@ def edit_profile(request):
 
             return HttpResponseRedirect(next)
     elif request.method == "GET":
-        user = request.user
         form = ProfileForm(request.user)
 
     setattr(request, 'entity', profile.locality)

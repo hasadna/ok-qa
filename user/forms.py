@@ -19,10 +19,11 @@ class ProfileForm(forms.Form):
     email = forms.EmailField(required=False ,label=_(u'email address'),
                              help_text = _("We don't spam, and don't show your email to anyone")
                              )
-
+    gender = forms.ChoiceField(choices = GENDER_CHOICES,
+                               label = _('Gender'))
     locality = chosenforms.ChosenModelChoiceField(
                 queryset=Entity.objects.filter(division__index=3),
-                label=_('Locality'), required=True)
+                label=_('Locality'), required=False)
     url = forms.URLField(required=False ,label=_(u'home page'))
     bio = forms.CharField(required=False,
                                   label=_('Tell us and other users bit about yourself'),
@@ -46,12 +47,12 @@ class ProfileForm(forms.Form):
                             'avatar_uri': self.profile.avatar_url(),
                            }
             if self.profile.locality:
-                self.fields['locality'].widget = forms.TextInput(attrs={'disabled':'disabled',
-                    'value': self.profile.locality.name})
+                self.fields['locality'].widget.attrs['disabled'] = True
+                self.initial['locality'] = self.profile.locality
 
     def clean_username(self):
         data = self.cleaned_data['username']
-        if data ==  self.user.username:
+        if data == self.user.username:
             return data
         try:
             User.objects.get(username = data)
@@ -59,9 +60,20 @@ class ProfileForm(forms.Form):
         except User.DoesNotExist:
             return data
 
+    def clean_locality(self):
+         
+        locality = self.cleaned_data['locality']
+        if not locality and self.profile:
+            locality = self.profile.locality
+        if locality:
+            return locality
+        else:
+
+            raise forms.ValidationError(_('Please set your locality'))
+
     def save(self, commit = True):
         user = self.user
-        if self.cleaned_data['email'] != None:
+        if self.cleaned_data['email']:
             if user.email != self.cleaned_data['email']: #email changed - user loses comment permissions, until he validates email again.
                 #TODO: send validation email
                 pass
