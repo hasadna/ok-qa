@@ -16,21 +16,30 @@ def candidatelists_list(request):
     candidatelists = CandidateList.objects.filter(entity=entity)
     return render(request, 'polyorg/candidatelist_list.html',{'candidatelists': candidatelists, 'entity': entity})
 
+
 @login_required
-def candidatelist_create(request):
+def candidatelist_edit(request, candidatelist_id=None):
     if not request.user.profile.is_editor:
         return HttpResponseForbidden(_("Only editors have access to this page."))
-
+    
     entity = request.user.profile.locality
+    
+    if candidatelist_id:
+        candidatelist = CandidateList.objects.get(id=candidatelist_id)
+    else:
+        candidatelist = CandidateList(entity=entity)
+    
     if request.method == "POST":
-        form = CandidateListForm(request.POST)
+        form = CandidateListForm(request.POST, instance=candidatelist)
         if form.is_valid():
             form.save()
+            
             return HttpResponseRedirect(reverse('candidate-list-list'))
     else:
-        form = CandidateListForm(initial={'entity': entity})
+        form = CandidateListForm(instance=candidatelist)
 
-    return render(request, "polyorg/candidatelist_form.html", {'form': form, 'entity': entity})
+    return render(request, "polyorg/candidatelist_form.html", {'form': form, 'entity': entity, 'candidatelist_id': candidatelist_id})
+
 
 @login_required
 def candidates_list(request,candidatelist_id):

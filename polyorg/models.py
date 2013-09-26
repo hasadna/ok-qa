@@ -9,13 +9,10 @@ class CandidateList(models.Model):
     number_of_seats = models.IntegerField(blank=True, null=True)
     surplus_partner = models.ForeignKey('self', blank=True, null=True,
                 help_text=_('The list with which is the surplus votes partner'))
-    # mpg_html_report = models.TextField(_('MPG report'), blank=True, null=True,
-    #             help_text=_('The MPG report on the list, can use html'))
     img_url = models.URLField(_('Image URL'), blank=True)
     homepage_url = models.URLField(_('Homepage URL'), blank=True, null=True)
     youtube_user = models.CharField(_('YouTube user'), max_length = 80, null=True, blank=True)
     wikipedia_page = models.CharField(_('Wikipedia page'), max_length = 80, null=True, blank=True)
-    twitter_account = models.CharField(_('Twitter account'), max_length = 80, null=True, blank=True)
     facebook_url = models.URLField(_('Facebook URL'), blank=True, null=True)
     platform = models.TextField(_('Platform'), blank=True, null=True)
     entity = models.ForeignKey('entities.Entity', blank=True, null=True)
@@ -74,6 +71,7 @@ class Candidate(models.Model):
     party = models.ForeignKey(Party, blank=True, null=True)
     votes = models.IntegerField(_('Elected by #'), blank=True, null=True, help_text=_('How many people voted for this candidate'))
     status = models.CharField(max_length=1, choices=CANDIDATE_STATUS, default='S')
+    for_mayor = models.BooleanField(default=False)
 
     objects = CandidateManager()
 

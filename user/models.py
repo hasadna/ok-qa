@@ -111,3 +111,17 @@ class Profile(models.Model):
 
     def get_full_name(self):
         return self.user.get_full_name() or self.user.username
+
+    # @property
+    # def is_candidate(self):
+    #     if self.user.candidate_set.exists():
+    #         return True
+    #     return False
+
+    @property
+    def is_mayor_candidate(self):
+        if self.is_candidate:
+            return self.user.candidate_set.only()[0].for_mayor
+        return False
+
+
