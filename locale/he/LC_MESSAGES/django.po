@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-26 19:24+0300\n"
+"POT-Creation-Date: 2013-09-26 19:55+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -148,10 +148,19 @@ msgstr "נבחר על ידי (מספר)"
 msgid "How many people voted for this candidate"
 msgstr ""
 
+#: polyorg/models.py:73
+msgid "Mayorship candidate"
+msgstr "מועמד לראש הרשות"
+
 #: polyorg/views.py:14 polyorg/views.py:23 polyorg/views.py:47
-#: polyorg/views.py:55
+#: polyorg/views.py:55 polyorg/views.py:80
 msgid "Only editors have access to this page."
 msgstr "עמוד זה נגיש רק לעורכים."
+
+#: polyorg/views.py:90 user/views.py:87
+#, python-format
+msgid "Sorry, you are not authorized to remove %s from the candidate list"
+msgstr "מצטערים, אינך מורשה להסיר את %s מרשימת המועמדים"
 
 #: polyorg/templates/polyorg/candidate_form.html:6
 msgid "add candidate to list"
@@ -174,13 +183,17 @@ msgstr "תמונה: "
 msgid "Homepage"
 msgstr "דף הבית"
 
-#: polyorg/templates/polyorg/candidate_list.html:40
+#: polyorg/templates/polyorg/candidate_list.html:36
+msgid "remove"
+msgstr "הסר"
+
+#: polyorg/templates/polyorg/candidate_list.html:41
 msgid "Add candidate"
 msgstr "הוספת מועמד"
 
-#: polyorg/templates/polyorg/candidate_list.html:41
+#: polyorg/templates/polyorg/candidate_list.html:42
 msgid "Edit list details"
-msgstr "ערוף פרטי רשימה"
+msgstr "ערוך פרטי רשימה"
 
 #: polyorg/templates/polyorg/candidatelist_form.html:8
 msgid "edit list"
@@ -927,11 +940,6 @@ msgstr "מועמד חדש נרשם"
 msgid "A question has been flagged"
 msgstr "הונף דגל אדום על שאלה בשו\"ת המקומי"
 
-#: user/views.py:87
-#, python-format
-msgid "Sorry, you are not authorized to remove %s from the candidate list"
-msgstr "מצטערים, אינך מורשה להסיר את %s מרשימת המועמדים"
-
 #: user/views.py:97
 msgid "Only candidate can edit their info"
 msgstr ""
@@ -1047,6 +1055,10 @@ msgstr "למועצת"
 #: user/templates/user/public_profile.html:89
 msgid "Questions by"
 msgstr "השאלות של"
+
+#, fuzzy
+#~ msgid "For mayor"
+#~ msgstr "לראשות"
 
 #~ msgid "Wikipedia page"
 #~ msgstr "שם עמוד הויקיפדיה"

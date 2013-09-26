@@ -70,7 +70,7 @@ class Candidate(models.Model):
     party = models.ForeignKey(Party, blank=True, null=True)
     votes = models.IntegerField(_('Elected by #'), blank=True, null=True, help_text=_('How many people voted for this candidate'))
     status = models.CharField(max_length=1, choices=CANDIDATE_STATUS, default='S')
-    for_mayor = models.BooleanField(default=False)
+    for_mayor = models.BooleanField(_('Mayorship candidate'), default=False)
 
     objects = CandidateManager()
 
