@@ -33,9 +33,9 @@ class CandidateList(models.Model):
 
     def can_edit(self, user):
         return user.is_authenticated() and \
-            (user.profile.is_editor and user.profile.locality == self.entity)\
+            ((user.profile.is_editor and user.profile.locality == self.entity)\
             or (user.profile.is_candidate and user in self.candidates.all())\
-            or user.is_superuser
+            or user.is_superuser)
 
 
 class Party(models.Model):
