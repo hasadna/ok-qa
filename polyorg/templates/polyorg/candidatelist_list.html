@@ -9,5 +9,5 @@
     <li><a href="{% url 'candidate-list' list.id %}">{{list}} - {{list.ballot}}</a></li>
     {% endfor %}
 </ul>
-<a href="{% url 'candidate-list-create' %}">{% trans "Add list" %}</a>
+<a href="{% url 'candidate-list-create' entity.id %}">{% trans "Add list" %}</a>
 {% endblock %}
