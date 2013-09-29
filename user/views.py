@@ -57,11 +57,11 @@ def public_profile(request, username=None, pk=None):
     if profile.is_candidate:
         user_candidatelist = user.candidatelist_set.only()
         if user_candidatelist: 
-            candidate_list = user_candidatelist[0].name
+            candidate_list = user_candidatelist[0]
         else:
-            candidate_list = ''
+            candidate_list = None
     else:
-        candidate_list = ''
+        candidate_list = None
 
     context = RequestContext(request, {"friend": profile,
                                        "answers": answers,

@@ -20,15 +20,19 @@
       {% if friend.is_candidate %}
       <h2>
         {% if friend.gender == 'M' %}
-        {% trans 'Male candidate' %}
+          {% trans 'Male candidate' %}
         {% else %}
-        {% trans 'Female candidate' %}
+          {% trans 'Female candidate' %}
         {% endif %}
-        {% trans 'in list' %} {{candidate_list}} 
+
+        {% if candidate_list %}
+          {% trans 'in list' %} <a href="{% url 'candidate-list' candidate_list.id %}">{{candidate_list}}</a> 
+        {% endif %}
+        
         {% if friend.is_mayor_candidate %}
-        {% trans 'for mayorship of' %} 
+          {% trans 'for mayorship of' %} 
         {% else %}
-        {% trans 'for the council of' %} 
+          {% trans 'for the council of' %} 
         {% endif %}
         {{friend.locality}}
       </h2>

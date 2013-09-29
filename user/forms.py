@@ -44,6 +44,7 @@ class ProfileForm(forms.Form):
                             'bio': self.profile.bio,
                             'email_notification': self.profile.email_notification,
                             'url': self.profile.url,
+                            'gender': self.profile.gender,
                             'avatar_uri': self.profile.avatar_url(),
                            }
             if self.profile.locality:
@@ -85,6 +86,7 @@ class ProfileForm(forms.Form):
         self.profile.bio = self.cleaned_data['bio']
         self.profile.email_notification = self.cleaned_data['email_notification']
         self.profile.url = self.cleaned_data['url']
+        self.profile.gender = self.cleaned_data['gender']
         if self.cleaned_data['locality']:
             self.profile.locality = self.cleaned_data['locality']
 

@@ -31,6 +31,12 @@ class CandidateList(models.Model):
     def get_candidates(self):
         return Candidate.objects.get_verified().filter(candidate_list=self)
 
+    def can_edit(self, user):
+        return user.is_authenticated() and \
+            (user.profile.is_editor and user.profile.locality == self.entity)\
+            or (user.profile.is_candidate and user in self.candidates.all())\
+            or user.is_superuser
+
 
 class Party(models.Model):
     name = models.CharField(max_length=64)

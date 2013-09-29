@@ -177,11 +177,6 @@
                         });
                   })
 
-                $("#answer-{{ my_answer_id}}").hover(function () {
-                    $("#edit-answer-{{my_answer_id}}").show();
-                }, function () {
-                    $("#edit-answer-{{my_answer_id}}").hide();
-                });
 
                 {% if max_length_a_content %}
                     var $answerContent = $("#id_content"),

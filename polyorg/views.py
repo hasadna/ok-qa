@@ -5,56 +5,68 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
+from entities.models import Entity
 from polyorg.models import CandidateList, Candidate
 from polyorg.forms import CandidateListForm, CandidateForm
 
 @login_required
-def candidatelists_list(request):
+def candidatelists_list(request, entity_id=None):
     if not request.user.profile.is_editor:
         return HttpResponseForbidden(_("Only editors have access to this page."))
-    entity = request.user.profile.locality
+    
+    if not entity_id:
+        entity = request.user.profile.locality
+    else:
+        entity = get_object_or_404(Entity, id=entity_id)
+    
     candidatelists = CandidateList.objects.filter(entity=entity)
     return render(request, 'polyorg/candidatelist_list.html',{'candidatelists': candidatelists, 'entity': entity})
 
 
 @login_required
-def candidatelist_edit(request, candidatelist_id=None):
-    if not request.user.profile.is_editor:
-        return HttpResponseForbidden(_("Only editors have access to this page."))
-    
-    entity = request.user.profile.locality
-    
+def candidatelist_edit(request, candidatelist_id=None, entity_id=None):
+
+    if not entity_id:
+        entity = request.user.profile.locality
+    else:
+        entity = get_object_or_404(Entity, id=entity_id)
+
     if candidatelist_id:
-        candidatelist = CandidateList.objects.get(id=candidatelist_id)
+        candidatelist = get_object_or_404(CandidateList, id=candidatelist_id)
     else:
         candidatelist = CandidateList(entity=entity)
+
+
+    if not candidatelist.can_edit(request.user):
+        return HttpResponseForbidden(_("Only editors have access to this page."))
     
     if request.method == "POST":
         form = CandidateListForm(request.POST, instance=candidatelist)
         if form.is_valid():
             form.save()
-            
-            return HttpResponseRedirect(reverse('candidate-list-list'))
+            return HttpResponseRedirect(reverse('candidate-list', kwargs={'candidatelist_id': candidatelist.id}))
     else:
         form = CandidateListForm(instance=candidatelist)
 
     return render(request, "polyorg/candidatelist_form.html", {'form': form, 'entity': entity, 'candidatelist_id': candidatelist_id})
 
 
-@login_required
 def candidates_list(request,candidatelist_id):
-    if not request.user.profile.is_editor:
-        return HttpResponseForbidden(_("Only editors have access to this page."))
-    candidatelist = CandidateList.objects.get(id=candidatelist_id)
+    candidatelist = get_object_or_404(CandidateList, id=candidatelist_id)
+    can_edit = candidatelist.can_edit(request.user)
+    
     return render(request, 'polyorg/candidate_list.html', \
-        {'candidatelist': candidatelist})
+        {'candidatelist': candidatelist, 'can_edit': can_edit})
+
 
 @login_required
 def candidate_create(request,candidatelist_id):
-    if not request.user.profile.is_editor:
+    
+    candidatelist = get_object_or_404(CandidateList, id=candidatelist_id)
+
+    if not candidatelist.can_edit(request.user):
         return HttpResponseForbidden(_("Only editors have access to this page."))
 
-    candidatelist = CandidateList.objects.get(id=candidatelist_id)
     if request.method == "POST":
         form = CandidateForm(request.POST)
         if form.is_valid():
@@ -76,7 +88,10 @@ def candidate_create(request,candidatelist_id):
 
 @login_required
 def candidate_remove(request, candidatelist_id, candidate_id):
-    if not request.user.profile.is_editor:
+    
+    candidatelist = get_object_or_404(CandidateList, id=candidatelist_id)
+    
+    if not candidatelist.can_edit(request.user):
         return HttpResponseForbidden(_("Only editors have access to this page."))
 
     candidate_profile = get_object_or_404(User, pk=candidate_id).profile
