@@ -87,7 +87,7 @@ class Profile(models.Model):
     objects = ProfileManager()
 
     def save(self, **kwargs):
-        if self.avatar_uri:
+        if self.avatar_uri and not self.user.avatar_set.exists():
             create_avatar(self.user, self.avatar_uri)
         return super(Profile, self).save(**kwargs)
 
