@@ -207,7 +207,9 @@ line-height: 18px!important;
 	padding: 0;
 }
 #nav-content > li > a { padding:5px 15px; }
-
+.search-query{
+    background: white url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAMAAABhq6zVAAAAIVBMVEW/v7+/v78AAAC/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v79QUkolAAAAC3RSTlOLYAAJeoMjRhpOcbsbtd4AAABJSURBVHjaVc1JDsAgDATB9uAF8v8Hx0QcSN9KssZI5eClDj18PRsFlmlQDcfUGd6A3EgYP1xncQ+sa5qYOk9jRQt1Y0izhU5bL2o2AW3ZQKeJAAAAAElFTkSuQmCC) 10px 8px no-repeat;
+}
 /* Login */
 form.navbar-search { margin-top:7px; }
 .nav-self {float:left!important; margin-top:10x;}
