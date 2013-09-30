@@ -85,3 +85,7 @@ class Candidate(models.Model):
 
     def __unicode__(self):
         return u'%s - %s - %s' % (self.user.profile.get_full_name(), self.candidate_list.name, self.candidate_list.entity)
+
+    @property
+    def entity(self):
+        return self.candidate_list.entity
