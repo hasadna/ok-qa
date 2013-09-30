@@ -22,7 +22,7 @@
             {% flatblock "welcome" 9000 %}
           </div>
         {% endif %}
-        <div class="span8">
+        <div class="span9">
           <h1>
             {{ entity }}
                {% if not current_tags %}
@@ -48,6 +48,10 @@
             {% endif %}.
           </div>
 
+        </div>
+        <div class="span3">
+          <div style="height: 103px; background: url('{{ STATIC_URL }}img/locality/{{ entity.code }}.jpg') no-repeat; background-size: auto 103px;"></div>
+          
         </div>
     </div>
   </div>
