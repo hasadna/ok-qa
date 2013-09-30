@@ -13,7 +13,16 @@
 <div class="page-header">
   <div class="container">
     <div class="row">
-        <div class="span8">
+        {% if need_editors %}
+          <div class="well flatblock">
+            {% flatblock "editors_needed" 9000 %}
+          </div>
+        {% elif not request.user.is_authenticated %}
+          <div class="well flatblock">
+            {% flatblock "welcome" 9000 %}
+          </div>
+        {% endif %}
+        <div class="span9">
           <h1>
             {{ entity }}
                {% if not current_tags %}
@@ -23,30 +32,26 @@
                {% endif %}
           </h1>
           <div id="cbs_data">
-            <p><strong><span id="population"></span></strong> {% trans "Population" %}</p>
-            <p><strong><span id="councilSize"></span></strong> {% trans "Council seats" %}</p>
+            <strong><span id="population"></span></strong> {% trans "Population" %}
+            , <strong><span id="councilSize"></span></strong> {% trans "Council seats" %}
             {% if users_count %}
-              <p><strong>{{users_count}}</strong> {% trans "Registered users" %} </p>
+              , <strong>{{users_count}}</strong> {% trans "Registered users" %}
             {% endif %}
             {% if question_count %}
-              <p><strong>{{question_count}}</strong> {% trans "Questions" %}</p>
+              , <strong>{{question_count}}</strong> {% trans "Questions" %}
             {% endif %}
             {% if candidates_count %}
-              <p><strong>{{candidates_count}}</strong> {% trans "Registered candidates" %} (<span id="candidateRate"></span> {% trans "population per candidate" %})</strong></p>
+              , <strong>{{candidates_count}}</strong> {% trans "Registered candidates" %} (<span id="candidateRate"></span> {% trans "population per candidate" %})</strong>
             {% endif %}
             {% if answers_rate %}
-              <p><strong>{{answers_rate}}%</strong> {% trans "Answer rate" %}</p>
-            {% endif %}
+              , <strong>{{answers_rate}}%</strong> {% trans "Answer rate" %}
+            {% endif %}.
           </div>
-          {% if need_editors %}
-            <div class="well flatblock">
-              {% flatblock "editors_needed" 9000 %}
-            </div>
-          {% elif not request.user.is_authenticated %}
-            <div class="well flatblock">
-              {% flatblock "welcome" 9000 %}
-            </div>
-          {% endif %}
+
+        </div>
+        <div class="span3">
+          <div style="height: 103px; background: url('{{ STATIC_URL }}img/locality/{{ entity.code }}.jpg') no-repeat; background-size: auto 103px;"></div>
+          
         </div>
     </div>
   </div>

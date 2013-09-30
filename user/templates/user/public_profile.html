@@ -19,10 +19,10 @@
       </h1>
       {% if friend.is_candidate %}
       <h2>
-        {% if friend.gender == 'M' %}
-          {% trans 'Male candidate' %}
-        {% else %}
+        {% if friend.gender == 'F' %}
           {% trans 'Female candidate' %}
+        {% else %}
+          {% trans 'Male candidate' %}
         {% endif %}
 
         {% if candidate_list %}

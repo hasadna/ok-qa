@@ -33,9 +33,9 @@ class CandidateList(models.Model):
 
     def can_edit(self, user):
         return user.is_authenticated() and \
-            (user.profile.is_editor and user.profile.locality == self.entity)\
+            ((user.profile.is_editor and user.profile.locality == self.entity)\
             or (user.profile.is_candidate and user in self.candidates.all())\
-            or user.is_superuser
+            or user.is_superuser)
 
 
 class Party(models.Model):
@@ -85,3 +85,7 @@ class Candidate(models.Model):
 
     def __unicode__(self):
         return u'%s - %s - %s' % (self.user.profile.get_full_name(), self.candidate_list.name, self.candidate_list.entity)
+
+    @property
+    def entity(self):
+        return self.candidate_list.entity
