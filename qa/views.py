@@ -20,7 +20,7 @@ from django.contrib.sites.models import Site
 
 from entities.models import Entity
 from taggit.models import Tag
-from actstream import follow
+from actstream import follow, unfollow
 
 from user.models import Profile
 from qa.forms import AnswerForm, QuestionForm
@@ -147,11 +147,12 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
             except self.object.answers.model.DoesNotExist:
                 context['my_answer_form'] = AnswerForm()
 
-        if user.is_authenticated() and \
-                not self.request.user.upvotes.filter(question=self.object).exists():
-            context['can_upvote'] = True
-        else:
-            context['can_upvote'] = False
+        context['can_vote'] = None
+        if user.is_authenticated():
+            if self.request.user.upvotes.filter(question=self.object).exists():
+                context['can_vote'] = 'down'
+            else:
+                context['can_vote'] = 'up'
 
         if 'answer' in self.request.GET:
             try:
@@ -262,7 +263,7 @@ def upvote_question(request, q_id):
         else:
             upvote = QuestionUpvote.objects.create(question=q, user=user)
             #TODO: use signals so the next line won't be necesary
-            new_count = increase_rating(q)
+            new_count = change_rating(q, 1)
             follow(request.user, q)
 
             publish_upvote_to_facebook.delay(upvote)
@@ -270,11 +271,30 @@ def upvote_question(request, q_id):
     else:
         return HttpResponseForbidden(_("Use POST to upvote a question"))
 
+@login_required
+def downvote_question(request, q_id):
+    if request.method == "POST":
+        q = get_object_or_404(Question, id=q_id)
+        user = request.user
+        if q.author == user:
+            return HttpResponseForbidden(_("Cannot downvote your own question"))
+        elif not user.upvotes.filter(question=q):
+            return HttpResponseForbidden(_("You already downvoted this question"))
+        else:
+            QuestionUpvote.objects.filter(question=q, user=user).delete()
+            new_count = change_rating(q, -1)
+            unfollow(request.user, q)
+
+            # TODO: publish_downvote_to_facebook.delay(upvote)
+            return HttpResponse(new_count)
+    else:
+        return HttpResponseForbidden(_("Use POST to upvote a question"))
+
 
 @transaction.commit_on_success
-def increase_rating(q):
+def change_rating(q, change):
     q = Question.objects.get(id=q.id)
-    q.rating += 1
+    q.rating += change
     q.save()
     return q.rating
 

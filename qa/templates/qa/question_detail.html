@@ -34,8 +34,11 @@
                     </a>
                 {% endif %}
               {% elif user.profile.locality == question.entity %}
-                  <a class="btn btn-primary" id="upvote-question" href="#">
+                  <a class="btn btn-primary" id="upvote-question" href="#" style="{% if can_vote == "down" %}display: none{% endif %}">
                       {% trans "I Want an Answer" %}
+                  </a>
+                  <a class="btn btn-warning" id="downvote-question" href="#" style="{% if can_vote != "down" %}display: none{% endif %}">
+                      {% trans "I Dont Want an Answer" %}
                   </a>
               {% endif %}
                 {% if can_answer %}
@@ -142,14 +145,17 @@
                     return;
                 {% endif %}
 
-                $("#upvote-question").ajaxError(function (evt, jqXHR, setting, err) {
+                var voteAjaxError = function (evt, jqXHR, setting, err) {
                     $("#messages").html('<div class="alert" class="error">' +
                             '<button type="button" class="close" data-dismiss="alert">×</button>' +
                             jqXHR.responseText + '</div>');
-                });
+                };
+
+                $("#upvote-question").ajaxError(voteAjaxError);
+                $("#downvote-question").ajaxError(voteAjaxError);
 
                 $("#upvote-question").click(function () {
-                    {% if not can_upvote %}
+                    {% if can_vote == None %}
                         $("#messages").html('<div class="alert" class="info">' +
                                 '<button type="button" class="close" data-dismiss="alert">×</button>' +
                                 "{% trans 'Sorry but only connected users can upvote questions' %}" +
@@ -160,10 +166,26 @@
                                 function (data, status, jqXHR) {
                                     $("#votes-count-{{question.id}}").html(jqXHR.responseText);
                                     $(".votes").show();
+                                    $("#upvote-question").hide();
+                                    $("#downvote-question").show();
                                 });
                     {% endif %}
                     return false;
-                })
+                });
+
+                $("#downvote-question").click(function () {
+                    $.post("{% url "downvote_question" question.id %}",
+                           {csrfmiddlewaretoken: "{{ csrf_token }}"},
+                           function (data, status, jqXHR) {
+                             $("#votes-count-{{question.id}}").html(jqXHR.responseText);
+                             $(".votes").show();
+                             $("#upvote-question").show();
+                             $("#downvote-question").hide();
+                           });
+                    return false;
+                });
+
+            
                 $(".flag-question").click(function (e) {
                     var url = "{% url "flag_question" question.id %}";
                     {% if user == question.author %}
