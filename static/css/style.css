@@ -209,7 +209,7 @@ line-height: 18px!important;
 #nav-content > li > a { padding:5px 15px; }
 
 /* Login */
-form.navbar-search { margin :0; }
+form.navbar-search { margin-top:7px; }
 .nav-self {float:left!important; margin-top:10x;}
 .nav-self li {padding-top: 14px;}
 
