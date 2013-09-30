@@ -7,10 +7,11 @@ from django.utils.translation import ugettext_lazy as _
 
 from entities.models import Entity
 from chosen import forms as chosenforms
+from links.forms import LinksForm
 
 from models import *
 
-class ProfileForm(forms.Form):
+class ProfileForm(LinksForm):
     first_name = forms.CharField(label=_('first name'), max_length = 15)
     last_name = forms.CharField(label=_('last name'), required=False, max_length = 20)
     username = forms.RegexField(label=_("Username"), max_length=30, regex=r'^(?u)[ \w.@+-]{4,}$',
@@ -24,7 +25,6 @@ class ProfileForm(forms.Form):
     locality = chosenforms.ChosenModelChoiceField(
                 queryset=Entity.objects.filter(division__index=3),
                 label=_('Locality'), required=False)
-    url = forms.URLField(required=False ,label=_(u'home page'))
     bio = forms.CharField(required=False,
                                   label=_('Tell us and other users bit about yourself'),
                                   widget=forms.Textarea(attrs={'rows':4}))
@@ -33,7 +33,7 @@ class ProfileForm(forms.Form):
                                            help_text = _('Should we send you e-mail notification about updates to things you follow on the site?'))
 
     def __init__(self, user, *args, **kw):
-        super(ProfileForm, self).__init__(*args, **kw)
+        super(ProfileForm, self).__init__(user, *args, **kw)
         self.user = user
         if self.user:
             self.profile = user.profile
@@ -43,7 +43,6 @@ class ProfileForm(forms.Form):
                             'last_name': self.user.last_name,
                             'bio': self.profile.bio,
                             'email_notification': self.profile.email_notification,
-                            'url': self.profile.url,
                             'gender': self.profile.gender,
                             'avatar_uri': self.profile.avatar_url(),
                            }
@@ -73,7 +72,7 @@ class ProfileForm(forms.Form):
             raise forms.ValidationError(_('Please set your locality'))
 
     def save(self, commit = True):
-        user = self.user
+        user = super(ProfileForm, self).save(commit)
         if self.cleaned_data['email']:
             if user.email != self.cleaned_data['email']: #email changed - user loses comment permissions, until he validates email again.
                 #TODO: send validation email
@@ -85,7 +84,6 @@ class ProfileForm(forms.Form):
         user.last_name = self.cleaned_data['last_name']
         self.profile.bio = self.cleaned_data['bio']
         self.profile.email_notification = self.cleaned_data['email_notification']
-        self.profile.url = self.cleaned_data['url']
         self.profile.gender = self.cleaned_data['gender']
         if self.cleaned_data['locality']:
             self.profile.locality = self.cleaned_data['locality']
@@ -164,15 +162,16 @@ class AddCandidateForm(forms.Form):
         except User.DoesNotExist:
             return data
 
-class ActivateCandidateForm(SetPasswordForm):
-    url = forms.URLField(required=False ,label=_(u'home page'))
+class ActivateCandidateForm(SetPasswordForm, LinksForm):
     bio = forms.CharField(label=_('bio'),
                           widget=forms.Textarea(attrs={'rows':5}))
+
+    def __init__(self, user, *args, **kw):
+        super(LinksForm, self).__init__(*args, **kw)
 
     def save(self, commit=True):
         super(ActivateCandidateForm, self).save(commit)
         profile = self.user.profile
-        profile.url = self.cleaned_data['url']
         profile.bio = self.cleaned_data['bio']
         if commit:
             profile.save()

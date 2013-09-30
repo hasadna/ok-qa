@@ -59,7 +59,13 @@ class ModelWithLinks():
     def add_link(self, url, title, link_type=None):
         if not link_type:
             link_type = get_default_linktype()
-        Links.objects.create(content_object=self, url=url, title=title,
-                             link_type=link_type)
-    def get_links(self):
-        return Links.objects.filter(active=True, content_object=self)
+        return Link.objects.create(object_pk=self.pk,
+            content_type=ContentType.objects.get_for_model(self),
+            url=url, title=title,
+            link_type=link_type)
+    def get_links(self, link_type=None):
+        links = Link.objects.filter(active=True, object_pk=self.pk,
+            content_type=ContentType.objects.get_for_model(self))
+        if links and link_type:
+            links = links.filter(link_type=link_type)
+        return links
