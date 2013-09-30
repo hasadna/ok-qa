@@ -13,6 +13,15 @@
 <div class="page-header">
   <div class="container">
     <div class="row">
+        {% if need_editors %}
+          <div class="well flatblock">
+            {% flatblock "editors_needed" 9000 %}
+          </div>
+        {% elif not request.user.is_authenticated %}
+          <div class="well flatblock">
+            {% flatblock "welcome" 9000 %}
+          </div>
+        {% endif %}
         <div class="span8">
           <h1>
             {{ entity }}
@@ -38,15 +47,7 @@
               , <strong>{{answers_rate}}%</strong> {% trans "Answer rate" %}
             {% endif %}.
           </div>
-          {% if need_editors %}
-            <div class="well flatblock">
-              {% flatblock "editors_needed" 9000 %}
-            </div>
-          {% elif not request.user.is_authenticated %}
-            <div class="well flatblock">
-              {% flatblock "welcome" 9000 %}
-            </div>
-          {% endif %}
+
         </div>
     </div>
   </div>
