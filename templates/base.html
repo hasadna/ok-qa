@@ -114,6 +114,7 @@
   {% endblock %}
 
   {% block content %}{% endblock %}
+
 </div>
 </div>
 <footer class="footer">
@@ -136,7 +137,19 @@
       <li><a href="http://www.theinstitute.org.il/">{% trans "Joint Israel - Institute for Leadership and Government" %}</a></li>
       <li>{% trans "and" %}<a href="http://www.nuis.co.il/">{% trans "NUIS" %}</a></li>
     </ul>
+    <!-- AddToAny BEGIN -->
+<div class="a2a_kit a2a_default_style">
+  <a class="a2a_dd" href="http://www.addtoany.com/share_save?linkurl=URL&amp;linkname=NAME">{% trans 'Share' %}</a>
+  <span class="a2a_divider"></span>
+  <a class="a2a_button_facebook"></a>
+  <a class="a2a_button_twitter"></a>
+  <a class="a2a_button_google_plus"></a>
+  <a class="a2a_button_email"></a>
+</div>
+
+<!-- AddToAny END -->
   </div>
+
 </footer>
     <script src="{{ STATIC_URL }}js/jquery.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
@@ -188,7 +201,15 @@
       window.location.href = ('/' + $('select option:selected').val() + '/qna/');
   });
 </script> 
-
+<script type="text/javascript">
+  var a2a_config = a2a_config || {};
+  a2a_config.linkname = document.title;
+  a2a_config.linkurl = window.location.href;
+  a2a_config.locale = "he";
+  a2a_config.num_services = 6;
+  a2a_config.prioritize = ["facebook", "email", "twitter", "google_plus"];
+</script>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
     {% block extrascript %} {% endblock %}
 </body>
 </html>
