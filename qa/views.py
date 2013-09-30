@@ -77,7 +77,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         tags = Tag.objects.filter(qa_taggedquestion_items__content_object__entity=entity,\
             qa_taggedquestion_items__content_object__is_deleted=False).\
                 annotate(num_times=Count('qa_taggedquestion_items')).\
-                order_by("slug")
+                order_by("-num_times","slug")
         need_editors = Profile.objects.need_editors(entity)
         if request.user.is_authenticated():
             can_ask = request.user.profile.locality == entity
