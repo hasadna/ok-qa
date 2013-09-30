@@ -90,6 +90,11 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     candidates = Profile.objects.get_candidates(entity).\
                     annotate(num_answers=models.Count('answers')).\
                     order_by('-num_answers')
+    candidate_list = []
+    for candidate in candidates:
+        if candidate.profile.is_mayor_candidate == True:
+            candidate_list.append(candidate)
+# #   print Profile.is_mayor_candidate
 
     question_count = questions.count()  
     candidates_count = candidates.count()
@@ -110,7 +115,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'need_editors': need_editors,
         'can_ask': can_ask,
         'question_count': question_count,
-        'candidates': candidates,
+        'candidates': candidate_list,
         'candidates_count': candidates_count,
         'users_count': users_count,
         'answers_rate': answers_rate,
