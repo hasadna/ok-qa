@@ -18,8 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css"/>
     <meta property="fb:app_id"    content="{{FACEBOOK_APP_ID}}" /> 
     <meta property="og:site_name" content="{{site.name}}" /> 
-    <meta property="og:image" content="http:{{ STATIC_URL }}img/logo.png" /> 
-
+    <meta property="og:image" content="{{ STATIC_URL }}img/logo.png" /> 
     {% block extrahead %}{% endblock %}
 
     {% if ANALYTICS_ID %}
