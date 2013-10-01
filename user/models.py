@@ -1,17 +1,13 @@
 import urllib, hashlib, datetime
 # Django imports
 from django.db import models
-from django.conf import settings
-from django.contrib.auth.models import User, Group, Permission
+from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.contrib.sites.managers import CurrentSiteManager
-from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 # Friends' apps
-from taggit.managers import TaggableManager
 from registration.models import RegistrationProfile
-from actstream import follow
 from actstream.models import Follow
 # Project's apps
 from entities.models import Entity

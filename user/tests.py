@@ -1,7 +1,4 @@
-from django.conf import settings
-from django.contrib.auth.models import User, AnonymousUser, Permission
-from django.contrib.sites.models import Site
-from social_auth.tests.client import SocialClient
+from django.contrib.auth.models import User
 from django.test.client import Client
 from django.core.urlresolvers import reverse
 

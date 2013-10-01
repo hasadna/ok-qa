@@ -180,7 +180,6 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
 
 @login_required
 def post_answer(request, q_id):
-    context = {}
     question = Question.objects.get(id=q_id)
 
     if not question.can_answer(request.user):
