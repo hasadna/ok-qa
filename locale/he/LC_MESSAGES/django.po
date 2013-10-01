@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-09-30 22:30+0300\n"
+"POT-Creation-Date: 2013-10-01 11:43+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -236,7 +236,7 @@ msgstr "מחבר"
 msgid "question"
 msgstr "שאלה"
 
-#: qa/models.py:58
+#: qa/models.py:58 qa/templates/qa/question_list.html:82
 msgid "details"
 msgstr "פירוט"
 
@@ -262,89 +262,89 @@ msgstr "תוכן"
 msgid "Please enter an answer in no more than %s letters"
 msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
 
-#: qa/views.py:52
+#: qa/views.py:54
 msgid "Bad Entity"
 msgstr "רשות לא חוקית"
 
-#: qa/views.py:55
+#: qa/views.py:57
 msgid "Please update your locality in your user profile to use the site"
 msgstr "יש לבחור מקום מגורים כדי להשתמש באתר."
 
-#: qa/views.py:188
+#: qa/views.py:192
 msgid "You must be logged in as a candidate to post answers"
 msgstr "עליך להתחבר כמועמד כדי לפרסם תשובות"
 
-#: qa/views.py:206
+#: qa/views.py:210
 msgid "Sorry but only connected users can post questions"
 msgstr "מצטערים, יש להתחבר כדי לשאול שאלות"
 
-#: qa/views.py:226
+#: qa/views.py:230
 msgid "You can only edit your own questions."
 msgstr "מצטערים, ניתן לערוך רק שאלות שלך"
 
-#: qa/views.py:228
+#: qa/views.py:232
 msgid "Question has been answered, editing disabled."
 msgstr "ישנן תשובות לשאלה, אי אפשר לערוך"
 
-#: qa/views.py:262
+#: qa/views.py:266
 msgid "You already upvoted this question"
 msgstr "תודה, כבר תמכת בשאלה זו"
 
-#: qa/views.py:272 qa/views.py:291
+#: qa/views.py:276 qa/views.py:295
 msgid "Use POST to upvote a question"
 msgstr "השתמש ב POST כדי להצביע לשאלה"
 
-#: qa/views.py:280
+#: qa/views.py:284
 msgid "Cannot downvote your own question"
 msgstr "לא ניתן לבטל את התמיכה בשאלות שאתה כתבת"
 
-#: qa/views.py:282
+#: qa/views.py:286
 msgid "You already downvoted this question"
 msgstr "תודה, כבר ביטלת את תמיכתך בשאלה זו"
 
-#: qa/views.py:304
+#: qa/views.py:308
 msgid "OK QA Question Feed"
 msgstr "שאלות נשאלו"
 
-#: qa/views.py:306
+#: qa/views.py:310
 msgid "Questions from OKQA"
 msgstr "שאלות"
 
-#: qa/views.py:325
+#: qa/views.py:329
 #, python-format
 msgid "Questions feed for %s"
 msgstr "שטף שאלות עבור %s"
 
-#: qa/views.py:329
+#: qa/views.py:333
 #, python-format
 msgid "Brought to you by \"%s\""
 msgstr "מוגש על ידי \"%s\""
 
-#: qa/views.py:351
+#: qa/views.py:355
 msgid "Answers for the question"
 msgstr "תשובות לשאלה"
 
-#: qa/views.py:357
+#: qa/views.py:361
 msgid "A feed of all answers for the question"
 msgstr "פיד של תשובות לשאלה"
 
-#: qa/views.py:377
+#: qa/views.py:381
 msgid "Sorry, you have to login to flag questions"
 msgstr "אנא התחברו כדי לסמן שאלה לא ראויה"
 
-#: qa/views.py:384
+#: qa/views.py:388
 msgid "Sorry, can not delete a question with answers"
 msgstr "מצטערים, לא ניתן למחוק שאלה עם תשובות"
 
-#: qa/views.py:395
+#: qa/views.py:399
 msgid "Question has been removed"
 msgstr "השאלה נמחקה"
 
-#: qa/views.py:398
+#: qa/views.py:402
 msgid "Thanks.  You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
-#: qa/views.py:405
+#: qa/views.py:409
 msgid ""
 "Thank you for flagging the question. One of our editors will look at it "
 "shortly."
@@ -366,7 +366,7 @@ msgstr "שאלה זו נמחקה"
 msgid "votes"
 msgstr "שואלים"
 
-#: qa/templates/qa/_question.html:34 qa/templates/qa/question_list.html:120
+#: qa/templates/qa/_question.html:34 qa/templates/qa/question_list.html:134
 msgid "Tags"
 msgstr "תגיות"
 
@@ -507,34 +507,36 @@ msgstr "תושבים למועמד"
 msgid "Answer rate"
 msgstr "מענה"
 
-#: qa/templates/qa/question_list.html:63
-#: user/templates/candidate/candidate_list.html:8
-#, python-format
-msgid "Candidates in %(place)s "
-msgstr "מועמדים לבחירות המקומיות ב%(place)s"
+#: qa/templates/qa/question_list.html:64
+msgid "Mayor candidates in %(place)s "
+msgstr "מועמדים לראשות %(place)s"
 
-#: qa/templates/qa/question_list.html:70
+#: qa/templates/qa/question_list.html:71
 #: user/templates/candidate/candidate_list.html:25
 msgid "answers"
 msgstr "תשובות"
 
-#: qa/templates/qa/question_list.html:81
+#: qa/templates/qa/question_list.html:77
+msgid "Candidate lists"
+msgstr "רשימות"
+
+#: qa/templates/qa/question_list.html:95
 msgid "In the tags:"
 msgstr "תחת התגיות:"
 
-#: qa/templates/qa/question_list.html:90
+#: qa/templates/qa/question_list.html:104
 msgid "Top Questions"
 msgstr "שאלות מובילות"
 
-#: qa/templates/qa/question_list.html:93
+#: qa/templates/qa/question_list.html:107
 msgid "Most Recent"
 msgstr "שאלות אחרונות"
 
-#: qa/templates/qa/question_list.html:97
+#: qa/templates/qa/question_list.html:111
 msgid "Flagged Questions"
 msgstr "שאלות מוסמנות"
 
-#: qa/templates/qa/question_list.html:116
+#: qa/templates/qa/question_list.html:130
 msgid "Ask Question"
 msgstr "העלו שאלה"
 
@@ -844,7 +846,7 @@ msgstr "לא נשלח דואר זבל, לא נשתף את הכתובת עם אף
 msgid "Gender"
 msgstr "מגדר"
 
-#: user/forms.py:26 user/models.py:79
+#: user/forms.py:26 user/models.py:76
 msgid "Locality"
 msgstr "מקום מגורים"
 
@@ -916,23 +918,23 @@ msgstr "תוכן הדוא\"ל"
 msgid "bio"
 msgstr "עלי"
 
-#: user/models.py:20
+#: user/models.py:17
 msgid "No Email"
 msgstr "ללא דוא\"ל"
 
-#: user/models.py:21
+#: user/models.py:18
 msgid "Daily"
 msgstr "יומי"
 
-#: user/models.py:22
+#: user/models.py:19
 msgid "Weekly"
 msgstr "שבועי"
 
-#: user/models.py:25
+#: user/models.py:22
 msgid "Male"
 msgstr "זכר"
 
-#: user/models.py:26
+#: user/models.py:23
 msgid "Female"
 msgstr "נקבה"
 
@@ -960,6 +962,11 @@ msgstr "עמוד זה נגיש רק לעורכים."
 #: user/templates/candidate/candidate_list.html:3
 msgid "candidates list"
 msgstr "רשימת מועמדים"
+
+#: user/templates/candidate/candidate_list.html:8
+#, python-format
+msgid "Candidates in %(place)s "
+msgstr "מועמדים לבחירות המקומיות ב%(place)s"
 
 #: user/templates/candidate/candidate_list.html:10
 msgid "Candidates for local elections"

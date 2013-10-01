@@ -292,4 +292,6 @@ h1, h2, h3, h4, h5, h6 {
 .dead-center { text-align: center; vertical-align: middle; margin: 0 auto; }
 .pageHeader { text-align:center; padding-bottom: 1em;}
 .well { font-size:120%; }
-.candidate_list_detail {float: right}
+.candidate_list {clear: both;}
+.candidate_list_detail {float: right; margin: 2px;}
+.candidate_list_detail.ballot {border: 1px black solid; width: 30px; text-align: center;}
