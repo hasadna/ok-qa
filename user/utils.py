@@ -1,8 +1,6 @@
 import urllib2
 import tempfile
 
-from django.conf import settings
-from django.core.files import File
 from django.core.files.base import ContentFile
 
 from avatar.models import Avatar

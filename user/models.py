@@ -1,20 +1,17 @@
 import urllib, hashlib, datetime
 # Django imports
 from django.db import models
-from django.conf import settings
-from django.contrib.auth.models import User, Group, Permission
+from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.contrib.sites.managers import CurrentSiteManager
-from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 # Friends' apps
-from taggit.managers import TaggableManager
 from registration.models import RegistrationProfile
-from actstream import follow
 from actstream.models import Follow
 # Project's apps
 from entities.models import Entity
+from user.utils import create_avatar
 
 NOTIFICATION_PERIOD_CHOICES = (
     (u'N', _('No Email')),
@@ -84,6 +81,12 @@ class Profile(models.Model):
     on_site = CurrentSiteManager()
 
     objects = ProfileManager()
+
+    def save(self, **kwargs):
+        if self.avatar_uri and not self.user.avatar_set.exists():
+            create_avatar(self.user, self.avatar_uri)
+        return super(Profile, self).save(**kwargs)
+
     def avatar_url(self, size=40):
         if self.avatar_uri:
             return self.avatar_uri

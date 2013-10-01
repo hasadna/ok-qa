@@ -20,7 +20,7 @@ from django.contrib.sites.models import Site
 
 from entities.models import Entity
 from taggit.models import Tag
-from actstream import follow
+from actstream import follow, unfollow
 
 from user.models import Profile
 from qa.forms import AnswerForm, QuestionForm
@@ -28,6 +28,8 @@ from qa.models import *
 from qa.tasks import publish_question_to_facebook, publish_upvote_to_facebook,\
     publish_answer_to_facebook
 from qa.mixins import JSONResponseMixin
+
+from polyorg.models import CandidateList
 
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flags_count'}
@@ -77,7 +79,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         tags = Tag.objects.filter(qa_taggedquestion_items__content_object__entity=entity,\
             qa_taggedquestion_items__content_object__is_deleted=False).\
                 annotate(num_times=Count('qa_taggedquestion_items')).\
-                order_by("slug")
+                order_by("-num_times","slug")
         need_editors = Profile.objects.need_editors(entity)
         if request.user.is_authenticated():
             can_ask = request.user.profile.locality == entity
@@ -87,12 +89,15 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     else:
         users_count = Profile.objects.count()
 
-    candidates = Profile.objects.get_candidates(entity).\
+    candidate_lists = CandidateList.objects.filter(entity=entity)
+
+    mayor_list = Profile.objects.get_candidates(entity)
+    candidates_count = mayor_list.count()
+    mayor_list = mayor_list.filter(candidate__for_mayor=True).\
                     annotate(num_answers=models.Count('answers')).\
                     order_by('-num_answers')
 
-    question_count = questions.count()  
-    candidates_count = candidates.count()
+    question_count = questions.count()
     answers_count = Answer.objects.filter(question__entity=entity, is_deleted=False).count()
     if question_count and candidates_count:
         answers_rate = int((float(answers_count) / (question_count * candidates_count)) * 100)
@@ -110,8 +115,9 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'need_editors': need_editors,
         'can_ask': can_ask,
         'question_count': question_count,
-        'candidates': candidates,
+        'candidates': mayor_list,
         'candidates_count': candidates_count,
+        'candidate_lists': candidate_lists,
         'users_count': users_count,
         'answers_rate': answers_rate,
         'stats': cbs_stats[entity.code],
@@ -147,11 +153,12 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
             except self.object.answers.model.DoesNotExist:
                 context['my_answer_form'] = AnswerForm()
 
-        if user.is_authenticated() and \
-                not self.request.user.upvotes.filter(question=self.object).exists():
-            context['can_upvote'] = True
-        else:
-            context['can_upvote'] = False
+        context['can_vote'] = None
+        if user.is_authenticated():
+            if self.request.user.upvotes.filter(question=self.object).exists():
+                context['can_vote'] = 'down'
+            else:
+                context['can_vote'] = 'up'
 
         if 'answer' in self.request.GET:
             try:
@@ -180,7 +187,6 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
 
 @login_required
 def post_answer(request, q_id):
-    context = {}
     question = Question.objects.get(id=q_id)
 
     if not question.can_answer(request.user):
@@ -262,7 +268,7 @@ def upvote_question(request, q_id):
         else:
             upvote = QuestionUpvote.objects.create(question=q, user=user)
             #TODO: use signals so the next line won't be necesary
-            new_count = increase_rating(q)
+            new_count = change_rating(q, 1)
             follow(request.user, q)
 
             publish_upvote_to_facebook.delay(upvote)
@@ -270,11 +276,30 @@ def upvote_question(request, q_id):
     else:
         return HttpResponseForbidden(_("Use POST to upvote a question"))
 
+@login_required
+def downvote_question(request, q_id):
+    if request.method == "POST":
+        q = get_object_or_404(Question, id=q_id)
+        user = request.user
+        if q.author == user:
+            return HttpResponseForbidden(_("Cannot downvote your own question"))
+        elif not user.upvotes.filter(question=q):
+            return HttpResponseForbidden(_("You already downvoted this question"))
+        else:
+            QuestionUpvote.objects.filter(question=q, user=user).delete()
+            new_count = change_rating(q, -1)
+            unfollow(request.user, q)
+
+            # TODO: publish_downvote_to_facebook.delay(upvote)
+            return HttpResponse(new_count)
+    else:
+        return HttpResponseForbidden(_("Use POST to upvote a question"))
+
 
 @transaction.commit_on_success
-def increase_rating(q):
+def change_rating(q, change):
     q = Question.objects.get(id=q.id)
-    q.rating += 1
+    q.rating += change
     q.save()
     return q.rating
 
@@ -381,7 +406,7 @@ def flag_question(request, q_id):
             flag = QuestionFlag.objects.create(question=q, reporter=user)
             #TODO: use signals so the next line won't be necesary
             q.flagged()
-            messages.success(request, 
+            messages.success(request,
                 _('Thank you for flagging the question. One of our editors will look at it shortly.'))
 
     redirect = reverse('local_home', args=(q.entity.slug,))

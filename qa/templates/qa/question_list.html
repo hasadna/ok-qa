@@ -9,7 +9,7 @@
 
 {% block homeNav %}class="active"{% endblock %}
 {% block content %}
-{% cache 300 local_home entity.id request.page request.user.username %}
+{# {% cache 300 local_home entity.id request.page request.user.username %} #}
 <div class="page-header">
   <div class="container">
     <div class="row">
@@ -58,22 +58,36 @@
 </div>
 {% if not request.page or request.page == 1 %}
 <div class="row">
-  {% for candidate in candidates %}
-    {% if forloop.first %}
-      <h2>{% blocktrans with entity.name as place %}Candidates in {{place}} {% endblocktrans %}</h2>
-    {% endif %}
-      <div onclick="window.location.href='{{ candidate.get_absolute_url }}'"
-      class="candidate-avatar">
-        {% avatar candidate 75 %}
-        <p>{{ candidate.get_full_name|default:candidate.username}}</p>
-        {% if candidate.num_answers %}
-        <p>{{ candidate.num_answers }} {% trans "answers" %}</p>
+  <div class="span8">
+    {% for candidate in candidates %}
+        {% if forloop.first %}
+            <h2>{% blocktrans with entity.name as place %}Mayor candidates in {{place}} {% endblocktrans %} ({{candidates.count}})</h2>
         {% endif %}
-      </div>
-  {% endfor %}
+        <div onclick="window.location.href='{{ candidate.get_absolute_url }}'"
+        class="candidate-avatar">
+            {% avatar candidate 75 %}
+            <p>{{ candidate.get_full_name|default:candidate.username}}</p>
+            {% if candidate.num_answers %}
+            <p>{{ candidate.num_answers }} {% trans "answers" %}</p>
+            {% endif %}
+        </div>
+      {% endfor %}
+  </div>
+  <div class="span4">
+      <h2>{% blocktrans %}Candidate lists{% endblocktrans %} ({{ candidate_lists.count }})</h2>
+      {% for list in candidate_lists %}
+        <div class="candidate_list">
+            <div class="candidate_list_detail ballot">{{ list.ballot }}</div>
+            <div class="candidate_list_detail list_name">{{ list.name }}</div>
+            <div class="candidate_list_detail list_details"><a href="{% url 'candidate-list' list.id %}">{% trans "details" %}</a></div>
+        </div>
+      {% endfor %}
+
+
+  </div>
 </div>
 {% endif %}
-{% endcache %}
+{# {% endcache %} #}
 <div class="row questions-wrapper">
   <div class="span9 questions">
     {% if current_tags %}

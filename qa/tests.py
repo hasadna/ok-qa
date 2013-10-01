@@ -114,8 +114,8 @@ class QuestionTest(TestCase):
         res2 = c.get(reverse('local_home'))
 
         self.assertRedirects(res2, default_home)
-        self.assertEquals(response.context['candidates'].count(), 1)
-        self.assertEquals(response.context['candidates'].count(), response.context['candidates_count'])
+        self.assertEquals(response.context['candidates'].count(), 0)
+        self.assertEquals(response.context['candidates_count'], 1)
         self.assertEquals(response.context['users_count'], 4)
         self.assertEquals(response.context['questions'].count(), response.context['question_count'])
         self.assertEquals(response.context['question_count'], 1)

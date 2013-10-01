@@ -26,6 +26,7 @@ urlpatterns = patterns('qa.views',
 	url(r'^qna/flag_question/(?P<q_id>\d+)/flag/$', 'flag_question', name='flag_question'),
 
     url(r'upvote_question/(?P<q_id>\d+)/$', 'upvote_question', name='upvote_question'),
+    url(r'downvote_question/(?P<q_id>\d+)/$', 'downvote_question', name='downvote_question'),
 )
 
 urlpatterns += patterns('',
