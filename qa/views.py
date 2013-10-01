@@ -91,17 +91,13 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
 
     candidate_lists = CandidateList.objects.filter(entity=entity)
 
-    candidates = Profile.objects.get_candidates(entity).\
+    mayor_list = Profile.objects.get_candidates(entity)
+    candidates_count = mayor_list.count()
+    mayor_list = mayor_list.filter(candidate__for_mayor=True).\
                     annotate(num_answers=models.Count('answers')).\
                     order_by('-num_answers')
-    candidate_list = []
-    for candidate in candidates:
-        if candidate.profile.is_mayor_candidate == True:
-            candidate_list.append(candidate)
-# #   print Profile.is_mayor_candidate
 
     question_count = questions.count()
-    candidates_count = candidates.count()
     answers_count = Answer.objects.filter(question__entity=entity, is_deleted=False).count()
     if question_count and candidates_count:
         answers_rate = int((float(answers_count) / (question_count * candidates_count)) * 100)
@@ -119,7 +115,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'need_editors': need_editors,
         'can_ask': can_ask,
         'question_count': question_count,
-        'candidates': candidate_list,
+        'candidates': mayor_list,
         'candidates_count': candidates_count,
         'candidate_lists': candidate_lists,
         'users_count': users_count,
