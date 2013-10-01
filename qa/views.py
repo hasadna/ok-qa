@@ -29,6 +29,8 @@ from qa.tasks import publish_question_to_facebook, publish_upvote_to_facebook,\
     publish_answer_to_facebook
 from qa.mixins import JSONResponseMixin
 
+from polyorg.models import CandidateList
+
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flags_count'}
 
@@ -87,11 +89,13 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     else:
         users_count = Profile.objects.count()
 
+    candidate_lists = CandidateList.objects.all()
+
     candidates = Profile.objects.get_candidates(entity).\
                     annotate(num_answers=models.Count('answers')).\
                     order_by('-num_answers')
 
-    question_count = questions.count()  
+    question_count = questions.count()
     candidates_count = candidates.count()
     answers_count = Answer.objects.filter(question__entity=entity, is_deleted=False).count()
     if question_count and candidates_count:
@@ -112,6 +116,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'question_count': question_count,
         'candidates': candidates,
         'candidates_count': candidates_count,
+        'candidate_lists': candidate_lists,
         'users_count': users_count,
         'answers_rate': answers_rate,
         'stats': cbs_stats[entity.code],
@@ -400,7 +405,7 @@ def flag_question(request, q_id):
             flag = QuestionFlag.objects.create(question=q, reporter=user)
             #TODO: use signals so the next line won't be necesary
             q.flagged()
-            messages.success(request, 
+            messages.success(request,
                 _('Thank you for flagging the question. One of our editors will look at it shortly.'))
 
     redirect = reverse('local_home', args=(q.entity.slug,))
