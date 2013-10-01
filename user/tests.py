@@ -79,10 +79,10 @@ class UserTest(TestCase):
     def test_avatar(self):
         avatar_url = self.user.profile.avatar_url()
         self.assertTrue(avatar_url.startswith('http://www.gravatar.com/avatar/'))
-        self.user.profile.avatar_uri = 'http://myavatar.com'
+        self.user.profile.avatar_uri = 'http://lorempixel.com/100/100/'
         self.user.profile.save()
         avatar_url = self.user.profile.avatar_url()
-        self.assertEquals(avatar_url, 'http://myavatar.com')
+        self.assertEquals(avatar_url, 'http://lorempixel.com/100/100/')
 
     def test_candidate_list(self):
         c = Client()
