@@ -13,8 +13,8 @@
     {% if candidatelist.homepage_url %}
     <p><a href="{{candidatelist.homepage_url}}" target='_blank'>{% trans 'Homepage' %}</a></p>
     {% endif %}
-    {% if candidatelist.youtube_user %}
-    <p><a href="http://youtube.com/user/{{candidatelist.youtube_user}}" target='_blank'>Youtube</a></p>
+    {% if candidatelist.youtube_url %}
+    <p><a href="{{candidatelist.youtube_url}}" target='_blank'>Youtube</a></p>
     {% endif %}
     {% if candidatelist.facebook_url %}
     <p><a href="{{candidatelist.facebook_url}}" target='_blank'>Facebook</a></p>

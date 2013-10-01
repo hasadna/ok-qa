@@ -11,7 +11,7 @@ class CandidateList(models.Model):
                 help_text=_('The list with which is the surplus votes partner'))
     img_url = models.URLField(_('Image URL'), blank=True)
     homepage_url = models.URLField(_('Homepage URL'), blank=True, null=True)
-    youtube_user = models.CharField(_('YouTube user'), max_length = 80, null=True, blank=True)
+    youtube_url = models.URLField(_('YouTube URL'), blank=True, null=True)
     facebook_url = models.URLField(_('Facebook URL'), blank=True, null=True)
     platform = models.TextField(_('Platform'), blank=True, null=True)
     entity = models.ForeignKey('entities.Entity', blank=True, null=True)
