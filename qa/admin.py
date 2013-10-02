@@ -7,7 +7,7 @@ class QuestionFlagAdmin(admin.StackedInline):
 
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [ QuestionFlagAdmin ]
-    list_filter = ('flags_count',)
+    list_filter = ('flags_count','entity',)
 
 class AnswerAdmin(admin.ModelAdmin):
     pass
