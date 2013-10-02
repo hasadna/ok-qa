@@ -77,9 +77,8 @@
       <h2>{% blocktrans %}Candidate lists{% endblocktrans %} ({{ candidate_lists.count }})</h2>
       {% for list in candidate_lists %}
         <div class="candidate_list">
-            <div class="candidate_list_detail ballot">{{ list.ballot }}</div>
-            <div class="candidate_list_detail list_name">{{ list.name }}</div>
-            <div class="candidate_list_detail list_details"><a href="{% url 'candidate-list' list.id %}">{% trans "details" %}</a></div>
+            <a href="{% url 'candidate-list' list.id %}"><div class="candidate_list_detail ballot" style="background: url('{{STATIC_URL}}/img/white_note.png') no-repeat; ">{{ list.ballot }}</div>
+            <div class="candidate_list_detail list_name">{{ list.name }}</div></a>
         </div>
       {% endfor %}
 

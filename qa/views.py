@@ -91,7 +91,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     else:
         users_count = Profile.objects.count()
 
-    candidate_lists = CandidateList.objects.filter(entity=entity)
+    candidate_lists = CandidateList.objects.filter(entity=entity).order_by('name')
 
     mayor_list = Profile.objects.get_candidates(entity)
     candidates_count = mayor_list.count()
