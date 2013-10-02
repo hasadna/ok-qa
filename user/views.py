@@ -54,9 +54,9 @@ def public_profile(request, username=None, pk=None):
     profile = user.profile
     if profile:
         setattr(request, 'entity', profile.locality)
-    if profile.is_candidate:
-        candidate = user.candidate_set.get()
-        candidate_list = user.candidatelist_set.get()
+    if profile.is_candidate and user.candidate_set.exists():
+        candidate = user.candidate_set.all()[0]
+        candidate_list = user.candidatelist_set.all()[0]
     else:
         candidate = None
         candidate_list = None
