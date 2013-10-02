@@ -98,8 +98,10 @@ def candidate_remove(request, candidatelist_id, candidate_id):
     if request.user.profile.locality == candidate_profile.locality:
         candidate_profile.is_candidate = False
         candidate_profile.save()
-        candidate = Candidate.objects.get(user__id=candidate_id)
-        candidate.delete()
+        candidate = Candidate.objects.filter(user__id=candidate_id)
+        for c in candidate:
+            if c.candidate_list == candidatelist:
+                c.delete()
         # TODO: notify the candidate by email that he's fired
     else:
         return HttpResponseForbidden(_('Sorry, you are not authorized to remove %s from the candidate list')
