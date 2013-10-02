@@ -38,6 +38,7 @@
   {% endfor %}
 </div>
 {% if can_edit %}
+    <h3>{% trans "Edit" %}</h3>
     <p><a href="{% url 'candidate-create' candidatelist.id %}">{% trans "Add candidate" %}</a></p>
     <p><a href="{% url 'candidatelist-edit' candidatelist.id %}">{% trans 'Edit list details' %}</a></p>
 {% endif %}
