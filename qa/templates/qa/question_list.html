@@ -32,8 +32,8 @@
                {% endif %}
           </h1>
           <div id="cbs_data">
-            <strong><span id="population"></span></strong> {% trans "Population" %}
-            , <strong><span id="councilSize"></span></strong> {% trans "Council seats" %}
+            <strong><span id="population"></span>{{stats.totalpopulation}}</strong> {% trans "Population" %}
+            , <strong><span id="councilSize">{{stats.numofcouncilman}}</span></strong> {% trans "Council seats" %}
             {% if users_count %}
               , <strong>{{users_count}}</strong> {% trans "Registered users" %}
             {% endif %}
@@ -41,7 +41,7 @@
               , <strong>{{question_count}}</strong> {% trans "Questions" %}
             {% endif %}
             {% if candidates_count %}
-              , <strong>{{candidates_count}}</strong> {% trans "Registered candidates" %} (<span id="candidateRate"></span> {% trans "population per candidate" %})</strong>
+              , <strong>{{candidates_count}}</strong> {% trans "Registered candidates" %}</strong>
             {% endif %}
             {% if answers_rate %}
               , <strong>{{answers_rate}}%</strong> {% trans "Answer rate" %}
@@ -138,22 +138,3 @@
   </div>
 </div>
 {% endblock %}
-  {% block extrascript %}
-  {% load staticfiles %}
-    <script>
-
-        $(document).ready(function () {
-          var totalpopulation = "{{stats.totalpopulation}}";
-          var councilSize = "{{stats.numofcouncilman}}";
-          $('#population').text(totalpopulation);
-          if ({{candidates_count}}){
-            candidateRate = Math.round(totalpopulation / {{candidates_count}});
-          } else {
-            candidateRate = '-';
-          }
-          $('#candidateRate').text(candidateRate);
-          $('#councilSize').text(councilSize);
-        });
-
-    </script>
-  {% endblock %}
