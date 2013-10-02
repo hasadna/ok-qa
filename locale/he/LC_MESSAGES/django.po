@@ -737,7 +737,7 @@ msgstr "התחבר לפייסבוק"
 
 #: templates/registration/login.html:34
 msgid "Or register yourself"
-msgstr "או הרשמו עצמונית"
+msgstr "או הרשמו באמצעות כתובת אימייל"
 
 #: templates/registration/logout.html:5
 msgid "Thanks for using the System. You are now logged out."
