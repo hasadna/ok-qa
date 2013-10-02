@@ -55,17 +55,17 @@ def public_profile(request, username=None, pk=None):
     if profile:
         setattr(request, 'entity', profile.locality)
     if profile.is_candidate:
-        if user.candidatelist_set.exists(): 
-            candidate_list = user.candidatelist_set.all()[0]
-        else:
-            candidate_list = None
+        candidate_list = user.candidatelist_set.get()
+        links = user.candidate_set.get().get_links()
     else:
         candidate_list = None
+        links = None
 
     context = RequestContext(request, {"friend": profile,
                                        "answers": answers,
                                        "questions": questions,
                                        "candidate_list": candidate_list,
+                                       "links": links,
                                        })
 
     # todo: support members as well as candidates

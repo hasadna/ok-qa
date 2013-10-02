@@ -8,6 +8,17 @@
 
 {% block content %}
 <div class="page-header row">
+  {% if links %}
+  <div class="top span3">
+    <div class="pull-right">
+        {% for link in links %}
+        <a href="{{ link.url }}" title="{{ link.title }}" rel="tooltip">
+            <img src="{{ link.link_type.image.url }}" width="25" />
+        </a>
+        {% endfor %}
+    </div>
+  </div>
+  {% endif %}
   <div class="offset3 span6"><center>
     <div class="dead-center">
       {% avatar friend.user %}
