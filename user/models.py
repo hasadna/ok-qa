@@ -124,7 +124,7 @@ class Profile(models.Model):
     @property
     def is_mayor_candidate(self):
         if self.is_candidate and self.user.candidate_set.exists():
-            return self.user.candidate_set.only()[0].for_mayor
+            return self.user.candidate_set.all()[0].for_mayor
         return False
 
 

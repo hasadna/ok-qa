@@ -55,9 +55,8 @@ def public_profile(request, username=None, pk=None):
     if profile:
         setattr(request, 'entity', profile.locality)
     if profile.is_candidate:
-        user_candidatelist = user.candidatelist_set.only()
-        if user_candidatelist: 
-            candidate_list = user_candidatelist[0]
+        if user.candidatelist_set.exists(): 
+            candidate_list = user.candidatelist_set.all()[0]
         else:
             candidate_list = None
     else:
@@ -242,6 +241,6 @@ def entity_stats(request):
         return HttpResponseForbidden(_('Only superusers have access to this page.'))
 
     entities = Entity.objects.filter(division__index=3)
-    entities = entities.annotate(Count('profile__is_editor'))
+    entities = entities.annotate(editor_count=Count('profile__is_editor'))
     return render(request, 'user/entity_stats.html', {'entities': entities})
 
