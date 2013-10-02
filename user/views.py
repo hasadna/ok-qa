@@ -98,11 +98,10 @@ def edit_candidate(request):
     if request.method == "POST":
         form = CandidateForm(request.user, data=request.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
             return HttpResponseRedirect(reverse(profile.get_absolute_url()))
 
     elif request.method == "GET":
-        user = request.user
         form = CandidateForm(request.user)
 
     context = RequestContext(request, {"form": form,
@@ -117,7 +116,7 @@ def edit_profile(request):
     if request.method == "POST":
         form = ProfileForm(request.user, data=request.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
 
             local_home = profile.get_absolute_url()
             next = request.POST.get('next', local_home)
@@ -129,9 +128,15 @@ def edit_profile(request):
         form = ProfileForm(request.user)
 
     setattr(request, 'entity', profile.locality)
+    
+    if request.user.candidatelist_set.exists():
+        candidate_list = request.user.candidatelist_set.all()[0]
+    else:
+        candidate_list = None
 
-    context = RequestContext(request, {"form":
-                             form, "following": profile.following})
+    context = RequestContext(request, { "form": form,
+                                        "following": profile.following,
+                                        "candidate_list": candidate_list})
     return render(request, "user/edit_profile.html", context)
 
 
