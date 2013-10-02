@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-01 17:14+0300\n"
+"POT-Creation-Date: 2013-10-02 10:24+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -95,6 +95,10 @@ msgstr "מספר חברי המפלגה"
 #: party/models.py:22
 msgid "anonymous"
 msgstr "ללא שם"
+
+#: polyorg/forms.py:17 polyorg/forms.py:23
+msgid "Enter a valid URL."
+msgstr "יש להזין URL חוקי."
 
 #: polyorg/models.py:6
 msgid "List Name"
@@ -252,6 +256,10 @@ msgstr "ניקוד"
 #: qa/models.py:62
 msgid "flags counter"
 msgstr "מונה דיווחים"
+
+#: qa/models.py:68
+msgid "entity"
+msgstr "רשות"
 
 #: qa/models.py:115
 msgid "content"
@@ -7650,9 +7658,6 @@ msgstr "השאלות של"
 #~ msgid ""
 #~ "Ensure this filename has at most %(max)d characters (it has %(length)d)."
 #~ msgstr "על שם הקובץ להיות לא יותר מ %(max)d תווים (יש לו%(length)d)."
-
-#~ msgid "Enter a valid URL."
-#~ msgstr "יש להזין URL חוקי."
 
 #~ msgid "This URL appears to be a broken link."
 #~ msgstr "ה-URL הזה נראה כקישור שבור."

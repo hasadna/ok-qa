@@ -65,7 +65,7 @@ class Question(BaseModel):
     # for easy access to current site questions
     objects = models.Manager()
     on_site = CurrentSiteManager()
-    entity = models.ForeignKey(Entity, null=True, related_name="questions")
+    entity = models.ForeignKey(Entity, null=True, related_name="questions", verbose_name=_("entity"))
 
     class Meta:
         unique_together = ('unislug','entity')
