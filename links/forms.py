@@ -29,17 +29,21 @@ class LinksForm(forms.Form):
                 self.candidate = user.candidate_set.get()
             except Candidate.DoesNotExist:
                 self.candidate = None
+            non_link_fields = dict((field, data) for (field, data) in \
+                    self.fields.items() if not isinstance(data, LinkField))
             if self.candidate:
-                for field in self.fields.values():
+                keys = non_link_fields.keys() # The link fields will be appended later
+                for (name, field) in self.fields.items():
                     if isinstance(field, LinkField):
                         links = self.candidate.get_links(link_type=field.link_type)
                         if links:
                             link = links[0] # Only use first link
                             field.initial = link.url
                             field.link = link
+                        keys.append(name) # Append link fields at the end
+                self.fields.keyOrder = keys
             else: # Not a candidate; remove link fields from form
-                self.fields = dict((field, data) for (field, data) in \
-                        self.fields.items() if not isinstance(data, LinkField))
+                self.fields = non_link_fields
 
     def save(self, commit = True):
         if self.candidate:
