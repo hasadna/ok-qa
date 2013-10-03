@@ -42,11 +42,7 @@
       </h2>
       {% endif %}
       <ul class="links unstyled">
-      {% if candidate %}
-        {% object_links candidate %}
-      {% else %}
-        {% object_links friend %}
-      {% endif %}
+        {% object_links friend.user %}
       </ul>
       {% if friend.bio %}
       <p class="well" style="text-align:right; font-size: 120%;">

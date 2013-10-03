@@ -55,16 +55,13 @@ def public_profile(request, username=None, pk=None):
     if profile:
         setattr(request, 'entity', profile.locality)
     if profile.is_candidate and user.candidate_set.exists():
-        candidate = user.candidate_set.all()[0]
         candidate_list = user.candidatelist_set.all()[0]
     else:
-        candidate = None
         candidate_list = None
 
     context = RequestContext(request, {"friend": profile,
                                        "answers": answers,
                                        "questions": questions,
-                                       "candidate": candidate,
                                        "candidate_list": candidate_list,
                                        })
 
@@ -89,6 +86,7 @@ def remove_candidate(request, candidate_id):
     return HttpResponseRedirect(request.POST.get("next", reverse("candidate_list", args=(profile.locality.slug,))))
 
 
+#TBD: TO BE DELETED
 @login_required
 def edit_candidate(request):
     profile = request.user.profile

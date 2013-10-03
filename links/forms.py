@@ -1,65 +1,38 @@
 # encoding: utf-8
 # Django imports
 from django import forms
+from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext_lazy as _
 # Project's apps
 from models import *
 from polyorg.models import Candidate
 
 class LinkField(forms.URLField):
-    def __init__(self, required, label, title):
-        super(forms.URLField, self).__init__(required=required, label=label)
-        self.link_type = LinkType.objects.get(title=title)
-        self.link = None
+    def __init__(self, link_type=None, **kwargs):
+        super(forms.URLField, self).__init__(**kwargs)
+        if link_type:
+            self.label = link_type.title
 
-class LinksForm(forms.Form):
+def add_link_fields(form, obj=None, threshold=-1):
+    for i in LinkType.objects.filter(importance__gt=threshold):
+        form.fields['link_%s' % i.pk] = LinkField(link_type=i, required=False)
+    # fill the data for existing links
+    if obj:
+        for i in Link.objects.for_model(obj):
+            form.initial['link_%s' % i.link_type.pk] = i.url
 
-    homepage_url = LinkField(required=False, label=_('Homepage URL'), title=u'default')
-    youtube_url = LinkField(required=False, label=_('YouTube URL'), title=u'YouTube')
-    facebook_url = LinkField(required=False, label=_('Facebook URL'), title=u'פייסבוק')
-    twitter_url = LinkField(required=False, label=_('Twitter URL'), title=u'טוויטר')
-    wikipedia_url = LinkField(required=False, label=_('Wikipedia URL'), title=u'ויקיפדיה')
-    rss_url = LinkField(required=False, label=_('RSS Feed'), title=u'רסס')
-
-    def __init__(self, user, *args, **kw):
-        super(LinksForm, self).__init__(*args, **kw)
-        self.user = user
-        if self.user:
+def save_links(form, obj):
+    for (name, data) in form.cleaned_data.items():
+        field = form.fields[name]
+        if isinstance(field, LinkField):
+            link_type_pk = int(name[5:])
             try:
-                self.candidate = user.candidate_set.get()
-            except Candidate.DoesNotExist:
-                self.candidate = None
-            non_link_fields = dict((field, data) for (field, data) in \
-                    self.fields.items() if not isinstance(data, LinkField))
-            if self.candidate:
-                keys = non_link_fields.keys() # The link fields will be appended later
-                for (name, field) in self.fields.items():
-                    if isinstance(field, LinkField):
-                        links = self.candidate.get_links(link_type=field.link_type)
-                        if links:
-                            link = links[0] # Only use first link
-                            field.initial = link.url
-                            field.link = link
-                        keys.append(name) # Append link fields at the end
-                self.fields.keyOrder = keys
-            else: # Not a candidate; remove link fields from form
-                self.fields = non_link_fields
-
-    def save(self, commit = True):
-        if self.candidate:
-            for (name, data) in self.cleaned_data.items():
-                field = self.fields[name]
-                if isinstance(field, LinkField):
-                    if field.link:
-                        field.link.url = data
-                        if commit:
-                            field.link.save()
-                    elif data:
-                        field.link = self.candidate.add_link(
-                                url=data,
-                                title=field.label, \
-                                link_type=field.link_type)
-
-            if commit:
-                self.candidate.save()
-        return self.user
+                link = Link.objects.get(link_type__pk=link_type_pk,
+                        object_pk=obj.pk,
+                        content_type=ContentType.objects.get_for_model(obj))
+                link.url = data
+                link.save()
+            except Link.DoesNotExist:
+                if data:
+                    Link.objects.create_for_model(model=obj, url=data,
+                        link_type_id=link_type_pk)

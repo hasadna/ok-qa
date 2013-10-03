@@ -16,3 +16,8 @@ class LinksManager(models.Manager):
         if isinstance(model, models.Model):
             qs = qs.filter(object_pk=force_unicode(model._get_pk_val()))
         return qs
+
+    def create_for_model(self, model, **kwargs):
+        return self.create(object_pk=model.pk,
+            content_type=ContentType.objects.get_for_model(model),
+            **kwargs)

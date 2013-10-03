@@ -297,3 +297,4 @@ h1, h2, h3, h4, h5, h6 {
 .candidate_list_detail.ballot { margin: 0 auto; width: 40px; line-height: 40px; text-align: center;}
 .candidate_list a {color:black;}
 .candidate_list a:hover {color:black;text-decoration: none;}
+.links a {text-decoration: none;}

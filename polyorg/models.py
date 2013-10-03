@@ -2,7 +2,6 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 # Project's apps
-from links.models import ModelWithLinks
 
 class CandidateList(models.Model):
     name = models.CharField(_('List Name'), max_length=80)
@@ -71,7 +70,7 @@ class CandidateManager(models.Manager):
         return self.filter(status='X')
 
 
-class Candidate(models.Model, ModelWithLinks):
+class Candidate(models.Model):
     candidate_list = models.ForeignKey(CandidateList, verbose_name=_("candidate list"))
     user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_("user"))
     ordinal = models.IntegerField(_('Ordinal'), blank=True, null=True)

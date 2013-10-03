@@ -7,11 +7,11 @@ from django.utils.translation import ugettext_lazy as _
 
 from entities.models import Entity
 from chosen import forms as chosenforms
-from links.forms import LinksForm
+from links.forms import add_link_fields, save_links
 
 from models import *
 
-class ProfileForm(LinksForm):
+class ProfileForm(forms.Form):
     first_name = forms.CharField(label=_('first name'), max_length = 15)
     last_name = forms.CharField(label=_('last name'), required=False, max_length = 20)
     username = forms.RegexField(label=_("Username"), max_length=30, regex=r'^(?u)[ \w.@+-]{4,}$',
@@ -33,7 +33,7 @@ class ProfileForm(LinksForm):
                                            help_text = _('Should we send you e-mail notification about updates to things you follow on the site?'))
 
     def __init__(self, user, *args, **kw):
-        super(ProfileForm, self).__init__(user, *args, **kw)
+        super(ProfileForm, self).__init__(*args, **kw)
         self.user = user
         if self.user:
             self.profile = user.profile
@@ -49,6 +49,7 @@ class ProfileForm(LinksForm):
             if self.profile.locality:
                 self.fields['locality'].widget.attrs['disabled'] = True
                 self.initial['locality'] = self.profile.locality
+            add_link_fields(self, user)
 
     def clean_username(self):
         data = self.cleaned_data['username']
@@ -72,7 +73,7 @@ class ProfileForm(LinksForm):
             raise forms.ValidationError(_('Please set your locality'))
 
     def save(self, commit = True):
-        user = super(ProfileForm, self).save(commit)
+        user = self.user
         if self.cleaned_data['email']:
             if user.email != self.cleaned_data['email']: #email changed - user loses comment permissions, until he validates email again.
                 #TODO: send validation email
@@ -91,6 +92,7 @@ class ProfileForm(LinksForm):
         if commit:
             user.save()
             self.profile.save()
+            save_links(self, user)
         return user
 
 invitation_default_text, create = FlatPage.objects.get_or_create(url='/_invite_candidate/',
@@ -161,18 +163,3 @@ class AddCandidateForm(forms.Form):
             raise forms.ValidationError("This username is already taken.")
         except User.DoesNotExist:
             return data
-
-class ActivateCandidateForm(SetPasswordForm, LinksForm):
-    bio = forms.CharField(label=_('bio'),
-                          widget=forms.Textarea(attrs={'rows':5}))
-
-    def __init__(self, user, *args, **kw):
-        super(LinksForm, self).__init__(*args, **kw)
-
-    def save(self, commit=True):
-        super(ActivateCandidateForm, self).save(commit)
-        profile = self.user.profile
-        profile.bio = self.cleaned_data['bio']
-        if commit:
-            profile.save()
-        return self.user
