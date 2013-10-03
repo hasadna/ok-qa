@@ -74,8 +74,10 @@
       {% endfor %}
   </div>
   <div class="span4">
-      <h2>{% blocktrans %}Candidate lists{% endblocktrans %} ({{ candidate_lists.count }})</h2>
       {% for list in candidate_lists %}
+        {% if forloop.first %}
+        <h2>{% blocktrans %}Candidate lists{% endblocktrans %} ({{ candidate_lists.count }})</h2>
+        {% endif %}      
         <div class="candidate_list">
             <a href="{% url 'candidate-list' list.id %}"><div class="candidate_list_detail ballot" style="background: url('{{STATIC_URL}}/img/white_note.png') no-repeat; ">{{ list.ballot }}</div>
             <div class="candidate_list_detail list_name">{{ list.name }}</div></a>
