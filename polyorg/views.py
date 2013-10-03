@@ -95,17 +95,13 @@ def candidate_remove(request, candidatelist_id, candidate_id):
         return HttpResponseForbidden(_("Only editors have access to this page."))
 
     candidate_profile = get_object_or_404(User, pk=candidate_id).profile
-    if request.user.profile.locality == candidate_profile.locality:
-        candidate_profile.is_candidate = False
-        candidate_profile.save()
-        candidate = Candidate.objects.filter(user__id=candidate_id)
-        for c in candidate:
-            if c.candidate_list == candidatelist:
-                c.delete()
-        # TODO: notify the candidate by email that he's fired
-    else:
-        return HttpResponseForbidden(_('Sorry, you are not authorized to remove %s from the candidate list')
-                       % candidate_profile.user.get_full_name())
+    candidate_profile.is_candidate = False
+    candidate_profile.save()
+    candidate = Candidate.objects.filter(user__id=candidate_id)
+    for c in candidate:
+        if c.candidate_list == candidatelist:
+            c.delete()
+    # TODO: notify the candidate by email that he's fired
 
     return HttpResponseRedirect(reverse('candidate-list', \
                 kwargs={'candidatelist_id': candidatelist_id}))
