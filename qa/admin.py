@@ -7,10 +7,13 @@ class QuestionFlagAdmin(admin.StackedInline):
 
 class QuestionAdmin(admin.ModelAdmin):
     inlines = [ QuestionFlagAdmin ]
-    list_filter = ('flags_count',)
+    list_display = ('subject', 'author', 'entity', 'flags_count')
+    list_filter = ('flags_count','entity',)
 
 class AnswerAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('content', 'author', 'entity')
+    list_filter = ('question__entity',)
+
 
 admin.site.register(Question, QuestionAdmin)
 admin.site.register(Answer, AnswerAdmin)

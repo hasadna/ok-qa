@@ -79,9 +79,9 @@ def candidate_create(request,candidatelist_id):
                 kwargs={'candidatelist_id': candidatelist_id}))
     else:
         form = CandidateForm(initial={'candidate_list': candidatelist})
-        form.fields["user"].queryset = \
-            User.objects.filter(profile__locality=candidatelist.entity).\
-            exclude(profile__is_candidate=True).exclude(profile__is_editor=True)
+    form.fields["user"].queryset = \
+        User.objects.filter(profile__locality=candidatelist.entity).\
+        exclude(profile__is_candidate=True).exclude(profile__is_editor=True)
 
     return render(request, "polyorg/candidate_form.html", \
         {'form': form, 'candidatelist': candidatelist})
@@ -95,15 +95,13 @@ def candidate_remove(request, candidatelist_id, candidate_id):
         return HttpResponseForbidden(_("Only editors have access to this page."))
 
     candidate_profile = get_object_or_404(User, pk=candidate_id).profile
-    if request.user.profile.locality == candidate_profile.locality:
-        candidate_profile.is_candidate = False
-        candidate_profile.save()
-        candidate = Candidate.objects.get(user__id=candidate_id)
-        candidate.delete()
-        # TODO: notify the candidate by email that he's fired
-    else:
-        return HttpResponseForbidden(_('Sorry, you are not authorized to remove %s from the candidate list')
-                       % candidate_profile.user.get_full_name())
+    candidate_profile.is_candidate = False
+    candidate_profile.save()
+    candidate = Candidate.objects.filter(user__id=candidate_id)
+    for c in candidate:
+        if c.candidate_list == candidatelist:
+            c.delete()
+    # TODO: notify the candidate by email that he's fired
 
     return HttpResponseRedirect(reverse('candidate-list', \
                 kwargs={'candidatelist_id': candidatelist_id}))

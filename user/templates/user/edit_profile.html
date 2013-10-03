@@ -16,6 +16,10 @@
           {{ form.as_p }}
           <input class="btn btn-primary" type="submit" name="save" value="{% trans 'save' %}" />
         </form>
+        <a href="{% url 'password_change' %}">{% trans 'Change password' %}</a>
+        {% if candidate_list %}
+          <br><a href="{% url 'candidatelist-edit' candidate_list.id %}">{% trans 'Edit list details' %} - {{candidate_list.name}}</a>
+        {% endif %}
       </div>
     </div>
   </div>

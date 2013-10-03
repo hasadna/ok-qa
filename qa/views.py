@@ -33,6 +33,8 @@ from polyorg.models import CandidateList
 
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flags_count'}
+# CBS locality stats
+CBS_STATS = json.load(open(os.path.join(settings.STATICFILES_ROOT, 'js/entity_stats.js')))
 
 class JsonpResponse(HttpResponse):
     def __init__(self, data, callback, *args, **kwargs):
@@ -89,7 +91,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     else:
         users_count = Profile.objects.count()
 
-    candidate_lists = CandidateList.objects.filter(entity=entity)
+    candidate_lists = CandidateList.objects.filter(entity=entity).order_by('name')
 
     mayor_list = Profile.objects.get_candidates(entity)
     candidates_count = mayor_list.count()
@@ -104,8 +106,6 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     else:
         answers_rate = 0
 
-    #TODO: cache this!
-    cbs_stats = json.load(open(os.path.join(settings.STATICFILES_ROOT, 'js/entity_stats.js')))
     context.update({ 'tags': tags,
         'questions': questions,
         'by_date': order_opt == 'date',
@@ -120,7 +120,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'candidate_lists': candidate_lists,
         'users_count': users_count,
         'answers_rate': answers_rate,
-        'stats': cbs_stats[entity.code],
+        'stats': CBS_STATS[entity.code],
         })
 
     return render(request, template, context)

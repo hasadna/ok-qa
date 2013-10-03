@@ -71,7 +71,6 @@ class Profile(models.Model):
     description = lambda self: self.bio
     email_notification = models.CharField(max_length=1, choices=NOTIFICATION_PERIOD_CHOICES, blank=True, null=True, default='D')
     avatar_uri = models.URLField(null=True, blank=True)
-    url = models.URLField(null=True, blank=True)
     last_email_update = models.DateTimeField(default=NEVER_SENT)
     locality = models.ForeignKey(Entity, null=True, verbose_name=_('Locality'))
     sites = models.ManyToManyField(Site)
@@ -124,7 +123,7 @@ class Profile(models.Model):
     @property
     def is_mayor_candidate(self):
         if self.is_candidate and self.user.candidate_set.exists():
-            return self.user.candidate_set.only()[0].for_mayor
+            return self.user.candidate_set.all()[0].for_mayor
         return False
 
 

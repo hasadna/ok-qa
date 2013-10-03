@@ -54,18 +54,17 @@ def public_profile(request, username=None, pk=None):
     profile = user.profile
     if profile:
         setattr(request, 'entity', profile.locality)
-    if profile.is_candidate:
-        user_candidatelist = user.candidatelist_set.only()
-        if user_candidatelist: 
-            candidate_list = user_candidatelist[0]
-        else:
-            candidate_list = None
+    if profile.is_candidate and user.candidate_set.exists():
+        candidate = user.candidate_set.all()[0]
+        candidate_list = user.candidatelist_set.all()[0]
     else:
+        candidate = None
         candidate_list = None
 
     context = RequestContext(request, {"friend": profile,
                                        "answers": answers,
                                        "questions": questions,
+                                       "candidate": candidate,
                                        "candidate_list": candidate_list,
                                        })
 
@@ -99,11 +98,10 @@ def edit_candidate(request):
     if request.method == "POST":
         form = CandidateForm(request.user, data=request.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
             return HttpResponseRedirect(reverse(profile.get_absolute_url()))
 
     elif request.method == "GET":
-        user = request.user
         form = CandidateForm(request.user)
 
     context = RequestContext(request, {"form": form,
@@ -118,7 +116,7 @@ def edit_profile(request):
     if request.method == "POST":
         form = ProfileForm(request.user, data=request.POST)
         if form.is_valid():
-            user = form.save()
+            form.save()
 
             local_home = profile.get_absolute_url()
             next = request.POST.get('next', local_home)
@@ -130,9 +128,15 @@ def edit_profile(request):
         form = ProfileForm(request.user)
 
     setattr(request, 'entity', profile.locality)
+    
+    if request.user.candidatelist_set.exists():
+        candidate_list = request.user.candidatelist_set.all()[0]
+    else:
+        candidate_list = None
 
-    context = RequestContext(request, {"form":
-                             form, "following": profile.following})
+    context = RequestContext(request, { "form": form,
+                                        "following": profile.following,
+                                        "candidate_list": candidate_list})
     return render(request, "user/edit_profile.html", context)
 
 
@@ -242,6 +246,6 @@ def entity_stats(request):
         return HttpResponseForbidden(_('Only superusers have access to this page.'))
 
     entities = Entity.objects.filter(division__index=3)
-    entities = entities.annotate(Count('profile__is_editor'))
+    entities = entities.annotate(editor_count=Count('profile__is_editor'))
     return render(request, 'user/entity_stats.html', {'entities': entities})
 

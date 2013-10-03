@@ -65,7 +65,7 @@ class Question(BaseModel):
     # for easy access to current site questions
     objects = models.Manager()
     on_site = CurrentSiteManager()
-    entity = models.ForeignKey(Entity, null=True, related_name="questions")
+    entity = models.ForeignKey(Entity, null=True, related_name="questions", verbose_name=_("entity"))
 
     class Meta:
         unique_together = ('unislug','entity')
@@ -126,6 +126,10 @@ class Answer(BaseModel):
 
     def get_absolute_url(self):
         return '%(url)s?answer=%(id)s#answer-%(id)s' % {'url': self.question.get_absolute_url(), 'id': self.id}
+    
+    @property
+    def entity(self):
+        return self.question.entity
 
 class QuestionUpvote(BaseModel):
     question = models.ForeignKey(Question, related_name="upvotes")

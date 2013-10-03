@@ -229,3 +229,12 @@ ABSOLUTE_URL_OVERRIDES = {
 AVATAR_MAX_AVATARS_PER_USER = 1
 
 QNA_DEFAULT_ENTITY_ID = 277
+
+CACHES = {
+        'default': {
+            'BACKEND':
+            'django.core.cache.backends.dummy.DummyCache',
+            }
+        }
+
+LONG_CACHE_TIME = 18000  # 5 hours

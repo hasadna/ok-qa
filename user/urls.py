@@ -5,6 +5,8 @@ from .feeds import *
 urlpatterns = patterns('',
     url(r'^u/profile/$', edit_profile, name='edit_profile'),
     url(r'^u/candidate/$', edit_candidate, name='edit_candidate'),
+    url(r'^u/password_change/$', 'django.contrib.auth.views.password_change', name='password_change'),
+    url(r'^u/password_change/done/$', 'django.contrib.auth.views.password_change_done', name='password_change_done'),
     url(r'^u/candidates/$', candidate_list, name="candidate_list"),
     url(r'^u/follow/$', 'user_follow_unfollow', name='user-follow-unfollow'),
     url(r'^(?P<entity_id>[-\d]+)/candidates/$', candidate_list, name="candidate_list"),
