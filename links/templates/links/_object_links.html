@@ -5,7 +5,6 @@
       {% if show_title %}
       <li>
       {% elif forloop.first %}
-      {% trans "Links: " %}
       {% endif %}
       <a href="{{ link.url|safe }}" target="_blank">
         {% if link.link_type.image %}
