@@ -20,7 +20,7 @@
     <p><a href="{{candidatelist.facebook_url}}" target='_blank'>Facebook</a></p>
     {% endif %}
     {% if candidatelist.platform %}
-    <p><strong>{% trans 'Platform' %}:</strong> {{candidatelist.platform}} </p>
+    <p><strong>{% trans 'Platform' %}:</strong> {{candidatelist.platform|urlize|linebreaks}} </p>
     {% endif %}
 </div>
 <div class="row">
