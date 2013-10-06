@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-06 09:28+0300\n"
+"POT-Creation-Date: 2013-10-06 09:40+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -413,6 +413,10 @@ msgstr "תווים נותרו"
 #: qa/templates/qa/question_detail.html:128
 msgid "Publish"
 msgstr "פרסם"
+
+#: qa/templates/qa/post_question.html:42
+msgid "Cancel"
+msgstr "ביטול"
 
 #: qa/templates/qa/question_detail.html:33
 msgid "Edit Question"
@@ -2907,9 +2911,6 @@ msgstr "השאלות של"
 
 #~ msgid "Really remove this comment?"
 #~ msgstr "באמת למחוק הערה זו?"
-
-#~ msgid "Cancel"
-#~ msgstr "ביטול"
 
 #~ msgid "Thanks for removing"
 #~ msgstr "תודה על המחיקה"
