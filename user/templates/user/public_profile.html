@@ -45,9 +45,9 @@
         {% object_links friend.user %}
       </ul>
       {% if friend.bio %}
-      <p class="well" style="text-align:right; font-size: 120%;">
-      {{ friend.bio|urlize|linebreaks }}
-      </p>
+      <div class="well" style="text-align:right; font-size: 120%;">
+        {{ friend.bio|urlize|linebreaks }}
+      </div>
       {% endif %}
   </div></center>
   </div>
