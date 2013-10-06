@@ -109,6 +109,16 @@ class Question(BaseModel):
             return True
         return False
 
+    def can_vote(self, user):
+        ''' returns whether a secific user can upvote/downvote the question,
+            or neither '''
+        if user.is_authenticated():
+            if user.upvotes.filter(question=self).exists():
+                return 'down'
+            else:
+                return 'up'
+        return None
+
 
 class Answer(BaseModel):
     author = models.ForeignKey(User, related_name="answers", verbose_name=_("author"))
