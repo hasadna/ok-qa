@@ -130,6 +130,11 @@
             </form>
         </div>
     {% endif %}
+    <p>
+      <a href="{% url "local_home" question.entity.id %}">
+        {% trans 'Back to' %}{{question.entity.name}}
+      </a>
+    </p>
 {% endblock %}
 {% if my_answer_id %}
     {% block extrascript %}

@@ -1,10 +1,8 @@
-from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequest, HttpResponseRedirect
+from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
-from django.contrib import messages
-from django.utils.translation import ugettext as _
 from django.conf import settings
+from django.db.models import Count
 
-from user.models import Profile
 from entities.models import Entity
 
 class DefaultEntity(object):
@@ -19,8 +17,10 @@ class DefaultEntity(object):
                     return HttpResponseRedirect(reverse('edit_profile'))
             else:
                 try:
-                    entity_id = settings.QNA_DEFAULT_ENTITY_ID
-                    entity = Entity.objects.get(pk=entity_id)
+                    entity = Entity.objects.annotate(Count('questions__answers'))\
+                            .filter(questions__answers__count__gt=0)\
+                            .exclude(pk=settings.QNA_DEFAULT_ENTITY_ID)\
+                            .order_by('?')[0]
                 except:
                     entity = Entity.objects.order_by('?')[0]
 
