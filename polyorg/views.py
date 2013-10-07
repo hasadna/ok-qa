@@ -11,13 +11,15 @@ from polyorg.forms import CandidateListForm, CandidateForm
 
 @login_required
 def candidatelists_list(request, entity_id=None):
-    if not request.user.profile.is_editor:
-        return HttpResponseForbidden(_("Only editors have access to this page."))
-    
+
     if not entity_id:
         entity = request.user.profile.locality
     else:
         entity = get_object_or_404(Entity, id=entity_id)
+
+    if not ((request.user.profile.is_editor and entity == request.user.profile.locality)\
+            or request.user.is_superuser):
+        return HttpResponseForbidden(_("Only editors have access to this page."))
     
     candidatelists = CandidateList.objects.filter(entity=entity)
     return render(request, 'polyorg/candidatelist_list.html',{'candidatelists': candidatelists, 'entity': entity})
