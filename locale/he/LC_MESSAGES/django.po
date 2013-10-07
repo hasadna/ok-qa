@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-06 21:28+0300\n"
+"POT-Creation-Date: 2013-10-07 19:55+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,8 +156,8 @@ msgstr ""
 msgid "Mayorship candidate"
 msgstr "מועמד לראש הרשות"
 
-#: polyorg/views.py:15 polyorg/views.py:41 polyorg/views.py:68
-#: polyorg/views.py:95
+#: polyorg/views.py:22 polyorg/views.py:43 polyorg/views.py:70
+#: polyorg/views.py:97
 msgid "Only editors have access to this page."
 msgstr "עמוד זה נגיש רק לעורכים."
 
@@ -287,73 +287,79 @@ msgstr "עליך להתחבר כמועמד כדי לפרסם תשובות"
 msgid "Sorry but only connected users can post questions"
 msgstr "מצטערים, יש להתחבר כדי לשאול שאלות"
 
-#: qa/views.py:223
+#: qa/views.py:208
+msgid ""
+"before asking a new question, please check if it exists on the page of your "
+"locality."
+msgstr "לפני שתעלו שאלה חדשה, אנא בדקו אם היא כבר קיימת בעמוד של הרשות שלכם."
+
+#: qa/views.py:224
 msgid "You can only edit your own questions."
 msgstr "מצטערים, ניתן לערוך רק שאלות שלך"
 
-#: qa/views.py:225
+#: qa/views.py:226
 msgid "Question has been answered, editing disabled."
 msgstr "ישנן תשובות לשאלה, אי אפשר לערוך"
 
-#: qa/views.py:259
+#: qa/views.py:260
 msgid "You already upvoted this question"
 msgstr "תודה, כבר תמכת בשאלה זו"
 
-#: qa/views.py:269 qa/views.py:288
+#: qa/views.py:270 qa/views.py:289
 msgid "Use POST to upvote a question"
 msgstr "השתמש ב POST כדי להצביע לשאלה"
 
-#: qa/views.py:277
+#: qa/views.py:278
 msgid "Cannot downvote your own question"
 msgstr "לא ניתן לבטל את התמיכה בשאלות שאתה כתבת"
 
-#: qa/views.py:279
+#: qa/views.py:280
 msgid "You already downvoted this question"
 msgstr "תודה, כבר ביטלת את תמיכתך בשאלה זו"
 
-#: qa/views.py:301
+#: qa/views.py:302
 msgid "OK QA Question Feed"
 msgstr "שאלות נשאלו"
 
-#: qa/views.py:303
+#: qa/views.py:304
 msgid "Questions from OKQA"
 msgstr "שאלות"
 
-#: qa/views.py:322
+#: qa/views.py:323
 #, python-format
 msgid "Questions feed for %s"
 msgstr "שטף שאלות עבור %s"
 
-#: qa/views.py:326
+#: qa/views.py:327
 #, python-format
 msgid "Brought to you by \"%s\""
 msgstr "מוגש על ידי \"%s\""
 
-#: qa/views.py:348
+#: qa/views.py:349
 msgid "Answers for the question"
 msgstr "תשובות לשאלה"
 
-#: qa/views.py:354
+#: qa/views.py:355
 msgid "A feed of all answers for the question"
 msgstr "פיד של תשובות לשאלה"
 
-#: qa/views.py:374
+#: qa/views.py:375
 msgid "Sorry, you have to login to flag questions"
 msgstr "אנא התחברו כדי לסמן שאלה לא ראויה"
 
-#: qa/views.py:381
+#: qa/views.py:382
 msgid "Sorry, can not delete a question with answers"
 msgstr "מצטערים, לא ניתן למחוק שאלה עם תשובות"
 
-#: qa/views.py:392
+#: qa/views.py:393
 msgid "Question has been removed"
 msgstr "השאלה נמחקה"
 
-#: qa/views.py:395
+#: qa/views.py:396
 msgid "Thanks.  You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
-#: qa/views.py:402
+#: qa/views.py:403
 msgid ""
 "Thank you for flagging the question. One of our editors will look at it "
 "shortly."
@@ -940,20 +946,20 @@ msgstr "מועמד חדש נרשם"
 msgid "A question has been flagged"
 msgstr "הונף דגל אדום על שאלה בשו\"ת המקומי"
 
-#: user/views.py:83
+#: user/views.py:81
 #, python-format
 msgid "Sorry, you are not authorized to remove %s from the candidate list"
 msgstr "מצטערים, אינך מורשה להסיר את %s מרשימת המועמדים"
 
-#: user/views.py:94
+#: user/views.py:92
 msgid "Only candidate can edit their info"
 msgstr ""
 
-#: user/views.py:173
+#: user/views.py:171
 msgid "Your profile has been updated, please login."
 msgstr "הפרופיל שלכם עודכן, אתם מוזמנים להכנס"
 
-#: user/views.py:234 user/views.py:244
+#: user/views.py:232 user/views.py:242
 msgid "Only superusers have access to this page."
 msgstr "עמוד זה נגיש רק למשתמשי על."
 
@@ -2428,13 +2434,13 @@ msgstr "השאלות של"
 #~ "%(url)s\">%(bill)s</a>\n"
 #~ msgstr ""
 #~ "\n"
-#~ "שיוך הצעת חוק לאג'נדה עודכן: <a href=\"http://%(domain)s%(url)s\">%(bill)"
-#~ "s</a>\n"
+#~ "שיוך הצעת חוק לאג'נדה עודכן: <a href=\"http://%(domain)s%(url)s\">"
+#~ "%(bill)s</a>\n"
 
 #~ msgid ""
 #~ "\n"
-#~ "A bill has been removed from the agenda: <a href=\"http://%(domain)s%(url)"
-#~ "s\">%(bill)s</a>\n"
+#~ "A bill has been removed from the agenda: <a href=\"http://%(domain)s"
+#~ "%(url)s\">%(bill)s</a>\n"
 #~ msgstr ""
 #~ "\n"
 #~ "הצעת חוק הוסרה מהאג'נדה: <a href=\"http://%(domain)s%(url)s\">%(bill)s</"
@@ -2446,13 +2452,13 @@ msgstr "השאלות של"
 #~ "%(url)s\">%(meeting)s</a>\n"
 #~ msgstr ""
 #~ "\n"
-#~ "ישיבת ועדה שויכה לאג'נדה: <a href=\"http://%(domain)s%(url)s\">%(meeting)"
-#~ "s</a>\n"
+#~ "ישיבת ועדה שויכה לאג'נדה: <a href=\"http://%(domain)s%(url)s\">"
+#~ "%(meeting)s</a>\n"
 
 #~ msgid ""
 #~ "\n"
-#~ "A meeting's relation to the agenda has changed: <a href=\"http://%(domain)"
-#~ "s%(url)s\">%(meeting)s</a>\n"
+#~ "A meeting's relation to the agenda has changed: <a href=\"http://"
+#~ "%(domain)s%(url)s\">%(meeting)s</a>\n"
 #~ msgstr ""
 #~ "\n"
 #~ "שיוך ישיבת ועדה לאג'נדה עודכן: <a href=\"http://%(domain)s%(url)s\">"
@@ -2464,8 +2470,8 @@ msgstr "השאלות של"
 #~ "%(url)s\">%(meeting)s</a>\n"
 #~ msgstr ""
 #~ "\n"
-#~ "ישיבת ועדה הוסרה מהאג'נדה: <a href=\"http://%(domain)s%(url)s\">%(meeting)"
-#~ "s</a>\n"
+#~ "ישיבת ועדה הוסרה מהאג'נדה: <a href=\"http://%(domain)s%(url)s\">"
+#~ "%(meeting)s</a>\n"
 
 #~ msgid ""
 #~ "\n"
@@ -2541,8 +2547,8 @@ msgstr "השאלות של"
 #~ "    "
 #~ msgstr ""
 #~ "\n"
-#~ "    <span class=\"action-verb\">אושרה בקריאה שלישית</span> בתאריך %(date)"
-#~ "s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    <span class=\"action-verb\">אושרה בקריאה שלישית</span> בתאריך "
+#~ "%(date)s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
 #~ "    "
 
 #~ msgid ""
@@ -2552,14 +2558,14 @@ msgstr "השאלות של"
 #~ "    "
 #~ msgstr ""
 #~ "\n"
-#~ "    <span class=\"action-verb\">נפלה בקריאה שלישית</span> בתאריך %(date)"
-#~ "s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    <span class=\"action-verb\">נפלה בקריאה שלישית</span> בתאריך "
+#~ "%(date)s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
 #~ "    "
 
 #~ msgid ""
 #~ "\n"
-#~ "<span class=\"action-verb\">was converted to discussion</span> on %(time)"
-#~ "s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "<span class=\"action-verb\">was converted to discussion</span> on "
+#~ "%(time)s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
 #~ msgstr ""
 #~ "\n"
 #~ "<span class=\"action-verb\">הוסבה לנושא לדיון</span> בתאריך %(time)s. <a "
@@ -2592,8 +2598,8 @@ msgstr "השאלות של"
 #~ "    "
 #~ msgstr ""
 #~ "\n"
-#~ "    <span class=\"action-verb\">נפלה בקריאה ראשונה</span> בתאריך %(date)"
-#~ "s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    <span class=\"action-verb\">נפלה בקריאה ראשונה</span> בתאריך "
+#~ "%(date)s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
 #~ "    "
 
 #~ msgid ""
@@ -2623,8 +2629,8 @@ msgstr "השאלות של"
 #~ "    "
 #~ msgstr ""
 #~ "\n"
-#~ "    <span class=\"action-verb\">נפלה בקריאה טרומית</span> בתאריך %(time)"
-#~ "s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    <span class=\"action-verb\">נפלה בקריאה טרומית</span> בתאריך "
+#~ "%(time)s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
 #~ "    "
 
 #~ msgid ""
