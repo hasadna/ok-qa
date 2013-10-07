@@ -2,7 +2,6 @@ from django.http import HttpResponse, HttpResponseForbidden, HttpResponseBadRequ
 from django.shortcuts import render, get_object_or_404
 from django.core.urlresolvers import reverse
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.contenttypes.models import ContentType
 from django.utils.translation import ugettext as _
@@ -16,10 +15,9 @@ from django.db.models import Count
 from actstream import follow
 from actstream.models import Follow
 # Project's apps
-from qa.models import Question
+from qa.models import Question, Answer
 from .forms import *
 from .models import *
-from oshot.forms import EntityChoiceForm
 
 
 def candidate_list(request, entity_slug=None, entity_id=None):
@@ -55,16 +53,13 @@ def public_profile(request, username=None, pk=None):
     if profile:
         setattr(request, 'entity', profile.locality)
     if profile.is_candidate and user.candidate_set.exists():
-        candidate = user.candidate_set.all()[0]
         candidate_list = user.candidatelist_set.all()[0]
     else:
-        candidate = None
         candidate_list = None
 
     context = RequestContext(request, {"friend": profile,
                                        "answers": answers,
                                        "questions": questions,
-                                       "candidate": candidate,
                                        "candidate_list": candidate_list,
                                        })
 
@@ -89,6 +84,7 @@ def remove_candidate(request, candidate_id):
     return HttpResponseRedirect(request.POST.get("next", reverse("candidate_list", args=(profile.locality.slug,))))
 
 
+#TBD: TO BE DELETED
 @login_required
 def edit_candidate(request):
     profile = request.user.profile
@@ -245,7 +241,12 @@ def entity_stats(request):
     if not request.user.is_superuser:
         return HttpResponseForbidden(_('Only superusers have access to this page.'))
 
-    entities = Entity.objects.filter(division__index=3)
-    entities = entities.annotate(editor_count=Count('profile__is_editor'))
-    return render(request, 'user/entity_stats.html', {'entities': entities})
+    entities = Entity.objects.filter(division__index=3).annotate(profile_count=Count('profile')).filter(profile_count__gt=0)
+    editor_count = Profile.objects.filter(is_editor=True).values('locality').annotate(Count('locality'))
+    answer_count = Answer.objects.values('question__entity').annotate(Count('question__entity'))
+    return render(request, 'user/entity_stats.html',
+                            {'entities': entities, 
+                            'editor_count': editor_count,
+                            'answer_count': answer_count,
+                            })
 

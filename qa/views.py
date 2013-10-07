@@ -139,34 +139,26 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
 
     def get_context_data(self, **kwargs):
         user = self.request.user
+        question = self.object
         context = super(QuestionDetail, self).get_context_data(**kwargs)
         context['max_length_a_content'] = MAX_LENGTH_A_CONTENT
-        context['answers'] = self.object.answers.filter(is_deleted=False)
-        context['entity'] = self.object.entity
-        can_answer = self.object.can_answer(user)
+        context['answers'] = question.answers.filter(is_deleted=False)
+        context['entity'] = question.entity
+        can_answer = question.can_answer(user)
         context['can_answer'] = can_answer
         if can_answer:
             try:
-                user_answer = self.object.answers.get(author=user)
+                user_answer = question.answers.get(author=user)
                 context['my_answer_form'] = AnswerForm(instance=user_answer)
                 context['my_answer_id'] = user_answer.id
-            except self.object.answers.model.DoesNotExist:
+            except question.answers.model.DoesNotExist:
                 context['my_answer_form'] = AnswerForm()
-
-        context['can_vote'] = None
-        if user.is_authenticated():
-            if self.request.user.upvotes.filter(question=self.object).exists():
-                context['can_vote'] = 'down'
-            else:
-                context['can_vote'] = 'up'
-
         if 'answer' in self.request.GET:
             try:
                 answer = Answer.objects.get(pk=self.request.GET['answer'])
                 context['fb_message'] = answer.content
             except:
                 pass
-        context['can_delete'] = self.object.can_user_delete(user)
         return context
 
     def render_to_response(self, context):

@@ -42,16 +42,12 @@
       </h2>
       {% endif %}
       <ul class="links unstyled">
-      {% if candidate %}
-        {% object_links candidate %}
-      {% else %}
-        {% object_links friend %}
-      {% endif %}
+        {% object_links friend.user %}
       </ul>
       {% if friend.bio %}
-      <p class="well" style="text-align:right; font-size: 120%;">
-      {{ friend.bio }}
-      </p>
+      <div class="well" style="text-align:right; font-size: 120%;">
+        {{ friend.bio|urlize|linebreaks }}
+      </div>
       {% endif %}
   </div></center>
   </div>
@@ -71,11 +67,11 @@
                 <a href="{{ answer.question.get_absolute_url }}" class="question-hyperlink"
                 title="{{ question.subject }}">{{ answer.question.subject }}</a>
             </h3>
-                <span class="too-long-toggle">{{ answer.question.content }}</span>
+                <span class="too-long-toggle">{{ answer.question.content|urlize|linebreaks }}</span>
             <div class="well">
                 <a name="{{answer.id}}"></a>
                 <strong style="font-size: 16px;">
-                    <span class="too-long-toggle">{{ answer.content|linebreaksbr }}</span>
+                    <span class="too-long-toggle">{{ answer.content|urlize|linebreaks }}</span>
                 </strong>
                 <span title="{{ question.created_at }}" class="relativetime">
                     <br />
@@ -103,7 +99,7 @@
               title="{{ question.subject }}">{{ question.subject }}</a>
           </h4>
           <div class="preview">
-              <span class="too-long-toggle">{{ question.content }}</span>
+              <span class="too-long-toggle">{{ question.content|urlize|linebreaks }}</span>
           </div>
         </div>
       {% endfor %}

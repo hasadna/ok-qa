@@ -79,7 +79,7 @@
         <h2>{% blocktrans %}Candidate lists{% endblocktrans %} ({{ candidate_lists.count }})</h2>
         {% endif %}      
         <div class="candidate_list">
-            <a href="{% url 'candidate-list' list.id %}"><div class="candidate_list_detail ballot" style="background: url('{{STATIC_URL}}/img/white_note.png') no-repeat; ">{{ list.ballot }}</div>
+            <a href="{% url 'candidate-list' list.id %}"><div class="candidate_list_detail ballot" style="background: url('{{STATIC_URL}}img/white_note.png') no-repeat; ">{{ list.ballot }}</div>
             <div class="candidate_list_detail list_name">{{ list.name }}</div></a>
         </div>
       {% endfor %}
@@ -117,7 +117,7 @@
 
     {% autopaginate questions 20 %}
     {% for question in questions %}
-        {% with show_responders=True %}
+        {% with show_responders=True can_answer=False %}
         {% include "qa/_question.html" %}
         {% endwith %}
     {% endfor %}
@@ -138,4 +138,11 @@
     </ul>
   </div>
 </div>
+{% endblock %}
+{% block extrascript %}
+    <script>
+        $(document).ready(function () {
+            {% include "qa/_question_controls.js" %}
+        });
+    </script>
 {% endblock %}
