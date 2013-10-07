@@ -83,10 +83,6 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
                 annotate(num_times=Count('qa_taggedquestion_items')).\
                 order_by("-num_times","slug")
         need_editors = Profile.objects.need_editors(entity)
-        if request.user.is_authenticated():
-            can_ask = request.user.profile.locality == entity
-        else:
-            can_ask = True
         users_count = entity.profile_set.count()
     else:
         users_count = Profile.objects.count()
@@ -113,7 +109,6 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'only_flagged': only_flagged,
         'current_tags': current_tags,
         'need_editors': need_editors,
-        'can_ask': can_ask,
         'question_count': question_count,
         'candidates': mayor_list,
         'candidates_count': candidates_count,
@@ -198,12 +193,20 @@ def post_answer(request, q_id):
 
     return HttpResponseRedirect(question.get_absolute_url())
 
-def post_question(request, slug=None):
+def post_question(request, entity_id=None, slug=None):
     if request.user.is_anonymous():
         messages.error(request, _('Sorry but only connected users can post questions'))
         return HttpResponseRedirect(settings.LOGIN_URL)
 
     profile = request.user.profile
+
+    if entity_id:
+        entity = Entity.objects.get(pk=entity_id)
+        if entity != profile.locality:
+            messages.warning(request, _('You may only post questions in your locality'))
+            return HttpResponseRedirect(reverse('local_home',
+                                        kwargs={'entity_id': profile.locality.id,}))
+
     entity = profile.locality
 
     q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
