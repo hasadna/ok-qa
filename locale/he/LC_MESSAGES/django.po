@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-06 21:28+0300\n"
+"POT-Creation-Date: 2013-10-07 22:14+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -156,8 +156,8 @@ msgstr ""
 msgid "Mayorship candidate"
 msgstr "מועמד לראש הרשות"
 
-#: polyorg/views.py:15 polyorg/views.py:41 polyorg/views.py:68
-#: polyorg/views.py:95
+#: polyorg/views.py:22 polyorg/views.py:43 polyorg/views.py:70
+#: polyorg/views.py:97
 msgid "Only editors have access to this page."
 msgstr "עמוד זה נגיש רק לעורכים."
 
@@ -411,7 +411,7 @@ msgstr "מחק"
 msgid "Flag question"
 msgstr "שאלה בלתי הולמת"
 
-#: qa/templates/qa/_question.html:90 qa/templates/qa/question_list.html:135
+#: qa/templates/qa/_question.html:90 qa/templates/qa/question_list.html:141
 msgid "Tags"
 msgstr "תגיות"
 
@@ -518,27 +518,32 @@ msgstr "מועמדים לראשות %(place)s"
 msgid "answers"
 msgstr "תשובות"
 
-#: qa/templates/qa/question_list.html:79
+#: qa/templates/qa/question_list.html:77
+#, fuzzy
+msgid "answer percentage"
+msgstr "מענה"
+
+#: qa/templates/qa/question_list.html:85
 msgid "Candidate lists"
 msgstr "רשימות"
 
-#: qa/templates/qa/question_list.html:96
+#: qa/templates/qa/question_list.html:102
 msgid "In the tags:"
 msgstr "תחת התגיות:"
 
-#: qa/templates/qa/question_list.html:105
+#: qa/templates/qa/question_list.html:111
 msgid "Top Questions"
 msgstr "שאלות מובילות"
 
-#: qa/templates/qa/question_list.html:108
+#: qa/templates/qa/question_list.html:114
 msgid "Most Recent"
 msgstr "שאלות אחרונות"
 
-#: qa/templates/qa/question_list.html:112
+#: qa/templates/qa/question_list.html:118
 msgid "Flagged Questions"
 msgstr "שאלות מוסמנות"
 
-#: qa/templates/qa/question_list.html:131
+#: qa/templates/qa/question_list.html:137
 msgid "Ask Question"
 msgstr "העלו שאלה"
 
@@ -848,7 +853,7 @@ msgstr "לא נשלח דואר זבל, לא נשתף את הכתובת עם אף
 msgid "Gender"
 msgstr "מגדר"
 
-#: user/forms.py:27 user/models.py:75
+#: user/forms.py:27 user/models.py:77
 msgid "Locality"
 msgstr "מקום מגורים"
 
@@ -912,23 +917,23 @@ msgstr "נושא הדוא\"ל"
 msgid "email body"
 msgstr "תוכן הדוא\"ל"
 
-#: user/models.py:17
+#: user/models.py:19
 msgid "No Email"
 msgstr "ללא דוא\"ל"
 
-#: user/models.py:18
+#: user/models.py:20
 msgid "Daily"
 msgstr "יומי"
 
-#: user/models.py:19
+#: user/models.py:21
 msgid "Weekly"
 msgstr "שבועי"
 
-#: user/models.py:22
+#: user/models.py:24
 msgid "Male"
 msgstr "זכר"
 
-#: user/models.py:23
+#: user/models.py:25
 msgid "Female"
 msgstr "נקבה"
 
@@ -940,20 +945,20 @@ msgstr "מועמד חדש נרשם"
 msgid "A question has been flagged"
 msgstr "הונף דגל אדום על שאלה בשו\"ת המקומי"
 
-#: user/views.py:83
+#: user/views.py:81
 #, python-format
 msgid "Sorry, you are not authorized to remove %s from the candidate list"
 msgstr "מצטערים, אינך מורשה להסיר את %s מרשימת המועמדים"
 
-#: user/views.py:94
+#: user/views.py:92
 msgid "Only candidate can edit their info"
 msgstr ""
 
-#: user/views.py:173
+#: user/views.py:171
 msgid "Your profile has been updated, please login."
 msgstr "הפרופיל שלכם עודכן, אתם מוזמנים להכנס"
 
-#: user/views.py:234 user/views.py:244
+#: user/views.py:232 user/views.py:242
 msgid "Only superusers have access to this page."
 msgstr "עמוד זה נגיש רק למשתמשי על."
 

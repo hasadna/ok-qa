@@ -70,6 +70,12 @@
             {% if candidate.num_answers %}
             <p>{{ candidate.num_answers }} {% trans "answers" %}</p>
             {% endif %}
+            {% if candidate.profile.candidate_list %}
+            <p>{{ candidate.profile.candidate_list }}</p>
+            {% endif %}
+            {% if candidate.profile.answer_percentage %}
+            <p>{{ candidate.profile.answer_percentage }}% {% trans "answer percentage" %}</p>
+            {% endif %}
         </div>
       {% endfor %}
   </div>

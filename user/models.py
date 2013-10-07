@@ -12,6 +12,8 @@ from actstream.models import Follow
 # Project's apps
 from entities.models import Entity
 from user.utils import create_avatar
+from qa.models import Question, Answer
+from polyorg.models import Candidate
 
 NOTIFICATION_PERIOD_CHOICES = (
     (u'N', _('No Email')),
@@ -126,4 +128,12 @@ class Profile(models.Model):
             return self.user.candidate_set.all()[0].for_mayor
         return False
 
+    @property
+    def answer_percentage(self):
+        questions = Question.objects.filter(entity=self.entity).count()
+        answers = Answer.objects.filter(author=self.user).count()
+        if questions:
+            return int((float(questions) / answers) * 100)
 
+    def candidate_list(self):
+        return Candidate.objects.get(user=self.user).candidate_list.name
