@@ -26,7 +26,7 @@ from user.models import Profile
 from qa.forms import AnswerForm, QuestionForm
 from qa.models import *
 from qa.tasks import publish_question_to_facebook, publish_upvote_to_facebook,\
-    publish_answer_to_facebook
+    publish_answer
 from qa.mixins import JSONResponseMixin
 
 from polyorg.models import CandidateList
@@ -194,7 +194,7 @@ def post_answer(request, q_id):
     answer.content = request.POST.get("content")
 
     answer.save()
-    publish_answer_to_facebook.delay(answer)
+    publish_answer.delay(answer)
 
     return HttpResponseRedirect(question.get_absolute_url())
 

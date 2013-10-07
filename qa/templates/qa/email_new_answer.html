@@ -1,0 +1,19 @@
+{% extends "email_base.html" %}
+{% load i18n %}
+{% load flatblock_tags %}
+
+{% block content %}
+  <p>
+  {{answer.author.get_full_name}} ענה תשובה ל<a href="{{ROOT_URL}}{{answer.question.get_absolute_url}}">שאלה</a>: 
+   </p>
+  <blockquote>
+  {{answer.question.content}}
+  </blockquote>
+  <blockquote>
+  {{answer.content}}
+  </blockquote>
+
+  <p>
+   רב תודות, השו"ת המקומי
+  </p>
+{% endblock %}
