@@ -22,64 +22,8 @@
 {% endblock %}
 {% block content %}
     <div class="container">
-        <div class="row">
-            <div class="span9">
-                {% include "qa/_question.html" %}
-            </div>
-            <div class="span3 sidebar">
-              {% if user == question.author %}
-                {% if not answers %}
-                    <a class="edit-question btn btn-action" href="{% url 'edit_question' question.unislug %}">
-                      {% trans "Edit Question" %}
-                    </a>
-                {% endif %}
-              {% elif user.profile.locality == question.entity %}
-                  <a class="btn btn-primary" id="upvote-question" href="#" style="{% if can_vote == "down" %}display: none{% endif %}">
-                      {% trans "I Want an Answer" %}
-                  </a>
-                  <a class="btn btn-warning" id="downvote-question" href="#" style="{% if can_vote != "down" %}display: none{% endif %}">
-                      {% trans "I Dont Want an Answer" %}
-                  </a>
-              {% endif %}
-                {% if can_answer %}
-                    <a class="btn btn-success btn-large" style="margin-top: 10px;" href="#add_answer_modal"
-                       data-toggle="modal">
-                      {% if my_answer_form.content.value %}
-                        {% trans "Change Your Answer" %}
-                      {% else %}
-                        {% trans "Answer the Question" %}
-                      {% endif %}
-                    </a>
-                {% endif %}
-                {% if can_delete %}
-                <a class="btn btn-danger" href="#remove-question" data-toggle="modal"
-                  title="{% trans "Delete Question" %}"  >
-                    <i class="icon-trash"></i></a>
-
-                    <div id="remove-question" class="modal hide fade">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                            <h3>{% trans "Confirm Question Removal" %}</h3>
-                        </div>
-                        <div class="modal-body">
-                            <blockquote>{{ question }}</blockquote>
-                            <p>{% trans "Are you sure you want to remove the question?" %}</p>
-                        </div>
-                        <div class="modal-footer">
-                            <a class="flag-question btn btn-primary" data-dismiss="modal"
-                               question-id="{{ question.id }}" href="#">
-                                {% trans "Delete" %}
-                            </a>
-                        </div>
-                    </div>
-                {% else %}
-                    <a class="btn btn-danger flag-question" title="{% trans "Flag question" %}"
-                      question-id="{{ question.id }}" href="#">
-                      <i class="icon-flag"></i>
-                    </a>
-                {% endif %}
-            </div>
-
+        <div class="row span9">
+            {% include "qa/_question.html" %}
         </div>
         <div class="row questions-wrapper">
             <div class="span9 answers">
@@ -147,78 +91,24 @@
                     buttons.click(function (e) {
                         e.preventDefault();
                     });
-                    return;
-                {% endif %}
+                {% else %}
+                  {% include "qa/_question_controls.js" %}
 
-                var voteAjaxError = function (evt, jqXHR, setting, err) {
-                    $("#messages").html('<div class="alert" class="error">' +
-                            '<button type="button" class="close" data-dismiss="alert">×</button>' +
-                            jqXHR.responseText + '</div>');
-                };
+                  {% if max_length_a_content %}
+                      var $answerContent = $("#id_content"),
+                              $charsCounter = $("#charsCounter"),
+                              $charsLeft = $("#charsLeft");
 
-                $("#upvote-question").ajaxError(voteAjaxError);
-                $("#downvote-question").ajaxError(voteAjaxError);
+                      $charsCounter.hide();
+                      $answerContent.on("keyup", function () {
+                          var length = this.value.length;
 
-                $("#upvote-question").click(function () {
-                    {% if can_vote == None %}
-                        $("#messages").html('<div class="alert" class="info">' +
-                                '<button type="button" class="close" data-dismiss="alert">×</button>' +
-                                "{% trans 'Sorry but only connected users can upvote questions' %}" +
-                                '</div>');
-                    {% else %}
-                        $.post("{% url "upvote_question" question.id %}",
-                                {csrfmiddlewaretoken: "{{ csrf_token }}"},
-                                function (data, status, jqXHR) {
-                                    $("#votes-count-{{question.id}}").html(jqXHR.responseText);
-                                    $(".votes").show();
-                                    $("#upvote-question").hide();
-                                    $("#downvote-question").show();
-                                });
-                    {% endif %}
-                    return false;
-                });
+                          if (length) $charsCounter.show();
+                          else $charsCounter.hide();
 
-                $("#downvote-question").click(function () {
-                    $.post("{% url "downvote_question" question.id %}",
-                           {csrfmiddlewaretoken: "{{ csrf_token }}"},
-                           function (data, status, jqXHR) {
-                             $("#votes-count-{{question.id}}").html(jqXHR.responseText);
-                             $(".votes").show();
-                             $("#upvote-question").show();
-                             $("#downvote-question").hide();
-                           });
-                    return false;
-                });
-
-            
-                $(".flag-question").click(function (e) {
-                    var url = "{% url "flag_question" question.id %}";
-                    {% if user == question.author %}
-                    if (!confirm("{% trans 'Are you sure you want to delete the question?' %}")) {
-                      return;
-                    }
-                    {% endif %}
-                    $.post(url, {csrfmiddlewaretoken: "{{ csrf_token }}"})
-                        .done(function (data, textStatus, jqXHR) {
-                          window.location.replace(data);
-                        });
-                  })
-
-
-                {% if max_length_a_content %}
-                    var $answerContent = $("#id_content"),
-                            $charsCounter = $("#charsCounter"),
-                            $charsLeft = $("#charsLeft");
-
-                    $charsCounter.hide();
-                    $answerContent.on("keyup", function () {
-                        var length = this.value.length;
-
-                        if (length) $charsCounter.show();
-                        else $charsCounter.hide();
-
-                        $charsLeft.text({{ max_length_a_content }} -length);
-                    });
+                          $charsLeft.text({{ max_length_a_content }} - length);
+                      });
+                  {% endif %}
                 {% endif %}
             });
         </script>
