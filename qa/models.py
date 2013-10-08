@@ -132,11 +132,11 @@ class Answer(BaseModel):
     on_site = CurrentSiteManager()
 
     def __unicode__(self):
-        return "%s: %s" % (self.author, self.content[:30])
+        return u"%s: %s" % (self.author, self.content[:30])
 
     def get_absolute_url(self):
         return '%(url)s?answer=%(id)s#answer-%(id)s' % {'url': self.question.get_absolute_url(), 'id': self.id}
-    
+
     @property
     def entity(self):
         return self.question.entity
