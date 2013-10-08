@@ -124,14 +124,12 @@
     {% paginate %}
   </div>
   <div class="span3 sidebar">
-    {% if can_ask %}
     <div class="pull-right">
       <a id="post-question" class="btn btn-success btn-large" style="margin-top:0"
-        href="{% url "post_question" %}" >
+        href="{% url "post_question" entity.id %}" >
         {% trans "Ask Question" %}
       </a>
     </div>
-    {% endif %}
     <h2>{% trans "Tags" %}</h2>
     <ul class="unstyled">
       {% include "_tags.html" %}
