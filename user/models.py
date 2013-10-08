@@ -130,10 +130,13 @@ class Profile(models.Model):
 
     @property
     def answer_percentage(self):
-        questions = Question.objects.filter(entity=self.entity).count()
-        answers = Answer.objects.filter(author=self.user).count()
+        questions = self.locality.questions.count()
+        answers = self.user.answers.count()
         if questions:
-            return int((float(questions) / answers) * 100)
+            return int((float(answers) / questions) * 100)
 
     def candidate_list(self):
-        return Candidate.objects.get(user=self.user).candidate_list.name
+        try:
+            return self.user.candidate_set.all()[0].candidate_list
+        except:
+            return None

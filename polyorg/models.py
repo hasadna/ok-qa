@@ -90,10 +90,3 @@ class Candidate(models.Model):
     @property
     def entity(self):
         return self.candidate_list.entity
-
-    @property
-    def answer_percentage(self):
-        questions = Question.objects.filter(entity=self.entity).count()
-        answers = Answer.objects.filter(author=self.user).count()
-        if questions:
-            return int((float(questions) / answers) * 100)
