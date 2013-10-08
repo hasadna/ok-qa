@@ -67,8 +67,11 @@
         class="candidate-avatar">
             {% avatar candidate 75 %}
             <p>{{ candidate.get_full_name|default:candidate.username}}</p>
-            {% if candidate.num_answers %}
-            <p>{{ candidate.num_answers }} {% trans "answers" %}</p>
+            {% if candidate.profile.candidate_list %}
+            <p>{{ candidate.profile.candidate_list }}</p>
+            {% endif %}
+            {% if candidate.profile.answer_percentage %}
+            <p>{{ candidate.profile.answer_percentage }}% {% trans "Answer rate" %}</p>
             {% endif %}
         </div>
       {% endfor %}
@@ -117,21 +120,19 @@
 
     {% autopaginate questions 20 %}
     {% for question in questions %}
-        {% with show_responders=True can_answer=False %}
+        {% with show_responders=True can_answer=False can_flag=False %}
         {% include "qa/_question.html" %}
         {% endwith %}
     {% endfor %}
     {% paginate %}
   </div>
   <div class="span3 sidebar">
-    {% if can_ask %}
     <div class="pull-right">
       <a id="post-question" class="btn btn-success btn-large" style="margin-top:0"
-        href="{% url "post_question" %}" >
+        href="{% url "post_question" entity.id %}" >
         {% trans "Ask Question" %}
       </a>
     </div>
-    {% endif %}
     <h2>{% trans "Tags" %}</h2>
     <ul class="unstyled">
       {% include "_tags.html" %}

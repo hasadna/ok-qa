@@ -83,10 +83,6 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
                 annotate(num_times=Count('qa_taggedquestion_items')).\
                 order_by("-num_times","slug")
         need_editors = Profile.objects.need_editors(entity)
-        if request.user.is_authenticated():
-            can_ask = request.user.profile.locality == entity
-        else:
-            can_ask = True
         users_count = entity.profile_set.count()
     else:
         users_count = Profile.objects.count()
@@ -113,7 +109,6 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'only_flagged': only_flagged,
         'current_tags': current_tags,
         'need_editors': need_editors,
-        'can_ask': can_ask,
         'question_count': question_count,
         'candidates': mayor_list,
         'candidates_count': candidates_count,
@@ -153,6 +148,7 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
                 context['my_answer_id'] = user_answer.id
             except question.answers.model.DoesNotExist:
                 context['my_answer_form'] = AnswerForm()
+        context['can_flag'] = True
         if 'answer' in self.request.GET:
             try:
                 answer = Answer.objects.get(pk=self.request.GET['answer'])
@@ -198,12 +194,20 @@ def post_answer(request, q_id):
 
     return HttpResponseRedirect(question.get_absolute_url())
 
-def post_question(request, slug=None):
+def post_question(request, entity_id=None, slug=None):
     if request.user.is_anonymous():
         messages.error(request, _('Sorry but only connected users can post questions'))
         return HttpResponseRedirect(settings.LOGIN_URL)
 
     profile = request.user.profile
+
+    if entity_id:
+        entity = Entity.objects.get(pk=entity_id)
+        if entity != profile.locality:
+            messages.warning(request, _('You may only post questions in your locality'))
+            return HttpResponseRedirect(reverse('local_home',
+                                        kwargs={'entity_id': profile.locality.id,}))
+
     entity = profile.locality
 
     q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
@@ -250,12 +254,19 @@ def post_question(request, slug=None):
     return render(request, "qa/post_question.html", context)
 
 
-@login_required
 def upvote_question(request, q_id):
+    if request.user.is_anonymous():
+        messages.error(request, _('Sorry but only connected users can upvote questions'))
+        return HttpResponseRedirect(settings.LOGIN_URL)
+
     if request.method == "POST":
         q = get_object_or_404(Question, id=q_id)
         user = request.user
-        if q.author == user or user.upvotes.filter(question=q):
+        if q.entity != user.profile.locality:
+            return HttpResponseForbidden(_('You may only support questions in your locality'))
+        if q.author == user:
+            return HttpResponseForbidden(_("You may not support your own question"))
+        if user.upvotes.filter(question=q):
             return HttpResponseForbidden(_("You already upvoted this question"))
         else:
             upvote = QuestionUpvote.objects.create(question=q, user=user)
