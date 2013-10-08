@@ -213,7 +213,7 @@ def post_question(request, entity_id=None, slug=None):
     q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
 
     if request.method == "POST":
-        form = QuestionForm(request.user, request.POST)
+        form = QuestionForm(request.user, request.POST, instance=q)
         if form.is_valid():
             ''' carefull when changing a question's history '''
             if not q:
