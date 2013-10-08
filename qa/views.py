@@ -256,7 +256,7 @@ def post_question(request, entity_id=None, slug=None):
 
 def upvote_question(request, q_id):
     if request.user.is_anonymous():
-        messages.error(request, _('Sorry but only connected users can vpvote questions'))
+        messages.error(request, _('Sorry but only connected users can upvote questions'))
         return HttpResponseRedirect(settings.LOGIN_URL)
 
     if request.method == "POST":

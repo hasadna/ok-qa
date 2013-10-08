@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-08 17:08+0300\n"
+"POT-Creation-Date: 2013-10-08 17:52+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -300,7 +300,7 @@ msgid "Question has been answered, editing disabled."
 msgstr "ישנן תשובות לשאלה, אי אפשר לערוך"
 
 #: qa/views.py:259
-msgid "Sorry but only connected users can vpvote questions"
+msgid "Sorry but only connected users can upvote questions"
 msgstr "מצטערים, יש להתחבר כדי לתמוך בשאלה"
 
 #: qa/views.py:266
