@@ -220,15 +220,15 @@ class QuestionTest(TestCase):
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 302)
         c.login(self.user, backend='facebook')
-        response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
-        self.assertEquals(response.status_code, 200)
-
         u=User.objects.get(email='user@domain.com')
         u.profile.locality = self.common_user.profile.locality
         u.profile.save()
         self.mock_request.return_value.content = json.dumps({
             'id': 1
         })
+        response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
+        self.assertEquals(response.status_code, 200)
+
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 403)
         self.assertEquals(response.content, 'You already upvoted this question')
@@ -273,7 +273,7 @@ class QuestionTest(TestCase):
             }
         )
 
-    def test_post_answer_facebook(self):
+    def test_post_question_facebook(self):
         c = SocialClient()
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')

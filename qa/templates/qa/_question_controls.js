@@ -12,10 +12,15 @@ $(".upvote-question").ajaxError(voteAjaxError);
 $(".downvote-question").ajaxError(voteAjaxError);
 
 $(".upvote-question").click(function () {
-    {% if not question|can_vote:user %}
+    {% if user.is_anonymous %}
         $("#messages").html('<div class="alert" class="info">' +
                 '<button type="button" class="close" data-dismiss="alert">×</button>' +
                 "{% trans 'Sorry but only connected users can upvote questions' %}" +
+                '</div>');
+    {% elif not entity|can_vote:user %}
+        $("#messages").html('<div class="alert" class="info">' +
+                '<button type="button" class="close" data-dismiss="alert">×</button>' +
+                "{% trans 'You may only support questions in your locality' %}" +
                 '</div>');
     {% else %}
         var qid = $(this).closest('.question-summary').attr('question-id');

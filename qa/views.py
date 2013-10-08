@@ -254,12 +254,19 @@ def post_question(request, entity_id=None, slug=None):
     return render(request, "qa/post_question.html", context)
 
 
-@login_required
 def upvote_question(request, q_id):
+    if request.user.is_anonymous():
+        messages.error(request, _('Sorry but only connected users can vpvote questions'))
+        return HttpResponseRedirect(settings.LOGIN_URL)
+
     if request.method == "POST":
         q = get_object_or_404(Question, id=q_id)
         user = request.user
-        if q.author == user or user.upvotes.filter(question=q):
+        if q.entity != user.profile.locality:
+            return HttpResponseForbidden(_('You may only support questions in your locality'))
+        if q.author == user:
+            return HttpResponseForbidden(_("You may not support your own question"))
+        if user.upvotes.filter(question=q):
             return HttpResponseForbidden(_("You already upvoted this question"))
         else:
             upvote = QuestionUpvote.objects.create(question=q, user=user)

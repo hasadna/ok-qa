@@ -21,16 +21,14 @@
       </div>
     </div>
     <div class="btn-group cp">
-      {% if user == question.author %}
-        {% if not answers %}
-            <a class="edit-question btn btn-action" href="{% url 'edit_question' question.unislug %}"
-              title="{% trans "Edit Question" %}">
-              <i class="icon-edit"></i>
-            </a>
-        {% endif %}
-      {% elif user.profile.locality == question.entity %}
+      {% if user == question.author and not answers %}
+      <a class="edit-question btn btn-action" href="{% url 'edit_question' question.unislug %}"
+        title="{% trans "Edit Question" %}">
+        <i class="icon-edit"></i>
+      </a>
+      {% endif %}
       <a class="btn btn-primary upvote-question" id="upvote-question-{{ question.id }}"
-         href="#" style="{% if not question|can_upvote:user %}display: none{% endif %}"
+         href="#" style="{% if question|can_downvote:user %}display: none{% endif %}"
          title="{% trans 'I Want an Answer' %}">
         <i class="icon-thumbs-up"></i>
       </a>
@@ -39,7 +37,6 @@
          title="{% trans "I Don't Want an Answer" %}">
         <i class="icon-thumbs-down"></i>
       </a>
-      {% endif %}
       {% if can_answer %}
       <a class="btn btn-success btn-large" href="#add_answer_modal" data-toggle="modal">
         {% if my_answer_form.content.value %}
