@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-07 22:24+0300\n"
+"POT-Creation-Date: 2013-10-07 22:14+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -415,7 +415,7 @@ msgstr "מחק"
 msgid "Flag question"
 msgstr "שאלה בלתי הולמת"
 
-#: qa/templates/qa/_question.html:90 qa/templates/qa/question_list.html:133
+#: qa/templates/qa/_question.html:90 qa/templates/qa/question_list.html:141
 msgid "Tags"
 msgstr "תגיות"
 
@@ -530,27 +530,32 @@ msgstr "מועמדים לראשות %(place)s"
 msgid "answers"
 msgstr "תשובות"
 
-#: qa/templates/qa/question_list.html:79
+#: qa/templates/qa/question_list.html:77
+#, fuzzy
+msgid "answer percentage"
+msgstr "מענה"
+
+#: qa/templates/qa/question_list.html:85
 msgid "Candidate lists"
 msgstr "רשימות"
 
-#: qa/templates/qa/question_list.html:96
+#: qa/templates/qa/question_list.html:102
 msgid "In the tags:"
 msgstr "תחת התגיות:"
 
-#: qa/templates/qa/question_list.html:105
+#: qa/templates/qa/question_list.html:111
 msgid "Top Questions"
 msgstr "שאלות מובילות"
 
-#: qa/templates/qa/question_list.html:108
+#: qa/templates/qa/question_list.html:114
 msgid "Most Recent"
 msgstr "שאלות אחרונות"
 
-#: qa/templates/qa/question_list.html:112
+#: qa/templates/qa/question_list.html:118
 msgid "Flagged Questions"
 msgstr "שאלות מוסמנות"
 
-#: qa/templates/qa/question_list.html:130
+#: qa/templates/qa/question_list.html:137
 msgid "Ask Question"
 msgstr "העלו שאלה"
 
@@ -860,7 +865,7 @@ msgstr "לא נשלח דואר זבל, לא נשתף את הכתובת עם אף
 msgid "Gender"
 msgstr "מגדר"
 
-#: user/forms.py:27 user/models.py:75
+#: user/forms.py:27 user/models.py:77
 msgid "Locality"
 msgstr "מקום מגורים"
 
@@ -924,23 +929,23 @@ msgstr "נושא הדוא\"ל"
 msgid "email body"
 msgstr "תוכן הדוא\"ל"
 
-#: user/models.py:17
+#: user/models.py:19
 msgid "No Email"
 msgstr "ללא דוא\"ל"
 
-#: user/models.py:18
+#: user/models.py:20
 msgid "Daily"
 msgstr "יומי"
 
-#: user/models.py:19
+#: user/models.py:21
 msgid "Weekly"
 msgstr "שבועי"
 
-#: user/models.py:22
+#: user/models.py:24
 msgid "Male"
 msgstr "זכר"
 
-#: user/models.py:23
+#: user/models.py:25
 msgid "Female"
 msgstr "נקבה"
 
