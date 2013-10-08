@@ -273,7 +273,7 @@ class QuestionTest(TestCase):
             }
         )
 
-    def test_post_question_facebook(self):
+    def test_post_answer_facebook(self):
         c = SocialClient()
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
