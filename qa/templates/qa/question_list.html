@@ -117,7 +117,7 @@
 
     {% autopaginate questions 20 %}
     {% for question in questions %}
-        {% with show_responders=True can_answer=False %}
+        {% with show_responders=True can_answer=False can_flag=False %}
         {% include "qa/_question.html" %}
         {% endwith %}
     {% endfor %}

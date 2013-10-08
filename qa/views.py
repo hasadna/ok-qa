@@ -148,6 +148,7 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
                 context['my_answer_id'] = user_answer.id
             except question.answers.model.DoesNotExist:
                 context['my_answer_form'] = AnswerForm()
+        context['can_flag'] = true
         if 'answer' in self.request.GET:
             try:
                 answer = Answer.objects.get(pk=self.request.GET['answer'])
