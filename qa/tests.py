@@ -318,6 +318,7 @@ class QuestionTest(TestCase):
         response = c.post(post_url, {'subject':"Where?",
                         'facebook_publish': 'on',
                         'home': self.home.id,
+                        'entity': self.home.id,
                         })
         self.assertEquals(response.status_code, 302)
         new_q=Question.objects.get(subject="Where?")
@@ -332,7 +333,7 @@ class QuestionTest(TestCase):
             }
         )
 
-    def test_post_question_facebook(self):
+    def test_post_answer_facebook(self):
         c = SocialClient()
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
