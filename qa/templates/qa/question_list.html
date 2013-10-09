@@ -74,7 +74,7 @@
         <div onclick="window.location.href='{{ candidate.get_absolute_url }}'"
         class="candidate-avatar">
             {% avatar candidate 75 %}
-            <p>{{ candidate.get_full_name|default:candidate.username}}</p>
+            <h4>{{ candidate.get_full_name|default:candidate.username}}</h4>
             {% if candidate.profile.candidate_list and not candidate_list %}
             <p>{{ candidate.profile.candidate_list }}</p>
             {% endif %}
