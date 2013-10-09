@@ -62,7 +62,7 @@
 </div>
 {% if not request.page or request.page == 1 %}
 <div class="row">
-  <div class="span8">
+  <div class="span6">
     {% if candidate_list or candidates %}
       <h2>
       {% if candidate_list %}
@@ -96,20 +96,8 @@
         </div>
       {% endfor %}
   </div>
-  <div class="span4">
+  <div class="span6">
     <ul class="nav nav-pills nav-stacked">
-      <a href=".?list=mayor">
-        <li class="candidate_list" style="width:200px;
-          {% if not candidate_list %}visibility:hidden;{% endif %}">
-          <div class="candidate_list_detail ballot"
-               style="background: url('{{STATIC_URL}}img/yellow_note.png') no-repeat; ">
-            <div style="visibility:hidden">" "</div>
-          </div>
-          <h4 class="candidate_list_detail list_name">
-            {% trans "Mayor candidates" %}
-          </h4>
-        </li>
-      </a>
       {% for list in candidate_lists %}
         {% if forloop.first %}
         <h2>
@@ -128,6 +116,19 @@
           </a>
         </li>
       {% endfor %}
+      <li class="candidate_list" style="width:200px;
+        {% if not candidate_list %}visibility:hidden;{% endif %}">
+        <a href=".?list=mayor">
+          <div class="candidate_list_detail ballot"
+               style="background: url('{{STATIC_URL}}img/yellow_note.png') no-repeat; ">
+            <div style="visibility:hidden">" "</div>
+          </div>
+          <h4 class="candidate_list_detail list_name">
+            {% trans "Mayor candidates" %}
+          </h4>
+        </a>
+      </li>
+
     </ul>
   </div>
 </div>

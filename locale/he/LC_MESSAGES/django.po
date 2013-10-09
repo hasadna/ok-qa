@@ -551,11 +551,11 @@ msgstr "מענה"
 
 #: qa/templates/qa/question_list.html:66
 msgid "Candidates in list"
-msgstr "מועמדים ברשימה"
+msgstr "מועמדים ברשימת"
 
 #: qa/templates/qa/question_list.html:68
 msgid "No candidate has registered yet in list"
-msgstr "עוד לא נרשמו מועמדים ברשימה"
+msgstr "טרם נרשמו מועמדים ברשימת"
 
 #: qa/templates/qa/question_list.html:74
 #, python-format
