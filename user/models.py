@@ -130,8 +130,8 @@ class Profile(models.Model):
 
     @property
     def answer_percentage(self):
-        questions = self.locality.questions.count()
-        answers = self.user.answers.count()
+        questions = self.locality.questions.filter(is_deleted=False).count()
+        answers = self.user.answers.filter(is_deleted=False).count()
         if questions:
             return int((float(answers) / questions) * 100)
 

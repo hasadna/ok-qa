@@ -32,20 +32,24 @@
                {% endif %}
           </h1>
           <div id="cbs_data">
-            <strong><span id="population"></span>{{stats.totalpopulation}}</strong> {% trans "Population" %}
-            , <strong><span id="councilSize">{{stats.numofcouncilman}}</span></strong> {% trans "Council seats" %}
+            <strong><span id="population"></span>{{stats.totalpopulation}}</strong>
+            {% trans "Population" %}<!--
+            -->,
+            <strong><span id="councilSize">{{stats.numofcouncilman}}</span></strong>
+            {% trans "Council seats" %}<!--
             {% if users_count %}
-              , <strong>{{users_count}}</strong> {% trans "Registered users" %}
+            -->, <strong>{{users_count}}</strong> {% trans "Registered users" %}<!--
             {% endif %}
-            {% if question_count %}
-              , <strong>{{question_count}}</strong> {% trans "Questions" %}
+            {% if questions.count %}
+            -->, <strong>{{questions.count}}</strong> {% trans "Questions" %}<!--
             {% endif %}
             {% if candidates_count %}
-              , <strong>{{candidates_count}}</strong> {% trans "Registered candidates" %}</strong>
+            -->, <strong>{{candidates_count}}</strong> {% trans "Registered candidates" %}<!--
             {% endif %}
             {% if answers_rate %}
-              , <strong>{{answers_rate}}%</strong> {% trans "Answer rate" %}
+            -->, <strong>{{answers_rate}}%</strong> {% trans "Answer rate" %}<!--
             {% endif %}.
+            -->
           </div>
 
         </div>
@@ -59,15 +63,31 @@
 {% if not request.page or request.page == 1 %}
 <div class="row">
   <div class="span8">
-    {% for candidate in candidates %}
-        {% if forloop.first %}
-            <h2>{% blocktrans with entity.name as place %}Mayor candidates in {{place}} {% endblocktrans %} ({{candidates.count}})</h2>
+    {% if candidate_list or candidates %}
+      <h2>
+      {% if candidate_list %}
+        {% if candidates %}
+          {% trans "Candidates in list" %}
+        {% else %}
+          {% trans "No candidate has registered yet in list" %}
         {% endif %}
+        <a href="{% url 'candidate-list' candidate_list.id %}">
+          {{candidate_list}}
+        </a>
+      {% else %}
+        {% blocktrans with entity.name as place %}Mayor candidates in {{place}}{% endblocktrans %}
+      {% endif %}
+      {% if candidates %}
+        ({{candidates.count}})
+      {% endif %}
+      </h2>
+    {% endif %}
+    {% for candidate in candidates %}
         <div onclick="window.location.href='{{ candidate.get_absolute_url }}'"
         class="candidate-avatar">
             {% avatar candidate 75 %}
-            <p>{{ candidate.get_full_name|default:candidate.username}}</p>
-            {% if candidate.profile.candidate_list %}
+            <h4>{{ candidate.get_full_name|default:candidate.username}}</h4>
+            {% if candidate.profile.candidate_list and not candidate_list %}
             <p>{{ candidate.profile.candidate_list }}</p>
             {% endif %}
             {% if candidate.profile.answer_percentage %}
@@ -77,17 +97,38 @@
       {% endfor %}
   </div>
   <div class="span4">
+    <ul class="nav nav-pills nav-stacked">
+      <a href=".?list=mayor">
+        <li class="candidate_list" style="width:200px;
+          {% if not candidate_list %}visibility:hidden;{% endif %}">
+          <div class="candidate_list_detail ballot"
+               style="background: url('{{STATIC_URL}}img/yellow_note.png') no-repeat; ">
+            <div style="visibility:hidden">" "</div>
+          </div>
+          <h4 class="candidate_list_detail list_name">
+            {% trans "Mayor candidates" %}
+          </h4>
+        </li>
+      </a>
       {% for list in candidate_lists %}
         {% if forloop.first %}
-        <h2>{% blocktrans %}Candidate lists{% endblocktrans %} ({{ candidate_lists.count }})</h2>
+        <h2>
+          {% blocktrans %}Candidate lists{% endblocktrans %} ({{ candidate_lists.count }})
+        </h2>
         {% endif %}      
-        <div class="candidate_list">
-            <a href="{% url 'candidate-list' list.id %}"><div class="candidate_list_detail ballot" style="background: url('{{STATIC_URL}}img/white_note.png') no-repeat; ">{{ list.ballot }}</div>
-            <div class="candidate_list_detail list_name">{{ list.name }}</div></a>
-        </div>
+        <li class="candidate_list {% if list == candidate_list %}active{% endif %}">
+          <a href=".?list={{ list.id }}">
+            <div class="candidate_list_detail ballot"
+                 style="background: url('{{STATIC_URL}}img/white_note.png') no-repeat; ">
+              {{ list.ballot }}
+            </div>
+            <div class="candidate_list_detail list_name">
+              {{ list.name }}
+            </div>
+          </a>
+        </li>
       {% endfor %}
-
-
+    </ul>
   </div>
 </div>
 {% endif %}
