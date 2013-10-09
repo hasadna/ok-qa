@@ -37,8 +37,8 @@
             {% if users_count %}
               , <strong>{{users_count}}</strong> {% trans "Registered users" %}
             {% endif %}
-            {% if question_count %}
-              , <strong>{{question_count}}</strong> {% trans "Questions" %}
+            {% if questions.count %}
+              , <strong>{{questions.count}}</strong> {% trans "Questions" %}
             {% endif %}
             {% if candidates_count %}
               , <strong>{{candidates_count}}</strong> {% trans "Registered candidates" %}</strong>
