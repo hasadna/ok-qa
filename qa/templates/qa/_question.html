@@ -23,18 +23,18 @@
     <div class="btn-group cp">
       {% if user == question.author and not answers %}
       <a class="edit-question btn btn-action" href="{% url 'edit_question' question.unislug %}"
-        title="{% trans "Edit Question" %}">
+        title="{% trans "Edit question" %}">
         <i class="icon-edit"></i>
       </a>
       {% endif %}
       <a class="btn btn-primary upvote-question" id="upvote-question-{{ question.id }}"
          href="#" style="{% if question|can_downvote:user %}display: none{% endif %}"
-         title="{% trans 'I Want an Answer' %}">
+         title="{% trans "I want an answer" %}">
         <i class="icon-thumbs-up"></i>
       </a>
       <a class="btn btn-warning downvote-question" id="downvote-question-{{ question.id }}"
          href="#" style="{% if not question|can_downvote:user %}display: none{% endif %}"
-         title="{% trans "I Don't Want an Answer" %}">
+         title="{% trans "Undo support" %}">
         <i class="icon-thumbs-down"></i>
       </a>
       {% if can_answer %}
@@ -48,10 +48,10 @@
       {% endif %}
       {% if question|can_delete:user %}
       <a class="btn btn-danger" href="#remove-question-{{ question.id }}" data-toggle="modal"
-         title="{% trans "Delete Question" %}">
+         title="{% trans "Delete question" %}">
          <i class="icon-trash"></i>
       </a>
-      <div id="remove-question-{{ question.id }}" class="modal hide fade remove-question">
+      <div id="remove-question-{{ question.id }}" class="modal hide fade">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
             &times;</button>
@@ -68,9 +68,26 @@
         </div>
       </div>
       {% elif can_flag %}
-        <a class="flag-question btn btn-danger" title="{% trans "Flag question" %}" href="#">
-          <i class="icon-flag"></i>
-        </a>
+      <a class="btn btn-danger" href="#flag-question-{{ question.id }}" data-toggle="modal"
+         title="{% trans "Flag question" %}">
+        <i class="icon-flag"></i>
+      </a>
+      <div id="flag-question-{{ question.id }}" class="modal hide fade">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            &times;</button>
+          <h3>{% trans "Confirm Question Flagging" %}</h3>
+        </div>
+        <div class="modal-body">
+          <blockquote>{{ question }}</blockquote>
+          <p>{% trans "Are you sure you want to flag the question as inappropriate?" %}</p>
+        </div>
+        <div class="modal-footer">
+          <a class="flag-question btn btn-primary" data-dismiss="modal" href="#">
+              {% trans "Flag" %}
+          </a>
+        </div>
+      </div>
       {% endif %}
     </div>
     <div class="summary">
