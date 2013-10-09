@@ -32,20 +32,24 @@
                {% endif %}
           </h1>
           <div id="cbs_data">
-            <strong><span id="population"></span>{{stats.totalpopulation}}</strong> {% trans "Population" %}
-            , <strong><span id="councilSize">{{stats.numofcouncilman}}</span></strong> {% trans "Council seats" %}
+            <strong><span id="population"></span>{{stats.totalpopulation}}</strong>
+            {% trans "Population" %}<!--
+            -->,
+            <strong><span id="councilSize">{{stats.numofcouncilman}}</span></strong>
+            {% trans "Council seats" %}<!--
             {% if users_count %}
-              , <strong>{{users_count}}</strong> {% trans "Registered users" %}
+            -->, <strong>{{users_count}}</strong> {% trans "Registered users" %}<!--
             {% endif %}
             {% if questions.count %}
-              , <strong>{{questions.count}}</strong> {% trans "Questions" %}
+            -->, <strong>{{questions.count}}</strong> {% trans "Questions" %}<!--
             {% endif %}
             {% if candidates_count %}
-              , <strong>{{candidates_count}}</strong> {% trans "Registered candidates" %}</strong>
+            -->, <strong>{{candidates_count}}</strong> {% trans "Registered candidates" %}<!--
             {% endif %}
             {% if answers_rate %}
-              , <strong>{{answers_rate}}%</strong> {% trans "Answer rate" %}
+            -->, <strong>{{answers_rate}}%</strong> {% trans "Answer rate" %}<!--
             {% endif %}.
+            -->
           </div>
 
         </div>
@@ -108,7 +112,9 @@
       </a>
       {% for list in candidate_lists %}
         {% if forloop.first %}
-        <h2>{% blocktrans %}Candidate lists{% endblocktrans %} ({{ candidate_lists.count }})</h2>
+        <h2>
+          {% blocktrans %}Candidate lists{% endblocktrans %} ({{ candidate_lists.count }})
+        </h2>
         {% endif %}      
         <li class="candidate_list {% if list == candidate_list %}active{% endif %}">
           <a href=".?list={{ list.id }}">
