@@ -59,20 +59,26 @@
 {% if not request.page or request.page == 1 %}
 <div class="row">
   <div class="span8">
-    {% for candidate in candidates %}
-        {% if forloop.first %}
-          <h2>
-          {% if candidate_list %}
-            {% trans "Candidates in list" %}
-            <a href="{% url 'candidate-list' candidate_list.id %}">
-              {{candidate_list}}
-            </a>
-          {% else %}
-            {% blocktrans with entity.name as place %}Mayor candidates in {{place}}{% endblocktrans %}
-          {% endif %}
-          ({{candidates.count}})
-          </h2>
+    {% if candidate_list or candidates %}
+      <h2>
+      {% if candidate_list %}
+        {% if candidates %}
+          {% trans "Candidates in list" %}
+        {% else %}
+          {% trans "No candidate has registered yet in list" %}
         {% endif %}
+        <a href="{% url 'candidate-list' candidate_list.id %}">
+          {{candidate_list}}
+        </a>
+      {% else %}
+        {% blocktrans with entity.name as place %}Mayor candidates in {{place}}{% endblocktrans %}
+      {% endif %}
+      {% if candidates %}
+        ({{candidates.count}})
+      {% endif %}
+      </h2>
+    {% endif %}
+    {% for candidate in candidates %}
         <div onclick="window.location.href='{{ candidate.get_absolute_url }}'"
         class="candidate-avatar">
             {% avatar candidate 75 %}

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-09 15:57+0300\n"
+"POT-Creation-Date: 2013-10-09 16:02+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -444,7 +444,7 @@ msgstr "האם אתם בטוחים שברצונכם דווח על השאלה כ�
 msgid "Flag"
 msgstr "דווח"
 
-#: qa/templates/qa/_question.html:107 qa/templates/qa/question_list.html:165
+#: qa/templates/qa/_question.html:107 qa/templates/qa/question_list.html:169
 msgid "Tags"
 msgstr "תגיות"
 
@@ -545,7 +545,7 @@ msgstr "שאלות"
 msgid "Registered candidates"
 msgstr "מועמדים רשומים"
 
-#: qa/templates/qa/question_list.html:47 qa/templates/qa/question_list.html:84
+#: qa/templates/qa/question_list.html:47 qa/templates/qa/question_list.html:88
 msgid "Answer rate"
 msgstr "מענה"
 
@@ -553,36 +553,40 @@ msgstr "מענה"
 msgid "Candidates in list"
 msgstr "מועמדים ברשימה"
 
-#: qa/templates/qa/question_list.html:71
+#: qa/templates/qa/question_list.html:68
+msgid "No candidate has registered yet in list"
+msgstr "עוד לא נרשמו מועמדים ברשימה"
+
+#: qa/templates/qa/question_list.html:74
 #, python-format
 msgid "Mayor candidates in %(place)s"
 msgstr "מועמדים לראשות %(place)s"
 
-#: qa/templates/qa/question_list.html:99
+#: qa/templates/qa/question_list.html:103
 msgid "Mayor candidates"
 msgstr "מועמדים לראש הרשות"
 
-#: qa/templates/qa/question_list.html:105
+#: qa/templates/qa/question_list.html:109
 msgid "Candidate lists"
 msgstr "רשימות"
 
-#: qa/templates/qa/question_list.html:128
+#: qa/templates/qa/question_list.html:132
 msgid "In the tags:"
 msgstr "תחת התגיות:"
 
-#: qa/templates/qa/question_list.html:137
+#: qa/templates/qa/question_list.html:141
 msgid "Top Questions"
 msgstr "שאלות מובילות"
 
-#: qa/templates/qa/question_list.html:140
+#: qa/templates/qa/question_list.html:144
 msgid "Most Recent"
 msgstr "שאלות אחרונות"
 
-#: qa/templates/qa/question_list.html:144
+#: qa/templates/qa/question_list.html:148
 msgid "Flagged Questions"
 msgstr "שאלות מוסמנות"
 
-#: qa/templates/qa/question_list.html:162
+#: qa/templates/qa/question_list.html:166
 msgid "Ask Question"
 msgstr "העלו שאלה"
 
