@@ -13,6 +13,9 @@ body {
 	margin: 0;
 	width: 100%;
 }
+#messages{
+    position: fixed;
+}
 /* Main Container */
 div[role="main"] {
     padding-bottom: 74px;
