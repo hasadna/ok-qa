@@ -51,7 +51,7 @@
          title="{% trans "Delete question" %}">
          <i class="icon-trash"></i>
       </a>
-      <div id="remove-question-{{ question.id }}" class="modal hide fade remove-question">
+      <div id="remove-question-{{ question.id }}" class="modal hide fade">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
             &times;</button>
@@ -68,9 +68,26 @@
         </div>
       </div>
       {% elif can_flag %}
-      <a class="flag-question btn btn-danger" title="{% trans "Flag question" %}" href="#">
+      <a class="btn btn-danger" href="#flag-question-{{ question.id }}" data-toggle="modal"
+         title="{% trans "Flag question" %}">
         <i class="icon-flag"></i>
       </a>
+      <div id="flag-question-{{ question.id }}" class="modal hide fade">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+            &times;</button>
+          <h3>{% trans "Confirm Question Flagging" %}</h3>
+        </div>
+        <div class="modal-body">
+          <blockquote>{{ question }}</blockquote>
+          <p>{% trans "Are you sure you want to flag the question as inappropriate?" %}</p>
+        </div>
+        <div class="modal-footer">
+          <a class="flag-question btn btn-primary" data-dismiss="modal" href="#">
+              {% trans "Flag" %}
+          </a>
+        </div>
+      </div>
       {% endif %}
     </div>
     <div class="summary">

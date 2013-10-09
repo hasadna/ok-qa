@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-09 09:04+0300\n"
+"POT-Creation-Date: 2013-10-09 09:14+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -423,19 +423,31 @@ msgstr "האם אתם בטוחים שברצונכם למחוק את השאלה?"
 msgid "Delete"
 msgstr "מחק"
 
-#: qa/templates/qa/_question.html:71
+#: qa/templates/qa/_question.html:72
 msgid "Flag question"
 msgstr "שאלה בלתי הולמת"
 
-#: qa/templates/qa/_question.html:89 qa/templates/qa/question_list.html:136
+#: qa/templates/qa/_question.html:79
+msgid "Confirm Question Flagging"
+msgstr "אשרו דיווח על השאלה"
+
+#: qa/templates/qa/_question.html:83
+msgid "Are you sure you want to flag the question as inappropriate?"
+msgstr "האם אתם בטוחים שברצונכם דווח על השאלה כבלתי הולמת?"
+
+#: qa/templates/qa/_question.html:87
+msgid "Flag"
+msgstr "דווח"
+
+#: qa/templates/qa/_question.html:106 qa/templates/qa/question_list.html:136
 msgid "Tags"
 msgstr "תגיות"
 
-#: qa/templates/qa/_question.html:99
+#: qa/templates/qa/_question.html:116
 msgid "from"
 msgstr "מ:"
 
-#: qa/templates/qa/_question.html:107 user/feeds.py:15
+#: qa/templates/qa/_question.html:124 user/feeds.py:15
 #: user/templates/user/public_profile.html:61
 msgid "Answers by"
 msgstr "התשובות של"
@@ -1102,9 +1114,6 @@ msgstr "השאלות של"
 #, fuzzy
 #~ msgid "answer percentage"
 #~ msgstr "מענה"
-
-#~ msgid "Are you sure you want to delete the question?"
-#~ msgstr "האם אתם בטוחים שברצונכם למחוק את השאלה?"
 
 #~ msgid "Twitter URL"
 #~ msgstr "כתובת טוויטר"
@@ -6026,9 +6035,6 @@ msgstr "השאלות של"
 
 #~ msgid "Flag this comment"
 #~ msgstr "סמן את הערה זו"
-
-#~ msgid "Flag"
-#~ msgstr "סימן"
 
 #~ msgid "Thanks for flagging"
 #~ msgstr "תודה לציון"
