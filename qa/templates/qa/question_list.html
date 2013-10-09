@@ -63,8 +63,10 @@
         {% if forloop.first %}
           <h2>
           {% if candidate_list %}
-            <a href="{% url 'candidate-list' candidate_list.id %}"> {{candidate_list}} </a>
-            - {{candidate_list.ballot}} / {{candidate_list.entity}}
+            {% trans "Candidates in list" %}
+            <a href="{% url 'candidate-list' candidate_list.id %}">
+              {{candidate_list}}
+            </a>
           {% else %}
             {% blocktrans with entity.name as place %}Mayor candidates in {{place}}{% endblocktrans %}
           {% endif %}
