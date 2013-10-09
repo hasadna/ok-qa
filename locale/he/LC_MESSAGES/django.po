@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-09 14:18+0300\n"
+"POT-Creation-Date: 2013-10-09 14:22+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -279,97 +279,97 @@ msgstr "רשות לא חוקית"
 msgid "Please update your locality in your user profile to use the site"
 msgstr "יש לבחור מקום מגורים כדי להשתמש באתר."
 
-#: qa/views.py:181
+#: qa/views.py:183
 msgid "You must be logged in as a candidate to post answers"
 msgstr "עליך להתחבר כמועמד כדי לפרסם תשובות"
 
-#: qa/views.py:199
+#: qa/views.py:201
 msgid "Sorry but only connected users can post questions"
 msgstr "מצטערים, יש להתחבר כדי לשאול שאלות"
 
-#: qa/views.py:207
+#: qa/views.py:209
 msgid "You may only post questions in your locality"
 msgstr "ניתן לפרסם שאלות רק ברשות שלך"
 
-#: qa/views.py:227
+#: qa/views.py:229
 msgid "You can only edit your own questions."
 msgstr "מצטערים, ניתן לערוך רק שאלות שלך"
 
-#: qa/views.py:229
+#: qa/views.py:231
 msgid "Question has been answered, editing disabled."
 msgstr "ישנן תשובות לשאלה, אי אפשר לערוך"
 
-#: qa/views.py:259
+#: qa/views.py:261
 msgid "Sorry but only connected users can upvote questions"
 msgstr "מצטערים, יש להתחבר כדי לתמוך בשאלה"
 
-#: qa/views.py:266
+#: qa/views.py:268
 msgid "You may only support questions in your locality"
 msgstr "ניתן לתמוך בשאלות רק ברשות שלך"
 
-#: qa/views.py:268
+#: qa/views.py:270
 msgid "You may not support your own question"
 msgstr "לא ניתן לתמוך בשאלות של עצמך"
 
-#: qa/views.py:270
+#: qa/views.py:272
 msgid "You already upvoted this question"
 msgstr "תודה, כבר תמכת בשאלה זו"
 
-#: qa/views.py:280 qa/views.py:299
+#: qa/views.py:282 qa/views.py:301
 msgid "Use POST to upvote a question"
 msgstr "השתמש ב POST כדי להצביע לשאלה"
 
-#: qa/views.py:288
+#: qa/views.py:290
 msgid "Cannot downvote your own question"
 msgstr "לא ניתן לבטל את התמיכה בשאלות שאתה כתבת"
 
-#: qa/views.py:290
+#: qa/views.py:292
 msgid "You already downvoted this question"
 msgstr "תודה, כבר ביטלת את תמיכתך בשאלה זו"
 
-#: qa/views.py:312
+#: qa/views.py:314
 msgid "OK QA Question Feed"
 msgstr "שאלות נשאלו"
 
-#: qa/views.py:314
+#: qa/views.py:316
 msgid "Questions from OKQA"
 msgstr "שאלות"
 
-#: qa/views.py:333
+#: qa/views.py:335
 #, python-format
 msgid "Questions feed for %s"
 msgstr "שטף שאלות עבור %s"
 
-#: qa/views.py:337
+#: qa/views.py:339
 #, python-format
 msgid "Brought to you by \"%s\""
 msgstr "מוגש על ידי \"%s\""
 
-#: qa/views.py:359
+#: qa/views.py:361
 msgid "Answers for the question"
 msgstr "תשובות לשאלה"
 
-#: qa/views.py:365
+#: qa/views.py:367
 msgid "A feed of all answers for the question"
 msgstr "פיד של תשובות לשאלה"
 
-#: qa/views.py:385
+#: qa/views.py:387
 msgid "Sorry, you have to login to flag questions"
 msgstr "אנא התחברו כדי לסמן שאלה לא ראויה"
 
-#: qa/views.py:392
+#: qa/views.py:394
 msgid "Sorry, can not delete a question with answers"
 msgstr "מצטערים, לא ניתן למחוק שאלה עם תשובות"
 
-#: qa/views.py:403
+#: qa/views.py:405
 msgid "Question has been removed"
 msgstr "השאלה נמחקה"
 
-#: qa/views.py:406
+#: qa/views.py:408
 msgid "Thanks.  You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
-#: qa/views.py:413
+#: qa/views.py:415
 msgid ""
 "Thank you for flagging the question. One of our editors will look at it "
 "shortly."
@@ -439,7 +439,7 @@ msgstr "האם אתם בטוחים שברצונכם דווח על השאלה כ�
 msgid "Flag"
 msgstr "דווח"
 
-#: qa/templates/qa/_question.html:107 qa/templates/qa/question_list.html:136
+#: qa/templates/qa/_question.html:107 qa/templates/qa/question_list.html:155
 msgid "Tags"
 msgstr "תגיות"
 
@@ -549,27 +549,31 @@ msgstr "מענה"
 msgid "Mayor candidates in %(place)s "
 msgstr "מועמדים לראשות %(place)s"
 
-#: qa/templates/qa/question_list.html:82
+#: qa/templates/qa/question_list.html:88
+msgid "Mayor candidates"
+msgstr "מועמדים לראש הרשות"
+
+#: qa/templates/qa/question_list.html:94
 msgid "Candidate lists"
 msgstr "רשימות"
 
-#: qa/templates/qa/question_list.html:99
+#: qa/templates/qa/question_list.html:118
 msgid "In the tags:"
 msgstr "תחת התגיות:"
 
-#: qa/templates/qa/question_list.html:108
+#: qa/templates/qa/question_list.html:127
 msgid "Top Questions"
 msgstr "שאלות מובילות"
 
-#: qa/templates/qa/question_list.html:111
+#: qa/templates/qa/question_list.html:130
 msgid "Most Recent"
 msgstr "שאלות אחרונות"
 
-#: qa/templates/qa/question_list.html:115
+#: qa/templates/qa/question_list.html:134
 msgid "Flagged Questions"
 msgstr "שאלות מוסמנות"
 
-#: qa/templates/qa/question_list.html:133
+#: qa/templates/qa/question_list.html:152
 msgid "Ask Question"
 msgstr "העלו שאלה"
 

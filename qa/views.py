@@ -102,6 +102,8 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     else:
         answers_rate = 0
 
+        # TODO read 'mayor' and 'list' parameters, pass candidates correctly
+
     context.update({ 'tags': tags,
         'questions': questions,
         'by_date': order_opt == 'date',

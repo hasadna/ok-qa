@@ -78,12 +78,24 @@
   </div>
   <div class="span4">
     <ul class="nav nav-pills nav-stacked">
+      <a href=".?mayor=true">
+        <li class="candidate_list">
+          <div class="candidate_list_detail ballot"
+               style="background: url('{{STATIC_URL}}img/yellow_note.png') no-repeat; ">
+            <div style="visibility:hidden">" "</div>
+          </div>
+          <h4 class="candidate_list_detail list_name">
+            {% trans "Mayor candidates" %}
+          </h4>
+        </li>
+      </a>
       {% for list in candidate_lists %}
         {% if forloop.first %}
         <h2>{% blocktrans %}Candidate lists{% endblocktrans %} ({{ candidate_lists.count }})</h2>
         {% endif %}      
         <li class="candidate_list">
-          <a href="{% url 'candidate-list' list.id %}">
+          <!--a href="{% url 'candidate-list' list.id %}"-->
+          <a href=".?list={{ list.id }}">
             <div class="candidate_list_detail ballot"
                  style="background: url('{{STATIC_URL}}img/white_note.png') no-repeat; ">
               {{ list.ballot }}
