@@ -77,17 +77,24 @@
       {% endfor %}
   </div>
   <div class="span4">
+    <ul class="nav nav-pills nav-stacked">
       {% for list in candidate_lists %}
         {% if forloop.first %}
         <h2>{% blocktrans %}Candidate lists{% endblocktrans %} ({{ candidate_lists.count }})</h2>
         {% endif %}      
-        <div class="candidate_list">
-            <a href="{% url 'candidate-list' list.id %}"><div class="candidate_list_detail ballot" style="background: url('{{STATIC_URL}}img/white_note.png') no-repeat; ">{{ list.ballot }}</div>
-            <div class="candidate_list_detail list_name">{{ list.name }}</div></a>
-        </div>
+        <li class="candidate_list">
+          <a href="{% url 'candidate-list' list.id %}">
+            <div class="candidate_list_detail ballot"
+                 style="background: url('{{STATIC_URL}}img/white_note.png') no-repeat; ">
+              {{ list.ballot }}
+            </div>
+            <div class="candidate_list_detail list_name">
+              {{ list.name }}
+            </div>
+          </a>
+        </li>
       {% endfor %}
-
-
+    </ul>
   </div>
 </div>
 {% endif %}
