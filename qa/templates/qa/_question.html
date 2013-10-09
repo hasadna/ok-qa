@@ -95,7 +95,6 @@
     <div class="summary">
       <h3>
         <a href="{{ question.author.get_absolute_url }}" rel="tooltip" class="answer-user owner" title="{{question.author.get_full_name}}">{{question.author.get_full_name|default:question.author.username}}</a>
-        :&nbsp;
         <a href="{{ question.get_absolute_url }}" class="question-hyperlink" title="{{ question.subject }}">{{ question.subject }}</a>
       </h3>
         {% if not questions %}
