@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-08 17:52+0300\n"
+"POT-Creation-Date: 2013-10-09 09:04+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -388,16 +388,16 @@ msgid "votes"
 msgstr "שואלים"
 
 #: qa/templates/qa/_question.html:26
-msgid "Edit Question"
+msgid "Edit question"
 msgstr "ערכו שאלה"
 
 #: qa/templates/qa/_question.html:32
-msgid "I Want an Answer"
+msgid "I want an answer"
 msgstr "תמכו בשאלה"
 
 #: qa/templates/qa/_question.html:37
-msgid "I Don't Want an Answer"
-msgstr "בטלו את תמיכתכם"
+msgid "Undo support"
+msgstr "בטלו תמיכה"
 
 #: qa/templates/qa/_question.html:43
 msgid "Change Your Answer"
@@ -408,7 +408,7 @@ msgid "Answer the Question"
 msgstr "תרום תשובה לעניין"
 
 #: qa/templates/qa/_question.html:51
-msgid "Delete Question"
+msgid "Delete question"
 msgstr "מחקו שאלה"
 
 #: qa/templates/qa/_question.html:58
@@ -1095,6 +1095,9 @@ msgstr "לפני"
 #: user/templates/user/public_profile.html:93
 msgid "Questions by"
 msgstr "השאלות של"
+
+#~ msgid "I Don't Want an Answer"
+#~ msgstr "בטלו את תמיכתכם"
 
 #, fuzzy
 #~ msgid "answer percentage"
