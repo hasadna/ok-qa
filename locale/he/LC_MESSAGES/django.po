@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-09 09:14+0300\n"
+"POT-Creation-Date: 2013-10-09 14:18+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -387,67 +387,67 @@ msgstr "שאלה זו נמחקה"
 msgid "votes"
 msgstr "שואלים"
 
-#: qa/templates/qa/_question.html:26
-msgid "Edit question"
-msgstr "ערכו שאלה"
-
-#: qa/templates/qa/_question.html:32
-msgid "I want an answer"
-msgstr "תמכו בשאלה"
-
-#: qa/templates/qa/_question.html:37
-msgid "Undo support"
-msgstr "בטלו תמיכה"
-
-#: qa/templates/qa/_question.html:43
+#: qa/templates/qa/_question.html:27
 msgid "Change Your Answer"
 msgstr "ערכו תשובה"
 
-#: qa/templates/qa/_question.html:45
+#: qa/templates/qa/_question.html:29
 msgid "Answer the Question"
 msgstr "תרום תשובה לעניין"
 
-#: qa/templates/qa/_question.html:51
+#: qa/templates/qa/_question.html:37
+msgid "Edit question"
+msgstr "ערכו שאלה"
+
+#: qa/templates/qa/_question.html:43
+msgid "I want an answer"
+msgstr "תמכו בשאלה"
+
+#: qa/templates/qa/_question.html:48
+msgid "Undo support"
+msgstr "בטלו תמיכה"
+
+#: qa/templates/qa/_question.html:53
 msgid "Delete question"
 msgstr "מחקו שאלה"
 
-#: qa/templates/qa/_question.html:58
+#: qa/templates/qa/_question.html:60
 msgid "Confirm Question Removal"
 msgstr "אשרו מחיקת השאלה"
 
-#: qa/templates/qa/_question.html:62
+#: qa/templates/qa/_question.html:64
 msgid "Are you sure you want to remove the question?"
 msgstr "האם אתם בטוחים שברצונכם למחוק את השאלה?"
 
-#: qa/templates/qa/_question.html:66
+#: qa/templates/qa/_question.html:68
 msgid "Delete"
 msgstr "מחק"
 
-#: qa/templates/qa/_question.html:72
+#: qa/templates/qa/_question.html:74
 msgid "Flag question"
 msgstr "שאלה בלתי הולמת"
 
-#: qa/templates/qa/_question.html:79
+#: qa/templates/qa/_question.html:81
 msgid "Confirm Question Flagging"
 msgstr "אשרו דיווח על השאלה"
 
-#: qa/templates/qa/_question.html:83
+#: qa/templates/qa/_question.html:85
 msgid "Are you sure you want to flag the question as inappropriate?"
 msgstr "האם אתם בטוחים שברצונכם דווח על השאלה כבלתי הולמת?"
 
-#: qa/templates/qa/_question.html:87
+#: qa/templates/qa/_question.html:89
 msgid "Flag"
 msgstr "דווח"
 
-#: qa/templates/qa/_question.html:106 qa/templates/qa/question_list.html:136
+#: qa/templates/qa/_question.html:107 qa/templates/qa/question_list.html:136
 msgid "Tags"
 msgstr "תגיות"
 
-#: qa/templates/qa/_question.html:116
+#: qa/templates/qa/_question.html:117
 msgid "from"
 msgstr "מ:"
 
-#: qa/templates/qa/_question.html:124 user/feeds.py:15
+#: qa/templates/qa/_question.html:125 user/feeds.py:15
 #: user/templates/user/public_profile.html:61
 msgid "Answers by"
 msgstr "התשובות של"
@@ -762,6 +762,14 @@ msgstr "התחבר לפייסבוק"
 #: templates/registration/login.html:34
 msgid "Or register yourself"
 msgstr "או הרשמו באמצעות כתובת אימייל"
+
+#: templates/registration/login.html:42
+msgid "Candidate registration"
+msgstr "הרשמה למועמדים"
+
+#: templates/registration/login.html:47
+msgid "Editor registration"
+msgstr "הרשמה לעורכים"
 
 #: templates/registration/logout.html:5
 msgid "Thanks for using the System. You are now logged out."
