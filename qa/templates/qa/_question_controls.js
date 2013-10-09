@@ -16,12 +16,20 @@ $(".upvote-question").click(function () {
         $("#messages").html('<div class="alert" class="info">' +
                 '<button type="button" class="close" data-dismiss="alert">×</button>' +
                 "{% trans 'Sorry but only connected users can upvote questions' %}" +
-                '</div>');
+                {% autoescape off %}
+                ' — <a href="' + "{% url "login" %}" + '">' +
+                {% endautoescape %}
+                "{% trans 'Log in' %}" +
+                '</a></div>');
     {% elif not entity|can_vote:user %}
         $("#messages").html('<div class="alert" class="info">' +
                 '<button type="button" class="close" data-dismiss="alert">×</button>' +
                 "{% trans 'You may only support questions in your locality' %}" +
-                '</div>');
+                {% autoescape off %}
+                ' — <a href="' + "{% url "local_home" user.profile.locality.id %}" + '">' +
+                {% endautoescape %}
+                "{{ user.profile.locality }}" +
+                '</a></div>');
     {% else %}
         var qid = $(this).closest('.question-summary').attr('question-id');
         $.post("{% url 'upvote_question' QUESTION_ID %}"
