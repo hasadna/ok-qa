@@ -56,11 +56,12 @@ padding: 11px 0px 12px 0;
 }
 .candidate-avatar {
 cursor: pointer;
-float: right;
 width: 80px;
 background-position: 0 0;
 margin-right: 5px;
-text-align:center;
+text-align: center;
+display: inline-block;
+vertical-align: top;
 }
 .narrow .votes {
 padding: 6px 5px;
