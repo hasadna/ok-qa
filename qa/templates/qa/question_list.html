@@ -102,7 +102,7 @@
         {% if forloop.first %}
         <h2>{% blocktrans %}Candidate lists{% endblocktrans %} ({{ candidate_lists.count }})</h2>
         {% endif %}      
-        <li class="candidate_list">
+        <li class="candidate_list {% if list == candidate_list %}active{% endif %}">
           <a href=".?list={{ list.id }}">
             <div class="candidate_list_detail ballot"
                  style="background: url('{{STATIC_URL}}img/white_note.png') no-repeat; ">
