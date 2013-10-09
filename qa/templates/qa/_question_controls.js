@@ -56,11 +56,6 @@ $(".flag-question").click(function (e) {
     var qid = $(this).closest('.question-summary').attr('question-id');
     var url = "{% url 'flag_question' QUESTION_ID %}"
               .replace("{{ QUESTION_ID }}", qid);
-    {% if user == question.author %}
-    if (!confirm("{% trans 'Are you sure you want to delete the question?' %}")) {
-      return;
-    }
-    {% endif %}
     $.post(url, {csrfmiddlewaretoken: "{{ csrf_token }}"})
         .done(function (data, textStatus, jqXHR) {
           window.location.replace(data);
