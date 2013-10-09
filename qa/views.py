@@ -88,12 +88,23 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         users_count = Profile.objects.count()
 
     candidate_lists = CandidateList.objects.filter(entity=entity).order_by('name')
+    candidates = Profile.objects.get_candidates(entity)
+    candidates_count = candidates.count()
 
-    mayor_list = Profile.objects.get_candidates(entity)
-    candidates_count = mayor_list.count()
-    mayor_list = mayor_list.filter(candidate__for_mayor=True).\
-                    annotate(num_answers=models.Count('answers')).\
-                    order_by('-num_answers')
+    list_id = request.GET.get('list', default='mayor')
+    if list_id == 'mayor':
+        candidate_list = None
+        candidates = candidates.filter(candidate__for_mayor=True)
+    else:
+        try:
+            candidate_list = candidate_lists.get(pk=list_id)
+        except (CandidateList.DoesNotExist, ValueError):
+            messages.error(request, _('No such candidate list: ' + list_id))
+            return HttpResponseRedirect(request.path)
+        candidates = candidates.filter(candidate__candidate_list=candidate_list)
+
+    candidates = candidates.annotate(num_answers=models.Count('answers')).\
+                            order_by('-num_answers')
 
     question_count = questions.count()
     answers_count = Answer.objects.filter(question__entity=entity, is_deleted=False).count()
@@ -101,8 +112,6 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         answers_rate = int((float(answers_count) / (question_count * candidates_count)) * 100)
     else:
         answers_rate = 0
-
-        # TODO read 'mayor' and 'list' parameters, pass candidates correctly
 
     context.update({ 'tags': tags,
         'questions': questions,
@@ -112,8 +121,9 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'current_tags': current_tags,
         'need_editors': need_editors,
         'question_count': question_count,
-        'candidates': mayor_list,
+        'candidates': candidates,
         'candidates_count': candidates_count,
+        'candidate_list': candidate_list,
         'candidate_lists': candidate_lists,
         'users_count': users_count,
         'answers_rate': answers_rate,

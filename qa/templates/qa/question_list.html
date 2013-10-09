@@ -61,13 +61,21 @@
   <div class="span8">
     {% for candidate in candidates %}
         {% if forloop.first %}
-            <h2>{% blocktrans with entity.name as place %}Mayor candidates in {{place}} {% endblocktrans %} ({{candidates.count}})</h2>
+          <h2>
+          {% if candidate_list %}
+            <a href="{% url 'candidate-list' candidate_list.id %}"> {{candidate_list}} </a>
+            - {{candidate_list.ballot}} / {{candidate_list.entity}}
+          {% else %}
+            {% blocktrans with entity.name as place %}Mayor candidates in {{place}}{% endblocktrans %}
+          {% endif %}
+          ({{candidates.count}})
+          </h2>
         {% endif %}
         <div onclick="window.location.href='{{ candidate.get_absolute_url }}'"
         class="candidate-avatar">
             {% avatar candidate 75 %}
             <p>{{ candidate.get_full_name|default:candidate.username}}</p>
-            {% if candidate.profile.candidate_list %}
+            {% if candidate.profile.candidate_list and not candidate_list %}
             <p>{{ candidate.profile.candidate_list }}</p>
             {% endif %}
             {% if candidate.profile.answer_percentage %}
@@ -78,8 +86,9 @@
   </div>
   <div class="span4">
     <ul class="nav nav-pills nav-stacked">
-      <a href=".?mayor=true">
-        <li class="candidate_list">
+      <a href=".?list=mayor">
+        <li class="candidate_list" style="width:200px;
+          {% if not candidate_list %}visibility:hidden;{% endif %}">
           <div class="candidate_list_detail ballot"
                style="background: url('{{STATIC_URL}}img/yellow_note.png') no-repeat; ">
             <div style="visibility:hidden">" "</div>
@@ -94,7 +103,6 @@
         <h2>{% blocktrans %}Candidate lists{% endblocktrans %} ({{ candidate_lists.count }})</h2>
         {% endif %}      
         <li class="candidate_list">
-          <!--a href="{% url 'candidate-list' list.id %}"-->
           <a href=".?list={{ list.id }}">
             <div class="candidate_list_detail ballot"
                  style="background: url('{{STATIC_URL}}img/white_note.png') no-repeat; ">
