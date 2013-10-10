@@ -284,8 +284,7 @@ class QuestionTest(TestCase):
         self.mock_request.return_value.content = json.dumps({
             'id': 1
         })
-        response = c.post(post_url, {'content':"42",
-                        })
+        response = c.post(post_url, {'content':"42", })
         self.assertEquals(response.status_code, 302)
         new_a=Answer.objects.get(content="42")
 
