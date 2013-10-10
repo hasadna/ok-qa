@@ -88,12 +88,23 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         users_count = Profile.objects.count()
 
     candidate_lists = CandidateList.objects.filter(entity=entity).order_by('name')
+    candidates = Profile.objects.get_candidates(entity)
+    candidates_count = candidates.count()
 
-    mayor_list = Profile.objects.get_candidates(entity)
-    candidates_count = mayor_list.count()
-    mayor_list = mayor_list.filter(candidate__for_mayor=True).\
-                    annotate(num_answers=models.Count('answers')).\
-                    order_by('-num_answers')
+    list_id = request.GET.get('list', default='mayor')
+    if list_id == 'mayor':
+        candidate_list = None
+        candidates = candidates.filter(candidate__for_mayor=True)
+    else:
+        try:
+            candidate_list = candidate_lists.get(pk=list_id)
+        except (CandidateList.DoesNotExist, ValueError):
+            messages.error(request, _('No such candidate list: ' + list_id))
+            return HttpResponseRedirect(request.path)
+        candidates = candidates.filter(candidate__candidate_list=candidate_list)
+
+    candidates = candidates.annotate(num_answers=models.Count('answers')).\
+                            order_by('-num_answers')
 
     question_count = questions.count()
     answers_count = Answer.objects.filter(question__entity=entity, is_deleted=False).count()
@@ -109,9 +120,9 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'only_flagged': only_flagged,
         'current_tags': current_tags,
         'need_editors': need_editors,
-        'question_count': question_count,
-        'candidates': mayor_list,
+        'candidates': candidates,
         'candidates_count': candidates_count,
+        'candidate_list': candidate_list,
         'candidate_lists': candidate_lists,
         'users_count': users_count,
         'answers_rate': answers_rate,
@@ -148,6 +159,7 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
                 context['my_answer_id'] = user_answer.id
             except question.answers.model.DoesNotExist:
                 context['my_answer_form'] = AnswerForm()
+        context['can_flag'] = True
         if 'answer' in self.request.GET:
             try:
                 answer = Answer.objects.get(pk=self.request.GET['answer'])
@@ -212,7 +224,7 @@ def post_question(request, entity_id=None, slug=None):
     q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
 
     if request.method == "POST":
-        form = QuestionForm(request.user, request.POST)
+        form = QuestionForm(request.user, request.POST, instance=q)
         if form.is_valid():
             ''' carefull when changing a question's history '''
             if not q:
@@ -253,12 +265,19 @@ def post_question(request, entity_id=None, slug=None):
     return render(request, "qa/post_question.html", context)
 
 
-@login_required
 def upvote_question(request, q_id):
+    if request.user.is_anonymous():
+        messages.error(request, _('Sorry but only connected users can upvote questions'))
+        return HttpResponseRedirect(settings.LOGIN_URL)
+
     if request.method == "POST":
         q = get_object_or_404(Question, id=q_id)
         user = request.user
-        if q.author == user or user.upvotes.filter(question=q):
+        if q.entity != user.profile.locality:
+            return HttpResponseForbidden(_('You may only support questions in your locality'))
+        if q.author == user:
+            return HttpResponseForbidden(_("You may not support your own question"))
+        if user.upvotes.filter(question=q):
             return HttpResponseForbidden(_("You already upvoted this question"))
         else:
             upvote = QuestionUpvote.objects.create(question=q, user=user)

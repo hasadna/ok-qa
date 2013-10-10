@@ -12,6 +12,8 @@ from actstream.models import Follow
 # Project's apps
 from entities.models import Entity
 from user.utils import create_avatar
+from qa.models import Question, Answer
+from polyorg.models import Candidate
 
 NOTIFICATION_PERIOD_CHOICES = (
     (u'N', _('No Email')),
@@ -82,7 +84,7 @@ class Profile(models.Model):
     objects = ProfileManager()
 
     def save(self, **kwargs):
-        if self.avatar_uri and not self.user.avatar_set.exists():
+        if self.avatar_uri:
             create_avatar(self.user, self.avatar_uri)
         return super(Profile, self).save(**kwargs)
 
@@ -126,4 +128,15 @@ class Profile(models.Model):
             return self.user.candidate_set.all()[0].for_mayor
         return False
 
+    @property
+    def answer_percentage(self):
+        questions = self.locality.questions.filter(is_deleted=False).count()
+        answers = self.user.answers.filter(is_deleted=False).count()
+        if questions:
+            return int((float(answers) / questions) * 100)
 
+    def candidate_list(self):
+        try:
+            return self.user.candidate_set.all()[0].candidate_list
+        except:
+            return None

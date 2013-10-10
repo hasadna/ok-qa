@@ -117,15 +117,13 @@ class QuestionTest(TestCase):
         self.assertEquals(response.context['candidates'].count(), 0)
         self.assertEquals(response.context['candidates_count'], 1)
         self.assertEquals(response.context['users_count'], 4)
-        self.assertEquals(response.context['questions'].count(), response.context['question_count'])
-        self.assertEquals(response.context['question_count'], 1)
+        self.assertEquals(response.context['questions'].count(), 1)
         self.assertEquals(response.context['answers_rate'], 100)
 
         self.q.is_deleted = True
         self.q.save()
         response = c.get(default_home)
         self.assertFalse(response.context['questions'])
-        self.assertEquals(response.context['question_count'], 0)
         self.assertEquals(response.context['answers_rate'], 0)
         self.q.is_deleted = False
         self.q.save()
@@ -215,20 +213,79 @@ class QuestionTest(TestCase):
         message = list(response.context['messages'])[0]
         self.assertEquals(message.message, 'Question has been removed')
 
-    def test_upvote(self):
+    def test_post_not_killing_upvote(self):
+        '''
+        Related to issue #365:
+
+        When a user add a description to a question it looses all followers.
+        '''
+
+        # Create a new question
+        c = Client()
+        self.assertTrue(c.login(username="commoner", password="pass"))
+        post_url = reverse('post_question')
+        response = c.get(post_url)
+        self.assertEquals(response.status_code, 200)
+        self.assertFalse(Question.objects.filter(entity_id=self.home.id, unislug='Why?').count())
+        response = c.post(post_url, {
+                        'subject':"What?",
+                        'entity': self.home.id,
+                        'content': 'Yes!',
+                        'tags': '',
+                        })
+        new_q = Question.objects.get(subject="What?")
+        self.assertRedirects(response, new_q.get_absolute_url())
+
+        # Upvote the question
         c = SocialClient()
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 302)
         c.login(self.user, backend='facebook')
-        response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
-        self.assertEquals(response.status_code, 200)
-
         u=User.objects.get(email='user@domain.com')
         u.profile.locality = self.common_user.profile.locality
         u.profile.save()
         self.mock_request.return_value.content = json.dumps({
             'id': 1
         })
+        response = c.post(reverse('upvote_question', kwargs={'q_id':new_q.id}))
+        self.assertEquals(response.status_code, 200)
+
+        # Edit the question
+        c = Client()
+        post_url = reverse('edit_question', kwargs={'slug': new_q.unislug})
+        self.assertTrue(c.login(username="commoner", password="pass"))
+        response = c.get(post_url)
+        self.assertEquals(response.status_code, 200)
+        self.assertFalse(Question.objects.filter(entity_id=self.home.id, unislug='Why?').count())
+        response = c.post(post_url, {
+                        'id': new_q.id,
+                        'content': 'Because we like it!',
+                        'tags': '',
+                        'subject':new_q.subject,
+                        'entity': self.home.id,
+                        })
+        self.assertRedirects(response, new_q.get_absolute_url())
+
+        # Check question's rating.
+        # Before the bug fix, it used to be 1.
+        updated_q = Question.objects.get(subject="What?")
+        self.assertEquals(updated_q.rating, 2)
+
+
+    def test_upvote(self):
+        c = SocialClient()
+        response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
+        self.assertEquals(response.status_code, 302)
+        c.login(self.user, backend='facebook')
+        u=User.objects.get(email='user@domain.com')
+        u.profile.locality = self.common_user.profile.locality
+        u.profile.save()
+        self.mock_request.return_value.content = json.dumps({
+            'id': 1
+        })
+        response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
+        self.assertEquals(response.status_code, 200)
+
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 403)
         self.assertEquals(response.content, 'You already upvoted this question')

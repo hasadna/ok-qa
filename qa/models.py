@@ -43,6 +43,12 @@ class TaggedQuestion(TaggedItemBase):
     # objects = models.Manager()
     # objects = CurrentSiteManager()
 
+def can_vote(entity, user):
+    ''' returns whether a secific user can upvote/downvote a question in the
+        entity '''
+    return user.is_authenticated() and user.profile.locality == entity
+Entity.add_to_class('can_vote', can_vote)
+
 class Question(BaseModel):
 
     # TODO: rename to just `slug`
@@ -112,7 +118,7 @@ class Question(BaseModel):
     def can_vote(self, user):
         ''' returns whether a secific user can upvote/downvote the question,
             or neither '''
-        if user.is_authenticated():
+        if self.entity.can_vote(user):
             if user.upvotes.filter(question=self).exists():
                 return 'down'
             else:
