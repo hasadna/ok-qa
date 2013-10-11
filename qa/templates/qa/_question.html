@@ -17,7 +17,7 @@
       <div class="votes-{{question.id}}"
            {% if question.rating <= 1 %}style="visibility:hidden"{% endif %}>
         <div class="mini-counts" id="votes-count-{{question.id}}">{{ question.rating }}</div>
-          <div>{% trans "votes" %}</div>
+        <div>{% trans "votes" %}</div>
       </div>
     </div>
     {% if can_answer %}

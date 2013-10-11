@@ -166,6 +166,8 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
                 context['fb_message'] = answer.content
             except:
                 pass
+        context['supporters'] = [vote.user for vote in question.upvotes.all() \
+                                if vote.user != question.author]
         return context
 
     def render_to_response(self, context):
