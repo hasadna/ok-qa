@@ -42,7 +42,8 @@ class Command(BaseCommand):
             )
 
             password = random.randint(1,99999)
-            print u'%s, %s, %s, %s, %s' % (locality_name, first_name, last_name, username, password)
+            s = u'%s, %s, %s, %s, %s' % (locality_name, first_name, last_name, username, password)
+            print s.encode('utf-8')
             user.set_password(password)
             user.save()
 
