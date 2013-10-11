@@ -33,7 +33,7 @@ class Command(BaseCommand):
             candidatelist = locality.candidatelist_set.get(ballot=ballot)
 
             last_name, first_name = fullname.split(' ', 1)
-            username = u'c_%s_%04d' %(locality.id ,i)
+            username = u'c_%04d' % i
 
             user = User(
                 username=username,
