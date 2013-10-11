@@ -3,7 +3,7 @@
 
 {% block pageTitle %}{{ friend.get_full_name }}{% endblock %}
 {% block extrahead %}
-  <meta property="og:image" description='{% avatar_url friend.user %}'>
+  <meta property="og:image" content='{% avatar_url friend.user %}'>
 {% endblock %}
 
 {% block breadcrumbs %}
