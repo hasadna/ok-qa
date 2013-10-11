@@ -15,6 +15,7 @@ body {
 }
 #messages{
     position: fixed;
+    z-index: 100;
 }
 /* Main Container */
 div[role="main"] {
