@@ -1,6 +1,10 @@
 {% extends "user/user_base.html" %}
 {% load i18n avatar_tags links_tags %}
+
 {% block pageTitle %}{{ friend.get_full_name }}{% endblock %}
+{% block extrahead %}
+  <meta property="og:image" description='{% avatar_url friend.user %}'>
+{% endblock %}
 
 {% block breadcrumbs %}
   <li class="active">{{ flatpage.title }}</li>
