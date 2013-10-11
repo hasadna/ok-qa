@@ -1,4 +1,4 @@
-{% load i18n avatar_tags qa_tags %}
+{% load i18n avatar_tags qa_tags links_tags %}
 {% load url from future %}
 <!-- Let's add the upvote and follow on hover -->
 <div class="question-summary narrow" id="question-summary-{{ question.id }}"
@@ -99,7 +99,7 @@
       </h3>
         {% if not questions %}
         <div class="preview">
-            {{ question.content|urlize|linebreaks}}
+            {{ question.content|urlize_target_blank|linebreaks}}
         </div>
         {% endif %}
         <div class="tags">

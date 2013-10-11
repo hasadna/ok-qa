@@ -1,6 +1,10 @@
 {% extends "user/user_base.html" %}
 {% load i18n avatar_tags links_tags %}
+
 {% block pageTitle %}{{ friend.get_full_name }}{% endblock %}
+{% block extrahead %}
+  <meta property="og:image" content='{% avatar_url friend.user %}'>
+{% endblock %}
 
 {% block breadcrumbs %}
   <li class="active">{{ flatpage.title }}</li>
@@ -34,8 +38,11 @@
         {% else %}
           {% trans 'for the council of' %} 
         {% endif %}
-        {{friend.locality}}
+        <a href="{% url "local_home" friend.locality.id %}">
+          {{friend.locality}}
+        </a<
       </h2>
+
       {% elif friend.locality %}
       <h2>
         <a href="{% url 'local_home' friend.locality.id %}" alt="{{friend.locality}}">{{friend.locality}}</a>
@@ -46,7 +53,7 @@
       </ul>
       {% if friend.bio %}
       <div class="well" style="text-align:right; font-size: 120%;">
-        {{ friend.bio|urlize|linebreaks }}
+        {{ friend.bio|urlize_target_blank|linebreaks }}
       </div>
       {% endif %}
   </div></center>
@@ -67,11 +74,11 @@
                 <a href="{{ answer.question.get_absolute_url }}" class="question-hyperlink"
                 title="{{ question.subject }}">{{ answer.question.subject }}</a>
             </h3>
-                <span class="too-long-toggle">{{ answer.question.content|urlize|linebreaks }}</span>
+                <span class="too-long-toggle">{{ answer.question.content|urlize_target_blank|linebreaks }}</span>
             <div class="well">
                 <a name="{{answer.id}}"></a>
                 <strong style="font-size: 16px;">
-                    <span class="too-long-toggle">{{ answer.content|urlize|linebreaks }}</span>
+                    <span class="too-long-toggle">{{ answer.content|urlize_target_blank|linebreaks }}</span>
                 </strong>
                 <span title="{{ question.created_at }}" class="relativetime">
                     <br />
@@ -99,7 +106,7 @@
               title="{{ question.subject }}">{{ question.subject }}</a>
           </h4>
           <div class="preview">
-              <span class="too-long-toggle">{{ question.content|urlize|linebreaks }}</span>
+              <span class="too-long-toggle">{{ question.content|urlize_target_blank|linebreaks }}</span>
           </div>
         </div>
       {% endfor %}

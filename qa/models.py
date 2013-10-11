@@ -125,7 +125,6 @@ class Question(BaseModel):
                 return 'up'
         return None
 
-
 class Answer(BaseModel):
     author = models.ForeignKey(User, related_name="answers", verbose_name=_("author"))
     content = models.TextField(_("content"), max_length=MAX_LENGTH_A_CONTENT,

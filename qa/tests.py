@@ -117,15 +117,13 @@ class QuestionTest(TestCase):
         self.assertEquals(response.context['candidates'].count(), 0)
         self.assertEquals(response.context['candidates_count'], 1)
         self.assertEquals(response.context['users_count'], 4)
-        self.assertEquals(response.context['questions'].count(), response.context['question_count'])
-        self.assertEquals(response.context['question_count'], 1)
+        self.assertEquals(response.context['questions'].count(), 1)
         self.assertEquals(response.context['answers_rate'], 100)
 
         self.q.is_deleted = True
         self.q.save()
         response = c.get(default_home)
         self.assertFalse(response.context['questions'])
-        self.assertEquals(response.context['question_count'], 0)
         self.assertEquals(response.context['answers_rate'], 0)
         self.q.is_deleted = False
         self.q.save()
@@ -318,6 +316,7 @@ class QuestionTest(TestCase):
         response = c.post(post_url, {'subject':"Where?",
                         'facebook_publish': 'on',
                         'home': self.home.id,
+                        'entity': self.home.id,
                         })
         self.assertEquals(response.status_code, 302)
         new_q=Question.objects.get(subject="Where?")
@@ -332,7 +331,7 @@ class QuestionTest(TestCase):
             }
         )
 
-    def test_post_question_facebook(self):
+    def test_post_answer_facebook(self):
         c = SocialClient()
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
@@ -343,8 +342,7 @@ class QuestionTest(TestCase):
         self.mock_request.return_value.content = json.dumps({
             'id': 1
         })
-        response = c.post(post_url, {'content':"42",
-                        })
+        response = c.post(post_url, {'content':"42", })
         self.assertEquals(response.status_code, 302)
         new_a=Answer.objects.get(content="42")
 
