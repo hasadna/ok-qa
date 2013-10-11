@@ -34,8 +34,11 @@
         {% else %}
           {% trans 'for the council of' %} 
         {% endif %}
-        {{friend.locality}}
+        <a href="{% url "local_home" friend.locality.id %}">
+          {{friend.locality}}
+        </a<
       </h2>
+
       {% elif friend.locality %}
       <h2>
         <a href="{% url 'local_home' friend.locality.id %}" alt="{{friend.locality}}">{{friend.locality}}</a>
