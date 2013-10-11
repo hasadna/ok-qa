@@ -82,7 +82,7 @@ class Candidate(models.Model):
     objects = CandidateManager()
 
     class Meta:
-        ordering = ('ordinal',)
+        ordering = ('-ordinal',)
 
     def __unicode__(self):
         return u'%s - %s - %s' % (self.user.profile.get_full_name(), self.candidate_list.name, self.candidate_list.entity)
