@@ -587,7 +587,7 @@ msgstr "מועמדים לראשות %(place)s"
 
 #: qa/templates/qa/question_list.html:96
 msgid "One Answer"
-msgstr "תשובה אחת"
+msgstr "תשוב"
 
 #: qa/templates/qa/question_list.html:110
 #: qa/templates/qa/question_list_origin.html:104
