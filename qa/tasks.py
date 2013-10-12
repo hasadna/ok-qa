@@ -80,7 +80,7 @@ def publish_answer(answer):
     msg = EmailMultiAlternatives(_("A new answer for your question"),
             text_content,
             settings.DEFAULT_FROM_EMAIL,
-            list(editors)+list(followers))
+            bcc=list(editors)+list(followers))
     msg.attach_alternative(html_content, "text/html")
     msg.send()
     if retry:
