@@ -7,6 +7,7 @@ from django.conf import settings
 from django.core.management.base import BaseCommand, CommandError
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
+from django.contrib.contenttypes.models import ContentType
 from django.core.mail import EmailMultiAlternatives
 from django.utils.html import strip_tags
 from django.template.loader import render_to_string
@@ -16,9 +17,9 @@ from django.core.urlresolvers import reverse
 
 from flatblocks.models import FlatBlock
 
-from user.models import invite_user
-from qa.models import Question
 from user.models import Profile, NEVER_SENT
+from qa.models import Question, QuestionUpvote,Answer
+from actstream.models import Follow
 from oshot.utils import get_root_url
 
 class Command(BaseCommand):
@@ -34,6 +35,7 @@ class Command(BaseCommand):
     def handle (self, *args, **options):
         translation.activate(settings.LANGUAGE_CODE)
         self.start = timezone.now()
+        self.q_ct = ContentType.objects.get_for_model(Question)
         self.stdout.write("> sending updates at %s" % self.start)
         if len(args):
             for user in User.objects.filter(email__in=args):
@@ -43,6 +45,10 @@ class Command(BaseCommand):
                 self.update_user(user)
 
     def update_user(self, user):
+        if not user.is_active:
+            ''' inactive users get nothing! '''
+            return
+
         profile = user.profile
         last_sent = profile.last_email_update
         try:
@@ -60,27 +66,24 @@ class Command(BaseCommand):
                 'is_active': user.is_active,
                 'user': user,
                 }
-        if not user.is_active:
-            ''' send an invitation email to inactive users'''
-            return
-            reg_profile = user.registrationprofile_set.all()[0]
-            key = reg_profile.activation_key
-            context['key'] = key
-            context['activation_url'] = root_url + reverse('accept-invitation', args=(key,))
-            if reg_profile.activation_key_expired() and last_sent==NEVER_SENT:
-                # reset the key duration, giving the user more time
-                user.date_joined = self.start
-                user.save()
         if profile.is_candidate:
             ''' handle andidates '''
             local_qs = Question.objects.filter(is_deleted=False, entity=profile.locality).\
                     exclude(answers__author=user)
             context['new_questions'] =  local_qs.filter(created_at__gte=last_sent).order_by('updated_at')
             context['old_questions'] = local_qs.filter(created_at__lt=last_sent).order_by('-rating')
-            html_content = render_to_string("qa/candidate_email_update.html", context)
+            html_content = render_to_string("email/candidate_update.html", context)
         else:
             ''' handle voters '''
-            return
+            # TODO: Develop a template for new upvotes
+            # context['new_upvotes'] = QuestionUpvote.objects.filter(created_at__gte=last_sent, question__author=user).\
+            #        order_by('question')
+            context['new_answers'] = Answer.objects.filter(created_at__gte=last_sent,
+                    question__in = [x.actor for x in \
+                            Follow.objects.filter(user=user, content_type=self.q_ct)]).\
+                            order_by('question')
+            context['new_questions'] = Question.objects.filter(created_at__gte=last_sent).order_by('author')
+            html_content = render_to_string("email/voter_update.html", context)
 
         subject = FlatBlock.objects.get(slug="candidate_update_email.subject").content
         # TODO: create a link for the update and send it to shaib
