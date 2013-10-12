@@ -14,21 +14,24 @@
 {# {% cache 300 local_home entity.id request.page request.user.username %} #}
 <div class="page-header">
   <div class="container">
-    <div class="row">
-        {% if need_editors %}
-          <div class="well flatblock">
-            {% flatblock "editors_needed" 9000 %}
-          </div>
-        {% elif not request.user.is_authenticated %}
-          <div class="well flatblock">
-            {% flatblock "welcome" 9000 %}
-          </div>
-        {% endif %}
-        <div class="span3">
-          <div style="height: 103px; background: url('{{ STATIC_URL }}img/locality/{{ entity.code }}.jpg') no-repeat; background-size: auto 103px;"></div>
-          
+    <div class="row collapse in" id='flatblock_row'>
+      {% if need_editors %}
+        <div data-toggle="collapse" data-target="#flatblock_row" style='float: left; margin: 10px;'>X</div>
+        <div class="well flatblock" id='editors_needed'>
+          {% flatblock "editors_needed" 9000 %}
         </div>
-        <div class="span9">
+      {% elif not request.user.is_authenticated %}
+        <div data-toggle="collapse" data-target="#flatblock_row" style='float: left; margin: 10px;'>X</div>
+        <div class="well flatblock" id='welcome_message'>
+          {% flatblock "welcome" 9000 %}
+        </div>
+      {% endif %}
+    </div>
+    <div class="row">
+
+        <div class="span2" style="height:140px; background: url('{{ STATIC_URL }}img/locality/{{ entity.code }}.jpg') no-repeat; background-size: 140px 140px;">
+        </div>
+        <div class="span10">
           <h1>
             {{ entity }}
                {% if not current_tags %}
