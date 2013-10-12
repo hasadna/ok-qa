@@ -37,9 +37,9 @@ def publish_question_to_facebook(question):
         question_url = get_full_url(question.get_absolute_url())
         try:
             graph.post(path="me/localshot:ask", question=question_url)
-        except OAuthError, exc:
+        except Exception, exc:
+            logger.warn("failed to publish question to facebook %s" % unicode(question))
             publish_question_to_facebook.retry(exc=exc)
-		
 
 @task(max_retries=3, default_retry_delay=10)
 def publish_upvote_to_facebook(upvote):
@@ -48,11 +48,14 @@ def publish_upvote_to_facebook(upvote):
         question_url = get_full_url(upvote.question.get_absolute_url())
         try:
             graph.post(path="me/localshot:join", question=question_url)
-        except OAuthError, exc:
+        except Exception, exc:
+            logger.warn("failed to publish upvote to facebook")
             publish_upvote_to_facebook.retry(exc=exc)
 
 @task(max_retries=3, default_retry_delay=10)
 def publish_answer(answer):
+    retry = False
+    logger.info("publishing answer %s" % unicode(answer))
     question = answer.question
     # publish to facebook
     graph = get_graph_api(answer.author)
@@ -60,8 +63,9 @@ def publish_answer(answer):
         answer_url = get_full_url(answer.get_absolute_url())
         try:
             graph.post(path="me/localshot:answer", question=answer_url)
-        except OAuthError, exc:
-            publish_answer.retry(exc=exc)
+        except Exception, exc:
+            logger.warn("-- Failed to publish answer")
+            retry = True
     # send an email to interesed users
     editors = User.objects.filter(profile__locality=question.entity,
                     profile__is_editor=True).values_list('email', flat=True)
@@ -79,5 +83,6 @@ def publish_answer(answer):
             list(editors)+list(followers))
     msg.attach_alternative(html_content, "text/html")
     msg.send()
-
+    if retry:
+        publish_answer.retry(exc=exc)
 

@@ -6,7 +6,9 @@
 {% load avatar_tags %}
 
 {% block pageTitle %}{% trans "questions list" %}{% endblock %}
-
+{% block extrahead %}
+  <meta property='og:image' content='http:{{ STATIC_URL }}img/locality/{{ entity.code }}.jpg'>
+{% endblock %}
 {% block homeNav %}class="active"{% endblock %}
 {% block content %}
 {# {% cache 300 local_home entity.id request.page request.user.username %} #}

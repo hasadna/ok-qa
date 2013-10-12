@@ -1,6 +1,9 @@
 from django import template
 from django.conf import settings
 from django.core.cache import cache
+from django.template.defaultfilters import stringfilter
+from django.utils.html import urlize as urlize_impl
+from django.utils.safestring import mark_safe
 from links.models import Link
 
 register = template.Library()
@@ -21,3 +24,13 @@ def object_icon_links(obj,show_title=False):
         l = Link.objects.for_model(obj)  # get it from db
         cache.set(key, l, settings.LONG_CACHE_TIME)  # and save to cache
     return {'links': l, 'show_title': show_title}
+
+
+@register.filter(is_safe=True, needs_autoescape=True)
+@stringfilter
+def urlize_target_blank(value, limit=50, autoescape=None):
+    return mark_safe(urlize_impl(value,
+                                 trim_url_limit=int(limit),
+                                 nofollow=True,
+                                 autoescape=autoescape).\
+                     replace('<a', '<a target="_blank"'))
