@@ -48,7 +48,6 @@ class Command(BaseCommand):
             user.save()
 
             user.profile.locality = locality
-            user.profile.is_candidate = True
             user.profile.verification = u'V'
 
             user.profile.save()

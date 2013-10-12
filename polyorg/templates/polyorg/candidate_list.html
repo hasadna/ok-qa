@@ -30,7 +30,7 @@
         {% avatar candidate 75 %}
         <p>{{ candidate.get_full_name|default:candidate.username}} 
             {% if can_edit %}
-            <br>(<a href="{% url 'candidate-remove' candidatelist.id candidate.id%}">{% trans 'remove' %}</a>)
+            <br>(<a href="{% url 'candidate_remove' candidatelist.id candidate.id%}">{% trans 'remove' %}</a>)
             {% endif %}
         </p>
       </div>

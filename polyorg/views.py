@@ -84,7 +84,6 @@ def candidate_create(request,candidatelist_id):
         form = CandidateForm(request.POST)
         if form.is_valid():
             profile = form.cleaned_data['user'].profile
-            profile.is_candidate = True
             profile.verification = u'V'
             profile.save()
             form.save()
@@ -94,7 +93,7 @@ def candidate_create(request,candidatelist_id):
         form = CandidateForm(initial={'candidate_list': candidatelist})
     form.fields["user"].queryset = \
         User.objects.filter(profile__locality=candidatelist.entity).\
-        exclude(profile__is_candidate=True).exclude(profile__is_editor=True)
+        filter(candidate__isnull=True).exclude(profile__is_editor=True)
 
     context = RequestContext(request, {'form': form,
                                        'candidatelist': candidatelist,
@@ -110,7 +109,6 @@ def candidate_remove(request, candidatelist_id, candidate_id):
         return HttpResponseForbidden(_("Only editors have access to this page."))
 
     candidate_profile = get_object_or_404(User, pk=candidate_id).profile
-    candidate_profile.is_candidate = False
     candidate_profile.save()
     candidate = Candidate.objects.filter(user__id=candidate_id)
     for c in candidate:

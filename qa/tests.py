@@ -12,6 +12,7 @@ from django.test.utils import override_settings
 
 from mock import patch
 from entities.models import Domain, Division, Entity
+from polyorg.models import Candidate, CandidateList
 from .models import *
 
 
@@ -49,6 +50,9 @@ class QuestionTest(TestCase):
                                             id=1111, code="1111")
         self.away = Entity.objects.create(name="the moon", division=division,
                                             id=9999, code="41")
+        self.candidate_list = CandidateList.objects.create(name="list", ballot="l", 
+                                                            entity=self.home)
+
         self.common_user = User.objects.create_user("commoner",
                                 "commmon@example.com", "pass")
         self.common_user.profile.locality = self.home
@@ -60,8 +64,8 @@ class QuestionTest(TestCase):
         self.candidate_user = User.objects.create_user("candidate", 
                                 "candidate@example.com", "pass")
         self.candidate_user.profile.locality = self.home
-        self.candidate_user.profile.is_candidate = True
         self.candidate_user.profile.save()
+        Candidate.objects.create(user=self.candidate_user, candidate_list=self.candidate_list)
         self.editor = User.objects.create_user("editor", 
                                 "editor@example.com", "pass")
         self.editor.profile.locality = self.home
@@ -336,7 +340,7 @@ class QuestionTest(TestCase):
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
         u.profile.locality = self.home
-        u.profile.is_candidate = True
+        Candidate.objects.create(user=u,candidate_list=self.candidate_list)
         u.profile.save()
         post_url = reverse('post_answer', args=(self.q.id, ))
         self.mock_request.return_value.content = json.dumps({
