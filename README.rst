@@ -56,9 +56,9 @@ Git setup:
 7) In the Git shell create the virtualenv as follows::
 
      cd C:\
-	 C:\Python27\Scripts\virtualenv --distribute --system-site-packages hasadna
-	 cd hasadna
-	 Scripts\activate
+     C:\Python27\Scripts\virtualenv --distribute --system-site-packages hasadna
+     cd hasadna
+     Scripts\activate
 
 8) Clone the project::
 
