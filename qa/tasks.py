@@ -72,7 +72,7 @@ def publish_answer(answer):
     content_type = ContentType.objects.get_for_model(question)
     followers  = Follow.objects.filter(content_type=content_type,
             object_id=question.id).values_list('user__email', flat=True)
-    html_content = render_to_string("qa/email_new_answer.html",
+    html_content = render_to_string("email/new_answer.html",
             {'answer': answer,
              'ROOT_URL': get_root_url(),
             })

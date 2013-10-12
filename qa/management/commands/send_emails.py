@@ -77,7 +77,7 @@ class Command(BaseCommand):
                     exclude(answers__author=user)
             context['new_questions'] =  local_qs.filter(created_at__gte=last_sent).order_by('updated_at')
             context['old_questions'] = local_qs.filter(created_at__lt=last_sent).order_by('-rating')
-            html_content = render_to_string("qa/candidate_email_update.html", context)
+            html_content = render_to_string("email/candidate_update.html", context)
         else:
             ''' handle voters '''
             return
