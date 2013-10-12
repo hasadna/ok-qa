@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-12 11:56+0300\n"
+"POT-Creation-Date: 2013-10-12 14:24+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -271,7 +271,7 @@ msgstr "תוכן"
 msgid "Please enter an answer in no more than %s letters"
 msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
 
-#: qa/tasks.py:80
+#: qa/tasks.py:76
 #, fuzzy
 msgid "A new answer for your question"
 msgstr "תשובות לשאלה"
@@ -453,7 +453,7 @@ msgstr "האם אתם בטוחים שברצונכם דווח על השאלה כ�
 msgid "Flag"
 msgstr "דווח"
 
-#: qa/templates/qa/_question.html:107 qa/templates/qa/question_list.html:185
+#: qa/templates/qa/_question.html:107 qa/templates/qa/question_list.html:184
 msgid "Tags"
 msgstr "תגיות"
 
@@ -516,6 +516,7 @@ msgid "Cancel"
 msgstr "ביטול"
 
 #: qa/templates/qa/question_detail.html:32
+#: qa/templates/qa/question_list.html:98
 msgid "Answers"
 msgstr "תשובות"
 
@@ -561,8 +562,7 @@ msgstr "שאלות"
 msgid "Registered candidates"
 msgstr "מועמדים רשומים"
 
-#: qa/templates/qa/question_list.html:52
-#: qa/templates/qa/question_list.html:101
+#: qa/templates/qa/question_list.html:50
 msgid "Answer rate"
 msgstr "מענה"
 
@@ -584,31 +584,35 @@ msgstr "טרם נרשמו מועמדים ברשימת"
 msgid "Mayor candidates in %(place)s"
 msgstr "מועמדים לראשות %(place)s"
 
-#: qa/templates/qa/question_list.html:111
+#: qa/templates/qa/question_list.html:96
+msgid "One Answer"
+msgstr "תשובה אחת"
+
+#: qa/templates/qa/question_list.html:110
 msgid "Candidate lists"
 msgstr "רשימות"
 
-#: qa/templates/qa/question_list.html:134
+#: qa/templates/qa/question_list.html:133
 msgid "Mayor candidates"
 msgstr "מועמדים לראש הרשות"
 
-#: qa/templates/qa/question_list.html:148
+#: qa/templates/qa/question_list.html:147
 msgid "In the tags:"
 msgstr "תחת התגיות:"
 
-#: qa/templates/qa/question_list.html:157
+#: qa/templates/qa/question_list.html:156
 msgid "Top Questions"
 msgstr "שאלות מובילות"
 
-#: qa/templates/qa/question_list.html:160
+#: qa/templates/qa/question_list.html:159
 msgid "Most Recent"
 msgstr "שאלות אחרונות"
 
-#: qa/templates/qa/question_list.html:164
+#: qa/templates/qa/question_list.html:163
 msgid "Flagged Questions"
-msgstr "שאלות מוסמנות"
+msgstr "שאלות מסומנות"
 
-#: qa/templates/qa/question_list.html:182
+#: qa/templates/qa/question_list.html:181
 msgid "Ask Question"
 msgstr "העלו שאלה"
 

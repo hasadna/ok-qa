@@ -101,9 +101,15 @@
             {% if candidate.profile.candidate_list and not candidate_list %}
             <p>{{ candidate.profile.candidate_list }}</p>
             {% endif %}
-            {% if candidate.profile.answer_percentage %}
-            <p>{{ candidate.profile.answer_percentage }}% {% trans "Answer rate" %}</p>
-            {% endif %}
+            {% with answers_count=candidate.answers.count %}
+            {% if answers_count %}
+				{% if answers_count == 1 %}
+				<p> {% trans "One Answer" %} </p>
+			{% else %}
+				<p>{{ answers_count }} {% trans "Answers" %}</p>
+				{% endif %}
+			{% endif %}
+            {% endwith %}
         </div>
       {% endfor %}
   </div>
