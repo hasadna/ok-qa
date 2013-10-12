@@ -49,8 +49,9 @@
         <p>{{question.content}}</p>
       </td>
       <td width="50">
-        {{question.rating}}<br\>
-        שואלים
+        {% if question.rating > 1 %}
+          {{question.rating}} שואלים
+        {% endif %}
       </td>
       <td width="20">
         <a href="{{ROOT_URL}}{{question.get_absolute_url}}">{% trans "Answer" %}</a>
