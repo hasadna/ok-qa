@@ -90,10 +90,14 @@ class Command(BaseCommand):
         # TODO: create a link for the update and send it to shaib
         text_content = 'Sorry, we only support html based email'
         # create the email, and attach the HTML version as well.
-        msg = EmailMultiAlternatives(subject, text_content,
-                settings.DEFAULT_FROM_EMAIL, [user.email])
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
+        try:
+            msg = EmailMultiAlternatives(subject, text_content,
+                    settings.DEFAULT_FROM_EMAIL, [user.email])
+            msg.attach_alternative(html_content, "text/html")
+            msg.send()
+        except:
+            ''' probably a bad email '''
+            return
         self.stdout.write(">>> sent update to %(username)s at %(email)s is_active=%(is_active)s" % user.__dict__)
         if not settings.DEBUG:
             profile.last_email_update = self.start
