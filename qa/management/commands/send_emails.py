@@ -82,7 +82,8 @@ class Command(BaseCommand):
                     question__in = [x.actor for x in \
                             Follow.objects.filter(user=user, content_type=self.q_ct)]).\
                             order_by('question')
-            context['new_questions'] = Question.objects.filter(created_at__gte=last_sent).order_by('author')
+            context['new_questions'] = Question.objects.exclude(author=user).\
+                    filter(entity=user.profile.locality, created_at__gte=last_sent).order_by('author')
             html_content = render_to_string("email/voter_update.html", context)
 
         subject = FlatBlock.objects.get(slug="candidate_update_email.subject").content
