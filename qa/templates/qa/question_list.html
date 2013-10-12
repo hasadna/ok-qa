@@ -14,17 +14,24 @@
 {# {% cache 300 local_home entity.id request.page request.user.username %} #}
 <div class="page-header">
   <div class="container">
+    <div class="row collapse in" id='flatblock_row'>
+      {% if need_editors %}
+        <div data-toggle="collapse" data-target="#flatblock_row" style='float: left; margin: 10px;'>X</div>
+        <div class="well flatblock" id='editors_needed'>
+          {% flatblock "editors_needed" 9000 %}
+        </div>
+      {% elif not request.user.is_authenticated %}
+        <div data-toggle="collapse" data-target="#flatblock_row" style='float: left; margin: 10px;'>X</div>
+        <div class="well flatblock" id='welcome_message'>
+          {% flatblock "welcome" 9000 %}
+        </div>
+      {% endif %}
+    </div>
     <div class="row">
-        {% if need_editors %}
-          <div class="well flatblock">
-            {% flatblock "editors_needed" 9000 %}
-          </div>
-        {% elif not request.user.is_authenticated %}
-          <div class="well flatblock">
-            {% flatblock "welcome" 9000 %}
-          </div>
-        {% endif %}
-        <div class="span9">
+
+        <div class="span2"><img src="{{ STATIC_URL }}img/locality/{{ entity.code }}.jpg" alt="{{entity.name_he}}" width='140px' onerror="this.style.display='none'">
+        </div>
+        <div class="span10">
           <h1>
             {{ entity }}
                {% if not current_tags %}
@@ -53,17 +60,19 @@
             {% endif %}.
             -->
           </div>
+          <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#candidate_container" id='candidates_button' style='margin-top:5px;'>
+            {% trans 'Display candidates' %}
+          </button>  
 
         </div>
-        <div class="span3">
-          <div style="height: 103px; background: url('{{ STATIC_URL }}img/locality/{{ entity.code }}.jpg') no-repeat; background-size: auto 103px;"></div>
-          
-        </div>
+
     </div>
   </div>
+
 </div>
+
 {% if not request.page or request.page == 1 %}
-<div class="row">
+<div class="row collapse" id="candidate_container">
   <div class="span6">
     {% if candidate_list or candidates %}
       <h2>
@@ -185,9 +194,15 @@
 </div>
 {% endblock %}
 {% block extrascript %}
-    <script>
-        $(document).ready(function () {
-            {% include "qa/_question_controls.js" %}
-        });
-    </script>
+<script>
+    $(document).ready(function () {
+        {% include "qa/_question_controls.js" %}
+        $('#candidate_container').on('shown', function () {
+          $('#candidates_button').text("{%trans 'Hide candidates'%}")
+        })
+        $('#candidate_container').on('hidden', function () {
+          $('#candidates_button').text("{% trans 'Display candidates' %}")
+        })
+    });
+</script>
 {% endblock %}

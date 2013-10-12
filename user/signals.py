@@ -1,13 +1,13 @@
 from django.conf import settings
 from django.dispatch import receiver
-from django.db.models.signals import post_save, pre_save
+from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext as _
 
-from qa.models import Question, QuestionFlag, QuestionFlag
+from qa.models import Question, QuestionFlag
 from user.models import Profile
 from oshot.utils import get_root_url
 
@@ -26,22 +26,6 @@ def appoint_editors(sender, created, instance, **kwargs):
             profile.is_editor = True
             profile.save()
             # TODO: notify the user by email he's an editor
-
-@receiver(pre_save, sender=Profile)
-def new_candidate(sender, instance, **kwargs):
-    if instance.is_candidate and instance.verification == '0':
-        editors = User.objects.filter(profile__locality=instance.locality,
-                    profile__is_editor=True).values_list('email', flat=True)
-        html_content = render_to_string("user/emails/editors_new_candidate.html",
-                {'candidate': instance,
-                 'ROOT_URL': get_root_url(),
-                })
-        text_content = 'Sorry, we only support html based email'
-        msg = EmailMultiAlternatives(_("A new candidate registered"), text_content,
-                settings.DEFAULT_FROM_EMAIL, editors)
-        msg.attach_alternative(html_content, "text/html")
-        msg.send()
-        instance.verification='S'
 
 @receiver(post_save, sender=QuestionFlag)
 def new_flag(sender, created, instance, **kwargs):

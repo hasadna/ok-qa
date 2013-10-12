@@ -9,5 +9,5 @@ urlpatterns = patterns('polyorg.views',
         url(r'list/(?P<candidatelist_id>[-\w]+)$', 'candidates_list', name='candidate-list'),
         url(r'list/(?P<candidatelist_id>[-\w]+)/create/$', 'candidate_create', name='candidate-create'),
         url(r'list/(?P<candidatelist_id>[-\w]+)/edit/$', 'candidatelist_edit', name='candidatelist-edit'),
-        url(r'list/(?P<candidatelist_id>[-\w]+)/remove/(?P<candidate_id>[-\w]+)/$', 'candidate_remove', name='candidate-remove'),
+        url(r'list/(?P<candidatelist_id>[-\w]+)/remove/(?P<candidate_id>[-\w]+)/$', 'candidate_remove', name='candidate_remove'),
     )
