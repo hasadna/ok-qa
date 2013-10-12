@@ -72,7 +72,7 @@
 </div>
 
 {% if not request.page or request.page == 1 %}
-<div class="row collapse" id="candidate_container">
+<div class="row collapse{% if request.GET.list %} in{%endif%}" id="candidate_container">
   <div class="span6">
     {% if candidate_list or candidates %}
       <h2>
@@ -192,17 +192,22 @@
     </ul>
   </div>
 </div>
+
 {% endblock %}
 {% block extrascript %}
 <script>
     $(document).ready(function () {
         {% include "qa/_question_controls.js" %}
+        {% if request.GET.list %}
+        $('#candidates_button').text("{%trans 'Hide candidates'%}")
+        {% endif %}
         $('#candidate_container').on('shown', function () {
           $('#candidates_button').text("{%trans 'Hide candidates'%}")
         })
         $('#candidate_container').on('hidden', function () {
           $('#candidates_button').text("{% trans 'Display candidates' %}")
         })
+
     });
 </script>
 {% endblock %}
