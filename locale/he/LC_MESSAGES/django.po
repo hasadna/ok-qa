@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-12 13:49+0300\n"
+"POT-Creation-Date: 2013-10-12 14:24+0300\n"
 "PO-Revision-Date: 2013-09-08 15:02+0200\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -454,7 +454,6 @@ msgid "Flag"
 msgstr "דווח"
 
 #: qa/templates/qa/_question.html:107 qa/templates/qa/question_list.html:184
-#: qa/templates/qa/question_list_origin.html:178
 msgid "Tags"
 msgstr "תגיות"
 
@@ -524,7 +523,6 @@ msgstr "עדיין לא ניתנו תשובות"
 
 #: qa/templates/qa/question_detail.html:46
 #: qa/templates/qa/question_list.html:29
-#: qa/templates/qa/question_list_origin.html:29
 #: user/templates/user/public_profile.html:16
 msgid "Subscribe"
 msgstr "הרשם"
@@ -534,53 +532,42 @@ msgid "Back to"
 msgstr "חזרה ל"
 
 #: qa/templates/qa/question_list.html:8
-#: qa/templates/qa/question_list_origin.html:8
 msgid "questions list"
 msgstr "רשימת שאלות"
 
 #: qa/templates/qa/question_list.html:36
-#: qa/templates/qa/question_list_origin.html:36
 msgid "Population"
 msgstr "תושבים"
 
 #: qa/templates/qa/question_list.html:39
-#: qa/templates/qa/question_list_origin.html:39
 msgid "Council seats"
 msgstr "מושבים במועצה"
 
 #: qa/templates/qa/question_list.html:41
-#: qa/templates/qa/question_list_origin.html:41
 msgid "Registered users"
 msgstr "משתמשים רשומים"
 
-#: qa/templates/qa/question_list.html:44
-#: qa/templates/qa/question_list_origin.html:44 templates/place_base.html:6
+#: qa/templates/qa/question_list.html:44 templates/place_base.html:6
 msgid "Questions"
 msgstr "שאלות"
 
 #: qa/templates/qa/question_list.html:47
-#: qa/templates/qa/question_list_origin.html:47
 msgid "Registered candidates"
 msgstr "מועמדים רשומים"
 
 #: qa/templates/qa/question_list.html:50
-#: qa/templates/qa/question_list_origin.html:50
-#: qa/templates/qa/question_list_origin.html:94
 msgid "Answer rate"
 msgstr "מענה"
 
 #: qa/templates/qa/question_list.html:70
-#: qa/templates/qa/question_list_origin.html:70
 msgid "Candidates in list"
 msgstr "מועמדים ברשימת"
 
 #: qa/templates/qa/question_list.html:72
-#: qa/templates/qa/question_list_origin.html:72
 msgid "No candidate has registered yet in list"
 msgstr "טרם נרשמו מועמדים ברשימת"
 
 #: qa/templates/qa/question_list.html:78
-#: qa/templates/qa/question_list_origin.html:78
 #, python-format
 msgid "Mayor candidates in %(place)s"
 msgstr "מועמדים לראשות %(place)s"
@@ -590,37 +577,30 @@ msgid "One Answer"
 msgstr "תשובה אחת"
 
 #: qa/templates/qa/question_list.html:110
-#: qa/templates/qa/question_list_origin.html:104
 msgid "Candidate lists"
 msgstr "רשימות"
 
 #: qa/templates/qa/question_list.html:133
-#: qa/templates/qa/question_list_origin.html:127
 msgid "Mayor candidates"
 msgstr "מועמדים לראש הרשות"
 
 #: qa/templates/qa/question_list.html:147
-#: qa/templates/qa/question_list_origin.html:141
 msgid "In the tags:"
 msgstr "תחת התגיות:"
 
 #: qa/templates/qa/question_list.html:156
-#: qa/templates/qa/question_list_origin.html:150
 msgid "Top Questions"
 msgstr "שאלות מובילות"
 
 #: qa/templates/qa/question_list.html:159
-#: qa/templates/qa/question_list_origin.html:153
 msgid "Most Recent"
 msgstr "שאלות אחרונות"
 
 #: qa/templates/qa/question_list.html:163
-#: qa/templates/qa/question_list_origin.html:157
 msgid "Flagged Questions"
 msgstr "שאלות מוסמנות"
 
 #: qa/templates/qa/question_list.html:181
-#: qa/templates/qa/question_list_origin.html:175
 msgid "Ask Question"
 msgstr "העלו שאלה"
 
