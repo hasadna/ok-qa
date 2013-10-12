@@ -125,7 +125,7 @@
           <h4 class="pull-left" style="padding:0.5em 0 0px;">{% trans "Answers by" %}</h4>
           {% for answer in question.answers.all %}
           <div class="avatar-container" style="padding-top:1.9em;">
-            <a href="{{ answer.author.get_absolute_url }}" rel="tooltip" class="" title="{{answer.author.get_full_name}}">
+            <a href="{{ answer.author.get_absolute_url }}#{{answer.id}}" rel="tooltip" class="" title="{{answer.author.get_full_name}}">
               {% avatar answer.author %}{{answer.author.get_full_name}}
             </a>
           </div>
