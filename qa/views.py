@@ -4,7 +4,7 @@ import json
 from django.db.models import Count
 from django.http import HttpResponse, HttpResponseForbidden
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, render_to_response
 from django.http import Http404
 from django.views.decorators.http import require_POST
 from django.template.context import RequestContext
@@ -43,6 +43,11 @@ class JsonpResponse(HttpResponse):
             content=jsonp,
             content_type='application/javascript',
             *args, **kwargs)
+
+
+def home_page(request):
+    context = RequestContext(request)
+    return render_to_response('qa/front_page.html', context)
 
 
 def local_home(request, entity_slug=None, entity_id=None, tags=None,

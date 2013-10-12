@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load flatblock_tags %}
+{% block content %}
+<div class="row">
+  <div class="span12">
+    {% flatblock 'home.see_questions' 3600 %}
+  </div>
+</div>
+<div class="row"> 
+  <div class="span8">
+    {% flatblock 'home.signup' 3600 %}
+  </div>
+  <div class="span4">
+    <img src="{{ STATIC_URL }}/img/question_comix.png" />
+  </div>
+</div>
+<div class="row">
+  <div class="span8">
+    {% flatblock 'home.candidates' 3600 %}
+  </div>
+  <div class="span4">
+    <img src="{{ STATIC_URL }}/img/answer_comix.png" />
+  </div>
+</div>
+{% endblock %}

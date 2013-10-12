@@ -201,7 +201,7 @@
   $('[name=entity]').change(function() {
     /* if the user changes the place, redirect */
     if ($('select option:selected').val()=="")
-      window.location.href = "{% url 'local_home' %}"
+      window.location.href = "{% url 'home_page' %}"
     else
       window.location.href = ('/' + $('select option:selected').val() + '/qna/');
   });

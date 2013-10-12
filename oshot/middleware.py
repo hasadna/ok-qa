@@ -16,15 +16,8 @@ class DefaultEntity(object):
                 if not entity:
                     return HttpResponseRedirect(reverse('edit_profile'))
             else:
-                try:
-                    entity = Entity.objects.annotate(Count('questions__answers'))\
-                            .filter(questions__answers__count__gt=0)\
-                            .exclude(pk=settings.QNA_DEFAULT_ENTITY_ID)\
-                            .order_by('?')[0]
-                except:
-                    entity = Entity.objects.order_by('?')[0]
+                return
 
             if entity:
                 return HttpResponseRedirect(reverse('local_home', kwargs={
                                 'entity_id': entity.id}))
-
