@@ -29,7 +29,7 @@
     </div>
     <div class="row">
 
-        <div class="span2" style="height:140px; background: url('{{ STATIC_URL }}img/locality/{{ entity.code }}.jpg') no-repeat; background-size: 140px 140px;">
+        <div class="span2"><img src="{{ STATIC_URL }}img/locality/{{ entity.code }}.jpg" alt="{{entity.name_he}}" width='140px' onerror="this.style.display='none'">
         </div>
         <div class="span10">
           <h1>

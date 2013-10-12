@@ -1,18 +1,18 @@
 # Django imports
-from django import forms
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render
 from django.utils.translation import ugettext as _
-from django.template.context import RequestContext
+from django.db.models import Count
+from django.contrib.auth.decorators import login_required
+from django.http import HttpResponseForbidden
+
 # pluggable apps
 from haystack.query import SearchQuerySet
 from haystack.inputs import Exact
 from haystack.views import basic_search
 from entities.models import Entity
-from chosen import forms as chosenforms
 # our apps
-from qa.models import Question
-
-from oshot.forms import EntityChoiceForm
+from qa.models import Answer
+from user.models import Profile
 
 def place_search(request):
     """ A view to search in a specific place """
@@ -23,4 +23,24 @@ def place_search(request):
     return basic_search(request)
 
 
+
+@login_required
+def entity_stats(request):
+
+    if not request.user.is_superuser:
+        return HttpResponseForbidden(_('Only superusers have access to this page.'))
+
+    entities = Entity.objects.filter(division__index=3).\
+                annotate(profile_count=Count('profile')).\
+                filter(profile_count__gt=0)
+    editor_count = Profile.objects.filter(is_editor=True).\
+                    values('locality').\
+                    annotate(Count('locality'))
+    answer_count = Answer.objects.values('question__entity').\
+                    annotate(Count('question__entity'))
+    return render(request, 'user/entity_stats.html',
+                            {'entities': entities, 
+                            'editor_count': editor_count,
+                            'answer_count': answer_count,
+                            })
 
