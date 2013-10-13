@@ -4,13 +4,9 @@ from .feeds import *
 
 urlpatterns = patterns('',
     url(r'^u/profile/$', edit_profile, name='edit_profile'),
-    url(r'^u/candidate/$', edit_candidate, name='edit_candidate'),
     url(r'^u/password_change/$', 'django.contrib.auth.views.password_change', name='password_change'),
     url(r'^u/password_change/done/$', 'django.contrib.auth.views.password_change_done', name='password_change_done'),
-    url(r'^u/candidates/$', candidate_list, name="candidate_list"),
     url(r'^u/follow/$', 'user_follow_unfollow', name='user-follow-unfollow'),
-    url(r'^(?P<entity_id>[-\d]+)/candidates/$', candidate_list, name="candidate_list"),
-    url(r'^(?P<entity_slug>.*)/candidates/$', candidate_list, name="candidate_list"),
     url(r'^u/(?P<candidate_id>\d+)/atom/$',
         AtomUserAnswerFeed(),
         name='user_feed'
@@ -20,14 +16,8 @@ urlpatterns = patterns('',
                                   name="logout"),
     url(r'^u/login/$', 'django.contrib.auth.views.login',
                                   name='login'),
-    url(r'^u/invitation/(?P<invitation_key>\w+)/$',
-        InvitationView.as_view(),
-        name='accept-invitation'),
-    url(r'^u/(?P<candidate_id>\d+)/remove/$',
-        remove_candidate,
-        name='remove_candidate'
-    ),
     url(r'^u/editor_lists/$', editor_list, name='editor_list'),
-    url(r'^u/entity_stats/$', entity_stats, name='entity_stats'),
+
+    #TODO: refactor to user underscore in name i.e. `public_profile`
     url(r'^(?P<username>.+)/$', public_profile, name="public-profile"),
 )

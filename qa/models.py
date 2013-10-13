@@ -43,6 +43,12 @@ class TaggedQuestion(TaggedItemBase):
     # objects = models.Manager()
     # objects = CurrentSiteManager()
 
+def can_vote(entity, user):
+    ''' returns whether a secific user can upvote/downvote a question in the
+        entity '''
+    return user.is_authenticated() and user.profile.locality == entity
+Entity.add_to_class('can_vote', can_vote)
+
 class Question(BaseModel):
 
     # TODO: rename to just `slug`
@@ -112,13 +118,12 @@ class Question(BaseModel):
     def can_vote(self, user):
         ''' returns whether a secific user can upvote/downvote the question,
             or neither '''
-        if user.is_authenticated():
+        if self.entity.can_vote(user):
             if user.upvotes.filter(question=self).exists():
                 return 'down'
             else:
                 return 'up'
         return None
-
 
 class Answer(BaseModel):
     author = models.ForeignKey(User, related_name="answers", verbose_name=_("author"))
@@ -132,11 +137,11 @@ class Answer(BaseModel):
     on_site = CurrentSiteManager()
 
     def __unicode__(self):
-        return "%s: %s" % (self.author, self.content[:30])
+        return u"%s: %s" % (self.author, self.content[:30])
 
     def get_absolute_url(self):
         return '%(url)s?answer=%(id)s#answer-%(id)s' % {'url': self.question.get_absolute_url(), 'id': self.id}
-    
+
     @property
     def entity(self):
         return self.question.entity

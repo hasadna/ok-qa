@@ -12,11 +12,24 @@ $(".upvote-question").ajaxError(voteAjaxError);
 $(".downvote-question").ajaxError(voteAjaxError);
 
 $(".upvote-question").click(function () {
-    {% if not question|can_vote:user %}
+    {% if user.is_anonymous %}
         $("#messages").html('<div class="alert" class="info">' +
                 '<button type="button" class="close" data-dismiss="alert">×</button>' +
                 "{% trans 'Sorry but only connected users can upvote questions' %}" +
-                '</div>');
+                {% autoescape off %}
+                ' — <a href="' + "{% url "login" %}" + '">' +
+                {% endautoescape %}
+                "{% trans 'Log in' %}" +
+                '</a></div>');
+    {% elif not entity|can_vote:user %}
+        $("#messages").html('<div class="alert" class="info">' +
+                '<button type="button" class="close" data-dismiss="alert">×</button>' +
+                "{% trans 'You may only support questions in your locality' %}" +
+                {% autoescape off %}
+                ' — <a href="' + "{% url "local_home" user.profile.locality.id %}" + '">' +
+                {% endautoescape %}
+                "{{ user.profile.locality }}" +
+                '</a></div>');
     {% else %}
         var qid = $(this).closest('.question-summary').attr('question-id');
         $.post("{% url 'upvote_question' QUESTION_ID %}"
@@ -51,11 +64,6 @@ $(".flag-question").click(function (e) {
     var qid = $(this).closest('.question-summary').attr('question-id');
     var url = "{% url 'flag_question' QUESTION_ID %}"
               .replace("{{ QUESTION_ID }}", qid);
-    {% if user == question.author %}
-    if (!confirm("{% trans 'Are you sure you want to delete the question?' %}")) {
-      return;
-    }
-    {% endif %}
     $.post(url, {csrfmiddlewaretoken: "{{ csrf_token }}"})
         .done(function (data, textStatus, jqXHR) {
           window.location.replace(data);

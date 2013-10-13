@@ -7,7 +7,6 @@ from django.contrib.sites.managers import CurrentSiteManager
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 # Friends' apps
-from registration.models import RegistrationProfile
 from actstream.models import Follow
 # Project's apps
 from entities.models import Entity
@@ -31,33 +30,8 @@ VERIFICATION_STAGES = (
 
 NEVER_SENT = datetime.datetime(1970,8,6)
 MIN_EDITORS_PER_LOCALITY = 3
-def invite_user(site, username, email, first_name="", last_name=""):
-    ''' invite a new user to the system '''
-    user, created = User.objects.get_or_create(username=username,
-            defaults = {'email': email,
-                        'first_name': first_name,
-                        'last_name': last_name,
-                       })
-    if created:
-        user.is_active = False
-        user.save()
-    elif user.is_active:
-        return user
-    else:
-        user.registrationprofile_set.all().delete()
-
-
-    registration_profile = RegistrationProfile.objects.create_profile(user)
-
-    return user
 
 class ProfileManager(models.Manager):
-    def get_candidates(self, entity=None):
-        ''' get all the candidates in an entity '''
-        qs =  User.objects.filter(profile__is_candidate=True)
-        if entity:
-            qs = qs.filter(profile__locality = entity)
-        return qs
 
     def need_editors(self, entity):
        return Profile.objects.filter(locality=entity).count() < MIN_EDITORS_PER_LOCALITY
@@ -74,15 +48,17 @@ class Profile(models.Model):
     last_email_update = models.DateTimeField(default=NEVER_SENT)
     locality = models.ForeignKey(Entity, null=True, verbose_name=_('Locality'))
     sites = models.ManyToManyField(Site)
-    is_candidate = models.BooleanField(default=False)
     is_editor = models.BooleanField(default=False)
     verification = models.CharField(max_length=1, choices=VERIFICATION_STAGES, default='0')
     on_site = CurrentSiteManager()
 
     objects = ProfileManager()
 
+    def __unicode__(self):
+        return self.user.get_full_name()
+
     def save(self, **kwargs):
-        if self.avatar_uri and not self.user.avatar_set.exists():
+        if self.avatar_uri:
             create_avatar(self.user, self.avatar_uri)
         return super(Profile, self).save(**kwargs)
 
@@ -114,16 +90,24 @@ class Profile(models.Model):
     def get_full_name(self):
         return self.user.get_full_name() or self.user.username
 
-    # @property
-    # def is_candidate(self):
-    #     if self.user.candidate_set.exists():
-    #         return True
-    #     return False
+    @property
+    def is_candidate(self):
+        return self.user.candidate_set.exists()
 
     @property
     def is_mayor_candidate(self):
-        if self.is_candidate and self.user.candidate_set.exists():
+        if self.is_candidate:
             return self.user.candidate_set.all()[0].for_mayor
         return False
 
+    @property
+    def answer_percentage(self):
+        questions = self.locality.questions.filter(is_deleted=False).count()
+        answers = self.user.answers.filter(is_deleted=False).count()
+        if questions:
+            return int((float(answers) / questions) * 100)
 
+    def candidate_list(self):
+        if self.is_candidate:
+            return self.user.candidate_set.all()[0].candidate_list
+        return None

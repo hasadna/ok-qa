@@ -2,6 +2,7 @@ from django.utils.translation import ugettext as _
 from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.shortcuts import render, get_object_or_404
+from django.template.context import RequestContext
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
@@ -20,9 +21,13 @@ def candidatelists_list(request, entity_id=None):
     if not ((request.user.profile.is_editor and entity == request.user.profile.locality)\
             or request.user.is_superuser):
         return HttpResponseForbidden(_("Only editors have access to this page."))
-    
+
     candidatelists = CandidateList.objects.filter(entity=entity)
-    return render(request, 'polyorg/candidatelist_list.html',{'candidatelists': candidatelists, 'entity': entity})
+
+    context = RequestContext(request, {'candidatelists': candidatelists,
+                                       'entity': entity,
+                                      })
+    return render(request, 'polyorg/candidatelist_list.html', context)
 
 
 @login_required
@@ -41,7 +46,7 @@ def candidatelist_edit(request, candidatelist_id=None, entity_id=None):
 
     if not candidatelist.can_edit(request.user):
         return HttpResponseForbidden(_("Only editors have access to this page."))
-    
+
     if request.method == "POST":
         form = CandidateListForm(request.POST, instance=candidatelist)
         if form.is_valid():
@@ -50,20 +55,26 @@ def candidatelist_edit(request, candidatelist_id=None, entity_id=None):
     else:
         form = CandidateListForm(instance=candidatelist)
 
-    return render(request, "polyorg/candidatelist_form.html", {'form': form, 'entity': entity, 'candidatelist_id': candidatelist_id})
+    context = RequestContext(request, {'form': form,
+                                       'entity': entity,
+                                       'candidatelist_id': candidatelist_id,
+                                      })
+    return render(request, "polyorg/candidatelist_form.html", context)
 
 
 def candidates_list(request,candidatelist_id):
     candidatelist = get_object_or_404(CandidateList, id=candidatelist_id)
     can_edit = candidatelist.can_edit(request.user)
-    
-    return render(request, 'polyorg/candidate_list.html', \
-        {'candidatelist': candidatelist, 'can_edit': can_edit})
+
+    context = RequestContext(request, {'candidatelist': candidatelist,
+                                       'can_edit': can_edit,
+                                      })
+    return render(request, 'polyorg/candidate_list.html', context)
 
 
 @login_required
 def candidate_create(request,candidatelist_id):
-    
+
     candidatelist = get_object_or_404(CandidateList, id=candidatelist_id)
 
     if not candidatelist.can_edit(request.user):
@@ -73,7 +84,6 @@ def candidate_create(request,candidatelist_id):
         form = CandidateForm(request.POST)
         if form.is_valid():
             profile = form.cleaned_data['user'].profile
-            profile.is_candidate = True
             profile.verification = u'V'
             profile.save()
             form.save()
@@ -83,21 +93,22 @@ def candidate_create(request,candidatelist_id):
         form = CandidateForm(initial={'candidate_list': candidatelist})
     form.fields["user"].queryset = \
         User.objects.filter(profile__locality=candidatelist.entity).\
-        exclude(profile__is_candidate=True).exclude(profile__is_editor=True)
+        filter(candidate__isnull=True).exclude(profile__is_editor=True)
 
-    return render(request, "polyorg/candidate_form.html", \
-        {'form': form, 'candidatelist': candidatelist})
+    context = RequestContext(request, {'form': form,
+                                       'candidatelist': candidatelist,
+                                      })
+    return render(request, "polyorg/candidate_form.html", context)
 
 @login_required
 def candidate_remove(request, candidatelist_id, candidate_id):
-    
+
     candidatelist = get_object_or_404(CandidateList, id=candidatelist_id)
-    
+
     if not candidatelist.can_edit(request.user):
         return HttpResponseForbidden(_("Only editors have access to this page."))
 
     candidate_profile = get_object_or_404(User, pk=candidate_id).profile
-    candidate_profile.is_candidate = False
     candidate_profile.save()
     candidate = Candidate.objects.filter(user__id=candidate_id)
     for c in candidate:

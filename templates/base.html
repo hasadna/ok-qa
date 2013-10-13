@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css"/>
     <meta property="fb:app_id"    content="{{FACEBOOK_APP_ID}}" /> 
     <meta property="og:site_name" content="{{site.name}}" /> 
+    <meta property="og:image" content='http://www.hasadna.org.il/wp-content/uploads/2013/10/og-image-localshot.jpg'>
     {% block extrahead %}{% endblock %}
 
     {% if ANALYTICS_ID %}
@@ -105,7 +106,7 @@
   </div>
 <div class="wrapper">
 <div class="container" role="main">
-  <div id="messages">
+  <div id="messages" class='span12'>
     {% if messages %}
       {% for message in messages %}
         <div class="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>

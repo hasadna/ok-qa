@@ -1,0 +1,74 @@
+{% extends "email_base.html" %}
+{% load i18n %}
+{% load flatblock_tags %}
+
+{% block content %}
+  <p>שלום {{user.get_full_name}},
+  <p>{% flatblock 'candidate_update_email.header' 3600 %}</p>
+  {% if not is_active %}
+<p>
+המשתמש שלכם עדיין לא פעיל. אנא לחצו
+<a href="{{activation_url}}">
+כאן
+</a>
+כדי להפעיל את חשבונכם. לא תשלחנה תזכורות נסופות.
+</p>
+  {% endif %}
+  {% for question in new_questions %}
+    {% if forloop.first %}
+    <h2>שאלות חדשות ב{{user.profile.locality}}:</h2>
+      <table cellpadding="10" cellspacing="0" border="0" align="center">
+    {% endif %}
+    <tr>
+      <td width="100">
+        <a href="{{ROOT_URL}}{% url "public-profile" question.author.username %}">{{question.author.get_full_name}}</a>
+      </td>
+      <td width="400" style="font-weight:bold;">
+        <h3>{{question.subject}}</h3>
+        <p>{{question.content}}</p>
+      </td>
+      <td width="20">
+        <a href="{{ROOT_URL}}{{question.get_absolute_url}}">{% trans "Answer" %}</a>
+      </td>
+    </tr>
+    {% if forloop.last %}
+    </table>
+    {% endif %}
+  {% endfor %}
+  {% for question in old_questions %}
+    {% if forloop.first %}
+      <h2>שאלות שמחכות לתשובה:</h2>
+      <table cellpadding="10" cellspacing="0" border="0" align="center">
+    {% endif %}
+    <tr>
+      <td width="100">
+        <a href="{{ROOT_URL}}{% url "public-profile" question.author.username %}">{{question.author.get_full_name}}</a>
+      </td>
+      <td width="350" style="font-weight:bold;">
+        <h3>{{question.subject}}</h3>
+        <p>{{question.content}}</p>
+      </td>
+      <td width="50">
+        {% if question.rating > 1 %}
+          {{question.rating}} שואלים
+        {% endif %}
+      </td>
+      <td width="20">
+        <a href="{{ROOT_URL}}{{question.get_absolute_url}}">{% trans "Answer" %}</a>
+      </td>
+    </tr>
+    {% if forloop.last %}
+    </table>
+    {% endif %}
+  {% endfor %}
+  <p> {% flatblock 'candidate_update_email.footer' 3600 %}</p>
+  <center>
+    **
+    <a href="{{ROOT_URL}}{% url 'edit_profile' %}">
+      {% trans "click me to update your email settings" %}
+    </a>
+    **
+  </center>
+
+{% endblock %}
+

@@ -5,7 +5,7 @@ from django.utils.translation import ugettext_lazy as _
 
 class CandidateList(models.Model):
     name = models.CharField(_('List Name'), max_length=80)
-    ballot = models.CharField(_('Ballot'), max_length=4)
+    ballot = models.CharField(_('Ballot'), max_length=5)
     candidates = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, null=True, through='Candidate')
     number_of_seats = models.IntegerField(blank=True, null=True)
     surplus_partner = models.ForeignKey('self', blank=True, null=True,
@@ -35,7 +35,7 @@ class CandidateList(models.Model):
     def can_edit(self, user):
         return user.is_authenticated() and \
             ((user.profile.is_editor and user.profile.locality == self.entity)\
-            or (user.profile.is_candidate and user in self.candidates.all())\
+            or user in self.candidates.all()\
             or user.is_superuser)
 
 
@@ -82,7 +82,7 @@ class Candidate(models.Model):
     objects = CandidateManager()
 
     class Meta:
-        ordering = ('ordinal',)
+        ordering = ('-ordinal',)
 
     def __unicode__(self):
         return u'%s - %s - %s' % (self.user.profile.get_full_name(), self.candidate_list.name, self.candidate_list.entity)

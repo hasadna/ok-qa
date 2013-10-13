@@ -20,15 +20,14 @@ class Command(BaseCommand):
             list_name = row.get('list_name','')
             locality = row.get('locality', '')
             ballot = row.get('ballot','')
-            
-            try:                    
-                locality = Entity.objects.get(id=locality)
-            except ObjectDoesNotExist:
-                print 'list %s locality id %s does not exist' % (list_name, locality)            
-
-            if CandidateList.objects.filter(ballot=ballot).filter(entity=locality).exists():
-                print 'list with letters %s exists in %s.' % (ballot, locality.name)
-            else:
+            try:
+                locality = Entity.objects.filter(division__index=3).get(name_he=locality)
+            except:
+                print locality
+            try: 
+                candidatelist = locality.candidatelist_set.get(ballot=ballot)
+                candidatelist.name = list_name
+            except:
                 candidatelist = CandidateList(name=list_name, ballot=ballot, entity=locality)
-                candidatelist.save()
+            candidatelist.save()
 

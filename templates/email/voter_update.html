@@ -1,0 +1,75 @@
+{% extends "email_base.html" %}
+{% load i18n %}
+{% load flatblock_tags %}
+
+{% block content %}
+  <p>שלום {{user.get_full_name}},
+  <p>{% flatblock 'voter_update_email.header' 3600 %}</p>
+  {% for answer in new_answers %}
+    {% if forloop.first %}
+    <h2>תשובות חדשות:</h2>
+      <table cellpadding="6" cellspacing="0" border="0" align="center">
+    {% endif %}
+    {% ifchanged answer.question %}
+      <tr>
+        <td style="font-weight:bold;"> שאלה: </td>
+        <td> {{answer.question.subject}} </td>
+        <td>
+          <a href="{{ROOT_URL}}{{answer.question.get_absolute_url}}">התעדכנו</a>
+        </td>
+      </tr>
+    {% endifchanged %}
+    <tr>
+      <td>
+        <a href="{{ROOT_URL}}{% url "public-profile" answer.author.username %}">{{answer.author.get_full_name}}</a>
+      </td>
+      <td colspan="2" style="font-weight:bold;">
+        {{answer.content}}
+      </td>
+    </tr>
+
+    {% if forloop.last %}
+    </table>
+    {% endif %}
+  {% endfor %}
+  {% for question in new_questions %}
+    {% if forloop.first %}
+      <h2>שאלות חדשות לשיקולך:</h2>
+      <table cellpadding="6" cellspacing="0" border="0" align="center">
+    {% endif %}
+    <tr>
+      {% ifchanged question.author %}
+        <td>
+          <a href="{{ROOT_URL}}{% url "public-profile" question.author.username %}">{{question.author.get_full_name}}</a>
+        </td>
+      {% else %}
+        <td></td>
+      {% endifchanged %}
+      <td style="font-weight:bold;">
+        <h3>{{question.subject}}</h3>
+        <p>{{question.content}}</p>
+      </td>
+      <td >
+        {% if question.rating > 1 %}
+          {{question.rating}} שואלים
+        {% endif %}
+      </td>
+      <td>
+        <a href="{{ROOT_URL}}{{question.get_absolute_url}}">עוד</a>
+      </td>
+    </tr>
+    {% if forloop.last %}
+    </table>
+    {% endif %}
+  {% endfor %}
+  <p> {% flatblock 'voter_update_email.footer' 3600 %}</p>
+  <center>
+    **
+    <a href="{{ROOT_URL}}{% url 'edit_profile' %}">
+      {% trans "click me to update your email settings" %}
+    </a>
+    **
+  </center>
+
+{% endblock %}
+

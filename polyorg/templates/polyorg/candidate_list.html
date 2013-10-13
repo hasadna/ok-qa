@@ -2,7 +2,7 @@
 {% block search %}
 {% endblock %}
 {% block content %}
-{% load i18n avatar_tags %}
+{% load i18n avatar_tags links_tags %}
 
 <h2>{{candidatelist}} -
 {{candidatelist.ballot}} / {{candidatelist.entity}}</h2>
@@ -20,7 +20,7 @@
     <p><a href="{{candidatelist.facebook_url}}" target='_blank'>Facebook</a></p>
     {% endif %}
     {% if candidatelist.platform %}
-    <p><strong>{% trans 'Platform' %}:</strong> {{candidatelist.platform|urlize|linebreaks}} </p>
+    <p><strong>{% trans 'Platform' %}:</strong> {{candidatelist.platform|urlize_target_blank|linebreaks}} </p>
     {% endif %}
 </div>
 <div class="row">
@@ -30,7 +30,7 @@
         {% avatar candidate 75 %}
         <p>{{ candidate.get_full_name|default:candidate.username}} 
             {% if can_edit %}
-            <br>(<a href="{% url 'candidate-remove' candidatelist.id candidate.id%}">{% trans 'remove' %}</a>)
+            <br>(<a href="{% url 'candidate_remove' candidatelist.id candidate.id%}">{% trans 'remove' %}</a>)
             {% endif %}
         </p>
       </div>

@@ -29,6 +29,7 @@ urlpatterns = patterns('',
     (r'^po/', include('polyorg.urls')),
     # flat pages to help with static pages
     # user.url has to be last as it handles /[username]
+    url(r'^u/entity_stats/$', 'oshot.views.entity_stats', name='entity_stats'),
     url(r'', include('user.urls')),
 ) + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
