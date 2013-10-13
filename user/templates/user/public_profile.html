@@ -56,11 +56,6 @@
         {{ friend.bio|urlize_target_blank|linebreaks }}
       </div>
       {% endif %}
-  </div></center>
-  </div>
-</div>
-<div class="row">
-    <div class="offset1 span5">
       <div style="text-align:right;">
         {% for answer in answers %}
         {% if forloop.first %}
@@ -91,9 +86,6 @@
           </div>
         </div>
         {% endfor %}
-      </div>
-    </div>
-    <div class="span5">
       {% for question in questions %}
         {% if forloop.first %}
           <h3 style="margin-top: -10px; margin-bottom: -10px;">
@@ -110,7 +102,7 @@
           </div>
         </div>
       {% endfor %}
-    </div>
+  </div></center>
 </div>
 {% endblock %}
 {% block extrascript %}
