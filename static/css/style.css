@@ -89,6 +89,14 @@ width: 48px;
 height: 38px;
 }
 
+.supporters {
+float: left;
+height: 400px;
+text-align: center;
+display: inline-block;
+vertical-align: top;
+overflow: auto;
+}
 .mini-counts {
 padding: 0 0 2px 0;
 line-height: 24px;
