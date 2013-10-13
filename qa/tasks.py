@@ -52,9 +52,8 @@ def publish_upvote_to_facebook(upvote):
             logger.warn("failed to publish upvote to facebook")
             publish_upvote_to_facebook.retry(exc=exc)
 
-@task(max_retries=3, default_retry_delay=10)
+@task()
 def publish_answer(answer):
-    retry = False
     logger.info("publishing answer %s" % unicode(answer))
     question = answer.question
     # publish to facebook
@@ -64,8 +63,7 @@ def publish_answer(answer):
         try:
             graph.post(path="me/localshot:answer", question=answer_url)
         except Exception, exc:
-            logger.warn("-- Failed to publish answer")
-            retry = True
+            logger.warn("-- Failed to publish answer to facebook")
     # send an email to interesed users
     editors = User.objects.filter(profile__locality=question.entity,
                     profile__is_editor=True).values_list('email', flat=True)
@@ -83,6 +81,4 @@ def publish_answer(answer):
             bcc=list(editors)+list(followers))
     msg.attach_alternative(html_content, "text/html")
     msg.send()
-    if retry:
-        publish_answer.retry(exc=exc)
 
