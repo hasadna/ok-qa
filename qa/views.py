@@ -17,6 +17,7 @@ from django.conf import settings
 from django.views.generic.detail import SingleObjectTemplateResponseMixin, BaseDetailView
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
+from django.core.cache import cache
 
 from entities.models import Entity
 from taggit.models import Tag
@@ -50,6 +51,10 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     """
     A home page for an entity including questions and candidates
     """
+    if not tags and not request.GET:
+        ret = cache.get('local_home_%s' % entity_id)
+        if ret:
+            return ret
     context = RequestContext(request)
     entity = context['entity']
     if not entity or entity.division.index != 3:
@@ -129,7 +134,9 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'stats': CBS_STATS[entity.code],
         })
 
-    return render(request, template, context)
+    ret = render(request, template, context)
+    cache.set('local_home_%s' % entity_id, ret, timeout = 36000)
+    return ret
 
 class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseDetailView):
     model = Question
