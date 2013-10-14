@@ -2,14 +2,23 @@
 {% load static from staticfiles %}
 {% for link in links %}
     {% if link.active %}
-    <li>
-    <a href="{{ link.url|safe }}" target="_blank">
-      {% if link.link_type.image %}
-      <img src="{{MEDIA_URL}}{{link.link_type.image}}" alt="{{ link.link_type.title }}">
-      {% else %}
-          ({% trans link.link_type.title %})
+      {% if show_title %}
+      <li>
+      {% elif forloop.first %}
       {% endif %}
-      {{ link.title }}
-    </a></li>
+      <a href="{{ link.url|safe }}" target="_blank">
+        {% if link.link_type.image %}
+        <img src="{{STATIC_URL}}img/{{link.link_type.image}}" title="{{ link.link_type.title }}"
+             rel="tooltip">
+        {% else %}
+            ({% trans link.link_type.title %})
+        {% endif %}
+        {% if show_title %}
+          {{ link.title }}
+        {% endif %}
+      </a>
+      {% if show_title %}
+      </li>
+      {% endif %}
     {% endif %}
 {% endfor %}

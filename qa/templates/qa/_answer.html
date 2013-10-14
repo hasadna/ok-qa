@@ -1,4 +1,4 @@
-{% load i18n avatar_tags %}
+{% load i18n avatar_tags links_tags %}
 
 {% with author_url=answer.author.get_absolute_url %}
 <div id="answer-{{answer.id}}" class="answer" style="min-height: 35px; display: table">
@@ -15,20 +15,14 @@
   <div style="display: table-cell; vertical-align: middle;">
     <div class="answer-text">
       <div>
-        <span class="answer-copy">
-          {{ answer.content|linebreaksbr }}
+        <span class="preview">
+          {{ answer.content|urlize_target_blank|linebreaks }}
         </span>
         <div class="pull-right">
         <a href="{{ author_url }}" title="{{answer.author.get_full_name}}" rel="tooltip" class="answer-user owner">
           {{answer.author.get_full_name}}
         </a>&nbsp;
-        <span class="answer-date" dir="ltr">
-          <a class="answer-link" href="{{answer.get_absolute_url}}">
-            <span title="{{answer.updated_at}}" class="relativetime">
-              {% trans "before" %} {{ answer.updated_at|timesince }}
-            </span>
-          </a>
-        </span>
+
         </div>
         {% if my_answer_id == answer.id %}
         <a id="edit-answer-{{answer.id}}" href="#add_answer_modal" class="edit" rel="tooltip" title="{% trans 'Edit' %}" data-toggle="modal">&#9998; {% trans 'Edit' %}</a>

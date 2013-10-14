@@ -4,6 +4,7 @@ from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.sites.models import get_current_site
 from django.conf import settings
 from django.shortcuts import get_object_or_404
+from django.http import Http404
 
 from entities.models import Entity
 
@@ -16,29 +17,28 @@ def forms(request):
     context = {"search_query": q} if q else {}
     try:
         kwargs = request.resolver_match.kwargs
-        url_name = request.resolver_match.url_name
         # many ways to pass an entity
         entity = getattr(request, 'entity', None)
         if entity:
             pass
-        elif 'entity_slug' in kwargs:
-            entity = get_object_or_404(Entity, slug=kwargs['entity_slug'])
         elif 'entity_id' in kwargs:
             entity = get_object_or_404(Entity, pk=kwargs['entity_id'])
+        elif 'entity_slug' in kwargs:
+            entity = get_object_or_404(Entity, slug=kwargs['entity_slug'])
+        elif request.user.is_authenticated():
+            entity = request.user.profile.locality
 
         context['entity'] = entity
         # where the magic happens: set local or global scope urls
         if entity:
             initial = {'entity': entity.id}
-            context['questions_url'] = reverse("local_home", args=(entity.slug,))
-            context['candidates_url'] = reverse("candidate_list", args=(entity.slug,))
+            context['questions_url'] = reverse("local_home", args=(entity.id,))
         else:
             initial = {}
-            context['questions_url'] = reverse("local_home")
-            context['candidates_url'] = reverse("candidate_list")
+            context['questions_url'] = reverse("home_page")
         context['entity_form'] = EntityChoiceForm(initial=initial, auto_id=False)
 
-    except AttributeError:
+    except (AttributeError, Http404):
         pass
 
     if request.user.is_authenticated():

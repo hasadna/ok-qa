@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block search %}
+{% endblock %}
+{% block content %}
+{% load i18n %}
+<h2>
+    {% if candidatelist_id %}
+        {% trans 'edit list' %}
+    {% else %}
+        {% trans 'add list to ' %}{{entity}}
+    {% endif %}
+</h2>
+<form action="" method="post" dir='rtl'>{% csrf_token %}
+    {{ form.as_p }}
+    {% if candidatelist_id %}
+        <input type="submit" value="{% trans 'Update' %}" />
+    {% else %}
+        <input type="submit" value="{% trans 'Create' %}" />
+    {% endif %}
+</form>
+{% endblock %}

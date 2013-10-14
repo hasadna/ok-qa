@@ -18,6 +18,7 @@
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css"/>
     <meta property="fb:app_id"    content="{{FACEBOOK_APP_ID}}" /> 
     <meta property="og:site_name" content="{{site.name}}" /> 
+    <meta property="og:image" content='http://www.hasadna.org.il/wp-content/uploads/2013/10/og-image-localshot.jpg'>
     {% block extrahead %}{% endblock %}
 
     {% if ANALYTICS_ID %}
@@ -53,6 +54,19 @@
             </li>
               {% block breadcrumbs %}{% endblock %}
           </ul>
+          </div>
+          <div class="pull-left">
+            {% block search %}
+                <form class="navbar-search" action="/search/">
+                  {% block searchform %} {% endblock %}
+                  <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search in' %}{{entity.name}}" 
+                  {% if search_query %} value="{{search_query}}" {% endif %}/>
+                  {% if entity %}
+                     <input type="hidden" name="entity_slug" value="{{entity.slug}}" />
+                  {% endif %}
+                </form>
+              {% endblock %}
+            
          </div>
         <div class="pull-right">
           <ul class="nav nav-self">
@@ -68,6 +82,12 @@
                 {% if user.is_staff %}
                     <li><a href="/admin/">{% trans 'admin' %}</a></li>
                 {% endif %}
+                {% if user.is_superuser and user.profile.locality %}
+                    <li><a href="{% url 'candidate-list-list' entity.id %}">{% trans 'manage candidate lists' %}</a></li>
+                {% elif user.profile.is_editor %}
+                    <li><a href="{% url 'candidate-list-list' %}">{% trans 'manage candidate lists' %}</a></li>
+                {% endif %}
+
                 <form class="form-inline" method="post" action="{% url 'logout' %}">
                   {% csrf_token %}
                   <li><a href="javascript:;" class="submit-link">{% trans 'logout' %}</a></li>
@@ -86,7 +106,7 @@
   </div>
 <div class="wrapper">
 <div class="container" role="main">
-  <div id="messages">
+  <div id="messages" class='span12'>
     {% if messages %}
       {% for message in messages %}
         <div class="alert" {% if message.tags %} class="{{ message.tags }}"{% endif %}>
@@ -96,18 +116,10 @@
       {% endfor %}
     {% endif %}
   </div>
-  {% block search %}
-  <form class="navbar-search pull-right" action="/search/">
-    {% block searchform %} {% endblock %}
-    <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search in' %}{{entity.name}}" 
-    {% if search_query %} value="{{search_query}}" {% endif %}/>
-    {% if entity %}
-       <input type="hidden" name="entity_slug" value="{{entity.slug}}" />
-    {% endif %}
-  </form>
-  {% endblock %}
+
 
   {% block content %}{% endblock %}
+
 </div>
 </div>
 <footer class="footer">
@@ -126,10 +138,24 @@
     </p>
     <ul class="footer-links">
       <li>&copy;&nbsp;<a href="http://www.hasadna.org.il">{% trans "The Public Knowledge Workshop" %}</a></li>
-      <li>{% trans "together with" %}&nbsp;<a href="http://www.shaharit.org.il">{% trans "The Shaharit Institute" %}</a></li>
-      <li>{% trans "and" %}<a href="http://www.nuis.co.il/">{% trans "NUIS" %}</a></li>
+      <li>{% trans "together with" %}&nbsp;<a href="http://www.shaharit.org.il">{% trans "The Shaharit Institute" %}</a></li>,
+      <li><a href="http://www.theinstitute.org.il/">{% trans "Joint Israel - Institute for Leadership and Government" %}</a></li>,
+      <li><a href="http://www.nuis.co.il/">{% trans "NUIS" %}</a></li>
+      <li>{% trans "and" %} <a href="http://www.mqg.org.il/">התנועה לאיכות השלטון</li>
     </ul>
+    <!-- AddToAny BEGIN -->
+<div class="a2a_kit a2a_default_style">
+  <a class="a2a_dd" href="http://www.addtoany.com/share_save?linkurl=URL&amp;linkname=NAME">{% trans 'Share' %}</a>
+  <span class="a2a_divider"></span>
+  <a class="a2a_button_facebook"></a>
+  <a class="a2a_button_twitter"></a>
+  <a class="a2a_button_google_plus"></a>
+  <a class="a2a_button_email"></a>
+</div>
+
+<!-- AddToAny END -->
   </div>
+
 </footer>
     <script src="{{ STATIC_URL }}js/jquery.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
@@ -176,12 +202,20 @@
   $('[name=entity]').change(function() {
     /* if the user changes the place, redirect */
     if ($('select option:selected').val()=="")
-      window.location.href = "{% url 'local_home' %}"
+      window.location.href = "{% url 'home_page' %}"
     else
       window.location.href = ('/' + $('select option:selected').val() + '/qna/');
   });
 </script> 
-
+<script type="text/javascript">
+  var a2a_config = a2a_config || {};
+  a2a_config.linkname = document.title;
+  a2a_config.linkurl = window.location.href;
+  a2a_config.locale = "he";
+  a2a_config.num_services = 6;
+  a2a_config.prioritize = ["facebook", "email", "twitter", "google_plus"];
+</script>
+<script type="text/javascript" src="//static.addtoany.com/menu/page.js"></script>
     {% block extrascript %} {% endblock %}
 </body>
 </html>

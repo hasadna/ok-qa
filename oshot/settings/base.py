@@ -227,5 +227,16 @@ ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse("public-profile", args = (u.username,)),
 }
 AVATAR_MAX_AVATARS_PER_USER = 1
+AVATAR_GRAVATAR_BACKUP = False
+AVATAR_DEFAULT_URL = "http://www.hasadna.org.il/wp-content/uploads/2013/10/default-avatar.jpg"
 
 QNA_DEFAULT_ENTITY_ID = 277
+
+CACHES = {
+        'default': {
+            'BACKEND':
+            'django.core.cache.backends.dummy.DummyCache',
+            }
+        }
+
+LONG_CACHE_TIME = 18000  # 5 hours

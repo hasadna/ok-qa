@@ -1,9 +1,10 @@
+import os
 import json
 
 from django.db.models import Count
 from django.http import HttpResponse, HttpResponseForbidden
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, render_to_response
 from django.http import Http404
 from django.views.decorators.http import require_POST
 from django.template.context import RequestContext
@@ -16,20 +17,25 @@ from django.conf import settings
 from django.views.generic.detail import SingleObjectTemplateResponseMixin, BaseDetailView
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
+from django.core.cache import cache
 
 from entities.models import Entity
 from taggit.models import Tag
-from actstream import follow
+from actstream import follow, unfollow
 
 from user.models import Profile
 from qa.forms import AnswerForm, QuestionForm
 from qa.models import *
 from qa.tasks import publish_question_to_facebook, publish_upvote_to_facebook,\
-    publish_answer_to_facebook
+    publish_answer
 from qa.mixins import JSONResponseMixin
+
+from polyorg.models import CandidateList
 
 # the order options for the list views
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flags_count'}
+# CBS locality stats
+CBS_STATS = json.load(open(os.path.join(settings.STATICFILES_ROOT, 'js/entity_stats.js')))
 
 class JsonpResponse(HttpResponse):
     def __init__(self, data, callback, *args, **kwargs):
@@ -40,17 +46,32 @@ class JsonpResponse(HttpResponse):
             *args, **kwargs)
 
 
+def home_page(request):
+    context = RequestContext(request)
+    context['questions'] = Question.objects.count()
+    context['answers'] = Answer.objects.count()
+    return render_to_response('qa/front_page.html', context)
+
+
 def local_home(request, entity_slug=None, entity_id=None, tags=None,
         template="qa/question_list.html"):
     """
     A home page for an entity including questions and candidates
     """
+    if not tags and not request.GET:
+        ret = cache.get('local_home_%s' % entity_id)
+        if ret:
+            return ret
     context = RequestContext(request)
     entity = context['entity']
     if not entity or entity.division.index != 3:
         raise Http404(_("Bad Entity"))
 
-    questions = Question.on_site.filter(entity=entity, is_deleted=False)
+    if request.user.is_authenticated() and not request.user.profile.locality:
+        messages.error(request,_('Please update your locality in your user profile to use the site'))
+        return HttpResponseRedirect(reverse('edit_profile'))
+
+    questions = Question.on_site.select_related('author', 'entity').prefetch_related('answers__author').filter(entity=entity, is_deleted=False)
 
     only_flagged = request.GET.get('filter', False) == 'flagged'
     if only_flagged:
@@ -58,38 +79,49 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         order_opt = False
         order = 'flags_count'
     else:
-        order_opt = request.GET.get('order', 'date')
+        order_opt = request.GET.get('order', 'rating')
         order = ORDER_OPTIONS[order_opt]
     questions = questions.order_by(order)
 
     if tags:
-        current_tags = tags.split(',')
-        questions = questions.filter(tags__slug__in=current_tags)
+        current_tags = Tag.objects.filter(slug__in=tags.split(','))
+        questions = questions.filter(tags__in=current_tags)
     else:
         current_tags = None
 
     if entity:
-        tags = Tag.objects.filter(qa_taggedquestion_items__content_object__entity=entity).\
+        tags = Tag.objects.filter(qa_taggedquestion_items__content_object__entity=entity,\
+            qa_taggedquestion_items__content_object__is_deleted=False).\
                 annotate(num_times=Count('qa_taggedquestion_items')).\
-                order_by("slug")
+                order_by("-num_times","slug")
         need_editors = Profile.objects.need_editors(entity)
-        if request.user.is_authenticated():
-            can_ask = request.user.profile.locality == entity
-        else:
-            can_ask = True
         users_count = entity.profile_set.count()
     else:
         users_count = Profile.objects.count()
 
-    candidates = Profile.objects.get_candidates(entity).\
-                    annotate(num_answers=models.Count('answers')).\
-                    order_by('-num_answers')
-
-    question_count = questions.count()  
+    candidate_lists = CandidateList.objects.select_related().filter(entity=entity).order_by('name')
+    candidates = User.objects.filter(candidate__isnull=False).filter(profile__locality=entity)
     candidates_count = candidates.count()
+
+    list_id = request.GET.get('list', default='mayor')
+    if list_id == 'mayor':
+        candidate_list = None
+        candidates = candidates.filter(candidate__for_mayor=True)
+    else:
+        try:
+            candidate_list = candidate_lists.get(pk=list_id)
+        except (CandidateList.DoesNotExist, ValueError):
+            messages.error(request, _('No such candidate list: ' + list_id))
+            return HttpResponseRedirect(request.path)
+        candidates = candidates.filter(candidate__candidate_list=candidate_list)
+
+    candidates = candidates.annotate(num_answers=models.Count('answers')).\
+                            order_by('-num_answers')
+
+    question_count = questions.count()
     answers_count = Answer.objects.filter(question__entity=entity, is_deleted=False).count()
     if question_count and candidates_count:
-        answers_rate = int((answers_count / (question_count * candidates_count)) * 100)
+        answers_rate = int((float(answers_count) / (question_count * candidates_count)) * 100)
     else:
         answers_rate = 0
 
@@ -100,15 +132,18 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'only_flagged': only_flagged,
         'current_tags': current_tags,
         'need_editors': need_editors,
-        'can_ask': can_ask,
-        'question_count': question_count,
         'candidates': candidates,
         'candidates_count': candidates_count,
+        'candidate_list': candidate_list,
+        'candidate_lists': candidate_lists,
         'users_count': users_count,
         'answers_rate': answers_rate,
+        'stats': CBS_STATS[entity.code],
         })
 
-    return render(request, template, context)
+    ret = render(request, template, context)
+    cache.set('local_home_%s' % entity_id, ret, timeout = 36000)
+    return ret
 
 class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseDetailView):
     model = Question
@@ -117,37 +152,34 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
     slug_field = 'unislug'
 
     def get_queryset(self, queryset=None):
-        return Question.objects.filter(entity__slug=self.kwargs['entity_slug'])
+        if 'entity_id' in self.kwargs:
+            return Question.objects.filter(entity__id=self.kwargs['entity_id'])
+        elif 'entity_slug' in self.kwargs:
+            return Question.objects.filter(entity__slug=self.kwargs['entity_slug'])
 
     def get_context_data(self, **kwargs):
         user = self.request.user
+        question = self.object
         context = super(QuestionDetail, self).get_context_data(**kwargs)
         context['max_length_a_content'] = MAX_LENGTH_A_CONTENT
-        context['answers'] = self.object.answers.filter(is_deleted=False)
-        context['entity'] = self.object.entity
-        can_answer = self.object.can_answer(user)
+        context['answers'] = question.answers.filter(is_deleted=False)
+        context['entity'] = question.entity
+        can_answer = question.can_answer(user)
         context['can_answer'] = can_answer
         if can_answer:
             try:
-                user_answer = self.object.answers.get(author=user)
+                user_answer = question.answers.get(author=user)
                 context['my_answer_form'] = AnswerForm(instance=user_answer)
                 context['my_answer_id'] = user_answer.id
-            except self.object.answers.model.DoesNotExist:
+            except question.answers.model.DoesNotExist:
                 context['my_answer_form'] = AnswerForm()
-
-        if user.is_authenticated() and \
-                not self.request.user.upvotes.filter(question=self.object).exists():
-            context['can_upvote'] = True
-        else:
-            context['can_upvote'] = False
-
+        context['can_flag'] = True
         if 'answer' in self.request.GET:
             try:
                 answer = Answer.objects.get(pk=self.request.GET['answer'])
                 context['fb_message'] = answer.content
             except:
                 pass
-        context['can_delete'] = self.object.can_user_delete(user)
         return context
 
     def render_to_response(self, context):
@@ -168,7 +200,6 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
 
 @login_required
 def post_answer(request, q_id):
-    context = {}
     question = Question.objects.get(id=q_id)
 
     if not question.can_answer(request.user):
@@ -184,22 +215,32 @@ def post_answer(request, q_id):
     answer.content = request.POST.get("content")
 
     answer.save()
-    publish_answer_to_facebook.delay(answer)
+    publish_answer.delay(answer)
 
     return HttpResponseRedirect(question.get_absolute_url())
 
-def post_question(request, slug=None):
+def post_question(request, entity_id=None, slug=None):
     if request.user.is_anonymous():
         messages.error(request, _('Sorry but only connected users can post questions'))
         return HttpResponseRedirect(settings.LOGIN_URL)
 
     profile = request.user.profile
+
+    if entity_id:
+        entity = Entity.objects.get(pk=entity_id)
+        if entity != profile.locality:
+            messages.warning(request, _('Sorry, you may only post questions in your locality') +
+                "\n" +
+                _('Before posting a new question, please check if it already exists in this page'))
+            return HttpResponseRedirect(reverse('local_home',
+                                        kwargs={'entity_id': profile.locality.id,}))
+
     entity = profile.locality
 
     q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
 
     if request.method == "POST":
-        form = QuestionForm(request.user, request.POST)
+        form = QuestionForm(request.user, request.POST, instance=q)
         if form.is_valid():
             ''' carefull when changing a question's history '''
             if not q:
@@ -240,17 +281,24 @@ def post_question(request, slug=None):
     return render(request, "qa/post_question.html", context)
 
 
-@login_required
 def upvote_question(request, q_id):
+    if request.user.is_anonymous():
+        messages.error(request, _('Sorry but only connected users can upvote questions'))
+        return HttpResponseRedirect(settings.LOGIN_URL)
+
     if request.method == "POST":
         q = get_object_or_404(Question, id=q_id)
         user = request.user
-        if q.author == user or user.upvotes.filter(question=q):
+        if q.entity != user.profile.locality:
+            return HttpResponseForbidden(_('You may only support questions in your locality'))
+        if q.author == user:
+            return HttpResponseForbidden(_("You may not support your own question"))
+        if user.upvotes.filter(question=q):
             return HttpResponseForbidden(_("You already upvoted this question"))
         else:
             upvote = QuestionUpvote.objects.create(question=q, user=user)
             #TODO: use signals so the next line won't be necesary
-            new_count = increase_rating(q)
+            new_count = change_rating(q, 1)
             follow(request.user, q)
 
             publish_upvote_to_facebook.delay(upvote)
@@ -258,11 +306,30 @@ def upvote_question(request, q_id):
     else:
         return HttpResponseForbidden(_("Use POST to upvote a question"))
 
+@login_required
+def downvote_question(request, q_id):
+    if request.method == "POST":
+        q = get_object_or_404(Question, id=q_id)
+        user = request.user
+        if q.author == user:
+            return HttpResponseForbidden(_("Cannot downvote your own question"))
+        elif not user.upvotes.filter(question=q):
+            return HttpResponseForbidden(_("You already downvoted this question"))
+        else:
+            QuestionUpvote.objects.filter(question=q, user=user).delete()
+            new_count = change_rating(q, -1)
+            unfollow(request.user, q)
+
+            # TODO: publish_downvote_to_facebook.delay(upvote)
+            return HttpResponse(new_count)
+    else:
+        return HttpResponseForbidden(_("Use POST to upvote a question"))
+
 
 @transaction.commit_on_success
-def increase_rating(q):
+def change_rating(q, change):
     q = Question.objects.get(id=q.id)
-    q.rating += 1
+    q.rating += change
     q.save()
     return q.rating
 
@@ -369,7 +436,7 @@ def flag_question(request, q_id):
             flag = QuestionFlag.objects.create(question=q, reporter=user)
             #TODO: use signals so the next line won't be necesary
             q.flagged()
-            messages.success(request, 
+            messages.success(request,
                 _('Thank you for flagging the question. One of our editors will look at it shortly.'))
 
     redirect = reverse('local_home', args=(q.entity.slug,))

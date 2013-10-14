@@ -11,3 +11,5 @@ media/
 oshot/settings/local.py
 
 ~
+static/img/locality
+*.csv

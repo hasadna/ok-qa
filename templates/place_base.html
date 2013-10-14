@@ -1,8 +1,0 @@
-{% extends "base.html" %}
-{% load i18n %}
-{% load crispy_forms_tags %}
-
-{% block mainnav %} 
-  <li {% block nav-questions %} {% endblock %}><a href="{% url 'local_home' entity.slug %}">{% trans "Questions" %}</a></li>
-  <li {% block nav-candidates %} {% endblock %}><a href="{% url 'candidate_list' entity.slug %}">{% trans "Candidates" %}</a></li>
-{% endblock %}
