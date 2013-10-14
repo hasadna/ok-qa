@@ -4,7 +4,7 @@ import json
 from django.db.models import Count
 from django.http import HttpResponse, HttpResponseForbidden
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, render_to_response
 from django.http import Http404
 from django.views.decorators.http import require_POST
 from django.template.context import RequestContext
@@ -44,6 +44,13 @@ class JsonpResponse(HttpResponse):
             content=jsonp,
             content_type='application/javascript',
             *args, **kwargs)
+
+
+def home_page(request):
+    context = RequestContext(request)
+    context['questions'] = Question.objects.count()
+    context['answers'] = Answer.objects.count()
+    return render_to_response('qa/front_page.html', context)
 
 
 def local_home(request, entity_slug=None, entity_id=None, tags=None,
@@ -222,7 +229,7 @@ def post_question(request, entity_id=None, slug=None):
     if entity_id:
         entity = Entity.objects.get(pk=entity_id)
         if entity != profile.locality:
-            messages.warning(request, _('Sorry, you may only post questions in your locality') + 
+            messages.warning(request, _('Sorry, you may only post questions in your locality') +
                 "\n" +
                 _('Before posting a new question, please check if it already exists in this page'))
             return HttpResponseRedirect(reverse('local_home',

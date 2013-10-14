@@ -35,7 +35,7 @@ def forms(request):
             context['questions_url'] = reverse("local_home", args=(entity.id,))
         else:
             initial = {}
-            context['questions_url'] = reverse("local_home")
+            context['questions_url'] = reverse("home_page")
         context['entity_form'] = EntityChoiceForm(initial=initial, auto_id=False)
 
     except (AttributeError, Http404):
