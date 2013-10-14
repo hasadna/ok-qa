@@ -6,6 +6,7 @@ from django.contrib.sites.models import Site
 from django.contrib.sites.managers import CurrentSiteManager
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
+from django.core.validators import MaxLengthValidator
 from taggit.models import TaggedItemBase
 from django.contrib.contenttypes.models import ContentType
 
@@ -16,9 +17,9 @@ from actstream.models import Follow
 
 
 MAX_LENGTH_Q_SUBJECT = 140
-MAX_LENGTH_Q_CONTENT = 500
+MAX_LENGTH_Q_CONTENT = 1000
 MAX_LENGTH_A_SUBJECT = 80
-MAX_LENGTH_A_CONTENT = 500
+MAX_LENGTH_A_CONTENT = 1000 
 
 class BaseModel(models.Model):
     ''' just a common time base for the models
@@ -61,7 +62,7 @@ class Question(BaseModel):
     )
     author = models.ForeignKey(User, related_name="questions", verbose_name=_("author"))
     subject = models.CharField(_("question"), max_length=MAX_LENGTH_Q_SUBJECT)
-    content = models.TextField(_("details"), max_length=MAX_LENGTH_Q_CONTENT,
+    content = models.TextField(_("details"), validators=[MaxLengthValidator(MAX_LENGTH_Q_CONTENT)],
        help_text=_("Please enter your content in no more than %s letters") % MAX_LENGTH_Q_CONTENT,
        blank = True, default = '')
     rating = models.IntegerField(_("rating"), default=1)
@@ -127,7 +128,7 @@ class Question(BaseModel):
 
 class Answer(BaseModel):
     author = models.ForeignKey(User, related_name="answers", verbose_name=_("author"))
-    content = models.TextField(_("content"), max_length=MAX_LENGTH_A_CONTENT,
+    content = models.TextField(_("content"), validators=[MaxLengthValidator(MAX_LENGTH_A_CONTENT)],
         help_text=_("Please enter an answer in no more than %s letters") % MAX_LENGTH_A_CONTENT)
     rating = models.IntegerField(_("rating"), default=0)
     question = models.ForeignKey(Question, related_name="answers", verbose_name=_("question"))
