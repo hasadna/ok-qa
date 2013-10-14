@@ -59,7 +59,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         messages.error(request,_('Please update your locality in your user profile to use the site'))
         return HttpResponseRedirect(reverse('edit_profile'))
 
-    questions = Question.on_site.filter(entity=entity, is_deleted=False)
+    questions = Question.on_site.select_related().filter(entity=entity, is_deleted=False)
 
     only_flagged = request.GET.get('filter', False) == 'flagged'
     if only_flagged:
@@ -87,7 +87,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     else:
         users_count = Profile.objects.count()
 
-    candidate_lists = CandidateList.objects.filter(entity=entity).order_by('name')
+    candidate_lists = CandidateList.objects.select_related().filter(entity=entity).order_by('name')
     candidates = User.objects.filter(candidate__isnull=False).filter(profile__locality=entity)
     candidates_count = candidates.count()
 
