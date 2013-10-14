@@ -115,9 +115,7 @@ class QuestionTest(TestCase):
         default_home = reverse('local_home',
                         kwargs={'entity_id': self.home.id})
         response = c.get(default_home)
-        res2 = c.get(reverse('local_home'))
 
-        self.assertRedirects(res2, default_home)
         self.assertEquals(response.context['candidates'].count(), 0)
         self.assertEquals(response.context['candidates_count'], 1)
         self.assertEquals(response.context['users_count'], 4)
@@ -131,6 +129,11 @@ class QuestionTest(TestCase):
         self.assertEquals(response.context['answers_rate'], 0)
         self.q.is_deleted = False
         self.q.save()
+
+    def test_home_page(self):
+        c = Client()
+        res2 = c.get(reverse('home_page'))
+        self.assertTemplateUsed(res2, 'qa/front_page.html')
 
     def test_question_detail(self):
         c = Client()
