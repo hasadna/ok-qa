@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: open-shot\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-10-12 14:24+0300\n"
-"PO-Revision-Date: 2013-09-08 15:02+0200\n"
+"POT-Creation-Date: 2013-10-14 22:25+0300\n"
+"PO-Revision-Date: 2013-10-14 22:27+0300\n"
 "Last-Translator: Benny Daon <bennydaon@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -51,6 +51,10 @@ msgstr "קישורים"
 #: oshot/forms.py:15
 msgid "Choose a Place"
 msgstr "בחרו רשות"
+
+#: oshot/views.py:31 user/views.py:123
+msgid "Only superusers have access to this page."
+msgstr "עמוד זה נגיש רק למשתמשי על."
 
 #: oshot/settings/base.py:25
 msgid "Hebrew"
@@ -157,7 +161,7 @@ msgid "Mayorship candidate"
 msgstr "מועמד לראש הרשות"
 
 #: polyorg/views.py:23 polyorg/views.py:48 polyorg/views.py:81
-#: polyorg/views.py:110
+#: polyorg/views.py:109
 msgid "Only editors have access to this page."
 msgstr "עמוד זה נגיש רק לעורכים."
 
@@ -271,119 +275,119 @@ msgstr "תוכן"
 msgid "Please enter an answer in no more than %s letters"
 msgstr "נא להכניס תשובה לעניין בלא יותר מ %s אותיות"
 
-#: qa/tasks.py:76
+#: qa/tasks.py:80
 #, fuzzy
 msgid "A new answer for your question"
 msgstr "תשובות לשאלה"
 
-#: qa/views.py:56
+#: qa/views.py:63
 msgid "Bad Entity"
 msgstr "רשות לא חוקית"
 
-#: qa/views.py:59
+#: qa/views.py:66
 msgid "Please update your locality in your user profile to use the site"
 msgstr "יש לבחור מקום מגורים כדי להשתמש באתר."
 
-#: qa/views.py:102
+#: qa/views.py:109
 msgid "No such candidate list: "
 msgstr "רשימת מועמדים לא קיימת: "
 
-#: qa/views.py:192
+#: qa/views.py:199
 msgid "You must be logged in as a candidate to post answers"
 msgstr "עליך להתחבר כמועמד כדי לפרסם תשובות"
 
-#: qa/views.py:210
+#: qa/views.py:217
 msgid "Sorry but only connected users can post questions"
 msgstr "מצטערים, יש להתחבר כדי לשאול שאלות"
 
-#: qa/views.py:218
+#: qa/views.py:225
 msgid "Sorry, you may only post questions in your locality"
 msgstr "מצטערים, ניתן להעלות שאלה ברשות שלכם בלבד"
 
-#: qa/views.py:220
+#: qa/views.py:227
 msgid ""
 "Before posting a new question, please check if it already exists in this page"
 msgstr "לפני שתעלו שאלה חדשה, אנא בדקו אם היא כבר קיימת בעמוד הנוכחי"
 
-#: qa/views.py:240
+#: qa/views.py:247
 msgid "You can only edit your own questions."
 msgstr "מצטערים, ניתן לערוך רק שאלות שלך"
 
-#: qa/views.py:242
+#: qa/views.py:249
 msgid "Question has been answered, editing disabled."
 msgstr "ישנן תשובות לשאלה, אי אפשר לערוך"
 
-#: qa/views.py:272
+#: qa/views.py:279
 msgid "Sorry but only connected users can upvote questions"
 msgstr "מצטערים, יש להתחבר כדי לתמוך בשאלה"
 
-#: qa/views.py:279
+#: qa/views.py:286
 msgid "You may only support questions in your locality"
 msgstr "ניתן לתמוך בשאלות רק ברשות שלך"
 
-#: qa/views.py:281
+#: qa/views.py:288
 msgid "You may not support your own question"
 msgstr "לא ניתן לתמוך בשאלות של עצמך"
 
-#: qa/views.py:283
+#: qa/views.py:290
 msgid "You already upvoted this question"
 msgstr "תודה, כבר תמכת בשאלה זו"
 
-#: qa/views.py:293 qa/views.py:312
+#: qa/views.py:300 qa/views.py:319
 msgid "Use POST to upvote a question"
 msgstr "השתמש ב POST כדי להצביע לשאלה"
 
-#: qa/views.py:301
+#: qa/views.py:308
 msgid "Cannot downvote your own question"
 msgstr "לא ניתן לבטל את התמיכה בשאלות שאתה כתבת"
 
-#: qa/views.py:303
+#: qa/views.py:310
 msgid "You already downvoted this question"
 msgstr "תודה, כבר ביטלת את תמיכתך בשאלה זו"
 
-#: qa/views.py:325
+#: qa/views.py:332
 msgid "OK QA Question Feed"
 msgstr "שאלות נשאלו"
 
-#: qa/views.py:327
+#: qa/views.py:334
 msgid "Questions from OKQA"
 msgstr "שאלות"
 
-#: qa/views.py:346
+#: qa/views.py:353
 #, python-format
 msgid "Questions feed for %s"
 msgstr "שטף שאלות עבור %s"
 
-#: qa/views.py:350
+#: qa/views.py:357
 #, python-format
 msgid "Brought to you by \"%s\""
 msgstr "מוגש על ידי \"%s\""
 
-#: qa/views.py:372
+#: qa/views.py:379
 msgid "Answers for the question"
 msgstr "תשובות לשאלה"
 
-#: qa/views.py:378
+#: qa/views.py:385
 msgid "A feed of all answers for the question"
 msgstr "פיד של תשובות לשאלה"
 
-#: qa/views.py:398
+#: qa/views.py:405
 msgid "Sorry, you have to login to flag questions"
 msgstr "אנא התחברו כדי לסמן שאלה לא ראויה"
 
-#: qa/views.py:405
+#: qa/views.py:412
 msgid "Sorry, can not delete a question with answers"
 msgstr "מצטערים, לא ניתן למחוק שאלה עם תשובות"
 
-#: qa/views.py:416
+#: qa/views.py:423
 msgid "Question has been removed"
 msgstr "השאלה נמחקה"
 
-#: qa/views.py:419
+#: qa/views.py:426
 msgid "Thanks.  You already reported this question"
 msgstr "תודה, כבר דיווחת על השאלה הזאת"
 
-#: qa/views.py:426
+#: qa/views.py:433
 msgid ""
 "Thank you for flagging the question. One of our editors will look at it "
 "shortly."
@@ -453,7 +457,7 @@ msgstr "האם אתם בטוחים שברצונכם דווח על השאלה כ�
 msgid "Flag"
 msgstr "דווח"
 
-#: qa/templates/qa/_question.html:107 qa/templates/qa/question_list.html:184
+#: qa/templates/qa/_question.html:107 qa/templates/qa/question_list.html:195
 msgid "Tags"
 msgstr "תגיות"
 
@@ -467,19 +471,26 @@ msgid "Answers by"
 msgstr "התשובות של"
 
 #: qa/templates/qa/candidate_email_update.html:31
-#: qa/templates/qa/candidate_email_update.html:56
+#: qa/templates/qa/candidate_email_update.html:57
+#: templates/email/candidate_update.html:31
+#: templates/email/candidate_update.html:57
 #, fuzzy
 msgid "Answer"
 msgstr "תשובות"
 
-#: qa/templates/qa/candidate_email_update.html:67
-#: qa/templates/qa/email_update.html:61
+#: qa/templates/qa/candidate_email_update.html:68
+#: templates/email/candidate_update.html:68
+#: templates/email/voter_update.html:69
 msgid "click me to update your email settings"
 msgstr "לחצו עלי לעדכון הגדרות הדוא\"ל"
 
-#: qa/templates/qa/email_update.html:33
-msgid "join"
-msgstr "הצטרפו"
+#: qa/templates/qa/front_page.html:17
+msgid "questions"
+msgstr "שאלות"
+
+#: qa/templates/qa/front_page.html:27
+msgid "answers"
+msgstr "תשובות"
 
 #: qa/templates/qa/post_question.html:6
 msgid "Post question"
@@ -493,30 +504,30 @@ msgstr "הנכם מוזמנים להפנות שאלות למועמדים"
 msgid "before asking a new question, please check if it exists on the"
 msgstr "לפני שתעלו שאלה חדשה, אנא בדקו אם היא כבר קיימת"
 
-#: qa/templates/qa/post_question.html:16
+#: qa/templates/qa/post_question.html:17
 msgid "page of your locality"
 msgstr "בעמוד של הרשות שלכם"
 
-#: qa/templates/qa/post_question.html:18
+#: qa/templates/qa/post_question.html:19
 msgid "Edit your question"
 msgstr "עריכת שאלה"
 
-#: qa/templates/qa/post_question.html:33
+#: qa/templates/qa/post_question.html:34
 #: qa/templates/qa/question_detail.html:69
 msgid "characters left"
 msgstr "תווים נותרו"
 
-#: qa/templates/qa/post_question.html:37
+#: qa/templates/qa/post_question.html:38
 #: qa/templates/qa/question_detail.html:72
 msgid "Publish"
 msgstr "פרסם"
 
-#: qa/templates/qa/post_question.html:44
+#: qa/templates/qa/post_question.html:45
 msgid "Cancel"
 msgstr "ביטול"
 
 #: qa/templates/qa/question_detail.html:32
-#: qa/templates/qa/question_list.html:98
+#: qa/templates/qa/question_list.html:109
 msgid "Answers"
 msgstr "תשובות"
 
@@ -529,7 +540,7 @@ msgid "No Answers Yet"
 msgstr "עדיין לא ניתנו תשובות"
 
 #: qa/templates/qa/question_detail.html:46
-#: qa/templates/qa/question_list.html:31
+#: qa/templates/qa/question_list.html:38
 #: user/templates/user/public_profile.html:20
 msgid "Subscribe"
 msgstr "הרשם"
@@ -542,81 +553,82 @@ msgstr "חזרה ל"
 msgid "questions list"
 msgstr "רשימת שאלות"
 
-#: qa/templates/qa/question_list.html:38
+#: qa/templates/qa/question_list.html:45
 msgid "Population"
 msgstr "תושבים"
 
-#: qa/templates/qa/question_list.html:41
+#: qa/templates/qa/question_list.html:48
 msgid "Council seats"
 msgstr "מושבים במועצה"
 
-#: qa/templates/qa/question_list.html:43
+#: qa/templates/qa/question_list.html:50
 msgid "Registered users"
 msgstr "משתמשים רשומים"
 
-#: qa/templates/qa/question_list.html:46 templates/place_base.html:6
+#: qa/templates/qa/question_list.html:53
 msgid "Questions"
 msgstr "שאלות"
 
-#: qa/templates/qa/question_list.html:49
+#: qa/templates/qa/question_list.html:56
 msgid "Registered candidates"
 msgstr "מועמדים רשומים"
 
-#: qa/templates/qa/question_list.html:50
+#: qa/templates/qa/question_list.html:59
 msgid "Answer rate"
 msgstr "מענה"
 
-#: qa/templates/qa/question_list.html:57
-#: qa/templates/qa/question_list.html:200
+#: qa/templates/qa/question_list.html:64
+#: qa/templates/qa/question_list.html:214
 msgid "Display candidates"
 msgstr "הצגת המועמדים"
 
-#: qa/templates/qa/question_list.html:77
+#: qa/templates/qa/question_list.html:81
 msgid "Candidates in list"
 msgstr "מועמדים ברשימת"
 
-#: qa/templates/qa/question_list.html:79
+#: qa/templates/qa/question_list.html:83
 msgid "No candidate has registered yet in list"
 msgstr "טרם נרשמו מועמדים ברשימת"
 
-#: qa/templates/qa/question_list.html:85
+#: qa/templates/qa/question_list.html:89
 #, python-format
 msgid "Mayor candidates in %(place)s"
 msgstr "מועמדים לראשות %(place)s"
 
-#: qa/templates/qa/question_list.html:96
+#: qa/templates/qa/question_list.html:107
 msgid "One Answer"
 msgstr "תשובה אחת"
 
-#: qa/templates/qa/question_list.html:110
+#: qa/templates/qa/question_list.html:121
 msgid "Candidate lists"
 msgstr "רשימות"
 
-#: qa/templates/qa/question_list.html:133
+#: qa/templates/qa/question_list.html:144
 msgid "Mayor candidates"
 msgstr "מועמדים לראש הרשות"
 
-#: qa/templates/qa/question_list.html:147
+#: qa/templates/qa/question_list.html:158
 msgid "In the tags:"
 msgstr "תחת התגיות:"
 
-#: qa/templates/qa/question_list.html:156
+#: qa/templates/qa/question_list.html:167
 msgid "Top Questions"
 msgstr "שאלות מובילות"
 
-#: qa/templates/qa/question_list.html:159
+#: qa/templates/qa/question_list.html:170
 msgid "Most Recent"
 msgstr "שאלות אחרונות"
 
-#: qa/templates/qa/question_list.html:163
+#: qa/templates/qa/question_list.html:174
 msgid "Flagged Questions"
 msgstr "שאלות מסומנות"
 
-#: qa/templates/qa/question_list.html:181
+#: qa/templates/qa/question_list.html:192
 msgid "Ask Question"
 msgstr "העלו שאלה"
 
-#: qa/templates/qa/question_list.html:197
+#: qa/templates/qa/question_list.html:208
+#: qa/templates/qa/question_list.html:211
 msgid "Hide candidates"
 msgstr "הסתרת המועמדים"
 
@@ -666,7 +678,7 @@ msgstr "בחזרה לראש העמוד"
 msgid "Content is licensed CC-BY. Learn more on this open source project "
 msgstr "התכנים חופשיים לשימוש תחת רשיון CC-BY והמטבח שלנו פתוח ושקוף - "
 
-#: templates/base.html:135 user/templates/candidate/candidate_list.html:73
+#: templates/base.html:135
 msgid "here"
 msgstr "כאן"
 
@@ -705,10 +717,6 @@ msgstr "קרא עוד"
 #: templates/base.html:183
 msgid "read less"
 msgstr "קרא פחות"
-
-#: templates/place_base.html:7
-msgid "Candidates"
-msgstr "מועמדים"
 
 #: templates/avatar/add.html:13
 msgid "Your current avatar: "
@@ -889,209 +897,113 @@ msgstr "&raquo; הקודם"
 msgid "Next &raquo;"
 msgstr "הבא &lqauo;"
 
-#: user/admin.py:10 user/forms.py:17
+#: user/admin.py:11 user/forms.py:14
 msgid "Username"
 msgstr "שם משתמש"
 
-#: user/admin.py:12
+#: user/admin.py:13
 msgid ""
 "Required. 30 characters or fewer. Alphanumeric characters only (letters, "
 "digits and underscores)."
 msgstr ""
 "30 תווים או פחות. ניתן להשתמש באותיות עבריות ולועזיות, ספרות וקו תחתון בלבד."
 
-#: user/admin.py:14
+#: user/admin.py:15
 msgid "This value must contain only letters, numbers and underscores."
 msgstr "ניתן להשתמש באותיות, ספרות וקו תחתון בלבד."
+
+#: user/admin.py:37
+#, fuzzy
+msgid "is candidate"
+msgstr "הסתרת המועמדים"
+
+#: user/admin.py:44
+msgid "Yes"
+msgstr "כן"
+
+#: user/admin.py:45
+msgid "No"
+msgstr "לא"
 
 #: user/feeds.py:21
 msgid "Get all answers by"
 msgstr "קבלו את כל התשובות של"
 
-#: user/forms.py:15 user/forms.py:151
+#: user/forms.py:12
 msgid "first name"
 msgstr "שם פרטי"
 
-#: user/forms.py:16 user/forms.py:152
+#: user/forms.py:13
 msgid "last name"
 msgstr "שם משפחה"
 
-#: user/forms.py:18 user/forms.py:19
+#: user/forms.py:15 user/forms.py:16
 msgid ""
 "Required. 4-30 characters (only letters, numbers spaces and @/./+/-/_ "
 "characters)."
 msgstr "חובה. 30-4 תווים (אותיות, מספרים, רווחים, @/./+/-/_ בלבד).‏"
 
-#: user/forms.py:20 user/forms.py:157
+#: user/forms.py:17
 msgid "email address"
 msgstr "כתובת דוא\"ל"
 
-#: user/forms.py:21
+#: user/forms.py:18
 msgid "We don't spam, and don't show your email to anyone"
 msgstr "לא נשלח דואר זבל, לא נשתף את הכתובת עם אף אחד, ולא נציג אותה"
 
-#: user/forms.py:24
+#: user/forms.py:21
 msgid "Gender"
 msgstr "מגדר"
 
-#: user/forms.py:27 user/models.py:77
+#: user/forms.py:24 user/models.py:49
 msgid "Locality"
 msgstr "מקום מגורים"
 
-#: user/forms.py:29
+#: user/forms.py:26
 msgid "Tell us and other users bit about yourself"
 msgstr "ספר/י לנו ולמשתמשים אחרים באתר על עצמך"
 
-#: user/forms.py:32
+#: user/forms.py:29
 msgid "E-Mail Notifications"
 msgstr "התראות דוא\"ל"
 
-#: user/forms.py:33
+#: user/forms.py:30
 msgid ""
 "Should we send you e-mail notification about updates to things you follow on "
 "the site?"
 msgstr "האם לשלוח התראות דוא\"ל לגבי שאלות ותגיות שאתה עוקב אחריהם?"
 
-#: user/forms.py:60
+#: user/forms.py:57
 msgid "This username is already taken."
 msgstr "שם המשתמש בשימוש"
 
-#: user/forms.py:73
+#: user/forms.py:70
 msgid "Please set your locality"
 msgstr "אנא הכניסו את מקום מגוריכם"
 
-#: user/forms.py:99
-msgid "the voters are waiting for your answers"
-msgstr "המצביעים ממתינים לתשובתך"
-
-#: user/forms.py:100
-msgid ""
-"The Q&A site is happy to invite you to answer voters' questions. please "
-"click {{activation_url}} to activate your account"
-msgstr ""
-
-#: user/forms.py:108
-msgid "Password"
-msgstr "סיסמה"
-
-#: user/forms.py:110
-msgid "Password confirmation"
-msgstr "אשר סיסמה"
-
-#: user/forms.py:112
-msgid "Enter the same password as above, for verification."
-msgstr "כדי לוודא, הכניסו אותה סיסמה כמו למעלה"
-
-#: user/forms.py:149
-msgid "username"
-msgstr "שם משתמש"
-
-#: user/forms.py:150
-msgid "Please use 4 letters or more"
-msgstr "נא להשתמש בארבע אותיות או יותר (גם מספרים ו @/./+/-/_ הם תווים חוקיים)"
-
-#: user/forms.py:153
-msgid "email subject"
-msgstr "נושא הדוא\"ל"
-
-#: user/forms.py:155
-msgid "email body"
-msgstr "תוכן הדוא\"ל"
-
-#: user/models.py:19
+#: user/models.py:16
 msgid "No Email"
 msgstr "ללא דוא\"ל"
 
-#: user/models.py:20
+#: user/models.py:17
 msgid "Daily"
 msgstr "יומי"
 
-#: user/models.py:21
+#: user/models.py:18
 msgid "Weekly"
 msgstr "שבועי"
 
-#: user/models.py:24
+#: user/models.py:21
 msgid "Male"
 msgstr "זכר"
 
-#: user/models.py:25
+#: user/models.py:22
 msgid "Female"
 msgstr "נקבה"
 
-#: user/signals.py:40
-msgid "A new candidate registered"
-msgstr "מועמד חדש נרשם"
-
-#: user/signals.py:57
+#: user/signals.py:41
 msgid "A question has been flagged"
 msgstr "הונף דגל אדום על שאלה בשו\"ת המקומי"
-
-#: user/views.py:81
-#, python-format
-msgid "Sorry, you are not authorized to remove %s from the candidate list"
-msgstr "מצטערים, אינך מורשה להסיר את %s מרשימת המועמדים"
-
-#: user/views.py:92
-msgid "Only candidate can edit their info"
-msgstr ""
-
-#: user/views.py:171
-msgid "Your profile has been updated, please login."
-msgstr "הפרופיל שלכם עודכן, אתם מוזמנים להכנס"
-
-#: user/views.py:232 user/views.py:242
-msgid "Only superusers have access to this page."
-msgstr "עמוד זה נגיש רק למשתמשי על."
-
-#: user/templates/candidate/candidate_list.html:3
-msgid "candidates list"
-msgstr "רשימת מועמדים"
-
-#: user/templates/candidate/candidate_list.html:8
-#, python-format
-msgid "Candidates in %(place)s "
-msgstr "מועמדים לבחירות המקומיות ב%(place)s"
-
-#: user/templates/candidate/candidate_list.html:10
-msgid "Candidates for local elections"
-msgstr "מועמדים לבחירות המקומיות"
-
-#: user/templates/candidate/candidate_list.html:25
-msgid "answers"
-msgstr "תשובות"
-
-#: user/templates/candidate/candidate_list.html:45
-msgid "Remove Candidate"
-msgstr "הסר מועמד"
-
-#: user/templates/candidate/candidate_list.html:50
-msgid "Confirm Candidate Removal"
-msgstr "אשרו הסרת מועמד"
-
-#: user/templates/candidate/candidate_list.html:53
-#, python-format
-msgid ""
-"\n"
-"      Are you sure you want to remove %(candidate)s from the candidate "
-"list?\n"
-"    "
-msgstr ""
-"\n"
-"האם אתם בטוחים שברצונכם להסיר את %(candidate)s מרשימת המועמדים?"
-
-#: user/templates/candidate/candidate_list.html:60
-msgid "Remove"
-msgstr "הסר"
-
-#: user/templates/candidate/candidate_list.html:69
-msgid ""
-"\n"
-"      The Candidates biographies were given by the candidates themselvs and\n"
-"      we can not guarntee their accuracy. The avatars are pulled from \n"
-"    "
-msgstr ""
-"\n"
-"האתר אינו אחראי לדיוק הביוגרפיות של המועמדים.  תמונות הדיוקן מוצגות מ"
 
 #: user/templates/user/accept_invitation.html:6
 msgid "Welcome to our site"
@@ -1162,6 +1074,83 @@ msgstr "לפני"
 #: user/templates/user/public_profile.html:100
 msgid "Questions by"
 msgstr "השאלות של"
+
+#~ msgid "join"
+#~ msgstr "הצטרפו"
+
+#~ msgid "Candidates"
+#~ msgstr "מועמדים"
+
+#~ msgid "the voters are waiting for your answers"
+#~ msgstr "המצביעים ממתינים לתשובתך"
+
+#~ msgid "Password"
+#~ msgstr "סיסמה"
+
+#~ msgid "Password confirmation"
+#~ msgstr "אשר סיסמה"
+
+#~ msgid "Enter the same password as above, for verification."
+#~ msgstr "כדי לוודא, הכניסו אותה סיסמה כמו למעלה"
+
+#~ msgid "username"
+#~ msgstr "שם משתמש"
+
+#~ msgid "Please use 4 letters or more"
+#~ msgstr ""
+#~ "נא להשתמש בארבע אותיות או יותר (גם מספרים ו @/./+/-/_ הם תווים חוקיים)"
+
+#~ msgid "email subject"
+#~ msgstr "נושא הדוא\"ל"
+
+#~ msgid "email body"
+#~ msgstr "תוכן הדוא\"ל"
+
+#~ msgid "A new candidate registered"
+#~ msgstr "מועמד חדש נרשם"
+
+#~ msgid "Sorry, you are not authorized to remove %s from the candidate list"
+#~ msgstr "מצטערים, אינך מורשה להסיר את %s מרשימת המועמדים"
+
+#~ msgid "Your profile has been updated, please login."
+#~ msgstr "הפרופיל שלכם עודכן, אתם מוזמנים להכנס"
+
+#~ msgid "candidates list"
+#~ msgstr "רשימת מועמדים"
+
+#~ msgid "Candidates in %(place)s "
+#~ msgstr "מועמדים לבחירות המקומיות ב%(place)s"
+
+#~ msgid "Candidates for local elections"
+#~ msgstr "מועמדים לבחירות המקומיות"
+
+#~ msgid "Remove Candidate"
+#~ msgstr "הסר מועמד"
+
+#~ msgid "Confirm Candidate Removal"
+#~ msgstr "אשרו הסרת מועמד"
+
+#~ msgid ""
+#~ "\n"
+#~ "      Are you sure you want to remove %(candidate)s from the candidate "
+#~ "list?\n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "האם אתם בטוחים שברצונכם להסיר את %(candidate)s מרשימת המועמדים?"
+
+#~ msgid "Remove"
+#~ msgstr "הסר"
+
+#~ msgid ""
+#~ "\n"
+#~ "      The Candidates biographies were given by the candidates themselvs "
+#~ "and\n"
+#~ "      we can not guarntee their accuracy. The avatars are pulled from \n"
+#~ "    "
+#~ msgstr ""
+#~ "\n"
+#~ "האתר אינו אחראי לדיוק הביוגרפיות של המועמדים.  תמונות הדיוקן מוצגות מ"
 
 #~ msgid ""
 #~ "Sorry, you may only post questions in your locality. Before posting a new "
@@ -2520,13 +2509,13 @@ msgstr "השאלות של"
 #~ "%(url)s\">%(bill)s</a>\n"
 #~ msgstr ""
 #~ "\n"
-#~ "שיוך הצעת חוק לאג'נדה עודכן: <a href=\"http://%(domain)s%(url)s\">%(bill)"
-#~ "s</a>\n"
+#~ "שיוך הצעת חוק לאג'נדה עודכן: <a href=\"http://%(domain)s%(url)s\">"
+#~ "%(bill)s</a>\n"
 
 #~ msgid ""
 #~ "\n"
-#~ "A bill has been removed from the agenda: <a href=\"http://%(domain)s%(url)"
-#~ "s\">%(bill)s</a>\n"
+#~ "A bill has been removed from the agenda: <a href=\"http://%(domain)s"
+#~ "%(url)s\">%(bill)s</a>\n"
 #~ msgstr ""
 #~ "\n"
 #~ "הצעת חוק הוסרה מהאג'נדה: <a href=\"http://%(domain)s%(url)s\">%(bill)s</"
@@ -2538,13 +2527,13 @@ msgstr "השאלות של"
 #~ "%(url)s\">%(meeting)s</a>\n"
 #~ msgstr ""
 #~ "\n"
-#~ "ישיבת ועדה שויכה לאג'נדה: <a href=\"http://%(domain)s%(url)s\">%(meeting)"
-#~ "s</a>\n"
+#~ "ישיבת ועדה שויכה לאג'נדה: <a href=\"http://%(domain)s%(url)s\">"
+#~ "%(meeting)s</a>\n"
 
 #~ msgid ""
 #~ "\n"
-#~ "A meeting's relation to the agenda has changed: <a href=\"http://%(domain)"
-#~ "s%(url)s\">%(meeting)s</a>\n"
+#~ "A meeting's relation to the agenda has changed: <a href=\"http://"
+#~ "%(domain)s%(url)s\">%(meeting)s</a>\n"
 #~ msgstr ""
 #~ "\n"
 #~ "שיוך ישיבת ועדה לאג'נדה עודכן: <a href=\"http://%(domain)s%(url)s\">"
@@ -2556,8 +2545,8 @@ msgstr "השאלות של"
 #~ "%(url)s\">%(meeting)s</a>\n"
 #~ msgstr ""
 #~ "\n"
-#~ "ישיבת ועדה הוסרה מהאג'נדה: <a href=\"http://%(domain)s%(url)s\">%(meeting)"
-#~ "s</a>\n"
+#~ "ישיבת ועדה הוסרה מהאג'נדה: <a href=\"http://%(domain)s%(url)s\">"
+#~ "%(meeting)s</a>\n"
 
 #~ msgid ""
 #~ "\n"
@@ -2633,8 +2622,8 @@ msgstr "השאלות של"
 #~ "    "
 #~ msgstr ""
 #~ "\n"
-#~ "    <span class=\"action-verb\">אושרה בקריאה שלישית</span> בתאריך %(date)"
-#~ "s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    <span class=\"action-verb\">אושרה בקריאה שלישית</span> בתאריך "
+#~ "%(date)s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
 #~ "    "
 
 #~ msgid ""
@@ -2644,14 +2633,14 @@ msgstr "השאלות של"
 #~ "    "
 #~ msgstr ""
 #~ "\n"
-#~ "    <span class=\"action-verb\">נפלה בקריאה שלישית</span> בתאריך %(date)"
-#~ "s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    <span class=\"action-verb\">נפלה בקריאה שלישית</span> בתאריך "
+#~ "%(date)s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
 #~ "    "
 
 #~ msgid ""
 #~ "\n"
-#~ "<span class=\"action-verb\">was converted to discussion</span> on %(time)"
-#~ "s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "<span class=\"action-verb\">was converted to discussion</span> on "
+#~ "%(time)s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
 #~ msgstr ""
 #~ "\n"
 #~ "<span class=\"action-verb\">הוסבה לנושא לדיון</span> בתאריך %(time)s. <a "
@@ -2684,8 +2673,8 @@ msgstr "השאלות של"
 #~ "    "
 #~ msgstr ""
 #~ "\n"
-#~ "    <span class=\"action-verb\">נפלה בקריאה ראשונה</span> בתאריך %(date)"
-#~ "s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    <span class=\"action-verb\">נפלה בקריאה ראשונה</span> בתאריך "
+#~ "%(date)s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
 #~ "    "
 
 #~ msgid ""
@@ -2715,8 +2704,8 @@ msgstr "השאלות של"
 #~ "    "
 #~ msgstr ""
 #~ "\n"
-#~ "    <span class=\"action-verb\">נפלה בקריאה טרומית</span> בתאריך %(time)"
-#~ "s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
+#~ "    <span class=\"action-verb\">נפלה בקריאה טרומית</span> בתאריך "
+#~ "%(time)s. <a href=\"http://%(domain)s%(url)s\">%(vote)s</a><br>\n"
 #~ "    "
 
 #~ msgid ""
@@ -5536,12 +5525,6 @@ msgstr "השאלות של"
 
 #~ msgid "Today"
 #~ msgstr "היום"
-
-#~ msgid "Yes"
-#~ msgstr "כן"
-
-#~ msgid "No"
-#~ msgstr "לא"
 
 #~ msgid "object repr"
 #~ msgstr "ייצוג אובייקט"
