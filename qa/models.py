@@ -7,6 +7,7 @@ from django.contrib.sites.managers import CurrentSiteManager
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 from django.core.validators import MaxLengthValidator
+from django.core.cache import cache
 from taggit.models import TaggedItemBase
 from django.contrib.contenttypes.models import ContentType
 
@@ -20,6 +21,8 @@ MAX_LENGTH_Q_SUBJECT = 140
 MAX_LENGTH_Q_CONTENT = 1000
 MAX_LENGTH_A_SUBJECT = 80
 MAX_LENGTH_A_CONTENT = 1000 
+
+entity_home_key = lambda entity_id: "local_home_%s" % entity_id
 
 class BaseModel(models.Model):
     ''' just a common time base for the models
@@ -161,4 +164,15 @@ class QuestionFlag(BaseModel):
 def saved(sender, created, instance, **kwargs):
     if sender in (Question, Answer, TaggedQuestion):
         instance.sites.add(Site.objects.get_current())
+
+@receiver(post_save)
+def clear_entity_cache(sender, created, instance, **kwargs):
+    ''' clear the local cache on new question or answer '''
+    if sender == Question:
+        cache.delete(entity_home_key(instance.entity_id))
+    elif sender == Answer:
+        cache.delete(entity_home_key(instance.question.entity_id))
+
+
+
 
