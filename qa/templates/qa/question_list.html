@@ -40,15 +40,19 @@
                </a>
                {% endif %}
           </h1>
-          <div id="cbs_data">
+          <div id="cbs_data"><!--
+            {% if stats.totalpopulation %}-->
             <strong><span id="population"></span>{{stats.totalpopulation}}</strong>
             {% trans "Population" %}<!--
-            -->,
-            <strong><span id="councilSize">{{stats.numofcouncilman}}</span></strong>
+            {% endif %}
+            {% if stats.numofcouncilman %}
+            -->,<strong><span id="councilSize">{{stats.numofcouncilman}}</span></strong>
             {% trans "Council seats" %}<!--
-            -->,
-            <strong><span id="voting">{{stats.voting}}</span></strong>
+            {% endif %}
+            {% if stats.voting %}
+            -->, <strong><span id="voting">{{stats.voting}}</span></strong>
             {% trans "Voting Percent" %}<!--
+            {% endif %}
             {% if users_count %}
             -->, <strong>{{users_count}}</strong> {% trans "Registered users" %}<!--
             {% endif %}
@@ -60,8 +64,8 @@
             {% endif %}
             {% if answers_count %}
             -->, <strong>{{answers_count}}</strong> {% trans "Answers" %}<!--
-            {% endif %}.
-            -->
+            {% endif %}
+            -->.
           </div>
           <button type="button" class="btn btn-large btn-info" data-toggle="collapse" data-target="#candidate_container" id='candidates_button' style='margin-top:5px;'>
             {% trans 'Display candidates' %}

@@ -113,6 +113,8 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
 
     answers_count = Answer.objects.filter(question__entity=entity, question__is_deleted=False).count()
     
+    stats = CBS_STATS.get(entity.code, {"totalpopulation": 0, "numofcouncilman": "", "socioeco": "", "voting":""})
+
     context.update({ 'tags': tags,
         'questions': questions,
         'by_date': order_opt == 'date',
@@ -126,7 +128,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'candidate_lists': candidate_lists,
         'users_count': users_count,
         'answers_count': answers_count,
-        'stats': CBS_STATS[entity.code],
+        'stats': stats,
         })
 
     ret = render(request, template, context)
