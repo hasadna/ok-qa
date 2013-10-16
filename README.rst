@@ -14,7 +14,7 @@ Quick Start - Linux
 
 ::
 
-    $ sudo apt-get install libjpeg-dev
+    $ sudo apt-get install git-core mercurial python2.7-dev python-setuptools libjpeg-dev
     $ sudo easy_install pip
     $ sudo pip install virtualenv
     $ virtualenv ENV
