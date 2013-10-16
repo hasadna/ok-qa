@@ -31,6 +31,7 @@
       </a>
     </div>
     {% endif %}
+    {% if not hide_controls %}
     <div class="btn-group cp">
       {% if user == question.author and not answers %}
       <a class="edit-question btn btn-action" href="{% url 'edit_question' question.unislug %}"
@@ -92,6 +93,7 @@
       </div>
       {% endif %}
     </div>
+    {% endif %}
     <div class="summary">
       <h3>
         <a href="{{ question.author.get_absolute_url }}" rel="tooltip" class="answer-user owner" title="{{question.author.get_full_name}}">{{question.author.get_full_name|default:question.author.username}}</a>
