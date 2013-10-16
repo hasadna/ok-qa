@@ -130,11 +130,6 @@ class QuestionTest(TestCase):
         self.q.is_deleted = False
         self.q.save()
 
-    def test_home_page(self):
-        c = Client()
-        res2 = c.get(reverse('home_page'))
-        self.assertTemplateUsed(res2, 'qa/front_page.html')
-
     def test_question_detail(self):
         c = Client()
         q_url = reverse('question_detail',
