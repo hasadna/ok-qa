@@ -216,6 +216,9 @@
         $('#candidate_container').on('hidden', function () {
           $('#candidates_button').text("{% trans 'Display candidates' %}")
         })
+        {% if not questions %}
+          $('#candidate_container').collapse('toggle');
+        {% endif %}
 
     });
 </script>
