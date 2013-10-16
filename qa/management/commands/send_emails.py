@@ -79,11 +79,14 @@ class Command(BaseCommand):
             # context['new_upvotes'] = QuestionUpvote.objects.filter(created_at__gte=last_sent, question__author=user).\
             #        order_by('question')
             context['new_answers'] = Answer.objects.filter(created_at__gte=last_sent,
+                    is_deleted=False,
                     question__in = [x.actor for x in \
                             Follow.objects.filter(user=user, content_type=self.q_ct)]).\
                             order_by('question')
             context['new_questions'] = Question.objects.exclude(author=user).\
-                    filter(entity=user.profile.locality, created_at__gte=last_sent).order_by('author')
+                    filter(entity=user.profile.locality,
+                           is_deleted=False,
+                           created_at__gte=last_sent).order_by('author')
             html_content = render_to_string("email/voter_update.html", context)
 
         subject = FlatBlock.objects.get(slug="candidate_update_email.subject").content
