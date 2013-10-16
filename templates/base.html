@@ -46,6 +46,7 @@
             <img src="{% static "img/logo.png" %}" title="{{site.name}}">
           </a>
         </div>
+        {% block toolbar %}
         <div class="pull-left">
           <ul class="breadcrumb" style="margin:0; background-color: inherit;">
             <li>
@@ -66,8 +67,8 @@
                   {% endif %}
                 </form>
               {% endblock %}
-            
          </div>
+         {% endblock %}
         <div class="pull-right">
           <ul class="nav nav-self">
             {% block topnav %}
