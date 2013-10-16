@@ -57,27 +57,6 @@ class Profile(models.Model):
     def __unicode__(self):
         return self.user.get_full_name()
 
-    def save(self, **kwargs):
-        if self.avatar_uri:
-            create_avatar(self.user, self.avatar_uri)
-        return super(Profile, self).save(**kwargs)
-
-    def avatar_url(self, size=40):
-        if self.avatar_uri:
-            return self.avatar_uri
-        ''' getting the avatar image url from Gravatar '''
-        default = "http://oshot.hasadna.org.il/static/img/defaultavatar.png"
-        email = self.user.email
-        if self.avatar_uri:
-            return self.avatar_uri
-
-        if email:
-            gravatar_url = "http://www.gravatar.com/avatar/" + hashlib.md5(email.lower()).hexdigest() + "?"
-            gravatar_url += urllib.urlencode({'d':default, 's':str(size)})
-            return gravatar_url
-        else:
-            return default
-
     @property
     def following(self):
         return map(lambda x: x.actor,
