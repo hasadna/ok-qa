@@ -111,13 +111,8 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     candidates = candidates.annotate(num_answers=models.Count('answers')).\
                             order_by('-num_answers')
 
-    question_count = questions.count()
-    answers_count = Answer.objects.filter(question__entity=entity, is_deleted=False).count()
-    if question_count and candidates_count:
-        answers_rate = int((float(answers_count) / (question_count * candidates_count)) * 100)
-    else:
-        answers_rate = 0
-
+    answers_count = Answer.objects.filter(question__entity=entity, question__is_deleted=False).count()
+    
     context.update({ 'tags': tags,
         'questions': questions,
         'by_date': order_opt == 'date',
@@ -130,7 +125,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'candidate_list': candidate_list,
         'candidate_lists': candidate_lists,
         'users_count': users_count,
-        'answers_rate': answers_rate,
+        'answers_count': answers_count,
         'stats': CBS_STATS[entity.code],
         })
 

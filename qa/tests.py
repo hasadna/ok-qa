@@ -120,13 +120,13 @@ class QuestionTest(TestCase):
         self.assertEquals(response.context['candidates_count'], 1)
         self.assertEquals(response.context['users_count'], 4)
         self.assertEquals(response.context['questions'].count(), 1)
-        self.assertEquals(response.context['answers_rate'], 100)
+        self.assertEquals(response.context['answers_count'], 1)
 
         self.q.is_deleted = True
         self.q.save()
         response = c.get(default_home)
         self.assertFalse(response.context['questions'])
-        self.assertEquals(response.context['answers_rate'], 0)
+        self.assertEquals(response.context['answers_count'], 0)
         self.q.is_deleted = False
         self.q.save()
 

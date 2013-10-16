@@ -46,6 +46,9 @@
             -->,
             <strong><span id="councilSize">{{stats.numofcouncilman}}</span></strong>
             {% trans "Council seats" %}<!--
+            -->,
+            <strong><span id="voting">{{stats.voting}}</span></strong>
+            {% trans "Voting Percent" %}<!--
             {% if users_count %}
             -->, <strong>{{users_count}}</strong> {% trans "Registered users" %}<!--
             {% endif %}
@@ -55,8 +58,8 @@
             {% if candidates_count %}
             -->, <strong>{{candidates_count}}</strong> {% trans "Registered candidates" %}<!--
             {% endif %}
-            {% if answers_rate %}
-            -->, <strong>{{answers_rate}}%</strong> {% trans "Answer rate" %}<!--
+            {% if answers_count %}
+            -->, <strong>{{answers_count}}</strong> {% trans "Answers" %}<!--
             {% endif %}.
             -->
           </div>
