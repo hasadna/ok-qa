@@ -3,7 +3,6 @@ from .views import *
 from qa.sitemaps import sitemaps
 
 urlpatterns = patterns('qa.views',
-    url(r'^$', 'home_page', name="home_page"),
     url(r'^(?P<entity_id>[-\d]+)/qna/$', 'local_home', name='local_home'),
     url(r'^(?P<entity_slug>[-\w]+)/qna/$', 'local_home', name='local_home'),
     url(r'^qna/tags/(?P<tags>.+)/$', 'local_home', name='show_tags'),

@@ -46,20 +46,13 @@ class JsonpResponse(HttpResponse):
             *args, **kwargs)
 
 
-def home_page(request):
-    context = RequestContext(request)
-    context['questions'] = Question.objects.count()
-    context['answers'] = Answer.objects.count()
-    return render_to_response('qa/front_page.html', context)
-
-
 def local_home(request, entity_slug=None, entity_id=None, tags=None,
         template="qa/question_list.html"):
     """
     A home page for an entity including questions and candidates
     """
-    if not tags and not request.GET:
-        ret = cache.get('local_home_%s' % entity_id)
+    if request.user.is_anonymous() and not tags and not request.GET:
+        ret = cache.get(entity_home_key(entity_id))
         if ret:
             return ret
     context = RequestContext(request)
@@ -142,7 +135,8 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         })
 
     ret = render(request, template, context)
-    cache.set('local_home_%s' % entity_id, ret, timeout = 36000)
+    if request.user.is_anonymous() and not tags and not request.GET:
+        cache.set('local_home_%s' % entity_id, ret, timeout = 36000)
     return ret
 
 class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseDetailView):

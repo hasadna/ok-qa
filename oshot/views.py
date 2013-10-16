@@ -1,9 +1,10 @@
 # Django imports
-from django.shortcuts import render
+from django.shortcuts import render, render_to_response
 from django.utils.translation import ugettext as _
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseForbidden
+from django.template.context import RequestContext
 
 # pluggable apps
 from haystack.query import SearchQuerySet
@@ -11,7 +12,7 @@ from haystack.inputs import Exact
 from haystack.views import basic_search
 from entities.models import Entity
 # our apps
-from qa.models import Answer
+from qa.models import Answer, Question
 from user.models import Profile
 
 def place_search(request):
@@ -43,4 +44,12 @@ def entity_stats(request):
                             'editor_count': editor_count,
                             'answer_count': answer_count,
                             })
+
+def home_page(request):
+    context = RequestContext(request, {
+        'questions': Question.objects.count(),
+        'answers': Answer.objects.count(),
+        })
+    return render_to_response('home_page.html', context)
+
 
