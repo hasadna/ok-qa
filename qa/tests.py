@@ -115,9 +115,7 @@ class QuestionTest(TestCase):
         default_home = reverse('local_home',
                         kwargs={'entity_id': self.home.id})
         response = c.get(default_home)
-        res2 = c.get(reverse('local_home'))
 
-        self.assertRedirects(res2, default_home)
         self.assertEquals(response.context['candidates'].count(), 0)
         self.assertEquals(response.context['candidates_count'], 1)
         self.assertEquals(response.context['users_count'], 4)

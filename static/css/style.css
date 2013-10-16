@@ -90,12 +90,14 @@ height: 38px;
 }
 
 .supporters {
-float: left;
-height: 400px;
-text-align: center;
+height: 120px;
+overflow: auto;
+}
+.supporter {
+height: 73px;
+padding-top: 15px;
 display: inline-block;
 vertical-align: top;
-overflow: auto;
 }
 .mini-counts {
 padding: 0 0 2px 0;

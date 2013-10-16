@@ -4,7 +4,7 @@ import json
 from django.db.models import Count
 from django.http import HttpResponse, HttpResponseForbidden
 from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, render_to_response
 from django.http import Http404
 from django.views.decorators.http import require_POST
 from django.template.context import RequestContext
@@ -17,6 +17,7 @@ from django.conf import settings
 from django.views.generic.detail import SingleObjectTemplateResponseMixin, BaseDetailView
 from django.core.urlresolvers import reverse
 from django.contrib.sites.models import Site
+from django.core.cache import cache
 
 from entities.models import Entity
 from taggit.models import Tag
@@ -50,6 +51,10 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     """
     A home page for an entity including questions and candidates
     """
+    if request.user.is_anonymous() and not tags and not request.GET:
+        ret = cache.get(entity_home_key(entity_id))
+        if ret:
+            return ret
     context = RequestContext(request)
     entity = context['entity']
     if not entity or entity.division.index != 3:
@@ -59,7 +64,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         messages.error(request,_('Please update your locality in your user profile to use the site'))
         return HttpResponseRedirect(reverse('edit_profile'))
 
-    questions = Question.on_site.filter(entity=entity, is_deleted=False)
+    questions = Question.on_site.select_related('author', 'entity').prefetch_related('answers__author').filter(entity=entity, is_deleted=False)
 
     only_flagged = request.GET.get('filter', False) == 'flagged'
     if only_flagged:
@@ -87,7 +92,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     else:
         users_count = Profile.objects.count()
 
-    candidate_lists = CandidateList.objects.filter(entity=entity).order_by('name')
+    candidate_lists = CandidateList.objects.select_related().filter(entity=entity).order_by('name')
     candidates = User.objects.filter(candidate__isnull=False).filter(profile__locality=entity)
     candidates_count = candidates.count()
 
@@ -129,7 +134,10 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'stats': CBS_STATS[entity.code],
         })
 
-    return render(request, template, context)
+    ret = render(request, template, context)
+    if request.user.is_anonymous() and not tags and not request.GET:
+        cache.set('local_home_%s' % entity_id, ret, timeout = 36000)
+    return ret
 
 class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseDetailView):
     model = Question
@@ -166,8 +174,13 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
                 context['fb_message'] = answer.content
             except:
                 pass
-        context['supporters'] = [vote.user for vote in question.upvotes.all() \
-                                if vote.user != question.author]
+
+        supporters = [vote.user for vote in question.upvotes.all()]
+        supporters = [question.author] + supporters
+        if user in supporters and user != question.author:
+            supporters = [user] + [u for u in supporters if u != user]
+        context['supporters'] = supporters
+
         return context
 
     def render_to_response(self, context):
@@ -217,7 +230,7 @@ def post_question(request, entity_id=None, slug=None):
     if entity_id:
         entity = Entity.objects.get(pk=entity_id)
         if entity != profile.locality:
-            messages.warning(request, _('Sorry, you may only post questions in your locality') + 
+            messages.warning(request, _('Sorry, you may only post questions in your locality') +
                 "\n" +
                 _('Before posting a new question, please check if it already exists in this page'))
             return HttpResponseRedirect(reverse('local_home',

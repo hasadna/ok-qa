@@ -26,19 +26,15 @@
             <div class="span9">
                 {% include "qa/_question.html" %}
             </div>
-            <div class="span3">
-                {% if supporters %}
-                <div class="supporters">
-                    {% for supporter in supporters %}
-                    <div class="avatar-container" style="padding-top:15px;">
-                      <a href="{{ supporter.get_absolute_url }}" rel="tooltip"
-                         title="{{ supporter.get_full_name }}">
-                        {% avatar supporter %}
-                      </a>
-                    </div>
-                    {% endfor %}
-                </div>
-                {% endif %}
+            <div class="supporters span3">
+              {% for supporter in supporters %}
+              <div class="supporter avatar-container">
+                <a href="{{ supporter.get_absolute_url }}" rel="tooltip"
+                   title="{{ supporter.get_full_name }}">
+                  {% avatar supporter %}
+                </a>
+              </div>
+              {% endfor %}
             </div>
         </div>
         <div class="row questions-wrapper">

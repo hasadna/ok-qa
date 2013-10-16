@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load flatblock_tags %}
+{% load i18n %}
+{% block content %}
+<div class="row">
+  <div class="span12">
+    {% flatblock 'home.see_questions' 3600 %}
+  </div>
+</div>
+<div class="row"> 
+  <div class="span8">
+    {% flatblock 'home.signup' 3600 %}
+  </div>
+  <div class="span4 "style="text-align:center">
+    <img src="{{ STATIC_URL }}img/question_comix.png" />
+    <br />
+    <h4>{{ questions }} {% trans "questions" %}</h4>
+  </div>
+</div>
+<div class="row">
+  <div class="span8">
+    {% flatblock 'home.candidates' 3600 %}
+  </div>
+  <div class="span4" style="text-align:center">
+    <img src="{{ STATIC_URL }}img/answer_comix.png" />
+    <br />
+    <h4>{{ answers }} {% trans "answers" %}</h4>
+  </div>
+</div>
+{% endblock %}
