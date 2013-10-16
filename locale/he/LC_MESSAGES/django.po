@@ -556,7 +556,7 @@ msgstr "מושבים במועצה"
 
 #: qa/templates/qa/question_list.html:51
 msgid "Voting Percent"
-msgstr "אחוזי הצבעה בבחירות האחרונות"
+msgstr "הצבעה בבחירות האחרונות"
 
 #: qa/templates/qa/question_list.html:53
 msgid "Registered users"
