@@ -45,7 +45,7 @@ class Command(BaseCommand):
                 self.update_user(user)
 
     def update_user(self, user):
-        if not user.is_active:
+        if not user.is_active or not user.email:
             ''' inactive users get nothing! '''
             return
 
