@@ -15,9 +15,8 @@ from entities.models import Entity
 from qa.models import Answer, Question
 from user.models import Profile
 
-def place_search(request):
+def place_search(request, entity_slug=None):
     """ A view to search in a specific place """
-    entity_slug = request.GET.get('entity_slug', None)
     if entity_slug:
         searchqs = SearchQuerySet().filter(place=Exact(entity_slug))
         return basic_search(request, searchqueryset=searchqs)

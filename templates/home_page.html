@@ -25,7 +25,9 @@
     </div>
     <div class="row" style="margin-top:2em;">
       {{ entity_form }}
-      {% include "_search.html" %}
+      {% with entity=False %}
+        {% include "_search.html" %}
+      {% endwith %}
     </div>
 </div>
 <div class="row">

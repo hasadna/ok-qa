@@ -1,7 +1,12 @@
 {% load i18n %}
-<form class="navbar-search" action="/search/">
+<form class="navbar-search" 
+  {% if entity %}
+    action="/{{entity.slug}}/search/"
+  {% else %}
+    action="/search/"
+  {% endif %} 
+>
   {% block searchform %} {% endblock %}
-  <input type="hidden" name="entity_slug" value="{{entity.slug|default:0}}" />
   <input type="text" name="q" id="id_q" class="search-query"
   {% if entity %}
     placeholder="{% trans 'Search in' %}&nbsp;{{entity.name}}"

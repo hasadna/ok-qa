@@ -208,9 +208,9 @@
 
 {% endblock %}
 {% block extrascript %}
-<script>
+  {% include "qa/_question_controls.js" %}
+  <script>
     $(document).ready(function () {
-        {% include "qa/_question_controls.js" %}
         {% if request.GET.list %}
         $('#candidates_button').text("{%trans 'Hide candidates'%}")
         {% endif %}

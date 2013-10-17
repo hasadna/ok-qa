@@ -94,6 +94,10 @@
 {% endblock %}
 {% if my_answer_id %}
     {% block extrascript %}
+
+        {% if not question.is_deleted %}
+          {% include "qa/_question_controls.js" %}
+        {% endif %}
         <script>
             $(document).ready(function () {
                 {% if question.is_deleted %}
@@ -103,10 +107,7 @@
                     buttons.click(function (e) {
                         e.preventDefault();
                     });
-                {% else %}
-                  {% include "qa/_question_controls.js" %}
-
-                  {% if max_length_a_content %}
+                {% elif max_length_a_content %}
                       var $answerContent = $("#id_content"),
                               $charsCounter = $("#charsCounter"),
                               $charsLeft = $("#charsLeft");
@@ -120,7 +121,6 @@
 
                           $charsLeft.text({{ max_length_a_content }} - length);
                       });
-                  {% endif %}
                 {% endif %}
             });
         </script>
