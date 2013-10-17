@@ -24,10 +24,14 @@
       </div>
     </div>
     <div class="row" style="margin-top:2em;">
-      {{ entity_form }}
       {% with entity=False %}
+	{{ entity_form }}
         {% include "_search.html" %}
       {% endwith %}
+      {% if entity %}
+                <h4><a
+                    href="{% url 'local_home' entity.id %}">{{entity}}</a></h4>
+      {% endif %}
     </div>
 </div>
 <div class="row">

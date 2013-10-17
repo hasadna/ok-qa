@@ -260,18 +260,11 @@ font-size: 12px;
 	padding-bottom:5px;
 	border-bottom: 1px solid #f1f1f1;
 }
-a.answer-user.owner {
-padding: 2px 5px 2px 5px;
-}
-a.answer-user {
-white-space: nowrap;
-padding: 0;
-}
 .owner {
-background-color: #DEEDFF;
-background-color: rgba(222, 237, 255, 0.4);
-background-color: #E0EAF1;
+
 }
+.answer-user { white-space: nowrap; padding: 0; font-weight:bold; }
+.owner { background-color: #E5BE7B; padding: 2px 5px 2px 5px;}
 .answer-date, .answer-date > a {
 border-bottom: none;
 color: #999;
