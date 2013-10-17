@@ -53,7 +53,7 @@ def publish_upvote_to_facebook(upvote):
             publish_upvote_to_facebook.retry(exc=exc)
 
 @task()
-def publish_answer(answer):
+def publish_answer(answer, send_email=True):
     logger.info("publishing answer %s" % unicode(answer))
     question = answer.question
     # publish to facebook
@@ -64,21 +64,22 @@ def publish_answer(answer):
             graph.post(path="me/localshot:answer", question=answer_url)
         except Exception, exc:
             logger.warn("-- Failed to publish answer to facebook")
-    # send an email to interesed users
-    editors = User.objects.filter(profile__locality=question.entity,
-                    profile__is_editor=True).values_list('email', flat=True)
-    content_type = ContentType.objects.get_for_model(question)
-    followers  = Follow.objects.filter(content_type=content_type,
-            object_id=question.id).values_list('user__email', flat=True)
-    html_content = render_to_string("email/new_answer.html",
-            {'answer': answer,
-             'ROOT_URL': get_root_url(),
-            })
-    text_content = 'Sorry, we only support html based email'
-    msg = EmailMultiAlternatives(_("A new answer for your question"),
-            text_content,
-            settings.DEFAULT_FROM_EMAIL,
-            bcc=list(editors)+list(followers))
-    msg.attach_alternative(html_content, "text/html")
-    msg.send()
+    if send_email:
+        # send an email to interesed users
+        editors = User.objects.filter(profile__locality=question.entity,
+                        profile__is_editor=True).values_list('email', flat=True)
+        content_type = ContentType.objects.get_for_model(question)
+        followers  = Follow.objects.filter(content_type=content_type,
+                object_id=question.id).values_list('user__email', flat=True)
+        html_content = render_to_string("email/new_answer.html",
+                {'answer': answer,
+                 'ROOT_URL': get_root_url(),
+                })
+        text_content = 'Sorry, we only support html based email'
+        msg = EmailMultiAlternatives(_("A new answer for your question"),
+                text_content,
+                settings.DEFAULT_FROM_EMAIL,
+                bcc=list(editors)+list(followers))
+        msg.attach_alternative(html_content, "text/html")
+        msg.send()
 
