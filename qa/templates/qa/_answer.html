@@ -1,6 +1,6 @@
 {% load i18n avatar_tags links_tags %}
 
-{% with author_url=answer.author.get_absolute_url %}
+{% with author_url=answer.author.get_absolute_url list=answer.author.candidate_set.all.0.candidate_list %}
 <div id="answer-{{answer.id}}" class="answer" style="min-height: 35px; display: table">
   {% if answer.is_deleted %}
     <div class="alert alert-error">
@@ -21,6 +21,10 @@
         <div class="pull-right">
         <a href="{{ author_url }}" title="{{answer.author.get_full_name}}" rel="tooltip" class="answer-user owner">
           {{answer.author.get_full_name}}
+        </a><br/>
+        <a href="{% url "candidate-list" list.id %}" title="{{ list }}" rel="tooltip"
+           class="answer-user-list owner">
+          {{list}}
         </a>&nbsp;
 
         </div>
