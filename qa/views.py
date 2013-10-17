@@ -206,14 +206,16 @@ def post_answer(request, q_id):
     try:
         # If the user already answered, update his answer
         answer = question.answers.get(author=request.user)
+        is_new_answer = False
     except question.answers.model.DoesNotExist:
         answer = Answer(author=request.user, question=question)
+        is_new_answer = True
         follow(request.user, question)
 
     answer.content = request.POST.get("content")
 
     answer.save()
-    publish_answer.delay(answer)
+    publish_answer.delay(answer, send_email=is_new_answer)
 
     return HttpResponseRedirect(question.get_absolute_url())
 
