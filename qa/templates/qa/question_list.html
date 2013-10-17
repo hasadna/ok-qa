@@ -1,17 +1,37 @@
 {% extends "qa/qa_base.html" %}
 {% load i18n %}
+{% load cache %}
 {% load pagination_tags %}
 {% load flatblock_tags %}
 {% load avatar_tags %}
 
 {% block pageTitle %}{% trans "questions list" %}{% endblock %}
-
+{% block extrahead %}
+  <meta property='og:image' content='http:{{ STATIC_URL }}img/locality/{{ entity.code }}.jpg'>
+{% endblock %}
 {% block homeNav %}class="active"{% endblock %}
 {% block content %}
+{# {% cache 300 local_home entity.id request.page request.user.username %} #}
 <div class="page-header">
   <div class="container">
+    <div class="row collapse in" id='flatblock_row'>
+      {% if need_editors %}
+        <div data-toggle="collapse" data-target="#flatblock_row" style='float: left; margin: 10px;'>X</div>
+        <div class="well flatblock" id='editors_needed'>
+          {% flatblock "editors_needed" 9000 %}
+        </div>
+      {% elif not request.user.is_authenticated %}
+        <div data-toggle="collapse" data-target="#flatblock_row" style='float: left; margin: 10px;'>X</div>
+        <div class="well flatblock" id='welcome_message'>
+          {% flatblock "welcome" 9000 %}
+        </div>
+      {% endif %}
+    </div>
     <div class="row">
-        <div class="span8">
+
+        <div class="span2"><img src="{{ STATIC_URL }}img/locality/{{ entity.code }}.jpg" alt="{{entity.name_he}}" width='140px' onerror="this.style.display='none'">
+        </div>
+        <div class="span10">
           <h1>
             {{ entity }}
                {% if not current_tags %}
@@ -20,37 +40,124 @@
                </a>
                {% endif %}
           </h1>
-          <div id="cbs_data">{#TODO: % trans "Loading CBS Data..." % #}</div>
-          {% if need_editors %}
-            <div class="well flatblock">
-              {% flatblock "editors_needed" 9000 %}
-            </div>
-          {% elif not request.user.is_authenticated %}
-            <div class="well flatblock">
-              {% flatblock "welcome" 9000 %}
-            </div>
-          {% endif %}
+          <div id="cbs_data"><!--
+            {% if stats.totalpopulation %}-->
+            <strong><span id="population"></span>{{stats.totalpopulation}}</strong>
+            {% trans "Population" %}<!--
+            {% endif %}
+            {% if stats.numofcouncilman %}
+            -->,<strong><span id="councilSize">{{stats.numofcouncilman}}</span></strong>
+            {% trans "Council seats" %}<!--
+            {% endif %}
+            {% if stats.voting %}
+            -->, <strong><span id="voting">{{stats.voting}}</span></strong>
+            {% trans "Voting Percent" %}<!--
+            {% endif %}
+            {% if users_count %}
+            -->, <strong>{{users_count}}</strong> {% trans "Registered users" %}<!--
+            {% endif %}
+            {% if questions.count %}
+            -->, <strong>{{questions.count}}</strong> {% trans "Questions" %}<!--
+            {% endif %}
+            {% if candidates_count %}
+            -->, <strong>{{candidates_count}}</strong> {% trans "Registered candidates" %}<!--
+            {% endif %}
+            {% if answers_count %}
+            -->, <strong>{{answers_count}}</strong> {% trans "Answers" %}<!--
+            {% endif %}
+            -->.
+          </div>
+          <button type="button" class="btn btn-large btn-info" data-toggle="collapse" data-target="#candidate_container" id='candidates_button' style='margin-top:5px;'>
+            {% trans 'Display candidates' %}
+          </button>  
+
         </div>
+
     </div>
   </div>
+
 </div>
+
 {% if not request.page or request.page == 1 %}
-<div class="row">
-  {% for candidate in candidates %}
-    {% if forloop.first %}
-      <h2>{% blocktrans with entity.name as place %}Candidates in {{place}} {% endblocktrans %}</h2>
-    {% endif %}
-      <div onclick="window.location.href='{{ candidate.get_absolute_url }}'"
-      class="candidate-avatar">
-        {% avatar candidate 75 %}
-        <p>{{ candidate.get_full_name|default:candidate.username}}</p>
-        {% if candidate.num_answers %}
-        <p>{{ candidate.num_answers }} {% trans "answers" %}</p>
+<div class="row collapse{% if request.GET.list %} in{%endif%}" id="candidate_container">
+  <div class="span6">
+    {% if candidate_list or candidates %}
+      <h2>
+      {% if candidate_list %}
+        {% if candidates %}
+          {% trans "Candidates in list" %}
+        {% else %}
+          {% trans "No candidate has registered yet in list" %}
         {% endif %}
-      </div>
-  {% endfor %}
+        <a href="{% url 'candidate-list' candidate_list.id %}">
+          {{candidate_list}}
+        </a>
+      {% else %}
+        {% blocktrans with entity.name as place %}Mayor candidates in {{place}}{% endblocktrans %}
+      {% endif %}
+      {% if candidates %}
+        ({{candidates.count}})
+      {% endif %}
+      </h2>
+    {% endif %}
+    {% for candidate in candidates %}
+        <div onclick="window.location.href='{{ candidate.get_absolute_url }}'"
+        class="candidate-avatar">
+            {% avatar candidate 75 %}
+            <h4>{{ candidate.get_full_name|default:candidate.username}}</h4>
+            {% if not candidate_list and candidate.profile.candidate_list %}
+            <p>{{ candidate.profile.candidate_list }}</p>
+            {% endif %}
+            {% with answers_count=candidate.answers.count %}
+            {% if answers_count %}
+              {% if answers_count == 1 %}
+                <p> {% trans "One Answer" %} </p>
+              {% else %}
+                <p>{{ answers_count }} {% trans "Answers" %}</p>
+              {% endif %}
+            {% endif %}
+            {% endwith %}
+        </div>
+      {% endfor %}
+  </div>
+  <div class="span6">
+    <ul class="nav nav-pills nav-stacked">
+      {% for list in candidate_lists %}
+        {% if forloop.first %}
+        <h2>
+          {% blocktrans %}Candidate lists{% endblocktrans %} ({{ candidate_lists.count }})
+        </h2>
+        {% endif %}      
+        <li class="candidate_list {% if list == candidate_list %}active{% endif %}">
+          <a href=".?list={{ list.id }}">
+            <div class="candidate_list_detail ballot"
+                 style="background: url('{{STATIC_URL}}img/white_note.png') no-repeat; ">
+              {{ list.ballot }}
+            </div>
+            <div class="candidate_list_detail list_name">
+              {{ list.name }}
+            </div>
+          </a>
+        </li>
+      {% endfor %}
+      <li class="candidate_list" style="width:200px;
+        {% if not candidate_list %}visibility:hidden;{% endif %}">
+        <a href=".?list=mayor">
+          <div class="candidate_list_detail ballot"
+               style="background: url('{{STATIC_URL}}img/yellow_note.png') no-repeat; ">
+            <div style="visibility:hidden">" "</div>
+          </div>
+          <h4 class="candidate_list_detail list_name">
+            {% trans "Mayor candidates" %}
+          </h4>
+        </a>
+      </li>
+
+    </ul>
+  </div>
 </div>
 {% endif %}
+{# {% endcache %} #}
 <div class="row questions-wrapper">
   <div class="span9 questions">
     {% if current_tags %}
@@ -63,11 +170,11 @@
     {% endif %}
     {% if questions.count > 3 or only_flagged %}
     <ul class="nav nav-tabs">
-      <li {% if by_date %}class="active"{% endif %}>
-        <a href=".?order=date">{% trans "Most Recent" %}</a>
-      </li>
       <li {% if by_rating %}class="active"{% endif %}>
         <a href=".?order=rating">{% trans "Top Questions" %}</a>
+      </li>
+      <li {% if by_date %}class="active"{% endif %}>
+        <a href=".?order=date">{% trans "Most Recent" %}</a>
       </li>
       {% if user.is_staff or user.profile.is_editor %}
         <li {% if only_flagged %}class="active"{% endif %}>
@@ -79,24 +186,18 @@
 
     {% autopaginate questions 20 %}
     {% for question in questions %}
-        {% with show_responders=True %}
+        {% with show_responders=True can_answer=False can_flag=False %}
         {% include "qa/_question.html" %}
         {% endwith %}
     {% endfor %}
     {% paginate %}
   </div>
   <div class="span3 sidebar">
-    {% if can_ask %}
     <div class="pull-right">
       <a id="post-question" class="btn btn-success btn-large" style="margin-top:0"
-        href="{% url "post_question" %}" >
+        href="{% url "post_question" entity.id %}" >
         {% trans "Ask Question" %}
       </a>
-    </div>
-    {% endif %}
-    <div class="module" id="questions-count">
-        <div class="summarycount al">{{question_count}}</div>
-        <p>{% trans "Questions asked" %}</p>
     </div>
     <h2>{% trans "Tags" %}</h2>
     <ul class="unstyled">
@@ -104,26 +205,25 @@
     </ul>
   </div>
 </div>
+
 {% endblock %}
-  {% block extrascript %}
-    <script>
-        function display_cbs(json) {
-          for(i = 0; i < json.feed.entry.length; i++){
-              entry = json.feed.entry[i];
-              if (entry.gsx$code.$t == "{{entity.code}}") {
-                var h = "<p><strong>"+entry.gsx$totalpopulation.$t+"</strong>";
-                    h+= "&nbsp;{% trans 'Total Population' %}</p>";
-                    h+= "<p><strong>"+entry.gsx$socioeco.$t+"</strong>";
-                    h+= "&nbsp;{% trans 'Socio Economic Grade' %}";
-                    h+= "<p><strong>"+entry.gsx$numofcouncilman.$t+"</strong>";
-                    h+= "&nbsp;{% trans 'Number of Councilman' %}";
-                $('#cbs_data').html(h);
-                return;
-              }
-            }
-          }
+{% block extrascript %}
+  {% include "qa/_question_controls.js" %}
+  <script>
+    $(document).ready(function () {
+        {% if request.GET.list %}
+        $('#candidates_button').text("{%trans 'Hide candidates'%}")
+        {% endif %}
+        $('#candidate_container').on('shown', function () {
+          $('#candidates_button').text("{%trans 'Hide candidates'%}")
+        })
+        $('#candidate_container').on('hidden', function () {
+          $('#candidates_button').text("{% trans 'Display candidates' %}")
+        })
+        {% if not questions.count %}
+          $('#candidate_container').collapse('toggle');
+        {% endif %}
 
-    </script>
-    <!-- get a btter performing source script src="http://spreadsheets.google.com/feeds/list/0AlrAe9zy7m-PdEczNE9ockdOaVVpaUZVZENiVjlRSlE/1/public/values?alt=json-in-script&amp;callback=display_cbs"></script> -->
-
-  {% endblock %}
+    });
+</script>
+{% endblock %}

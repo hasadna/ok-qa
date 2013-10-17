@@ -18,7 +18,7 @@ class CreationTest(TestCase):
 
     def test_candidatelist(self):
         """
-        Tests the creation of CandiateList and it's basic methods
+        Tests the creation of candidateList and it's basic methods
         """
         cl1 = CandidateList.objects.create(name="Imagine", ballot="I")
 

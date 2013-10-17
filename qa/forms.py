@@ -1,11 +1,9 @@
+import re
 from django import forms
 from django.core.exceptions import ValidationError
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
 
 from models import Answer, Question
-
-from slugify import slugify as unislugify
-
 
 class AnswerForm(forms.ModelForm):
     class Meta:
@@ -27,16 +25,12 @@ class QuestionForm(forms.ModelForm):
                         forms.BooleanField(label=_("Publish to facebook?"), initial=True, required=False,
                             help_text=_("let your friends know you've asked a question"))
 
-    def clean(self):
-        cleaned_data = super(QuestionForm, self).clean()
-        unislug = unislugify(cleaned_data.get('subject'))
-
-        return cleaned_data
-
     def clean_subject(self):
         subject = self.cleaned_data['subject']
         if subject == 'post_q':
             raise ValidationError(_("Invalid question"))
+        if re.search(r'^[,\'"]+$',subject):
+            raise ValidationError(_('Illegal subject: %s') %(subject))    
         return subject
 
     def clean_tags(self):
@@ -44,4 +38,6 @@ class QuestionForm(forms.ModelForm):
         for tag in tags:
             if len(tag)>20:
                 raise ValidationError(_('Tags are limited to 20 characters'))
+            if re.search(r'^[,\'"]+$',tag):
+                raise ValidationError(_('Illegal tag: %s') %(tag))
         return tags

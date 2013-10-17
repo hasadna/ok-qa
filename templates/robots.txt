@@ -1,4 +1,4 @@
-Sitemap: http://www.example.com/sitemap.xml
+Sitemap: http://localshot.org.il/sitemap.xml
 
 User-agent: *
 Disallow:

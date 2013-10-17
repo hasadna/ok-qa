@@ -1,7 +1,10 @@
 {% extends "user/user_base.html" %}
-{% load i18n %}
-{% load avatar_tags %}
-{% block pageTitle %}{{ candidate.get_full_name|default:candidate.username }}{% endblock %}
+{% load i18n avatar_tags links_tags %}
+
+{% block pageTitle %}{{ friend.get_full_name }}{% endblock %}
+{% block extrahead %}
+  <meta property="og:image" content='{% avatar_url friend.user %}'>
+{% endblock %}
 
 {% block breadcrumbs %}
   <li class="active">{{ flatpage.title }}</li>
@@ -9,35 +12,55 @@
 
 {% block content %}
 <div class="page-header row">
-  <div class="offset3 span6"><center>
+  <div class="offset2 span8"><center>
     <div class="dead-center">
-      <img src="{% avatar_url candidate 75 %}" class="avatar img-circle">
+      {% avatar friend.user %}
       <h1 style="display:inline; padding-right:0.5em;">
-        {{ candidate.get_full_name|default:candidate.username}}
-          <a href="{% url 'user_feed' candidate.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
+        {{ friend.get_full_name}}
+          <a href="{% url 'user_feed' friend.user.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
             <img src="{{STATIC_URL}}img/rss.png" width="25" />
           </a>
       </h1>
-      {% if candidate.url %}
-        <h4 >
-          <a href="{{candidate.url}}">{{candidate.url}}</a>
-        </h4>
+      {% if friend.is_candidate %}
+      <h2>
+        {% if friend.gender == 'F' %}
+          {% trans 'Female candidate' %}
+        {% else %}
+          {% trans 'Male candidate' %}
+        {% endif %}
+
+        {% if candidate_list %}
+          {% trans 'in list' %} <a href="{% url 'candidate-list' candidate_list.id %}">{{candidate_list}}</a> 
+        {% endif %}
+        
+        {% if friend.is_mayor_candidate %}
+          {% trans 'for mayorship of' %} 
+        {% else %}
+          {% trans 'for the council of' %} 
+        {% endif %}
+        <a href="{% url "local_home" friend.locality.id %}">
+          {{friend.locality}}
+        </a>
+      </h2>
+
+      {% elif friend.locality %}
+      <h2>
+        <a href="{% url 'local_home' friend.locality.id %}" alt="{{friend.locality}}">{{friend.locality}}</a>
+      </h2>
       {% endif %}
-      {% if candidate.bio %}
-      <p style="font-size: 120%;">
-      {{ candidate.bio }}
-      </p>
+      <ul class="links unstyled">
+        {% object_links friend.user %}
+      </ul>
+      {% if friend.bio %}
+      <div class="well" style="text-align:right; font-size: 120%;">
+        {{ friend.bio|urlize_target_blank|linebreaks }}
+      </div>
       {% endif %}
-  </div></center>
-  </div>
-</div>
-<div class="row">
-    <div class="offset1 span5">
       <div style="text-align:right;">
         {% for answer in answers %}
         {% if forloop.first %}
           <h3>
-              {% trans "Answers" %}
+              {% trans "Answers by" %} {{friend.get_full_name}}
           </h3>
         {% endif %}
         <div class="question-summary narrow" id="question-summary-{{ question.id }}">
@@ -46,11 +69,11 @@
                 <a href="{{ answer.question.get_absolute_url }}" class="question-hyperlink"
                 title="{{ question.subject }}">{{ answer.question.subject }}</a>
             </h3>
-                <span class="too-long-toggle">{{ answer.question.content }}</span>
+                <span class="too-long-toggle">{{ answer.question.content|urlize_target_blank|linebreaks }}</span>
             <div class="well">
                 <a name="{{answer.id}}"></a>
-                <strong style="font-size: 13px;">
-                    <span class="too-long-toggle">{{ answer.content|linebreaksbr }}</span>
+                <strong style="font-size: 16px;">
+                    <span class="too-long-toggle">{{ answer.content|urlize_target_blank|linebreaks }}</span>
                 </strong>
                 <span title="{{ question.created_at }}" class="relativetime">
                     <br />
@@ -63,13 +86,10 @@
           </div>
         </div>
         {% endfor %}
-      </div>
-    </div>
-    <div class="span5">
       {% for question in questions %}
         {% if forloop.first %}
           <h3 style="margin-top: -10px; margin-bottom: -10px;">
-            {% trans "Questions" %}
+            {% trans "Questions by" %} {{friend.get_full_name}}
           </h3>
         {% endif %}
         <div class="question-summary narrow" id="question-summary-{{ question.id }}">
@@ -78,11 +98,11 @@
               title="{{ question.subject }}">{{ question.subject }}</a>
           </h4>
           <div class="preview">
-              <span class="too-long-toggle">{{ question.content }}</span>
+              <span class="too-long-toggle">{{ question.content|urlize_target_blank|linebreaks }}</span>
           </div>
         </div>
       {% endfor %}
-    </div>
+  </div></center>
 </div>
 {% endblock %}
 {% block extrascript %}

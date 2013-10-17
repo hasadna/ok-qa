@@ -1,21 +1,19 @@
 from django.db import models
 from django.conf import settings
-from django.utils.translation import ugettext as _
+from django.utils.translation import ugettext_lazy as _
+# Project's apps
 
 class CandidateList(models.Model):
+    name = models.CharField(_('List Name'), max_length=80)
+    ballot = models.CharField(_('Ballot'), max_length=5)
     candidates = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, null=True, through='Candidate')
-    name = models.CharField(_('Name'), max_length = 80)
-    ballot = models.CharField(_('Ballot'), max_length=4)
     number_of_seats = models.IntegerField(blank=True, null=True)
     surplus_partner = models.ForeignKey('self', blank=True, null=True,
                 help_text=_('The list with which is the surplus votes partner'))
-    mpg_html_report = models.TextField(_('MPG report'), blank=True, null=True,
-                help_text=_('The MPG report on the list, can use html'))
-    img_url = models.URLField(blank=True)
-    youtube_user = models.CharField(_('YouTube user'), max_length = 80, null=True, blank=True)
-    wikipedia_page = models.CharField(_('Wikipedia page'), max_length = 80, null=True, blank=True)
-    twitter_account = models.CharField(_('Twitter account'), max_length = 80, null=True, blank=True)
-    facebook_url = models.URLField(blank=True, null=True)
+    img_url = models.URLField(_('Image URL'), blank=True)
+    homepage_url = models.URLField(_('Homepage URL'), blank=True, null=True)
+    youtube_url = models.URLField(_('YouTube URL'), blank=True, null=True)
+    facebook_url = models.URLField(_('Facebook URL'), blank=True, null=True)
     platform = models.TextField(_('Platform'), blank=True, null=True)
     entity = models.ForeignKey('entities.Entity', blank=True, null=True)
 
@@ -33,6 +31,12 @@ class CandidateList(models.Model):
 
     def get_candidates(self):
         return Candidate.objects.get_verified().filter(candidate_list=self)
+
+    def can_edit(self, user):
+        return user.is_authenticated() and \
+            ((user.profile.is_editor and user.profile.locality == self.entity)\
+            or user in self.candidates.all()\
+            or user.is_superuser)
 
 
 class Party(models.Model):
@@ -67,17 +71,22 @@ class CandidateManager(models.Manager):
 
 
 class Candidate(models.Model):
-    candidate_list = models.ForeignKey(CandidateList)
-    user = models.ForeignKey(settings.AUTH_USER_MODEL)
-    ordinal = models.IntegerField(_('Ordinal'))
+    candidate_list = models.ForeignKey(CandidateList, verbose_name=_("candidate list"))
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, verbose_name=_("user"))
+    ordinal = models.IntegerField(_('Ordinal'), blank=True, null=True)
     party = models.ForeignKey(Party, blank=True, null=True)
-    votes = models.IntegerField(_('Elected by #'), null=True, blank=True, help_text=_('How many people voted for this candidate'))
+    votes = models.IntegerField(_('Elected by #'), blank=True, null=True, help_text=_('How many people voted for this candidate'))
     status = models.CharField(max_length=1, choices=CANDIDATE_STATUS, default='S')
+    for_mayor = models.BooleanField(_('Mayorship candidate'), default=False)
 
     objects = CandidateManager()
 
     class Meta:
-        ordering = ('ordinal',)
+        ordering = ('-ordinal',)
 
     def __unicode__(self):
-        return _("%(user)s in %(party)s") % self
+        return u'%s - %s - %s' % (self.user.profile.get_full_name(), self.candidate_list.name, self.candidate_list.entity)
+
+    @property
+    def entity(self):
+        return self.candidate_list.entity

@@ -1,18 +1,18 @@
 import json
 
 from django.conf import settings
-from django.contrib.auth.models import User, AnonymousUser, Permission
+from django.contrib.auth.models import User, AnonymousUser
 from django.contrib.sites.models import Site
 from social_auth.tests.client import SocialClient
 from django.test.client import Client
 from django.core.urlresolvers import reverse
-from django.utils.translation import ugettext as _
 from django.utils import translation
 from django.test import TestCase
 from django.test.utils import override_settings
 
 from mock import patch
 from entities.models import Domain, Division, Entity
+from polyorg.models import Candidate, CandidateList
 from .models import *
 
 
@@ -47,10 +47,13 @@ class QuestionTest(TestCase):
         domain = Domain.objects.create(name="test")
         division = Division.objects.create(name="localities", domain=domain, index="3")
         self.home = Entity.objects.create(name="earth", division=division,
-                                            id=settings.QNA_DEFAULT_ENTITY_ID)
+                                            id=1111, code="1111")
         self.away = Entity.objects.create(name="the moon", division=division,
-                                            id=9999)
-        self.common_user = User.objects.create_user("commoner", 
+                                            id=9999, code="41")
+        self.candidate_list = CandidateList.objects.create(name="list", ballot="l", 
+                                                            entity=self.home)
+
+        self.common_user = User.objects.create_user("commoner",
                                 "commmon@example.com", "pass")
         self.common_user.profile.locality = self.home
         self.common_user.profile.save()
@@ -61,8 +64,8 @@ class QuestionTest(TestCase):
         self.candidate_user = User.objects.create_user("candidate", 
                                 "candidate@example.com", "pass")
         self.candidate_user.profile.locality = self.home
-        self.candidate_user.profile.is_candidate = True
         self.candidate_user.profile.save()
+        Candidate.objects.create(user=self.candidate_user, candidate_list=self.candidate_list)
         self.editor = User.objects.create_user("editor", 
                                 "editor@example.com", "pass")
         self.editor.profile.locality = self.home
@@ -96,13 +99,11 @@ class QuestionTest(TestCase):
         response = c.post(post_url, {'subject':"Which?",
                         'entity': self.home.id,
                         })
-        self.assertEquals(response.status_code, 302)
-        self.assertTrue(Question.objects.get(subject="Which?"))
-        response = c.post(post_url, {'subject':"Which?",
-                        'entity': self.home.id,
-                        })
-        self.assertEquals(response.status_code, 302)
-        self.assertTrue(Question.objects.get(subject="Which?"))
+        new_q = Question.objects.get(subject="Which?")
+        self.assertRedirects(response, new_q.get_absolute_url())
+        away_q = Question.objects.create(subject="Which?", entity=self.away, author=self.common_user)
+        response = c.get(away_q.get_absolute_url())
+        self.assertEquals(response.status_code, 200)
 
     def test_permissions(self):
         self.assertFalse(self.q.can_answer(self.common_user))
@@ -110,19 +111,22 @@ class QuestionTest(TestCase):
 
     def test_local_home(self):
         c = Client()
-
+        # According to issue #263, entity urls should only use id's.
         default_home = reverse('local_home',
-                        kwargs={'entity_slug': self.home.slug})
+                        kwargs={'entity_id': self.home.id})
         response = c.get(default_home)
-        res2 = c.get(reverse('local_home'))
 
-        self.assertRedirects(res2, default_home)
-        self.assertEquals(response.context['candidates'].count(), 1)
+        self.assertEquals(response.context['candidates'].count(), 0)
+        self.assertEquals(response.context['candidates_count'], 1)
+        self.assertEquals(response.context['users_count'], 4)
+        self.assertEquals(response.context['questions'].count(), 1)
+        self.assertEquals(response.context['answers_count'], 1)
 
         self.q.is_deleted = True
         self.q.save()
         response = c.get(default_home)
         self.assertFalse(response.context['questions'])
+        self.assertEquals(response.context['answers_count'], 0)
         self.q.is_deleted = False
         self.q.save()
 
@@ -211,20 +215,79 @@ class QuestionTest(TestCase):
         message = list(response.context['messages'])[0]
         self.assertEquals(message.message, 'Question has been removed')
 
-    def test_upvote(self):
+    def test_post_not_killing_upvote(self):
+        '''
+        Related to issue #365:
+
+        When a user add a description to a question it looses all followers.
+        '''
+
+        # Create a new question
+        c = Client()
+        self.assertTrue(c.login(username="commoner", password="pass"))
+        post_url = reverse('post_question')
+        response = c.get(post_url)
+        self.assertEquals(response.status_code, 200)
+        self.assertFalse(Question.objects.filter(entity_id=self.home.id, unislug='Why?').count())
+        response = c.post(post_url, {
+                        'subject':"What?",
+                        'entity': self.home.id,
+                        'content': 'Yes!',
+                        'tags': '',
+                        })
+        new_q = Question.objects.get(subject="What?")
+        self.assertRedirects(response, new_q.get_absolute_url())
+
+        # Upvote the question
         c = SocialClient()
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 302)
         c.login(self.user, backend='facebook')
-        response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
-        self.assertEquals(response.status_code, 200)
-
         u=User.objects.get(email='user@domain.com')
         u.profile.locality = self.common_user.profile.locality
         u.profile.save()
         self.mock_request.return_value.content = json.dumps({
             'id': 1
         })
+        response = c.post(reverse('upvote_question', kwargs={'q_id':new_q.id}))
+        self.assertEquals(response.status_code, 200)
+
+        # Edit the question
+        c = Client()
+        post_url = reverse('edit_question', kwargs={'slug': new_q.unislug})
+        self.assertTrue(c.login(username="commoner", password="pass"))
+        response = c.get(post_url)
+        self.assertEquals(response.status_code, 200)
+        self.assertFalse(Question.objects.filter(entity_id=self.home.id, unislug='Why?').count())
+        response = c.post(post_url, {
+                        'id': new_q.id,
+                        'content': 'Because we like it!',
+                        'tags': '',
+                        'subject':new_q.subject,
+                        'entity': self.home.id,
+                        })
+        self.assertRedirects(response, new_q.get_absolute_url())
+
+        # Check question's rating.
+        # Before the bug fix, it used to be 1.
+        updated_q = Question.objects.get(subject="What?")
+        self.assertEquals(updated_q.rating, 2)
+
+
+    def test_upvote(self):
+        c = SocialClient()
+        response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
+        self.assertEquals(response.status_code, 302)
+        c.login(self.user, backend='facebook')
+        u=User.objects.get(email='user@domain.com')
+        u.profile.locality = self.common_user.profile.locality
+        u.profile.save()
+        self.mock_request.return_value.content = json.dumps({
+            'id': 1
+        })
+        response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
+        self.assertEquals(response.status_code, 200)
+
         response = c.post(reverse('upvote_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 403)
         self.assertEquals(response.content, 'You already upvoted this question')
@@ -255,6 +318,7 @@ class QuestionTest(TestCase):
         response = c.post(post_url, {'subject':"Where?",
                         'facebook_publish': 'on',
                         'home': self.home.id,
+                        'entity': self.home.id,
                         })
         self.assertEquals(response.status_code, 302)
         new_q=Question.objects.get(subject="Where?")
@@ -269,19 +333,18 @@ class QuestionTest(TestCase):
             }
         )
 
-    def test_post_question_facebook(self):
+    def test_post_answer_facebook(self):
         c = SocialClient()
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
         u.profile.locality = self.home
-        u.profile.is_candidate = True
+        Candidate.objects.create(user=u,candidate_list=self.candidate_list)
         u.profile.save()
         post_url = reverse('post_answer', args=(self.q.id, ))
         self.mock_request.return_value.content = json.dumps({
             'id': 1
         })
-        response = c.post(post_url, {'content':"42",
-                        })
+        response = c.post(post_url, {'content':"42", })
         self.assertEquals(response.status_code, 302)
         new_a=Answer.objects.get(content="42")
 

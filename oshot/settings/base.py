@@ -48,8 +48,9 @@ STATICFILES_ROOT = PROJECT_DIR.child('static')
 LOCALE_PATHS = (unicode(PROJECT_DIR.child('locale')), )
 
 STATICFILES_DIRS = [
-    (subdir, str(STATICFILES_ROOT.child(subdir))) for subdir in
-    ['css', 'img', 'js']]
+        (subdir, str(STATICFILES_ROOT.child(subdir))) for subdir in
+    ('css', 'img', 'js', )]
+
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
@@ -180,7 +181,7 @@ LOGGING = {
 
 ACCOUNT_ACTIVATION_DAYS = 7 # One-week activation window; you may, of course, use a different value.
 LOGIN_REDIRECT_URL = '/'
-LOGIN_URL = '/login/'
+LOGIN_URL = '/u/login/'
 
 DEFAULT_FROM_EMAIL = 'localshot@hasadna.org.il'
 
@@ -226,5 +227,16 @@ ABSOLUTE_URL_OVERRIDES = {
     'auth.user': lambda u: reverse("public-profile", args = (u.username,)),
 }
 AVATAR_MAX_AVATARS_PER_USER = 1
+AVATAR_GRAVATAR_BACKUP = False
+AVATAR_DEFAULT_URL = "http://www.hasadna.org.il/wp-content/uploads/2013/10/default-avatar.jpg"
 
 QNA_DEFAULT_ENTITY_ID = 277
+
+CACHES = {
+        'default': {
+            'BACKEND':
+            'django.core.cache.backends.dummy.DummyCache',
+            }
+        }
+
+LONG_CACHE_TIME = 18000  # 5 hours

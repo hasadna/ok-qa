@@ -15,12 +15,15 @@ class LinksInline(generic.GenericTabularInline):
     extra = 1
 
 class CandidateListAdmin(admin.ModelAdmin):
-    pass
+    list_display = ['name', 'ballot', 'entity']
+    list_filter = ['ballot', 'entity']
 
 admin.site.register(CandidateList, CandidateListAdmin)
 
 class CandidateAdmin(admin.ModelAdmin):
     inlines = [LinksInline,]
+    list_display = ['user', 'candidate_list', 'entity', 'for_mayor']
+    list_filter = ['for_mayor', 'candidate_list__entity']
 
 
 admin.site.register(Candidate, CandidateAdmin)

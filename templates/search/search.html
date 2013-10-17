@@ -7,14 +7,24 @@
         <ul class="unstyled" class="search-result-list">
         {% for result in page.object_list %}
             <li class="search-result">
-              {# crate a templatetag for this #}
+              {% ifchanged result.object.entity_id %}
+                <h4><a
+                    href="{% url 'local_home' result.object.entity.id %}">{{result.object.entity}}</a></h4>
+              {% endifchanged %}
               {% if result.object.rating %}
                 {% with question=result.object %}
                   {% include "qa/_question.html" %}
                 {% endwith %}
               {% else %}
                 {% with answer=result.object %}
+                <div class="row">
+                  {% with question=answer.question %}
+                    {% include "qa/_question.html" %}
+                  {% endwith %}
+                </div>
+                <div class="row" style="margin-right:4em;">
                   {% include "qa/_answer.html" %}
+                </div>
                 {% endwith %}
               {% endif %}
             </li>
@@ -34,3 +44,7 @@
         {# Show some example queries to run, maybe query syntax, something else? #}
     {% endif %}
 {% endblock %}
+{% block extrascript %}
+        {% include "qa/_question_controls.js" %}
+{% endblock %}
+

@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block search %}
+{% endblock %}
+{% block content %}
+{% load i18n avatar_tags links_tags %}
+
+<h2>{{candidatelist}} -
+{{candidatelist.ballot}} / {{candidatelist.entity}}</h2>
+{% if candidatelist.img_url %}
+    <p><img src="{{candidatelist.img_url}}" alt="{{candidatelist}}"></p>
+{% endif %}
+<div class="row">
+    {% if candidatelist.homepage_url %}
+    <p><a href="{{candidatelist.homepage_url}}" target='_blank'>{% trans 'Homepage' %}</a></p>
+    {% endif %}
+    {% if candidatelist.youtube_url %}
+    <p><a href="{{candidatelist.youtube_url}}" target='_blank'>Youtube</a></p>
+    {% endif %}
+    {% if candidatelist.facebook_url %}
+    <p><a href="{{candidatelist.facebook_url}}" target='_blank'>Facebook</a></p>
+    {% endif %}
+    {% if candidatelist.platform %}
+    <p><strong>{% trans 'Platform' %}:</strong> {{candidatelist.platform|urlize_target_blank|linebreaks}} </p>
+    {% endif %}
+</div>
+<div class="row">
+  {% for candidate in candidatelist.candidates.all %}
+      <div onclick="window.location.href='{{ candidate.get_absolute_url }}'"
+      class="candidate-avatar">
+        {% avatar candidate 75 %}
+        <p>{{ candidate.get_full_name|default:candidate.username}} 
+            {% if can_edit %}
+            <br>(<a href="{% url 'candidate_remove' candidatelist.id candidate.id%}">{% trans 'remove' %}</a>)
+            {% endif %}
+        </p>
+      </div>
+      
+  {% endfor %}
+</div>
+{% if can_edit %}
+    <h3>{% trans "Edit" %}</h3>
+    <p><a href="{% url 'candidate-create' candidatelist.id %}">{% trans "Add candidate" %}</a></p>
+    <p><a href="{% url 'candidatelist-edit' candidatelist.id %}">{% trans 'Edit list details' %}</a></p>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content %}
+<table dir='rtl' class='table table-striped'>
+    <thead>
+      <th>שם הרשות</th>
+      <th>מספר משתמשים</th>
+      <th>מספר עורכים</th>
+      <th>מספר שאלות</th>
+      <th>מספר תשובות</th>
+    </thead>
+    <tbody>
+      {% for entity in entities %}
+      
+      <tr id='{{entity.id}}'>
+        <td>{{ entity.name_he }}</td>
+        <td>{{ entity.profile_count }}</td>
+        <td class='editor_count'>
+          {% for i in editor_count %}
+            {% if i.locality == entity.id %}
+              {{ i.locality__count }}
+            {% endif %}
+          {% endfor %}
+        </td>
+        <td>{{ entity.questions.count }}</td>
+        <td>
+          {% for i in answer_count %}
+            {% if i.question__entity == entity.id %}
+              {{ i.question__entity__count }}
+            {% endif %}
+          {% endfor %}
+        </td>
+      </tr>
+      
+      {% endfor %}
+
+    </tbody>
+    </table>
+{% endblock %}

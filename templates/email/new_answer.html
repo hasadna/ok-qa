@@ -1,0 +1,25 @@
+{% extends "email_base.html" %}
+{% load i18n %}
+{% load flatblock_tags %}
+
+{% block content %}
+  <p>
+    יש תשובה חדשה ל<a href="{{ROOT_URL}}{{answer.question.get_absolute_url}}">שאלה</a>:
+   </p>
+  <h2>{{answer.question.subject}}</h2>
+  <p>
+    {{answer.question.content}}
+  </p>
+  <h3>התשובה של <a href="{{ROOT_URL}}{% url "public-profile" answer.author.username %}">{{answer.author.get_full_name}}</a>:</h3>
+  <blockquote>
+  {{answer.content}}
+  </blockquote>
+
+  <p>
+   רב תודות, השו"ת המקומי
+  </p>
+  <p style="font-size:80%">
+    לעדכון השאלות שאתם מקבלים עליהם עידכונים ערכו את ה
+      <a href="{{ROOT_URL}}{% url "edit_profile" %}">פרופיל שלכם</a>.
+  </p>
+{% endblock %}

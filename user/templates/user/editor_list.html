@@ -1,0 +1,23 @@
+{% if editors %}
+    <table>
+		<thead>
+			<th>שם העורך</th>
+			<th>כתובת דוא"ל</th>
+			<th>פייסבוק</th>
+			<th>מגורים</th>
+		</thead>
+		<tbody>
+			{% for editor in editors %}
+			<tr>
+				<td>{{ editor.get_full_name }}</td>
+				<td>{{ editor.user.email }}</td>
+				<td></td>
+				<td>{{ editor.locality }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+    </table>
+    </ul>
+{% else %}
+    <p>אין עורכים כאלה</p>
+{% endif %}

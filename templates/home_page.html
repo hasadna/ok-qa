@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% load flatblock_tags %}
+{% load i18n %}
+{% block toolbar %} {% endblock %}
+{% block content %}
+<div class="row">
+  <div class="span6">
+    {% flatblock 'home.welcome' 3600 %}
+    <div class="row" style="margin:2em;">
+        {% flatblock 'home.signup' 3600 %}
+        <div class="clearfix"></div>
+        {% flatblock 'home.candidates' 3600 %}
+    </div>
+  </div>
+  <div class="span6" style="text-align:center;">
+    <div class="row">
+      <div class="span3">
+        <h4>{{ questions }} {% trans "questions" %}</h4>
+        <img src="{{ STATIC_URL }}img/question_comix.png" />
+      </div>
+      <div class="span3" style="text-align: center;">
+        <h4>{{ answers }} {% trans "answers" %}</h4>
+        <img src="{{ STATIC_URL }}img/answer_comix.png" />
+      </div>
+    </div>
+    <div class="row" style="margin-top:2em;">
+      {{ entity_form }}
+      {% with entity=False %}
+        {% include "_search.html" %}
+      {% endwith %}
+    </div>
+</div>
+<div class="row">
+  <div class="offset6" style="text-align:center;">
+  </div>
+</div>
+<div class="row"> 
+  <div class="offset2 span8">
+  </div>
+</div>
+<div class="row">
+  <div class="offset2 span8">
+  </div>
+</div>
+{% endblock %}
