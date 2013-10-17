@@ -4,7 +4,7 @@ body {
   overflow-x: scroll;
   overflow: auto;
   font-family: "Alef Hebrew",
-               “Helvetica Neue”,
+               "Helvetica Neue",
                Helvetica,
                Arial,
                sans-serif;
@@ -89,10 +89,6 @@ width: 48px;
 height: 38px;
 }
 
-.supporters {
-height: 120px;
-overflow: auto;
-}
 .supporter {
 height: 73px;
 padding-top: 15px;
