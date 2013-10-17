@@ -1,3 +1,4 @@
+# encoding: utf-8
 # Django imports
 from django.shortcuts import render, render_to_response
 from django.utils.translation import ugettext as _
@@ -19,7 +20,9 @@ def place_search(request, entity_slug=None):
     """ A view to search in a specific place """
     if entity_slug:
         searchqs = SearchQuerySet().filter(place=Exact(entity_slug))
-        return basic_search(request, searchqueryset=searchqs)
+    else:
+        searchqs = SearchQuerySet().exclude(place=Exact(u"אא-מעלה-אבק"))
+    return basic_search(request, searchqueryset=searchqs)
     return basic_search(request)
 
 
