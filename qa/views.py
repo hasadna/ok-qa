@@ -92,7 +92,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     else:
         users_count = Profile.objects.count()
 
-    candidate_lists = CandidateList.objects.select_related().filter(entity=entity).order_by('name')
+    candidate_lists = CandidateList.objects.select_related().filter(entity=entity)
     candidates = User.objects.filter(candidate__isnull=False).filter(profile__locality=entity)
     candidates_count = candidates.count()
 
@@ -109,6 +109,10 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         candidates = candidates.filter(candidate__candidate_list=candidate_list)
 
     candidates = candidates.annotate(num_answers=models.Count('answers')).\
+                            order_by('-num_answers')
+
+    candidate_lists = candidate_lists.annotate( \
+                            num_answers=models.Count('candidates__answers')).\
                             order_by('-num_answers')
 
     answers_count = Answer.objects.filter(question__entity=entity, question__is_deleted=False).count()
