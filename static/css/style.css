@@ -9,6 +9,8 @@ body {
                Arial,
                sans-serif;
 }
+a {color: #65427c; }
+a:hover {color: #8294de; }
 .wrapper {
     background: #fff;
 	margin: 0;
@@ -225,8 +227,9 @@ line-height: 18px!important;
 .search-query{
     background: white url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAMAAABhq6zVAAAAIVBMVEW/v7+/v78AAAC/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v79QUkolAAAAC3RSTlOLYAAJeoMjRhpOcbsbtd4AAABJSURBVHjaVc1JDsAgDATB9uAF8v8Hx0QcSN9KssZI5eClDj18PRsFlmlQDcfUGd6A3EgYP1xncQ+sa5qYOk9jRQt1Y0izhU5bL2o2AW3ZQKeJAAAAAElFTkSuQmCC) 10px 8px no-repeat;
 }
-/* Login */
-form.navbar-search { margin-top:7px; }
+/* toolbar */
+form.navbar-search { margin-top:7px; float: none;}
+.link-enter {font-size:120%}
 .nav-self {float:left!important; margin-top:10x;}
 .nav-self li {padding-top: 14px;}
 

@@ -46,28 +46,22 @@
             <img src="{% static "img/logo.png" %}" title="{{site.name}}">
           </a>
         </div>
-        <div class="pull-left">
-          <ul class="breadcrumb" style="margin:0; background-color: inherit;">
-            <li>
-              {{ entity_form }}
-              <span class="divider">/</span>
-            </li>
-              {% block breadcrumbs %}{% endblock %}
-          </ul>
+        {% block toolbar %}
+          <div class="pull-left">
+            <ul class="breadcrumb" style="margin:0; background-color: inherit;">
+              <li>
+                {{ entity_form }}
+                <span class="divider">/</span>
+              </li>
+                {% block breadcrumbs %}{% endblock %}
+            </ul>
           </div>
           <div class="pull-left">
             {% block search %}
-                <form class="navbar-search" action="/search/">
-                  {% block searchform %} {% endblock %}
-                  <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search in' %}{{entity.name}}" 
-                  {% if search_query %} value="{{search_query}}" {% endif %}/>
-                  {% if entity %}
-                     <input type="hidden" name="entity_slug" value="{{entity.slug}}" />
-                  {% endif %}
-                </form>
-              {% endblock %}
-            
-         </div>
+              {% include "_search.html" %}
+            {% endblock %}
+          </div>
+        {% endblock %}
         <div class="pull-right">
           <ul class="nav nav-self">
             {% block topnav %}
