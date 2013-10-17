@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.contrib.sites.managers import CurrentSiteManager
+from django.utils.functional import cached_property
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 # Friends' apps
@@ -11,6 +12,7 @@ from actstream.models import Follow
 # Project's apps
 from entities.models import Entity
 from user.utils import create_avatar
+from polyorg.models import Candidate
 
 NOTIFICATION_PERIOD_CHOICES = (
     (u'N', _('No Email')),
@@ -90,24 +92,20 @@ class Profile(models.Model):
     def get_full_name(self):
         return self.user.get_full_name() or self.user.username
 
-    @property
+    @cached_property
     def is_candidate(self):
         return self.user.candidate_set.exists()
 
-    @property
+    @cached_property
     def is_mayor_candidate(self):
-        if self.is_candidate:
-            return self.user.candidate_set.all()[0].for_mayor
-        return False
+        try:
+            return Candidate.objects.only('for_mayor').get(user=self.user).for_mayor
+        except:
+            return False
 
-    @property
-    def answer_percentage(self):
-        questions = self.locality.questions.filter(is_deleted=False).count()
-        answers = self.user.answers.filter(is_deleted=False).count()
-        if questions:
-            return int((float(answers) / questions) * 100)
-
+    @cached_property
     def candidate_list(self):
-        if self.is_candidate:
-            return self.user.candidate_set.all()[0].candidate_list
-        return None
+        try:
+            return Candidate.objects.only('candidate_list').get(user=self.user).candidate_list
+        except:
+            return None

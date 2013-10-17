@@ -105,7 +105,7 @@
         class="candidate-avatar">
             {% avatar candidate 75 %}
             <h4>{{ candidate.get_full_name|default:candidate.username}}</h4>
-            {% if candidate.profile.candidate_list and not candidate_list %}
+            {% if not candidate_list and candidate.profile.candidate_list %}
             <p>{{ candidate.profile.candidate_list }}</p>
             {% endif %}
             {% with answers_count=candidate.answers.count %}
@@ -220,7 +220,7 @@
         $('#candidate_container').on('hidden', function () {
           $('#candidates_button').text("{% trans 'Display candidates' %}")
         })
-        {% if not questions %}
+        {% if not questions.count %}
           $('#candidate_container').collapse('toggle');
         {% endif %}
 
