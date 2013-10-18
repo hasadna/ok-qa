@@ -1,6 +1,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% load cache %}
 
 <!DOCTYPE HTML>
 <html>
@@ -46,7 +47,9 @@
             <img src="{% static "img/logo.png" %}" title="{{site.name}}">
           </a>
         </div>
+
         {% block toolbar %}
+        {% cache 86400 entity_form entity_form.initial %}
           <div class="pull-left">
             <ul class="breadcrumb" style="margin:0; background-color: inherit;">
               <li>
@@ -61,6 +64,7 @@
               {% include "_search.html" %}
             {% endblock %}
           </div>
+        {% endcache %}
           <div class="pull-right">
             <ul class="nav nav-self">
               {% block topnav %}

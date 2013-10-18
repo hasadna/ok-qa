@@ -1,6 +1,8 @@
 {% extends "base.html" %}
 {% load flatblock_tags %}
 {% load i18n %}
+{% load cache %}
+
 {% block toolbar %} {% endblock %}
 {% block content %}
 <div class="row">
@@ -23,12 +25,14 @@
         <img src="{{ STATIC_URL }}img/answer_comix.png" />
       </div>
     </div>
+    {% cache 86400 homepage_form  %}
     <div class="row" style="margin-top:2em;">
       {{ entity_form }}
       {% with entity=False %}
         {% include "_search.html" %}
       {% endwith %}
     </div>
+    {% endcache %}
 </div>
 <div class="row">
   <div class="offset6" style="text-align:center;">
