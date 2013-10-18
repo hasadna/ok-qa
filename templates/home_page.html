@@ -25,18 +25,18 @@
         <img src="{{ STATIC_URL }}img/answer_comix.png" />
       </div>
     </div>
-    {% cache 86400 homepage_form  %}
     <div class="row" style="margin-top:2em;">
+    {% cache 86400 homepage_form  %}
       {% with entity=False %}
-	{{ entity_form }}
+        {{ entity_form }}
         {% include "_search.html" %}
       {% endwith %}
-      {% if entity %}
-                <h4><a
-                    href="{% url 'local_home' entity.id %}">{{entity}}</a></h4>
+    {% endcache %}
+    {% if entity %}
+        <h4><a href="{% url 'local_home' entity.id %}">{{entity}}</a></h4>
       {% endif %}
     </div>
-    {% endcache %}
+
 </div>
 <div class="row">
   <div class="offset6" style="text-align:center;">
