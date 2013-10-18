@@ -221,7 +221,7 @@
           $('#candidates_button').text("{% trans 'Display candidates' %}")
         })
         {% if not questions.count %}
-          $('#candidate_container').collapse('toggle');
+          $('#candidate_container').show();
         {% endif %}
 
     });
