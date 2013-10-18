@@ -10,7 +10,7 @@ class EntityChoiceForm(forms.Form):
         is handled by the client
     """
     entity = chosenforms.ChosenModelChoiceField(
-            queryset=Entity.objects.filter(division__index=3),
+            queryset=Entity.objects.exclude(candidatelist__isnull=True).filter(division__index=3),
             label= "",
             empty_label=_("Choose a Place"),
             required=False)
