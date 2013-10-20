@@ -5,7 +5,7 @@
 {% load i18n avatar_tags links_tags %}
 
 <h2>{{candidatelist}} -
-{{candidatelist.ballot}} / {{candidatelist.entity}}</h2>
+  {{candidatelist.ballot}} / <a href="{% url 'local_home' candidatelist.entity_id %}">{{candidatelist.entity}}</a></h2>
 {% if candidatelist.img_url %}
     <p><img src="{{candidatelist.img_url}}" alt="{{candidatelist}}"></p>
 {% endif %}
