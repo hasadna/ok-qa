@@ -19,6 +19,7 @@ class ProfileAdmin(admin.StackedInline):
     model = Profile
     extra = 0
     max_num = 1
+    exclude = ('avatar_uri', )
 
 # Overrides django.contrib.auth.forms.UserCreationForm and changes 
 # username to accept a wider range of character in the username. 

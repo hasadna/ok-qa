@@ -53,14 +53,6 @@ class UserTest(TestCase):
         response = c.get(clist_url)
         self.assertEquals(response.status_code, 200)
 
-    def test_avatar(self):
-        avatar_url = self.user.profile.avatar_url()
-        self.assertTrue(avatar_url.startswith('http://www.gravatar.com/avatar/'))
-        self.user.profile.avatar_uri = 'http://lorempixel.com/100/100/'
-        self.user.profile.save()
-        avatar_url = self.user.profile.avatar_url()
-        self.assertEquals(avatar_url, 'http://lorempixel.com/100/100/')
-
     def test_public_profile(self):
         c = Client()
         # assert {% url %} and get_absolute_url are one and the same
