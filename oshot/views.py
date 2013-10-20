@@ -23,9 +23,6 @@ def place_search(request, entity_slug=None):
     else:
         searchqs = SearchQuerySet().exclude(place=Exact(u"אא-מעלה-אבק"))
     return basic_search(request, searchqueryset=searchqs)
-    return basic_search(request)
-
-
 
 @login_required
 def entity_stats(request):
