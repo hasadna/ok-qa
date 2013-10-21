@@ -126,7 +126,7 @@
         </h2>
         {% endif %}      
         <li class="candidate_list {% if list == candidate_list %}active{% endif %}">
-        <a href="{% url 'candidate-list' list.id %}">
+        <a class="row" href="{% url 'candidate-list' list.id %}">
             <div class="candidate_list_detail ballot"
                  style="background: url('{{STATIC_URL}}img/white_note.png') no-repeat; ">
               {{ list.ballot }}
