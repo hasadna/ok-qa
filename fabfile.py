@@ -13,7 +13,7 @@ def deploy(branch='master',flatblocks="no"):
             run('pip install -r requirements.txt')
             run('python manage.py test')
             if flatblocks[0] == "y":
-                run('honcho run python manage.py loaddata < fixtures/flatblock.json')
+                run('honcho run python manage.py loaddata fixtures/flatblocks.json')
             run('honcho run python manage.py syncdb --no-initial-data')
             run('honcho run python manage.py migrate --no-initial-data')
             run('honcho run python manage.py collectstatic --noinput')

@@ -9,7 +9,7 @@
   {% block searchform %} {% endblock %}
   <input type="text" name="q" id="id_q" class="search-query"
   {% if entity %}
-    placeholder="{% trans 'Search in' %}&nbsp;{{entity.name}}"
+    placeholder="{% trans 'Search in' %}{{entity.name}}"
   {% else %}
     placeholder="{% trans 'Search everywhere' %}"
   {% endif %}

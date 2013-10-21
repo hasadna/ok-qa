@@ -5,7 +5,7 @@
 {% load i18n avatar_tags links_tags %}
 
 <h2>{{candidatelist}} -
-{{candidatelist.ballot}} / {{candidatelist.entity}}</h2>
+  {{candidatelist.ballot}} / <a href="{% url 'local_home' candidatelist.entity_id %}">{{candidatelist.entity}}</a></h2>
 {% if candidatelist.img_url %}
     <p><img src="{{candidatelist.img_url}}" alt="{{candidatelist}}"></p>
 {% endif %}
@@ -42,4 +42,7 @@
     <p><a href="{% url 'candidate-create' candidatelist.id %}">{% trans "Add candidate" %}</a></p>
     <p><a href="{% url 'candidatelist-edit' candidatelist.id %}">{% trans 'Edit list details' %}</a></p>
 {% endif %}
+{% with answers=candidatelist.answers show_author=True %}
+  {% include "user/_answers.html" %}
+{% endwith %}
 {% endblock %}

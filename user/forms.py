@@ -41,7 +41,6 @@ class ProfileForm(forms.Form):
                             'bio': self.profile.bio,
                             'email_notification': self.profile.email_notification,
                             'gender': self.profile.gender,
-                            'avatar_uri': self.profile.avatar_url(),
                            }
             if self.profile.locality:
                 self.fields['locality'].widget.attrs['disabled'] = True

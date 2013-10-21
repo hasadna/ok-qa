@@ -1,0 +1,41 @@
+{% load i18n links_tags %}
+
+{% for answer in answers %}
+{% if forloop.first %}
+  <h3>
+      {% trans "Answers by" %}
+      {% if friend %}
+        {{friend.get_full_name}}
+      {% elif candidatelist %}
+        {{candidatelist}}
+      {% endif %}
+  </h3>
+{% endif %}
+<div class="question-summary narrow" id="question-summary-{{ question.id }}">
+  <div class="summary">
+    <h3>
+        <a href="{{ answer.question.get_absolute_url }}" class="question-hyperlink"
+        title="{{ question.subject }}">{{ answer.question.subject }}</a>
+    </h3>
+        <span class="too-long-toggle">{{ answer.question.content|urlize_target_blank|linebreaks }}</span>
+    <div class="well">
+        <a name="{{answer.id}}"></a>
+        <strong style="font-size: 16px;">
+            <span class="too-long-toggle">{{ answer.content|urlize_target_blank|linebreaks }}</span>
+        </strong>
+        <span title="{{ question.created_at }}" class="relativetime">
+            <br />
+            <a href="#{{answer.id}}">&#9875;
+              {% trans "before" %} {{ answer.updated_at|timesince }}
+            </a>
+        </span>
+        {% if show_author %}
+        <a href="{{ author_url }}" title="{{answer.author.get_full_name}}" rel="tooltip" class="answer-user owner">
+          {{answer.author.get_full_name|default:answer.author.username}}
+        </a>
+        {% endif %}
+      </a>
+    </div>
+  </div>
+</div>
+{% endfor %}

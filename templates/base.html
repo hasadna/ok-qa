@@ -1,6 +1,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% load cache %}
 
 <!DOCTYPE HTML>
 <html>
@@ -8,8 +9,9 @@
 <link rel="shortcut icon" href="{% static "img/favicon.gif" %}"/>
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-rtl.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-responsive.rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/rtl.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css?v=13"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css?v=14"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/auth-buttons.css"/>
     <title>
       {% block pageTitle %} {% endblock %} 
@@ -46,7 +48,9 @@
             <img src="{% static "img/logo.png" %}" title="{{site.name}}">
           </a>
         </div>
+
         {% block toolbar %}
+        {% cache 86400 entity_form entity_form.initial %}
           <div class="pull-left">
             <ul class="breadcrumb" style="margin:0; background-color: inherit;">
               <li>
@@ -61,6 +65,8 @@
               {% include "_search.html" %}
             {% endblock %}
           </div>
+        {% endcache %}
+        {% endblock %}
           <div class="pull-right">
             <ul class="nav nav-self">
               {% block topnav %}
@@ -93,7 +99,6 @@
               {% endif %}
             </ul>
           </div>
-        {% endblock %}
       </div>
       </div>
     </div>

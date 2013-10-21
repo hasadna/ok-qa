@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/earlyaccess/alefhebrew.css);
 body {
-	background: whitesmoke;
+	background: white;
   overflow-x: scroll;
   overflow: auto;
   font-family: "Alef Hebrew",
@@ -21,9 +21,10 @@ a:hover {color: #8294de; }
     z-index: 100;
 }
 /* Main Container */
-div[role="main"] {
-    padding-bottom: 74px;
-    padding-top: 74px;
+@media (min-width: 980px) {
+  .wrapper {
+    margin-top: 80px !important;
+  }
 }
 /* Footer */
 .footer {
@@ -260,18 +261,11 @@ font-size: 12px;
 	padding-bottom:5px;
 	border-bottom: 1px solid #f1f1f1;
 }
-a.answer-user.owner {
-padding: 2px 5px 2px 5px;
-}
-a.answer-user {
-white-space: nowrap;
-padding: 0;
-}
 .owner {
-background-color: #DEEDFF;
-background-color: rgba(222, 237, 255, 0.4);
-background-color: #E0EAF1;
+
 }
+.answer-user { white-space: nowrap; padding: 0; font-weight:bold; }
+.owner { background-color: #E5BE7B; padding: 2px 5px 2px 5px;}
 .answer-date, .answer-date > a {
 border-bottom: none;
 color: #999;
@@ -310,9 +304,10 @@ h1, h2, h3, h4, h5, h6 {
 .dead-center { text-align: center; vertical-align: middle; margin: 0 auto; }
 .pageHeader { text-align:center; padding-bottom: 1em;}
 .well { font-size:120%; }
-.candidate_list { width: 73px; text-align: center; display: inline-block; vertical-align: top}
-.candidate_list_detail {margin: 2px 4px;}
+.candidate_list { text-align: right; }
+.candidate_list_detail {margin: 2px 10px; float: right; height: 40px; line-height: 40px; }
 .candidate_list_detail.ballot { color:black; margin: 0 auto; width: 40px; line-height: 40px; text-align: center;}
+.candidate_list_detail.answers_count { float: left; }
 .candidate_list a {color:black;}
 .candidate_list a:hover {color:black;text-decoration: none;}
 .links a {text-decoration: none;}

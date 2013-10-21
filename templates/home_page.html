@@ -1,16 +1,20 @@
 {% extends "base.html" %}
 {% load flatblock_tags %}
 {% load i18n %}
-{% block toolbar %} {% endblock %}
+{% load cache %}
+
+{% block toolbar %}
+<p class="pull-left" style="padding-top:15px; font-weight: bold;">ביחד מחסלים את הרוב הדומם</p>
+{% endblock %}
 {% block content %}
 <div class="row">
   <div class="span6">
     {% flatblock 'home.welcome' 3600 %}
     <div class="row" style="margin:2em;">
-        {% flatblock 'home.signup' 3600 %}
-        <div class="clearfix"></div>
-        {% flatblock 'home.candidates' 3600 %}
-    </div>
+    		<div class="twitter">
+        <a class="twitter-timeline" href="https://twitter.com/search?q=%23%D7%91%D7%97%D7%99%D7%A8%D7%95%D7%AA" data-widget-id="392339973308833792">Tweets about "#××××¨××ª"</a>
+      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+		</div></div>
   </div>
   <div class="span6" style="text-align:center;">
     <div class="row">
@@ -24,22 +28,20 @@
       </div>
     </div>
     <div class="row" style="margin-top:2em;">
-      {{ entity_form }}
+    {% cache 86400 homepage_form  %}
       {% with entity=False %}
+        {{ entity_form }}
         {% include "_search.html" %}
       {% endwith %}
+    {% endcache %}
+    {% if entity %}
+        <h4><a href="{% url 'local_home' entity.id %}">{{entity}}</a></h4>
+    {% endif %}
+    <div style="padding-top:2em;">
+<h3><a href="http://statigr.am/tag/%D7%91%D7%97%D7%99%D7%A8%D7%95%D7%AA/" target="_blank">תמונות מאינסטגרם של #בחירות</a></h3>
+<iframe src="http://www.intagme.com/in/?h=15HXl9eZ16jXldeqfGlufDE1MHwzfDR8fHllc3w1fHVuZGVmaW5lZA==" allowTransparency="true" frameborder="0" scrolling="no" style="border:none; overflow:hidden; width:495px; height: 660px" ></iframe>
     </div>
-</div>
-<div class="row">
-  <div class="offset6" style="text-align:center;">
-  </div>
-</div>
-<div class="row"> 
-  <div class="offset2 span8">
-  </div>
-</div>
-<div class="row">
-  <div class="offset2 span8">
-  </div>
+    </div>
+
 </div>
 {% endblock %}

@@ -25,6 +25,21 @@
         <div class="row">
             <div class="span9">
                 {% include "qa/_question.html" %}
+	    <div class="row">
+            <div class="offset1 answers">
+
+                {% for answer in answers %}
+                    {% include "qa/_answer.html" %}
+                {% empty %}
+                    <h5>{% trans "No Answers Yet" %}
+                        <a href="{% url "atom_question_answers" question.id %}" title="{% trans 'Subscribe' %}"
+                           rel="tooltip">
+                            <!-- <img src="/static/img/social-icons/colour/rss.png" width="25" /> -->
+                        </a>
+                    </h5>
+                {% endfor %}
+            </div>
+            </div>
             </div>
             <div class="supporters span3">
               {% for supporter in supporters %}
@@ -38,30 +53,6 @@
             </div>
         </div>
         <div class="row questions-wrapper">
-            <div class="span9 answers">
-                {% if answers %}
-                    <h5>
-                        {% trans 'Answers' %}
-                        <div class="pull-right">
-                            <a href="{% url "atom_question_answers" question.id %}" title="{% trans 'feed' %}"
-                               rel="tooltip">
-                                <img src="{{ STATIC_URL }}img/rss.png" width="25"/>
-                            </a>
-                        </div>
-                    </h5>
-                {% endif %}
-
-                {% for answer in answers %}
-                    {% include "qa/_answer.html" %}
-                {% empty %}
-                    <h5>{% trans "No Answers Yet" %}
-                        <a href="{% url "atom_question_answers" question.id %}" title="{% trans 'Subscribe' %}"
-                           rel="tooltip">
-                            <!-- <img src="/static/img/social-icons/colour/rss.png" width="25" /> -->
-                        </a>
-                    </h5>
-                {% endfor %}
-            </div>
             <div class="span3">
 
             </div>
@@ -87,6 +78,13 @@
         </div>
     {% endif %}
     <p>
+      {% if answers %}
+        <a href="{% url "atom_question_answers" question.id %}" title="{% trans 'feed' %}"
+           rel="tooltip">
+            <img src="{{ STATIC_URL }}img/rss.png" width="25"/>
+        </a>
+      {% endif %}
+      &nbsp;
       <a href="{% url "local_home" question.entity.id %}">
         {% trans 'Back to' %}{{question.entity.name}}
       </a>

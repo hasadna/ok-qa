@@ -94,7 +94,6 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
 
     candidate_lists = CandidateList.objects.select_related().filter(entity=entity)
     candidates = User.objects.filter(candidate__isnull=False).filter(profile__locality=entity)
-    candidates_count = candidates.count()
 
     list_id = request.GET.get('list', default='mayor')
     if list_id == 'mayor':
@@ -127,7 +126,6 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'current_tags': current_tags,
         'need_editors': need_editors,
         'candidates': candidates,
-        'candidates_count': candidates_count,
         'candidate_list': candidate_list,
         'candidate_lists': candidate_lists,
         'users_count': users_count,
