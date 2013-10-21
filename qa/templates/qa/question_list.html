@@ -106,13 +106,7 @@
             <p>{{ candidate.profile.candidate_list }}</p>
             {% endif %}
             {% with answers_count=candidate.answers.count %}
-            {% if answers_count %}
-              {% if answers_count == 1 %}
-                <p> {% trans "One Answer" %} </p>
-              {% else %}
-                <p>{{ answers_count }} {% trans "Answers" %}</p>
-              {% endif %}
-            {% endif %}
+                {% include "qa/_answers_count.html" %}
             {% endwith %}
         </div>
       {% endfor %}
@@ -133,6 +127,11 @@
             </div>
             <div class="candidate_list_detail list_name">
               {{ list.name }}
+            </div>
+            <div class="candidate_list_detail answers_count">
+              {% with answers_count=list.answers.count %}
+                {% include "qa/_answers_count.html" %}
+              {% endwith %}
             </div>
           </a>
         </li>
