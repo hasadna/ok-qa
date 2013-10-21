@@ -42,7 +42,7 @@
     <p><a href="{% url 'candidate-create' candidatelist.id %}">{% trans "Add candidate" %}</a></p>
     <p><a href="{% url 'candidatelist-edit' candidatelist.id %}">{% trans 'Edit list details' %}</a></p>
 {% endif %}
-{% with show_author=True %}
+{% with answers=candidatelist.answers show_author=True %}
   {% include "user/_answers.html" %}
 {% endwith %}
 {% endblock %}

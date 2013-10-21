@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from django.utils.translation import ugettext_lazy as _
 # Project's apps
+from qa.models import Answer
 
 class CandidateList(models.Model):
     name = models.CharField(_('List Name'), max_length=80)
@@ -37,6 +38,11 @@ class CandidateList(models.Model):
             ((user.profile.is_editor and user.profile.locality == self.entity)\
             or user in self.candidates.all()\
             or user.is_superuser)
+
+    def answers(self):
+        ''' returns all answers by candidates in the list '''
+        return Answer.objects.filter(is_deleted=False,
+                author__candidate__user__in=self.candidates.all())
 
 
 class Party(models.Model):

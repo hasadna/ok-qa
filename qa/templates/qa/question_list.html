@@ -106,13 +106,7 @@
             <p>{{ candidate.profile.candidate_list }}</p>
             {% endif %}
             {% with answers_count=candidate.answers.count %}
-            {% if answers_count %}
-              {% if answers_count == 1 %}
-                <p> {% trans "One Answer" %} </p>
-              {% else %}
-                <p>{{ answers_count }} {% trans "Answers" %}</p>
-              {% endif %}
-            {% endif %}
+                {% include "qa/_answers_count.html" %}
             {% endwith %}
         </div>
       {% endfor %}
@@ -126,13 +120,18 @@
         </h2>
         {% endif %}      
         <li class="candidate_list {% if list == candidate_list %}active{% endif %}">
-        <a href="{% url 'candidate-list' list.id %}">
+        <a class="row" href="{% url 'candidate-list' list.id %}">
             <div class="candidate_list_detail ballot"
                  style="background: url('{{STATIC_URL}}img/white_note.png') no-repeat; ">
               {{ list.ballot }}
             </div>
             <div class="candidate_list_detail list_name">
               {{ list.name }}
+            </div>
+            <div class="candidate_list_detail answers_count">
+              {% with answers_count=list.answers.count %}
+                {% include "qa/_answers_count.html" %}
+              {% endwith %}
             </div>
           </a>
         </li>
