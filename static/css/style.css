@@ -1,6 +1,6 @@
 @import url(http://fonts.googleapis.com/earlyaccess/alefhebrew.css);
 body {
-	background: whitesmoke;
+	background: white;
   overflow-x: scroll;
   overflow: auto;
   font-family: "Alef Hebrew",
@@ -21,9 +21,10 @@ a:hover {color: #8294de; }
     z-index: 100;
 }
 /* Main Container */
-div[role="main"] {
-    padding-bottom: 74px;
-    padding-top: 74px;
+@media (min-width: 980px) {
+  .wrapper {
+    margin-top: 80px !important;
+  }
 }
 /* Footer */
 .footer {
