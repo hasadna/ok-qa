@@ -117,7 +117,6 @@ class QuestionTest(TestCase):
         response = c.get(default_home)
 
         self.assertEquals(response.context['candidates'].count(), 0)
-        self.assertEquals(response.context['candidates_count'], 1)
         self.assertEquals(response.context['users_count'], 4)
         self.assertEquals(response.context['questions'].count(), 1)
         self.assertEquals(response.context['answers_count'], 1)
