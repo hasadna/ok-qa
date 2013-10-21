@@ -5,15 +5,18 @@ from fabric.contrib.console import confirm
 env.hosts = ['localshot.org.il']
 env.user = 'oshot'
 
-def deploy(branch='master',flatblocks="no"):
+def loadflatb():
+    with cd('~oshot/src/oshot'):
+        with prefix('. ENV/bin/activate'):
+            run('honcho run python manage.py loaddata fixtures/flatblocks.json')
+
+def deploy(branch='master'):
     local('git push origin ' + branch)
     with cd('~oshot/src/oshot'):
         run('git pull origin ' + branch)
         with prefix('. ENV/bin/activate'):
             run('pip install -r requirements.txt')
             run('python manage.py test')
-            if flatblocks[0] == "y":
-                run('honcho run python manage.py loaddata fixtures/flatblocks.json')
             run('honcho run python manage.py syncdb --no-initial-data')
             run('honcho run python manage.py migrate --no-initial-data')
             run('honcho run python manage.py collectstatic --noinput')
