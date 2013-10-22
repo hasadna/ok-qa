@@ -20,11 +20,62 @@
             </div>
         </div>
     <div class="row" style="margin:2em;">
-    		<div class="twitter">
-        <a class="twitter-timeline" href="https://twitter.com/search?q=%23%D7%91%D7%97%D7%99%D7%A8%D7%95%D7%AA" data-widget-id="392339973308833792">Tweets about "#××××¨××ª"</a>
-      <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-		</div></div>
+<div class="twitter">
+			<a class="twitter-timeline" href="https://twitter.com/search?q=%23%D7%91%D7%97%D7%99%D7%A8%D7%95%D7%AA" data-widget-id="392339973308833792">Tweets about "#××××¨××ª"</a>
+			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");
+	
+			// get the iframe
+			var iframe = document.getElementById('twitter-widget-0');
+			
+			var checkIframe = setInterval(function() {
+				
+				if (iframe != null) {
+			   		clearInterval(checkIframe);
+			   		
+			   		var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+			   	
+			   		// check if all tweets loaded
+					var ready = innerDoc.getElementsByClassName('load-more');
+					
+					var checkLoaded = setInterval(function() {
+						if (ready.length)
+						{ 
+							clearInterval(checkLoaded);
+							
+							// hide the scroll
+							var scrolling =  innerDoc.getElementsByClassName('stream');
+							scrolling[0].style.overflow = "hidden";
+					   		
+							var tweets = innerDoc.getElementsByClassName('tweet');
+							
+							// leave top 5 displayed
+						  	for (var i = 10; i <= tweets.length - 1 ; i++)
+							{
+								tweets[i].style.display = "none";
+							}
+							
+							var n = 0;
+							
+							// push up every 4 secs
+							var runfeed = setInterval(function() {
+								
+								tweets[n%(tweets.length - 1)].style.display = "none";
+								tweets[(n+10)%(tweets.length - 1)].style.display = "block";
+								
+								n++;
+							},4000); 
+						}
+						ready = innerDoc.getElementsByClassName('load-more');
+					},300);		
+				}
+				else{
+					iframe = document.getElementById('twitter-widget-0');
+				}
+			}, 2000); // check every 2s
+			</script>
+      </div>
   </div>
+</div>
   <div class="span6" style="text-align:center;">
     <div class="row">
       <div class="span3">
