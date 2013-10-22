@@ -11,7 +11,7 @@ def loadflatb():
             run('honcho run python manage.py loaddata fixtures/flatblocks.json')
 
 def dumpflatb():
-    local('python manage.py dumpdata > fixtures/flatblocks.json')
+    local('python manage.py dumpdata -n > fixtures/flatblocks.json')
 
 def deploy(branch='master'):
     local('git push origin ' + branch)
