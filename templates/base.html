@@ -1,6 +1,7 @@
 {% load staticfiles %}
 {% load i18n %}
 {% load crispy_forms_tags %}
+{% load cache %}
 
 <!DOCTYPE HTML>
 <html>
@@ -8,8 +9,9 @@
 <link rel="shortcut icon" href="{% static "img/favicon.gif" %}"/>
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-rtl.css"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-responsive.rtl.css"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/rtl.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css?v=12"/>
+    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css?v=15"/>
     <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/auth-buttons.css"/>
     <title>
       {% block pageTitle %} {% endblock %} 
@@ -46,61 +48,57 @@
             <img src="{% static "img/logo.png" %}" title="{{site.name}}">
           </a>
         </div>
+
         {% block toolbar %}
-        <div class="pull-left">
-          <ul class="breadcrumb" style="margin:0; background-color: inherit;">
-            <li>
-              {{ entity_form }}
-              <span class="divider">/</span>
-            </li>
-              {% block breadcrumbs %}{% endblock %}
-          </ul>
+        {% cache 86400 entity_form entity_form.initial %}
+          <div class="pull-left">
+            <ul class="breadcrumb" style="margin:0; background-color: inherit;">
+              <li>
+                {{ entity_form }}
+                <span class="divider">/</span>
+              </li>
+                {% block breadcrumbs %}{% endblock %}
+            </ul>
           </div>
           <div class="pull-left">
             {% block search %}
-                <form class="navbar-search" action="/search/">
-                  {% block searchform %} {% endblock %}
-                  <input type="text" name="q" id="id_q" class="search-query" placeholder="{% trans 'Search in' %}{{entity.name}}" 
-                  {% if search_query %} value="{{search_query}}" {% endif %}/>
-                  {% if entity %}
-                     <input type="hidden" name="entity_slug" value="{{entity.slug}}" />
-                  {% endif %}
-                </form>
-              {% endblock %}
-         </div>
-         {% endblock %}
-        <div class="pull-right">
-          <ul class="nav nav-self">
-            {% block topnav %}
+              {% include "_search.html" %}
             {% endblock %}
-            {% if user.is_authenticated %}
-            <li class="divider-vertical"></li>
-            <li class="dropdown"></span>
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Welcome' %}, {{ user.get_full_name|default:user.username }} <b class="caret"></b></a>
-              <ul class="dropdown-menu">
-                <li><a href="{{ user.get_absolute_url }}">{% trans 'my page' %}</a></li>
-                <li><a href="{% url 'edit_profile' %}">{% trans 'edit profile' %}</a></li>
-                {% if user.is_staff %}
-                    <li><a href="/admin/">{% trans 'admin' %}</a></li>
-                {% endif %}
-                {% if user.is_superuser and user.profile.locality %}
-                    <li><a href="{% url 'candidate-list-list' entity.id %}">{% trans 'manage candidate lists' %}</a></li>
-                {% elif user.profile.is_editor %}
-                    <li><a href="{% url 'candidate-list-list' %}">{% trans 'manage candidate lists' %}</a></li>
-                {% endif %}
-
-                <form class="form-inline" method="post" action="{% url 'logout' %}">
-                  {% csrf_token %}
-                  <li><a href="javascript:;" class="submit-link">{% trans 'logout' %}</a></li>
-                </form>
-              </ul>
-            </li>
-            {% else %}
+          </div>
+        {% endcache %}
+        {% endblock %}
+          <div class="pull-right">
+            <ul class="nav nav-self">
+              {% block topnav %}
+              {% endblock %}
+              {% if user.is_authenticated %}
               <li class="divider-vertical"></li>
-              <li><a href="{% url 'login' %}">{% trans "Login" %}</a></li>
-            {% endif %}
-          </ul>
-        </div>
+              <li class="dropdown"></span>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">{% trans 'Welcome' %}, {{ user.get_full_name|default:user.username }} <b class="caret"></b></a>
+                <ul class="dropdown-menu">
+                  <li><a href="{{ user.get_absolute_url }}">{% trans 'my page' %}</a></li>
+                  <li><a href="{% url 'edit_profile' %}">{% trans 'edit profile' %}</a></li>
+                  {% if user.is_staff %}
+                      <li><a href="/admin/">{% trans 'admin' %}</a></li>
+                  {% endif %}
+                  {% if user.is_superuser and user.profile.locality %}
+                      <li><a href="{% url 'candidate-list-list' entity.id %}">{% trans 'manage candidate lists' %}</a></li>
+                  {% elif user.profile.is_editor %}
+                      <li><a href="{% url 'candidate-list-list' %}">{% trans 'manage candidate lists' %}</a></li>
+                  {% endif %}
+
+                  <form class="form-inline" method="post" action="{% url 'logout' %}">
+                    {% csrf_token %}
+                    <li><a href="javascript:;" class="submit-link">{% trans 'logout' %}</a></li>
+                  </form>
+                </ul>
+              </li>
+              {% else %}
+                <li class="divider-vertical"></li>
+                <li><a href="{% url 'login' %}">{% trans "Login" %}</a></li>
+              {% endif %}
+            </ul>
+          </div>
       </div>
       </div>
     </div>

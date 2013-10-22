@@ -37,7 +37,8 @@
     <aside class="sidebar">
       <h2>{% trans "Following" %}</h2>
       <ul>
-      {% for question in profile.following %}
+      {% with hide_controls=True %}
+        {% for question in profile.following %}
         <li>
         <!--TODO: add the ability to unfollow a question
         <a href="#" class="btn btn-danger btn-mini unfollow" id="unfollow-{{question.id}}">
@@ -45,9 +46,10 @@
         -->
         {% include "qa/_question.html" %}
           </li>
-      {% empty %}
+        {% empty %}
         <li>{% trans "none" %}</li>
-      {% endfor %}
+        {% endfor %}
+      {% endwith %}
       </ul>
     </aside>
   </div>

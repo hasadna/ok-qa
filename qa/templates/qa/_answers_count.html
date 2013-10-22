@@ -1,0 +1,9 @@
+{% load i18n %}
+
+{% if answers_count %}
+  {% if answers_count == 1 %}
+    <p> {% trans "One Answer" %} </p>
+  {% else %}
+    <p>{{ answers_count }} {% trans "Answers" %}</p>
+  {% endif %}
+{% endif %}

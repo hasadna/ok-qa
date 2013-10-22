@@ -1,5 +1,5 @@
 {% extends "qa/qa_base.html" %}
-{% load i18n %}
+{% load i18n avatar_tags %}
 {% block pageTitle %}{{ question }}{% endblock %}
 {% block extrahead %}
     {% get_current_language as LANGUAGE_CODE %}
@@ -22,22 +22,11 @@
 {% endblock %}
 {% block content %}
     <div class="container">
-        <div class="row span9">
-            {% include "qa/_question.html" %}
-        </div>
-        <div class="row questions-wrapper">
-            <div class="span9 answers">
-                {% if answers %}
-                    <h5>
-                        {% trans 'Answers' %}
-                        <div class="pull-right">
-                            <a href="{% url "atom_question_answers" question.id %}" title="{% trans 'feed' %}"
-                               rel="tooltip">
-                                <img src="{{ STATIC_URL }}img/rss.png" width="25"/>
-                            </a>
-                        </div>
-                    </h5>
-                {% endif %}
+        <div class="row">
+            <div class="span9">
+                {% include "qa/_question.html" %}
+	    <div class="row">
+            <div class="offset1 answers">
 
                 {% for answer in answers %}
                     {% include "qa/_answer.html" %}
@@ -50,6 +39,20 @@
                     </h5>
                 {% endfor %}
             </div>
+            </div>
+            </div>
+            <div class="supporters span3">
+              {% for supporter in supporters %}
+              <div class="supporter avatar-container">
+                <a href="{{ supporter.get_absolute_url }}" rel="tooltip"
+                   title="{{ supporter.get_full_name }}">
+                  {% avatar supporter %}
+                </a>
+              </div>
+              {% endfor %}
+            </div>
+        </div>
+        <div class="row questions-wrapper">
             <div class="span3">
 
             </div>
@@ -57,12 +60,11 @@
     </div>
     {% if my_answer_form %}
         <div class="modal fade" id="add_answer_modal">
+            <div class="modal-header">
+              <a class="close" data-dismiss="modal">&times;</a>
+              <h3>{{ question.subject }}</h3>
+            </div>
             <form class="form" method="post" action="{% url "post_answer" question.id %}">
-                <div class="modal-header">
-                    <a class="close" data-dismiss="modal">&times;</a>
-
-                    <h3>{{ question.subject }}</h3>
-                </div>
                 <div class="modal-body">
                     {% csrf_token %}
                     {{ my_answer_form.as_p }}
@@ -75,6 +77,13 @@
         </div>
     {% endif %}
     <p>
+      {% if answers %}
+        <a href="{% url "atom_question_answers" question.id %}" title="{% trans 'feed' %}"
+           rel="tooltip">
+            <img src="{{ STATIC_URL }}img/rss.png" width="25"/>
+        </a>
+      {% endif %}
+      &nbsp;
       <a href="{% url "local_home" question.entity.id %}">
         {% trans 'Back to' %}{{question.entity.name}}
       </a>
@@ -82,6 +91,10 @@
 {% endblock %}
 {% if my_answer_id %}
     {% block extrascript %}
+
+        {% if not question.is_deleted %}
+          {% include "qa/_question_controls.js" %}
+        {% endif %}
         <script>
             $(document).ready(function () {
                 {% if question.is_deleted %}
@@ -91,10 +104,7 @@
                     buttons.click(function (e) {
                         e.preventDefault();
                     });
-                {% else %}
-                  {% include "qa/_question_controls.js" %}
-
-                  {% if max_length_a_content %}
+                {% elif max_length_a_content %}
                       var $answerContent = $("#id_content"),
                               $charsCounter = $("#charsCounter"),
                               $charsLeft = $("#charsLeft");
@@ -108,7 +118,6 @@
 
                           $charsLeft.text({{ max_length_a_content }} - length);
                       });
-                  {% endif %}
                 {% endif %}
             });
         </script>

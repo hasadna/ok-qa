@@ -5,6 +5,14 @@ from fabric.contrib.console import confirm
 env.hosts = ['localshot.org.il']
 env.user = 'oshot'
 
+def loadflatb():
+    with cd('~oshot/src/oshot'):
+        with prefix('. ENV/bin/activate'):
+            run('honcho run python manage.py loaddata fixtures/flatblocks.json')
+
+def dumpflatb():
+    local('python manage.py dumpdata -n > fixtures/flatblocks.json')
+
 def deploy(branch='master'):
     local('git push origin ' + branch)
     with cd('~oshot/src/oshot'):

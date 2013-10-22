@@ -11,6 +11,7 @@ admin.autodiscover()
 
 urlpatterns = patterns('',
     url(r'^$', 'oshot.views.home_page', name="home_page"),
+    url(r'^home$', 'oshot.views.home_page'),
     url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
     (r'^p/(?P<url>.*)$', 'django.contrib.flatpages.views.flatpage'),
 
@@ -24,6 +25,7 @@ urlpatterns = patterns('',
     url(r'', include('qa.urls')),
     url(r'', include('social_auth.urls')),
     url(r'^search/$', 'oshot.views.place_search'),
+    url(r'^(?P<entity_slug>[-\w]+)/search/$', 'oshot.views.place_search'),
     (r'^taggit_autosuggest/', include('taggit_autosuggest.urls')),
     (r'^avatar/', include('avatar.urls')),
     (r'^s/', include('actstream.urls')),

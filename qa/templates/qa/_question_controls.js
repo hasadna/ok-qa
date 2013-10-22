@@ -2,6 +2,10 @@
 
 {% with QUESTION_ID="000000000" %} {# placeholder for url #}
 
+<script>
+
+    $(document).ready(function () {
+
 var voteAjaxError = function (evt, jqXHR, setting, err) {
     $("#messages").html('<div class="alert" class="error">' +
             '<button type="button" class="close" data-dismiss="alert">×</button>' +
@@ -69,5 +73,6 @@ $(".flag-question").click(function (e) {
           window.location.replace(data);
         });
   })
-
+      })
 {% endwith %}
+</script>

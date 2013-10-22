@@ -25,7 +25,7 @@ def public_profile(request, username=None, pk=None):
     if profile:
         setattr(request, 'entity', profile.locality)
     if profile.is_candidate:
-        candidate_list = user.candidatelist_set.all()[0]
+        candidate_list = profile.candidate_list
     else:
         candidate_list = None
 

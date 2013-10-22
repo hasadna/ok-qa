@@ -17,7 +17,7 @@
       <div class="votes-{{question.id}}"
            {% if question.rating <= 1 %}style="visibility:hidden"{% endif %}>
         <div class="mini-counts" id="votes-count-{{question.id}}">{{ question.rating }}</div>
-          <div>{% trans "votes" %}</div>
+        <div>{% trans "votes" %}</div>
       </div>
     </div>
     {% if can_answer %}
@@ -31,6 +31,7 @@
       </a>
     </div>
     {% endif %}
+    {% if not hide_controls %}
     <div class="btn-group cp">
       {% if user == question.author and not answers %}
       <a class="edit-question btn btn-action" href="{% url 'edit_question' question.unislug %}"
@@ -92,9 +93,10 @@
       </div>
       {% endif %}
     </div>
+    {% endif %}
     <div class="summary">
       <h3>
-        <a href="{{ question.author.get_absolute_url }}" rel="tooltip" class="answer-user owner" title="{{question.author.get_full_name}}">{{question.author.get_full_name|default:question.author.username}}</a>
+        <a href="{{ question.author.get_absolute_url }}" rel="tooltip" class="owner" title="{{question.author.get_full_name}}">{{question.author.get_full_name|default:question.author.username}}</a>
         <a href="{{ question.get_absolute_url }}" class="question-hyperlink" title="{{ question.subject }}">{{ question.subject }}</a>
       </h3>
         {% if not questions %}

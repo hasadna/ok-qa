@@ -40,25 +40,29 @@
                </a>
                {% endif %}
           </h1>
-          <div id="cbs_data">
+          <div id="cbs_data"><!--
+            {% if stats.totalpopulation %}-->
             <strong><span id="population"></span>{{stats.totalpopulation}}</strong>
             {% trans "Population" %}<!--
-            -->,
-            <strong><span id="councilSize">{{stats.numofcouncilman}}</span></strong>
+            {% endif %}
+            {% if stats.numofcouncilman %}
+            -->,<strong><span id="councilSize">{{stats.numofcouncilman}}</span></strong>
             {% trans "Council seats" %}<!--
+            {% endif %}
+            {% if stats.voting %}
+            -->, <strong><span id="voting">{{stats.voting}}</span></strong>
+            {% trans "Voting Percent" %}<!--
+            {% endif %}
             {% if users_count %}
             -->, <strong>{{users_count}}</strong> {% trans "Registered users" %}<!--
             {% endif %}
             {% if questions.count %}
             -->, <strong>{{questions.count}}</strong> {% trans "Questions" %}<!--
             {% endif %}
-            {% if candidates_count %}
-            -->, <strong>{{candidates_count}}</strong> {% trans "Registered candidates" %}<!--
+            {% if answers_count %}
+            -->, <strong>{{answers_count}}</strong> {% trans "Answers" %}<!--
             {% endif %}
-            {% if answers_rate %}
-            -->, <strong>{{answers_rate}}%</strong> {% trans "Answer rate" %}<!--
-            {% endif %}.
-            -->
+            -->.
           </div>
           <button type="button" class="btn btn-large btn-info" data-toggle="collapse" data-target="#candidate_container" id='candidates_button' style='margin-top:5px;'>
             {% trans 'Display candidates' %}
@@ -98,17 +102,11 @@
         class="candidate-avatar">
             {% avatar candidate 75 %}
             <h4>{{ candidate.get_full_name|default:candidate.username}}</h4>
-            {% if candidate.profile.candidate_list and not candidate_list %}
+            {% if not candidate_list and candidate.profile.candidate_list %}
             <p>{{ candidate.profile.candidate_list }}</p>
             {% endif %}
             {% with answers_count=candidate.answers.count %}
-            {% if answers_count %}
-				{% if answers_count == 1 %}
-				<p> {% trans "One Answer" %} </p>
-			{% else %}
-				<p>{{ answers_count }} {% trans "Answers" %}</p>
-				{% endif %}
-			{% endif %}
+                {% include "qa/_answers_count.html" %}
             {% endwith %}
         </div>
       {% endfor %}
@@ -122,13 +120,18 @@
         </h2>
         {% endif %}      
         <li class="candidate_list {% if list == candidate_list %}active{% endif %}">
-          <a href=".?list={{ list.id }}">
+        <a class="row" href="{% url 'candidate-list' list.id %}">
             <div class="candidate_list_detail ballot"
                  style="background: url('{{STATIC_URL}}img/white_note.png') no-repeat; ">
               {{ list.ballot }}
             </div>
             <div class="candidate_list_detail list_name">
               {{ list.name }}
+            </div>
+            <div class="candidate_list_detail answers_count">
+              {% with answers_count=list.answers.count %}
+                {% include "qa/_answers_count.html" %}
+              {% endwith %}
             </div>
           </a>
         </li>
@@ -201,9 +204,9 @@
 
 {% endblock %}
 {% block extrascript %}
-<script>
+  {% include "qa/_question_controls.js" %}
+  <script>
     $(document).ready(function () {
-        {% include "qa/_question_controls.js" %}
         {% if request.GET.list %}
         $('#candidates_button').text("{%trans 'Hide candidates'%}")
         {% endif %}
@@ -213,6 +216,10 @@
         $('#candidate_container').on('hidden', function () {
           $('#candidates_button').text("{% trans 'Display candidates' %}")
         })
+        {% if not questions.exists %}
+          $('#candidate_container').addClass('in');
+          $('#candidates_button').text("{%trans 'Hide candidates'%}")
+        {% endif %}
 
     });
 </script>

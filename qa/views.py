@@ -92,9 +92,8 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     else:
         users_count = Profile.objects.count()
 
-    candidate_lists = CandidateList.objects.select_related().filter(entity=entity).order_by('name')
+    candidate_lists = CandidateList.objects.select_related().filter(entity=entity)
     candidates = User.objects.filter(candidate__isnull=False).filter(profile__locality=entity)
-    candidates_count = candidates.count()
 
     list_id = request.GET.get('list', default='mayor')
     if list_id == 'mayor':
@@ -111,12 +110,13 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     candidates = candidates.annotate(num_answers=models.Count('answers')).\
                             order_by('-num_answers')
 
-    question_count = questions.count()
-    answers_count = Answer.objects.filter(question__entity=entity, is_deleted=False).count()
-    if question_count and candidates_count:
-        answers_rate = int((float(answers_count) / (question_count * candidates_count)) * 100)
-    else:
-        answers_rate = 0
+    candidate_lists = candidate_lists.annotate( \
+                            num_answers=models.Count('candidates__answers')).\
+                            order_by('-num_answers')
+
+    answers_count = Answer.objects.filter(question__entity=entity, question__is_deleted=False).count()
+    
+    stats = CBS_STATS.get(entity.code, {"totalpopulation": 0, "numofcouncilman": "", "socioeco": "", "voting":""})
 
     context.update({ 'tags': tags,
         'questions': questions,
@@ -126,12 +126,11 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'current_tags': current_tags,
         'need_editors': need_editors,
         'candidates': candidates,
-        'candidates_count': candidates_count,
         'candidate_list': candidate_list,
         'candidate_lists': candidate_lists,
         'users_count': users_count,
-        'answers_rate': answers_rate,
-        'stats': CBS_STATS[entity.code],
+        'answers_count': answers_count,
+        'stats': stats,
         })
 
     ret = render(request, template, context)
@@ -174,6 +173,13 @@ class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseD
                 context['fb_message'] = answer.content
             except:
                 pass
+
+        supporters = [vote.user for vote in question.upvotes.all()]
+        supporters = [question.author] + supporters
+        if user in supporters and user != question.author:
+            supporters = [user] + [u for u in supporters if u != user]
+        context['supporters'] = supporters
+
         return context
 
     def render_to_response(self, context):
@@ -202,14 +208,16 @@ def post_answer(request, q_id):
     try:
         # If the user already answered, update his answer
         answer = question.answers.get(author=request.user)
+        is_new_answer = False
     except question.answers.model.DoesNotExist:
         answer = Answer(author=request.user, question=question)
+        is_new_answer = True
         follow(request.user, question)
 
     answer.content = request.POST.get("content")
 
     answer.save()
-    publish_answer.delay(answer)
+    publish_answer.delay(answer, send_email=is_new_answer)
 
     return HttpResponseRedirect(question.get_absolute_url())
 

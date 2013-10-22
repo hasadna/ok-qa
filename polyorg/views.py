@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from entities.models import Entity
 from polyorg.models import CandidateList, Candidate
 from polyorg.forms import CandidateListForm, CandidateForm
+from qa.models import Answer
 
 @login_required
 def candidatelists_list(request, entity_id=None):

@@ -1,14 +1,16 @@
 @import url(http://fonts.googleapis.com/earlyaccess/alefhebrew.css);
 body {
-	background: whitesmoke;
+	background: white;
   overflow-x: scroll;
   overflow: auto;
   font-family: "Alef Hebrew",
-               “Helvetica Neue”,
+               "Helvetica Neue",
                Helvetica,
                Arial,
                sans-serif;
 }
+a {color: #65427c; }
+a:hover {color: #8294de; }
 .wrapper {
     background: #fff;
 	margin: 0;
@@ -19,9 +21,10 @@ body {
     z-index: 100;
 }
 /* Main Container */
-div[role="main"] {
-    padding-bottom: 74px;
-    padding-top: 74px;
+@media (min-width: 980px) {
+  .wrapper {
+    margin-top: 80px !important;
+  }
 }
 /* Footer */
 .footer {
@@ -89,6 +92,12 @@ width: 48px;
 height: 38px;
 }
 
+.supporter {
+height: 73px;
+padding-top: 15px;
+display: inline-block;
+vertical-align: top;
+}
 .mini-counts {
 padding: 0 0 2px 0;
 line-height: 24px;
@@ -219,8 +228,9 @@ line-height: 18px!important;
 .search-query{
     background: white url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAMCAMAAABhq6zVAAAAIVBMVEW/v7+/v78AAAC/v7+/v7+/v7+/v7+/v7+/v7+/v7+/v79QUkolAAAAC3RSTlOLYAAJeoMjRhpOcbsbtd4AAABJSURBVHjaVc1JDsAgDATB9uAF8v8Hx0QcSN9KssZI5eClDj18PRsFlmlQDcfUGd6A3EgYP1xncQ+sa5qYOk9jRQt1Y0izhU5bL2o2AW3ZQKeJAAAAAElFTkSuQmCC) 10px 8px no-repeat;
 }
-/* Login */
-form.navbar-search { margin-top:7px; }
+/* toolbar */
+form.navbar-search { margin-top:7px; float: none;}
+.link-enter {font-size:120%}
 .nav-self {float:left!important; margin-top:10x;}
 .nav-self li {padding-top: 14px;}
 
@@ -251,18 +261,11 @@ font-size: 12px;
 	padding-bottom:5px;
 	border-bottom: 1px solid #f1f1f1;
 }
-a.answer-user.owner {
-padding: 2px 5px 2px 5px;
-}
-a.answer-user {
-white-space: nowrap;
-padding: 0;
-}
 .owner {
-background-color: #DEEDFF;
-background-color: rgba(222, 237, 255, 0.4);
-background-color: #E0EAF1;
+
 }
+.answer-user { white-space: nowrap; padding: 0; font-weight:bold; }
+.owner { background-color: #E5BE7B; padding: 2px 5px 2px 5px;}
 .answer-date, .answer-date > a {
 border-bottom: none;
 color: #999;
@@ -301,9 +304,10 @@ h1, h2, h3, h4, h5, h6 {
 .dead-center { text-align: center; vertical-align: middle; margin: 0 auto; }
 .pageHeader { text-align:center; padding-bottom: 1em;}
 .well { font-size:120%; }
-.candidate_list { width: 73px; text-align: center; display: inline-block; vertical-align: top}
-.candidate_list_detail {margin: 2px 4px;}
+.candidate_list { text-align: right; }
+.candidate_list_detail {margin: 2px 10px; float: right; height: 40px; line-height: 40px; }
 .candidate_list_detail.ballot { color:black; margin: 0 auto; width: 40px; line-height: 40px; text-align: center;}
+.candidate_list_detail.answers_count { float: left; }
 .candidate_list a {color:black;}
 .candidate_list a:hover {color:black;text-decoration: none;}
 .links a {text-decoration: none;}
