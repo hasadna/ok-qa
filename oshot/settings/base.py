@@ -130,6 +130,7 @@ INSTALLED_APPS = (
     'avatar',
     'actstream',
     'debug_toolbar',
+    'djsupervisor',
     # local apps
     'qa',
     'user',

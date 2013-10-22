@@ -42,3 +42,4 @@ facepy==0.8.4
 -e git+https://github.com/jezdez/django-avatar.git#egg=django-avatar
 -e git://github.com/hasadna/django-activity-stream.git@c56a07921b8c796fce35bda6feab4610fdf64e5d#egg=django-activity-stream
 python-memcached
+django-supervisor
