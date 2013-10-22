@@ -82,9 +82,7 @@ else{
   </div>
   <div class="span6" style="text-align:center;">
     <div class="row">
-    {% with entity=False %}
-      {{ entity_form }}
-    {% endwith %}
+      {# move the entity_from here somehow for simpler interface #}
     </div>
     <div class="row">
       <div class="span3">
@@ -99,6 +97,7 @@ else{
     <div class="row" style="margin-top:2em;">
       {% cache 86400 homepage_form  %}
         {% with entity=False %}
+      {{ entity_form }}
           {% include "_search.html" %}
         {% endwith %}
       {% endcache %}
