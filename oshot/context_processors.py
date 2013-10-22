@@ -29,14 +29,8 @@ def forms(request):
             entity = request.user.profile.locality
 
         context['entity'] = entity
-        # where the magic happens: set local or global scope urls
-        if entity:
-            initial = {'entity': entity.id}
-            context['questions_url'] = reverse("local_home", args=(entity.id,))
-        else:
-            initial = {}
-            context['questions_url'] = reverse("home_page")
-        context['entity_form'] = EntityChoiceForm(initial=initial, auto_id=False)
+        context['questions_url'] = reverse("home_page")
+        context['entity_form'] = EntityChoiceForm(initial={}, auto_id=False)
 
     except (AttributeError, Http404):
         pass
