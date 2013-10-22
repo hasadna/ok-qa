@@ -13,6 +13,12 @@ def loadflatb():
 def dumpflatb():
     local('python manage.py dumpdata -n > fixtures/flatblocks.json')
 
+def refresh(branch='master'):
+    local('git push origin ' + branch)
+    with cd('~oshot/src/oshot'):
+        run('git pull origin ' + branch)
+    sudo('restart oshot')
+
 def deploy(branch='master'):
     local('git push origin ' + branch)
     with cd('~oshot/src/oshot'):
