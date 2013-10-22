@@ -4,7 +4,12 @@
 {% load cache %}
 
 {% block toolbar %}
-<p class="pull-left" style="padding-top:15px; font-weight: bold;">ביחד מחסלים את הרוב הדומם</p>
+<p class="pull-left" style="padding-right:1em; padding-top:15px; font-weight: bold;">
+  {% if entity %}
+    <a href="{% url 'local_home' entity.id %}">{{entity}}</a>
+  {% endif %}
+</p>
+<p class="pull-left" style="padding-right:2em; padding-top:15px; font-weight: bold;">ביחד מחסלים את הרוב הדומם</p>
 {% endblock %}
 {% block content %}
 <div class="row">
