@@ -10,6 +10,7 @@ class DefaultEntity(object):
         ''' finding a default entity - first the user locality, then the
             `QNA_DEFAULT_ENTITY_ID` settings and lastly, a random place
         '''
+        return # Election day - send everyone to the main homepage on default.
         if request.path == '/':
             if request.user.is_authenticated():
                 entity = request.user.profile.locality
