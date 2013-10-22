@@ -17,10 +17,10 @@ Quick Start - Linux
     $ sudo apt-get install git-core mercurial python2.7-dev python-setuptools libjpeg-dev
     $ sudo easy_install pip
     $ sudo pip install virtualenv
-    $ virtualenv ENV
-    $ source ENV/bin/activate
     $ git clone https://github.com/hasadna/open-shot.git
     $ cd open-shot
+    $ virtualenv -p /usr/bin/python2.7 ENV
+    $ source ENV/bin/activate
     $ pip install -r requirements.txt
     $ python manage.py test
     $ python manage.py syncdb --migrate --noinput
