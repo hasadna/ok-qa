@@ -229,7 +229,7 @@ ABSOLUTE_URL_OVERRIDES = {
 }
 AVATAR_MAX_AVATARS_PER_USER = 1
 AVATAR_GRAVATAR_BACKUP = False
-AVATAR_DEFAULT_URL = "http://www.hasadna.org.il/wp-content/uploads/2013/10/oshotavatar2.png"
+AVATAR_DEFAULT_URL = "http://ok-qa-media.s3.amazonaws.com/img/question_comix.png"
 
 QNA_DEFAULT_ENTITY_ID = 277
 
