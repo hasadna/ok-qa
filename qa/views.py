@@ -56,7 +56,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         if ret:
             return ret
     context = RequestContext(request)
-    entity = context['entity']
+    entity = context.get('entity', None)
     if not entity or entity.division.index != 3:
         raise Http404(_("Bad Entity"))
 
@@ -73,7 +73,10 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         order = 'flags_count'
     else:
         order_opt = request.GET.get('order', 'rating')
-        order = ORDER_OPTIONS[order_opt]
+        try:
+            order = ORDER_OPTIONS[order_opt]
+        except KeyError:
+            raise Http404(_("Bad ordering option"))
     questions = questions.order_by(order)
 
     if tags:
