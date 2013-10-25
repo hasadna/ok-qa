@@ -76,7 +76,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         try:
             order = ORDER_OPTIONS[order_opt]
         except KeyError:
-            raise Http404(_("Bad ordering option"))
+            order = ORDER_OPTIONS['rating']
     questions = questions.order_by(order)
 
     if tags:
