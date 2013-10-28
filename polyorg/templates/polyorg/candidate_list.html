@@ -24,7 +24,7 @@
     {% endif %}
 </div>
 <div class="row">
-  {% for candidate in candidatelist.candidates.all %}
+  {% for candidate in candidates %}
       <div onclick="window.location.href='{{ candidate.get_absolute_url }}'"
       class="candidate-avatar">
         {% avatar candidate 75 %}
