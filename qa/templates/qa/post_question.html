@@ -27,14 +27,6 @@
 
 <form class="form-horizontal" method="POST">
   <div class="row post-question">
-    <script src="{{ STATIC_URL }}js/jquery.js"></script>
-    <script type="text/javascript">
-      // Puts the included jQuery into our own namespace
-      var django = {
-        "jQuery": jQuery.noConflict(true)
-      };
-    </script>
-    <script src="{{ STATIC_URL }}jquery-autosuggest/js/jquery.autoSuggest.minified.js"></script>
     {% csrf_token %}
     {{ form|crispy }}
     <div id="charsCounter"><span id="charsLeft"></span> {% trans 'characters left' %}</div>
@@ -56,6 +48,7 @@
 {% endblock %}
 
 {% block extrascript %}
+{{ block.super }}
 {% if max_length_q_subject %}
     <script>
 	var $subject = $("#id_subject"),
@@ -73,5 +66,6 @@
 	});
     </script>
 {% endif %}
+<script src="{{ STATIC_URL }}jquery-autosuggest/js/jquery.autoSuggest.js"></script>
 {% endblock %}
 
