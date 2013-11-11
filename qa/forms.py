@@ -10,6 +10,11 @@ class AnswerForm(forms.ModelForm):
         model = Answer
         fields = ("content",)
 
+    def clean_content(self):
+        content = self.cleaned_data['content']
+        if len(content) > 1000:
+            raise ValidationError(_("Answers are limited to 1000 characters"))
+        return content
 
 class QuestionForm(forms.ModelForm):
 

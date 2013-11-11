@@ -66,9 +66,11 @@ def candidatelist_edit(request, candidatelist_id=None, entity_id=None):
 def candidates_list(request,candidatelist_id):
     candidatelist = get_object_or_404(CandidateList, id=candidatelist_id)
     can_edit = candidatelist.can_edit(request.user)
+    candidates = candidatelist.candidates.order_by('candidate__ordinal')
 
     context = RequestContext(request, {'candidatelist': candidatelist,
                                        'can_edit': can_edit,
+                                       'candidates' : candidates,
                                       })
     return render(request, 'polyorg/candidate_list.html', context)
 

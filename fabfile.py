@@ -13,6 +13,13 @@ def loadflatb():
 def dumpflatb():
     local('python manage.py dumpdata -n > fixtures/flatblocks.json')
 
+def refresh(branch='master'):
+    local('git push origin ' + branch)
+    with cd('~oshot/src/oshot'):
+        run('git pull origin ' + branch)
+    sudo('restart oshot')
+    run("echo 'flush_all' | netcat localhost 11211 -q 1")
+
 def deploy(branch='master'):
     local('git push origin ' + branch)
     with cd('~oshot/src/oshot'):
@@ -24,3 +31,4 @@ def deploy(branch='master'):
             run('honcho run python manage.py migrate --no-initial-data')
             run('honcho run python manage.py collectstatic --noinput')
     sudo('restart oshot')
+    run("echo 'flush_all' | netcat localhost 11211 -q 1")

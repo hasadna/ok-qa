@@ -1,1 +1,1 @@
-VERSION = (1, 0, 1, 'polishing', 0)
+VERSION = (1, 0, 3, 'tidbits', 0)
