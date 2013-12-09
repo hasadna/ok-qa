@@ -47,10 +47,10 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
 
-            local_home = profile.get_absolute_url()
-            next = request.POST.get('next', local_home)
+            entity_home = profile.get_absolute_url()
+            next = request.POST.get('next', entity_home)
             if next == '/':
-                next = local_home
+                next = entity_home
 
             return HttpResponseRedirect(next)
     elif request.method == "GET":

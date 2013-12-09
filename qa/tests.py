@@ -109,10 +109,10 @@ class QuestionTest(TestCase):
         self.assertFalse(self.q.can_answer(self.common_user))
         self.assertTrue(self.q.can_answer(self.candidate_user))
 
-    def test_local_home(self):
+    def test_entity_home(self):
         c = Client()
         # According to issue #263, entity urls should only use id's.
-        default_home = reverse('local_home',
+        default_home = reverse('entity_home',
                         kwargs={'entity_id': self.home.id})
         response = c.get(default_home)
 
@@ -177,7 +177,7 @@ class QuestionTest(TestCase):
         self.assertEquals(message.message, 'Thank you for flagging the question. One of our editors will look at it shortly.')
         self.q = Question.objects.get(pk=self.q.id)
         self.assertEquals(self.q.flags_count, 2)
-        response = c.get("%s?%s" % (reverse('local_home',
+        response = c.get("%s?%s" % (reverse('entity_home',
                                            kwargs={'entity_slug': self.home.slug}
                                     ),
                                    "filter=flagged"))
@@ -198,7 +198,7 @@ class QuestionTest(TestCase):
         self.assertTrue(c.login(username="editor", password="pass"))
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.content, reverse('local_home', args=(self.q.entity.slug, )))
+        self.assertEquals(response.content, reverse('entity_home', args=(self.q.entity.slug, )))
         response = c.get(response.content)
         self.assertEquals(response.status_code, 200)
         self.assertIn('messages', response.context)

@@ -25,12 +25,12 @@ $(".upvote-question").click(function () {
                 {% endautoescape %}
                 "{% trans 'Log in' %}" +
                 '</a></div>');
-    {% elif not entity|can_vote:user %}
+    {% elif entity.division.domain.name == 'Government' and not entity|can_vote:user %}
         $("#messages").html('<div class="alert" class="info">' +
                 '<button type="button" class="close" data-dismiss="alert">×</button>' +
                 "{% trans 'You may only support questions in your locality' %}" +
                 {% autoescape off %}
-                ' — <a href="' + "{% url "local_home" user.profile.locality.id %}" + '">' +
+                ' — <a href="' + "{% url "entity_home" user.profile.locality.id %}" + '">' +
                 {% endautoescape %}
                 "{{ user.profile.locality }}" +
                 '</a></div>');

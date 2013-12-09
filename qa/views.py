@@ -46,7 +46,7 @@ class JsonpResponse(HttpResponse):
             *args, **kwargs)
 
 
-def local_home(request, entity_slug=None, entity_id=None, tags=None,
+def entity_home(request, entity_slug=None, entity_id=None, tags=None,
         template="qa/question_list.html"):
     """
     A home page for an entity including questions and candidates
@@ -138,7 +138,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
 
     ret = render(request, template, context)
     if request.user.is_anonymous() and not tags and not request.GET:
-        cache.set('local_home_%s' % entity_id, ret, timeout = 36000)
+        cache.set('entity_home_%s' % entity_id, ret, timeout = 36000)
     return ret
 
 class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseDetailView):
@@ -237,7 +237,7 @@ def post_question(request, entity_id=None, slug=None):
             messages.warning(request, _('Sorry, you may only post questions in your locality') +
                 "\n" +
                 _('Before posting a new question, please check if it already exists in this page'))
-            return HttpResponseRedirect(reverse('local_home',
+            return HttpResponseRedirect(reverse('entity_home',
                                         kwargs={'entity_id': profile.locality.id,}))
 
     entity = profile.locality
@@ -369,7 +369,7 @@ class AtomQuestionFeed(Feed):
         return _('Brought to you by "%s"') % (Site.objects.get_current().name, )
 
     def link(self, obj):
-        return reverse('local_home', args=(obj.id, ))
+        return reverse('entity_home', args=(obj.id, ))
 
     def item_title(self, item):
         return item.subject
@@ -444,5 +444,5 @@ def flag_question(request, q_id):
             messages.success(request,
                 _('Thank you for flagging the question. One of our editors will look at it shortly.'))
 
-    redirect = reverse('local_home', args=(q.entity.slug,))
+    redirect = reverse('entity_home', args=(q.entity.slug,))
     return HttpResponse(redirect, content_type="text/plain")

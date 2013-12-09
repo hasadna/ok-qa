@@ -9,7 +9,7 @@
             <li class="search-result">
               {% ifchanged result.object.entity_id %}
                 <h4><a
-                    href="{% url 'local_home' result.object.entity.id %}">{{result.object.entity}}</a></h4>
+                    href="{% url 'entity_home' result.object.entity.id %}">{{result.object.entity}}</a></h4>
               {% endifchanged %}
               {% if result.object.rating %}
                 {% with question=result.object %}

@@ -22,7 +22,7 @@ MAX_LENGTH_Q_CONTENT = 1000
 MAX_LENGTH_A_SUBJECT = 80
 MAX_LENGTH_A_CONTENT = 1000 
 
-entity_home_key = lambda entity_id: "local_home_%s" % entity_id
+entity_home_key = lambda entity_id: "entity_home_%s" % entity_id
 
 class BaseModel(models.Model):
     ''' just a common time base for the models

@@ -4,8 +4,9 @@ from django.shortcuts import render, render_to_response
 from django.utils.translation import ugettext as _
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.template.context import RequestContext
+from django.core.urlresolvers import reverse
 
 # pluggable apps
 from haystack.query import SearchQuerySet
