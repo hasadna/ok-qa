@@ -36,7 +36,7 @@ MIN_EDITORS_PER_LOCALITY = 3
 class ProfileManager(models.Manager):
 
     def need_editors(self, entity):
-       return Profile.objects.filter(locality=entity).count() < MIN_EDITORS_PER_LOCALITY
+       return entity.profiles.count() < MIN_EDITORS_PER_LOCALITY
 
 
 class Profile(models.Model):
@@ -48,9 +48,8 @@ class Profile(models.Model):
     email_notification = models.CharField(max_length=1, choices=NOTIFICATION_PERIOD_CHOICES, blank=True, null=True, default='D')
     avatar_uri = models.URLField(null=True, blank=True)
     last_email_update = models.DateTimeField(default=NEVER_SENT)
-    locality = models.ForeignKey(Entity, null=True, verbose_name=_('Locality'))
+    entities = models.ManyToManyField(Entity, verbose_name=_('Entities'), through='Membership')
     sites = models.ManyToManyField(Site)
-    is_editor = models.BooleanField(default=False)
     verification = models.CharField(max_length=1, choices=VERIFICATION_STAGES, default='0')
     on_site = CurrentSiteManager()
 
@@ -71,9 +70,19 @@ class Profile(models.Model):
     def get_full_name(self):
         return self.user.get_full_name() or self.user.username
 
-    @cached_property
-    def is_candidate(self):
-        return self.user.candidate_set.exists()
+    def is_candidate(self, entity):
+        return self.user.candidate_set.filter(entity=entity).exists()
+
+    @property
+    def candidate_in(self):
+        return self.user.candidate_set.value_list('entity', flat=True)
+
+    def is_editor(self, entity):
+        return self.membership_set(entity=entity, is_editor=True).exists()
+
+    @property
+    def editor_in(self):
+        return self.membership_set.filter(is_editor=True).value_list('entity', flat=True)
 
     @cached_property
     def is_mayor_candidate(self):
@@ -88,3 +97,8 @@ class Profile(models.Model):
             return Candidate.objects.only('candidate_list').get(user=self.user).candidate_list
         except:
             return None
+
+class Membership(models.Model):
+    profile = models.ForeignKey(Profile)
+    entity = models.ForeignKey(Entity)
+    is_editor = models.BooleanField(default=False)

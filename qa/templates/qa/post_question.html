@@ -12,9 +12,8 @@
 <div class="page-header">
   {% if not slug %}
     <h1>{% trans "What is your question, sire?" %}</h1>
-    <p>{% url 'entity_home' user.profile.locality.id as home %}
-    {% trans 'before asking a new question, please check if it exists on the' %}
-    <a href="{% url 'entity_home' user.profile.locality.id %}">{% trans 'page of your locality' %}</a>.</p>
+    <p>{% trans 'before asking a new question, please check if it exists on the' %}
+    <a href="{% url 'entity_home' entity.id %}">{% trans 'page of your locality' %}</a>.</p>
   {% else %}
     <h1>{% trans "Edit your question" %}</h1>
   {% endif %}

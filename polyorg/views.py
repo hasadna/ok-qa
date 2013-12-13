@@ -15,12 +15,11 @@ from qa.models import Answer
 def candidatelists_list(request, entity_id=None):
 
     if not entity_id:
-        entity = request.user.profile.locality
+        entity = request.user.profile.entities[0] # TODO #453
     else:
         entity = get_object_or_404(Entity, id=entity_id)
 
-    if not ((request.user.profile.is_editor and entity == request.user.profile.locality)\
-            or request.user.is_superuser):
+    if not (user.profile.is_editor(entity) or request.user.is_superuser):
         return HttpResponseForbidden(_("Only editors have access to this page."))
 
     candidatelists = CandidateList.objects.filter(entity=entity)
@@ -35,7 +34,7 @@ def candidatelists_list(request, entity_id=None):
 def candidatelist_edit(request, candidatelist_id=None, entity_id=None):
 
     if not entity_id:
-        entity = request.user.profile.locality
+        entity = request.user.profile.entities[0] # TODO #453
     else:
         entity = get_object_or_404(Entity, id=entity_id)
 

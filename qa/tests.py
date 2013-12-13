@@ -13,6 +13,7 @@ from django.test.utils import override_settings
 from mock import patch
 from entities.models import Domain, Division, Entity
 from polyorg.models import Candidate, CandidateList
+from user.models import Membership
 from .models import *
 
 
@@ -55,21 +56,21 @@ class QuestionTest(TestCase):
 
         self.common_user = User.objects.create_user("commoner",
                                 "commmon@example.com", "pass")
-        self.common_user.profile.locality = self.home
+        Membership.objects.create(profile=self.common_user.profile, entity=self.home)
         self.common_user.profile.save()
         self.common2_user = User.objects.create_user("commoner2", 
                                 "commmon2@example.com", "pass")
-        self.common2_user.profile.locality = self.home
+        Membership.objects.create(profile=self.common2_user.profile, entity=self.home)
         self.common2_user.profile.save()
         self.candidate_user = User.objects.create_user("candidate", 
                                 "candidate@example.com", "pass")
-        self.candidate_user.profile.locality = self.home
+        Membership.objects.create(profile=self.candidate_user.profile, entity=self.home)
         self.candidate_user.profile.save()
         Candidate.objects.create(user=self.candidate_user, candidate_list=self.candidate_list)
         self.editor = User.objects.create_user("editor", 
                                 "editor@example.com", "pass")
-        self.editor.profile.locality = self.home
-        self.editor.profile.is_editor = True
+        Membership.objects.create(profile=self.editor.profile, entity=self.home,
+                                  is_editor=True)
         self.editor.profile.save()
         self.q = Question.objects.create(author = self.common_user,
                         subject="why?", entity=self.home)
@@ -193,7 +194,8 @@ class QuestionTest(TestCase):
 
     def test_editors(self):
         c = Client()
-        self.editor.profile.locality = self.away
+        Membership.objects.create(profile=self.editor.profile, entity=self.away,
+                is_editor=True)
         self.editor.profile.save()
         self.assertTrue(c.login(username="editor", password="pass"))
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
@@ -204,7 +206,7 @@ class QuestionTest(TestCase):
         self.assertIn('messages', response.context)
         message = list(response.context['messages'])[0]
         self.assertEquals(message.message, 'Thank you for flagging the question. One of our editors will look at it shortly.')
-        self.editor.profile.locality = self.home
+        Membership.objects.create(profile=self.editor.profile, entity=self.home)
         self.editor.profile.save()
 
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
@@ -243,7 +245,7 @@ class QuestionTest(TestCase):
         self.assertEquals(response.status_code, 302)
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
-        u.profile.locality = self.common_user.profile.locality
+        Membership.objects.create(profile=u.profile, entity=self.common_user.profile.entities[0])
         u.profile.save()
         self.mock_request.return_value.content = json.dumps({
             'id': 1
@@ -279,7 +281,7 @@ class QuestionTest(TestCase):
         self.assertEquals(response.status_code, 302)
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
-        u.profile.locality = self.common_user.profile.locality
+        Membership.objects.create(profile=u.profile, entity=self.common_user.profile.entities[0])
         u.profile.save()
         self.mock_request.return_value.content = json.dumps({
             'id': 1
@@ -308,7 +310,7 @@ class QuestionTest(TestCase):
         c = SocialClient()
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
-        u.profile.locality = self.home
+        Membership.objects.create(profile=u.profile, entity=self.home)
         u.profile.save()
         post_url = reverse('post_question')
         self.mock_request.return_value.content = json.dumps({
@@ -336,7 +338,7 @@ class QuestionTest(TestCase):
         c = SocialClient()
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
-        u.profile.locality = self.home
+        Membership.objects.create(profile=u.profile, entity=self.home)
         Candidate.objects.create(user=u,candidate_list=self.candidate_list)
         u.profile.save()
         post_url = reverse('post_answer', args=(self.q.id, ))

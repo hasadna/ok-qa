@@ -30,9 +30,9 @@ $(".upvote-question").click(function () {
                 '<button type="button" class="close" data-dismiss="alert">×</button>' +
                 "{% trans 'You may only support questions in your locality' %}" +
                 {% autoescape off %}
-                ' — <a href="' + "{% url "entity_home" user.profile.locality.id %}" + '">' +
+                ' — <a href="' + "{% url "home_page" %}" + '">' + {# TODO #453 #}
                 {% endautoescape %}
-                "{{ user.profile.locality }}" +
+                "back to homepage" +
                 '</a></div>');
     {% else %}
         var qid = $(this).closest('.question-summary').attr('question-id');

@@ -7,14 +7,12 @@ from entities.models import Entity
 
 class DefaultEntity(object):
     def process_request(self, request):
-        ''' finding a default entity - first the user locality, then the
-            `QNA_DEFAULT_ENTITY_ID` settings and lastly, a random place
-        '''
         return # Election day - send everyone to the main homepage on default.
         if request.path == '/':
             if request.user.is_authenticated():
-                entity = request.user.profile.locality
-                if not entity:
+                try:
+                    entity = request.user.profile.entities[0] # TODO #453
+                except IndexError:
                     return HttpResponseRedirect(reverse('edit_profile'))
             else:
                 return

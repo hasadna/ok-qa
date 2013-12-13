@@ -50,7 +50,8 @@ class TaggedQuestion(TaggedItemBase):
 def can_vote(entity, user):
     ''' returns whether a secific user can upvote/downvote a question in the
         entity '''
-    return user.is_authenticated() and user.profile.locality == entity
+    return user.is_authenticated() and entity in user.profile.entities
+
 Entity.add_to_class('can_vote', can_vote)
 
 class Question(BaseModel):
@@ -86,8 +87,7 @@ class Question(BaseModel):
     def can_answer(self, user):
         ''' Can a given user answer self? '''
         if user.is_authenticated():
-            profile = user.profile
-            return profile.is_candidate and profile.locality==self.entity
+            return user.profile.is_candidate(self.entity)
         else:
             return False
 
@@ -114,8 +114,7 @@ class Question(BaseModel):
         if self.author == user:
             return True
         if user.is_authenticated() and\
-           user.profile.is_editor and\
-           user.profile.locality == self.entity:
+           user.profile.is_editor(self.entity):
             return True
         return False
 

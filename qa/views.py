@@ -60,7 +60,7 @@ def entity_home(request, entity_slug=None, entity_id=None, tags=None,
     if not entity or entity.division.index != 3:
         raise Http404(_("Bad Entity"))
 
-    if request.user.is_authenticated() and not request.user.profile.locality:
+    if request.user.is_authenticated() and not request.user.profile.entities:
         messages.error(request,_('Please update your locality in your user profile to use the site'))
         return HttpResponseRedirect(reverse('edit_profile'))
 
@@ -233,14 +233,12 @@ def post_question(request, entity_id=None, slug=None):
 
     if entity_id:
         entity = Entity.objects.get(pk=entity_id)
-        if entity != profile.locality:
-            messages.warning(request, _('Sorry, you may only post questions in your locality') +
-                "\n" +
-                _('Before posting a new question, please check if it already exists in this page'))
-            return HttpResponseRedirect(reverse('entity_home',
-                                        kwargs={'entity_id': profile.locality.id,}))
 
-    entity = profile.locality
+    if not entity_id or entity not in profile.entities:
+        messages.warning(request, _('Sorry, you may only post questions in your locality') +
+            "\n" +
+            _('Before posting a new question, please check if it already exists in this page'))
+        return HttpResponseRedirect(reverse('home_page')) # TODO #453
 
     q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
 
@@ -294,7 +292,7 @@ def upvote_question(request, q_id):
     if request.method == "POST":
         q = get_object_or_404(Question, id=q_id)
         user = request.user
-        if q.entity != user.profile.locality:
+        if q.entity not in user.profile.entities:
             return HttpResponseForbidden(_('You may only support questions in your locality'))
         if q.author == user:
             return HttpResponseForbidden(_("You may not support your own question"))
@@ -424,10 +422,9 @@ def flag_question(request, q_id):
             messages.error(request, _('Sorry, can not delete a question with answers'))
         else:
             tbd = True
-    elif user.profile.is_editor:
+    elif user.profile.is_editor(q.entity):
         ''' handle editors '''
-        if user.profile.locality == q.entity:
-            tbd = True
+        tbd = True
 
     if tbd:
         ''' seems like we have to delete the question '''

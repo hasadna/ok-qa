@@ -34,10 +34,11 @@ class CandidateList(models.Model):
         return Candidate.objects.get_verified().filter(candidate_list=self)
 
     def can_edit(self, user):
-        return user.is_authenticated() and \
-            ((user.profile.is_editor and user.profile.locality == self.entity)\
+        if not user.is_authenticated():
+            return False
+        return user.profile.is_editor(self.entity)\
             or user in self.candidates.all()\
-            or user.is_superuser)
+            or user.is_superuser
 
     def answers(self):
         ''' returns all answers by candidates in the list '''
