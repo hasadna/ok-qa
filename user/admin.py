@@ -15,6 +15,9 @@ characters only (letters, digits and underscores)."),
         error_message = _("This value must contain only letters, \
 numbers and underscores.")) 
 
+class MembershipAdmin(admin.StackedInline):
+    model = Membership
+
 class ProfileAdmin(admin.StackedInline):
     model = Profile
     extra = 0
