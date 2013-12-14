@@ -94,8 +94,8 @@ def candidate_create(request,candidatelist_id):
     else:
         form = CandidateForm(initial={'candidate_list': candidatelist})
     form.fields["user"].queryset = \
-        User.objects.filter(profile__locality=candidatelist.entity).\
-        filter(candidate__isnull=True).exclude(profile__is_editor=True)
+        Membership.objects.filter(entity=candidatelist.entity,
+                can_answer=False, is_editor=False).values_list('user', Flat=True)
 
     context = RequestContext(request, {'form': form,
                                        'candidatelist': candidatelist,

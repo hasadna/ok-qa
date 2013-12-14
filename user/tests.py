@@ -37,11 +37,11 @@ class UserTest(TestCase):
         self.entity = Entity.objects.create(name="the moon", division=division)
         self.user = User.objects.create_user("user",
                                 "user@example.com", "pass")
-        self.user.profile.locality = self.entity
+        self.user.profile.add_entity(self.entity)
         self.user.profile.save()
         self.candidate = User.objects.create_user("candidate",
                                 "candidate@example.com", "pass")
-        self.candidate.profile.locality = self.entity
+        self.candidate.profile.add_entity(self.entity)
         self.candidate.profile.save()
 
     def test_edit_profile(self):

@@ -16,8 +16,8 @@
         <td>{{ entity.profile_count }}</td>
         <td class='editor_count'>
           {% for i in editor_count %}
-            {% if i.locality == entity.id %}
-              {{ i.locality__count }}
+            {% if i.entity == entity.id %}
+              {{ i.entity__count }}
             {% endif %}
           {% endfor %}
         </td>

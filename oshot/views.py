@@ -32,11 +32,11 @@ def entity_stats(request):
         return HttpResponseForbidden(_('Only superusers have access to this page.'))
 
     entities = Entity.objects.filter(division__index=3).\
-                annotate(profile_count=Count('profile')).\
-                filter(profile_count__gt=0)
-    editor_count = Profile.objects.filter(is_editor=True).\
-                    values('locality').\
-                    annotate(Count('locality'))
+                annotate(membership_count=Count('membership')).\
+                filter(membership_count__gt=0)
+    editor_count = Membership.objects.filter(is_editor=True).\
+                    values('entity').\
+                    annotate(Count('entity'))
     answer_count = Answer.objects.values('question__entity').\
                     annotate(Count('question__entity'))
     return render(request, 'user/entity_stats.html',

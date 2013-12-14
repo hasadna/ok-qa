@@ -42,9 +42,10 @@ class ProfileForm(forms.Form):
                             'email_notification': self.profile.email_notification,
                             'gender': self.profile.gender,
                            }
-            if self.profile.locality:
+            locality = self.profile.locality
+            if locality:
                 self.fields['locality'].widget.attrs['disabled'] = True
-                self.initial['locality'] = self.profile.locality
+                self.initial['locality'] = locality
             add_link_fields(self, user)
 
     def clean_username(self):
@@ -65,7 +66,6 @@ class ProfileForm(forms.Form):
         if locality:
             return locality
         else:
-
             raise forms.ValidationError(_('Please set your locality'))
 
     def save(self, commit = True):
@@ -83,7 +83,7 @@ class ProfileForm(forms.Form):
         self.profile.email_notification = self.cleaned_data['email_notification']
         self.profile.gender = self.cleaned_data['gender']
         if self.cleaned_data['locality']:
-            self.profile.locality = self.cleaned_data['locality']
+            self.profile.add_entity(self.cleaned_data['locality'])
 
         if commit:
             user.save()

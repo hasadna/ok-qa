@@ -96,7 +96,8 @@ def entity_home(request, entity_slug=None, entity_id=None, tags=None,
         users_count = Profile.objects.count()
 
     candidate_lists = CandidateList.objects.select_related().filter(entity=entity)
-    candidates = User.objects.filter(candidate__isnull=False).filter(profile__locality=entity)
+    candidates = Membership.objects.filter(entity=entity,
+            can_answer=True).values_list('user', Flat=True)
 
     list_id = request.GET.get('list', default='mayor')
     if list_id == 'mayor':

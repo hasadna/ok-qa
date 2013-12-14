@@ -4,7 +4,7 @@
 			<th>שם העורך</th>
 			<th>כתובת דוא"ל</th>
 			<th>פייסבוק</th>
-			<th>מגורים</th>
+			<th>עורך ב</th>
 		</thead>
 		<tbody>
 			{% for editor in editors %}
@@ -12,7 +12,9 @@
 				<td>{{ editor.get_full_name }}</td>
 				<td>{{ editor.user.email }}</td>
 				<td></td>
-				<td>{{ editor.locality }}</td>
+                {% for entity in editor.editor_in %}
+                    <td>{{ entity }}</td>
+                {% endfor %}
 			</tr>
 			{% endfor %}
 		</tbody>

@@ -69,19 +69,26 @@ class Profile(models.Model):
     def get_full_name(self):
         return self.user.get_full_name() or self.user.username
 
+    @property
+    def entities(self):
+        try:
+            return self.user.membership_set.values_list('entity', flat=True)
+        except DoesNotExist: # does not have a locality set
+            return None
+
     def is_candidate(self, entity):
         return self.user.candidate_set.filter(entity=entity).exists()
 
     @property
     def candidate_in(self):
-        return self.user.candidate_set.value_list('entity', flat=True)
+        return self.user.candidate_set.values_list('entity', flat=True)
 
     def is_editor(self, entity):
-        return self.membership_set(entity=entity, is_editor=True).exists()
+        return self.user.membership_set(entity=entity, is_editor=True).exists()
 
     @property
     def editor_in(self):
-        return self.membership_set.filter(is_editor=True).value_list('entity', flat=True)
+        return self.user.membership_set.filter(is_editor=True).values_list('entity', flat=True)
 
     @cached_property
     def is_mayor_candidate(self):
@@ -96,6 +103,17 @@ class Profile(models.Model):
             return Candidate.objects.only('candidate_list').get(user=self.user).candidate_list
         except:
             return None
+
+    @cached_property
+    def locality(self):
+        try:
+            return self.user.membership_set.get(entity__division__index=3).entity
+        except DoesNotExist: # does not have a locality set
+            return None
+
+    def add_entity(self, entity, is_editor=False):
+        Membership.objects.create(user=self.user, entity=entity, is_editor=is_editor)
+
 
 class Membership(models.Model):
     user = models.ForeignKey(User)
