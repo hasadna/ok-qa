@@ -12,7 +12,7 @@ from actstream.models import Follow
 # Project's apps
 from entities.models import Entity
 from user.utils import create_avatar
-from polyorg.models import Candidate
+from polyorg.models import Candidate, CandidateList
 
 NOTIFICATION_PERIOD_CHOICES = (
     (u'N', _('No Email')),
@@ -48,7 +48,6 @@ class Profile(models.Model):
     email_notification = models.CharField(max_length=1, choices=NOTIFICATION_PERIOD_CHOICES, blank=True, null=True, default='D')
     avatar_uri = models.URLField(null=True, blank=True)
     last_email_update = models.DateTimeField(default=NEVER_SENT)
-    entities = models.ManyToManyField(Entity, verbose_name=_('Entities'), through='Membership')
     sites = models.ManyToManyField(Site)
     verification = models.CharField(max_length=1, choices=VERIFICATION_STAGES, default='0')
     on_site = CurrentSiteManager()
@@ -99,6 +98,8 @@ class Profile(models.Model):
             return None
 
 class Membership(models.Model):
-    profile = models.ForeignKey(Profile)
+    user = models.ForeignKey(User)
     entity = models.ForeignKey(Entity)
     is_editor = models.BooleanField(default=False)
+    can_answer = models.BooleanField(default=False)
+    member_of = models.ForeignKey(CandidateList, null=True, blank=True)
