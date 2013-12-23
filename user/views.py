@@ -22,8 +22,6 @@ def public_profile(request, username=None, pk=None):
     questions = user.questions.filter(is_deleted=False)
     answers = user.answers.filter(is_deleted=False)
     profile = user.profile
-    if profile:
-        setattr(request, 'entity', profile.locality)
     if profile.is_candidate:
         candidate_list = profile.candidate_list
     else:

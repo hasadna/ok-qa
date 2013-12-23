@@ -71,10 +71,7 @@ class Profile(models.Model):
 
     @property
     def entities(self):
-        try:
-            return self.user.membership_set.values_list('entity', flat=True)
-        except DoesNotExist: # does not have a locality set
-            return None
+        return self.user.membership_set.values_list('entity', flat=True)
 
     def is_candidate(self, entity):
         return self.user.candidate_set.filter(entity=entity).exists()
@@ -108,7 +105,7 @@ class Profile(models.Model):
     def locality(self):
         try:
             return self.user.membership_set.get(entity__division__index=3).entity
-        except DoesNotExist: # does not have a locality set
+        except Membership.DoesNotExist: # does not have a locality set
             return None
 
     def add_entity(self, entity, is_editor=False):

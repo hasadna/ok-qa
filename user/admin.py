@@ -17,6 +17,7 @@ numbers and underscores."))
 
 class MembershipAdmin(admin.StackedInline):
     model = Membership
+    extra = 1
 
 class ProfileAdmin(admin.StackedInline):
     model = Profile
@@ -59,7 +60,7 @@ class UnicodeUserAdmin(UserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
     inlines = [ProfileAdmin, MembershipAdmin, ]
-    list_filter = ('is_superuser', 'is_staff', CandidateListFilter, 'is_active', 'date_joined', 'profile__entities')
+    list_filter = ('is_superuser', 'is_staff', CandidateListFilter, 'is_active', 'date_joined')
 
 admin.site.unregister(User)
 admin.site.register(User, UnicodeUserAdmin)
