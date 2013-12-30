@@ -65,29 +65,32 @@ class Command(BaseCommand):
                 'last_sent': last_sent,
                 'is_active': user.is_active,
                 'user': user,
+                'new_questions': {},
+                'old_questions': {},
+                'new_answers': {},
                 }
-        if profile.is_candidate:
-            ''' handle andidates '''
-            local_qs = Question.objects.filter(is_deleted=False, entity=profile.locality).\
-                    exclude(answers__author=user)
-            context['new_questions'] =  local_qs.filter(created_at__gte=last_sent).order_by('updated_at')
-            context['old_questions'] = local_qs.filter(created_at__lt=last_sent).order_by('-rating')
-            html_content = render_to_string("email/candidate_update.html", context)
-        else:
-            ''' handle voters '''
-            # TODO: Develop a template for new upvotes
-            # context['new_upvotes'] = QuestionUpvote.objects.filter(created_at__gte=last_sent, question__author=user).\
-            #        order_by('question')
-            context['new_answers'] = Answer.objects.filter(created_at__gte=last_sent,
-                    is_deleted=False,
-                    question__in = [x.actor for x in \
-                            Follow.objects.filter(user=user, content_type=self.q_ct)]).\
-                            order_by('question')
-            context['new_questions'] = Question.objects.exclude(author=user).\
-                    filter(entity=user.profile.locality,
-                           is_deleted=False,
-                           created_at__gte=last_sent).order_by('author')
-            html_content = render_to_string("email/voter_update.html", context)
+        for entity in profile.entities:
+            if profile.is_candidate(entity):
+                ''' handle candidates '''
+                local_qs = Question.objects.filter(is_deleted=False, entity=entity).\
+                        exclude(answers__author=user)
+                context['new_questions'][entity] = local_qs.filter(created_at__gte=last_sent).order_by('updated_at')
+                context['old_questions'][entity] = local_qs.filter(created_at__lt=last_sent).order_by('-rating')
+                html_content = render_to_string("email/candidate_update.html", context)
+            else:
+                ''' handle voters '''
+                # TODO: Develop a template for new upvotes
+                # context['new_upvotes'] = QuestionUpvote.objects.filter(created_at__gte=last_sent, question__author=user).\
+                #        order_by('question')
+                context['new_answers'][entity] = Answer.objects.filter(created_at__gte=last_sent,
+                        question__entity=entity, is_deleted=False,
+                        question__in = [x.actor for x in \
+                                Follow.objects.filter(user=user, content_type=self.q_ct)]).\
+                                order_by('question')
+                context['new_questions'][entity] = Question.objects.exclude(author=user).\
+                        filter(entity=entity, is_deleted=False,
+                               created_at__gte=last_sent).order_by('author')
+                html_content = render_to_string("email/voter_update.html", context)
 
         subject = FlatBlock.objects.get(slug="candidate_update_email.subject").content
         # TODO: create a link for the update and send it to shaib

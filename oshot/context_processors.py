@@ -26,7 +26,7 @@ def forms(request):
         elif 'entity_slug' in kwargs:
             entity = get_object_or_404(Entity, slug=kwargs['entity_slug'])
         elif request.user.is_authenticated():
-            entity = request.user.profile.locality
+            entity = request.user.profile.entities[0] if request.user.profile.entities else None # TODO #453
 
         context['entity'] = entity
         context['questions_url'] = reverse("home_page")

@@ -6,7 +6,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.admin import SimpleListFilter
 from django.contrib.auth.admin import UserAdmin
 from django.utils.translation import ugettext as _
-from user.models import Profile
+from user.models import Profile, Membership
 
 unicode_username = forms.RegexField(label=_("Username"), max_length=30,
         regex=re.compile(r'^[\w.@+-]{4,}$', re.U),
@@ -14,6 +14,10 @@ unicode_username = forms.RegexField(label=_("Username"), max_length=30,
 characters only (letters, digits and underscores)."),
         error_message = _("This value must contain only letters, \
 numbers and underscores.")) 
+
+class MembershipAdmin(admin.StackedInline):
+    model = Membership
+    extra = 1
 
 class ProfileAdmin(admin.StackedInline):
     model = Profile
@@ -55,8 +59,8 @@ class CandidateListFilter(SimpleListFilter):
 class UnicodeUserAdmin(UserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
-    inlines = [ProfileAdmin, ]
-    list_filter = ('is_superuser', 'is_staff', 'profile__is_editor', CandidateListFilter, 'is_active', 'date_joined', 'profile__locality')
+    inlines = [ProfileAdmin, MembershipAdmin, ]
+    list_filter = ('is_superuser', 'is_staff', CandidateListFilter, 'is_active', 'date_joined')
 
 admin.site.unregister(User)
 admin.site.register(User, UnicodeUserAdmin)

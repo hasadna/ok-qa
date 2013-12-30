@@ -5,16 +5,15 @@
 
 {% block pageTitle %}{% trans "Post question" %}{% endblock %}
 {% block extrahead %}
-  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/autoSuggest.css"/>
+  <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}jquery-autosuggest/css/autoSuggest.css"/>
 {% endblock %}
 
 {% block content %}
 <div class="page-header">
   {% if not slug %}
     <h1>{% trans "What is your question, sire?" %}</h1>
-    <p>{% url 'local_home' user.profile.locality.id as home %}
-    {% trans 'before asking a new question, please check if it exists on the' %}
-    <a href="{% url 'local_home' user.profile.locality.id %}">{% trans 'page of your locality' %}</a>.</p>
+    <p>{% trans 'before asking a new question, please check if it exists on the' %}
+    <a href="{% url 'entity_home' entity.id %}">{% trans 'page of your locality' %}</a>.</p>
   {% else %}
     <h1>{% trans "Edit your question" %}</h1>
   {% endif %}
@@ -27,8 +26,6 @@
 
 <form class="form-horizontal" method="POST">
   <div class="row post-question">
-    <script src="{{ STATIC_URL }}js/jquery.js"></script>
-    <script src="{{ STATIC_URL }}js/jquery.autoSuggest.js"></script>
     {% csrf_token %}
     {{ form|crispy }}
     <div id="charsCounter"><span id="charsLeft"></span> {% trans 'characters left' %}</div>
@@ -38,7 +35,7 @@
       <button type="submit" class="btn btn-primary">{% trans 'Publish' %}</button>
       <a class="cancel btn btn-action" href="
           {% if not slug %}
-            {% url 'local_home' entity.id %}
+            {% url 'entity_home' entity.id %}
           {% else %}
             {% url 'question_detail' entity.id slug %}
           {% endif %}
@@ -50,6 +47,7 @@
 {% endblock %}
 
 {% block extrascript %}
+{{ block.super }}
 {% if max_length_q_subject %}
     <script>
 	var $subject = $("#id_subject"),
@@ -67,5 +65,6 @@
 	});
     </script>
 {% endif %}
+<script src="{{ STATIC_URL }}jquery-autosuggest/js/jquery.autoSuggest.js"></script>
 {% endblock %}
 

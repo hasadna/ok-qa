@@ -2,6 +2,7 @@
 {% load i18n %}
 {% load crispy_forms_tags %}
 {% load cache %}
+{% load user_tags %}
 
 <!DOCTYPE HTML>
 <html>
@@ -21,6 +22,9 @@
     <meta property="fb:app_id"    content="{{FACEBOOK_APP_ID}}" /> 
     <meta property="og:site_name" content="{{site.name}}" /> 
     <meta property="og:image" content='http://www.hasadna.org.il/wp-content/uploads/2013/10/og-image-localshot.jpg'>
+
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+
     {% block extrahead %}{% endblock %}
 
     {% if ANALYTICS_ID %}
@@ -81,9 +85,9 @@
                   {% if user.is_staff %}
                       <li><a href="/admin/">{% trans 'admin' %}</a></li>
                   {% endif %}
-                  {% if user.is_superuser and user.profile.locality %}
+                  {% if user.profile|is_editor:entity %}
                       <li><a href="{% url 'candidate-list-list' entity.id %}">{% trans 'manage candidate lists' %}</a></li>
-                  {% elif user.profile.is_editor %}
+                  {% elif user.is_superuser %}
                       <li><a href="{% url 'candidate-list-list' %}">{% trans 'manage candidate lists' %}</a></li>
                   {% endif %}
 
@@ -156,7 +160,6 @@
   </div>
 
 </footer>
-    <script src="{{ STATIC_URL }}js/jquery.js"></script>
     <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
     <script src="{{ STATIC_URL }}js/trunk8.js"></script>
     <script>

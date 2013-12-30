@@ -4,8 +4,9 @@ from django.shortcuts import render, render_to_response
 from django.utils.translation import ugettext as _
 from django.db.models import Count
 from django.contrib.auth.decorators import login_required
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden, HttpResponseRedirect
 from django.template.context import RequestContext
+from django.core.urlresolvers import reverse
 
 # pluggable apps
 from haystack.query import SearchQuerySet
@@ -31,11 +32,11 @@ def entity_stats(request):
         return HttpResponseForbidden(_('Only superusers have access to this page.'))
 
     entities = Entity.objects.filter(division__index=3).\
-                annotate(profile_count=Count('profile')).\
-                filter(profile_count__gt=0)
-    editor_count = Profile.objects.filter(is_editor=True).\
-                    values('locality').\
-                    annotate(Count('locality'))
+                annotate(membership_count=Count('membership')).\
+                filter(membership_count__gt=0)
+    editor_count = Membership.objects.filter(is_editor=True).\
+                    values('entity').\
+                    annotate(Count('entity'))
     answer_count = Answer.objects.values('question__entity').\
                     annotate(Count('question__entity'))
     return render(request, 'user/entity_stats.html',

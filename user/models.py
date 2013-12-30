@@ -12,7 +12,7 @@ from actstream.models import Follow
 # Project's apps
 from entities.models import Entity
 from user.utils import create_avatar
-from polyorg.models import Candidate
+from polyorg.models import Candidate, CandidateList
 
 NOTIFICATION_PERIOD_CHOICES = (
     (u'N', _('No Email')),
@@ -31,13 +31,6 @@ VERIFICATION_STAGES = (
 
 
 NEVER_SENT = datetime.datetime(1970,8,6)
-MIN_EDITORS_PER_LOCALITY = 3
-
-class ProfileManager(models.Manager):
-
-    def need_editors(self, entity):
-       return Profile.objects.filter(locality=entity).count() < MIN_EDITORS_PER_LOCALITY
-
 
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
@@ -48,13 +41,10 @@ class Profile(models.Model):
     email_notification = models.CharField(max_length=1, choices=NOTIFICATION_PERIOD_CHOICES, blank=True, null=True, default='D')
     avatar_uri = models.URLField(null=True, blank=True)
     last_email_update = models.DateTimeField(default=NEVER_SENT)
-    locality = models.ForeignKey(Entity, null=True, verbose_name=_('Locality'))
     sites = models.ManyToManyField(Site)
-    is_editor = models.BooleanField(default=False)
     verification = models.CharField(max_length=1, choices=VERIFICATION_STAGES, default='0')
     on_site = CurrentSiteManager()
-
-    objects = ProfileManager()
+    objects = models.Manager()
 
     def __unicode__(self):
         return self.user.get_full_name()
@@ -71,9 +61,24 @@ class Profile(models.Model):
     def get_full_name(self):
         return self.user.get_full_name() or self.user.username
 
-    @cached_property
-    def is_candidate(self):
-        return self.user.candidate_set.exists()
+    @property
+    def entities(self):
+        return self.user.membership_set.values_list('entity', flat=True)
+
+    # TODO: rename this to can_answer
+    def is_candidate(self, entity):
+        return Membership.objects.get(user=self.user, entity=entity).can_answer
+
+    @property
+    def candidate_in(self):
+        return self.user.candidate_set.values_list('entity', flat=True)
+
+    def is_editor(self, entity):
+        return Membership.objects.get(user=self.user, entity=entity).is_editor
+
+    @property
+    def editor_in(self):
+        return Membership.objects.filter(user=self.user, is_editor=True).values_list('entity', flat=True)
 
     @cached_property
     def is_mayor_candidate(self):
@@ -88,3 +93,21 @@ class Profile(models.Model):
             return Candidate.objects.only('candidate_list').get(user=self.user).candidate_list
         except:
             return None
+
+    @cached_property
+    def locality(self):
+        try:
+            return self.user.membership_set.get(entity__division__index=3).entity
+        except Membership.DoesNotExist: # does not have a locality set
+            return None
+
+    def add_entity(self, entity, is_editor=False):
+        Membership.objects.create(user=self.user, entity=entity, is_editor=is_editor)
+
+
+class Membership(models.Model):
+    user = models.ForeignKey(User)
+    entity = models.ForeignKey(Entity)
+    is_editor = models.BooleanField(default=False)
+    can_answer = models.BooleanField(default=False)
+    member_of = models.ForeignKey(CandidateList, null=True, blank=True)

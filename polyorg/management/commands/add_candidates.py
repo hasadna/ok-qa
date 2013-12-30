@@ -4,7 +4,7 @@ import random
 from django.core.management.base import BaseCommand
 from django.core.exceptions import ObjectDoesNotExist
 
-from user.models import User
+from user.models import User, Membership
 from polyorg.models import CandidateList, Candidate
 from entities.models import Entity
 
@@ -47,7 +47,7 @@ class Command(BaseCommand):
             user.set_password(password)
             user.save()
 
-            user.profile.locality = locality
+            Membership.objects.create(profile=user.profile, entity=locality)
             user.profile.verification = u'V'
 
             user.profile.save()

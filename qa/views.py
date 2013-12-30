@@ -23,7 +23,7 @@ from entities.models import Entity
 from taggit.models import Tag
 from actstream import follow, unfollow
 
-from user.models import Profile
+from user.models import Profile, Membership
 from qa.forms import AnswerForm, QuestionForm
 from qa.models import *
 from qa.tasks import publish_question_to_facebook, publish_upvote_to_facebook,\
@@ -37,6 +37,9 @@ ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flag
 # CBS locality stats
 CBS_STATS = json.load(open(os.path.join(settings.STATICFILES_ROOT, 'js/entity_stats.js')))
 
+def need_editors(entity):
+   return entity and Membership.objects.filter(entity=entity).count() < settings.MIN_EDITORS_PER_LOCALITY
+
 class JsonpResponse(HttpResponse):
     def __init__(self, data, callback, *args, **kwargs):
         jsonp = "%s(%s)" % (callback, json.dumps(data))
@@ -46,7 +49,7 @@ class JsonpResponse(HttpResponse):
             *args, **kwargs)
 
 
-def local_home(request, entity_slug=None, entity_id=None, tags=None,
+def entity_home(request, entity_slug=None, entity_id=None, tags=None,
         template="qa/question_list.html"):
     """
     A home page for an entity including questions and candidates
@@ -60,7 +63,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     if not entity or entity.division.index != 3:
         raise Http404(_("Bad Entity"))
 
-    if request.user.is_authenticated() and not request.user.profile.locality:
+    if request.user.is_authenticated() and not request.user.profile.entities:
         messages.error(request,_('Please update your locality in your user profile to use the site'))
         return HttpResponseRedirect(reverse('edit_profile'))
 
@@ -90,15 +93,16 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
             qa_taggedquestion_items__content_object__is_deleted=False).\
                 annotate(num_times=Count('qa_taggedquestion_items')).\
                 order_by("-num_times","slug")
-        need_editors = Profile.objects.need_editors(entity)
-        users_count = entity.profile_set.count()
+        users_count = Membership.objects.filter(entity=entity).count()
     else:
         users_count = Profile.objects.count()
 
     candidate_lists = CandidateList.objects.select_related().filter(entity=entity)
-    candidates = User.objects.filter(candidate__isnull=False).filter(profile__locality=entity)
+    candidates = Membership.objects.filter(entity=entity,
+            can_answer=True).values_list('user', flat=True)
 
     list_id = request.GET.get('list', default='mayor')
+    '''' TODO: add support for candidate list
     if list_id == 'mayor':
         candidate_list = None
         candidates = candidates.filter(candidate__for_mayor=True)
@@ -116,6 +120,8 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
     candidate_lists = candidate_lists.annotate( \
                             num_answers=models.Count('candidates__answers')).\
                             order_by('-num_answers')
+    '''
+    candidate_list = None
 
     answers_count = Answer.objects.filter(question__entity=entity, question__is_deleted=False).count()
     
@@ -127,7 +133,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
         'by_rating': order_opt == 'rating',
         'only_flagged': only_flagged,
         'current_tags': current_tags,
-        'need_editors': need_editors,
+        'need_editors': need_editors(entity),
         'candidates': candidates,
         'candidate_list': candidate_list,
         'candidate_lists': candidate_lists,
@@ -138,7 +144,7 @@ def local_home(request, entity_slug=None, entity_id=None, tags=None,
 
     ret = render(request, template, context)
     if request.user.is_anonymous() and not tags and not request.GET:
-        cache.set('local_home_%s' % entity_id, ret, timeout = 36000)
+        cache.set('entity_home_%s' % entity_id, ret, timeout = 36000)
     return ret
 
 class QuestionDetail(JSONResponseMixin, SingleObjectTemplateResponseMixin, BaseDetailView):
@@ -233,14 +239,12 @@ def post_question(request, entity_id=None, slug=None):
 
     if entity_id:
         entity = Entity.objects.get(pk=entity_id)
-        if entity != profile.locality:
-            messages.warning(request, _('Sorry, you may only post questions in your locality') +
-                "\n" +
-                _('Before posting a new question, please check if it already exists in this page'))
-            return HttpResponseRedirect(reverse('local_home',
-                                        kwargs={'entity_id': profile.locality.id,}))
 
-    entity = profile.locality
+    if not entity_id or entity not in profile.entities:
+        messages.warning(request, _('Sorry, you may only post questions in your locality') +
+            "\n" +
+            _('Before posting a new question, please check if it already exists in this page'))
+        return HttpResponseRedirect(reverse('home_page')) # TODO #453
 
     q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
 
@@ -276,7 +280,7 @@ def post_question(request, entity_id=None, slug=None):
             form = QuestionForm(request.user, initial={'entity': entity})
 
     becoming_editor = not profile.is_editor and\
-                      Profile.objects.need_editors(entity)
+                      need_editors(entity)
     context = RequestContext(request, {"form": form,
                                        "entity": entity,
                                        "max_length_q_subject": MAX_LENGTH_Q_SUBJECT,
@@ -294,7 +298,7 @@ def upvote_question(request, q_id):
     if request.method == "POST":
         q = get_object_or_404(Question, id=q_id)
         user = request.user
-        if q.entity != user.profile.locality:
+        if q.entity not in user.profile.entities:
             return HttpResponseForbidden(_('You may only support questions in your locality'))
         if q.author == user:
             return HttpResponseForbidden(_("You may not support your own question"))
@@ -369,7 +373,7 @@ class AtomQuestionFeed(Feed):
         return _('Brought to you by "%s"') % (Site.objects.get_current().name, )
 
     def link(self, obj):
-        return reverse('local_home', args=(obj.id, ))
+        return reverse('entity_home', args=(obj.id, ))
 
     def item_title(self, item):
         return item.subject
@@ -424,10 +428,9 @@ def flag_question(request, q_id):
             messages.error(request, _('Sorry, can not delete a question with answers'))
         else:
             tbd = True
-    elif user.profile.is_editor:
+    elif user.profile.is_editor(q.entity):
         ''' handle editors '''
-        if user.profile.locality == q.entity:
-            tbd = True
+        tbd = True
 
     if tbd:
         ''' seems like we have to delete the question '''
@@ -444,5 +447,5 @@ def flag_question(request, q_id):
             messages.success(request,
                 _('Thank you for flagging the question. One of our editors will look at it shortly.'))
 
-    redirect = reverse('local_home', args=(q.entity.slug,))
+    redirect = reverse('entity_home', args=(q.entity.slug,))
     return HttpResponse(redirect, content_type="text/plain")

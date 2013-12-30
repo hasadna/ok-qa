@@ -117,7 +117,7 @@
         <div class="started">
             {% if not entity %}
               {% trans "from"%}
-              <a href="{% url "local_home" question.entity.id %}">{{ question.entity }}</a>
+              <a href="{% url "entity_home" question.entity.id %}">{{ question.entity }}</a>
             {% endif %}
         </div>
         {% if question.answers.count and show_responders %}       

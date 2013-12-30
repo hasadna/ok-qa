@@ -1,13 +1,11 @@
 from django.db import models, transaction
 from django.dispatch import receiver
-from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.contrib.sites.managers import CurrentSiteManager
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 from django.core.validators import MaxLengthValidator
-from django.core.cache import cache
 from taggit.models import TaggedItemBase
 from django.contrib.contenttypes.models import ContentType
 
@@ -22,7 +20,7 @@ MAX_LENGTH_Q_CONTENT = 1000
 MAX_LENGTH_A_SUBJECT = 80
 MAX_LENGTH_A_CONTENT = 1000 
 
-entity_home_key = lambda entity_id: "local_home_%s" % entity_id
+entity_home_key = lambda entity_id: "entity_home_%s" % entity_id
 
 class BaseModel(models.Model):
     ''' just a common time base for the models
@@ -50,7 +48,8 @@ class TaggedQuestion(TaggedItemBase):
 def can_vote(entity, user):
     ''' returns whether a secific user can upvote/downvote a question in the
         entity '''
-    return user.is_authenticated() and user.profile.locality == entity
+    return user.is_authenticated() and entity in user.profile.entities
+
 Entity.add_to_class('can_vote', can_vote)
 
 class Question(BaseModel):
@@ -86,8 +85,7 @@ class Question(BaseModel):
     def can_answer(self, user):
         ''' Can a given user answer self? '''
         if user.is_authenticated():
-            profile = user.profile
-            return profile.is_candidate and profile.locality==self.entity
+            return user.profile.is_candidate(self.entity)
         else:
             return False
 
@@ -114,8 +112,7 @@ class Question(BaseModel):
         if self.author == user:
             return True
         if user.is_authenticated() and\
-           user.profile.is_editor and\
-           user.profile.locality == self.entity:
+           user.profile.is_editor(self.entity):
             return True
         return False
 
@@ -158,21 +155,4 @@ class QuestionFlag(BaseModel):
     question = models.ForeignKey(Question, related_name="flags")
     reporter = models.ForeignKey(User, related_name="flags")
 
-''' signals code, to ensure correct site is saved 
-'''
-@receiver(post_save)
-def saved(sender, created, instance, **kwargs):
-    if sender in (Question, Answer, TaggedQuestion):
-        instance.sites.add(Site.objects.get_current())
-
-@receiver(post_save)
-def clear_entity_cache(sender, created, instance, **kwargs):
-    ''' clear the local cache on new question or answer '''
-    if sender == Question:
-        cache.delete(entity_home_key(instance.entity_id))
-    elif sender == Answer:
-        cache.delete(entity_home_key(instance.question.entity_id))
-
-
-
-
+import signals
