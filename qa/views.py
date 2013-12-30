@@ -420,7 +420,7 @@ def flag_question(request, q_id):
         ''' first kick anonymous users '''
         messages.error(request, _('Sorry, you have to login to flag questions'))
         redirect = '%s?next=%s' % (settings.LOGIN_URL, q.get_absolute_url())
-        return HttpResponse(redirect, content_type="text/plain")
+        return HttpResponseRedirect(redirect, content_type="text/plain")
 
     elif user == q.author:
         ''' handle authors '''

@@ -142,8 +142,28 @@ class QuestionTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTrue(response.context['can_answer'])
 
+    def test_q_flagged(self):
+        '''
+        test the flagging a question works
+        '''
+        self.q.flagged()
+        self.assertEquals(self.q.flags_count, 1)
+
+    def test_flag_as_anonymous(self):
+        '''
+        flagging as anonymous user should fail and redirect to login page
+        '''
+        before = self.q.flags_count
+        c = Client()
+        response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
+        self.assertEquals(self.q.flags_count, before)
+        self.assertEquals(response.status_code, 302)
+        self.assertIn('messages', response.context)
+        message = list(response.context['messages'])[0]
+        self.assertEquals(message.message, 'Sorry, you have to login to flag questions')
+
     def test_flags(self):
-        ''' try to flag a question as an anonymous and get an error.
+        ''' 
             login as a commoner.
             try to flag a question and get a thank you note.
             try flagging it again and get an error message. logout.
@@ -151,31 +171,18 @@ class QuestionTest(TestCase):
             the question. get an error, so move the editor to the right locality
             and finally soft delete the damn question.
         '''
-        self.q.flagged()
-        self.assertEquals(self.q.flags_count, 1)
+        before = self.q.flags_count
         c = Client()
-
-        response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
-        self.assertEquals(response.status_code, 200)
-        login_url = response.content
-        response = c.get(login_url)
-        self.assertEquals(response.status_code, 200)
-        self.assertIn('messages', response.context)
-        message = list(response.context['messages'])[0]
-        self.assertEquals(message.message, 'Sorry, you have to login to flag questions')
-        self.assertEquals(self.q.flags_count, 1)
-        respone = c.post(login_url,
+        response = c.post(reverse('login'),
                 {'username':"commoner2", 'password':"pass"})
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, 302)
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
-        self.assertEquals(response.status_code, 200)
-        response = c.get(response.content)
         self.assertEquals(response.status_code, 200)
         self.assertIn('messages', response.context)
         message = list(response.context['messages'])[0]
         self.assertEquals(message.message, 'Thank you for flagging the question. One of our editors will look at it shortly.')
         self.q = Question.objects.get(pk=self.q.id)
-        self.assertEquals(self.q.flags_count, 2)
+        self.assertEquals(self.q.flags_count, before+1)
         response = c.get("%s?%s" % (reverse('entity_home',
                                            kwargs={'entity_slug': self.home.slug}
                                     ),
