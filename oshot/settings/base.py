@@ -241,3 +241,4 @@ CACHES = {
         }
 
 LONG_CACHE_TIME = 18000  # 5 hours
+MIN_EDITORS_PER_LOCALITY = 3

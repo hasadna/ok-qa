@@ -1,13 +1,11 @@
 from django.db import models, transaction
 from django.dispatch import receiver
-from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.contrib.sites.managers import CurrentSiteManager
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 from django.core.validators import MaxLengthValidator
-from django.core.cache import cache
 from taggit.models import TaggedItemBase
 from django.contrib.contenttypes.models import ContentType
 
@@ -157,21 +155,4 @@ class QuestionFlag(BaseModel):
     question = models.ForeignKey(Question, related_name="flags")
     reporter = models.ForeignKey(User, related_name="flags")
 
-''' signals code, to ensure correct site is saved 
-'''
-@receiver(post_save)
-def saved(sender, created, instance, **kwargs):
-    if sender in (Question, Answer, TaggedQuestion):
-        instance.sites.add(Site.objects.get_current())
-
-@receiver(post_save)
-def clear_entity_cache(sender, created, instance, **kwargs):
-    ''' clear the local cache on new question or answer '''
-    if sender == Question:
-        cache.delete(entity_home_key(instance.entity_id))
-    elif sender == Answer:
-        cache.delete(entity_home_key(instance.question.entity_id))
-
-
-
-
+import signals

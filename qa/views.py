@@ -23,7 +23,7 @@ from entities.models import Entity
 from taggit.models import Tag
 from actstream import follow, unfollow
 
-from user.models import Profile
+from user.models import Profile, Membership
 from qa.forms import AnswerForm, QuestionForm
 from qa.models import *
 from qa.tasks import publish_question_to_facebook, publish_upvote_to_facebook,\
@@ -36,6 +36,9 @@ from polyorg.models import CandidateList
 ORDER_OPTIONS = {'date': '-created_at', 'rating': '-rating', 'flagcount': '-flags_count'}
 # CBS locality stats
 CBS_STATS = json.load(open(os.path.join(settings.STATICFILES_ROOT, 'js/entity_stats.js')))
+
+def need_editors(entity):
+   return entity and Membership.objects.filter(entity=entity).count() < settings.MIN_EDITORS_PER_LOCALITY
 
 class JsonpResponse(HttpResponse):
     def __init__(self, data, callback, *args, **kwargs):
@@ -90,16 +93,16 @@ def entity_home(request, entity_slug=None, entity_id=None, tags=None,
             qa_taggedquestion_items__content_object__is_deleted=False).\
                 annotate(num_times=Count('qa_taggedquestion_items')).\
                 order_by("-num_times","slug")
-        need_editors = Profile.objects.need_editors(entity)
-        users_count = entity.profile_set.count()
+        users_count = Membership.objects.filter(entity=entity).count()
     else:
         users_count = Profile.objects.count()
 
     candidate_lists = CandidateList.objects.select_related().filter(entity=entity)
     candidates = Membership.objects.filter(entity=entity,
-            can_answer=True).values_list('user', Flat=True)
+            can_answer=True).values_list('user', flat=True)
 
     list_id = request.GET.get('list', default='mayor')
+    '''' TODO: add support for candidate list
     if list_id == 'mayor':
         candidate_list = None
         candidates = candidates.filter(candidate__for_mayor=True)
@@ -117,6 +120,8 @@ def entity_home(request, entity_slug=None, entity_id=None, tags=None,
     candidate_lists = candidate_lists.annotate( \
                             num_answers=models.Count('candidates__answers')).\
                             order_by('-num_answers')
+    '''
+    candidate_list = None
 
     answers_count = Answer.objects.filter(question__entity=entity, question__is_deleted=False).count()
     
@@ -128,7 +133,7 @@ def entity_home(request, entity_slug=None, entity_id=None, tags=None,
         'by_rating': order_opt == 'rating',
         'only_flagged': only_flagged,
         'current_tags': current_tags,
-        'need_editors': need_editors,
+        'need_editors': need_editors(entity),
         'candidates': candidates,
         'candidate_list': candidate_list,
         'candidate_lists': candidate_lists,
@@ -275,7 +280,7 @@ def post_question(request, entity_id=None, slug=None):
             form = QuestionForm(request.user, initial={'entity': entity})
 
     becoming_editor = not profile.is_editor and\
-                      Profile.objects.need_editors(entity)
+                      need_editors(entity)
     context = RequestContext(request, {"form": form,
                                        "entity": entity,
                                        "max_length_q_subject": MAX_LENGTH_Q_SUBJECT,

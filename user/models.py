@@ -31,13 +31,6 @@ VERIFICATION_STAGES = (
 
 
 NEVER_SENT = datetime.datetime(1970,8,6)
-MIN_EDITORS_PER_LOCALITY = 3
-
-class ProfileManager(models.Manager):
-
-    def need_editors(self, entity):
-       return entity.profiles.count() < MIN_EDITORS_PER_LOCALITY
-
 
 class Profile(models.Model):
     user = models.OneToOneField(User, related_name='profile')
@@ -51,8 +44,7 @@ class Profile(models.Model):
     sites = models.ManyToManyField(Site)
     verification = models.CharField(max_length=1, choices=VERIFICATION_STAGES, default='0')
     on_site = CurrentSiteManager()
-
-    objects = ProfileManager()
+    objects = models.Manager()
 
     def __unicode__(self):
         return self.user.get_full_name()
@@ -73,19 +65,20 @@ class Profile(models.Model):
     def entities(self):
         return self.user.membership_set.values_list('entity', flat=True)
 
+    # TODO: rename this to can_answer
     def is_candidate(self, entity):
-        return self.user.candidate_set.filter(entity=entity).exists()
+        return Membership.objects.get(user=self.user, entity=entity).can_answer
 
     @property
     def candidate_in(self):
         return self.user.candidate_set.values_list('entity', flat=True)
 
     def is_editor(self, entity):
-        return self.user.membership_set(entity=entity, is_editor=True).exists()
+        return Membership.objects.get(user=self.user, entity=entity).is_editor
 
     @property
     def editor_in(self):
-        return self.user.membership_set.filter(is_editor=True).values_list('entity', flat=True)
+        return Membership.objects.filter(user=self.user, is_editor=True).values_list('entity', flat=True)
 
     @cached_property
     def is_mayor_candidate(self):

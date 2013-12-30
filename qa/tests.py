@@ -278,7 +278,7 @@ class QuestionTest(TestCase):
         self.assertEquals(response.status_code, 302)
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
-        u.profile.add_entity(self.common_user.profile.entities[0])
+        u.profile.add_entity(self.home)
         u.profile.save()
         self.mock_request.return_value.content = json.dumps({
             'id': 1
