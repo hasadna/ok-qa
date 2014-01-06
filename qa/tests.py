@@ -158,9 +158,7 @@ class QuestionTest(TestCase):
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(self.q.flags_count, before)
         self.assertEquals(response.status_code, 302)
-        self.assertIn('messages', response.context)
-        message = list(response.context['messages'])[0]
-        self.assertEquals(message.message, 'Sorry, you have to login to flag questions')
+        self.assertTrue('Sorry, you have to login to flag questions' in response.cookies['messages'].value)
 
     def test_flags(self):
         ''' 
@@ -315,7 +313,6 @@ class QuestionTest(TestCase):
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
         u.profile.add_entity(self.home)
-        u.profile.save()
         post_url = reverse('post_question')
         self.mock_request.return_value.content = json.dumps({
             'id': 1

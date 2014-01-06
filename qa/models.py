@@ -48,7 +48,7 @@ class TaggedQuestion(TaggedItemBase):
 def can_vote(entity, user):
     ''' returns whether a secific user can upvote/downvote a question in the
         entity '''
-    return user.is_authenticated() and entity in user.profile.entities
+    return user.is_authenticated() and user.profile.is_member_of(entity)
 
 Entity.add_to_class('can_vote', can_vote)
 
