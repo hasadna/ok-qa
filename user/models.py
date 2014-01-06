@@ -61,8 +61,7 @@ class Profile(models.Model):
     def get_full_name(self):
         return self.user.get_full_name() or self.user.username
 
-    @property
-    def entities(self):
+    def get_entity_ids(self):
         return self.user.membership_set.values_list('entity', flat=True)
 
     # TODO: rename this to can_answer
@@ -74,7 +73,10 @@ class Profile(models.Model):
         return self.user.candidate_set.values_list('entity', flat=True)
 
     def is_editor(self, entity):
-        return Membership.objects.get(user=self.user, entity=entity).is_editor
+        try:
+            return Membership.objects.get(user=self.user, entity=entity).is_editor
+        except Membership.DoesNotExist:
+            return False
 
     @property
     def editor_in(self):
@@ -104,6 +106,8 @@ class Profile(models.Model):
     def add_entity(self, entity, is_editor=False):
         Membership.objects.create(user=self.user, entity=entity, is_editor=is_editor)
 
+    def is_member_of(self, entity):
+        return self.user.membership_set.filter(entity=entity).exists()
 
 class Membership(models.Model):
     user = models.ForeignKey(User)

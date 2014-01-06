@@ -32,17 +32,11 @@ class UserTest(TestCase):
         'email': 'user@domain.com'
     }
     def setUp(self):
-        domain = Domain.objects.create(name="test")
-        division = Division.objects.create(name="localities", domain=domain,
-                index=3)
-        self.locality = Entity.objects.create(name="the moon", division=division)
         self.user = User.objects.create_user("user",
                                 "user@example.com", "pass")
-        self.user.profile.add_entity(self.locality)
         self.user.profile.save()
         self.candidate = User.objects.create_user("candidate",
                                 "candidate@example.com", "pass")
-        self.candidate.profile.add_entity(self.locality)
         self.candidate.profile.save()
 
     def test_edit_profile(self):
@@ -65,3 +59,11 @@ class UserTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTemplateUsed(response, "user/public_profile.html")
 
+    def test_entities(self):
+        domain = Domain.objects.create(name="test")
+        division = Division.objects.create(name="localities", domain=domain,
+                index=3)
+        locality = Entity.objects.create(name="the moon", division=division)
+        self.user.profile.add_entity(locality)
+        self.assertTrue(self.user.profile.is_member_of(locality))
+        self.assertTrue(locality.id in self.user.profile.get_entity_ids())
