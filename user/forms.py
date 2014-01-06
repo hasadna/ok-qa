@@ -83,7 +83,7 @@ class ProfileForm(forms.Form):
         self.profile.email_notification = self.cleaned_data['email_notification']
         self.profile.gender = self.cleaned_data['gender']
         if self.cleaned_data['locality']:
-            self.profile.add_entity(self.cleaned_data['locality'])
+            self.profile.set_locality(self.cleaned_data['locality'])
 
         if commit:
             user.save()

@@ -102,9 +102,27 @@ class Profile(models.Model):
             return self.user.membership_set.get(entity__division__index=3).entity
         except Membership.DoesNotExist: # does not have a locality set
             return None
+        except Membership.MultipleObjectsReturned, e: # does not have a locality set
+            raise Membership.MultipleObjectsReturned("%s has multiple localities: %s" \
+                    % (self.user, \
+                    self.user.membership_set.filter(entity__division__index=3).\
+                    values_list('entity__name', flat=True)), \
+                    e)
 
     def add_entity(self, entity, is_editor=False):
         Membership.objects.create(user=self.user, entity=entity, is_editor=is_editor)
+
+    def remove_entity(self, entity):
+        self.user.membership_set.get(entity=entity).delete()
+
+    def set_locality(self, entity, is_editor=False):
+        if entity.division.index != '3':
+            raise ValueError("%s is not a locality" % entity.name)
+        try:
+            self.user.membership_set.get(entity__division__index=3).delete()
+        except Membership.DoesNotExist: # does not have a locality set
+            pass
+        self.add_entity(entity, is_editor)
 
     def is_member_of(self, entity):
         return self.user.membership_set.filter(entity=entity).exists()
