@@ -209,7 +209,7 @@ class QuestionTest(TestCase):
         self.assertIn('messages', response.context)
         message = list(response.context['messages'])[0]
         self.assertEquals(message.message, 'Thank you for flagging the question. One of our editors will look at it shortly.')
-        self.editor.profile.set_locality(self.home)
+        self.editor.profile.set_locality(self.home, is_editor=True)
         self.editor.profile.save()
 
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
