@@ -1,4 +1,4 @@
-import os
+import os, sys
 import json
 
 from django.db.models import Count
@@ -62,10 +62,6 @@ def entity_home(request, entity_slug=None, entity_id=None, tags=None,
     entity = context.get('entity', None)
     if not entity or entity.division.index != 3:
         raise Http404(_("Bad Entity"))
-
-    if request.user.is_authenticated() and not request.user.profile.entities:
-        messages.error(request,_('Please update your locality in your user profile to use the site'))
-        return HttpResponseRedirect(reverse('edit_profile'))
 
     questions = Question.on_site.select_related('author', 'entity').prefetch_related('answers__author').filter(entity=entity, is_deleted=False)
 
@@ -239,18 +235,18 @@ def post_question(request, entity_id=None, slug=None):
 
     if entity_id:
         entity = Entity.objects.get(pk=entity_id)
-
-    if not entity_id or entity not in profile.entities:
-        messages.warning(request, _('Sorry, you may only post questions in your locality') +
-            "\n" +
-            _('Before posting a new question, please check if it already exists in this page'))
-        return HttpResponseRedirect(reverse('home_page')) # TODO #453
+    else:
+        entity= None
 
     q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
 
     if request.method == "POST":
         form = QuestionForm(request.user, request.POST, instance=q)
         if form.is_valid():
+            if not profile.is_member_of(form.cleaned_data['entity']):
+                messages.warning(request, _('Sorry, you may only post questions in your locality'))
+                return HttpResponseRedirect(reverse('home_page')) # TODO #453
+
             ''' carefull when changing a question's history '''
             if not q:
                 try:
@@ -258,6 +254,7 @@ def post_question(request, entity_id=None, slug=None):
                 except:
                     pass
             question = form.save(commit=False)
+
             if q:
                 if q.author != request.user:
                     return HttpResponseForibdden(_("You can only edit your own questions."))
@@ -298,11 +295,12 @@ def upvote_question(request, q_id):
     if request.method == "POST":
         q = get_object_or_404(Question, id=q_id)
         user = request.user
-        if q.entity not in user.profile.entities:
+        if not user.profile.is_member_of(q.entity):
             return HttpResponseForbidden(_('You may only support questions in your locality'))
         if q.author == user:
             return HttpResponseForbidden(_("You may not support your own question"))
         if user.upvotes.filter(question=q):
+            sys.stderr.write("you already...")
             return HttpResponseForbidden(_("You already upvoted this question"))
         else:
             upvote = QuestionUpvote.objects.create(question=q, user=user)
