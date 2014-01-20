@@ -60,7 +60,7 @@ def entity_home(request, entity_slug=None, entity_id=None, tags=None,
             return ret
     context = RequestContext(request)
     entity = context.get('entity', None)
-    if not entity or entity.division.index != 3:
+    if not entity:
         raise Http404(_("Bad Entity"))
 
     if request.user.is_authenticated() and not request.user.profile.locality:
@@ -230,17 +230,13 @@ def post_answer(request, q_id):
 
     return HttpResponseRedirect(question.get_absolute_url())
 
-def post_question(request, entity_id=None, slug=None):
+def post_question(request, entity_id, slug=None):
     if request.user.is_anonymous():
         messages.error(request, _('Sorry but only connected users can post questions'))
         return HttpResponseRedirect(settings.LOGIN_URL)
 
     profile = request.user.profile
-
-    if entity_id:
-        entity = Entity.objects.get(pk=entity_id)
-    else:
-        entity= None
+    entity = Entity.objects.get(pk=entity_id)
 
     q = slug and get_object_or_404(Question, unislug=slug, entity=entity)
 

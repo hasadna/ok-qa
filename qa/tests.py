@@ -45,7 +45,7 @@ class QuestionTest(TestCase):
     }
     def setUp(self):
         domain = Domain.objects.create(name="test")
-        division = Division.objects.create(name="localities", domain=domain, index="3")
+        division = Division.objects.create(name="localities", domain=domain, index=3)
         self.home = Entity.objects.create(name="earth", division=division,
                                             id=1111, code="1111")
         self.away = Entity.objects.create(name="the moon", division=division,
@@ -90,7 +90,8 @@ class QuestionTest(TestCase):
 
     def test_post_question(self):
         c = Client()
-        post_url = reverse('post_question')
+        post_url = reverse('post_question',
+                        kwargs={'entity_id': self.home.id})
         self.assertTrue(c.login(username="commoner", password="pass"))
         response = c.get(post_url)
         self.assertEquals(response.status_code, 200)
@@ -222,13 +223,14 @@ class QuestionTest(TestCase):
         '''
         Related to issue #365:
 
-        When a user add a description to a question it looses all followers.
+        When a user add a description to a question it loses all followers.
         '''
 
         # Create a new question
         c = Client()
         self.assertTrue(c.login(username="commoner", password="pass"))
-        post_url = reverse('post_question')
+        post_url = reverse('post_question',
+                        kwargs={'entity_id': self.home.id})
         response = c.get(post_url)
         self.assertEquals(response.status_code, 200)
         self.assertFalse(Question.objects.filter(entity_id=self.home.id, unislug='Why?').count())
@@ -247,7 +249,7 @@ class QuestionTest(TestCase):
         self.assertEquals(response.status_code, 302)
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
-        u.profile.set_locality(self.common_user.profile.entities[0])
+        u.profile.set_locality(self.common_user.profile.locality)
         u.profile.save()
         self.mock_request.return_value.content = json.dumps({
             'id': 1
@@ -257,7 +259,8 @@ class QuestionTest(TestCase):
 
         # Edit the question
         c = Client()
-        post_url = reverse('edit_question', kwargs={'slug': new_q.unislug})
+        post_url = reverse('edit_question',
+                kwargs={'entity_id': self.home.id, 'slug': new_q.unislug})
         self.assertTrue(c.login(username="commoner", password="pass"))
         response = c.get(post_url)
         self.assertEquals(response.status_code, 200)
@@ -313,7 +316,8 @@ class QuestionTest(TestCase):
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
         u.profile.set_locality(self.home)
-        post_url = reverse('post_question')
+        post_url = reverse('post_question',
+                        kwargs={'entity_id': self.home.id})
         self.mock_request.return_value.content = json.dumps({
             'id': 1
         })

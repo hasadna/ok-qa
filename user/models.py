@@ -62,11 +62,14 @@ class Profile(models.Model):
         return self.user.get_full_name() or self.user.username
 
     def get_entity_ids(self):
-        return self.user.membership_set.values_list('entity', flat=True)
+        return self.user.membership_set.values_list('entity__id', flat=True)
 
     # TODO: rename this to can_answer
     def is_candidate(self, entity):
-        return Membership.objects.get(user=self.user, entity=entity).can_answer
+        try:
+            return Membership.objects.get(user=self.user, entity=entity).can_answer
+        except Membership.DoesNotExist:
+            return False
 
     @property
     def candidate_in(self):
@@ -116,7 +119,7 @@ class Profile(models.Model):
         self.user.membership_set.get(entity=entity).delete()
 
     def set_locality(self, entity, is_editor=False):
-        if entity.division.index != '3':
+        if entity.division.index != 3:
             raise ValueError("%s is not a locality" % entity.name)
         try:
             self.user.membership_set.get(entity__division__index=3).delete()
