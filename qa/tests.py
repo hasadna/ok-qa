@@ -344,7 +344,8 @@ class QuestionTest(TestCase):
         c = SocialClient()
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
-        Membership.objects.create(user=u, entity=self.home, member_of=self.candidate_list)
+        Membership.objects.create(user=u, entity=self.home, can_answer=True,
+                member_of=self.candidate_list)
         u.profile.save()
         post_url = reverse('post_answer', args=(self.q.id, ))
         self.mock_request.return_value.content = json.dumps({
