@@ -61,8 +61,28 @@ class Profile(models.Model):
     def get_full_name(self):
         return self.user.get_full_name() or self.user.username
 
-    def get_entity_ids(self):
-        return self.user.membership_set.values_list('entity__id', flat=True)
+    def is_member_of(self, entity):
+        return self.user.membership_set.filter(entity=entity).exists()
+
+    def get_entity_ids(self, is_editor=None, can_answer=None):
+        memberships = self.user.membership_set
+        if is_editor:
+            memberships = memberships.filter(is_editor=is_editor)
+        if can_answer:
+            memberships = memberships.filter(can_answer=can_answer)
+        return memberships.values_list('entity', flat=True)
+
+    @property
+    def entities(self, is_editor=None, can_answer=None):
+        return Entity.filter(id=get_entity_ids(is_editor, can_answer))
+
+    @property
+    def editor_in(self):
+        return self.entities(is_editor=True)
+
+    @property
+    def candidate_in(self):
+        return self.entities(can_answer=True)
 
     # TODO: rename this to can_answer
     def is_candidate(self, entity):
@@ -71,19 +91,11 @@ class Profile(models.Model):
         except Membership.DoesNotExist:
             return False
 
-    @property
-    def candidate_in(self):
-        return self.user.candidate_set.values_list('entity', flat=True)
-
     def is_editor(self, entity):
         try:
             return Membership.objects.get(user=self.user, entity=entity).is_editor
         except Membership.DoesNotExist:
             return False
-
-    @property
-    def editor_in(self):
-        return Membership.objects.filter(user=self.user, is_editor=True).values_list('entity', flat=True)
 
     @cached_property
     def is_mayor_candidate(self):
@@ -126,9 +138,6 @@ class Profile(models.Model):
         except Membership.DoesNotExist: # does not have a locality set
             pass
         self.add_entity(entity, is_editor)
-
-    def is_member_of(self, entity):
-        return self.user.membership_set.filter(entity=entity).exists()
 
 class Membership(models.Model):
     user = models.ForeignKey(User)

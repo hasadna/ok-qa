@@ -71,6 +71,8 @@ $(".flag-question").click(function (e) {
     $.post(url, {csrfmiddlewaretoken: "{{ csrf_token }}"})
         .done(function (data, textStatus, jqXHR) {
           window.location.replace(data);
+        }).fail( function(xhr, textStatus, errorThrown) {
+          alert(xhr.responseText);
         });
   })
       })

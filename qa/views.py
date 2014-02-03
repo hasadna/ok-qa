@@ -98,8 +98,8 @@ def entity_home(request, entity_slug=None, entity_id=None, tags=None,
         users_count = Profile.objects.count()
 
     candidate_lists = CandidateList.objects.select_related().filter(entity=entity)
-    candidates = Membership.objects.filter(entity=entity,
-            can_answer=True).values_list('user', flat=True)
+    candidate_ids = entity.membership_set.filter(can_answer=True).values_list('user', flat=True)
+    candidates = User.objects.filter(id=candidate_ids)
 
     list_id = request.GET.get('list', default='mayor')
     '''' TODO: add support for candidate list

@@ -12,7 +12,8 @@ from django.test.utils import override_settings
 
 from mock import patch
 from entities.models import Domain, Division, Entity
-from polyorg.models import Candidate, CandidateList
+from polyorg.models import CandidateList
+from user.models import Membership
 from .models import *
 
 
@@ -63,16 +64,16 @@ class QuestionTest(TestCase):
         self.common2_user.profile.save()
         self.candidate_user = User.objects.create_user("candidate", 
                                 "candidate@example.com", "pass")
-        self.candidate_user.profile.set_locality(self.home)
         self.candidate_user.profile.save()
-        Candidate.objects.create(user=self.candidate_user, candidate_list=self.candidate_list)
+        Membership.objects.create(user=self.candidate_user, entity=self.home,
+                can_answer=True, member_of=self.candidate_list)
         self.editor = User.objects.create_user("editor", 
                                 "editor@example.com", "pass")
         self.editor.profile.set_locality(self.home, is_editor=True)
         self.editor.profile.save()
-        self.q = Question.objects.create(author = self.common_user,
+        self.q = Question.objects.create(author=self.common_user,
                         subject="why?", entity=self.home)
-        self.a = self.q.answers.create(author = self.candidate_user,
+        self.a = self.q.answers.create(author=self.candidate_user,
                         content="because the world is round")
         self.site1 = Site.objects.create(domain='abc.com')
         self.site2 = Site.objects.create(domain='fun.com')
@@ -343,8 +344,7 @@ class QuestionTest(TestCase):
         c = SocialClient()
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
-        u.profile.set_locality(self.home)
-        Candidate.objects.create(user=u,candidate_list=self.candidate_list)
+        Membership.objects.create(user=u, entity=self.home, member_of=self.candidate_list)
         u.profile.save()
         post_url = reverse('post_answer', args=(self.q.id, ))
         self.mock_request.return_value.content = json.dumps({
