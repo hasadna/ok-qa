@@ -300,7 +300,6 @@ def upvote_question(request, q_id):
         if q.author == user:
             return HttpResponseForbidden(_("You may not support your own question"))
         if user.upvotes.filter(question=q):
-            sys.stderr.write("you already...")
             return HttpResponseForbidden(_("You already upvoted this question"))
         else:
             upvote = QuestionUpvote.objects.create(question=q, user=user)
