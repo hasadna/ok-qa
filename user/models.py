@@ -2,8 +2,6 @@ import urllib, hashlib, datetime
 # Django imports
 from django.db import models
 from django.contrib.auth.models import User
-from django.contrib.sites.models import Site
-from django.contrib.sites.managers import CurrentSiteManager
 from django.utils.functional import cached_property
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
@@ -41,9 +39,7 @@ class Profile(models.Model):
     email_notification = models.CharField(max_length=1, choices=NOTIFICATION_PERIOD_CHOICES, blank=True, null=True, default='D')
     avatar_uri = models.URLField(null=True, blank=True)
     last_email_update = models.DateTimeField(default=NEVER_SENT)
-    sites = models.ManyToManyField(Site)
     verification = models.CharField(max_length=1, choices=VERIFICATION_STAGES, default='0')
-    on_site = CurrentSiteManager()
     objects = models.Manager()
 
     def __unicode__(self):

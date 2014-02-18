@@ -1,8 +1,6 @@
 from django.db import models, transaction
 from django.dispatch import receiver
 from django.contrib.auth.models import User
-from django.contrib.sites.models import Site
-from django.contrib.sites.managers import CurrentSiteManager
 from django.utils.translation import ugettext as _
 from django.core.urlresolvers import reverse
 from django.core.validators import MaxLengthValidator
@@ -41,9 +39,7 @@ class BaseModel(models.Model):
 
 class TaggedQuestion(TaggedItemBase):
     content_object = models.ForeignKey("Question")
-    sites = models.ManyToManyField(Site)
     # objects = models.Manager()
-    # objects = CurrentSiteManager()
 
 def can_vote(entity, user):
     ''' returns whether a secific user can upvote/downvote a question in the
@@ -70,10 +66,8 @@ class Question(BaseModel):
     rating = models.IntegerField(_("rating"), default=1)
     flags_count = models.IntegerField(_("flags counter"), default=0)
     tags = TaggableManager(through=TaggedQuestion, blank=True)
-    sites = models.ManyToManyField(Site)
     # for easy access to current site questions
     objects = models.Manager()
-    on_site = CurrentSiteManager()
     entity = models.ForeignKey(Entity, null=True, related_name="questions", verbose_name=_("entity"))
 
     class Meta:
@@ -132,10 +126,8 @@ class Answer(BaseModel):
         help_text=_("Please enter an answer in no more than %s letters") % MAX_LENGTH_A_CONTENT)
     rating = models.IntegerField(_("rating"), default=0)
     question = models.ForeignKey(Question, related_name="answers", verbose_name=_("question"))
-    sites = models.ManyToManyField(Site)
     # for easy access to current site answers
     objects = models.Manager()
-    on_site = CurrentSiteManager()
 
     def __unicode__(self):
         return u"%s: %s" % (self.author, self.content[:30])

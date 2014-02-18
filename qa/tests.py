@@ -2,7 +2,6 @@ import json
 
 from django.conf import settings
 from django.contrib.auth.models import User, AnonymousUser
-from django.contrib.sites.models import Site
 from social_auth.tests.client import SocialClient
 from django.test.client import Client
 from django.core.urlresolvers import reverse
@@ -67,7 +66,7 @@ class QuestionTest(TestCase):
         self.candidate_user.profile.save()
         Membership.objects.create(user=self.candidate_user, entity=self.home,
                 can_answer=True, member_of=self.candidate_list)
-        self.editor = User.objects.create_user("editor", 
+        self.editor = User.objects.create_user("editor",
                                 "editor@example.com", "pass")
         self.editor.profile.set_locality(self.home, is_editor=True)
         self.editor.profile.save()
@@ -75,19 +74,11 @@ class QuestionTest(TestCase):
                         subject="why?", entity=self.home)
         self.a = self.q.answers.create(author=self.candidate_user,
                         content="because the world is round")
-        self.site1 = Site.objects.create(domain='abc.com')
-        self.site2 = Site.objects.create(domain='fun.com')
         self.q.tags.create(name="abc")
         self.q.tags.create(name="def")
         translation.deactivate_all()
         self.patch = patch('requests.session')
         self.mock_request = self.patch.start()().request
-
-    def test_sites(self):
-        I = Site.objects.get_current()
-        self.assertEqual(Question.on_site.count(), 1)
-        self.assertEqual(Answer.on_site.count(), 1)
-        #TODO: self.assertEqual(TaggedQuestion.on_site.count(), 1)
 
     def test_post_question(self):
         c = Client()

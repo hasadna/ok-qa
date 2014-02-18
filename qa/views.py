@@ -67,7 +67,7 @@ def entity_home(request, entity_slug=None, entity_id=None, tags=None,
         messages.error(request,_('Please update your locality in your user profile to use the site'))
         return HttpResponseRedirect(reverse('edit_profile'))
 
-    questions = Question.on_site.select_related('author', 'entity').prefetch_related('answers__author').filter(entity=entity, is_deleted=False)
+    questions = Question.objects.select_related('author', 'entity').prefetch_related('answers__author').filter(entity=entity, is_deleted=False)
 
     only_flagged = request.GET.get('filter', False) == 'flagged'
     if only_flagged:
