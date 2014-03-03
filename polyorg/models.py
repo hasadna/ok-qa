@@ -7,7 +7,7 @@ from qa.models import Answer
 class CandidateList(models.Model):
     name = models.CharField(_('List Name'), max_length=80)
     ballot = models.CharField(_('Ballot'), max_length=5)
-    candidates = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, null=True, through='Candidate')
+    candidates = models.ManyToManyField(settings.AUTH_USER_MODEL, blank=True, null=True, through='user.Membership')
     number_of_seats = models.IntegerField(blank=True, null=True)
     surplus_partner = models.ForeignKey('self', blank=True, null=True,
                 help_text=_('The list with which is the surplus votes partner'))

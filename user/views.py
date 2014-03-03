@@ -22,10 +22,9 @@ def public_profile(request, username=None, pk=None):
     questions = user.questions.filter(is_deleted=False)
     answers = user.answers.filter(is_deleted=False)
     profile = user.profile
-    if profile.is_candidate:
-        candidate_list = profile.candidate_list
-    else:
-        candidate_list = None
+    candidate_list = profile.candidate_lists()
+    # TODO show all candidate lists
+    candidate_list = candidate_list[0] if candidate_list.exists() else None
 
     context = RequestContext(request, {"friend": profile,
                                        "answers": answers,

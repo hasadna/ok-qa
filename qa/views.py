@@ -97,30 +97,29 @@ def entity_home(request, entity_slug=None, entity_id=None, tags=None,
     else:
         users_count = Profile.objects.count()
 
-    candidate_lists = CandidateList.objects.select_related().filter(entity=entity)
-    candidate_ids = entity.membership_set.filter(can_answer=True).values_list('user', flat=True)
-    candidates = User.objects.filter(id=candidate_ids)
+    memberships = entity.membership_set.filter(can_answer=True)
+    candidate_lists_ids = memberships.values_list('member_of', flat=True).distinct()
+    candidate_lists = CandidateList.objects.filter(pk=candidate_lists_ids)
 
-    list_id = request.GET.get('list', default='mayor')
-    '''' TODO: add support for candidate list
-    if list_id == 'mayor':
+    list_id = request.GET.get('list', default='special')
+    if list_id == 'special':
         candidate_list = None
-        candidates = candidates.filter(candidate__for_mayor=True)
+        candidate_ids = memberships.filter(is_special=True).values_list('user', flat=True)
     else:
         try:
             candidate_list = candidate_lists.get(pk=list_id)
         except (CandidateList.DoesNotExist, ValueError):
             messages.error(request, _('No such candidate list: ' + list_id))
             return HttpResponseRedirect(request.path)
-        candidates = candidates.filter(candidate__candidate_list=candidate_list)
+        candidate_ids = memberships.filter(member_of=candidate_list).values_list('user', flat=True)
 
+    candidates = User.objects.filter(id=candidate_ids)
     candidates = candidates.annotate(num_answers=models.Count('answers')).\
                             order_by('-num_answers')
 
     candidate_lists = candidate_lists.annotate( \
                             num_answers=models.Count('candidates__answers')).\
                             order_by('-num_answers')
-    '''
     candidate_list = None
 
     answers_count = Answer.objects.filter(question__entity=entity, question__is_deleted=False).count()

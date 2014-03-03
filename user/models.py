@@ -80,8 +80,7 @@ class Profile(models.Model):
     def candidate_in(self):
         return self.entities(can_answer=True)
 
-    # TODO: rename this to can_answer
-    def is_candidate(self, entity):
+    def can_answer(self, entity):
         try:
             return Membership.objects.get(user=self.user, entity=entity).can_answer
         except Membership.DoesNotExist:
@@ -93,19 +92,22 @@ class Profile(models.Model):
         except Membership.DoesNotExist:
             return False
 
-    @cached_property
-    def is_mayor_candidate(self):
+    def is_special(self, entity):
         try:
-            return Candidate.objects.only('for_mayor').get(user=self.user).for_mayor
-        except:
+            return Membership.objects.get(user=self.user, entity=entity).is_special
+        except Membership.DoesNotExist:
             return False
 
-    @cached_property
-    def candidate_list(self):
+    def candidate_list(self, entity):
         try:
-            return Candidate.objects.only('candidate_list').get(user=self.user).candidate_list
-        except:
+            membership = Membership.objects.get(user=self.user, entity=entity)
+            return CandidateList.get(membership_set__in=membership)
+        except Membership.DoesNotExist:
             return None
+
+    def candidate_lists(self):
+        membership = Membership.objects.filter(user=self.user)
+        return CandidateList.objects.filter(membership__in=membership)
 
     @cached_property
     def locality(self):
@@ -139,5 +141,6 @@ class Membership(models.Model):
     user = models.ForeignKey(User)
     entity = models.ForeignKey(Entity)
     is_editor = models.BooleanField(default=False)
+    is_special = models.BooleanField(default=False)
     can_answer = models.BooleanField(default=False)
     member_of = models.ForeignKey(CandidateList, null=True, blank=True)

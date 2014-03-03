@@ -79,7 +79,7 @@ class Question(BaseModel):
     def can_answer(self, user):
         ''' Can a given user answer self? '''
         if user.is_authenticated():
-            return user.profile.is_candidate(self.entity)
+            return user.profile.can_answer(self.entity)
         else:
             return False
 

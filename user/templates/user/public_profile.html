@@ -17,29 +17,7 @@
             <img src="{{STATIC_URL}}img/rss.png" width="25" />
           </a>
       </h1>
-      {% if friend.is_candidate %}
-      <h2>
-        {% if friend.gender == 'F' %}
-          {% trans 'Female candidate' %}
-        {% else %}
-          {% trans 'Male candidate' %}
-        {% endif %}
-
-        {% if candidate_list %}
-          {% trans 'in list' %} <a href="{% url 'candidate-list' candidate_list.id %}">{{candidate_list}}</a> 
-        {% endif %}
-        
-        {% if friend.is_mayor_candidate %}
-          {% trans 'for mayorship of' %} 
-        {% else %}
-          {% trans 'for the council of' %} 
-        {% endif %}
-        <a href="{% url "entity_home" friend.locality.id %}">
-          {{friend.locality}}
-        </a>
-      </h2>
-
-      {% elif friend.locality %}
+      {% if friend.locality %}
       <h2>
         <a href="{% url 'entity_home' friend.locality.id %}" alt="{{friend.locality}}">{{friend.locality}}</a>
       </h2>
