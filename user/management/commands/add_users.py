@@ -40,8 +40,8 @@ class Command(BaseCommand):
                 user.save()
 
                 user.profile.gender = gender
-                try:                    
-                    user.profile.locality = Entity.objects.get(id=locality)
+                try:
+                    user.add_entity(Entity.objects.get(id=locality))
                 except ObjectDoesNotExist:
                     print 'user %s locality id %s does not exist' % (username, locality)
                 user.profile.save()

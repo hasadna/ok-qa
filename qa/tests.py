@@ -2,7 +2,6 @@ import json
 
 from django.conf import settings
 from django.contrib.auth.models import User, AnonymousUser
-from django.contrib.sites.models import Site
 from social_auth.tests.client import SocialClient
 from django.test.client import Client
 from django.core.urlresolvers import reverse
@@ -12,7 +11,8 @@ from django.test.utils import override_settings
 
 from mock import patch
 from entities.models import Domain, Division, Entity
-from polyorg.models import Candidate, CandidateList
+from polyorg.models import CandidateList
+from user.models import Membership
 from .models import *
 
 
@@ -45,7 +45,7 @@ class QuestionTest(TestCase):
     }
     def setUp(self):
         domain = Domain.objects.create(name="test")
-        division = Division.objects.create(name="localities", domain=domain, index="3")
+        division = Division.objects.create(name="localities", domain=domain, index=3)
         self.home = Entity.objects.create(name="earth", division=division,
                                             id=1111, code="1111")
         self.away = Entity.objects.create(name="the moon", division=division,
@@ -55,43 +55,35 @@ class QuestionTest(TestCase):
 
         self.common_user = User.objects.create_user("commoner",
                                 "commmon@example.com", "pass")
-        self.common_user.profile.locality = self.home
+        self.common_user.profile.set_locality(self.home)
         self.common_user.profile.save()
         self.common2_user = User.objects.create_user("commoner2", 
                                 "commmon2@example.com", "pass")
-        self.common2_user.profile.locality = self.home
+        self.common2_user.profile.set_locality(self.home)
         self.common2_user.profile.save()
         self.candidate_user = User.objects.create_user("candidate", 
                                 "candidate@example.com", "pass")
-        self.candidate_user.profile.locality = self.home
         self.candidate_user.profile.save()
-        Candidate.objects.create(user=self.candidate_user, candidate_list=self.candidate_list)
-        self.editor = User.objects.create_user("editor", 
+        Membership.objects.create(user=self.candidate_user, entity=self.home,
+                can_answer=True, member_of=self.candidate_list)
+        self.editor = User.objects.create_user("editor",
                                 "editor@example.com", "pass")
-        self.editor.profile.locality = self.home
-        self.editor.profile.is_editor = True
+        self.editor.profile.set_locality(self.home, is_editor=True)
         self.editor.profile.save()
-        self.q = Question.objects.create(author = self.common_user,
+        self.q = Question.objects.create(author=self.common_user,
                         subject="why?", entity=self.home)
-        self.a = self.q.answers.create(author = self.candidate_user,
+        self.a = self.q.answers.create(author=self.candidate_user,
                         content="because the world is round")
-        self.site1 = Site.objects.create(domain='abc.com')
-        self.site2 = Site.objects.create(domain='fun.com')
         self.q.tags.create(name="abc")
         self.q.tags.create(name="def")
         translation.deactivate_all()
         self.patch = patch('requests.session')
         self.mock_request = self.patch.start()().request
 
-    def test_sites(self):
-        I = Site.objects.get_current()
-        self.assertEqual(Question.on_site.count(), 1)
-        self.assertEqual(Answer.on_site.count(), 1)
-        #TODO: self.assertEqual(TaggedQuestion.on_site.count(), 1)
-
     def test_post_question(self):
         c = Client()
-        post_url = reverse('post_question')
+        post_url = reverse('post_question',
+                        kwargs={'entity_id': self.home.id})
         self.assertTrue(c.login(username="commoner", password="pass"))
         response = c.get(post_url)
         self.assertEquals(response.status_code, 200)
@@ -109,10 +101,10 @@ class QuestionTest(TestCase):
         self.assertFalse(self.q.can_answer(self.common_user))
         self.assertTrue(self.q.can_answer(self.candidate_user))
 
-    def test_local_home(self):
+    def test_entity_home(self):
         c = Client()
         # According to issue #263, entity urls should only use id's.
-        default_home = reverse('local_home',
+        default_home = reverse('entity_home',
                         kwargs={'entity_id': self.home.id})
         response = c.get(default_home)
 
@@ -143,8 +135,26 @@ class QuestionTest(TestCase):
         self.assertEquals(response.status_code, 200)
         self.assertTrue(response.context['can_answer'])
 
+    def test_q_flagged(self):
+        '''
+        test the flagging a question works
+        '''
+        self.q.flagged()
+        self.assertEquals(self.q.flags_count, 1)
+
+    def test_flag_as_anonymous(self):
+        '''
+        flagging as anonymous user should fail and redirect to login page
+        '''
+        before = self.q.flags_count
+        c = Client()
+        response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
+        self.assertEquals(self.q.flags_count, before)
+        self.assertEquals(response.status_code, 302)
+        self.assertTrue('Sorry, you have to login to flag questions' in response.cookies['messages'].value)
+
     def test_flags(self):
-        ''' try to flag a question as an anonymous and get an error.
+        ''' 
             login as a commoner.
             try to flag a question and get a thank you note.
             try flagging it again and get an error message. logout.
@@ -152,32 +162,19 @@ class QuestionTest(TestCase):
             the question. get an error, so move the editor to the right locality
             and finally soft delete the damn question.
         '''
-        self.q.flagged()
-        self.assertEquals(self.q.flags_count, 1)
+        before = self.q.flags_count
         c = Client()
-
-        response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
-        self.assertEquals(response.status_code, 200)
-        login_url = response.content
-        response = c.get(login_url)
-        self.assertEquals(response.status_code, 200)
-        self.assertIn('messages', response.context)
-        message = list(response.context['messages'])[0]
-        self.assertEquals(message.message, 'Sorry, you have to login to flag questions')
-        self.assertEquals(self.q.flags_count, 1)
-        respone = c.post(login_url,
+        response = c.post(reverse('login'),
                 {'username':"commoner2", 'password':"pass"})
-        self.assertEquals(response.status_code, 200)
+        self.assertEquals(response.status_code, 302)
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
-        self.assertEquals(response.status_code, 200)
-        response = c.get(response.content)
         self.assertEquals(response.status_code, 200)
         self.assertIn('messages', response.context)
         message = list(response.context['messages'])[0]
         self.assertEquals(message.message, 'Thank you for flagging the question. One of our editors will look at it shortly.')
         self.q = Question.objects.get(pk=self.q.id)
-        self.assertEquals(self.q.flags_count, 2)
-        response = c.get("%s?%s" % (reverse('local_home',
+        self.assertEquals(self.q.flags_count, before+1)
+        response = c.get("%s?%s" % (reverse('entity_home',
                                            kwargs={'entity_slug': self.home.slug}
                                     ),
                                    "filter=flagged"))
@@ -193,18 +190,18 @@ class QuestionTest(TestCase):
 
     def test_editors(self):
         c = Client()
-        self.editor.profile.locality = self.away
+        self.editor.profile.set_locality(self.away, is_editor=True)
         self.editor.profile.save()
         self.assertTrue(c.login(username="editor", password="pass"))
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 200)
-        self.assertEquals(response.content, reverse('local_home', args=(self.q.entity.slug, )))
+        self.assertEquals(response.content, reverse('entity_home', args=(self.q.entity.slug, )))
         response = c.get(response.content)
         self.assertEquals(response.status_code, 200)
         self.assertIn('messages', response.context)
         message = list(response.context['messages'])[0]
         self.assertEquals(message.message, 'Thank you for flagging the question. One of our editors will look at it shortly.')
-        self.editor.profile.locality = self.home
+        self.editor.profile.set_locality(self.home, is_editor=True)
         self.editor.profile.save()
 
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
@@ -218,13 +215,14 @@ class QuestionTest(TestCase):
         '''
         Related to issue #365:
 
-        When a user add a description to a question it looses all followers.
+        When a user add a description to a question it loses all followers.
         '''
 
         # Create a new question
         c = Client()
         self.assertTrue(c.login(username="commoner", password="pass"))
-        post_url = reverse('post_question')
+        post_url = reverse('post_question',
+                        kwargs={'entity_id': self.home.id})
         response = c.get(post_url)
         self.assertEquals(response.status_code, 200)
         self.assertFalse(Question.objects.filter(entity_id=self.home.id, unislug='Why?').count())
@@ -243,7 +241,7 @@ class QuestionTest(TestCase):
         self.assertEquals(response.status_code, 302)
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
-        u.profile.locality = self.common_user.profile.locality
+        u.profile.set_locality(self.common_user.profile.locality)
         u.profile.save()
         self.mock_request.return_value.content = json.dumps({
             'id': 1
@@ -253,7 +251,8 @@ class QuestionTest(TestCase):
 
         # Edit the question
         c = Client()
-        post_url = reverse('edit_question', kwargs={'slug': new_q.unislug})
+        post_url = reverse('edit_question',
+                kwargs={'entity_id': self.home.id, 'slug': new_q.unislug})
         self.assertTrue(c.login(username="commoner", password="pass"))
         response = c.get(post_url)
         self.assertEquals(response.status_code, 200)
@@ -279,7 +278,7 @@ class QuestionTest(TestCase):
         self.assertEquals(response.status_code, 302)
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
-        u.profile.locality = self.common_user.profile.locality
+        u.profile.set_locality(self.home)
         u.profile.save()
         self.mock_request.return_value.content = json.dumps({
             'id': 1
@@ -308,9 +307,9 @@ class QuestionTest(TestCase):
         c = SocialClient()
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
-        u.profile.locality = self.home
-        u.profile.save()
-        post_url = reverse('post_question')
+        u.profile.set_locality(self.home)
+        post_url = reverse('post_question',
+                        kwargs={'entity_id': self.home.id})
         self.mock_request.return_value.content = json.dumps({
             'id': 1
         })
@@ -336,8 +335,8 @@ class QuestionTest(TestCase):
         c = SocialClient()
         c.login(self.user, backend='facebook')
         u=User.objects.get(email='user@domain.com')
-        u.profile.locality = self.home
-        Candidate.objects.create(user=u,candidate_list=self.candidate_list)
+        Membership.objects.create(user=u, entity=self.home, can_answer=True,
+                member_of=self.candidate_list)
         u.profile.save()
         post_url = reverse('post_answer', args=(self.q.id, ))
         self.mock_request.return_value.content = json.dumps({

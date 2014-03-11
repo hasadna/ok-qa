@@ -34,7 +34,7 @@
     {% if not hide_controls %}
     <div class="btn-group cp">
       {% if user == question.author and not answers %}
-      <a class="edit-question btn btn-action" href="{% url 'edit_question' question.unislug %}"
+      <a class="edit-question btn btn-action" href="{% url 'edit_question' question.entity.id question.unislug %}"
         title="{% trans "Edit question" %}">
         <i class="icon-edit"></i>
       </a>
@@ -117,7 +117,7 @@
         <div class="started">
             {% if not entity %}
               {% trans "from"%}
-              <a href="{% url "local_home" question.entity.id %}">{{ question.entity }}</a>
+              <a href="{% url "entity_home" question.entity.id %}">{{ question.entity }}</a>
             {% endif %}
         </div>
         {% if question.answers.count and show_responders %}       

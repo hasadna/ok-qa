@@ -25,14 +25,14 @@ $(".upvote-question").click(function () {
                 {% endautoescape %}
                 "{% trans 'Log in' %}" +
                 '</a></div>');
-    {% elif not entity|can_vote:user %}
+    {% elif entity.division.domain.name == 'Government' and not entity|can_vote:user %}
         $("#messages").html('<div class="alert" class="info">' +
                 '<button type="button" class="close" data-dismiss="alert">×</button>' +
                 "{% trans 'You may only support questions in your locality' %}" +
                 {% autoescape off %}
-                ' — <a href="' + "{% url "local_home" user.profile.locality.id %}" + '">' +
+                ' — <a href="' + "{% url "home_page" %}" + '">' + {# TODO #453 #}
                 {% endautoescape %}
-                "{{ user.profile.locality }}" +
+                "back to homepage" +
                 '</a></div>');
     {% else %}
         var qid = $(this).closest('.question-summary').attr('question-id');
@@ -71,6 +71,8 @@ $(".flag-question").click(function (e) {
     $.post(url, {csrfmiddlewaretoken: "{{ csrf_token }}"})
         .done(function (data, textStatus, jqXHR) {
           window.location.replace(data);
+        }).fail( function(xhr, textStatus, errorThrown) {
+          alert(xhr.responseText);
         });
   })
       })

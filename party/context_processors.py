@@ -1,5 +1,4 @@
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.sites.models import get_current_site
 from django.conf import settings
 
 from haystack.forms import SearchForm

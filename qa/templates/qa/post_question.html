@@ -12,9 +12,8 @@
 <div class="page-header">
   {% if not slug %}
     <h1>{% trans "What is your question, sire?" %}</h1>
-    <p>{% url 'local_home' user.profile.locality.id as home %}
-    {% trans 'before asking a new question, please check if it exists on the' %}
-    <a href="{% url 'local_home' user.profile.locality.id %}">{% trans 'page of your locality' %}</a>.</p>
+    <p>{% trans 'before asking a new question, please check if it exists on the' %}
+    <a href="{% url 'entity_home' entity.id %}">{% trans 'page of your locality' %}</a>.</p>
   {% else %}
     <h1>{% trans "Edit your question" %}</h1>
   {% endif %}
@@ -36,7 +35,7 @@
       <button type="submit" class="btn btn-primary">{% trans 'Publish' %}</button>
       <a class="cancel btn btn-action" href="
           {% if not slug %}
-            {% url 'local_home' entity.id %}
+            {% url 'entity_home' entity.id %}
           {% else %}
             {% url 'question_detail' entity.id slug %}
           {% endif %}

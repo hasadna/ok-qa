@@ -22,8 +22,6 @@ def public_profile(request, username=None, pk=None):
     questions = user.questions.filter(is_deleted=False)
     answers = user.answers.filter(is_deleted=False)
     profile = user.profile
-    if profile:
-        setattr(request, 'entity', profile.locality)
     if profile.is_candidate:
         candidate_list = profile.candidate_list
     else:
@@ -47,10 +45,10 @@ def edit_profile(request):
         if form.is_valid():
             form.save()
 
-            local_home = profile.get_absolute_url()
-            next = request.POST.get('next', local_home)
+            entity_home = profile.get_absolute_url()
+            next = request.POST.get('next', entity_home)
             if next == '/':
-                next = local_home
+                next = entity_home
 
             return HttpResponseRedirect(next)
     elif request.method == "GET":

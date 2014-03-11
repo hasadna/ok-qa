@@ -2,12 +2,10 @@ from datetime import date
 from django.db import models
 from django.utils.translation import ugettext as _
 from django.db.models.signals import post_save
-from django.contrib.sites.models import Site
 from django.contrib.auth.models import User
 
 # Create your models here.
 class Party(models.Model):
-    site = models.ForeignKey(Site)
     logo = models.ImageField(upload_to='logos')
     name = models.CharField(_("party name"), max_length=30, null=True,
             help_text =_("In the format: 'The <partyname> Party'"))

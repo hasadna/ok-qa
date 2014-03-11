@@ -66,8 +66,8 @@ def publish_answer(answer, send_email=True):
             logger.warn("-- Failed to publish answer to facebook")
     if send_email:
         # send an email to interesed users
-        editors = User.objects.filter(profile__locality=question.entity,
-                        profile__is_editor=True).values_list('email', flat=True)
+        editors = Membership.objects.filter(entity__in=question.entity,
+                is_editor=True).values_list('profile__user__email', flat=True)
         content_type = ContentType.objects.get_for_model(question)
         followers  = Follow.objects.filter(content_type=content_type,
                 object_id=question.id).values_list('user__email', flat=True)
