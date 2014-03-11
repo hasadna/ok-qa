@@ -69,7 +69,7 @@ class Command(BaseCommand):
                 'new_answers': {},
                 }
         for entity in profile.entities:
-            if profile.is_candidate(entity):
+            if profile.can_answer(entity):
                 ''' handle candidates '''
                 local_qs = Question.objects.filter(is_deleted=False, entity=entity).\
                         exclude(answers__author=user)
