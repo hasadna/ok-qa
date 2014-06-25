@@ -1,17 +1,17 @@
 Feature: Public Profile
-  This page shows information about the user
+  Tfriend's page shows information about the user
   And about their questions and answers
 
   Scenario: New user
     Given George is a registered user with no activity
-    When I'm looking at his public profile
-    Then I should see his username
+    When I'm looking at friend's public profile
+    Then I should see friend's username
 
   Scenario: User with question
     Given Fred asked a question
-    When I'm looking at his public profile
-    Then I should see his details like before
-    And his question
+    When I'm looking at friend's public profile
+    Then I should see friend's username (like before)
+    And I should see his questions
     And a link to it
     And where he asked it
 
