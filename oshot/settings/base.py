@@ -131,6 +131,7 @@ INSTALLED_APPS = (
     'actstream',
     'debug_toolbar',
     'djsupervisor',
+    'django_behave',
     # local apps
     'qa',
     'user',
@@ -186,7 +187,8 @@ LOGIN_URL = '/u/login/'
 
 DEFAULT_FROM_EMAIL = 'localshot@hasadna.org.il'
 
-TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+#TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+TEST_RUNNER = 'django_behave.runner.DjangoBehaveTestSuiteRunner'
 
 SITE_ID = os.environ.get('SITE_ID', 1)
 

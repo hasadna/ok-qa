@@ -169,9 +169,7 @@ class QuestionTest(TestCase):
         self.assertEquals(response.status_code, 302)
         response = c.post(reverse('flag_question', kwargs={'q_id':self.q.id}))
         self.assertEquals(response.status_code, 200)
-        self.assertIn('messages', response.context)
-        message = list(response.context['messages'])[0]
-        self.assertEquals(message.message, 'Thank you for flagging the question. One of our editors will look at it shortly.')
+        self.assertTrue('Thank you for flagging the question' in response.cookies['messages'].value)
         self.q = Question.objects.get(pk=self.q.id)
         self.assertEquals(self.q.flags_count, before+1)
         response = c.get("%s?%s" % (reverse('entity_home',
