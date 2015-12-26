@@ -95,7 +95,7 @@ class Question(BaseModel):
         self.unislug = unislugify(self.subject)
         return super(Question, self).save(**kwargs)
 
-    @transaction.commit_on_success
+    @transaction.atomic
     def flagged(self):
         self.flags_count += 1
         self.save()
