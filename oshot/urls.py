@@ -31,7 +31,6 @@ urlpatterns = [
     url(r'^search/$', 'oshot.views.place_search'),
     url(r'^admin/', admin.site.urls),
     url(r'', include('qa.urls')),
-    url(r'', include('social_auth.urls')),
     url(r'^(?P<entity_slug>[-\w]+)/search/$', 'oshot.views.place_search'),
     url(r'^u/entity_stats/$', 'oshot.views.entity_stats', name='entity_stats'),
     url(r'', include('user.urls')),

@@ -1,12 +1,12 @@
-from django.conf.urls.defaults import patterns, url
-from .views import *
+from django.conf.urls import url
+from .views import user_follow_unfollow, edit_profile,editor_list, public_profile
 from .feeds import *
 
-urlpatterns = patterns('',
+urlpatterns = [
     url(r'^u/profile/$', edit_profile, name='edit_profile'),
     url(r'^u/password_change/$', 'django.contrib.auth.views.password_change', name='password_change'),
     url(r'^u/password_change/done/$', 'django.contrib.auth.views.password_change_done', name='password_change_done'),
-    url(r'^u/follow/$', 'user_follow_unfollow', name='user-follow-unfollow'),
+    url(r'^u/follow/$', user_follow_unfollow, name='user-follow-unfollow'),
     url(r'^u/(?P<candidate_id>\d+)/atom/$',
         AtomUserAnswerFeed(),
         name='user_feed'
@@ -20,4 +20,4 @@ urlpatterns = patterns('',
 
     #TODO: refactor to user underscore in name i.e. `public_profile`
     url(r'^(?P<username>.+)/$', public_profile, name="public-profile"),
-)
+]

@@ -331,7 +331,7 @@ def downvote_question(request, q_id):
         return HttpResponseForbidden(_("Use POST to upvote a question"))
 
 
-@transaction.commit_on_success
+@transaction.atomic
 def change_rating(q, change):
     q = Question.objects.get(id=q.id)
     q.rating += change

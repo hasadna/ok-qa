@@ -7,7 +7,7 @@ from django.utils.translation import ugettext as _
 from django.template.context import RequestContext
 from django.views.decorators.http import require_POST
 # Friends' apps
-from actstream import follow
+from actstream.actions import follow
 from actstream.models import Follow
 # Project's apps
 from qa.models import Question

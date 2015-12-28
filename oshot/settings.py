@@ -177,3 +177,4 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(BASE_DIR, 'whoosh_index'),
     },
 }
+STATICFILES_ROOT = os.path.join(BASE_DIR,'static')
