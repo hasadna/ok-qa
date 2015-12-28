@@ -1,8 +1,8 @@
-from django.conf.urls.defaults import patterns, url
+from django.conf.urls import patterns, url
 from .views import *
 from qa.sitemaps import sitemaps
 
-urlpatterns = patterns('qa.views',
+urlpatterns = [
     url(r'^(?P<entity_id>[-\d]+)/qna/$', 'entity_home', name='entity_home'),
     url(r'^(?P<entity_slug>[-\w]+)/qna/$', 'entity_home', name='entity_home'),
     url(r'^qna/tags/(?P<tags>.+)/$', 'entity_home', name='show_tags'),
@@ -26,15 +26,12 @@ urlpatterns = patterns('qa.views',
 
     url(r'upvote_question/(?P<q_id>\d+)/$', 'upvote_question', name='upvote_question'),
     url(r'downvote_question/(?P<q_id>\d+)/$', 'downvote_question', name='downvote_question'),
-)
-
-urlpatterns += patterns('',
-    (r'^sitemap\.xml$',
+    url(r'^sitemap\.xml$',
         'django.contrib.sitemaps.views.index',
         {'sitemaps': sitemaps}
     ),
 
-    (r'^sitemap-(?P<section>.+)\.xml$',
+    url(r'^sitemap-(?P<section>.+)\.xml$',
         'django.contrib.sitemaps.views.sitemap',
         {'sitemaps': sitemaps}
     ),
@@ -63,4 +60,4 @@ urlpatterns += patterns('',
         AtomQuestionAnswerFeed(),
         name='atom_question_answers'
     ),
-)
+]

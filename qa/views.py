@@ -21,7 +21,7 @@ from django.core.cache import cache
 
 from entities.models import Entity
 from taggit.models import Tag
-from actstream import follow, unfollow
+from actstream.actions import follow, unfollow
 
 from user.models import Profile, Membership
 from qa.forms import AnswerForm, QuestionForm

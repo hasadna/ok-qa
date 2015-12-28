@@ -22,7 +22,6 @@ django-debug-toolbar==1.4
 django-extensions==1.6.1
 django-flatblocks==0.9.2
 django-haystack==2.4.1
-django-modeltranslation==0.10.2
 django-nose==1.4.2
 django-registration==2.0.3
 # TODO: replace django-social-auth==0.7.28 with python-social-auth
@@ -31,11 +30,12 @@ django-supervisor==0.3.4
 django-taggit==0.17.6
 django-uuidfield==0.5.0
 dj-database-url==0.3.0
+-e git+https://github.com/deschler/django-modeltranslation.git#egg=django-modeltranslation
 -e git+https://github.com/daonb/django-chosen.git@1bc89ebddf2bbde1ce0d752e2d498f26a19e2f27#egg=django_chosen-master
 -e git+https://github.com/daonb/django-entities@401733f4f5cff99bb73d1571235166185ad6e6f6#egg=django_entities-master
 -e git+https://github.com/jezdez/django-avatar.git@55c27f7f736b7fba78245c8022b56a2ebdb04b0d#egg=django_avatar-master
--e git+https://github.com/justquick/django-activity-stream.git@8f56aad29ecccd83385ca2f12f40e2db8468619d#egg=django_activity_stream-master
--e hg+https://danielh@bitbucket.org/danielh/django-taggit-autosuggest@9c4bd7163da9f5bdb74a494ac72ec1d50ab508a6#egg=django_taggit_autosuggest-dev
+-e git+https://github.com/jbsag/django-activity-stream.git#egg=django_activity_stream-master
+-e hg+https://bitbucket.org/fabian/django-taggit-autosuggest#egg=django_taggit_autosuggest-dev
 elasticsearch==1.9.0
 enum34==1.1.2
 facepy==1.0.7

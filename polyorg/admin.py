@@ -1,5 +1,5 @@
 from django.contrib import admin
-from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.admin import GenericTabularInline
 
 from models import Candidate, CandidateList, Party
 from links.models import Link
@@ -9,7 +9,7 @@ class MembershipInline(admin.TabularInline):
     model = CandidateList.candidates.through
     extra = 1
 
-class LinksInline(generic.GenericTabularInline):
+class LinksInline(GenericTabularInline):
     model = Link
     ct_fk_field = 'object_pk'
     extra = 1
