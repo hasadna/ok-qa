@@ -65,6 +65,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'djsupervisor',
     'django_behave',
+    'social.apps.django_app.default',
     # local apps
     'qa',
     'user.apps.Config',
@@ -93,7 +94,7 @@ ROOT_URLCONF = 'oshot.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ['templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -120,6 +121,14 @@ DATABASES = {
     }
 }
 
+AUTHENTICATION_BACKENDS = (
+        'social.backends.open_id.OpenIdAuth',
+        'social.backends.google.GoogleOpenId',
+        'social.backends.google.GoogleOAuth2',
+        'social.backends.google.GoogleOAuth',
+        'social.backends.twitter.TwitterOAuth',
+        'django.contrib.auth.backends.ModelBackend',
+)
 
 # Password validation
 # https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
@@ -178,3 +187,7 @@ HAYSTACK_CONNECTIONS = {
     },
 }
 STATICFILES_ROOT = os.path.join(BASE_DIR,'static')
+STATICFILES_DIRS = [STATICFILES_ROOT ]
+
+TEST_RUNNER = 'django_nose.NoseTestSuiteRunner'
+SITE_ID = 1

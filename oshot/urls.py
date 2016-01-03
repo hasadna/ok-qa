@@ -33,5 +33,6 @@ urlpatterns = [
     url(r'', include('qa.urls')),
     url(r'^(?P<entity_slug>[-\w]+)/search/$', 'oshot.views.place_search'),
     url(r'^u/entity_stats/$', 'oshot.views.entity_stats', name='entity_stats'),
-    url(r'', include('user.urls')),
+    url('', include('user.urls')),
+    url('', include('social.apps.django_app.urls', namespace='social'))
 ]
