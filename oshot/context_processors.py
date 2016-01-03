@@ -1,7 +1,7 @@
 import os
 from django.core.urlresolvers import reverse
 from django.contrib.auth.forms import AuthenticationForm
-from django.contrib.sites.models import get_current_site
+from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
 from django.shortcuts import get_object_or_404
 from django.http import Http404
@@ -37,7 +37,7 @@ def forms(request):
         context["profile"] = request.user.profile
     else:
         context["login_form"] = AuthenticationForm()
-    context["site"] = get_current_site(request)
+    # context["site"] = get_current_site(request)
     context["ANALYTICS_ID"] = getattr(settings, 'ANALYTICS_ID', False)
     context["FACEBOOK_APP_ID"] = os.environ.get('FACEBOOK_APP_ID', '')
 

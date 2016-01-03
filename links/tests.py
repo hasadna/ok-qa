@@ -13,7 +13,7 @@ class TestViews(unittest.TestCase):
 
     def setUp(self):
         self.type_a = LinkType.objects.create(title='a')
-        self.obj = Site.objects.create(domain="example.com", name="example")
+        self.obj = Site.objects.create(domain="test.com", name="test")
         self.l1 = Link.objects.create(url='http://www.example.com/l1', title='l1',
                                  content_object=self.obj, link_type=self.type_a)
         # make sure
