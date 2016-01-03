@@ -2,12 +2,13 @@
 {% load i18n %}
 {% load cache %}
 {% load pagination_tags %}
-{% load flatblock_tags %}
+{% load flatblocks %}
 {% load avatar_tags %}
 
 {% block pageTitle %}{% trans "questions list" %}{% endblock %}
 {% block extrahead %}
-  <meta property='og:image' content='http:{{ STATIC_URL }}img/locality/{{ entity.code }}.jpg'>
+  <meta property='og:image' content='http:{% static "img/locality/"%}{{
+      entity.code }}'.jpg'>
 {% endblock %}
 {% block homeNav %}class="active"{% endblock %}
 {% block content %}
@@ -29,14 +30,14 @@
     </div>
     <div class="row">
 
-        <div class="span2"><img src="{{ STATIC_URL }}img/locality/{{ entity.code }}.jpg" alt="{{entity.name_he}}" width='140px' onerror="this.style.display='none'">
+        <div class="span2"><img src="{% static "img/locality/" %}{{ entity.code }}.jpg" alt="{{entity.name_he}}" width='140px' onerror="this.style.display='none'">
         </div>
         <div class="span10">
           <h1>
             {{ entity }}
                {% if not current_tags %}
                <a href="{% url "atom_entity_questions" entity.id %}" title="{% trans 'Subscribe' %}" rel="tooltip">
-                 <img src="{{STATIC_URL}}img/rss.png" width="25" />
+                 <img src="{% static "img/rss.png" %}" width="25" />
                </a>
                {% endif %}
           </h1>
@@ -122,7 +123,7 @@
         <li class="candidate_list {% if list == candidate_list %}active{% endif %}">
         <a class="row" href="{% url 'candidate-list' list.id %}">
             <div class="candidate_list_detail ballot"
-                 style="background: url('{{STATIC_URL}}img/white_note.png') no-repeat; ">
+                 style="background: url('{% static "img/white_note.png" %}') no-repeat; ">
               {{ list.ballot }}
             </div>
             <div class="candidate_list_detail list_name">
@@ -140,7 +141,7 @@
         {% if not candidate_list %}visibility:hidden;{% endif %}">
         <a href=".?list=special">
           <div class="candidate_list_detail ballot"
-               style="background: url('{{STATIC_URL}}img/yellow_note.png') no-repeat; ">
+               style="background: url('{% static "img/yellow_note.png" %}') no-repeat; ">
             <div style="visibility:hidden">" "</div>
           </div>
           <h4 class="candidate_list_detail list_name">

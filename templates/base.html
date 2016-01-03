@@ -9,21 +9,21 @@
 <head prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb# localshot: http://ogp.me/ns/fb/localshot#">
 <link rel="shortcut icon" href="{% static "img/favicon.gif" %}"/>
     <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css">
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-rtl.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/bootstrap-responsive.rtl.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/rtl.css"/>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/style.css?v=15"/>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/auth-buttons.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap-rtl.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/bootstrap-responsive.rtl.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/rtl.css" %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}" />
+    <link rel="stylesheet" type="text/css" href="{% static "css/auth-buttons.css" %}"/>
     <title>
       {% block pageTitle %} {% endblock %} 
       {% if entity %}({{entity}}){% endif %} | {{ site.name }}
     </title>
-    <link rel="stylesheet" type="text/css" href="{{ STATIC_URL }}css/chosen.css"/>
+    <link rel="stylesheet" type="text/css" href="{% static "css/chosen.css" %}"/>
     <meta property="fb:app_id"    content="{{FACEBOOK_APP_ID}}" /> 
     <meta property="og:site_name" content="{{site.name}}" /> 
     <meta property="og:image" content='http://www.hasadna.org.il/wp-content/uploads/2013/10/og-image-localshot.jpg'>
 
-    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{% static "js/jquery.js"%}"></script>
 
     {% block extrahead %}{% endblock %}
 
@@ -160,8 +160,8 @@
   </div>
 
 </footer>
-    <script src="{{ STATIC_URL }}js/bootstrap.min.js"></script>
-    <script src="{{ STATIC_URL }}js/trunk8.js"></script>
+    <script src="{% static "js/bootstrap.min.js" %}"></script>
+    <script src="{% static "js/trunk8.js" %}"></script>
     <script>
 
         $(function() {
@@ -198,8 +198,8 @@
         });
 
 	</script>
-<script src="{{ STATIC_URL }}js/chosen.jquery.min.js"></script>
-<script src="{{ STATIC_URL }}js/chosen.jquery_ready.js"></script>
+<script src="{% static "js/chosen.jquery.min.js" %}"></script>
+<script src="{% static "js/chosen.jquery_ready.js" %}"></script>
 <script>
   $('[name=entity]').change(function() {
     /* if the user changes the place, redirect */

@@ -80,7 +80,7 @@
       {% if answers %}
         <a href="{% url "atom_question_answers" question.id %}" title="{% trans 'feed' %}"
            rel="tooltip">
-            <img src="{{ STATIC_URL }}img/rss.png" width="25"/>
+            <img src="{% static "img/rss.png"%}" width="25"/>
         </a>
       {% endif %}
       &nbsp;

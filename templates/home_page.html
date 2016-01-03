@@ -1,5 +1,6 @@
 {% extends "base.html" %}
-{% load flatblock_tags %}
+{% load flatblocks %}
+{% load staticfiles %}
 {% load i18n %}
 {% load cache %}
 
@@ -22,9 +23,6 @@
         <a class="close" data-dismiss="modal">&times;</a>
         <h3>אז איפה מצביעים?</h3>
       </div>
-      <div class="modal-body">
-        <iframe width="640" height="500" src="https://kalpi.elections.gov.il" style="overflow:hidden"></iframe>
-      </div>
     </div>
   </div>
   <div class="span6" style="text-align:center;">
@@ -34,11 +32,11 @@
     <div class="row">
       <div class="span3">
         <h4>{{ questions }} {% trans "questions" %}</h4>
-        <img src="{{ STATIC_URL }}img/question_comix.png" />
+        <img src="{% static "img/question_comix.png" %}"/>
       </div>
       <div class="span3" style="text-align: center;">
         <h4>{{ answers }} {% trans "answers" %}</h4>
-        <img src="{{ STATIC_URL }}img/answer_comix.png" />
+        <img src="{% static "img/answer_comix.png" %}" />
       </div>
     </div>
     <div class="row" style="margin-top:2em;">
