@@ -34,6 +34,7 @@ class BaseModel(models.Model):
         self.is_deleted = True
         if commit:
             self.save()
+        # TODO: possibly delete the next lines
         content_type = ContentType.objects.get_for_model(self)
         Follow.objects.filter(content_type=content_type, object_id=self.id).delete()
 
@@ -45,11 +46,9 @@ def can_vote(entity, user):
     ''' returns whether a secific user can upvote/downvote a question in the
         entity '''
     return user.is_authenticated() and user.profile.is_member_of(entity)
-
 Entity.add_to_class('can_vote', can_vote)
 
 class Question(BaseModel):
-
     # TODO: rename to just `slug`
     unislug = models.CharField(
         _('unicode slug'),
@@ -126,19 +125,18 @@ class Answer(BaseModel):
         help_text=_("Please enter an answer in no more than %s letters") % MAX_LENGTH_A_CONTENT)
     rating = models.IntegerField(_("rating"), default=0)
     question = models.ForeignKey(Question, related_name="answers", verbose_name=_("question"))
-    # for easy access to current site answers
-    objects = models.Manager()
 
     def __unicode__(self):
         return u"%s: %s" % (self.author, self.content[:30])
 
-    def get_absolute_url(self):
-        return '%(url)s?answer=%(id)s#answer-%(id)s' % {'url': self.question.get_absolute_url(), 'id': self.id}
+    def get_absolute_uri(self):
+        return '%(url)s/answer/%(id)' % {'url': self.question.get_absolute_url(), 'id': self.id}
 
     @property
     def entity(self):
         return self.question.entity
 
+# TODO: support downvotes as well
 class QuestionUpvote(BaseModel):
     question = models.ForeignKey(Question, related_name="upvotes")
     user = models.ForeignKey(User, related_name="upvotes")
@@ -147,4 +145,3 @@ class QuestionFlag(BaseModel):
     question = models.ForeignKey(Question, related_name="flags")
     reporter = models.ForeignKey(User, related_name="flags")
 
-#import signals
