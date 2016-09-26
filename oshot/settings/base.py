@@ -117,7 +117,6 @@ INSTALLED_APPS = (
     'autoslug',
     'entities',
     'modeltranslation',
-    'chosen',
     'djcelery',
     'celery_haystack',
     'djcelery_email',
