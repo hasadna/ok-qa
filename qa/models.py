@@ -147,7 +147,3 @@ class QuestionUpvote(BaseModel):
 class QuestionFlag(BaseModel):
     question = models.ForeignKey(Question, related_name="flags")
     reporter = models.ForeignKey(User, related_name="flags")
-
-#import signals
-
-# Create your models here.
