@@ -4,3 +4,4 @@ django-taggit==0.21.3
 -e git+https://github.com/lucaswiman/django-uuidfield.git@733193a9aea52180ae4a9cb72a865b27bc5a9e23#egg=django_uuidfield
 unicode-slugify==0.1.3
 Unidecode==0.4.19
+django-autoslug==1.9.3
